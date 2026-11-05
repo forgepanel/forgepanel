@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=2 status=documented -->
 # Status and dependency-ordered roadmap
 
 [Français](../../fr/00-project-control/status.md) · [Project control](README.md)
@@ -37,5 +37,7 @@ All six OS targets and five profiles are planning inputs. Thirty fixture combina
 Additional 2026-11-05 choices Q48–Q55: **AGPL-3.0 + commercial license**, contributor **CLA**, premium plugins/cloud/managed/partners/support, **Docker and Podman**, after 60 offline days deny new premium operations while preserving existing data, **manually reviewed partner applications**, hosting + VPS first, **one brand per organization**. [Licensing](license-commerce.md) · [Container drivers](../02-architecture/container-drivers.md). None is an implemented feature.
 
 New owner product decisions Q1–Q8 and Q47 on 2026-11-05: **dual licensing (exact texts open)**, full free Core with optional premium/support, all audiences phased, customer PHP/Node.js/Python/containers, organization white-label, separately consented Hub exchange, **60-day** commercial offline grace, official/verified partners, safe sensitive changes. [Full policy](product-policy.md). These are not implemented features.
+
+Confirmed Q56–Q60: **independent payment provider adapters**, **Stable/Beta/Dev with staged rollout/recovery**, **local accounts plus optional SSO/OIDC**, **category-based retention**, **perpetual/subscription purchases with trials/coupons/bundles/add-ons**. These remain **specified, not implemented**. Q61–Q70 are unanswered. See [Q56–Q60](commerce-identity-release-policy.md).
 
 No date or version commitment is implied by these priorities. Product-owner decisions still needed: software/contribution license and authorized private security contact. Package/runtime choices require an evidence-based technical proposal, not a new architecture by assumption.

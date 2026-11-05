@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-POLICY revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-00-POLICY revision=2 status=documented -->
 # Product decisions of 5 November 2026 — free Core, commercial model and configuration
 
 [Français](../../fr/00-project-control/product-policy.md) · [ADR register](decisions.md) · [Configuration Engine](../02-architecture/configuration-engine.md)
@@ -36,6 +36,12 @@ Hub may issue locally verifiable entitlement evidence. The client retains the la
 ## Customization and authorization
 
 Organization UI overrides are bounded by server policy. Sensitive settings require effective authorization and audit: white-label permission does not grant access to private TLS keys or other tenants. Operators can inspect inherited values and why settings are locked.
+
+## Confirmed Q56–Q60
+
+Q56 **C** — independent payment provider drivers; Q57 **C** — Stable/Beta/Dev channels, progressive rollout and controlled rollback; Q58 **C** — local accounts plus optional SSO/OIDC; Q59 **C** — per-category configurable retention within legal/security bounds; Q60 **C** — perpetual purchases, subscriptions, trials, coupons, bundles and add-ons.
+
+Core remains free and complete. Hub owns payments/offers; Core owns local update verification and execution. No particular vendor, rollout percentage, retention day count or automatic-update default has been chosen. See [Q56–Q60 technical decisions](commerce-identity-release-policy.md).
 
 ## Open follow-ups — no default assumed
 

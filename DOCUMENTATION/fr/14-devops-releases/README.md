@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=2 status=documented -->
 # Installation, promotion Git et releases
 
 [English](../../en/14-devops-releases/README.md) · [Index](../README.md)
@@ -18,6 +18,10 @@ La vérification de signatures du prototype n'établit ni racine de confiance de
 ## Application des paramètres sensibles (Q47)
 
 L'installateur et les gestionnaires de services devront présenter le plan et son impact, valider les préconditions et les signatures, sauvegarder l'état nécessaire, appliquer avec verrous, vérifier le fonctionnement et documenter récupération/compensation. Préserver un accès de secours lors de modifications de ports ou de pare-feu. Les éléments non réversibles doivent être annoncés avant confirmation. Voir [Configuration Engine](../02-architecture/configuration-engine.md).
+
+## Canaux et déploiements progressifs (Q57)
+
+La cible propose **Stable, Beta, Dev** avec groupes pilotes, déploiement progressif, signatures/compatibilité et récupération contrôlée. Le Hub publie les métadonnées ; le Core local autorise et applique. Un rollback de code ne suffit pas pour une migration de base irréversible. La politique d'automatisation reste ouverte ; aucune mise à jour réelle n'est implémentée. Voir [Q56–Q60](../00-project-control/commerce-identity-release-policy.md).
 
 ## Preuves de livraison
 

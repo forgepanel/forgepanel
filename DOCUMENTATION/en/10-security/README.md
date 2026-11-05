@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=2 status=documented -->
 # Security model and disclosure
 
 [Français](../../fr/10-security/README.md) · [Index](../README.md)
@@ -24,6 +24,10 @@ Administrator MFA is **optional**, not a condition of initial account creation o
 ## Hub communications and commercial entitlements
 
 Under Q6, Hub enrollment is voluntary; premium checks, version discovery, diagnostics/support and marketing have separate permissions/consents or legal processing grounds. No automatic collection of hosting files, email, databases or secrets. Under Q7, the commercial offline grace is **60 days** for eligible previously verified premium rights, subject to contract dates; refusal/revocation must be explicit and non-destructive for essential hosting. See [product policy](../00-project-control/product-policy.md).
+
+## Identity, payments and retention (Q56, Q58, Q59)
+
+Hub payment providers use independent drivers with authenticated and deduplicated webhooks, never rights based only on browser redirects. SSO/OIDC is **optional**, with secure local recovery; administrator MFA stays optional. Per-category retention is limited by law, audit and backup requirements. These components are not operational.
 
 ## Minimum release gates
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-15 revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-15 revision=2 status=documented -->
 # Exploitation, diagnostic et récupération
 
 [English](../../en/15-operations/README.md) · [Index](../README.md)
@@ -16,6 +16,10 @@ Sur un prototype correctement installé à l'avenir, `sudo forgepanel setup stat
 Noter symptômes, révision et ressource ; lancer un diagnostic non modifiant ; préserver logs expurgés et dernière configuration ; limiter l'exposition si nécessaire ; préparer une réparation bornée ; confirmer l'impact destructif ; appliquer sous verrous ; vérifier santé/récupération ; consigner résultat et risque restant. Ne jamais effacer les logs, désactiver la sécurité obligatoire ou écraser des configurations externes comme correction automatique.
 
 Observer santé des services, ID d'opérations, durées, catégories d'échec, saturation, certificats et sauvegardes. Les métriques n'exposent ni secrets clients ni identifiants sensibles à forte cardinalité. Routage des alertes et rétention ne sont pas implémentés et nécessitent une configuration explicite.
+
+## Conservation par catégorie (Q59)
+
+Les audits de privilèges, logs système, jobs, métriques, diagnostics, sessions, sauvegardes, tickets et données commerciales Hub ont des politiques distinctes. Rétention, anonymisation, archive et purge configurables dans le cadre légal et sécuritaire ; aucune durée arbitraire fixée et aucun effacement des preuves requises pour incident ou restauration. [Q56–Q60](../00-project-control/commerce-identity-release-policy.md).
 
 ## Sauvegarde et restauration requises
 

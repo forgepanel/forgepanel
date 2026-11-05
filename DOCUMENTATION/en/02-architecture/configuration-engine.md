@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-CONFIG revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-02-CONFIG revision=2 status=specified -->
 # Configuration Engine — administrable settings specification
 
 [Français](../../fr/02-architecture/configuration-engine.md) · [Architecture](README.md) · [Product policy](../00-project-control/product-policy.md)
@@ -43,6 +43,10 @@ Performance options cannot become unrestricted shell execution or disable tenant
 8. `RECOVER`: restore reversible pieces and explicitly compensate/flag irreversible results.
 
 Presentation-only changes may apply immediately. Changes to ports, firewall, WebStack, RBAC or storage require at least PLAN/PREFLIGHT/SNAPSHOT/APPLY/VERIFY. Maintain emergency admin access for network changes; do not promise universal rollback for database deletion or package installation.
+
+## New Q56–Q60 settings
+
+Core will expose **Stable/Beta/Dev** channels with authorization and compatibility checks (Q57), local accounts plus optional SSO/OIDC while admin MFA remains optional (Q58), and per-category retention within legal/security constraints (Q59). Independent payment providers and perpetual/subscription/trial/coupon/bundle/add-on offers belong to **Hub**, not Core (Q56/Q60). None is implemented. [Specification](../00-project-control/commerce-identity-release-policy.md).
 
 ## Proposed API and acceptance
 

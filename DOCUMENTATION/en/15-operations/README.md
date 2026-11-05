@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-15 revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-15 revision=2 status=documented -->
 # Operations, diagnosis and recovery
 
 [Français](../../fr/15-operations/README.md) · [Index](../README.md)
@@ -16,6 +16,10 @@ On a future correctly installed prototype, `sudo forgepanel setup status` querie
 Record symptoms, revision and affected resource; run non-mutating diagnostics; preserve redacted logs and last known configuration; restrict exposure if necessary; prepare a bounded repair plan; confirm destructive impact; apply under resource locks; verify health and recovery; record outcome and remaining risk. Never erase logs, disable mandatory access controls or overwrite unrelated service configuration as an automatic fix.
 
 Observe service health, operation IDs, duration, failure categories, resource saturation and certificate/backup status. Metrics must not contain tenant secrets or high-cardinality credentials. Alert routing and retention are not implemented yet and need explicit configuration.
+
+## Category-based retention (Q59)
+
+Privileged audit records, system logs, jobs, metrics, diagnostics, sessions, backups, tickets and Hub commercial records require distinct policies. Retention, anonymization, archives and purges are configurable within legal/security limits; no default duration is invented and required incident/recovery evidence cannot be erased. [Q56–Q60](../00-project-control/commerce-identity-release-policy.md).
 
 ## Backup and restoration requirements
 

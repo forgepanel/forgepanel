@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-POLICY revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-00-POLICY revision=2 status=documented -->
 # Décisions produit du 5 novembre 2026 — gratuit, commercial et configurable
 
 [English](../../en/00-project-control/product-policy.md) · [Registre ADR](decisions.md) · [Configuration Engine](../02-architecture/configuration-engine.md)
@@ -36,6 +36,12 @@ Le Hub peut émettre des preuves de droits vérifiables localement. Le client co
 ## Personnalisation et permissions
 
 Les choix UI peuvent être surchargés par organisation dans les limites de la politique du serveur. Les réglages sensibles nécessitent autorisations effectives et traçabilité : une permission de white-label ne donne pas accès aux clés de certificats privées ou aux comptes clients étrangers. Les utilisateurs peuvent consulter les valeurs héritées et pourquoi certaines options sont verrouillées.
+
+## Décisions Q56–Q60 confirmées
+
+Q56 **C** — paiements multi-prestataires via pilotes indépendants ; Q57 **C** — canaux Stable/Beta/Dev, déploiement progressif et retour arrière contrôlé ; Q58 **C** — comptes locaux et SSO/OIDC facultatif ; Q59 **C** — conservation configurable selon la catégorie sous limites légales et de sécurité ; Q60 **C** — achat définitif, abonnement, essais, coupons, packs et options.
+
+Le Core demeure complet et gratuit. Les paiements/offres appartiennent au Hub, tandis que la vérification et l'exécution locales des mises à jour relèvent du Core. Aucun fournisseur, pourcentage de diffusion, nombre de jours de conservation ou politique de mises à jour automatiques n'a encore été choisi. Le détail des interfaces et tests figure dans [Q56–Q60](commerce-identity-release-policy.md).
 
 ## Questions encore ouvertes — ne pas présumer
 

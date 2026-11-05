@@ -80,6 +80,17 @@ class StageArchiveTests(unittest.TestCase):
         self.assertIn("staging_inside_source_repo_forbidden", outcome["blockers"])
         self.assertFalse(path.exists())
 
+    def test_cli_rejects_custom_evidence_for_staging(self):
+        import io
+        from contextlib import redirect_stdout
+        buf = io.StringIO()
+        with redirect_stdout(buf):
+            code = module.main(["--archive", str(self.archive), "--destination", str(self.destination),
+                                "--evidence", str(self.evidence), "--stage"])
+        self.assertEqual(code, 2)
+        self.assertIn("custom_evidence_staging_forbidden", buf.getvalue())
+        self.assertFalse(self.destination.exists())
+
     def test_wrong_checksum_cannot_stage(self):
         self.archive.write_bytes(b"tampered")
         result = self.stage_nonroot()

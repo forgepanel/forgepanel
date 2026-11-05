@@ -11,7 +11,7 @@ class Q151ToQ160DocumentationTests(unittest.TestCase):
     def test_decisions_in_both_languages(self):
         for lang in ("fr", "en"):
             s = (ROOT / f"DOCUMENTATION/{lang}/00-project-control/decisions-q151-q160.md").read_text()
-            self.assertEqual(dict(re.findall(r"^\\| Q(15[1-9]|160) \\| ([AC]) \\|", s, re.M)), CHOICES)
+            self.assertEqual(dict(re.findall(r"^\| Q(15[1-9]|160) \| ([AC]) \|", s, re.M)), CHOICES)
             self.assertIn("Q1–Q150", s)
             self.assertIn("Q132", s)
 

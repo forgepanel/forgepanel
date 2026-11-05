@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=6 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=7 status=documented -->
 # Security model and disclosure
 
 [Français](../../fr/10-security/README.md) · [Index](../README.md)
@@ -44,6 +44,10 @@ WebStack switching needs permission, safe listeners/`.htaccess`, HTTP/TLS and no
 ## Runtime and migration security (Q91–Q100)
 
 Each website PHP pool/identity and actual Linux confinement require testing, with EOL notices and planned safe upgrade (Q91/Q92). Manual/webhook Git needs auth, anti-replay, allowed refs and secret-safe logs (Q93). Staging needs data masking, distinct secrets/URLs, blocked real outbound actions, retention/audit (Q94). ACME uses multiple issuers/DNS-01 with domain proof and protected tokens (Q95). Per-tenant DB/cache/SSH require quotas and expiry/revocation (Q96/Q97); Webmail and quarantine require authorized mailbox/domain access (Q98). Quota grace never bypasses host capacity or tenant separation (Q99). Cross-server migration requires both-side permissions, encryption, secret rotation and audited recovery (Q100). [Reference](../00-project-control/decisions-q91-q100.md). **Not implemented.**
+
+## Q101–Q110 trust boundaries
+
+EOL PHP exceptions are **temporary, site-scoped, authorized and audited**, with planned migration (Q101), never overriding isolation selected only from **OS-certified** Linux capabilities (Q102). Manual/webhook deployment policy applies by site and environment, with configurable approval and anti-replay (Q103); sensitive staging copies require **special approval** and isolated secrets (Q104). Multiple ACME CAs have bounded retries, alerts and last-good recovery (Q105). Shared/dedicated DB plus optional certified clusters enforce tenant scope (Q106). SSH keys/IPs and temporary/certified access include revocation (Q107). Webmail advice must show maintenance/security proof (Q108). Per-plan/resource quota grace never overrides host security or capacity (Q109). Advanced migration is allowed only with tested source/target consistency (Q110). [Specification](../00-project-control/decisions-q101-q110.md). **Tests not performed**.
 
 ## Minimum release gates
 

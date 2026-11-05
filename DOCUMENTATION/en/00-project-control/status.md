@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=6 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=7 status=documented -->
 # Status and dependency-ordered roadmap
 
 [Français](../../fr/00-project-control/status.md) · [Project control](README.md)
@@ -47,5 +47,7 @@ The owner has confirmed **Q71–Q80**: protected key rotation, controlled servic
 **Q81–Q90 confirmed (2026-11-05)**: per-site application/security/resource-aware WebStack recommendations and temporary/progressive transitions when feasible; per-site PHP/FPM/extensions; ACME/wildcard/DNS-01; Git Deploy with staging; MariaDB/MySQL/PostgreSQL with optional Redis/Valkey; file manager/SFTP with restricted SSH; webmail/antispam/quarantine; inherited quotas; selective restore and staging clones. [Q81–Q90 specification](decisions-q81-q90.md). **Specified, not shipped**.
 
 **Q91–Q100** are confirmed: maintained PHP and planned migrations, confined per-site PHP-FPM, validated manual/webhook Git Deploy, site-scoped staging privacy/retention, multiple ACME and DNS-01, multiple tenant DB/cache engines, plan-scoped restricted SSH, configurable Webmail, quotas with bounded grace and authorized increments, secure cross-server migration/restore. [Q91–Q100 register](decisions-q91-q100.md). All remain **specified, not implemented or certified**.
+
+**Q101–Q110 confirmed (2026-11-05)**: time-limited PHP EOL exceptions/planned migration, OS-certified plan/site isolation, manual/webhook Git with per-environment approvals, sensitive staging requiring extra permission, multi-CA ACME with recovery, shared/dedicated SQL and optional certified clusters, temporary/certified SSH access, test-qualified Webmail advice, quota grace by resource and conditional pre-sync/replication/failover. [Q101–Q110 decisions](decisions-q101-q110.md). **Specified only; no new runtime or OS certification.**
 
 No date or version commitment is implied by these priorities. Product-owner decisions still needed: software/contribution license and authorized private security contact. Package/runtime choices require an evidence-based technical proposal, not a new architecture by assumption.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-POLICY revision=6 status=documented -->
+<!-- forgepanel-doc id=FP-00-POLICY revision=7 status=documented -->
 # Product decisions of 5 November 2026 — free Core, commercial model and configuration
 
 [Français](../../fr/00-project-control/product-policy.md) · [ADR register](decisions.md) · [Configuration Engine](../02-architecture/configuration-engine.md)
@@ -58,6 +58,10 @@ ForgePanel will offer an explainable **per-site WebStack** based on application,
 ## Confirmed Q91–Q100
 
 The owner approved maintained PHP with EOL alerts and per-site migration (Q91), stronger PHP-FPM isolation (Q92), validated manual/webhook Git Deploy (Q93), staging masking/secrets/retention/audit (Q94), multiple ACME issuers and DNS-01 drivers (Q95), multiple tenant SQL/cache engines (Q96), scoped expiring/audited SSH (Q97), Webmail chosen by provider/domain (Q98), bounded quota grace and authorized allocation (Q99), and secure cross-server migration/restore with privacy/recovery (Q100). These requirements **do not create working services** or Core dependence on Hub. [Q91–Q100 decisions](decisions-q91-q100.md).
+
+## Confirmed Q101–Q110
+
+The choices add **time-limited** PHP exceptions and planned migration (Q101), OS-certified plan/site isolation profiles (Q102), Git manual/webhook with per-environment approval (Q103), specially approved sensitive staging copies (Q104), bounded retries/recovery across ACME issuers (Q105), shared/dedicated DB and optional certified clusters (Q106), temporary/certificate-based SSH where available (Q107), Webmail recommendation after tests (Q108), quota grace by plan/resource (Q109) and conditional pre-sync/replication/failover (Q110). Core remains standalone; Hub has no access to hosted resources. [Q101–Q110](decisions-q101-q110.md).
 
 ## Open follow-ups — no default assumed
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=6 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=7 status=documented -->
 # Modèle de sécurité et signalement
 
 [English](../../en/10-security/README.md) · [Index](../README.md)
@@ -44,6 +44,10 @@ La bascule WebStack exige permissions, sécurité des listeners/`.htaccess`, HTT
 ## Sécurité des runtimes et migrations (Q91–Q100)
 
 PHP 1 site = identité/pool FPM séparé et confinement Linux réellement vérifié, avec alertes de fin de support et migration planifiée (Q91/Q92). Git manuel/webhook : authentification, anti-rejeu, refs autorisées et logs sans secrets (Q93). Staging : anonymisation, secrets/URLs distincts, suppression des sorties réelles, conservation/audit (Q94). ACME : plusieurs CA/DNS-01 avec preuve de domaine et jetons protégés (Q95). Bases/cache/SSH isolés par compte avec quotas et révocation/expiration (Q96/Q97) ; Webmail et quarantaine visibles uniquement aux détenteurs autorisés (Q98). Grâce quotas bornée ne franchit jamais les limites physiques ni l'isolation (Q99). Migration inter-serveurs : autorisation source et destination, transfert chiffré, rotation des secrets et récupération auditée (Q100). [Référence](../00-project-control/decisions-q91-q100.md). **Non implémenté.**
+
+## Limites de confiance Q101–Q110
+
+Une exception PHP EOL est **temporaire, limitée à un site, autorisée et auditée**, avec migration programmée (Q101) ; elle ne contourne pas les profils d'isolation sélectionnés uniquement parmi les capacités Linux **certifiées** (Q102). Déploiements par site et environnement avec validation/approbation configurable et webhooks anti-rejeu (Q103) ; staging avec données sensibles requiert une **approbation spéciale** et secrets isolés (Q104). ACME multi-autorités avec retries limités, alertes et secours conservant le certificat sain (Q105). Services SQL mutualisés/dédiés avec clusters facultatifs certifiés et isolement inter-tenants (Q106). SSH à clés/IP et accès temporaires/certificats compatibles avec révocation (Q107). Webmail conseillé sur preuve de maintenance et permissions (Q108). Grâce quotas bornée par plan et ressource, jamais au-delà de la sécurité/hôte (Q109). Bascule avancée uniquement lorsque la cohérence source/cible est vérifiée (Q110). [Spécification](../00-project-control/decisions-q101-q110.md). **Tests non réalisés**.
 
 ## Critères minimaux de livraison
 

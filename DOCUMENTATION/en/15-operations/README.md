@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-15 revision=6 status=documented -->
+<!-- forgepanel-doc id=FP-15 revision=7 status=documented -->
 # Operations, diagnosis and recovery
 
 [Français](../../fr/15-operations/README.md) · [Index](../README.md)
@@ -36,6 +36,10 @@ Site backups should support full or selective files/DB/config restoration, resto
 ## Q91–Q100 lifecycle and incidents
 
 PHP maintenance tracks EOL, notifies owners and plans verified upgrades without switching panel PHP (Q91). FPM per-site isolation requires qualified kernel/OS bounds (Q92). Manual/webhook Git and staging clones use audited jobs with outbound/retention safeguards (Q93/Q94). Multi-issuer ACME/DNS-01 monitors renewals/expiry (Q95). Data engines, SSH and Webmail need health/authorization checks (Q96–Q98). Q99 quota grace/extensions have bounded expiry. Q100 migrations retain source/target snapshots and define interruption, DNS/TLS switch and explicit recovery. [Cross-server migration](../02-architecture/cross-server-migration.md).
+
+## Maintenance, exceptions and conditional HA (Q101–Q110)
+
+Operate EOL PHP exceptions with **expiry, owner and migration plan**; periodically review host-certified Linux isolation capability (Q101/102). Distinguish staging/production deployment triggers and approvals, audit sensitive-data copies with retention/cleanup (Q103/104). ACME renewal has bounded retries, alerts and preservation of last valid certificate (Q105). Shared/dedicated DB and any cluster require qualified replication/restore first (Q106). Temporary/certified SSH, test-recommended Webmail and quota grace per resource have expiry, alerts and audit (Q107–109). Pre-sync and advanced cutover (Q110) need proven consistency and fallback; maintenance otherwise. [Q101–Q110 policies](../02-architecture/runtime-exceptions-and-data-continuity.md).
 
 ## Backup and restoration requirements
 

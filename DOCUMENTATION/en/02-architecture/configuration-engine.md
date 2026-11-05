@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-CONFIG revision=6 status=specified -->
+<!-- forgepanel-doc id=FP-02-CONFIG revision=7 status=specified -->
 # Configuration Engine — administrable settings specification
 
 [Français](../../fr/02-architecture/configuration-engine.md) · [Architecture](README.md) · [Product policy](../00-project-control/product-policy.md)
@@ -67,6 +67,12 @@ Q82 switching requires `PLAN → PREFLIGHT → SNAPSHOT → STAGE → TEMP_ROUTE
 Candidate keys: `site.php.support_policy` (maintained versions/EOL/migration window), `site.php.isolation_profile` (qualified Linux capability), `site.deploy.trigger_policy` (manual/signed webhook/allowed refs), `site.staging.data_policy` (masking, SMTP/webhooks, secrets and retention), `site.tls.issuer` and `site.tls.dns01_provider`, `account.data_services` (per-engine grants/quotas), `account.ssh.policy` (keys/revocation/expiry), `mail.domain.webmail_driver`, `plan.quota.grace_policy` (threshold and authorized extension), `site.migration.plan` (source/target compatibility). Sensitive values are references to protected secrets. Child scopes cannot relax server security.
 
 Cross-server migration and staging creation require durable idempotency, locks, plan/backup/test/commit or compensation. **Q99 cannot bypass physical hard limits**. [Q91–Q100](../00-project-control/decisions-q91-q100.md) · [Website lifecycle](website-lifecycle.md).
+
+## Configurable Q101–Q110 policies
+
+Candidate versioned keys: `site.php.eol_exception` (grant/expiry/migration), `site.isolation.profile` (plan/site with OS certification), `site.environment.deploy_policy` (manual/webhook and approvals), `site.staging.copy_policy` (classification/extra approval/retention/audit), `site.tls.acme_fallback` (allowed CAs/retries/alerts/recovery), `account.database.topology` (shared/dedicated, optional certified clustering), `account.ssh.temporary_grants` (IP/expiry/qualified CA), `mail.webmail.recommendation` (security/maintenance evidence), `plan.quota.grace_by_resource` (duration/cap) and `site.migration.advanced_cutover` (pre-sync, consistency and failover).
+
+All settings remain constrained by effective RBAC, parent policies and **verified** OS capabilities. Exceptions/approvals/temporary grants need revision, expiry and audit. Configuration Engine never promises hard quota overrides or zero-downtime migrations. [Q101–Q110](../00-project-control/decisions-q101-q110.md) · [Technical rules](runtime-exceptions-and-data-continuity.md). **Not implemented**.
 
 ## Proposed API and acceptance
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-PHP-STAGING revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-02-PHP-STAGING revision=2 status=specified -->
 # Politique PHP, staging Git, ACME, accès et quotas par site
 
 [English](../../en/02-architecture/php-staging-and-access-policy.md) · [Cycle du site](website-lifecycle.md) · [Q91–Q100](../00-project-control/decisions-q91-q100.md)
@@ -30,6 +30,20 @@ Webmail sélectionnable selon les capacités du serveur et du fournisseur mail, 
 ## Quotas avec grâce contrôlée (Q99 D)
 
 Les limites **hard** sont liées aux capacités réelles de l'hôte (disque, inode, CPU, RAM, processus, SMTP/DB selon fournisseur). Les limites **soft** et seuils d'alerte peuvent déclencher un délai de grâce ou une rallonge bornée, traçable et accordée par une permission administrateur dédiée, avec expiration/reprise. Aucune rallonge ne peut autoriser une consommation dépassant la capacité physique, les contraintes de sécurité ou les allocations d'autres clients. Quotas décomptés au niveau plan/compte/site, usage mesuré et facturation premium séparée des droits systèmes.
+
+## Précisions obligatoires Q101–Q109
+
+- **PHP obsolète (Q101 C)** : l'exception ne peut être accordée que pour un site, un responsable, un motif, une date d'expiration et un plan de migration ; avertir du risque résiduel et journaliser la revue. Aucun renouvellement automatique non validé.
+- **Confinement (Q102 C)** : profils par plan/site, uniquement selon capacités Linux **certifiées** ; un pool PHP-FPM isolé ne remplace pas les contrôles OS nécessaires.
+- **Déploiements (Q103 C)** : distinguer `production` et `staging` dans les règles manuel/webhook, tests et approbation par action ; un webhook ne constitue jamais une élévation de privilège.
+- **Données sensibles staging (Q104 D)** : profils fichiers/schéma/données anonymisées, approbation spéciale pour les données sensibles, secrets distincts, durée de conservation et piste d'audit.
+- **ACME (Q105 C)** : CA alternatives approuvées, tentatives bornées, alertes, secours et dernier certificat validé conservé.
+- **DB (Q106 D)** : mutualisé/dédié au choix du plan, clusters/réplication facultatifs **uniquement après certification** du pilote, sans franchir le scope.
+- **SSH (Q107 C)** : clés, restrictions, IP autorisées, accès temporaires et certificats SSH si infrastructure de confiance compatible, révocation/audit.
+- **Webmail (Q108 D)** : moteur conseillé uniquement après tests de sécurité, compatibilité et maintenance, sans imposer un fournisseur non qualifié.
+- **Quotas (Q109 C)** : grâce **par plan et ressource**, expiration/plafond/configuration, jamais au-delà des limites physiques/sécurité.
+
+[Contrats et tests Q101–Q110](runtime-exceptions-and-data-continuity.md) · [Décisions](../00-project-control/decisions-q101-q110.md). **Aucun de ces composants n'est implémenté**.
 
 ## Contrats candidats et échecs attendus
 

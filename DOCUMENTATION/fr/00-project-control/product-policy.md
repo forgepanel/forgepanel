@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-POLICY revision=6 status=documented -->
+<!-- forgepanel-doc id=FP-00-POLICY revision=7 status=documented -->
 # Décisions produit du 5 novembre 2026 — gratuit, commercial et configurable
 
 [English](../../en/00-project-control/product-policy.md) · [Registre ADR](decisions.md) · [Configuration Engine](../02-architecture/configuration-engine.md)
@@ -58,6 +58,10 @@ ForgePanel proposera, **pour chaque site**, une WebStack expliquée selon applic
 ## Décisions Q91–Q100 confirmées
 
 Le propriétaire a validé PHP maintenu avec alertes EOL et migrations par site (Q91), confinement PHP-FPM renforcé (Q92), Git Deploy manuel ou webhook validé (Q93), staging avec anonymisation/secrets/rétention/audit (Q94), ACME multi-autorités et pilotes DNS-01 (Q95), plusieurs moteurs SQL/cache par compte (Q96), SSH limité/expirable/audité selon plan (Q97), Webmail au choix selon fournisseur et domaine (Q98), grâce et rallonges de quotas autorisées (Q99), et migration/restauration inter-serveurs avec contrôle des données et reprise (Q100). Ces exigences **ne créent pas de nouveau service opérationnel**, ni de dépendance au Hub. [Décisions Q91–Q100](decisions-q91-q100.md).
+
+## Décisions Q101–Q110 confirmées
+
+Les nouveaux choix encadrent les exceptions PHP **temporaires** avec migration (Q101), l'isolation par profils certifiés du plan/site (Q102), les modes Git manuel/webhook et les approbations selon environnement (Q103), l'usage de données sensibles en staging uniquement avec approbation dédiée (Q104), les essais et secours ACME multi-autorités (Q105), les bases mutualisées ou dédiées avec clusters optionnels certifiés (Q106), l'accès SSH temporaire ou par certificats compatibles (Q107), les Webmails recommandés après tests (Q108), les grâces de quotas par plan/type (Q109) et la migration présynchronisée avec réplication/bascule conditionnelles (Q110). Le Core reste autonome et le Hub n'accède pas aux ressources clientes. [Q101–Q110](decisions-q101-q110.md).
 
 ## Questions encore ouvertes — ne pas présumer
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08 revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-08 revision=6 status=documented -->
 # API et contrats
 
 [English](../../en/08-api-contracts/README.md) · [Index](../README.md)
@@ -36,6 +36,10 @@ Le contrat candidat `webstack.recommend(site_draft,server_facts,policy_revision)
 ## Nouveaux contrats proposés Q91–Q100
 
 `php.catalog.supportedVersions`, `site.php.planMigration`, `site.isolation.capabilities`, `site.git.deployManual`, `site.git.acceptWebhook`, `site.staging.privacyPolicy`, `site.tls.listIssuers`, `site.tls.dns01Driver`, `tenant.data.engineQuota`, `tenant.ssh.rotateOrRevoke`, `mail.webmail.capabilities`, `hosting.quota.graceGrant` et `site.migration.planTransfer`. Identité, organisation, ressource, politique, version, idempotence et audit obligatoires ; signaux Git et commandes distantes ne sont pas des instructions shell. Les contrats sont des **candidats non implémentés**. [Q91–Q100](../00-project-control/decisions-q91-q100.md).
+
+## Contrats candidats Q101–Q110
+
+`php.exception.request/approve/expire`, `site.isolation.listCertifiedProfiles`, `site.deploy.environmentPolicy`, `staging.sensitiveData.approve`, `acme.issuer.retryOrRecover`, `database.topology.plan`, `ssh.access.tempGrant/revoke`, `webmail.driver.recommend`, `quota.grace.planGrant`, `migration.preSync.planFailover` sont des **candidats non implémentés**. Ils doivent porter acteur, organisation/compte/site/environnement, capacité OS certifiée, paramètres typés, approbations, expiration, révision, idempotence, logs expurgés et état de récupération. Une approbation ne transforme pas un webhook en commande root ; l'échec de failover doit préserver une voie de reprise. [Décisions Q101–Q110](../00-project-control/decisions-q101-q110.md).
 
 ## Exigences du futur protocole
 

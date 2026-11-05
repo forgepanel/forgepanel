@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-06 revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-06 revision=4 status=documented -->
 # Applications and installation recipes
 
 [Français](../../fr/06-apps-recipes/README.md) · [Index](../README.md)
@@ -22,6 +22,10 @@ Recipes must describe PHP/extensions, WebStack/TLS, files/SFTP/Git deployment, s
 ## Git triggers and private staging (Q91–Q94)
 
 A recipe declares maintained PHP versions/extensions and safe migration (Q91), per-site FPM constraints (Q92) and **manual, authenticated webhook or both** Git trigger according to site policy (Q93). Staging must constrain copied data, mask where required, use independent secrets, block live mail/webhooks and respect audit/retention (Q94). A webhook cannot run arbitrary root shell, and code rollback cannot undo arbitrary SQL migrations. [Policy](../02-architecture/php-staging-and-access-policy.md).
+
+## Q101–Q110 recipe policies
+
+Recipes should declare maintained PHP versions and bounded EOL exceptions, required Linux isolation, permitted branches/environments/manual-webhook triggers and approvals, and handling/retention of sensitive staging data. Record eligible ACME/DNS-01, SQL/cache topology, temporary SSH needs and Webmail compatibility. Quota requests can receive bounded authorized grace without exceeding actual capacity. Migration support must distinguish pre-sync, staging tests, cutover and replication **only if available and verified**. A manifest is not root permission. [Rules](../02-architecture/runtime-exceptions-and-data-continuity.md).
 
 ## Acceptance and observability
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DECISIONS revision=6 status=documented -->
+<!-- forgepanel-doc id=FP-00-DECISIONS revision=7 status=documented -->
 # Registre de décisions
 
 [English](../../en/00-project-control/decisions.md) · [Pilotage](README.md)
@@ -83,6 +83,17 @@ Les identifiants sources renvoient à l'[état initial](../19-audits-risks/basel
 | ADR-067 | Webmail interchangeable selon serveur/fournisseur et politiques domaine (Q98 C) | Pilotes qualifiés, isolation boîtes, webmail/quarantaine compatibles |
 | ADR-068 | Quotas soft/hard, grâce et rallonge administrateur (Q99 D) | Autorisation explicite, limites réelles non contournables, trace et expiration |
 | ADR-069 | Migration/restauration inter-serveurs sécurisée et auditée (Q100 D) | Préflight OS/WebStack/PHP/DB, transfert chiffré, staging et secrets tournés, reprise |
+
+| ADR-070 | Exception PHP EOL temporaire avec migration prévue (Q101 C) | Dérogation par administrateur, site/échéance/révision et audit ; pas d'exception permanente implicite |
+| ADR-071 | Profils d'isolation sélectionnables selon capacités Linux certifiées (Q102 C) | Héritage plan/site, refus des profils indisponibles ; FPM seul n'est pas confinement complet |
+| ADR-072 | Git Deploy par site ET environnement avec approbation configurable (Q103 C) | Staging/production, ref, webhook signé, permissions et politique d'autorisation séparées |
+| ADR-073 | Copie staging de données sensibles avec approbation spéciale (Q104 D) | Profils fichiers/schéma/anonymisés, secrets distincts, rétention, purge et audit |
+| ADR-074 | ACME multi-autorités, retries bornés, alertes et secours (Q105 C) | Alternatives préautorisées, DNS-01 compatible, préserver certificat sain avant remplacement |
+| ADR-075 | DB mutualisée/dédiée selon plan + cluster/réplication facultatifs (Q106 D) | Pilotes certifiés et isolation tenant ; aucun cluster implicite au Core |
+| ADR-076 | SSH restreint/IP autorisées, accès temporaires et certificats compatibles (Q107 C) | Autorité SSH certifiée, durée/révocation/audit ; ni root ni terminal web implicite |
+| ADR-077 | Webmail recommandé après tests de sécurité/compatibilité/maintenance (Q108 D) | Aucune présomption Roundcube/SnappyMail ; choix serveur/fournisseur/domaine |
+| ADR-078 | Grâce et plafonds de quotas par plan et ressource (Q109 C) | Seuils/échéances et allocations administrateur Q99 ; limites physiques non franchissables |
+| ADR-079 | Pré-synchronisation et bascule avancée conditionnelle (Q110 D) | Test staging et DNS/proxy, réplication/failover uniquement si application/infrastructure compatibles ; pas de zéro downtime garanti |
 
 ## Propositions remplacées ou non résolues
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-CONFIG revision=6 status=specified -->
+<!-- forgepanel-doc id=FP-02-CONFIG revision=7 status=specified -->
 # Configuration Engine — spécification des réglages administrables
 
 [English](../../en/02-architecture/configuration-engine.md) · [Architecture](README.md) · [Politique produit](../00-project-control/product-policy.md)
@@ -67,6 +67,12 @@ Q82 exige pour un changement de WebStack : `PLAN → PREFLIGHT → SNAPSHOT → 
 Ajouter des schémas candidats : `site.php.support_policy` (versions maintenues, avis EOL, fenêtre de migration), `site.php.isolation_profile` (capacité Linux certifiée), `site.deploy.trigger_policy` (manuel/webhook signé, branches autorisées), `site.staging.data_policy` (redaction, SMTP/webhooks, secrets, rétention), `site.tls.issuer` et `site.tls.dns01_provider`, `account.data_services` (droits/quotas par moteur), `account.ssh.policy` (clés/révocation/expiration), `mail.domain.webmail_driver`, `plan.quota.grace_policy` (seuils et rallonge administrateur) et `site.migration.plan` (compatibilité source/cible). Toutes les données sensibles sont des références à des secrets protégés. Les overrides enfants ne lèvent pas de limites du serveur.
 
 Les opérations de migration inter-serveurs et de création de staging sont soumises à idempotence, verrous et plan/backup/test/commit ou compensation. **Q99 ne permet pas de contourner les limites physiques**. [Q91–Q100](../00-project-control/decisions-q91-q100.md) · [Cycle des sites](website-lifecycle.md).
+
+## Politiques configurables Q101–Q110
+
+Déclarer en schémas versionnés : `site.php.eol_exception` (autorité, durée, migration), `site.isolation.profile` (profil admissible par plan/site et OS), `site.environment.deploy_policy` (manuel/webhook, approbation), `site.staging.copy_policy` (classification, consentement spécial, rétention/audit), `site.tls.acme_fallback` (CA autorisées, reprises/alerte/secours), `account.database.topology` (partagée/dédiée, cluster certifié optionnel), `account.ssh.temporary_grants` (IP, durée, CA compatible), `mail.webmail.recommendation` (preuves de maintenance/sécurité), `plan.quota.grace_by_resource` (délai et plafond) et `site.migration.advanced_cutover` (pré-synchronisation, preuve de cohérence et bascule).
+
+Les effets de toute configuration dérivent des permissions RBAC, de la politique du parent et des capacités OS **vérifiées**. Les exceptions, approbations et droits temporaires nécessitent révision, expiration et audit. Le Configuration Engine ne garantit ni dépassement de quota dur ni zéro interruption d'une migration. [Q101–Q110](../00-project-control/decisions-q101-q110.md) · [Règles techniques](runtime-exceptions-and-data-continuity.md). **Non implémenté**.
 
 ## API cible et critères de validation
 

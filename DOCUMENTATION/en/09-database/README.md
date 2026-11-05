@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-09 revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-09 revision=4 status=documented -->
 # Database, transactions and migrations
 
 [Français](../../fr/09-database/README.md) · [Index](../README.md)
@@ -22,6 +22,10 @@ A partial unique index permits only one `initial_admin=true`. `PdoSetupRepositor
 ## Customer engines and cross-server migration (Q96, Q100)
 
 One hosting account may own **separate MariaDB/MySQL and PostgreSQL** services plus optional Redis/Valkey cache/queues under verified capabilities, with per-engine quota/grant/secret policy (Q96). Panel-internal PostgreSQL is **not** shared with customer DBs. Cross-server migration Q100 needs version/schema preflight, consistent snapshot, authenticated encrypted transfer, DB account mapping, rotated secrets and audited recovery. No customer DB driver or cross-server migrator exists in the current setup-only prototype. [Details](../02-architecture/cross-server-migration.md).
+
+## SQL/cache topology and migration Q106/Q110
+
+Beyond Q96 multiple tenant DB engines, **Q106 D** allows **shared or dedicated per-plan** services, plus **optional, actually certified** cluster/replication adapters. Each driver documents tenant schema/user isolation, quorum/leader/failover when supported, replication lag, consistent backup, secrets and restoration. Redis/Valkey are not automatically SQL or clustered storage. **Q110 D** permits pre-sync and advanced cutover only with tested application-write and transaction consistency; otherwise require maintenance/freeze and recovery. Panel PostgreSQL remains separate. [Migration](../02-architecture/cross-server-migration.md) · [Decisions](../00-project-control/decisions-q101-q110.md).
 
 ## Migration and ownership requirements
 

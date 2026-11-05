@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-PHP-STAGING revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-02-PHP-STAGING revision=2 status=specified -->
 # Per-site PHP, Git staging, ACME, access and quota policy
 
 [Français](../../fr/02-architecture/php-staging-and-access-policy.md) · [Website lifecycle](website-lifecycle.md) · [Q91–Q100](../00-project-control/decisions-q91-q100.md)
@@ -30,6 +30,20 @@ Webmail selection follows capabilities of server and mail provider, with domain/
 ## Quota grace without relaxing hard limits (Q99 D)
 
 **Hard** limits respect actual host capacity (disk/inodes/CPU/RAM/processes, mail/DB provider constraints). **Soft** ceilings and warning thresholds may allow a bounded grace or an extra allocation granted by a separately authorized administrator, with expiry/audit. No extension may exceed real capacity, security boundaries or other tenant grants. Show plan/account/site inheritance and measured usage. Commercial entitlements are separate from system authorization.
+
+## Required Q101–Q109 refinements
+
+- **EOL PHP (Q101 C)**: exception scoped to site, owner, reason, expiration and planned migration; disclose risk and record review, never silently renew.
+- **Confinement (Q102 C)**: plan/site-selected profiles limited to **OS-certified** Linux capabilities; FPM pools do not replace host enforcement.
+- **Deployments (Q103 C)**: distinguish `production` and `staging` manual/webhook, test and approval policies; webhook never elevates privileges.
+- **Sensitive staging (Q104 D)**: files/schema/anonymized data profiles; extra approval for sensitive copies, distinct secrets, retention and audit.
+- **ACME (Q105 C)**: preapproved alternate CAs, bounded retries, alerts, recovery and retained last-known-good certificate.
+- **Databases (Q106 D)**: shared/dedicated by plan, optional clusters/replication **only after driver certification**; tenant scoping remains mandatory.
+- **SSH (Q107 C)**: keys, restrictions, allowed IPs, temporary grants and SSH certs only with qualified trust infrastructure, revocation/audit.
+- **Webmail (Q108 D)**: recommend an engine only after security/compatibility/maintenance tests; no unqualified default.
+- **Quotas (Q109 C)**: grace **per plan and resource kind** with time/cap bounds, never over physical/security limits.
+
+[Q101–Q110 contracts and tests](runtime-exceptions-and-data-continuity.md) · [Decisions](../00-project-control/decisions-q101-q110.md). **None are implemented**.
 
 ## Proposed contracts and failures
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-WEBSITE revision=2 status=specified -->
+<!-- forgepanel-doc id=FP-02-WEBSITE revision=3 status=specified -->
 # Architecture du site — WebStack, PHP, TLS, déploiement, données et restauration
 
 [English](../../en/02-architecture/website-lifecycle.md) · [Conseiller WebStack](site-webstack-advisor.md) · [Arbitrages Q81–Q90](../00-project-control/decisions-q81-q90.md)
@@ -54,6 +54,12 @@ Un site peut recevoir des sauvegardes **complètes ou sélectives** (fichiers, b
 - **Migration Q100** : sauvegarde de source/cible, préflight OS/WebStack/PHP/DB/mail, staging isolé, transfert authentifié, secret rotation, cutover et reprise auditée. [Processus inter-serveurs](cross-server-migration.md).
 
 [Détails PHP, staging et accès](php-staging-and-access-policy.md) · [Registre Q91–Q100](../00-project-control/decisions-q91-q100.md). Ces fonctions restent des cibles non implémentées.
+
+## Extensions Q101–Q110
+
+Le cycle des sites intègre **exceptions PHP EOL temporaires/migration** (Q101) et profils d'isolation par plan/site certifiés (Q102) ; les déclencheurs Git **par site ET environnement**, avec approbation configurable (Q103), et les copies de staging avec approbation spéciale pour données sensibles, rétention et audit (Q104). Renouvellement ACME via plusieurs CA, retries bornés et secours (Q105). Bases **mutualisées ou dédiées** avec clusters/replication **facultatifs après certification** (Q106). SSH temporaire/certificats autorisés et IP bornées (Q107), Webmail conseillé par tests (Q108), grâce de quotas par plan et ressource (Q109), migration présynchronisée avec réplication/bascule **uniquement si compatible** (Q110).
+
+Les droits de copie, d'exécution ou de bascule sont distincts. Une fenêtre de maintenance reste nécessaire si la cohérence applicative ne peut être conservée ; aucune fonction premium du Hub n'est nécessaire aux opérations essentielles du Core. [Décisions](../00-project-control/decisions-q101-q110.md) · [Politique technique](runtime-exceptions-and-data-continuity.md).
 
 ## État, tests et non-implémentation
 

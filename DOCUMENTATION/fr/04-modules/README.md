@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-04 revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-04 revision=6 status=documented -->
 # Catalogue des modules natifs
 
 [English](../../en/04-modules/README.md) · [Index](../README.md)
@@ -32,6 +32,10 @@ Le périmètre d'hébergement prévoit : conseiller WebStack et changement sécu
 ## Modules retenus dans Q91–Q100
 
 La gestion de sites visera : **catalogue PHP maintenu avec alertes EOL et migration** (Q91), **pools PHP-FPM isolés par site et profils Linux renforcés** (Q92), **Git Deploy manuel et webhook validé** (Q93), staging avec contrôle des données/secret/rétention (Q94), **ACME multi-CA/DNS-01** (Q95), moteurs SQL/cache multiples séparés par compte (Q96), SSH limité par plan avec révocation/expiration (Q97), webmail sélectionnable selon fournisseur (Q98), quotas avec alertes/grâce et rallonge autorisée (Q99), et migration entre serveurs avec staging/sauvegarde/récupération (Q100). Le Core n'inclut pas de terminal web par implicite et ne stocke pas les données de site dans Hub. [Décisions](../00-project-control/decisions-q91-q100.md).
+
+## Politiques modules Q101–Q110
+
+Les modules devront publier leurs capacités par OS/plan/site : dérogations PHP EOL de durée bornée avec migration (Q101), profils d'isolation Linux certifiés (Q102), Git Deploy manuel/webhook et approbations par environnement (Q103), staging privé nécessitant parfois une approbation spéciale (Q104), ACME multi-CA et secours (Q105), bases mutualisées/dédiées avec réplication **optionnelle certifiée** (Q106), SSH temporaire/certificats selon fournisseur (Q107), moteur Webmail conseillé après qualification (Q108), grâces de quota par ressource (Q109), migration présynchronisée et bascule avancée conditionnelle (Q110). Le Core reste propriétaire de l'exécution et du stockage client. [Décisions](../00-project-control/decisions-q101-q110.md).
 
 ## Contrat de cycle de vie
 

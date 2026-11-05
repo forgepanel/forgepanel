@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19 revision=7 status=documented -->
+<!-- forgepanel-doc id=FP-19 revision=8 status=documented -->
 # Audit, contradictions and risks
 
 [Français](../../fr/19-audits-risks/README.md) · [Index](../README.md)
@@ -68,3 +68,7 @@ These protections do not replace source code or publisher-signature review. [FR/
 - **RISK-025** — After interruption a private, incomplete `run_id` directory may remain; `PARTIAL_STAGE_REQUIRES_MANUAL_CLEANUP` avoids dangerous recursive deletion of substituted paths. The future runner must test and document safe bounded teardown, real quotas and failure recovery.
 
 [Specification and limits](../14-devops-releases/kvm-image-staging.md). Does not close RISK-019, RISK-020/021 or issue #42.
+
+## AUDIT-DOC-001 — Stale documentation status and false-completeness risk
+
+**Finding:** some status pages still showed R1/R3 as candidate `features/*` branches after PRs #37–#43 had merged into `develop`; the [coverage matrix](../00-project-control/coverage.md) did not separately track bilingual structure and executable specifications. **Documentation severity: medium; state: proposed fix in this PR.** The [versioned 22-gap register](../00-project-control/documentation-readiness.md), [traceability](../00-project-control/requirements-traceability.md) and [reconciled status](../00-project-control/status.md) correct the status narrative without clearing real SRC-03/HTTP/SQL/VM/ABI blockers. **Required checks:** FR/EN ID parity, acyclic dependency graph, exact PR/CI references and targeted independent bilingual semantic review where available; CI is not product certification.

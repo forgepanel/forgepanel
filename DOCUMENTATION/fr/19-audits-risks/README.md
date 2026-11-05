@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19 revision=7 status=documented -->
+<!-- forgepanel-doc id=FP-19 revision=8 status=documented -->
 # Audit, contradictions et risques
 
 [English](../../en/19-audits-risks/README.md) · [Index](../README.md)
@@ -68,3 +68,7 @@ Ces mesures ne remplacent pas l'audit de code source ou la preuve de signature �
 - **RISK-025** — En cas d'interruption, une copie partielle peut rester sur disque sous le nouveau `run_id` ; échec `PARTIAL_STAGE_REQUIRES_MANUAL_CLEANUP`, sans nettoyage récursif automatique susceptible de supprimer des données substituées. Le futur runner devra tester et documenter un nettoyage atomique/sûr, des quotas réels et la récupération de pannes.
 
 [Spécification et limitations](../14-devops-releases/kvm-image-staging.md). Ne ferme ni RISK-019, ni RISK-020/021, ni l'issue #42.
+
+## AUDIT-DOC-001 — Incohérence documentaire et preuve de complétude
+
+**Constat :** certaines pages de statut présentaient encore R1/R3 comme des branches `features/*` candidates alors que les PR #37–#43 étaient fusionnées dans `develop` ; la [matrice de couverture](../00-project-control/coverage.md) n'exposait pas le décalage entre structure bilingue et spécifications applicables. **Gravité documentaire : moyenne ; état : correction proposée dans cette PR**. Les [22 lacunes versionnées](../00-project-control/documentation-readiness.md), le [tableau de traçabilité](../00-project-control/requirements-traceability.md) et le [statut réconcilié](../00-project-control/status.md) remédient à la confusion d'état, sans lever les blocages réels SRC-03/HTTP/SQL/VM/ABI. **Contrôle requis :** parité ID FR/EN, graphe de dépendances sans cycle, références de PR/CI exactes et vérifications ciblées du sens par revue indépendante lorsque disponible ; la CI ne certifie pas le produit.

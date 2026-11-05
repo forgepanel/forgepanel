@@ -1,0 +1,455 @@
+{
+  "schema_version": "1",
+  "scope": "ForgePanel Core documentation readiness / editorial gap tracking (not owner decisions)",
+  "core_develop_snapshot": "a6a924370ef2c4b922b38d148594ed50d08f3b6e",
+  "hub_develop_snapshot": "243d1ebb99649372ccc931deb603d172b2e17e18",
+  "decision_scope": "Q1-Q170 preserved; Q171+ unanswered",
+  "implementation_release_gate": "R1 → R2 → R3 → R4 → R5 → R6",
+  "allowed_states": [
+    "OPEN",
+    "BLOCKED",
+    "IN_REVIEW",
+    "DOCUMENTED",
+    "VERIFIED"
+  ],
+  "note_en": "Documentation priority is editorial, not owner-approved commercial configuration. These states describe documentation gaps; never infer functional implementation or QA PASS.",
+  "note_fr": "La priorité documentaire est éditoriale, pas un paramétrage commercial approuvé. Ces statuts décrivent des lacunes documentaires, pas des fonctions implémentées ni des tests réussis.",
+  "gaps": [
+    {
+      "id": "DOC-GAP-001",
+      "phase": "R1",
+      "priority": "P0",
+      "state": "BLOCKED",
+      "decisions": [
+        "Q120"
+      ],
+      "owner": "Project Control / Engineering",
+      "issue": "https://github.com/yyogas/forgepanel/issues/2",
+      "missing_en": "Original Foundation v0.7 archive and provenance-preserving application import; optional-MFA patch inspected",
+      "missing_fr": "Archive Foundation v0.7 d'origine, import du code avec provenance et revue du correctif MFA facultatif",
+      "closure_en": "Original SHA-256 matching SRC-03, reviewed files/license/secrets, import PR and Go/PHP tests on imported commit",
+      "closure_fr": "Empreinte SHA-256 SRC-03 vérifiée, licences/secrets examinés, PR d'import et tests Go/PHP sur commit importé",
+      "dependencies": []
+    },
+    {
+      "id": "DOC-GAP-002",
+      "phase": "R2",
+      "priority": "P0",
+      "state": "OPEN",
+      "decisions": [
+        "Q124",
+        "Q130"
+      ],
+      "owner": "Core / Security",
+      "issue": "https://github.com/yyogas/forgepanel/issues/6",
+      "missing_en": "Permanent administrator identity and optional MFA enable/skip/resume/recovery boundaries",
+      "missing_fr": "Identité administrateur permanente, MFA facultative et parcours activation/ignorance/reprise/récupération",
+      "closure_en": "Approved auth/session/RBAC contract, recovery abuse and HTTP denial tests",
+      "closure_fr": "Contrat auth/session/RBAC validé, scénarios de récupération abusive et refus HTTP",
+      "dependencies": [
+        "DOC-GAP-001"
+      ]
+    },
+    {
+      "id": "DOC-GAP-003",
+      "phase": "R2",
+      "priority": "P0",
+      "state": "OPEN",
+      "decisions": [
+        "Q119",
+        "Q120"
+      ],
+      "owner": "Engineering / Core",
+      "issue": "https://github.com/yyogas/forgepanel/issues/3",
+      "missing_en": "Bootable locked Symfony runtime and real HTTPS/session/CSRF/browser contracts",
+      "missing_fr": "Runtime Symfony démarrable avec dépendances verrouillées, contrats HTTPS/sessions/CSRF/navigateur",
+      "closure_en": "Composer lock/audit, framework boot, HTTP E2E and negative tests on named commit",
+      "closure_fr": "Composer lock/audit, démarrage framework et tests HTTP E2E négatifs sur SHA",
+      "dependencies": [
+        "DOC-GAP-001"
+      ]
+    },
+    {
+      "id": "DOC-GAP-004",
+      "phase": "R2",
+      "priority": "P0",
+      "state": "OPEN",
+      "decisions": [
+        "Q126"
+      ],
+      "owner": "Database / Core",
+      "issue": "https://github.com/yyogas/forgepanel/issues/3",
+      "missing_en": "PostgreSQL persistent hosting model, migrations, tenant ownership, concurrency, backup/restore transaction semantics",
+      "missing_fr": "Modèle PostgreSQL persistant, migrations, propriétaires tenant, concurrence et sémantique sauvegarde/restauration",
+      "closure_en": "Schema/table/constraint registry, migration/rollback and real isolation/concurrency/restore tests",
+      "closure_fr": "Registre tables/contraintes, migrations/rollback et essais réels isolation/concurrence/restauration",
+      "dependencies": [
+        "DOC-GAP-003"
+      ]
+    },
+    {
+      "id": "DOC-GAP-005",
+      "phase": "R3",
+      "priority": "P0",
+      "state": "OPEN",
+      "decisions": [
+        "Q61",
+        "Q62",
+        "Q119"
+      ],
+      "owner": "DevOps / Security",
+      "issue": "https://github.com/yyogas/forgepanel/issues/15",
+      "missing_en": "Signed one-command installer, trusted package origin, OS compatibility and interruption/reinstall path",
+      "missing_fr": "Installateur en une commande signé, origine des paquets, compatibilité OS et reprise interruption/réinstallation",
+      "closure_en": "Exact OS VM install/reinstall failure matrix and signed artifact provenance with rollback limitations",
+      "closure_fr": "Matrice VM OS/install/reprise et provenance signée des artefacts avec limites du rollback",
+      "dependencies": [
+        "DOC-GAP-003",
+        "DOC-GAP-004"
+      ]
+    },
+    {
+      "id": "DOC-GAP-006",
+      "phase": "R3",
+      "priority": "P0",
+      "state": "OPEN",
+      "decisions": [
+        "Q47",
+        "Q120"
+      ],
+      "owner": "API/IPC / Security",
+      "issue": "https://github.com/yyogas/forgepanel/issues/9",
+      "missing_en": "Typed least-privilege Symfony-to-Go operations, durable jobs/errors/audit/locks without arbitrary shell",
+      "missing_fr": "Opérations PHP→Go typées, privilèges minimaux, jobs/erreurs/audit/verrous sans shell arbitraire",
+      "closure_en": "Versioned request/response/errors/authz/idempotency schema and denied-operation/crash tests",
+      "closure_fr": "Schémas versionnés requête/réponse/erreurs/droits/idempotence et tests refus/crash",
+      "dependencies": [
+        "DOC-GAP-003",
+        "DOC-GAP-004"
+      ]
+    },
+    {
+      "id": "DOC-GAP-007",
+      "phase": "R4",
+      "priority": "P0",
+      "state": "OPEN",
+      "decisions": [
+        "Q83",
+        "Q91",
+        "Q119"
+      ],
+      "owner": "Modules / Hosting",
+      "issue": "https://github.com/yyogas/forgepanel/issues/22",
+      "missing_en": "First isolated PHP-FPM website, per-site WebStack selector, configuration plan and health",
+      "missing_fr": "Premier site PHP-FPM isolé, conseiller WebStack par site, plan de configuration et santé",
+      "closure_en": "Named OS/WebStack real site creation, tenant isolation and rollback/health evidence",
+      "closure_fr": "Création réelle sur OS/WebStack identifié, isolation tenant et preuves rollback/santé",
+      "dependencies": [
+        "DOC-GAP-005",
+        "DOC-GAP-006"
+      ]
+    },
+    {
+      "id": "DOC-GAP-008",
+      "phase": "R4",
+      "priority": "P0",
+      "state": "OPEN",
+      "decisions": [
+        "Q123",
+        "Q164"
+      ],
+      "owner": "Services / Security",
+      "issue": "https://github.com/yyogas/forgepanel/issues/29",
+      "missing_en": "External DNS A/AAAA published-family checks, bounded independent probe, port 80 HTTP-01 and HTTPS",
+      "missing_fr": "DNS externe A/AAAA publiés, sonde indépendante bornée, HTTP-01 port 80 puis HTTPS",
+      "closure_en": "External + local approved probe and ACME HTTP/TLS negative-case tests with SSRF defense",
+      "closure_fr": "Sondes locale/externe autorisées et tests ACME HTTP/TLS négatifs et anti-SSRF",
+      "dependencies": [
+        "DOC-GAP-007"
+      ]
+    },
+    {
+      "id": "DOC-GAP-009",
+      "phase": "R4",
+      "priority": "P0",
+      "state": "OPEN",
+      "decisions": [
+        "Q136",
+        "Q167"
+      ],
+      "owner": "Security / Modules",
+      "issue": "https://github.com/yyogas/forgepanel/issues/22",
+      "missing_en": "Scoped website-manager permissions, restricted SFTP public keys, revocation, expiring grants and cross-tenant denial",
+      "missing_fr": "Rôles gestionnaire de site, clés publiques SFTP restreintes, révocation et refus inter-tenant",
+      "closure_en": "Authz matrix, real host SFTP allowed/denied tests and key-possession audit",
+      "closure_fr": "Matrice RBAC, essais SFTP permis/refusés sur hôte réel et preuve de possession",
+      "dependencies": [
+        "DOC-GAP-007"
+      ]
+    },
+    {
+      "id": "DOC-GAP-010",
+      "phase": "R4",
+      "priority": "P0",
+      "state": "OPEN",
+      "decisions": [
+        "Q126",
+        "Q145",
+        "Q166"
+      ],
+      "owner": "Recovery / Database",
+      "issue": "https://github.com/yyogas/forgepanel/issues/23",
+      "missing_en": "Encrypted recoverable panel/site backups with key access and full isolated restore per backup",
+      "missing_fr": "Backups panneau/sites chiffrés, disponibilité des clés et restauration isolée complète par sauvegarde",
+      "closure_en": "Real full-scope isolated restore and host/key-loss drills; no recoverable flag before PASS",
+      "closure_fr": "Restauration isolée réelle intégrale et exercices perte hôte/clé ; pas de statut récupérable avant PASS",
+      "dependencies": [
+        "DOC-GAP-004",
+        "DOC-GAP-007"
+      ]
+    },
+    {
+      "id": "DOC-GAP-011",
+      "phase": "R3",
+      "priority": "P0",
+      "state": "OPEN",
+      "decisions": [
+        "Q132",
+        "Q151",
+        "Q152",
+        "Q161",
+        "Q162"
+      ],
+      "owner": "DevOps / QA",
+      "issue": "https://github.com/yyogas/forgepanel/issues/42",
+      "missing_en": "Real ephemeral KVM runner, immutable launched bytes, actual quotas, snapshots, fault drills and signed private evidence",
+      "missing_fr": "Runner KVM éphémère réel, octets lancés épinglés, quotas réels, snapshots, pannes et preuves privées signées",
+      "closure_en": "Real disposable VM PASS/FAIL/SKIP, signed provenance and independent security veto assessment",
+      "closure_fr": "VM jetable réelle PASS/FAIL/SKIP, provenance signée et contrôle indépendant veto sécurité",
+      "dependencies": [
+        "DOC-GAP-005"
+      ]
+    },
+    {
+      "id": "DOC-GAP-012",
+      "phase": "R4",
+      "priority": "P0",
+      "state": "OPEN",
+      "decisions": [
+        "Q125",
+        "Q155",
+        "Q165"
+      ],
+      "owner": "DevOps / Operations",
+      "issue": "https://github.com/yyogas/forgepanel/issues/15",
+      "missing_en": "Allowlisted per-server OS packages/service maintenance, bounded repair and local compensation",
+      "missing_fr": "Maintenance OS/paquets par serveur, réparation bornée autorisée et compensation locale",
+      "closure_en": "Impact preview/approval/backup/health/recovery and refusal of generic privileged commands",
+      "closure_fr": "Prévisualisation/approbation/backup/santé/reprise et refus des commandes privilégiées génériques",
+      "dependencies": [
+        "DOC-GAP-006",
+        "DOC-GAP-010"
+      ]
+    },
+    {
+      "id": "DOC-GAP-013",
+      "phase": "R5",
+      "priority": "P1",
+      "state": "OPEN",
+      "decisions": [
+        "Q120"
+      ],
+      "owner": "Architecture / API",
+      "issue": "https://github.com/yyogas/forgepanel/issues/7",
+      "missing_en": "Neutral signed detached-extension ABI, lifecycle, compatibility, explicit privileges and fail-open Core autonomy",
+      "missing_fr": "ABI neutre d'extension détachée et signée, cycle de vie, compatibilité, droits et Core autonome",
+      "closure_en": "Non-Hub test extension install/remove/crash and permission denial on standard Core",
+      "closure_fr": "Extension de test hors Hub : installation/retrait/crash/refus de droits sur Core standard",
+      "dependencies": [
+        "DOC-GAP-007"
+      ]
+    },
+    {
+      "id": "DOC-GAP-014",
+      "phase": "R6",
+      "priority": "P1",
+      "state": "OPEN",
+      "decisions": [
+        "Q168",
+        "Q169",
+        "Q170"
+      ],
+      "owner": "Hub / API",
+      "issue": "https://github.com/yyogas/forgepanel-hub/issues/2",
+      "missing_en": "Detached Symfony publisher runtime, signed Core handshake and separate publisher identity/database",
+      "missing_fr": "Runtime Symfony éditeur détaché, handshake signé Core et identités/bases éditeur séparées",
+      "closure_en": "Cross-repo ABI negotiation, Hub offline Core autonomy, auth/SQL and negative tests",
+      "closure_fr": "Négociation ABI entre dépôts, Core autonome sans Hub, tests auth/SQL et refus",
+      "dependencies": [
+        "DOC-GAP-013"
+      ]
+    },
+    {
+      "id": "DOC-GAP-015",
+      "phase": "R6",
+      "priority": "P1",
+      "state": "OPEN",
+      "decisions": [
+        "Q56",
+        "Q60",
+        "Q169",
+        "Q170"
+      ],
+      "owner": "Hub / Commerce",
+      "issue": "https://github.com/yyogas/forgepanel-hub/issues/3",
+      "missing_en": "Published catalog, sandbox billing, idempotent entitlement, risk transfer and signed FR/EN advisory flow",
+      "missing_fr": "Catalogue publié, paiement sandbox, droits idempotents, transfert à risque et avis signés FR/EN",
+      "closure_en": "Signed callbacks/replay/refund/transfer/advisory E2E and nonprivileged Core isolation",
+      "closure_fr": "Callbacks signés/rejeu/remboursement/transfert/avis E2E et isolation Core sans privilèges Hub",
+      "dependencies": [
+        "DOC-GAP-014"
+      ]
+    },
+    {
+      "id": "DOC-GAP-016",
+      "phase": "PRE-PUBLIC",
+      "priority": "P0",
+      "state": "OPEN",
+      "decisions": [
+        "Q111",
+        "Q112",
+        "Q118"
+      ],
+      "owner": "Legal / Governance",
+      "issue": "https://github.com/yyogas/forgepanel/issues/11",
+      "missing_en": "Operative AGPL-only/or-later choice, commercial terms, contributor CLA/rights and verified private security routes",
+      "missing_fr": "Choix AGPL-only/or-later, licence commerciale, CLA/droits contributeurs et canaux sécurité vérifiés",
+      "closure_en": "Legal owner approval, actual notices/signature process, disclosure channel evidence",
+      "closure_fr": "Revue juridique, notices/processus signature et preuve des canaux de signalement",
+      "dependencies": []
+    },
+    {
+      "id": "DOC-GAP-017",
+      "phase": "DESIGN",
+      "priority": "P0",
+      "state": "OPEN",
+      "decisions": [
+        "Q55",
+        "Q70",
+        "Q80"
+      ],
+      "owner": "Design System / Product",
+      "issue": "https://github.com/yyogas/forgepanel/issues/18",
+      "missing_en": "Review and adopt or reject V3 visual candidate; version tokens/components, role layouts and accessibility tests",
+      "missing_fr": "Auditer puis valider ou rejeter la maquette V3 ; tokens/composants versionnés, layouts par rôle et accessibilité",
+      "closure_en": "Versioned approved visual baseline and keyboard/contrast/responsive/role tests",
+      "closure_fr": "Baseline UI approuvée et tests clavier/contraste/responsive/droits",
+      "dependencies": []
+    },
+    {
+      "id": "DOC-GAP-018",
+      "phase": "POST-MVP",
+      "priority": "P1",
+      "state": "OPEN",
+      "decisions": [
+        "Q51",
+        "Q80",
+        "Q81"
+      ],
+      "owner": "Modules / Plugins",
+      "issue": "https://github.com/yyogas/forgepanel/issues/7",
+      "missing_en": "Complete module/plugin/app/recipe cards and signed manifest policy without arbitrary plugin execution",
+      "missing_fr": "Fiches modules/plugins/apps/recipes complètes et manifests signés sans code extension arbitraire",
+      "closure_en": "Dependencies/capability/entitlement/tenant boundary matrix and lifecycle rollback tests",
+      "closure_fr": "Matrice dépendances/capacités/droits/tenants et tests cycle de vie/rollback",
+      "dependencies": [
+        "DOC-GAP-013"
+      ]
+    },
+    {
+      "id": "DOC-GAP-019",
+      "phase": "POST-MVP",
+      "priority": "P1",
+      "state": "OPEN",
+      "decisions": [
+        "Q67",
+        "Q68",
+        "Q142"
+      ],
+      "owner": "Observability / Performance",
+      "issue": "https://github.com/yyogas/forgepanel/issues/17",
+      "missing_en": "Versioned SLO, structured logs/retention, health, capacity and per-application performance budgets",
+      "missing_fr": "SLO, logs structurés/rétention, santé, capacité et budgets performance par application",
+      "closure_en": "Measured latency/capacity baselines, alert failure tests and no secret exposure",
+      "closure_fr": "Mesures latence/capacité, tests alertes/pannes et non-exposition de secrets",
+      "dependencies": [
+        "DOC-GAP-007"
+      ]
+    },
+    {
+      "id": "DOC-GAP-020",
+      "phase": "POST-MVP",
+      "priority": "P1",
+      "state": "OPEN",
+      "decisions": [
+        "Q90",
+        "Q100"
+      ],
+      "owner": "Recovery / Architecture",
+      "issue": "https://github.com/yyogas/forgepanel/issues/26",
+      "missing_en": "Authorized cross-server website migration and selective restore with staging and compatibility/rollback plan",
+      "missing_fr": "Migration inter-serveurs et restauration sélective autorisées, staging et plan compatibilité/rollback",
+      "closure_en": "Both-end authorization, source/target OS checks, encrypted transfer, failover and rollback E2E",
+      "closure_fr": "Autorisation aux deux extrémités, compatibilité OS, transfert chiffré et tests de bascule/rollback",
+      "dependencies": [
+        "DOC-GAP-009",
+        "DOC-GAP-010"
+      ]
+    },
+    {
+      "id": "DOC-GAP-021",
+      "phase": "RELEASE",
+      "priority": "P0",
+      "state": "OPEN",
+      "decisions": [
+        "Q119",
+        "Q127",
+        "Q132"
+      ],
+      "owner": "QA / Release",
+      "issue": "https://github.com/yyogas/forgepanel/issues/29",
+      "missing_en": "Actual clean VM-to-PHP-site-HTTPS MVP proof, signed builds, private beta readiness and incident stop conditions",
+      "missing_fr": "Preuve réelle VM propre→site PHP HTTPS, builds signés, bêta privée et arrêt sur incident",
+      "closure_en": "Exact SHA/OS/CA/WebStack, browser/SQL/SSL/restore tests; security/legal gates before beta",
+      "closure_fr": "SHA/OS/CA/WebStack exacts, tests navigateur/SQL/TLS/restauration et gates sécurité/juridique bêta",
+      "dependencies": [
+        "DOC-GAP-005",
+        "DOC-GAP-007",
+        "DOC-GAP-008",
+        "DOC-GAP-009",
+        "DOC-GAP-010",
+        "DOC-GAP-011",
+        "DOC-GAP-016"
+      ]
+    },
+    {
+      "id": "DOC-GAP-022",
+      "phase": "GUIDES",
+      "priority": "P1",
+      "state": "OPEN",
+      "decisions": [
+        "Q119",
+        "Q124"
+      ],
+      "owner": "Documentation / Support",
+      "issue": "https://github.com/yyogas/forgepanel/issues/29",
+      "missing_en": "Validated operator/client guides, rollback runbooks, troubleshooting, FR/EN UI terminology and accessibility",
+      "missing_fr": "Guides opérateur/client validés, procédures de reprise, dépannage, terminologie UI FR/EN et accessibilité",
+      "closure_en": "Hands-on wizard/site/SFTP/recovery walkthrough against actual running MVP",
+      "closure_fr": "Parcours pratiques assistant/site/SFTP/récupération sur MVP exécuté",
+      "dependencies": [
+        "DOC-GAP-021"
+      ]
+    }
+  ]
+}

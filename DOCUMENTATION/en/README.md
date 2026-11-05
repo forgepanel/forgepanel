@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-INDEX revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-INDEX revision=2 status=documented -->
 # Development reference
 
 [Français](../fr/README.md) · [Language selector](../README.md)
@@ -29,3 +29,7 @@ Start with project status, decisions and audit provenance. The repository, not a
 | 19 Audits and risks | [Evidence, contradictions and blockers](19-audits-risks/README.md) |
 
 Both languages must change together. Metadata and link checks cannot establish semantic equivalence; a bilingual reading remains required. Planned work, unreproduced historical claims and current verification are explicitly separated.
+
+## Is the documentation complete?
+
+The 20 categories have bilingual navigation, **but full implementation contracts and real QA evidence are not complete**. Start with the [22-gap readiness register](00-project-control/documentation-readiness.md), [requirements → contracts → QA traceability](00-project-control/requirements-traceability.md), [coverage matrix](00-project-control/coverage.md) and [reconciled Core status](00-project-control/status.md). The [versioned JSON manifest](../evidence/documentation-readiness-v1.json) records editorial gaps, not new product decisions.

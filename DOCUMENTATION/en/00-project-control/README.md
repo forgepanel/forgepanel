@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00 revision=12 status=documented -->
+<!-- forgepanel-doc id=FP-00 revision=13 status=documented -->
 # Project control
 
 [Français](../../fr/00-project-control/README.md) · [Index](../README.md)
@@ -31,3 +31,7 @@ A task identifies scope and affected components, specifies acceptance criteria, 
 ## New Q161–Q170 decisions
 
 [Q161–Q170 decisions](decisions-q161-q170.md) · [Qualification and recovery contracts](../02-architecture/evidence-and-recovery-q161-q170.md) · [Planned MVP tests](../13-tests-quality/mvp-gates-q161-q170.md). **Q1–Q160 remain effective; Q171+ are open**, no application code or certified OS is implied.
+
+## Documentation readiness and traceability
+
+[Gap and editorial priority register](documentation-readiness.md) · [Traceability for 22 closure records](requirements-traceability.md) · [Versioned JSON data](../../evidence/documentation-readiness-v1.json) · [Reconciled R1/R3 status](status.md). `OPEN`/`BLOCKED` describe **documentation and missing evidence**, not new Q171+ owner decisions. No R2/R3/R4 release gate is certified by these tables.

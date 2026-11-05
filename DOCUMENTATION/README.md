@@ -13,6 +13,8 @@ The 20 mirrored categories distinguish product intent, archive implementation ev
 | State / État | [Status](en/00-project-control/status.md) | [État](fr/00-project-control/status.md) |
 | Decisions / Décisions | [Register](en/00-project-control/decisions.md) | [Registre](fr/00-project-control/decisions.md) |
 | Coverage / Couverture | [Matrix](en/00-project-control/coverage.md) | [Matrice](fr/00-project-control/coverage.md) |
+| Readiness gaps / Lacunes | [22-gap registry](en/00-project-control/documentation-readiness.md) | [22 lacunes](fr/00-project-control/documentation-readiness.md) |
+| Traceability / Traçabilité | [Requirement matrix](en/00-project-control/requirements-traceability.md) | [Matrice des exigences](fr/00-project-control/requirements-traceability.md) |
 | Evidence / Preuves | [Baseline](en/19-audits-risks/baseline.md) | [État initial](fr/19-audits-risks/baseline.md) |
 | Next agent / Relais | [Handover](en/18-contributing/handover.md) | [Passage de relais](fr/18-contributing/handover.md) |
 

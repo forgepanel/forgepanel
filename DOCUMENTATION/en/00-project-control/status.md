@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=21 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=23 status=documented -->
 # Status and dependency-ordered roadmap
 
 [Français](../../fr/00-project-control/status.md) · [Project control](README.md)
@@ -70,24 +70,23 @@ No date or version commitment is implied by these priorities. Product-owner deci
 
 ## R1 — Verifiable progress while application source remains absent
 
-A read-only SRC-03 provenance preflight is **implemented** and tested on 16 synthetic ZIPs; see [R1 preflight](../12-development/source-archive-intake.md). It rejects changed archives, unsafe paths, links, collisions, excessive expansion and selected secret patterns, with **no import or system side effects**. The original v0.7 source required by [issue #2](https://github.com/yyogas/forgepanel/issues/2) is still unavailable here: **R1 source import = BLOCKED**, R2 Symfony/PG and R3–R6 remain unimplemented. V3 HTML UI is a separate visual proposal, not an adopted Core baseline.
+A read-only SRC-03 provenance preflight is **implemented** and tested on 16 synthetic ZIPs; see [R1 preflight](../12-development/source-archive-intake.md). It rejects changed archives, unsafe paths, links, collisions, excessive expansion and selected secret patterns, with **no import or system side effects**. The original v0.7 source required by [issue #2](https://github.com/yyogas/forgepanel/issues/2) is still unavailable here: **R1 source import = BLOCKED**, R2 Symfony/PG and the real R3 VM runner, R4–R6 remain unimplemented (R3 preparatory tools do exist). V3 HTML UI is a separate visual proposal, not an adopted Core baseline.
 
 ## R1 tooling status: provenance quarantine
 
 Core now contains standalone `verify_source_archive.py` and `stage_source_archive.py`, which can verify and **prepare nonprivileged off-repository** source copies. **33 synthetic local unit tests passed**; exact-commit PR CI must be checked separately. Quarantine receipt `STAGED_FOR_MANUAL_REVIEW` is not an import; **no Symfony/Go application or installer has been imported or deployed**. Foundation v0.7 original ZIP remains missing and issue #2 stays open. [Procedure](../12-development/source-staging.md).
 
-## R1 — Staged source integrity verification
+## Current verified baseline — R1 / R2 / R3 (after PR #43)
 
-The feature branch adds **read-only** `audit_staged_archive.py` and hardens staging cleanup against concurrent directory replacement. State: **tool implemented with 60 synthetic CI tests passing on the feature branch**, not genuine SRC-03 validation or independent security review. Integration into develop follows PR #39. [Contract and limits](../12-development/source-staging-audit.md). Genuine Foundation v0.7 remains unavailable in this lot, source-import issue #2 is OPEN and R2–R6 are unverified. No V3 Design System or Hub change.
+**Observed `develop` snapshot:** `a6a924370ef2c4b922b38d148594ed50d08f3b6e`. PRs #37, #38, #39, #40, #41 and #43 are **merged**. These are Git facts and preparatory tools; they do not make Q161–Q170 operational.
 
-## R3 — Standalone KVM host pre-inspection (preparatory)
+| Work | Code state | Exact evidence and limits |
+|---|---|---|
+| R1 ZIP preflight / private staging / integrity audit | **MERGED / synthetic PASS** | [PR #37](https://github.com/yyogas/forgepanel/pull/37), [#38](https://github.com/yyogas/forgepanel/pull/38), [#39](https://github.com/yyogas/forgepanel/pull/39), [post-merge CI](https://github.com/yyogas/forgepanel/actions/runs/42109154403); 60 synthetic tests, no actual SRC-03 imported |
+| R1 genuine Foundation v0.7 source | **BLOCKED** | [Issue #2](https://github.com/yyogas/forgepanel/issues/2) remains open, pinned checksum in [evidence](../../evidence/sources.json); no original Symfony/Go application source imported |
+| R2 real Symfony + PostgreSQL | **NOT IMPLEMENTED/NOT VERIFIED** | [Issue #3](https://github.com/yyogas/forgepanel/issues/3); no integrated HTTP/SQL application runtime in this repository |
+| R3 KVM host observation, QCOW2 admission and private copying | **MERGED / synthetic PASS** | [PR #40](https://github.com/yyogas/forgepanel/pull/40), [#41](https://github.com/yyogas/forgepanel/pull/41), [#43](https://github.com/yyogas/forgepanel/pull/43), [post-merge Go CI](https://github.com/yyogas/forgepanel/actions/runs/42120185132), [docs CI](https://github.com/yyogas/forgepanel/actions/runs/42120185238); 62 synthetic Go test functions |
+| R3 real KVM runner, VM, quotas, signed evidence | **NOT IMPLEMENTED/NOT QUALIFIED** | [Issue #42](https://github.com/yyogas/forgepanel/issues/42) open; tools always report `NOT_EXECUTED`, staged files are not guaranteed immutable |
+| R4 PHP/ACME/restore; R5 ABI; R6 Hub | **NOT INTEGRATED** | [MVP #29](https://github.com/yyogas/forgepanel/issues/29), [ABI #7](https://github.com/yyogas/forgepanel/issues/7), [Hub](https://github.com/yyogas/forgepanel-hub); no complete hosting installation |
 
-A separate Go source module, `tools/kvm-host-probe/`, is an **IMPLEMENTATION CANDIDATE** on a `features/*` branch with unit tests and its own CI. It observes static KVM host indicators and emits `qualification=NOT_EXECUTED` JSON. This **does not mean R3 VM qualification, imported Symfony/Go Core or a released product**. R1 Foundation v0.7 source import (issue #2) remains open, V3 Design System unapproved, Hub deferred until neutral ABI. [FR/EN contract](../14-devops-releases/kvm-host-probe.md).
-
-## R3 — Implementation candidate: lab image admission
-
-Feature branch `features/r3-kvm-pinned-image-admission` adds independent Go verification of pinned QCOW2, explicit CPU/RAM/duration policies and versioned JSON manifests. **Synthetic Go tests and CI succeeded on PR #41's exact commit; check GitHub for merge state**. `REVIEW_REQUIRED` still means `qualification=NOT_EXECUTED` with all unverified VM capabilities false. **No QEMU execution driver, restored backup or imported Foundation Core**. [Contract](../14-devops-releases/kvm-image-admission.md).
-
-## R3 — Private pinned image staging (candidate lot)
-
-Standalone Go `staging` and its CLI on `features/r3-private-pinned-image-staging` prepare a SHA-256-verified, private-permission QCOW2 copy plus provenance receipt **without booting QEMU**. Status is **IMPLEMENTATION CANDIDATE** until exact-SHA GitHub CI and merge. Synthetic file tests certify no OS or hosting product; genuine Foundation Core source is absent, Q1–Q170 unchanged, private Hub separate and V3 Design System unapproved. [FR/EN contract](../14-devops-releases/kvm-image-staging.md).
+**Document reconciliation:** previous “feature branch candidate / merge to be checked” sentences are historical, not current state. PRs remain in the changelog and specialist docs; this table is the **reconciled observed Git snapshot**. For genuine completeness, track the [22 open gaps](documentation-readiness.md), [traceability matrix](requirements-traceability.md), [open issues](https://github.com/yyogas/forgepanel/issues) and qualification requirements. **No stable/main/production promotion.**

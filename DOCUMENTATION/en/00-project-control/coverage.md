@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-COVERAGE revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-00-COVERAGE revision=2 status=documented -->
 # Documentation coverage matrix
 
 [Français](../../fr/00-project-control/coverage.md) · [Project control](README.md)
@@ -19,9 +19,9 @@ All categories have substantive English/French indexes and reciprocal navigation
 | 09 Database | Actual three-table schema and migration rules | Real SQL tests pending; hosting model absent |
 | 10 Security | Boundaries, threats, release gates, reporting | Private channel and independent audit absent |
 | 11 Design system | Brand, states, accessibility, i18n strategy | Approved visual tokens and translation infrastructure absent |
-| 12 Development | Conventions, applicable commands, import boundary | Locked dependency environment pending |
-| 13 Tests/quality | Evidence layers and definition of done | Integration/browser/VM campaigns absent |
-| 14 DevOps/releases | Branch workflow, bootstrap exception, gates | Packages, installer, signing lifecycle absent |
+| 12 Development | Conventions and synthetic-tested R1 ZIP preflight/copy/audit tools | Original Foundation v0.7 source missing; application dependencies unlocked |
+| 13 Tests/quality | Definition of done and synthetic R1/R3 developer-tool tests | HTTP/SQL, actual VM, isolation, backup and restore campaigns not run |
+| 14 DevOps/releases | Git workflow, gates and standalone R3 KVM observation/admission/staging | Packages/installer, VM execution, signatures and OS qualification missing |
 | 15 Operations | Present CLI limits and future incident procedure | Working repair/backup/restore engine absent |
 | 16 Performance | Measurement protocol and security constraints | Benchmarks and capacity thresholds absent |
 | 17 User guides | Current limitations and intended journeys | Verified customer/reseller guides pending implementation |
@@ -29,3 +29,7 @@ All categories have substantive English/French indexes and reciprocal navigation
 | 19 Audit/risks | Repository/archive provenance and contradictions | No exhaustive code/security/production audit |
 
 Update this matrix whenever a gap changes state. Every `VERIFIED` feature needs named evidence on an identified input; every publication needs a real release/tag/artifact trail. Translation metadata is checked automatically; meaning is reviewed separately.
+
+## Closure registry after the observed Git snapshot audit
+
+The reviewed structure contains **64 paired Core FR/EN files** and **27 paired Hub FR/EN files**, but **substantive specification completeness is still partial**. The [22 prioritized gaps](documentation-readiness.md) link to issues/dependencies in the [JSON register](../../evidence/documentation-readiness-v1.json) and [traceability](requirements-traceability.md). [Reconciled status](status.md) separates merged R1/R3 developer tools from absent operational Symfony/PG/VM/hosting features. No independent legal/security certification is implied.

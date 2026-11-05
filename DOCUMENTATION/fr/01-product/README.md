@@ -12,7 +12,7 @@ ForgePanel cible propriétaires de serveurs, hébergeurs, agences, revendeurs et
 | ID | Parcours | Critère d'acceptation |
 |---|---|---|
 | REQ-001 | Installer avec une commande | Sur VM vierge prise en charge, vérifier origine/signatures, prérequis, services isolés du panneau et accès HTTPS vérifié ; interruption et relance ne corrompent pas l'état |
-| REQ-002 | Prendre possession de l'installation | Une preuve locale privilégiée émet un jeton court à usage unique ; créer un compte indépendant, imposer le MFA et fermer l'inscription initiale |
+| REQ-002 | Prendre possession de l'installation | Une preuve locale privilégiée émet un jeton court à usage unique ; créer un compte indépendant, proposer le MFA facultatif (activable maintenant ou plus tard) et fermer l'inscription initiale |
 | REQ-003 | Configurer avec un wizard reprenable | Expliquer dépendances et changements système ; conserver l'avancement ; valider le plan avant application ; aucune réussite ambiguë après échec partiel |
 | REQ-004 | Héberger sans plugins de marketplace | Compte, domaine, runtime PHP, TLS, base/fichiers et sauvegarde natifs fonctionnent avec des permissions explicites |
 | REQ-005 | Diagnostiquer et récupérer localement | Diagnostic en lecture seule sans interface web ; réparation prévisualisée, bornée, auditée et préservant les données externes |

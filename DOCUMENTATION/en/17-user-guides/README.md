@@ -9,7 +9,7 @@ Use this documentation to state priorities and review product outcomes. The tech
 
 ## Intended first-install journey
 
-A future verified one-command installer checks the server, installs the panel independently of customer stacks and prints a verified HTTPS setup address. The owner obtains a one-use code from the privileged local terminal, creates a panel administrator independent of Linux root, enrolls MFA and chooses server services in a resumable wizard. The plan explains changes before application. A completed wizard must distinguish selected services from actually installed and healthy ones.
+A future verified one-command installer checks the server, installs the panel independently of customer stacks and prints a verified HTTPS setup address. The owner obtains a one-use code from the privileged local terminal, creates a panel administrator independent of Linux root, may enable or skip MFA and chooses server services in a resumable wizard. The plan explains changes before application. A completed wizard must distinguish selected services from actually installed and healthy ones.
 
 The current archive only prototypes enrollment and configuration export. Do not enter the server's Linux password into an unverified web form. Do not bypass a TLS identity warning just to complete bootstrap. Example hostnames are documentation values, not official service endpoints.
 

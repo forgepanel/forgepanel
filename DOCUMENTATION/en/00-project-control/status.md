@@ -28,7 +28,7 @@ All six OS targets and five profiles are planning inputs. Thirty fixture combina
 | P0 | Documentation baseline and reviewed PR | Link/parity checks; facts and risks recorded |
 | P1 | Provenance-preserving source import | Reviewed v0.7 inventory; no secrets/generated binaries; license status explicit; tests repeated on imported commit |
 | P2 | Symfony + PostgreSQL integration | Dependency resolution/lock/audit; real HTTP, transaction rollback/concurrency and browser tests |
-| P3 | Permanent identity and recovery | Login/logout, MFA verification/recovery, scoped authorization, session isolation tests |
+| P3 | Permanent identity and recovery | Login/logout, optional MFA (enroll/disable/recovery), scoped authorization, session isolation tests; fix v0.7 setup gate |
 | P4 | Six-OS packaging and service foundation | Trusted package sources, runtime policy, systemd and mandatory access controls verified in VMs |
 | P5 | Plan execution and one-command installation | Durable steps, safe retries, TLS, rollback/compensation, signed distribution and reinstall/update tests |
 | P6 | Hosting modules and additional stacks | Proven isolation, resource controls, backups/restores and per-profile VM evidence |

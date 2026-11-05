@@ -28,7 +28,7 @@ Les six OS et cinq profils sont des entrées de planification. Trente combinaiso
 | P0 | Référence documentaire et PR relue | Contrôles liens/parité ; faits et risques consignés |
 | P1 | Import du code avec provenance | Inventaire v0.7 revu ; aucun secret/binaire généré ; statut de licence explicite ; tests répétés sur le commit importé |
 | P2 | Intégration Symfony + PostgreSQL | Résolution/verrouillage/audit des dépendances ; tests HTTP, rollback/concurrence SQL et navigateur réels |
-| P3 | Identité permanente et récupération | Connexion/déconnexion, vérification/récupération MFA, autorisation contextualisée, isolation des sessions |
+| P3 | Identité permanente et récupération | Connexion/déconnexion, MFA facultatif (activation/désactivation/récupération), autorisation contextualisée, isolation des sessions ; corriger le setup v0.7 |
 | P4 | Paquets et services sur six OS | Origines de paquets fiables, politique runtime, systemd et contrôles obligatoires validés en VM |
 | P5 | Exécution des plans et installation en une commande | Étapes durables, reprises sûres, TLS, rollback/compensation, distribution signée et tests réinstallation/mise à jour |
 | P6 | Modules d'hébergement et autres stacks | Isolation, limites, sauvegardes/restaurations et preuves VM par profil |

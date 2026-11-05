@@ -11,7 +11,7 @@ Web setup uses `SetupService`, `SetupRepository` and `SetupTransaction`. Postgre
 
 ## Security and failure semantics
 
-The source generates 32-byte random bootstrap secrets, stores SHA-256 verifiers, expires tokens after 900 seconds and locks token attempts after five failures. Setup grants last 1800 seconds. Registration creates one pending-MFA administrator; TOTP confirmation is required before configuration. Local resume revokes the old grant and issues a new one-use code; it is not a permanent administrator login.
+The source generates 32-byte random bootstrap secrets, stores SHA-256 verifiers, expires tokens after 900 seconds and locks token attempts after five failures. Setup grants last 1800 seconds. The external v0.7 prototype creates a pending-MFA administrator and requires TOTP before configuration. **This requirement is now superseded**: the wizard must offer both “enable MFA” and “continue without MFA”, then enter CONFIGURING either way. The external v0.7 source is not yet imported or fixed. Local resume revokes the old grant and issues a new one-use code; it is not a permanent administrator login.
 
 The SQL implementation locks `fp_setup` and writes account/state/audit together. Invalid attempts must persist; infrastructure errors roll back. The in-memory tests do not prove PostgreSQL concurrency or lost-response recovery. Client retries after an uncertain commit need explicit integration tests before exposure.
 

@@ -19,6 +19,8 @@ Source IDs refer to the [baseline](../19-audits-risks/baseline.md). A decision a
 | ADR-010 | Application runtime policy | Open: archive accepts PHP >=8.2; earlier PHP 8.4 preference is not a certified six-OS package policy |
 | ADR-011 | License and contribution terms | Open owner decision; no AGPL, GPL, proprietary or dual-license assumption |
 | ADR-012 | Documentation tooling uses Python standard library only | New bounded tooling choice; does not make Python a product runtime dependency |
+| ADR-013 | Administrator MFA optional (explicit owner decision, 2026-11-05) | Initial account without mandatory TOTP; enroll now or later, sensitive step-up; v0.7 source still blocks setup until corrected on import. |
+| ADR-014 | ForgePanel-Hub as private detached publisher extension in `yyogas/forgepanel-hub` | Same standard Core with or without Hub; generic ABI absent; never inject private PHP or grant root. |
 
 ## Replaced or unresolved proposals
 

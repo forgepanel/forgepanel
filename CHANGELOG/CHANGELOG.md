@@ -14,6 +14,10 @@ One chronology, both languages. / Une chronologie, deux langues.
 
 ### Changed / Modifications
 
+- **Admin MFA / MFA administrateur** — Product decision now makes MFA optional; v0.7 external source still requires a code fix on import. / Décision produit : MFA facultatif ; le code v0.7 externe doit être corrigé lors de son import.
+- **Hub / Hub éditeur** — Defined a private detached publisher extension in `yyogas/forgepanel-hub`, without a working Core ABI or a production service. / Définition d'une extension éditeur privée détachée dans `yyogas/forgepanel-hub`, sans ABI Core opérationnelle ni service en production.
+
+
 - **Documentation CI / CI documentaire** — Replaced deprecated-runtime action pins with verified official Node 24 action commits after the first successful run; kept read-only permissions. Recorded actual CI evidence and follow-up issues #2–#4. / Remplacement des actions à runtime déprécié par des commits officiels vérifiés utilisant Node 24 après le premier run réussi ; permissions conservées en lecture seule. Consignation des preuves CI réelles et des tâches nº 2–4.
 
 ### Clarified / Clarifications

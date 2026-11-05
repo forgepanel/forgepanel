@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=16 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=17 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
@@ -90,3 +90,7 @@ Les tests Go synthétiques de `tools/kvm-host-probe/admission` et du CLI validen
 ## R3 — Tests de copie privée vérifiée
 
 La nouvelle suite de tests Go de [staging d’images](../14-devops-releases/kvm-image-staging.md) contrôle la copie identique SHA-256, les permissions 0700/0400, le refus d’écrasement, symlinks, chemins imbriqués ou partagés, demandes non autorisées, modifications de la source, interruptions et absence de reçu sur copie partielle. Le CLI est testé avec et sans fichiers de politique/demande privés ; le schéma du reçu est comparé aux champs Go. **62 fonctions de test Go au total dans le module**, et exécution locale réussie de `go test ./...`, `go test -race ./...`, `go vet ./...`. CI GitHub par SHA à vérifier ; **aucun boot QEMU ou test de quotas réels**.
+
+## R2 — Matrice HTTP, MFA facultative et PostgreSQL
+
+La [matrice R2](r2-integration-gates.md) ajoute **20 scénarios planifiés** : `R2-AUTH-001..010` et `R2-DB-TEST-001..010`, chacun avec parcours positif et refus/récupération négatif. Les fiches [identité](../03-core/bootstrap-identity-r2.md) et [transaction SQL](../09-database/setup-transaction-r2.md) restent candidates ; **aucun de ces 20 tests n'a été exécuté** sur Symfony/PostgreSQL par ce lot. Les contrôles Python de documentation vérifient seulement couverture et parité FR/EN.

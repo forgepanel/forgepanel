@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-03 revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-03 revision=3 status=documented -->
 # Core et bootstrap
 
 [English](../../en/03-core/README.md) · [Index](../README.md)
@@ -26,3 +26,7 @@ Le démarrage valide configuration et dépendances, reprend les opérations dura
 Les futurs jobs exigent identifiants de corrélation/idempotence, verrous par ressource, reprises limitées, classification des erreurs et compensations. La réconciliation compare états voulu et observé sans écraser les fichiers de l'administrateur. Le registre de modules refuse cycles et contrats incompatibles. Ces mécanismes sont spécifiés, pas implémentés dans l'archive.
 
 [Fiches composants](../04-modules/components.md) · [Base](../09-database/README.md) · [Exploitation](../15-operations/README.md)
+
+## R2 — Contrat détaillé d'identité et de bootstrap (candidat)
+
+La [fiche R2 identité/sessions/MFA facultative](bootstrap-identity-r2.md) distingue les phases du prototype SRC-03, l'administrateur permanent, les sessions/bootstrap grants, les preuves et la récupération. Elle porte `R2-ID-001` à `R2-ID-012` ; les routes exactes, valeurs de durée et règles de reprise nécessitent ratification Security/API/Database puis tests réels. **Aucun runtime Symfony ni correctif MFA historique importé** par cette fiche.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-09 revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-09 revision=5 status=documented -->
 # Database, transactions and migrations
 
 [Français](../../fr/09-database/README.md) · [Index](../README.md)
@@ -38,3 +38,7 @@ Secrets require both database and encryption-key recovery. Do not store the encr
 Run the supplied PostgreSQL test only against an explicitly authorized dedicated `_test` database. It covers a forced rollback and persistence, not every concurrency/failure mode. Add simultaneous activation, lost response after commit, database restart, stale configuration revision and restore/key-loss scenarios. No PDO PostgreSQL driver/server was available for this audit; in-memory tests are not SQL integration tests.
 
 [Core](../03-core/README.md) · [Quality](../13-tests-quality/README.md)
+
+## R2 — Candidate transaction contract, no migrations
+
+[Candidate R2 PostgreSQL/transaction contract](setup-transaction-r2.md) traces `R2-DB-001`–`R2-DB-012`: setup singleton, initial admin uniqueness, locks/revisions, retries after lost response, rollback/audit and key recovery. **No new table, column, migration, isolation level or grant TTL is decided**. Database must review against imported SRC-03 before real PostgreSQL [R2 tests](../13-tests-quality/r2-integration-gates.md).

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=6 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=7 status=documented -->
 # Installation, promotion Git et releases
 
 [English](../../en/14-devops-releases/README.md) · [Index](../README.md)
@@ -38,6 +38,10 @@ La stratégie Q71 précise l'utilisation d'un KMS/HSM ou service de clés proté
 ## Qualification et diffusion privée (Q121–Q127)
 
 **Q121/122 :** aucun OS ni profil WebStack choisi par défaut : premier pilote après comparaison VM et sécurité. **Q123 :** domaine DNS externe, ACME HTTP-01/port 80 puis HTTPS automatique. **Q124 :** admin local + gestionnaire de site et récupération. **Q125 :** observation VPS et opérations de paquets/mises à jour OS allowlistées, planifiées, autorisées et vérifiées, sans root shell arbitraire. **Q126 :** backup du panneau et fichiers PHP avec restauration réelle et reprise cohérente du PG du panneau si nécessaire. **Q127 :** tester en interne, puis bêta **privée** uniquement après validation des preuves, consentements/conditions de distribution, droits logiciels et canaux sécurité. Aucun déploiement en production n'est autorisé par ces spécifications. [Qualification MVP](../00-project-control/mvp-qualification.md).
+
+## Qualification VM, mises à jour et bêta — Q131–Q137
+
+Tests sur VM système **locales et CI**, snapshots, simulations de pannes, rapports par OS et WebStack ; `SKIP` n'est pas une preuve de réussite. La sélection du premier profil exige compatibilité, sécurité, charge mesurée, maintenance, récupération et critères éliminatoires. Le MVP vérifie DNS **A/AAAA**, **port 80/HTTP-01**, **HTTPS**, diagnostics actionnables, gestionnaire de site (y compris **SFTP réel autorisé et refus inter-tenant**), mise à jour OS contrôlée avec plan/backup/santé/récupération et backup **local chiffré** restauré (distant facultatif). La bêta privée par vagues n'est accessible qu'après prérequis juridiques/sécurité et possibilité de suspension/récupération. [Décisions](../00-project-control/decisions-q131-q140.md).
 
 ## Preuves de livraison
 

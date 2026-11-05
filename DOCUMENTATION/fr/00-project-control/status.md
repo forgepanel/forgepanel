@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=9 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=10 status=documented -->
 # État et roadmap ordonnée par dépendances
 
 [English](../../en/00-project-control/status.md) · [Pilotage](README.md)
@@ -55,5 +55,7 @@ Les décisions **Q71–Q80** sont confirmées : protection/rotation des clés, a
 **Q101–Q110 confirmées (2026-11-05)** : PHP EOL dérogatoire temporaire et migration planifiée, isolation par profils certifiés selon plan/site, Git manuel/webhook avec approbation par environnement, staging sensible sous autorisation spéciale, ACME multi-CA avec secours, DB mutualisées/dédiées et clusters optionnels certifiés, SSH temporaire/certificats, Webmail conseillé après tests, délais/plafonds de quotas par ressource et migration présynchronisée avec réplication/bascule **conditionnelles**. [Décisions Q101–Q110](decisions-q101-q110.md). **Spécifications seulement ; aucune nouvelle fonctionnalité ni certification VM.**
 
 **Q121–Q130 confirmées (2026-11-05)** : premier OS/WebStack **après comparaison des tests VM et sécurité** (aucun présélectionné), domaine géré via **DNS externe** et certificat ACME **HTTP-01**, rôle administrateur + gestionnaire de site, VPS observable avec paquets/mises à jour contrôlés, backup configuration panneau/fichiers PHP et restauration réellement testée, tests internes puis **bêta privée autorisée** après prérequis, licences premium transférables et récupération manuelle de serveur perdu, obligations partenaires contractuelles/alertes/retrait, responsable sécurité + suppléant/triage. [Décisions Q121–Q130](decisions-q121-q130.md) · [Qualification MVP](mvp-qualification.md). **Spécification uniquement, pas de VM/logiciel livré.**
+
+**Q131–Q140 confirmées (2026-11-05)** : qualification VM locales/CI avec snapshots, pannes et rapport par OS ; WebStacks comparées sur charge, maintenance, reprise et critères éliminatoires ; diagnostic A/AAAA/80/HTTP-01/HTTPS ; mises à jour OS avec impact/backup/santé/reprise ; backup MVP chiffré local + destination distante facultative ; gestionnaire de site autorisé à PHP/domaines/TLS/fichiers/SFTP/backup dans son périmètre ; bêta privée par vagues/suspension/récupération ; transferts premium antifraude à validation supplémentaire selon risque ; alertes/escalade/retrait partenaires ; avis de sécurité coordonnés. [Décisions](decisions-q131-q140.md) · [Qualification MVP](mvp-qualification.md). **Tous les services restent à réaliser et tester.**
 
 Ces priorités n'engagent aucune date ni version. Arbitrages produit nécessaires : licence du logiciel/des contributions et canal privé de sécurité autorisé. Les choix paquets/runtimes nécessitent une proposition technique étayée, pas une nouvelle architecture implicite.

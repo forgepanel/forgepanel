@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DECISIONS revision=9 status=documented -->
+<!-- forgepanel-doc id=FP-00-DECISIONS revision=10 status=documented -->
 # Decision register
 
 [Français](../../fr/00-project-control/decisions.md) · [Project control](README.md)
@@ -116,6 +116,17 @@ Source IDs refer to the [baseline](../19-audits-risks/baseline.md). A decision a
 | ADR-097 | Self-service premium transfers plus manual lost-server recovery (Q128 D) | Ownership/possession proof, caps, audit, no duplicate allocation; deferred Hub |
 | ADR-098 | Partner contractual maintenance/security duties, alerts and withdrawal (Q129 C) | Review each version and define responsibilities; no invented SLA |
 | ADR-099 | Security lead plus deputy and coordinated triage (Q130 C) | Actually verified roles/channels before beta; no invented contact |
+
+| ADR-100 | Local/CI VMs, snapshots, failure injection and OS reports (Q131 D) | Reproducible comparison before OS choice; SKIP ≠ PASS, real system VMs |
+| ADR-101 | WebStack load, maintenance, recovery and hard rejection criteria (Q132 D) | No selected first stack; tenant leak/.htaccess bypass/port conflicts disqualify |
+| ADR-102 | External DNS A/AAAA, port 80, HTTP-01 and HTTPS diagnosis (Q133 C) | Check IP/vhost, challenge/cert, no required native DNS |
+| ADR-103 | OS updates with impact plan, backup, health and recovery (Q134 C) | Authorized idempotent work, no generic root shell |
+| ADR-104 | Encrypted local MVP backup plus optional remote destination (Q135 B) | Panel config/PHP files and real restore; later remote/3-2-1 |
+| ADR-105 | Website manager can manage PHP/domain/TLS/files/SFTP and scoped restore (Q136 C) | Site RBAC/quotas; no root package updates or other tenants |
+| ADR-106 | Private beta by waves, suspension and recovery (Q137 D) | Invites/terms, private bug/release channel, preserve already granted software rights |
+| ADR-107 | Premium transfer with crypto evidence and risk-based second approval (Q138 D) | Fraud controls, audit, lost-host recovery, Hub after ABI |
+| ADR-108 | Partner severity, automated alerts, escalation and withdrawal (Q139 C) | Q114/Q129 per-release manual review and contracts |
+| ADR-109 | Vulnerability triage, fixes, advisories/coordinated customer notices (Q140 C) | Real lead/deputy and verified private channels Q118/Q130 |
 
 ## Replaced or unresolved proposals
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-07 revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-07 revision=4 status=documented -->
 # Portails, identités et autorisations
 
 [English](../../en/07-interfaces-roles/README.md) · [Index](../README.md)
@@ -18,6 +18,10 @@ Le cookie de setup est configuré `__Host-FORGE_ADMIN`, Secure, HttpOnly, SameSi
 ## Approbations, modes visuels et sessions (Q66, Q70)
 
 L'administration des opérations sensibles exige réauthentification, avec **approbation supplémentaire configurable** lorsque la politique le demande (Q66 C). Le MFA reste facultatif ; prévoir procédure de secours contrôlée pour l'administrateur unique sans supprimer les audits. L'éditeur visuel (Q70 D) autorise seulement widgets et routes validés, sans transformer la visibilité d'un menu en permission. [Design](../11-design-system/visual-editor.md) · [Décisions](../00-project-control/infrastructure-decisions.md).
+
+## Rôle gestionnaire de site Q136 C
+
+Sur un site qu'il possède ou administre légitimement, le **gestionnaire de site** pourra voir l'état et modifier **PHP, domaine, TLS et fichiers**, utiliser **SFTP** et demander **sauvegarde/restauration** dans les limites de son plan, des quotas et des permissions Q47. Le rôle ne peut ni modifier paquets/mises à jour OS, paramètres globaux et sécurité du panneau, ni accéder aux sites d'une autre organisation ou élever ses droits. Les actions sensibles (TLS/restore) sont prévisualisées, auditées et approuvées selon politique ; MFA administrateur demeure facultatif. [Q131–Q140](../00-project-control/decisions-q131-q140.md). **Le rôle n'est pas implémenté.**
 
 ## Tests exigés avant extension
 

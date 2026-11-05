@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=4 status=documented -->
 # Tests, quality and definition of done
 
 [Français](../../fr/13-tests-quality/README.md) · [Index](../README.md)
@@ -26,6 +26,14 @@ The first usable release needs an **end-to-end test on an authorized VM**: verif
 ## Revised qualification gate (Q121–Q127)
 
 Before choosing **the first OS/WebStack**, compare VMs/profiles for security, packages, PHP, listeners, HTTP/TLS and recovery (Q121/122). Verify **external** DNS, HTTP-01 challenge on **port 80**, HTTPS success and bad DNS/IPv6/port cases (Q123). Test admin/website-manager permission separation, local recovery, sessions/CSRF and optional MFA (Q124); planned/authorized/audited/recoverable OS package operations (Q125); **real restore** of panel config and PHP-site files with coherent panel PG state where needed (Q126). Only then consider **private beta** after external-distribution and verified security-reporting gates (Q127). [MVP matrix](../00-project-control/mvp-qualification.md). **No such integration test was run in this docs PR.**
+
+## Additional Q131–Q132 certification gates
+
+Automate **full system VMs** locally and in CI with snapshots, fault injection and **OS/version/WebStack/commit** reports per scenario. Report recovery and distinguish `SKIP` from success. **Initial WebStack** selection compares measured load, tenant/`.htaccess` security, service maintenance, TLS/ports and restore; **reject** profiles causing listener collisions, tenant disclosure or unrecoverable failure even with high benchmark scores.
+
+## Q133–Q136 MVP DNS, OS, backup and role tests
+
+Test A/AAAA including IPv4/IPv6, port 80, HTTP-01 routing, external domain and HTTPS 443; OS updates with impact/backup/health/recovery including interruption/reboot; **encrypted local** panel/PHP-file backups with real restoration and usable recovery key, **optional** remote destination; site-manager RBAC denials for OS packages, other sites, quota bypass and foreign backups. [Detailed matrix](../00-project-control/mvp-qualification.md). **None of these tests was run by this docs PR.**
 
 ## Definition of done
 

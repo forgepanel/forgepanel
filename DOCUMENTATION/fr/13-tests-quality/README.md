@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=4 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
@@ -26,6 +26,14 @@ Une première livraison fonctionnelle exige un **test complet sur VM autorisée*
 ## Porte de qualification révisée (Q121–Q127)
 
 Avant de qualifier le **premier OS / la première WebStack**, comparer les VM et profils candidats avec critères de sécurité, paquets, PHP, listeners, HTTP/TLS et récupération (Q121/122). Tester DNS **externe**, challenge HTTP-01 sur **port 80**, serveur HTTPS et échecs DNS/IPv6/ports (Q123). Valider rôles admin/gestionnaire de site, récupération locale, sessions/CSRF et MFA facultatif (Q124), plans/autorisations/audit et reprise des mises à jour OS (Q125), et **restauration réelle** de configuration panneau + fichiers PHP avec état PostgreSQL cohérent si requis (Q126). Après ces résultats, la **bêta privée** est possible seulement avec conditions légales de diffusion et canaux sécurité vérifiés (Q127). [Matrice MVP](../00-project-control/mvp-qualification.md). **Aucun de ces tests d'intégration n'a été exécuté par cette PR.**
+
+## Règles supplémentaires de certification Q131–Q132
+
+Automatiser les matrices de **VM système** locales et CI, conserver snapshots, injecter pannes et générer **rapports OS/versions/WebStack/commit** avec résultats par scénario. La preuve inclut le retour arrière des configurations et les exceptions `SKIP`, non comptées comme tests réussis. **WebStack initiale** : comparer charge réellement mesurée, sécurité d'isolation et `.htaccess`, maintenance/reload, TLS/ports et récupération ; **bloquer tout profil** ayant collision de port, fuite de données ou défaut de récupération, même si ses benchmarks sont meilleurs.
+
+## Tests MVP de DNS, OS, sauvegarde et rôles Q133–Q136
+
+Tester A/AAAA (IPv4/IPv6), port 80, routage HTTP-01, domaine externe et HTTPS 443 ; mises à jour OS avec plan d'impact/backup/health/recovery, y compris coupure et reboot ; copies **locales chiffrées** panneau+PHP avec restauration réelle, clé de déchiffrement disponible et destination distante **optionnelle** ; refus RBAC du gestionnaire de site sur les paquets OS, autres sites, dépassement de quota et sauvegardes tierces. [Matrice détaillée](../00-project-control/mvp-qualification.md). **Aucun test de ce type n'est exécuté par cette PR documentaire.**
 
 ## Définition de terminé
 

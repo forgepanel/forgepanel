@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-07 revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-07 revision=4 status=documented -->
 # Portals, identities and authorization
 
 [Français](../../fr/07-interfaces-roles/README.md) · [Index](../README.md)
@@ -18,6 +18,10 @@ The setup cookie is configured as `__Host-FORGE_ADMIN`, Secure, HttpOnly, SameSi
 ## Approvals, visual modes and sessions (Q66, Q70)
 
 Sensitive operations require recent authentication, with **configurable extra approval** when policy requires it (Q66 C). MFA remains optional; an audited controlled emergency path is required for single-admin scenarios. The visual editor (Q70 D) only exposes validated widgets/routes; menu visibility never changes access rights. [Design](../11-design-system/visual-editor.md) · [Decisions](../00-project-control/infrastructure-decisions.md).
+
+## Website-manager role Q136 C
+
+For sites owned or explicitly delegated, the **website manager** may view state and manage **PHP, domain, TLS, files**, use **SFTP** and request **backup/restore** within plan, quotas and Q47 permissions. It cannot upgrade OS packages, change global security/panel settings, access another organization's websites or elevate privileges. Sensitive TLS/restore operations require preview, audit and policy-specific approval; administrator MFA stays optional. [Q131–Q140](../00-project-control/decisions-q131-q140.md). **This role is not implemented.**
 
 ## Required tests before expansion
 

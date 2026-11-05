@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=9 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=10 status=documented -->
 # Modèle de sécurité et signalement
 
 [English](../../en/10-security/README.md) · [Index](../README.md)
@@ -62,6 +62,10 @@ Avant toute diffusion publique, **configurer et vérifier** deux canaux : signal
 ## Responsable et suppléant, bêta privée (Q127/Q130)
 
 Q130 C exige un **responsable sécurité identifié et un suppléant**, autorisés à consulter les signalements, trier les incidents, coordonner les correctifs/notifications et escalader pendant une absence. Ces rôles ne sont **pas encore attribués** par ce document. Vérifier réellement le signalement privé GitHub et l'email dédié Q118 avant de laisser des testeurs externes accéder à la bêta privée. Q127 ne justifie ni collecte de secrets clients, ni communication publique de vulnérabilités, ni contournement des obligations de diffusion logicielle. [Décisions](../00-project-control/decisions-q121-q130.md).
+
+## Bêta privée et communication des vulnérabilités — Q137/Q140
+
+La bêta Q137 D utilisera **invitations et conditions acceptées, diffusion par vagues, canal de bugs/versions privé, suspension des accès et récupération documentée**. Suspendre une invitation ou un canal de mises à jour n'autorise ni suppression de données ni retrait automatique des libertés de copies AGPL déjà remises. Q140 C exige, avant une bêta externe, **un responsable et son suppléant effectivement désignés**, triage par gravité, correctifs suivis, avis de sécurité et notifications clients coordonnées, avec les **deux canaux Q118 (GitHub privé + email dédié) testés**. Ces conditions sont spécifiées, **pas installées/configurées**. [Q131–Q140](../00-project-control/decisions-q131-q140.md).
 
 ## Signalement et revue
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DECISIONS revision=11 status=documented -->
+<!-- forgepanel-doc id=FP-00-DECISIONS revision=12 status=documented -->
 # Registre de décisions
 
 [English](../../en/00-project-control/decisions.md) · [Pilotage](README.md)
@@ -138,6 +138,17 @@ Les identifiants sources renvoient à l'[état initial](../19-audits-risks/basel
 | ADR-117 | Identité serveur premium clés/challenge, anti-rejeu/org et secours manuel (Q148 C) | Transfert Hub après ABI, seconde approbation selon risque Q138 conservée |
 | ADR-118 | Partenaires : gravité, délais contractuels, escalade/alertes/retrait (Q149 C) | Revue humaine de chaque version, aucun SLA numérique inventé |
 | ADR-119 | Avis sécurité signés/historisés, notification et divulgation coordonnée selon risque (Q150 D) | Responsable/suppléant, canaux vérifiés, pas de publication automatique d'exploits |
+
+| ADR-120 | QEMU/KVM local premier pilote puis VM cloud (Q151 A) | Garder ABI multi-pilotes Q141 ; ne pas certifier la CI si KVM absent |
+| ADR-121 | Rapports VM signés/provenance/snapshots/historique (Q152 C) | Matrice interne, PASS/FAIL/SKIP explicites ; pas de publication publique automatique |
+| ADR-122 | Blocage de régression selon gravité, exception performance approuvée (Q153 C) | Budgets par application, audit et limite ; **aucun veto sécurité/récupération contournable** |
+| ADR-123 | DNS HTTP-01 : familles d'IP réellement publiées seulement (Q154 C) | A et/ou AAAA validés individuellement ; ne pas imposer IPv6 absent |
+| ADR-124 | Mise à jour/reboot OS par serveur et approbation/backup/santé/reprise (Q155 C) | Aucune commande root arbitraire, multi-serveurs plus tard |
+| ADR-125 | Clé de secours, vérification périodique et restauration isolée (Q156 C) | Backup « récupérable » seulement après essai réel ; KMS/multi-gardiens optionnels |
+| ADR-126 | Gestion clé publique SFTP par compte/site, expiration/audit/validation (Q157 C) | Pas de clé privée collectée, shell interdit, quotas et RBAC imposés |
+| ADR-127 | Bêta : santé locale, rapports manuels et diagnostic minimal opt-in par cohorte (Q158 C) | Consentements Q6 séparés, pause par seuils, pas de télémétrie forcée |
+| ADR-128 | Transfert premium suspect : serveur perdu, répétition, incohérence org ou compromission (Q159 C) | Q138 approbation conditionnelle et Q148 challenge, secours manuel Hub |
+| ADR-129 | Avis sécurité signés FR/EN humains + structurés machine (Q160 C) | Notifications configurables, contenus sensibles protégés, pas de standard avancé imposé |
 
 ## Propositions remplacées ou non résolues
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-01 revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-01 revision=6 status=documented -->
 # Product scope and journeys
 
 [Français](../../fr/01-product/README.md) · [Index](../README.md)
@@ -35,6 +35,10 @@ The first functional experience targets **one PHP site with an externally manage
 ## Q141–Q147 MVP qualification and safeguards
 
 The first PHP/HTTPS site will require **local/cloud VMs with common CI reports**, app-class performance/security tests and cross-release regression checks (Q141/Q142). With **external DNS**, the advisor suggests records and rechecks A/AAAA/80/HTTP-01/HTTPS without automatic provider edits (Q143). Planned **per-server** OS updates (Q144), **encrypted local** backup with recoverable keys and optional remote destination plus optional external KMS/multiple recovery custodians (Q145), shell-disabled SFTP with expiry/quota/audit (Q146). After internal tests, private beta may pause waves on configurable health gates and recover (Q147). Hub commerce Q148–Q150 follows neutral ABI. [Q141–Q150](../00-project-control/decisions-q141-q150.md). **Not shipped.**
+
+## Q151–Q158 practical MVP requirements
+
+**Local QEMU/KVM** is the first qualification driver, with full VM CI only where available and later cloud drivers (Q151). Evidence is **signed, historical and internal** with snapshots (Q152); performance budgets/regressions are configurable and waivers cannot bypass **security vetoes** (Q153). Initial site DNS/HTTP-01 checks **only actually published A/AAAA families** (Q154), OS reboots require **per-server** approval, backup/health/recovery (Q155). Encrypted local backups earn recoverable status only after protected key accessibility checks and **real isolated restoration** (Q156). Site managers administer own-site **SFTP public keys** under expiry/quota/audit (Q157). Private beta uses local health and **separately opted-in minimal diagnostics** with cohort thresholds (Q158). [Decisions](../00-project-control/decisions-q151-q160.md).
 
 ## Scope discipline
 

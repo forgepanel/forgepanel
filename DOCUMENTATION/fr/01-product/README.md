@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-01 revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-01 revision=6 status=documented -->
 # Périmètre produit et parcours
 
 [English](../../en/01-product/README.md) · [Index](../README.md)
@@ -35,6 +35,10 @@ La première expérience fonctionnelle cible **un site PHP avec domaine sous DNS
 ## Qualification et protection du MVP Q141–Q147
 
 Le premier site PHP/HTTPS sera qualifié par **VM locales/cloud et rapports CI communs**, avec charge/performance par classe d'application, sécurité et régressions de versions (Q141/Q142). Le parcours de domaine à **DNS externe** propose les enregistrements attendus puis revérifie A/AAAA/80/HTTP-01/HTTPS sans modification automatique (Q143). Mises à jour OS contrôlées **par serveur** (Q144), backup **chiffré local avec clé récupérable** et destination distante facultative, KMS externe/multi-autorités seulement en option (Q145), SFTP sans shell/expiration/quotas/audit (Q146). Après tests internes, bêta privée avec critères de santé configurables, suspension des vagues et récupération (Q147). Les fonctions commerciales Q148–Q150 restent après ABI Hub. [Décisions Q141–Q150](../00-project-control/decisions-q141-q150.md). **Non livré aujourd'hui.**
+
+## MVP : mise en pratique Q151–Q158
+
+**QEMU/KVM local** devient le premier pilote de qualification, avec CI VM seulement si elle sait l'exécuter et possibilité de pilotes cloud ultérieurs (Q151). Les preuves sont **signées, historisées, internes** avec snapshots (Q152) ; les budgets/régressions de performance sont administrables et exceptions possibles **hors veto sécurité** (Q153). Le diagnostic DNS/HTTP-01 du premier domaine contrôle **les familles IP A/AAAA réellement publiées** (Q154), les reboots OS sont **approuvés par serveur** avec backup/santé/reprise (Q155). Un backup chiffré local ne sera déclaré récupérable qu'après vérification périodique des clés de secours et **restauration isolée réelle** (Q156). Le gestionnaire de site gérera ses **clés publiques SFTP** avec expiration/quotas/audit (Q157). La bêta privée prend en compte la santé locale et des diagnostics **minimisés sous consentements distincts** et seuils par cohorte (Q158). [Décisions](../00-project-control/decisions-q151-q160.md).
 
 ## Maîtrise du périmètre
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-Q141-150 revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-02-Q141-150 revision=2 status=specified -->
 # VM certification, performance budgets, backup recovery, access and updates — Q141–Q147
 
 [Français](../../fr/02-architecture/certification-backup-security.md) · [Q141–Q150 decisions](../00-project-control/decisions-q141-q150.md) · [MVP qualification](../00-project-control/mvp-qualification.md)
@@ -34,6 +34,10 @@ Each SFTP identity has authorized websites/roots, **key-based** access, shell **
 ## Private-beta pause gates (Q147 C)
 
 Candidate `BetaRolloutPolicy` stores invited cohorts, signed version/channel, **configurable health gates**, pause thresholds, critical incident classification, pause/resume authority and recovery procedures. Pause blocks **new rollout installs/updates**, not deleting data or extinguishing rights already granted to legitimate recipients. Diagnostics remain **opt-in or narrowly contractual** (Q6) and sanitized, never mandatory for basic free Core operations. Q130 security lead/deputy coordinate any needed notices.
+
+## Q151–Q158 implementation order
+
+**Q151 A** makes **local QEMU/KVM** the first `QualificationDriver`, with Q141 cloud adapters later and the same interface. **Q152 C** requires signed historical provenance/snapshot reports, not mandatory public matrices. **Q153 C** sets app budget/severity gates and approved audited performance exceptions **without relaxing hard security vetoes**. **Q154 C** checks only advertised A/AAAA but all that exist; **Q155 C** approved per-server reboot with backup/health/recovery; **Q156 C** protected recovery key export, periodic access check and isolated restoration before marking recoverable; **Q157 C** expiring/audited SFTP public-key management and sensitive validation; **Q158 C** minimized beta diagnostics with separate consent and per-cohort thresholds. [Detailed contracts](qualification-and-security-contracts.md).
 
 ## Exit gates
 

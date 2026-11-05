@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-MVP-QUAL revision=4 status=specified -->
+<!-- forgepanel-doc id=FP-00-MVP-QUAL revision=5 status=specified -->
 # First PHP/HTTPS ForgePanel qualification — Q121–Q127
 
 [Français](../../fr/00-project-control/mvp-qualification.md) · [Roadmap](implementation-roadmap.md) · [Q121–Q130 decisions](decisions-q121-q130.md)
@@ -51,6 +51,22 @@ Verify domain **A and AAAA** resolution, conflicting IPv4/IPv6 targets, publicly
 **Q146 C:** SFTP **without shell by default**, scoped site account/root, expiring/revocable grants, enforced quotas and audit; test symlink/path traversal and cross-tenant denial on actual host, not only UI.
 
 [Q141–Q150 decisions](decisions-q141-q150.md) · [Technical contracts](../02-architecture/certification-backup-security.md). **This text does not constitute VM execution evidence.**
+
+## Q151–Q158 — actual MVP proof requirements
+
+**Q151 A:** begin with **local QEMU/KVM** for full Linux VM/snapshot evidence, keeping Q141 cloud driver contract for later. CI cannot report `PASS` if KVM is unavailable. **Q152 C:** require **signed** evidence tied to immutable OS image/build provenance, snapshots and **historical test results** in an internal matrix. Signatures alone are not safety proof.
+
+**Q153 C:** configure **application-class** latency/errors/resource budgets and block regressions by severity/threshold, with limited audited **performance-only** exceptions. Q132 tenant leakage, `.htaccess` bypass, listener conflict or failed restore remain **non-waivable** regardless of speed.
+
+**Q154 C:** ACME **HTTP-01** validates **only actually published A/AAAA address families**. A only checks IPv4, no invented AAAA requirement; AAAA only checks IPv6; both require validation of both public port-80/challenge routes before HTTPS 443. The assistant suggests fixes and rechecks **without DNS-provider writes**.
+
+**Q155 C:** **per-server** reboot policy needs authorized approval, impact plan, recoverable backup, post-reboot health and recovery. Multi-server orchestration is later. **Q156 C:** Q135 encrypted local backup must have a safely **exported recovery key**, periodic accessibility verification and **decrypted restore into isolated VM** before it is marked recoverable. External KMS/multiple custodians remain optional.
+
+**Q157 C:** an authorized website manager can **register/revoke own SFTP public keys** under account policy, expiry/site scope/quotas/audit, revalidating sensitive changes, with no shell and no private-key collection. Test actual own-site access and cross-tenant denial.
+
+**Q158 C:** after internal gates, Q137/Q147 private beta uses manual reports, **local health** and **separately consented Q6 minimized diagnostics**, per-cohort thresholds and pause/recovery. Core remains usable when tester declines diagnostic upload.
+
+[Decisions](decisions-q151-q160.md) · [Implementation contracts](../02-architecture/qualification-and-security-contracts.md). **No benchmark, VM or actual restore is executed by these docs.**
 
 ## Q127 B private beta gate
 

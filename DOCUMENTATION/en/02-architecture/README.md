@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02 revision=7 status=documented -->
+<!-- forgepanel-doc id=FP-02 revision=8 status=documented -->
 # System architecture
 
 [Français](../../fr/02-architecture/README.md) · [Index](../README.md)
@@ -50,5 +50,7 @@ Q91–Q100 add [PHP, staging, ACME, access and quota policies](php-staging-and-a
 New [Q101–Q110 continuity contracts](runtime-exceptions-and-data-continuity.md) define bounded PHP exceptions, qualified Linux confinement, per-environment Git policies, sensitive staging, multi-CA ACME, shared/dedicated DB with optional replication, temporary SSH, recommended Webmail, quota grace and conditional pre-sync/failover. They are **specified only**; real OS/profile availability needs evidence. [Register](../00-project-control/decisions-q101-q110.md).
 
 Q141–Q147 are detailed in [VM drivers, performance budgets, backup recovery security and SFTP](certification-backup-security.md). Container-only tests do not qualify an OS/WebStack. The external DNS assistant suggests/rechecks without automatic writes. MVP OS update policy is **per server**, backup KMS is optional and beta pause health gates are configurable. [Q141–Q150](../00-project-control/decisions-q141-q150.md). These are specifications, not live services.
+
+Q151–Q160 specifies [local QEMU/KVM first, signed qualification evidence, app budgets, isolated backup restoration, SFTP keys and consented beta](qualification-and-security-contracts.md). Never require unadvertised IPv4/IPv6; every published A/AAAA family must support HTTP-01. Performance waivers **never** override security. Transfer risk and FR/EN structured advisories remain Hub-after-ABI matters. [Q151–Q160](../00-project-control/decisions-q151-q160.md).
 
 [Decisions](../00-project-control/decisions.md) · [Contracts](../08-api-contracts/README.md) · [Security](../10-security/README.md)

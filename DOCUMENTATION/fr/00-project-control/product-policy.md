@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-POLICY revision=11 status=documented -->
+<!-- forgepanel-doc id=FP-00-POLICY revision=12 status=documented -->
 # Décisions produit du 5 novembre 2026 — gratuit, commercial et configurable
 
 [English](../../en/00-project-control/product-policy.md) · [Registre ADR](decisions.md) · [Configuration Engine](../02-architecture/configuration-engine.md)
@@ -80,6 +80,10 @@ Q131 **D** formalise VM locales/CI, snapshots/pannes et rapports OS ; Q132 **D**
 ## Q141–Q150 confirmées — vérification et récupération
 
 Les tests du MVP suivront des VM **locales/cloud** avec rapports identiques (Q141 D), des budgets et régressions de performance **par application** sans dépasser les veto de sécurité (Q142 D), et un assistant proposant les enregistrements DNS avant revérification manuelle DNS/HTTP-01/HTTPS (Q143 C). Les mises à jour OS relèvent d'une politique **par serveur** puis, ultérieurement, d'une orchestration multi-serveurs (Q144 D). Les backups **locaux chiffrés** devront conserver des clés de récupération sous coffre, avec KMS externe et récupération multi-gardiens **facultatifs** (Q145 D). Le SFTP est borné, sans shell, expirable/révocable et audité (Q146 C). La bêta privée peut être **suspendue sur seuils de santé** et récupérée sans effacer des données (Q147 C). Le Hub après R5 gérera l'identité/challenge de transfert, la validation manuelle de serveur perdu (Q148 C, approbation additionnelle Q138 selon risque), les délais contractuels par gravité (Q149 C) et les avis de sécurité signés avec divulgation coordonnée selon risque (Q150 D). [Détails](decisions-q141-q150.md).
+
+## Q151–Q160 — décisions confirmées
+
+**Q151 A** choisit **QEMU/KVM local en premier**, sans supprimer les pilotes cloud Q141. **Q152 C** conserve des rapports **signés, historisés et internes** avec provenance et snapshots, pas de matrice publique obligatoire. **Q153 C** bloque les régressions selon criticité/seuils, avec exceptions de performance approuvées sans lever les contrôles de sécurité Q132. **Q154 C** valide **uniquement les familles A/AAAA publiées**, chacune devant réussir HTTP-01, sans exiger IPv6 non annoncé. **Q155 C** impose approbation/sauvegarde/santé/reprise du reboot OS par serveur. **Q156 C** exige contrôle périodique de clé de secours et **restauration isolée** avant statut récupérable, avec KMS externe/multi-gardiens facultatifs (Q145). **Q157 C** confie les **clés publiques** SFTP au gestionnaire dans les limites du plan, expiration/audit/validation sensible. **Q158 C** ajoute santé locale, rapports manuels et diagnostics minimisés **opt-in distinct** par cohorte bêta. **Q159 C** détermine les risques de transfert premium à approbation supplémentaire Q138 (serveur perdu, répétition, org incohérente, compromission). **Q160 C** prévoit avis signés FR/EN lisibles et structurés machine, notifications configurables/protection sensible. [Décisions](decisions-q151-q160.md).
 
 ## Questions encore ouvertes — ne pas présumer
 

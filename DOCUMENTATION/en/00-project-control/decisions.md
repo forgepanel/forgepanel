@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DECISIONS revision=11 status=documented -->
+<!-- forgepanel-doc id=FP-00-DECISIONS revision=12 status=documented -->
 # Decision register
 
 [Français](../../fr/00-project-control/decisions.md) · [Project control](README.md)
@@ -138,6 +138,17 @@ Source IDs refer to the [baseline](../19-audits-risks/baseline.md). A decision a
 | ADR-117 | Premium server identity keys/challenge, anti-replay/org/lost-host route (Q148 C) | Hub after ABI; Q138 risk-based second approval remains |
 | ADR-118 | Partner severity, contractual deadlines, alerts/escalation/withdrawal (Q149 C) | Human per-version review; no invented numeric SLA |
 | ADR-119 | Signed historical security notices, coordinated risk-based disclosure (Q150 D) | Verified lead/deputy and channels; no automatic exploit publishing |
+
+| ADR-120 | Local QEMU/KVM first, cloud VM later (Q151 A) | Preserve Q141 driver ABI; no CI certification without KVM |
+| ADR-121 | Signed VM reports/provenance/snapshots/history (Q152 C) | Internal PASS/FAIL/SKIP matrix; no automatic public compatibility listing |
+| ADR-122 | Severity-based regression blocking with approved performance exception (Q153 C) | App budgets/audit; **no security or recovery veto waiver** |
+| ADR-123 | HTTP-01 DNS checks only on published address families (Q154 C) | Verify A and/or AAAA separately, do not require missing IPv6 |
+| ADR-124 | Per-server approved OS updates/reboot/backup/health/recovery (Q155 C) | No generic root commands, multi-server later |
+| ADR-125 | Protected key, periodic accessibility proof and isolated restoration (Q156 C) | Label recoverable only after real trial; optional KMS/multiple custodians |
+| ADR-126 | Per-account/site SFTP public-key control, expiry/audit/step-up (Q157 C) | No private key upload, shell disabled, quota/RBAC enforcement |
+| ADR-127 | Beta local health/manual reports/minimal opt-in diagnostics by cohort (Q158 C) | Separate Q6 consents, per-cohort pause, no mandatory telemetry |
+| ADR-128 | Premium transfer risk: lost host, repetition, org mismatch/compromise (Q159 C) | Q138 conditional extra approval and Q148 challenge/manual Hub recovery |
+| ADR-129 | Signed human FR/EN + machine-structured advisories (Q160 C) | Configurable notices, protected details, no mandatory advanced standard |
 
 ## Replaced or unresolved proposals
 

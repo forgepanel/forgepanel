@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-15 revision=10 status=documented -->
+<!-- forgepanel-doc id=FP-15 revision=11 status=documented -->
 # Operations, diagnosis and recovery
 
 [Français](../../fr/15-operations/README.md) · [Index](../README.md)
@@ -52,6 +52,10 @@ The website pilot checks **DNS A/AAAA, port 80, HTTP-01 routing and HTTPS**, rep
 ## Q141–Q147 operations: VM, updates, keys and beta
 
 Gather **local/cloud VM** qualification through a common report (Q141), compare **per-app/release performance budgets** and regressions (Q142), suggest external DNS corrections and **recheck** after operator action (Q143) without automatic zone changes. **Per-server** OS update policies cover windows, trusted sources, impact, backup, health and recovery, with multi-server rollout later (Q144). MVP backup remains **encrypted local**, remote optional, but keys must survive a server loss through protected vault/recovery copy with optional KMS/multiple custodians (Q145). Shell-disabled SFTP with expiry/revocation, quotas and audit (Q146). Private beta uses **configurable health gates**, wave pause and recovery (Q147). Actual systems/evidence are still required. [Q141–Q150](../00-project-control/decisions-q141-q150.md).
+
+## Q151–Q158 operations: KVM, updates, restoration and consents
+
+**Q151 A:** first qualification adapter is **local QEMU/KVM**, later cloud and CI capable of full VMs under Q141. **Q152 C:** preserve signed history/snapshots/provenance reports. **Q153 C:** per-app severity-based performance budget/limited exceptions, with non-waivable safety veto. **Q154 C:** HTTP-01 diagnostics on **only published A/AAAA families**, rechecking port 80/challenge/HTTPS. **Q155 C:** approved **per-server** maintenance/reboot with backup, health and recovery; multi-server waits for Q67/Q77. **Q156 C:** protected recovery-key export/vault and periodic check, then isolated restoration before a backup is called recoverable; Q145 KMS optional. **Q157 C:** expiring/revoked/audited scoped SFTP keys. **Q158 C:** beta local health, **separate** diagnostic consents and per-cohort thresholds, independent of opt-in status. [Contracts](../02-architecture/qualification-and-security-contracts.md).
 
 ## Backup and restoration requirements
 

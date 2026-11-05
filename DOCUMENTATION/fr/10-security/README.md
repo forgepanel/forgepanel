@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=11 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=12 status=documented -->
 # Modèle de sécurité et signalement
 
 [English](../../en/10-security/README.md) · [Index](../README.md)
@@ -70,6 +70,10 @@ La bêta Q137 D utilisera **invitations et conditions acceptées, diffusion par 
 ## Protection des accès et avis — Q145–Q150
 
 **Q145 D** : séparer clés/archives de sauvegarde et garder copie de récupération protégée **hors panne commune** ; coffre sécurisé, plusieurs gardiens de récupération selon politique et **KMS externe facultatif**. La perte de toutes les clés doit apparaître comme un risque irréversible, non dissimulé. **Q146 C** : SFTP limité aux sites, sans shell, quotas appliqués et expiration/révocation auditée ; tester symlink et traversée de chemins. **Q147 C** : si une bêta présente un incident critique ou dépasse les seuils de santé configurés, **suspendre les nouvelles vagues** et proposer récupération sans supprimer les données clients ou les droits déjà acquis. **Q148 C** : futur transfert premium par challenge signé, rotation/anti-rejeu et vérification d'organisation, avec secours manuel et approbation conditionnelle Q138. **Q149 C/Q150 D** : obligations partenaires et délais par gravité/contrat, avis de sécurité **signés** et divulgation **coordonnée selon le risque** ; responsable/suppléant et canaux Q118 doivent réellement être assignés/vérifiés. [Décisions](../00-project-control/decisions-q141-q150.md).
+
+## Garde-fous Q151–Q160 — rapports, sauvegardes, accès et avis
+
+**Q152 C** requiert rapport signé/provenance/snapshots/historique de certification mais non une matrice publique obligatoire. **Q153 C** permet exceptions de **performance** selon criticité et autorisation auditée, **jamais** d'exception aux défauts d'isolation, d'accès ou de reprise Q132. **Q154 C** contrôle toutes les familles A/AAAA **effectivement publiées**, sans forcer IPv6 absent. **Q155 C/Q156 C** exigent reboot OS approuvé par serveur, backup utilisable, santé/reprise et clé exportée/vérifiée avant **test de restauration isolé**. **Q157 C** limite la gestion des **clés publiques SFTP** par site à des droits, quotas, expiration et audit, avec revalidation sensible et sans clés privées collectées. **Q158 C** : données de bêta minimisées, consentements Q6 **séparés** et seuils par cohorte, sans collecte imposée. **Q159 C** conserve la seconde approbation Q138 en cas de risque de transfert (perte serveur, répétition, identité/org incohérente, compromission) ; **Q160 C** : avis signés **FR/EN humains et structurés machine**, notifications choisies et secrets protégés, sans format avancé obligatoire ni nouveau canal non vérifié. [Décisions](../00-project-control/decisions-q151-q160.md).
 
 ## Signalement et revue
 

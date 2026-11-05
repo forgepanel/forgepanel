@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-07 revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-07 revision=6 status=documented -->
 # Portails, identités et autorisations
 
 [English](../../en/07-interfaces-roles/README.md) · [Index](../README.md)
@@ -26,6 +26,10 @@ Sur un site qu'il possède ou administre légitimement, le **gestionnaire de sit
 ## Q146 C — accès SFTP restreint
 
 Le gestionnaire de site (Q136) dispose uniquement du SFTP de ses propres sites/ressources autorisés, sous **identité OS cantonnée, chemins et symlinks sécurisés, clés d'accès, quotas effectifs et journaux d'audit**. Par défaut, SFTP **ne confère aucun shell**. Expiration ou révocation du droit interdit toute nouvelle connexion mais ne supprime pas les fichiers du compte. Test requis : accès au site possédé, refus d'un autre tenant, chemin parent, symlink et quota ; aucune option ne donne un terminal root. [Décisions Q141–Q150](../00-project-control/decisions-q141-q150.md).
+
+## Gestion des clés publiques SFTP par site (Q157 C)
+
+Le gestionnaire autorisé peut **enregistrer/révoquer des clés publiques** pour ses sites, dans la politique du compte/plan, avec limites de répertoires, expiration, quotas et audit d'accès. Toute action sensible (ex. nouvelle clé puissante, changement d'identité) peut exiger réauthentification/approbation ciblée Q66/Q76 ; **aucun téléversement de clé privée, shell root ni accès aux autres sites**. L'expiration/révocation ne supprime pas les fichiers. La sécurité doit être appliquée par les comptes Unix/serveurs SFTP, pas uniquement dans l'interface. [Contrats](../02-architecture/qualification-and-security-contracts.md).
 
 ## Tests exigés avant extension
 

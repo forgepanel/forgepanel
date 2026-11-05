@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-POLICY revision=9 status=documented -->
+<!-- forgepanel-doc id=FP-00-POLICY revision=10 status=documented -->
 # Product decisions of 5 November 2026 — free Core, commercial model and configuration
 
 [Français](../../fr/00-project-control/product-policy.md) · [ADR register](decisions.md) · [Configuration Engine](../02-architecture/configuration-engine.md)
@@ -72,6 +72,10 @@ Exact AGPL variant follows **legal review** (Q111 C); electronic CLA and verific
 ## Confirmed Q121–Q130
 
 **Q121 D/Q122 D** require **evidence-based VM/security/compatibility comparison** before selecting first OS and WebStack; no user default is set. **Q123 A** scopes initial hosting to an external-DNS domain with **HTTP-01 and automatic HTTPS**, deferring local authoritative DNS and DNS-01. **Q124 B** adds local admin and site-manager roles; **Q125 B** adds controlled OS package upgrades to VPS diagnostics; **Q126 B** requires actual panel-config/PHP-site-file backup and restore. **Q127 B** permits isolated internal testing followed by authorized private beta after distribution-license and security checks. **Q128 D/Q129 C/Q130 C** specify license transfer with manual lost-server recovery, partner contractual maintenance/alerts/withdrawal and security lead/deputy/triage. None is shipped. [Decisions](decisions-q121-q130.md) · [Qualification](mvp-qualification.md).
+
+## Q131–Q140 — confirmed qualification and governance
+
+Q131 **D** selects local/CI VM snapshots/faults and OS reports; Q132 **D** tests WebStacks for security/compatibility, measured load, maintenance/recovery and disqualifying conditions; Q133 **C** verifies DNS A/AAAA, port 80, HTTP-01 and HTTPS. Q134 **C** requires impact/backup/health/recovery for OS updates; Q135 **B** uses **encrypted local** initial backup, optional remote, with Q126 real restore; Q136 **C** scopes site manager to PHP/domains/TLS/files/SFTP/backups/restores under quotas/RBAC. Q137 **D** brings invited private beta by waves/suspension/recovery. Q138 **D** adds cryptographic transfer proof and risk-based extra approval; Q139 **C** partner alerts/escalation/withdrawal; Q140 **C** coordinated vulnerability triage/patch notices. Commercial controls remain Hub-after-ABI. [Decisions](decisions-q131-q140.md).
 
 ## Open follow-ups — no default assumed
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-15 revision=8 status=documented -->
+<!-- forgepanel-doc id=FP-15 revision=9 status=documented -->
 # Operations, diagnosis and recovery
 
 [Français](../../fr/15-operations/README.md) · [Index](../README.md)
@@ -44,6 +44,10 @@ Operate EOL PHP exceptions with **expiry, owner and migration plan**; periodical
 ## Minimum Q125–Q126 operation
 
 First release observes services, metrics and logs read-only, then offers **controlled OS package updates** with trusted source, diff, impact plan, permissions, durable outcome, reboot notice, health and recovery. Initial backups cover **panel configuration plus PHP website files**, include integrity manifests and **tested restore** (with consistent panel PostgreSQL state if necessary); 3-2-1, DR, mail and hosted DB backup remain separate future targets. [MVP matrix](../00-project-control/mvp-qualification.md).
+
+## Q133–Q135 operations — diagnostics, OS updates and first backup
+
+The website pilot checks **DNS A/AAAA, port 80, HTTP-01 routing and HTTPS**, reporting actionable failures without ACME secrets. OS upgrades follow **maintenance window → impact plan → backup and authorization → bounded apply → panel/site health → recovery**, never arbitrary shell input. MVP backup is **encrypted local**, with an **optional remote destination**, covering panel config/PHP files and restore tests, plus coherent recovery of necessary panel PostgreSQL state. Advanced 3-2-1/immutability remains planned but is not an MVP gate. [Matrix](../00-project-control/mvp-qualification.md).
 
 ## Backup and restoration requirements
 

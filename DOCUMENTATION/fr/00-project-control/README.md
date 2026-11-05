@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00 revision=8 status=documented -->
+<!-- forgepanel-doc id=FP-00 revision=9 status=documented -->
 # Pilotage du projet
 
 [English](../../en/00-project-control/README.md) · [Index](../README.md)
@@ -26,4 +26,4 @@ Il s'agit de responsabilités, pas de l'affirmation que des agents ou services d
 
 Chaque tâche identifie son périmètre et ses composants, fixe les critères d'acceptation, réalise un changement borné, le vérifie, actualise les deux langues et le changelog, puis indique branche/commit/PR et limites. Un test unitaire réussi n'est ni une release ni un déploiement.
 
-[Décisions Q56–Q60](commerce-identity-release-policy.md) · [Décisions Q121–Q130](decisions-q121-q130.md) · [Qualification MVP](mvp-qualification.md) · [Décisions Q111–Q120](decisions-q111-q120.md) · [Roadmap technique](implementation-roadmap.md) · [Décisions Q101–Q110](decisions-q101-q110.md) · [Décisions Q91–Q100](decisions-q91-q100.md) · [Décisions Q81–Q90](decisions-q81-q90.md) · [Décisions Q71–Q80](decisions-q71-q80.md) · [WebStack par site](../02-architecture/site-webstack-advisor.md) · [État et roadmap](status.md) · [Arbitrages commerciaux et personnalisation](product-policy.md) · [Double licence et protection commerciale](license-commerce.md) · [Registre de décisions](decisions.md) · [Matrice de couverture](coverage.md) · [Audit](../19-audits-risks/README.md)
+[Décisions Q56–Q60](commerce-identity-release-policy.md) · [Décisions Q131–Q140](decisions-q131-q140.md) · [Décisions Q121–Q130](decisions-q121-q130.md) · [Qualification MVP](mvp-qualification.md) · [Décisions Q111–Q120](decisions-q111-q120.md) · [Roadmap technique](implementation-roadmap.md) · [Décisions Q101–Q110](decisions-q101-q110.md) · [Décisions Q91–Q100](decisions-q91-q100.md) · [Décisions Q81–Q90](decisions-q81-q90.md) · [Décisions Q71–Q80](decisions-q71-q80.md) · [WebStack par site](../02-architecture/site-webstack-advisor.md) · [État et roadmap](status.md) · [Arbitrages commerciaux et personnalisation](product-policy.md) · [Double licence et protection commerciale](license-commerce.md) · [Registre de décisions](decisions.md) · [Matrice de couverture](coverage.md) · [Audit](../19-audits-risks/README.md)

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=9 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=10 status=documented -->
 # Security model and disclosure
 
 [Français](../../fr/10-security/README.md) · [Index](../README.md)
@@ -62,6 +62,10 @@ Before public distribution **configure and verify** two channels: **GitHub priva
 ## Security lead/deputy and private beta (Q127/Q130)
 
 Q130 C requires an **appointed security lead and deputy** with authorized vulnerability access, incident triage, patch/notice coordination and escalation during absence. No such individuals are **appointed by this document**. Verify both Q118 private GitHub reporting and dedicated email before allowing external private-beta testers. Q127 never authorizes collection of customer secrets, public exploit details or skipping distribution-license obligations. [Decisions](../00-project-control/decisions-q121-q130.md).
+
+## Private beta and vulnerability communication — Q137/Q140
+
+Q137 D requires **invited testers, accepted terms, staged waves, a private bugs/releases channel, access suspension and documented recovery**. Pausing beta invites/updates cannot automatically delete users' data or extinguish AGPL rights already granted to recipients. Q140 C requires an **actually appointed security lead/deputy**, severity triage, tracked fixes, advisories and coordinated customer notices, with **both Q118 reporting routes (GitHub private + verified dedicated email) tested** before external beta. These gates are **specified, not configured or operational**. [Q131–Q140](../00-project-control/decisions-q131-q140.md).
 
 ## Reporting and review
 

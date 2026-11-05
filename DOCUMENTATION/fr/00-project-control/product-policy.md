@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-POLICY revision=9 status=documented -->
+<!-- forgepanel-doc id=FP-00-POLICY revision=10 status=documented -->
 # Décisions produit du 5 novembre 2026 — gratuit, commercial et configurable
 
 [English](../../en/00-project-control/product-policy.md) · [Registre ADR](decisions.md) · [Configuration Engine](../02-architecture/configuration-engine.md)
@@ -72,6 +72,10 @@ La **première version fonctionnelle Q119 B** comprend installateur vérifié, C
 ## Décisions Q121–Q130 confirmées
 
 **Q121 D et Q122 D** imposent un **choix technique étayé par comparaison VM/compatibilité/sécurité** du premier OS et de la première WebStack ; aucun ne devient un choix utilisateur par défaut. **Q123 A** borne la première version au domaine sous DNS externe avec **HTTP-01 et HTTPS automatique** (DNS autoritatif local et DNS-01 seront ajoutés plus tard). **Q124 B** exige les rôles administrateur local et gestionnaire de site ; **Q125 B** ajoute le contrôle des paquets/mises à jour OS aux diagnostics VPS ; **Q126 B** les backups/restaurations prouvés de configuration panneau et fichiers PHP. **Q127 B** prévoit tests internes puis bêta privée avec revue des obligations de distribution et contact sécurité. **Q128 D**, **Q129 C** et **Q130 C** précisent transfert de licences avec reprise manuelle, obligations partenaires avec alertes/retrait, et responsable sécurité + suppléant/triage. Aucun de ces services n'est déclaré disponible. [Décisions](decisions-q121-q130.md) · [Qualification](mvp-qualification.md).
+
+## Q131–Q140 — qualification et gouvernance validées
+
+Q131 **D** formalise VM locales/CI, snapshots/pannes et rapports OS ; Q132 **D** WebStacks soumises à compatibilité/sécurité, charge, maintenance et récupération avec critères éliminatoires ; Q133 **C** vérifie DNS A/AAAA, port 80, HTTP-01 et HTTPS. Q134 **C** impose plan/sauvegarde/santé/reprise pour les mises à jour OS ; Q135 **B** choisit backup initial **chiffré local**, remote facultatif, toujours avec restauration testée Q126 ; Q136 **C** ajoute PHP, domaines, TLS, fichiers, SFTP et sauvegardes/restaurations au rôle gestionnaire **dans les quotas/RBAC**. Q137 **D** prévoit invitations, bêta privée par vagues, suspension et récupération. Q138 **D** transferts de licences à preuve cryptographique et validation supplémentaire selon risque ; Q139 **C** alertes/escalade/retrait partenaires ; Q140 **C** triage/correctifs/avis sécurité coordonnés. Ces derniers mécanismes commerciaux restent après ABI Hub. [Décisions](decisions-q131-q140.md).
 
 ## Questions encore ouvertes — ne pas présumer
 

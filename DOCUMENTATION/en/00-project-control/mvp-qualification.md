@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-MVP-QUAL revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-00-MVP-QUAL revision=2 status=specified -->
 # First PHP/HTTPS ForgePanel qualification — Q121–Q127
 
 [Français](../../fr/00-project-control/mvp-qualification.md) · [Roadmap](implementation-roadmap.md) · [Q121–Q130 decisions](decisions-q121-q130.md)
@@ -19,6 +19,22 @@ Choose the **first OS (Q121 D)** and **first WebStack (Q122 D)** only after comp
 | Failure and recovery | Listener conflict, unavailable challenge, bad certificate, missing package, interrupted upgrade, corrupted config, incomplete archive and unauthorized actor |
 
 **First-release bounds:** Q126 B does not require backups of hosted SQL databases, mail, remote replication or immutability, though Q65/Q75/Q90 remain longer-term targets. **Native authoritative DNS, DNS-01 and wildcard are not first-site prerequisites**, but remain later capabilities. No tests are assumed complete.
+
+## VM qualification and recovery — Q131 D, Q132 D
+
+The **certification matrix** uses **local VMs and automated CI** when runners can launch **full system VMs**; preserve a clean **baseline snapshot**, inject failures (network, disk, installer and services), verify a recovery snapshot/path and produce an **OS/version/WebStack/commit** report with steps, redacted logs, `PASS`/`FAIL`/`SKIP` and limits. Go fixtures and containers are not substitutes for systemd, firewall, SELinux/AppArmor and OS package-manager tests (Q131).
+
+For the **first WebStack Q132**, compare application/PHP/`.htaccess` compatibility, listener/TLS/tenant security, **measured load**, maintenance/reload behavior and **outage recovery**. Hard **rejection gates** override attractive benchmark numbers: exposed protected content, cross-tenant access, IP:port collisions, unrecoverable failure and loss of admin access. No invented load/latency threshold. Q121/Q122 remain: **no OS/stack selection before evidence**.
+
+## External DNS/HTTP-01 and HTTPS diagnostic — Q133 C
+
+Verify domain **A and AAAA** resolution, conflicting IPv4/IPv6 targets, publicly reachable **port 80**, correct ACME **HTTP-01** challenge routing and vhost ownership, then **HTTPS on 443**, cert chain, hostname, expiry and renewability. Present actionable diagnostics without revealing ACME secrets. DNS authority stays **external** for MVP; native authoritative DNS/DNS-01 are not R4 prerequisites.
+
+## Updates, backups and website-manager rights — Q134–Q136
+
+- **Q134 C**: planned OS updates with package/impact preview, role approval, maintenance window, **recoverable backup**, durable job/reboot warning, health checks and **recovery procedure**; never expose arbitrary root commands.
+- **Q135 B**: **encrypted local backups** with **optional remote destination** only if a driver is qualified, covering panel config and **PHP website files**, real restore drills and accessible recovery keys. Recover panel PostgreSQL consistently if needed. Local copies do not survive every whole-disk failure; remote/3-2-1 targets remain planned.
+- **Q136 C**: **website-manager** limited to owned websites: status, PHP/domains/TLS/files, **SFTP and backup/restore** under admin policies/quotas. Deny other tenants, quota increases, OS packages and root actions; apply Q47 to TLS/restores.
 
 ## Q127 B private beta gate
 

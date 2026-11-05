@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DECISIONS revision=9 status=documented -->
+<!-- forgepanel-doc id=FP-00-DECISIONS revision=10 status=documented -->
 # Registre de décisions
 
 [English](../../en/00-project-control/decisions.md) · [Pilotage](README.md)
@@ -116,6 +116,17 @@ Les identifiants sources renvoient à l'[état initial](../19-audits-risks/basel
 | ADR-097 | Licences premium transférables en self-service et récupération manuelle (Q128 D) | Preuve d'identité/possession, plafond, audit et anti-double affectation ; Hub ultérieur |
 | ADR-098 | Partenaires : obligations/délais contractuels, alertes et retrait (Q129 C) | Chaque version vérifiée, responsabilité et escalade ; aucun délai inventé |
 | ADR-099 | Responsable sécurité + suppléant et triage coordonné (Q130 C) | Rôles/contacts réellement vérifiés avant bêta, pas de nom/adresse implicite |
+
+| ADR-100 | VM locales/CI, snapshots, pannes simulées et rapports OS (Q131 D) | Comparaison reproductible avant choix OS, SKIP ≠ PASS et tests VM réels |
+| ADR-101 | WebStack : charge, maintenance, reprise et seuils éliminatoires (Q132 D) | Aucun profil initial choisi ; fuite tenant, bypass .htaccess et collision ports éliminatoires |
+| ADR-102 | DNS externe : diagnostiquer A/AAAA, port 80, HTTP-01, HTTPS (Q133 C) | Vérification IP/vhost, challenge et certificat, sans imposer DNS natif |
+| ADR-103 | OS updates avec plan impact, sauvegarde, santé et récupération (Q134 C) | Permissions et idempotence ; pas de shell root libre |
+| ADR-104 | MVP backup local chiffré + destination distante facultative (Q135 B) | Config panneau/fichiers PHP, restauration vraie ; remote et 3-2-1 ultérieurs |
+| ADR-105 | Gestionnaire site : PHP/domaines/TLS/fichiers/SFTP et restauration limitée (Q136 C) | RBAC/quotas par site, aucune gestion de paquets root ni site tiers |
+| ADR-106 | Bêta privée par vagues, suspension et récupération (Q137 D) | Invitations/conditions, canal bugs/versions, droits logiciels déjà octroyés préservés |
+| ADR-107 | Transferts premium avec preuve crypto et seconde validation selon risque (Q138 D) | Antifraude, audit, serveur perdu en secours, Hub après ABI |
+| ADR-108 | Partenaires : gravité, alertes auto, escalade et retrait (Q139 C) | Obligations contractuelles et revue manuelle par version Q114/Q129 |
+| ADR-109 | Vulnérabilités : triage, correctifs, avis/communication coordonnés (Q140 C) | Responsable + suppléant et canaux privés réels Q118/Q130 |
 
 ## Propositions remplacées ou non résolues
 

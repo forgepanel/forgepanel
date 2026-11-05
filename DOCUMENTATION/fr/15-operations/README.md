@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-15 revision=8 status=documented -->
+<!-- forgepanel-doc id=FP-15 revision=9 status=documented -->
 # Exploitation, diagnostic et récupération
 
 [English](../../en/15-operations/README.md) · [Index](../README.md)
@@ -44,6 +44,10 @@ Exploiter les exceptions PHP obsolètes avec **expiration, responsable et plan d
 ## Exploitation minimale Q125–Q126
 
 La première version devra observer services, métriques et logs en lecture seule, puis proposer des **opérations de paquets/mises à jour OS contrôlées** : origine fiable, diff, analyse d'impact, autorisation, état durable, avertissement de reboot, contrôle de santé et récupération. Les sauvegardes initiales couvrent **configuration du panneau + fichiers du site PHP**, avec manifeste et **restauration testée** (et état PG cohérent si indispensable au panneau) ; les engagements de backup 3-2-1, DR, mail et bases clientes restent des phases distinctes. [Matrice MVP](../00-project-control/mvp-qualification.md).
+
+## Opérations Q133–Q135 — diagnostic, mises à jour et sauvegarde initiale
+
+Le pilote de site doit vérifier **DNS A/AAAA, port 80, route HTTP-01 et HTTPS**, et exposer les erreurs sans révéler les secrets ACME. Les mises à jour OS utilisent **créneau de maintenance → plan d'impact → sauvegarde et autorisation → application bornée → santé du panneau/site → récupération**, sans permettre des commandes shell arbitraires. La sauvegarde du MVP est **locale chiffrée**, avec **destination distante facultative**, couvrant configuration du panneau et fichiers PHP, test de restauration et méthode cohérente pour récupérer l'état PostgreSQL nécessaire. La cible avancée 3-2-1/immutable reste intacte sans être une condition MVP. [Matrice](../00-project-control/mvp-qualification.md).
 
 ## Sauvegarde et restauration requises
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-EXECUTION revision=2 status=specified -->
+<!-- forgepanel-doc id=FP-00-EXECUTION revision=3 status=specified -->
 # Technical implementation roadmap — Q120 D and Q119 B MVP
 
 [Français](../../fr/00-project-control/implementation-roadmap.md) · [Project status](status.md) · [Q111–Q120 decisions](decisions-q111-q120.md)
@@ -25,6 +25,15 @@ This order **rules out commercial Hub or marketplace being a prerequisite for a 
 **Q121 D / Q122 D:** choose initial OS/WebStack **from comparative VM evidence**, not an invented owner default. **Q123 A:** initial site uses **external DNS** and ACME **HTTP-01**, not native authoritative DNS or a DNS-01 driver as an MVP prerequisite. **Q124 B / Q125 B / Q126 B:** local admin/site manager, observed VPS with safe package updates, restored panel configuration and PHP website files. See [qualification matrix](mvp-qualification.md).
 
 **Q127 B:** isolated internal tests then an **authorized private beta** only after owner's release approval, working confidential security channel and review of distribution/license duties **for external beta recipients too**. Private beta is not public/stable and is no legal exemption. Q128 D self-service license transfers plus manual recovery of a lost server and Q129 C partner contractual maintenance/alerts/withdrawal remain **Hub-after-ABI**. **Q130 C** requires an **actually appointed** security lead and deputy with triage/coordination; never invent identities or a mailbox.
+
+## Q131–Q140 — evidence gates and sequencing
+
+- **R3, Q131 D**: compare **local/CI full VMs**, snapshots, simulated failures and OS/version reports with `PASS/FAIL/SKIP`; **no preselected OS**. **Q132 D** adds WebStack load, maintenance and recovery tests with **hard security rejection criteria** independent of performance.
+- **R4, Q133 C**: diagnostics for **A/AAAA**, **port 80**, HTTP-01 challenge routing and **HTTPS** readiness with external DNS (Q123). **Q134 C**: impact-planned OS updates with backup, health and recovery. **Q135 B**: **encrypted local** backup, **optional remote**, and actual panel-config/PHP-file restore. **Q136 C**: website-manager permissions for PHP/domains/TLS/files/**SFTP/backup/restore** under scoped policies and quotas, no OS privilege.
+- **After R4, Q137 D**: invitations/accepted beta terms, **staged waves**, private issue/version channel, **pause and recovery**; never open private beta before VM evidence, legal review for recipients and security triage.
+- **After R5/Hub, Q138 D**: premium transfers with cryptographic proof, fraud controls and **configurable independent approval** for high-risk lost-host recovery. **Q139 C**: partner severity, alerts, escalation and withdrawal under Q129 contracts. **Q140 C**: Q130 lead/deputy coordinate fixes/security notices and customer communications; verify Q118 reporting.
+
+Q131–Q140 do not preselect OS/stack, authorize beta launch or permit data deletion on beta access suspension. [Updated MVP matrix](mvp-qualification.md) · [Decisions](decisions-q131-q140.md). **Implementation and real testing remain pending.**
 
 ## Cross-cutting release gates
 

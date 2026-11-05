@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-EXECUTION revision=2 status=specified -->
+<!-- forgepanel-doc id=FP-00-EXECUTION revision=3 status=specified -->
 # Roadmap technique de réalisation — décision Q120 D et MVP Q119 B
 
 [English](../../en/00-project-control/implementation-roadmap.md) · [État officiel](status.md) · [Décisions Q111–Q120](decisions-q111-q120.md)
@@ -25,6 +25,15 @@ Cette séquence **remplace les priorités implicites** qui laisseraient les modu
 **Q121 D / Q122 D :** sélectionner le premier couple OS/WebStack **uniquement à partir de comparatifs VM** ; aucune plateforme ni pile choisie par l'utilisateur. **Q123 A :** parcours v1 fondé sur DNS **externe** et validation ACME **HTTP-01**, sans exiger DNS natif ou DNS-01 au premier jalon. **Q124 B / Q125 B / Q126 B :** compte administrateur et gestionnaire de site, VPS supervisé avec gestion contrôlée des paquets, sauvegarde de config panneau et fichiers PHP avec restauration **réellement testée**. La [matrice de qualification](mvp-qualification.md) décrit les cas négatifs.
 
 **Q127 B :** après tests internes isolés, une **bêta privée** limitée à des testeurs autorisés est possible seulement avec validation du propriétaire, canal sécurité opérationnel et conditions de licence/diffusion vérifiées **aussi pour ces destinataires externes** ; ce n'est pas une release publique ni un passe-droit juridique. Les Q128 D (licences transférables et récupération manuelle de serveur perdu), Q129 C (maintenance partenaires contractualisée/alertes/retrait) attendent le **Hub après ABI**. **Q130 C** demande un responsable sécurité et un suppléant **effectivement désignés**, triage et notifications coordonnées ; ne pas inventer leur identité ou un email.
+
+## Précisions Q131–Q140 — critères de sortie
+
+- **R3, Q131 D** : comparer la matrice VM **locales + CI**, snapshots, pannes simulées, rapports OS/versions avec résultats `PASS/FAIL/SKIP`; **aucun OS présélectionné**. **Q132 D** ajoute aux profils WebStack des tests de charge, maintenance et récupération avec **critères éliminatoires sécurité** indépendants des performances.
+- **R4, Q133 C** : assistant de diagnostic **A/AAAA**, port **80**, route HTTP-01 puis disponibilité **HTTPS** ; DNS externe retenu (Q123). **Q134 C** : mises à jour OS avec plan d'impact, backup, santé et récupération. **Q135 B** : sauvegarde **locale chiffrée**, remote **facultatif**, et vraie restauration de configuration panneau et fichiers PHP. **Q136 C** : rôle gestionnaire de site avec PHP/domaines/TLS/fichiers/**SFTP/backup/restore**, dans les politiques et quotas, sans privilèges OS.
+- **Après R4, Q137 D** : bêta privée sur invitations et conditions acceptées, **vagues progressives**, canal bugs/versions, **pause/suspension et procédure de récupération** ; aucun déploiement bêta avant les preuves VM, la vérification juridique des destinataires et le triage sécurité.
+- **Après R5/Hub, Q138 D** : transferts commerciaux avec preuve cryptographique, anti-abus, **deuxième validation configurable** lors de la récupération risquée d'un serveur perdu. **Q139 C** : partenaires sous contrats Q129 avec gravité, alertes, escalade et retrait. **Q140 C** : responsable + suppléant Q130 et communication coordonnée des correctifs/avis ; canaux Q118 vérifiés.
+
+Les choix Q131–Q140 n'autorisent ni défaut d'OS/WebStack, ni bêta ouverte, ni suppression des données lors de la suspension d'un accès. [Matrice de qualification mise à jour](mvp-qualification.md) · [Décisions](decisions-q131-q140.md). **Tout est encore à réaliser et à vérifier.**
 
 ## Contrôles transversaux et diffusion publique
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-MVP-QUAL revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-00-MVP-QUAL revision=2 status=specified -->
 # Qualification du premier ForgePanel PHP/HTTPS — Q121–Q127
 
 [English](../../en/00-project-control/mvp-qualification.md) · [Roadmap](implementation-roadmap.md) · [Décisions Q121–Q130](decisions-q121-q130.md)
@@ -19,6 +19,22 @@ La sélection du **premier OS (Q121 D)** et de la **première WebStack (Q122 D)*
 | Panne et récupération | Simuler conflit port, challenge inaccessible, certificat erroné, package manquant, mise à jour interrompue, corruption config, backup incomplet, utilisateur non autorisé |
 
 **Portée initiale** : Q126 B n'impose pas encore les backups de bases de données hébergées, les mailboxes, la réplication distante ou l'immutabilité, tout en conservant les ambitions Q65/Q75/Q90. **DNS autoritatif intégré, DNS-01 et wildcard ne bloquent pas le premier site** ; leurs interfaces restent prévues après le MVP. Ne pas prétendre que ces capacités ont été testées avant la réalisation.
+
+## Qualification VM et reprise — Q131 D, Q132 D
+
+La **matrice de certification** repose sur **VM locales et automatisation CI** lorsque le runner sait exécuter des **VM système complètes** ; conserver un **snapshot de départ**, des tests avec **injection de pannes** (réseau, disque, installation et services), un snapshot/plan de récupération et un rapport par **OS/version/WebStack/commit**, incluant commandes, logs expurgés, `PASS`, `FAIL`, `SKIP` et limites. Une simulation Go ou un conteneur ne certifie pas systemd, firewall, SELinux/AppArmor et package managers Linux (Q131).
+
+Pour la **première WebStack Q132**, comparer compatibilité PHP/app/`.htaccess`, sécurité TLS/listeners/isolation, **charge mesurée**, opérations de maintenance/reload et **récupération après panne**. Les critères **éliminatoires** priment sur les résultats de performance : exposition de fichiers protégés, accès inter-clients, collision IP:port, impossibilité de reprise et perte de l'accès admin. Les seuils de charge/temps ne sont pas inventés ici. Garder Q121/Q122 : **aucun OS/profil choisi avant résultats**.
+
+## Diagnostic DNS/HTTP-01 et HTTPS — Q133 C
+
+L'assistant vérifie la résolution **A et AAAA** des noms du site, les écarts de destinations IPv4/IPv6, le port **80 publiquement accessible**, le routage du chemin ACME **HTTP-01**, l'appartenance au vhost, puis la disponibilité HTTPS sur **443**, chaîne, nom DNS, période et renouvellement du certificat. Afficher causes/corrections possibles sans divulguer secrets ACME. L'autorité DNS reste **externe** pour le MVP ; DNS natif et DNS-01 ne bloquent pas R4.
+
+## Mises à jour, sauvegardes et droits du gestionnaire — Q134–Q136
+
+- **Q134 C** : mises à jour OS avec prévisualisation des paquets/impact, autorisation par rôle, créneau de maintenance, **sauvegarde récupérable**, état de tâche/éventuel reboot, vérification des services et **procédure de récupération**. Refuser commandes root libres.
+- **Q135 B** : sauvegardes **locales chiffrées**, avec **destination distante facultative** si un pilote est qualifié ; inclure configuration du panneau et **fichiers PHP du site**, tests de restauration réels et clés accessibles en secours. Prévoir reprise cohérente de PostgreSQL du panneau si nécessaire. Ne pas prétendre que la copie locale résiste à la perte du disque ; la cible distante/3-2-1 reste extensible.
+- **Q136 C** : rôle **gestionnaire de site** limité à ses sites : lecture d'état, PHP/domaines/TLS/fichiers, **SFTP et sauvegarde/restauration** sous quotas, droits et politiques admin. Tester les refus sur autres tenants, changement de quotas, paquets OS et actions root ; appliquer Q47 pour TLS/restauration.
 
 ## Bêta privée Q127 B — passage après tests internes
 

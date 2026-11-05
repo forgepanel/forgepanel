@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=19 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=20 status=documented -->
 # Status and dependency-ordered roadmap
 
 [Français](../../fr/00-project-control/status.md) · [Project control](README.md)
@@ -86,4 +86,4 @@ A separate Go source module, `tools/kvm-host-probe/`, is an **IMPLEMENTATION CAN
 
 ## R3 — Implementation candidate: lab image admission
 
-Feature branch `features/r3-kvm-pinned-image-admission` adds independent Go verification of pinned QCOW2, explicit CPU/RAM/duration policies and versioned JSON manifests. **Synthetic local tests executed; PR CI/merge pending**. `REVIEW_REQUIRED` still means `qualification=NOT_EXECUTED` with all unverified VM capabilities false. **No QEMU execution driver, restored backup or imported Foundation Core**. [Contract](../14-devops-releases/kvm-image-admission.md).
+Feature branch `features/r3-kvm-pinned-image-admission` adds independent Go verification of pinned QCOW2, explicit CPU/RAM/duration policies and versioned JSON manifests. **Synthetic Go tests and CI succeeded on PR #41's exact commit; check GitHub for merge state**. `REVIEW_REQUIRED` still means `qualification=NOT_EXECUTED` with all unverified VM capabilities false. **No QEMU execution driver, restored backup or imported Foundation Core**. [Contract](../14-devops-releases/kvm-image-admission.md).

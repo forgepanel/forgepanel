@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=14 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=15 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
@@ -84,3 +84,5 @@ Le module séparé [KVM Host Probe](../14-devops-releases/kvm-host-probe.md) pos
 ## R3 — Tests d'admission d'images QCOW2 sans VM réelle
 
 Les tests Go synthétiques de `tools/kvm-host-probe/admission` et du CLI valident l'empreinte SHA-256, le nom du fichier, les permissions privées, le refus symlink/hardlink/format erroné, les plafonds explicites, l'interdiction réseau/partage/privilèges et la parité des trois JSON Schema. Le workflow Go existant exécute **`go test ./...`, `go test -race ./...`, `go vet ./...` et `gofmt`** ; le verdict de la PR doit être lu au SHA exact. Les fixtures ne sont pas des Linux démarrables, et aucun essai KVM, quota imposé, snapshot, rapport signé ou restauration n'est démontré. [Contrat](../14-devops-releases/kvm-image-admission.md).
+
+**Preuve CI de la PR #41** : [Go + Go race + vet + gofmt + contrôle des trois schémas](https://github.com/yyogas/forgepanel/actions/runs/42116200478) et [contrôles documentaires](https://github.com/yyogas/forgepanel/actions/runs/42116200493), réussis sur le commit `4a71d2fb8e0258879bcf5c621dfc29677f5e5380`. **41 fonctions de tests Go** dans le module au total (14 sonde hôte et 27 nouveaux contrôles image/CLI/contrats) ; fixtures QCOW2 synthétiques, pas de VM réellement démarrée, ni de preuve de signature/isolement.

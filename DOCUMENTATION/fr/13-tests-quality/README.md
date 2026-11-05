@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=8 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=9 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
@@ -62,3 +62,7 @@ La [matrice des tests positifs et négatifs](mvp-gates-q151-q160.md) définit le
 ## Matrice QA Q161–Q170
 
 [Les dix cas MVP-Q161-01 à MVP-Q170-01](mvp-gates-q161-q170.md) sont **PLANNED**, avec chemin positif, refus négatif, phase R3/R4/bêta/Hub et preuves attendues. Les cas bloquants incluent fuite de secret runner, rapport signé altéré, dérogation critique Q132, sonde SSRF, récupération OS non bornée, backup sans restauration isolée, algorithme SFTP interdit, cohorte réidentifiable, transfert premium suspect et avis JSON/FR/EN incohérents. Un test Python statique vérifie décisions/ADR/couverture bilingue ; **pas de test matériel, Linux ou restauration réelle**.
+
+## Tests réels de l'outil de préflight R1 (et limites)
+
+`python3 -m unittest discover -s tests/source_intake -p 'test_*.py' -v` : **16 tests unitaires locaux PASS**, sur ZIP fictifs seulement. Cas : archive saine, SHA erroné, fichier absent, chemins dangereux, collisions, symlink, quotas/ratio, `.env`, indicateur de clé privée, nombre de membres et preuve source. Leur ajout au workflow CI ne certifie ni l'archive originale SRC-03, ni Go/PHP, ni PostgreSQL/HTTP/VM/restore. [Procédure de provenance](../12-development/source-archive-intake.md).

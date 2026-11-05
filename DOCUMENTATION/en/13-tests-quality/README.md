@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=8 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=9 status=documented -->
 # Tests, quality and definition of done
 
 [Français](../../fr/13-tests-quality/README.md) · [Index](../README.md)
@@ -62,3 +62,7 @@ The [positive/negative MVP test matrix](mvp-gates-q151-q160.md) defines **MVP-Q1
 ## Q161–Q170 QA matrix
 
 [The ten MVP-Q161-01 through MVP-Q170-01 cases](mvp-gates-q161-q170.md) remain **PLANNED**, with positive/negative behavior, R3/R4/beta/Hub phase and required evidence. Veto cases include leaked runner secret, tampered signed report, Q132 critical waiver, probe SSRF, unbounded OS recovery, backup without isolated restore, disallowed SFTP algorithm, reidentifiable cohort, suspect premium transfer and inconsistent JSON/FR/EN advisory. Static Python checks decisions/ADR/bilingual coverage; **no real hardware, Linux or restore test**.
+
+## Real R1 preflight tool tests (and limitations)
+
+`python3 -m unittest discover -s tests/source_intake -p 'test_*.py' -v`: **16 local unit tests PASS**, on synthetic ZIPs only. Cases: valid archive, bad SHA, missing file, dangerous paths, collisions, symlink, size/ratio controls, `.env`, private-key marker, member count and source evidence. CI integration does not certify the genuine SRC-03 archive, Go/PHP, PostgreSQL/HTTP/VM or restore. [Source provenance procedure](../12-development/source-archive-intake.md).

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-COVERAGE revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-00-COVERAGE revision=2 status=documented -->
 # Matrice de couverture documentaire
 
 [English](../../en/00-project-control/coverage.md) · [Pilotage](README.md)
@@ -19,9 +19,9 @@ Chaque catégorie possède un index français/anglais substantiel et une navigat
 | 09 Base | Schéma réel à trois tables et règles de migration | Tests SQL réels en attente ; modèle hébergement absent |
 | 10 Sécurité | Frontières, menaces, critères, signalement | Canal privé et audit indépendant absents |
 | 11 Design system | Marque, états, accessibilité, stratégie i18n | Tokens visuels validés et infrastructure de traduction absents |
-| 12 Développement | Conventions, commandes applicables, import | Environnement de dépendances verrouillé en attente |
-| 13 Tests/qualité | Niveaux de preuve et définition de terminé | Campagnes intégration/navigateur/VM absentes |
-| 14 DevOps/releases | Workflow, exception d'amorçage, critères | Paquets, installateur et cycle de signature absents |
+| 12 Développement | Conventions et outils R1 de vérification/copie/audit ZIP testés sur données fictives | Code Foundation v0.7 original absent et dépendances applicatives non verrouillées |
+| 13 Tests/qualité | Définition de terminé et campagnes synthétiques R1/R3 sur outils | Campagnes HTTP/SQL, vraie VM, isolation, sauvegardes/restauration absentes |
+| 14 DevOps/releases | Workflow, critères et outils autonomes KVM R3 (sonde/admission/staging) | Paquets/installateur, exécution VM, signature et certification OS absents |
 | 15 Exploitation | Limites CLI et procédure d'incident cible | Réparation/sauvegarde/restauration fonctionnelles absentes |
 | 16 Performance | Protocole de mesure et contraintes de sécurité | Benchmarks et seuils de capacité absents |
 | 17 Guides | Limites actuelles et parcours visés | Guides client/revendeur vérifiés après implémentation |
@@ -29,3 +29,7 @@ Chaque catégorie possède un index français/anglais substantiel et une navigat
 | 19 Audit/risques | Provenance dépôt/archives et contradictions | Aucun audit exhaustif code/sécurité/production |
 
 Actualiser cette matrice lorsqu'une lacune change d'état. Toute fonction `VERIFIED` exige une preuve nommée sur une entrée identifiée ; toute publication exige une trace réelle release/tag/artefact. Les métadonnées de traduction sont contrôlées automatiquement ; le sens est relu séparément.
+
+## Registre de clôture après audit du snapshot Git
+
+La structure présente **64 paires FR/EN Core** et **27 paires FR/EN Hub** sur les commits observés, mais elle reste **partielle sur le fond**. Les [22 lacunes prioritaires](documentation-readiness.md) sont reliées à leurs issues et dépendances dans le [registre JSON](../../evidence/documentation-readiness-v1.json) et la [traçabilité](requirements-traceability.md). Le [statut réconcilié](status.md) distingue les outils R1/R3 fusionnés des fonctionnalités Symfony/PG/VM/hébergement non réalisées. Aucune validation juridique/sécurité indépendante n'est inférée.

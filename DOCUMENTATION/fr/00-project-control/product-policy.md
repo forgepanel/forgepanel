@@ -7,17 +7,21 @@
 
 | Référence | Décision | Portée et invariants |
 |---|---|---|
-| Q1 | Double licence | Modèle confirmé ; **les textes exacts, détenteurs de droits, contributions et exceptions restent ouverts**. Aucun fichier LICENSE n'est sélectionné. |
-| Q2 | Core complet et gratuit + premiums + support | Fonctionnalités d'hébergement fondamentales et récupération disponibles sans licence payante ni Hub ; les offres premium portent sur des services/composants facultatifs clairement définis. |
-| Q3 | Tous publics par phases | Hébergement mutualisé et VPS d'abord ; développeurs et revendeurs ensuite, avec contrats extensibles sans promesse de fonctionnalités déjà livrées. |
-| Q4 | PHP + Node.js + Python + conteneurs | Runtimes applicatifs configurables, séparés du PHP du panneau ; l'automatisation du Core reste Go/Symfony, Python non obligatoire. Moteur conteneur exact à choisir. |
-| Q5 | White-label étendu par organisation | Nom, logo, favicon, couleurs, thèmes, domaines/HTTPS, emails/templates et portail par organisation ou revendeur ; privilèges soumis au RBAC, isolation des cookies/sessions et validation des domaines. |
+| Q1, Q48 | **AGPL-3.0 + licence commerciale** | Double licence confirmée ; variante AGPL only/or-later, détenteurs de droits et texte commercial à valider avant d'ajouter LICENSE. |
+| Q2, Q50 | **Core complet gratuit + plugins spécialisés, services cloud/managés, partenaires et support payants** | L'installation, l'hébergement essentiel et la récupération ne dépendent d'aucun achat, licence commerciale ou Hub. |
+| Q3, Q54 | **Hébergement mutualisé + VPS en premier** | Développeurs/conteneurs et revendeurs ensuite, par jalons et tests vérifiés. |
+| Q4, Q51 | PHP, Node.js, Python et **Docker + Podman** | Deux pilotes indépendants avec choix compatible par hôte ; runtimes clients distincts de Symfony, et Python toujours optionnel pour l'automatisation. |
+| Q5, Q55 | **Une marque par organisation** | Logo, thème, domaine/HTTPS, messages et portail configurables pour cette identité unique ; aucune multimarque interne à l'organisation. |
 | Q6 | Enregistrement et contact Hub avec consentements séparés | Installation standard autonome ; gestion explicite des canaux enregistrement, droits premium, vérification de versions, statistiques limitées, diagnostics/support et communications. Pas de collecte implicite des données d'hébergement. |
-| Q7 | Tolérance hors ligne **60 jours** | Pour droits premium auparavant vérifiés, selon contrat produit et expiration effective ; pas d'arrêt des services essentiels ni de suppression destructrice. La règle de révocation, source de temps et cas d'expiration restent à préciser. |
-| Q8 | Catalogue officiel + partenaires validés | Catalogue de distribution gouverné par l'éditeur, partenaires approuvés avec vérification identité, signatures, compatibilité et revue ; pas de publication publique libre pour le moment. |
+| Q7, Q52 | **60 jours**, puis nouvelles opérations premium bloquées et existant conservé | Droits premium précédemment vérifiés dans leurs limites contractuelles ; aucune suppression ni interruption du Core gratuit. Règles d'expiration/révocation explicite à préciser. |
+| Q8, Q53 | **Officiels + candidature de partenaires et vérification manuelle** | Aucune publication directe sans approbation, même après envoi de candidature ; signature et revue par version requises. |
 | Q47 | Changement sensible avec plan/validation/sauvegarde/récupération | Exposer impact, test de configuration, sauvegarde avant modification, vérification post-application et compensation/récupération quand possible. Un rollback universel SQL/OS n'est pas promis. |
 
 Ces décisions s'ajoutent à ADR-013 : **MFA administrateur facultatif**, proposé sans bloquer le premier setup. Un choix commercial ou de présentation ne peut jamais contourner l'autorisation locale ni les droits Linux.
+
+## Protection du produit et des abonnements
+
+Le propriétaire souhaite protéger les modules payants et les abonnements. Le Hub pourra contrôler les achats, l'accès aux téléchargements autorisés, les renouvellements, les services hébergés et les droits de mise à jour des produits premium **juridiquement indépendants**. Un code AGPL déjà diffusé ne peut être soumis à une redevance obligatoire pour exercer ses droits. Une licence commerciale alternative ne supprime pas les libertés des copies reçues sous AGPL ; l'indépendance des plugins fermés doit être évaluée. Voir la [spécification de licence et commerce](license-commerce.md).
 
 ## Séparation Core gratuit / services commerciaux
 
@@ -35,13 +39,6 @@ Les choix UI peuvent être surchargés par organisation dans les limites de la p
 
 ## Questions encore ouvertes — ne pas présumer
 
-- **Q48** : licence libre exacte de la double licence (AGPL-3.0-only / GPL-3.0-only / autre) et forme commerciale.
-- **Q49** : clauses contributions/CLA et stratégie de dépendances tiers ; vérifier la chaîne de titres avant double licence.
-- **Q50** : limites exactes du Core gratuit vs composants premium (catalogue de fonctionnalités contractuel).
-- **Q51** : Docker ou Podman (ou plusieurs pilotes) et isolation des conteneurs/runtimes client.
-- **Q52** : politique des 60 jours en cas de licence expirée, explicitement révoquée ou jamais validée ; avertissements et non-destruction.
-- **Q53** : modèle de validation des partenaires et responsabilité des mises à jour.
-- **Q54** : ordre précis des prochains modules dans les phases.
-- **Q55** : domaines/identités revendeurs, contraintes de white-label et certificats, anti-usurpation.
+Q48–Q55 sont **décidées** (voir tableau). Sujets ouverts : AGPL `only` ou `or-later` et licence commerciale, texte CLA et détenteur de droits, conditions de commercialisation de chaque module, moteur par défaut par OS et confinement, expirations/révocations distinctes de la simple perte de réseau, liste des critères partenaires, calendrier exact des jalons et validation des domaines de la marque unique. Les nouveaux arbitrages Q56–Q70 traiteront les fournisseurs, abonnements, distribution, sécurité et exploitation.
 
 **État : décision documentaire adoptée, implémentation non commencée.** Voir le [statut du projet](status.md) et les [modules](../04-modules/README.md).

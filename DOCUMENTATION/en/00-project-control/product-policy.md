@@ -7,17 +7,21 @@
 
 | Reference | Decision | Scope and invariants |
 |---|---|---|
-| Q1 | Dual licensing | Model confirmed; **exact license texts, rights holders, contributions and exceptions remain undecided**. No LICENSE file has been chosen. |
-| Q2 | Full free Core + premium components + support | Essential hosting and recovery remain usable without a paid license or Hub. Premium offers concern clearly distinguished optional services or components. |
-| Q3 | All target audiences in phases | Shared hosting and VPS first; developers and resellers later, with extensible contracts rather than claims of shipped functions. |
-| Q4 | PHP + Node.js + Python + containers | Configurable application runtimes, distinct from the panel's PHP runtime; Core automation stays Go/Symfony, Python is not mandatory. Container runtime remains a choice. |
-| Q5 | Full white-label by organization | Organization/reseller-specific name, logo, favicon, palette, themes, domains/HTTPS, email templates and portals; subject to RBAC, separate cookie/session origins and domain validation. |
+| Q1, Q48 | **AGPL-3.0 + commercial license** | Dual licensing confirmed; only/or-later variant, copyright ownership and commercial agreement remain to approve before adding LICENSE. |
+| Q2, Q50 | **Full free Core + paid specialist plugins, managed/cloud services, partner offers and support** | Core bootstrap, essential hosting and recovery never depend on commercial entitlement or Hub. |
+| Q3, Q54 | **Shared hosting + VPS administration first** | Developers/containers and resellers follow through tested milestones. |
+| Q4, Q51 | PHP, Node.js, Python and **Docker + Podman** | Two independent drivers and compatible host selection; customer runtimes separate from Symfony; Python remains optional for automation. |
+| Q5, Q55 | **One brand per organization** | Configurable logo, theme, HTTPS domain, messages and portal for one unique brand identity within each organization; no internal multi-brand. |
 | Q6 | Separate consent for registration and Hub communications | Standard installation operates independently; explicit choices for enrollment, premium-right verification, update metadata, limited metrics, support diagnostics and marketing notices. No implicit hosting-data collection. |
-| Q7 | **60 days** of offline grace | For previously verified premium entitlements, subject to contractual validity and expiry; never shut down essential Core services or delete customer data. Revocation, time source and expiry remain to define. |
-| Q8 | Official + verified partners | Publisher-governed catalog, approved partner identities, signatures, compatibility and review; no unrestricted public publishing now. |
+| Q7, Q52 | **60 days**, then block new premium operations, preserve existing | For eligible previously verified premium rights within contractual expiry; no data removal or free Core disruption. Explicit revocation/expiry needs further policy. |
+| Q8, Q53 | **Official + partner applications subject to manual verification** | No self-publication without approval, even after applying; per-version artifact review and signature required. |
 | Q47 | Plan, validate, back up and recover sensitive changes | Present impact, run configuration tests, back up before alteration, perform health checks and compensate/recover where possible. No universal SQL/OS rollback guarantee. |
 
 These decisions complement ADR-013: **administrator MFA remains optional**, including first setup. A commercial right or UI mode cannot bypass local Core authorization or Linux permissions.
+
+## Product and subscription protection
+
+The owner wants paid packages and subscriptions protected. Hub may enforce verified purchases, authorized downloads, renewals, hosted services and commercial update entitlements for **legally independent** premium products. AGPL recipients may exercise the rights of lawfully obtained AGPL copies without a new license fee; an alternative commercial license does not erase those freedoms. Review the actual coupling of proprietary packages. See [licensing and commercial boundary](license-commerce.md).
 
 ## Free Core versus commercial services
 
@@ -35,13 +39,6 @@ Organization UI overrides are bounded by server policy. Sensitive settings requi
 
 ## Open follow-ups — no default assumed
 
-- **Q48**: precise open-source arm of dual licensing (AGPL-3.0-only / GPL-3.0-only / other) and commercial conditions.
-- **Q49**: contributor rights/CLA, third-party licenses and documented ownership required for dual licensing.
-- **Q50**: precise free-Core/premium component boundaries.
-- **Q51**: Docker vs Podman vs multiple adapters and client container isolation.
-- **Q52**: grace behavior for expired, revoked or never-verified grants, alerts and no destruction.
-- **Q53**: partner review standards and update responsibility.
-- **Q54**: exact module priority order within phases.
-- **Q55**: reseller white-label domain constraints, certificate rules and anti-impersonation.
+Q48–Q55 are **confirmed** (see table). Open details include AGPL only/or-later and commercial grant text, CLA and copyright ownership, precise independent premium-package conditions, OS default runtime and containment, explicit revocation/expiry versus network loss, partner review criteria, exact delivery milestones and verified domain ownership for one brand per organization. Next questions Q56–Q70 cover providers, subscriptions, publishing, security and operations.
 
 **State: documented owner decisions, no implementation.** See [project status](status.md) and [modules](../04-modules/README.md).

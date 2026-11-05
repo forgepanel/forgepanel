@@ -37,4 +37,6 @@ Configuration changes follow plan, stage, validate, activate, reload, health-che
 
 The future [Configuration Engine](configuration-engine.md) governs inherited settings and safe plan/validate/backup/recover lifecycle (Q47). Customer runtimes PHP, Node.js, Python and containers (Q4) will be independent from the panel runtime. Not implemented.
 
+Q51 targets [independent Docker and Podman adapters](container-drivers.md) without requiring both on each host. This is a design goal, not a delivered feature.
+
 [Decisions](../00-project-control/decisions.md) · [Contracts](../08-api-contracts/README.md) · [Security](../10-security/README.md)

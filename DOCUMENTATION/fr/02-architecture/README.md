@@ -37,4 +37,6 @@ Une configuration suit planification, préparation, validation, activation, relo
 
 Le futur [Configuration Engine](configuration-engine.md) encadre les réglages hérités et le parcours plan/validation/sauvegarde/récupération (Q47). Les runtimes clients PHP, Node.js, Python et conteneurs (Q4) resteront indépendants du runtime du panneau. Non implémenté.
 
+La décision Q51 prévoit [Docker et Podman via pilotes indépendants](container-drivers.md), sans imposer l'installation des deux sur chaque serveur. C'est une cible, non une fonctionnalité livrée.
+
 [Décisions](../00-project-control/decisions.md) · [Contrats](../08-api-contracts/README.md) · [Sécurité](../10-security/README.md)

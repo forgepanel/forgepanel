@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-12 revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-12 revision=3 status=documented -->
 # Development environment and conventions
 
 [Français](../../fr/12-development/README.md) · [Index](../README.md)
@@ -24,3 +24,7 @@ A new agent must inspect the current working tree and remote heads, reuse releva
 ## R1 intake: testable code tooling
 
 `scripts/verify_source_archive.py` verifies the genuine SRC-03 archive **read-only** before any import. It compares checksum and inventory against pinned evidence, inspects ZIP safety and emits a JSON report, never executing or installing archived code. **16 synthetic-only unit tests** run in CI. The PHP/Go application Core remains **unimported**. [Contract and usage](source-archive-intake.md).
+
+## R1 — Quarantine copy only after preflight
+
+[Quarantine staging procedure](source-staging.md): a nonprivileged Python tool can copy verified bytes to a fresh private directory **without importing or executing them**. Default is read-only; `--stage` requires canonical evidence, a controlled destination and no overwrite. CI covers **33 synthetic tests** for preflight and staging.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-12-SOURCE-INTAKE revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-12-SOURCE-INTAKE revision=2 status=documented -->
 # Préflight sécurisé d'une archive source R1
 
 [English](../../en/12-development/source-archive-intake.md) · [Développement](README.md) · [Provenance](../19-audits-risks/baseline.md) · [Roadmap](../00-project-control/implementation-roadmap.md)
@@ -33,3 +33,7 @@ Les **limites défensives internes** du préflight sont 64 Mio pour le ZIP, 2 04
 Les 16 tests utilisent des ZIP **synthétiques uniquement**. La recherche de secrets n'est ni exhaustive ni une revue juridique, la SHA ne remplace pas la vérification de la chaîne de confiance et une archive valide ne prouve pas la sécurité des sources PHP/Go, de Symfony/PostgreSQL ou du système d'exploitation. **Le vrai ZIP SRC-03 n'a pas été rescanné dans cette étape faute d'octets.**
 
 Suite R1 sous [issue #2](https://github.com/yyogas/forgepanel/issues/2) : obtenir l'archive exacte → exécuter préflight → revue humaine des fichiers, licences, secrets, historique → importer uniquement les sources approuvées dans \`features/* → develop\` → tests Go/race/vet/PHP sur commit importé → R2 Symfony/PostgreSQL. [Relais](../18-contributing/handover.md).
+
+## Étape complémentaire — préparation en quarantaine
+
+Le [module de staging privé](source-staging.md) permet après contrôle préalable de préparer **les fichiers réguliers** dans un répertoire neuf hors dépôt, non-root, avec manifestes et comparaison de hash ; mode prévisualisation par défaut et option explicite `--stage`. **Ce n'est pas l'import applicatif R1**, toujours en attente de SRC-03.

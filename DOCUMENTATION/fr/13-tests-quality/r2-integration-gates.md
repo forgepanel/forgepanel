@@ -1,0 +1,54 @@
+<!-- forgepanel-doc id=FP-13-R2-GATES revision=1 status=specified -->
+# R2 — Matrice d'intégration Symfony, identité et PostgreSQL
+
+[English](../../en/13-tests-quality/r2-integration-gates.md) · [Qualité](README.md) · [Identité](../03-core/bootstrap-identity-r2.md) · [Transactions](../09-database/setup-transaction-r2.md)
+
+**Statut : tous les 20 scénarios `PLANNED` ; 0 tests d'intégration HTTP/SQL validés dans ce lot.** Les tests du prototype sur mémoire et la CI documentaire ne constituent pas des preuves de Symfony démarré, de PostgreSQL connecté ni de reprise réelle. L'archive Foundation SRC-03 reste indisponible. Ce tableau est un **plan de tests candidat**, pas un verdict d'implémentation. Q1–Q170 inchangées et MFA administrateur facultative.
+
+## Campagne A — Authentification et sécurité HTTP
+
+| ID test | Contrat | Scénario positif | Refus / négatif | État |
+|---|---|---|---|---|
+| `R2-AUTH-001` | Compte initial et MFA ignorée | Succès wizard sans TOTP ; login permanent après commit | Refuser champ TOTP requis lors de skip | **PLANNED** |
+| `R2-AUTH-002` | Enrôlement MFA activé | Preuve TOTP et récupération protégée | TOTP erroné/rejeu ne valide pas l'étape | **PLANNED** |
+| `R2-AUTH-003` | Jeton bootstrap expiré/rejoué | Échange unique du jeton valide | Échec indistinguable/borne pour expiré ou déjà consommé | **PLANNED** |
+| `R2-AUTH-004` | CSRF/Host/Origin/proxy | Origine confiable + CSRF valide | Refus Host spoofé, proxy non fiable, CSRF manquant | **PLANNED** |
+| `R2-AUTH-005` | Concurrence création initiale | Un seul compte durable | Deux activations concurrentes ne créent pas deux comptes | **PLANNED** |
+| `R2-AUTH-006` | Réponse perdue après commit | Lire résultat durable et reprendre sans duplicat | Retenter ne prolonge pas le grant arbitrairement | **PLANNED** |
+| `R2-AUTH-007` | Reprise et révocation de grant | Nouveau grant autorisé, ancien invalidé | Ancien grant/revision refusé | **PLANNED** |
+| `R2-AUTH-008` | Session permanente | Rotation login/logout et expiration côté serveur | Fixation, cookie non Secure et session bootstrap réutilisée refusés | **PLANNED** |
+| `R2-AUTH-009` | Autorisation organisation/site | Gestionnaire autorisé limité à ses sites | Cross-tenant, API hors rôle et shell générique refusés | **PLANNED** |
+| `R2-AUTH-010` | Accès admin perdu et panne Hub | Reprise locale autorisée auditée sans Hub | Preuve faible, endpoint root public, effacement admin refusés | **PLANNED** |
+
+**Préconditions de campagne A :** code Foundation original importé et audité ; Composer lock vérifié avec Symfony réellement démarré, secrets/hosts de test, HTTPS local de test, navigateur HTTP capable de cookie/CSRF, PostgreSQL dédié. Un scénario ne passe que si chaque branche positive **et** négative est observée, avec logs redigés.
+
+## Campagne B — Transactions et récupération PostgreSQL
+
+| ID test | Contrat | Scénario positif | Refus / négatif | État |
+|---|---|---|---|---|
+| `R2-DB-TEST-001` | Installation initiale | Appliquer migration dans PostgreSQL de test dédié | Migration divergente ou invalidée refusée | **PLANNED** |
+| `R2-DB-TEST-002` | Migrations concurrentes | Une seule prise de verrou | Double DDL ou table partielle refusés | **PLANNED** |
+| `R2-DB-TEST-003` | Singleton de setup | Une seule ligne et révision cohérente | Double singleton et révision périmée refusés | **PLANNED** |
+| `R2-DB-TEST-004` | Unicité admin | Un compte initial après deux transactions | Second `initial_admin=true` refusé par DB | **PLANNED** |
+| `R2-DB-TEST-005` | Rollback preuve/état/audit | Commit atomique succès + audit | Erreur volontaire ne laisse ni grant ni audit de réussite | **PLANNED** |
+| `R2-DB-TEST-006` | Tentatives invalides persistantes | Compteur/limites maintenus entre requêtes | Rollback ne réinitialise pas blocage intentionnel | **PLANNED** |
+| `R2-DB-TEST-007` | Réponse perdue/idempotence | Retry retrouve transition commitée | Aucun compte/grant dupliqué | **PLANNED** |
+| `R2-DB-TEST-008` | Crash/restart/concurrence | État durable récupéré proprement | Deadlock, interruption ou base absente produisent erreur sûre | **PLANNED** |
+| `R2-DB-TEST-009` | MFA ignorée/secret | Aucun secret TOTP si skip, secret chiffré si enable | Secrets DB, logs, export et réponse HTTP ne fuient pas | **PLANNED** |
+| `R2-DB-TEST-010` | Restauration et perte de clé | Reprise SQL/identité cohérente si clé disponible | Sans clé, état non récupérable déclaré explicitement | **PLANNED** |
+
+**Préconditions B :** rôle migrateur distinct du rôle runtime, DB PostgreSQL de test autorisée, migrations étiquetées/checksummées, transaction isolation et point de restauration contrôlé. Les tests de corruption/interruption s'exécutent **seulement dans des environnements jetables autorisés** ; pas sur un hôte client ou en production.
+
+## Registre de preuves requis pour chaque cas
+
+Le rapport de test réel devra inclure **commit SHA, version OS/PHP/Symfony/PostgreSQL, migration ID/checksum, test ID, acteur/tenant, prérequis, commande/HTTP, résultat observé, résultat attendu, code erreur, état transactionnel, corrélation, logs expurgés, cleanup et état `PASS/FAIL/BLOCKED/SKIP`**. Une absence de DB réelle impose `SKIP`, jamais `PASS`. Mesures de performance/latence et réglages commerciaux restent ouverts : ne pas inventer de seuil.
+
+## Garde-fous de revue et ordre
+
+1. **R1 bloqué** : retrouver le vrai ZIP SRC-03 (issue #2), provenance et correction de MFA obligatoire historique.
+2. **R2 candidats** : ratifier schémas et contrats, puis démarrer Symfony + PostgreSQL avec identité locale et MFA facultative.
+3. **Exécuter les 20 cas**, notamment rollback, concurrence et perte de réponse ; attester l'état sur commit/OS identifié.
+4. Les autorités Database, Security et API/IPC examinent toute modification de schéma, récupération ou endpoint.
+5. Le Core reste autonome sans Hub ; aucune API générique `shell.exec`, aucune installation privilégiée, aucune promotion `stable/main/production` sans gates supplémentaires.
+
+[Issue Identity #6](https://github.com/yyogas/forgepanel/issues/6) · [Issue Symfony/PG #3](https://github.com/yyogas/forgepanel/issues/3) · [Lacunes `DOC-GAP-002`–`DOC-GAP-004`](../00-project-control/documentation-readiness.md). La clôture documentaire dépend de preuves et d'une revue ; ce tableau ne ferme aucune issue.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-EXECUTION revision=12 status=specified -->
+<!-- forgepanel-doc id=FP-00-EXECUTION revision=13 status=specified -->
 # Technical implementation roadmap — Q120 D and Q119 B MVP
 
 [Français](../../fr/00-project-control/implementation-roadmap.md) · [Project status](status.md) · [Q111–Q120 decisions](decisions-q111-q120.md)
@@ -89,3 +89,7 @@ Without changing the approved **R1 → R2 → R3 → R4 → R5 → R6** order, s
 ## Parallel R3 preparation — image admission is not VM execution
 
 After the host probe, [QCOW2 admission](../14-devops-releases/kvm-image-admission.md) checks a manifest, image bytes and **explicitly supplied** ceilings without defaults, privileged system actions or QEMU execution. Remaining steps: signed image provenance/authorization → immutable launch-time pinned bytes → ephemeral isolated KVM runner with real quotas → snapshots/failure/recovery → signed Q152 reports and private immutable Q162 storage → R3 qualification with Q132 vetoes. **R1 → R2 → R3 → R4 → R5 → R6 unchanged**; original Foundation sources still missing.
+
+## R3 preparation — provisional pinned image bytes
+
+[Verified private copying](../14-devops-releases/kvm-image-staging.md) complements R3 observation/admission without changing **R1 → R2 → R3 → R4 → R5 → R6**. It creates `image.qcow2` plus an unsigned provenance receipt in a private lab directory; a future runner must **revalidate exact bytes at launch**, prove isolation, enforce real quotas and clean up guest resources before any Q152/Q162 evidence. R1 Foundation v0.7 remains blocked by the missing historical ZIP.

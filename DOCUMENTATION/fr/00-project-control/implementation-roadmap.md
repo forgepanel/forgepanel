@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-EXECUTION revision=12 status=specified -->
+<!-- forgepanel-doc id=FP-00-EXECUTION revision=13 status=specified -->
 # Roadmap technique de réalisation — décision Q120 D et MVP Q119 B
 
 [English](../../en/00-project-control/implementation-roadmap.md) · [État officiel](status.md) · [Décisions Q111–Q120](decisions-q111-q120.md)
@@ -89,3 +89,7 @@ Sans modifier l'ordre approuvé **R1 → R2 → R3 → R4 → R5 → R6**, l'uti
 ## Préparation parallèle R3 — admission d'image, pas exécution VM
 
 Après la sonde hôte, [admission QCOW2](../14-devops-releases/kvm-image-admission.md) vérifie le manifest, l'empreinte du fichier et les limites **expressément fournies**, sans valeur par défaut, opération système ou QEMU. Les futures étapes restent : provenance d'image signée/autorisation → copie immuable et attestation de l'image utilisée → VM éphémère KVM isolée/quotas effectifs → snapshots, échec/reprise → rapports signés Q152 et stockage immuable privé Q162 → qualification R3 avec veto Q132. **R1 → R2 → R3 → R4 → R5 → R6 inchangé** ; les sources Foundation restent manquantes.
+
+## Préparation R3 — fixation provisoire des octets d’image
+
+La [copie privée vérifiée](../14-devops-releases/kvm-image-staging.md) complète la sonde et l’admission R3 sans changer **R1 → R2 → R3 → R4 → R5 → R6**. Elle génère `image.qcow2` et un reçu de provenance non signé dans un dossier de laboratoire privé ; le futur runner devra **revérifier au moment du lancement** les octets, prouver l'isolement, appliquer les quotas et nettoyer automatiquement ses ressources, avant toute preuve Q152/Q162. R1 Foundation v0.7 demeure bloqué par le ZIP historique manquant.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=17 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=18 status=documented -->
 # Modèle de sécurité et signalement
 
 [English](../../en/10-security/README.md) · [Index](../README.md)
@@ -98,3 +98,7 @@ Les fichiers de staging peuvent être contrôlés indépendamment contre **ZIP o
 ## Q161 — Refus de toute exécution depuis une admission d'image
 
 L'[outil R3](../14-devops-releases/kvm-image-admission.md) travaille en **lecture seule, non-root et sans QEMU** : les fichiers policy/manifest privés doivent être réguliers et limités, l'image QCOW2 appartient au compte, est sans symlink/hardlink et voit son SHA-256 entier contrôlé via descripteur. Aucun champ JSON ne permet une commande ou argument arbitraire ; réseau/partages/privilèges sont refusés. Un `REVIEW_REQUIRED` ne confère **aucun privilège ni PASS Q132**, et les plafonds de ressource déclarés ne sont pas des limites d'exécution. La future exécution devra revérifier les octets et isoler les guests malveillants. Aucun secret ni clé de signature Hub collecté.
+
+## R3 — Sécurité de la copie privée et limite d'immutabilité
+
+Le [staging QCOW2](../14-devops-releases/kvm-image-staging.md) n’a **aucune API shell/root, aucun accès QEMU ni réseau**. Il exige des chemins canoniques séparés, comptes non-root, répertoires 0700, fichiers source privés, `openat`/`O_NOFOLLOW`, sortie sans bit d’exécution, SHA-256 de chaque copie et reçu sans secret/chemin interne. Le statut positif ne confirme **ni identité de l’éditeur, ni copie réellement immuable, ni sandbox/quotas** : un même UID peut encore modifier une image 0400. Les copies partielles sont laissées dans le dossier privé pour inspection, jamais utilisées comme preuve de qualification. Re-hash obligatoire au futur lancement, veto Q132 maintenus.

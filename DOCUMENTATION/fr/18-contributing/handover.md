@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-18-HANDOVER revision=6 status=documented -->
+<!-- forgepanel-doc id=FP-18-HANDOVER revision=7 status=documented -->
 # Passage de relais
 
 [English](../../en/18-contributing/handover.md) · [Guide de contribution](README.md)
@@ -40,3 +40,7 @@ Avant toute PR d'import de sources PHP/Go, obtenir l'archive SRC-03 exacte ; ex�
 ## Relais R3 — pilote de VM toujours ouvert
 
 Le nouveau vérificateur d'[admission QCOW2](../14-devops-releases/kvm-image-admission.md) est un module Go de **préparation** séparé du Core historique et du Hub. Ne jamais convertir son verdict `REVIEW_REQUIRED` en PASS de certification ou autorisation root. Le prochain pilote QEMU/KVM devra avoir contrats typés, snapshot immuable des octets utilisés, isolation réelle, quotas et timeout/cleanup testés, signatures/stockage Q152/Q162 et tests VM sur hôte autorisé. La priorité officielle d'import Foundation v0.7 (issue #2) reste ouverte ; ni code historique ni Design System V3 n'est automatiquement validé.
+
+## Relais R3 : copie d'image épinglée, suite du runner
+
+Le module [Image Staging](../14-devops-releases/kvm-image-staging.md) réalise une copie privée non exécutable et re-hashée, avec reçu documentant la politique et l’état `NOT_EXECUTED`. Prochain développement : valider la provenance/signature de l'image, épingler les **octets réellement utilisés au lancement**, implémenter un pilote QEMU avec liste blanche et isolation, quotas cgroups effectivement contrôlés, durée/cleanup et tests sur hôte autorisé, puis signer les preuves Q152 et les archiver selon Q162. Aucun droit privilégié générique ; ne pas réintroduire une source Foundation v0.7 inventée. L’issue #2 d'import Core reste ouverte.

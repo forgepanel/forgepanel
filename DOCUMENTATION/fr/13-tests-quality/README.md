@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=15 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=16 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
@@ -86,3 +86,7 @@ Le module séparé [KVM Host Probe](../14-devops-releases/kvm-host-probe.md) pos
 Les tests Go synthétiques de `tools/kvm-host-probe/admission` et du CLI valident l'empreinte SHA-256, le nom du fichier, les permissions privées, le refus symlink/hardlink/format erroné, les plafonds explicites, l'interdiction réseau/partage/privilèges et la parité des trois JSON Schema. Le workflow Go existant exécute **`go test ./...`, `go test -race ./...`, `go vet ./...` et `gofmt`** ; le verdict de la PR doit être lu au SHA exact. Les fixtures ne sont pas des Linux démarrables, et aucun essai KVM, quota imposé, snapshot, rapport signé ou restauration n'est démontré. [Contrat](../14-devops-releases/kvm-image-admission.md).
 
 **Preuve CI de la PR #41** : [Go + Go race + vet + gofmt + contrôle des trois schémas](https://github.com/yyogas/forgepanel/actions/runs/42116200478) et [contrôles documentaires](https://github.com/yyogas/forgepanel/actions/runs/42116200493), réussis sur le commit `4a71d2fb8e0258879bcf5c621dfc29677f5e5380`. **41 fonctions de tests Go** dans le module au total (14 sonde hôte et 27 nouveaux contrôles image/CLI/contrats) ; fixtures QCOW2 synthétiques, pas de VM réellement démarrée, ni de preuve de signature/isolement.
+
+## R3 — Tests de copie privée vérifiée
+
+La nouvelle suite de tests Go de [staging d’images](../14-devops-releases/kvm-image-staging.md) contrôle la copie identique SHA-256, les permissions 0700/0400, le refus d’écrasement, symlinks, chemins imbriqués ou partagés, demandes non autorisées, modifications de la source, interruptions et absence de reçu sur copie partielle. Le CLI est testé avec et sans fichiers de politique/demande privés ; le schéma du reçu est comparé aux champs Go. **62 fonctions de test Go au total dans le module**, et exécution locale réussie de `go test ./...`, `go test -race ./...`, `go vet ./...`. CI GitHub par SHA à vérifier ; **aucun boot QEMU ou test de quotas réels**.

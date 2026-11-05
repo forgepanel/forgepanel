@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=20 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=21 status=documented -->
 # État et roadmap ordonnée par dépendances
 
 [English](../../en/00-project-control/status.md) · [Pilotage](README.md)
@@ -87,3 +87,7 @@ Un module Go en code source séparé, `tools/kvm-host-probe/`, est **IMPLEMENTAT
 ## R3 — Candidat d'implémentation : admission des images de laboratoire
 
 La branche `features/r3-kvm-pinned-image-admission` ajoute une vérification Go autonome des QCOW2 épinglés, de politiques CPU/RAM/durée explicites et de manifests JSON versionnés. **Tests Go synthétiques et CI réussis sur le commit exact de PR #41 ; état de fusion à vérifier dans GitHub**. Le résultat `REVIEW_REQUIRED` reste `qualification=NOT_EXECUTED`, avec toutes les capacités VM non vérifiées à `false`. **Aucun pilote d'exécution QEMU, aucune sauvegarde restaurée et aucun Core Foundation importé.** [Contrat](../14-devops-releases/kvm-image-admission.md).
+
+## R3 — Staging privé vérifié (lot candidat)
+
+Le module Go autonome `staging` et son CLI, développés sur `features/r3-private-pinned-image-staging`, préparent une copie d'image QCOW2 avec SHA-256, permissions limitées et reçu de provenance **sans démarrer QEMU**. État actuel **IMPLEMENTATION CANDIDATE** jusqu'à la CI GitHub sur le commit exact et fusion éventuelle. Les tests sur fichiers synthétiques ne valident aucun OS ni système d'hébergement ; le code Foundation original reste absent, Q1–Q170 inchangées, Hub privé séparé et Design System V3 non validé. [Contrat FR/EN](../14-devops-releases/kvm-image-staging.md).

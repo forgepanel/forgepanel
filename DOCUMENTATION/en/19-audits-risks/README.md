@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19 revision=6 status=documented -->
+<!-- forgepanel-doc id=FP-19 revision=7 status=documented -->
 # Audit, contradictions and risks
 
 [Français](../../fr/19-audits-risks/README.md) · [Index](../README.md)
@@ -61,3 +61,10 @@ These protections do not replace source code or publisher-signature review. [FR/
 - **RISK-021** — A QCOW2 header does not prove full format **structural** integrity; same-UID processes may modify an image after admission. A future runner must validate format, pin the exact launched bytes, enforce actual quotas/isolation and test recovery. Synthetic tests do not close RISK-019.
 
 [Preparatory contract](../14-devops-releases/kvm-image-admission.md).
+
+## R3 — Additional lab image copy risks
+
+- **RISK-024** — A QCOW2 image copied and marked mode 0400 is **not immutable** against a same-UID process. The receipt is unsigned, and a future runner must rehash bytes under an independently authorized isolation boundary, never using the receipt as QEMU permission.
+- **RISK-025** — After interruption a private, incomplete `run_id` directory may remain; `PARTIAL_STAGE_REQUIRES_MANUAL_CLEANUP` avoids dangerous recursive deletion of substituted paths. The future runner must test and document safe bounded teardown, real quotas and failure recovery.
+
+[Specification and limits](../14-devops-releases/kvm-image-staging.md). Does not close RISK-019, RISK-020/021 or issue #42.

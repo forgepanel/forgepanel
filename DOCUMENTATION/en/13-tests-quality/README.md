@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=15 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=16 status=documented -->
 # Tests, quality and definition of done
 
 [Français](../../fr/13-tests-quality/README.md) · [Index](../README.md)
@@ -86,3 +86,7 @@ Standalone [KVM Host Probe](../14-devops-releases/kvm-host-probe.md) has **14 sy
 Synthetic Go tests under `tools/kvm-host-probe/admission` and its CLI cover SHA-256, filename, private file permissions, symlink/hardlink/wrong format refusal, explicit resource ceilings, denial of network/host shares/privileges, and parity of three JSON Schemas. Existing Go CI runs **`go test ./...`, `go test -race ./...`, `go vet ./...` and `gofmt`**; check exact PR SHA results. Fixtures are not bootable Linux systems, and no real KVM run, enforced quotas, snapshot, signed report or restore has been shown. [Contract](../14-devops-releases/kvm-image-admission.md).
 
 **PR #41 CI evidence**: [Go, race, vet, gofmt and three-schema checks](https://github.com/yyogas/forgepanel/actions/runs/42116200478) and [documentation checks](https://github.com/yyogas/forgepanel/actions/runs/42116200493) passed at commit `4a71d2fb8e0258879bcf5c621dfc29677f5e5380`. **41 Go test functions** in the module overall (14 host-probe and 27 new image/CLI/contract cases). QCOW2 fixtures are synthetic, not booted VMs or signed/isolation evidence.
+
+## R3 — Private pinned-copy tests
+
+New Go tests for [image staging](../14-devops-releases/kvm-image-staging.md) verify identical SHA-256 copy, 0700/0400 permissions, overwrite/symlink/nested/shared path denial, unsafe requests, source mutation, interruptions and no receipt after partial copying. CLI tests include private policy/request input gates and schema-to-Go field parity. The standalone module has **62 Go test functions total** and locally passed `go test ./...`, `go test -race ./...`, `go vet ./...`. Exact-SHA GitHub CI remains to confirm; **no QEMU guest boot or actual quota enforcement**.

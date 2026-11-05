@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14-KVM-IMAGE-ADMISSION revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-14-KVM-IMAGE-ADMISSION revision=2 status=specified -->
 # R3 — Admission des images QEMU/KVM avant toute exécution
 
 [English](../../en/14-devops-releases/kvm-image-admission.md) · [Sonde KVM](kvm-host-probe.md) · [Roadmap](../00-project-control/implementation-roadmap.md) · [Tests](../13-tests-quality/README.md)
@@ -30,3 +30,7 @@ Le programme refuse root, documents non privés ou symboliques, champs JSON inco
 L'en-tête QCOW2 **ne constitue pas une validation intégrale du format**. L'empreinte identifie les octets par rapport au manifest, **pas le fournisseur, la licence ni l'innocuité** de l'image. Les plafonds ne sont que **comparés**, jamais imposés au CPU/RAM/I/O. Un acteur contrôlant le même UID peut modifier l'image après le scan : le futur exécuteur doit conserver un objet immuable validé ou revérifier les octets au moment du lancement. Sans isolation jetable, réseau désactivé, quotas réellement imposés, snapshots, nettoyage, contrôle d'échec, rapports signés Q152 et stockage immuable Q162, **R3 reste non qualifié**. Les tests utilisent des fichiers QCOW2 synthétiques non bootables et ne sélectionnent aucun premier OS.
 
 Aucune API shell générique, aucun privilège Linux, aucune interaction avec le Hub ; les défaillances critiques Q132 restent bloquantes. [Décisions Q161–Q170](../00-project-control/decisions-q161-q170.md).
+
+## Étape suivante : staging privé vérifié
+
+Le composant distinct [Image Staging](kvm-image-staging.md) réouvre les octets après l'admission, recopie et vérifie leur empreinte dans un dossier neuf non-root. Un reçu `STAGED_FOR_MANUAL_REVIEW` peut être produit, **jamais** une autorisation de démarrage QEMU ni une garantie d'immutabilité. Les quotas effectifs, snapshots, pilotes OS et signature restent à implémenter.

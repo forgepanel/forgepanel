@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08 revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-08 revision=2 status=documented -->
 # API et contrats
 
 [English](../../en/08-api-contracts/README.md) · [Index](../README.md)
@@ -20,6 +20,10 @@ Tous les champs sont obligatoires ; les champs supplémentaires sont refusés. L
 Routes : `/setup`, `/setup/resume`, `/setup/mfa`, `/setup/recovery`, `/setup/configuration` utilisent les méthodes GET/POST déclarées ; `/setup/review` et `/setup/configuration.json` sont des vues/exports GET. Les mutations POST contrôlent CSRF et autorisation temporaire. Ce sont des routes sources, pas des endpoints déployés.
 
 Codes CLI du code : 0 réussite, 2 échec des prérequis, 64 usage invalide/non supporté, 70 erreur interne/opération absente, 77 refus permission/TTY. `install apply` est refusé ; `release verify` vérifie la signature du manifeste, pas les octets d'artefacts téléchargés.
+
+## Nouveaux contrats proposés (Q61–Q70)
+
+Registre d'artefacts signés et métadonnées anti-retour arrière (Q61), capacités de pilotes DNS/mail/sauvegarde/monitoring (Q63–Q65/Q68), objets d'opérations multi-serveurs idempotents et états observés (Q67), propriété des listeners et générations WebStack (Q69), composants de navigation/widgets versionnés (Q70). Toutes les actions ont paramètres typés et scopes RBAC ; l'API d'agent ne permet aucune commande shell arbitraire. [Spécification](../00-project-control/infrastructure-decisions.md). **Contrats candidats**, aucun endpoint opérationnel ajouté.
 
 ## Exigences du futur protocole
 

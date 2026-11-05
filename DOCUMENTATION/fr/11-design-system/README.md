@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-11 revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-11 revision=2 status=documented -->
 # Design system et internationalisation
 
 [English](../../en/11-design-system/README.md) · [Index](../README.md)
@@ -20,5 +20,7 @@ Prévoir libellés explicites, navigation clavier, focus visible, erreurs compr�
 Cible : clés de traduction stables en anglais dans les catalogues Symfony, messages français/anglais, dates/nombres localisés et repli documenté. Valeurs de protocole, ID d'opération et codes de logs restent neutres. Ne pas traduire permissions ou clés de schéma. Les textes littéraux des templates SRC-03 sont un prototype, pas une infrastructure de traduction achevée.
 
 Chaque écran exige les deux langues, textes longs, petit écran, états d'accès refusé et vérification de l'absence de secrets. Langues produit et tokens graphiques de production restent à spécifier ; ce chapitre n'introduit aucun nouveau framework frontend.
+
+Q70 D ajoute un [éditeur visuel de thèmes, layouts, widgets et navigation](visual-editor.md), toujours basé sur Symfony Twig/UX ; Q55 A limite à **une identité de marque par organisation**. Les composants doivent être validés, accessibles et permissionnés, sans code JavaScript/PHP arbitraire. Ce n'est pas encore implémenté.
 
 [Interfaces](../07-interfaces-roles/README.md) · [Qualité](../13-tests-quality/README.md)

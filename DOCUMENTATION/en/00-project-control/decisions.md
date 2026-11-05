@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DECISIONS revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-00-DECISIONS revision=3 status=documented -->
 # Decision register
 
 [Français](../../fr/00-project-control/decisions.md) · [Project control](README.md)
@@ -39,6 +39,17 @@ Source IDs refer to the [baseline](../19-audits-risks/baseline.md). A decision a
 | ADR-027 | Local accounts plus optional SSO/OIDC (Q58 C) | Retain local authentication/recovery; external identity scoped and permissioned, MFA still optional |
 | ADR-028 | Per-category configurable retention (Q59 C) | Durations configurable within legal/security bounds; no exact periods yet |
 | ADR-029 | Perpetual purchases, subscriptions, trials/coupons/bundles/add-ons (Q60 C) | Hub commercial model; server-verified events grant rights, not browser redirects |
+
+| ADR-030 | Signed CI/CD + anti-rollback + approvals (Q61 C) | Signed metadata/artifacts, protected trust keys and publication gates; not implemented |
+| ADR-031 | Universal installer + signed DEB/RPM repositories (Q62 C) | Verified bootstrap, resumable installer and OS-specific packages; not yet functional |
+| ADR-032 | Local DNS and external-provider drivers (Q63 C) | Zone authority, record validation and controlled migration |
+| ADR-033 | Native mail and external providers (Q64 C) | Local/external drivers, tenancy and DNS/TLS validation |
+| ADR-034 | Encrypted replicated immutable remote backup with recovery (Q65 D) | Restore tests, storage constraints and measured recovery targets |
+| ADR-035 | Sensitive reauthentication and optional extra approval (Q66 C) | Admin MFA remains optional; approval policy, audit and emergency recovery |
+| ADR-036 | Multi-server and HA/clustering/DR (Q67 D) | Phased target; no certified cluster or Hub runtime dependency |
+| ADR-037 | Local monitoring, email/webhooks and external integrations (Q68 C) | Configurable rules and controlled external data |
+| ADR-038 | Per-site WebStacks and ingress by IP/port (Q69 D) | Exclusive listeners, TLS and `.htaccess` protection, planned changes |
+| ADR-039 | Visual widget/navigation editor with one brand (Q70 D, Q55 A) | Approved components, theme/history, scoped rights and no arbitrary code |
 
 ## Replaced or unresolved proposals
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-11 revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-11 revision=2 status=documented -->
 # Design system and internationalization
 
 [Français](../../fr/11-design-system/README.md) · [Index](../README.md)
@@ -20,5 +20,7 @@ Use explicit labels, keyboard navigation, visible focus, understandable field er
 Target stable English translation keys in Symfony translation catalogs with French and English messages, locale-aware dates/numbers and a documented fallback. Protocol values, operation IDs and log codes stay language-neutral. Do not translate permission names or schema keys. SRC-03's literal template text is a prototype, not a completed translation infrastructure.
 
 Each new screen needs both locales, long-text and small-screen cases, permission-denied states and secret-redaction tests. Product language choices and a production design token set remain to be specified; this chapter introduces no new frontend framework.
+
+Q70 D adds a [visual theme/layout/widget/navigation editor](visual-editor.md) using Symfony Twig/UX. Q55 A preserves **one brand per organization**. Components must be schema-validated, accessible and permissioned; arbitrary JavaScript/PHP is not accepted. This is not implemented.
 
 [Interfaces](../07-interfaces-roles/README.md) · [Quality](../13-tests-quality/README.md)

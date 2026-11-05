@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-01 revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-01 revision=2 status=documented -->
 # Périmètre produit et parcours
 
 [English](../../en/01-product/README.md) · [Index](../README.md)
@@ -19,6 +19,10 @@ ForgePanel cible propriétaires de serveurs, hébergeurs, agences, revendeurs et
 | REQ-006 | Proposer plusieurs OS/profils web | Annoncer uniquement les combinaisons individuellement testées ; ne pas proposer comme fonctionnel un profil indisponible |
 
 L'archive s'arrête au brouillon de configuration revu, pas à la fin d'une installation. DNS, certificats, mail, gestion de fichiers, fonctions revendeur et provisionnement des services ne sont pas implémentés.
+
+## Arbitrages infrastructure Q61–Q70
+
+L'expérience cible combine installation universelle vérifiée, profils web et DNS/mail modulaires, sauvegardes distantes avec restauration, administration multi-serveurs à terme, monitoring et éditeur visuel. **Hébergement + VPS restent la première priorité** (Q54), sans prétendre livrer immédiatement la HA complète. MFA facultatif et une marque par organisation sont conservés. Voir [Q61–Q70](../00-project-control/infrastructure-decisions.md).
 
 ## Maîtrise du périmètre
 

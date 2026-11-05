@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=3 status=documented -->
 # Status and dependency-ordered roadmap
 
 [Français](../../fr/00-project-control/status.md) · [Project control](README.md)
@@ -38,6 +38,8 @@ Additional 2026-11-05 choices Q48–Q55: **AGPL-3.0 + commercial license**, cont
 
 New owner product decisions Q1–Q8 and Q47 on 2026-11-05: **dual licensing (exact texts open)**, full free Core with optional premium/support, all audiences phased, customer PHP/Node.js/Python/containers, organization white-label, separately consented Hub exchange, **60-day** commercial offline grace, official/verified partners, safe sensitive changes. [Full policy](product-policy.md). These are not implemented features.
 
-Confirmed Q56–Q60: **independent payment provider adapters**, **Stable/Beta/Dev with staged rollout/recovery**, **local accounts plus optional SSO/OIDC**, **category-based retention**, **perpetual/subscription purchases with trials/coupons/bundles/add-ons**. These remain **specified, not implemented**. Q61–Q70 are unanswered. See [Q56–Q60](commerce-identity-release-policy.md).
+Confirmed Q56–Q60: **independent payment provider adapters**, **Stable/Beta/Dev with staged rollout/recovery**, **local accounts plus optional SSO/OIDC**, **category-based retention**, **perpetual/subscription purchases with trials/coupons/bundles/add-ons**. These remain **specified, not implemented**. Q61–Q70 are decided, not implemented. See [Q56–Q60](commerce-identity-release-policy.md).
+
+Q61–Q70 are **confirmed (2026-11-05)**: signed CI/CD with anti-rollback and approvals; universal installer plus signed DEB/RPM; local/external DNS and mail; encrypted, replicated and immutable backups with recovery; sensitive reauthentication/approval; multi-server/HA; monitoring integrations; per-site/IP/port WebStacks; visual widgets/navigation within one brand. [Q61–Q70 specification](infrastructure-decisions.md). **Specified only; no certified runtime or cluster.**
 
 No date or version commitment is implied by these priorities. Product-owner decisions still needed: software/contribution license and authorized private security contact. Package/runtime choices require an evidence-based technical proposal, not a new architecture by assumption.

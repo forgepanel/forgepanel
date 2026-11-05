@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-01 revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-01 revision=2 status=documented -->
 # Product scope and journeys
 
 [Français](../../fr/01-product/README.md) · [Index](../README.md)
@@ -19,6 +19,10 @@ ForgePanel targets server owners, hosting operators, agencies, resellers and hos
 | REQ-006 | Offer multiple OS/web profiles | Publish support only for individually tested combinations; unavailable profiles are not selectable as working capabilities |
 
 The archive reaches a reviewed configuration draft, not installation completion. DNS, certificates, mail, file management, reseller operations and service provisioning remain outside its implementation.
+
+## Q61–Q70 infrastructure decisions
+
+The target experience combines verified universal installation, configurable web/DNS/mail adapters, replicated backup and restore, eventually multi-server administration, monitoring and a visual editor. **Shared hosting + VPS administration remain first priorities** (Q54), without claiming full HA is shipped first. Optional MFA and one brand per organization remain unchanged. See [Q61–Q70](../00-project-control/infrastructure-decisions.md).
 
 ## Scope discipline
 

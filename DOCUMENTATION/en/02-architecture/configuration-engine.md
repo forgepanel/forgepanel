@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-CONFIG revision=2 status=specified -->
+<!-- forgepanel-doc id=FP-02-CONFIG revision=3 status=specified -->
 # Configuration Engine — administrable settings specification
 
 [Français](../../fr/02-architecture/configuration-engine.md) · [Architecture](README.md) · [Product policy](../00-project-control/product-policy.md)
@@ -47,6 +47,10 @@ Presentation-only changes may apply immediately. Changes to ports, firewall, Web
 ## New Q56–Q60 settings
 
 Core will expose **Stable/Beta/Dev** channels with authorization and compatibility checks (Q57), local accounts plus optional SSO/OIDC while admin MFA remains optional (Q58), and per-category retention within legal/security constraints (Q59). Independent payment providers and perpetual/subscription/trial/coupon/bundle/add-on offers belong to **Hub**, not Core (Q56/Q60). None is implemented. [Specification](../00-project-control/commerce-identity-release-policy.md).
+
+## New Q61–Q70 configuration families
+
+Release signature/channel/approvals (Q61); verified DEB/RPM setup (Q62); capability-based DNS/mail providers (Q63–Q64); backup destinations, encryption, retention, replication/immutability (Q65); reauthentication and extra approval (Q66); server groups/HA policy (Q67); alert rules and recipients (Q68); IP/port listener ownership and per-site profile (Q69); versioned visual editing (Q70). Sensitive mutations follow PLAN/VALIDATE/SNAPSHOT/APPLY/VERIFY/RECOVER. [Details](../00-project-control/infrastructure-decisions.md).
 
 ## Proposed API and acceptance
 

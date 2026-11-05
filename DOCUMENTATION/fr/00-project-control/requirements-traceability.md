@@ -34,6 +34,8 @@ Les **22 lignes** sont dérivées du [registre bilingue de lacunes](documentatio
 
 ## Niveaux de preuve et éléments déjà exécutés
 
+**R3 :** toute sonde/admission/copie QCOW2 conserve `qualification=NOT_EXECUTED`. Aucune observation ni copie privée ne vaut démarrage de VM, certificat OS ou preuve d'isolement.
+
 - **R1 outillage seulement** : PR [#37](https://github.com/yyogas/forgepanel/pull/37), [#38](https://github.com/yyogas/forgepanel/pull/38), [#39](https://github.com/yyogas/forgepanel/pull/39) fusionnées, CI [du dernier lot R1](https://github.com/yyogas/forgepanel/actions/runs/42109154403) réussie sur des ZIP **synthétiques**. L'archive SRC-03 originale n'a pas été importée.
 - **R3 préparation seulement** : PR [#40](https://github.com/yyogas/forgepanel/pull/40), [#41](https://github.com/yyogas/forgepanel/pull/41), [#43](https://github.com/yyogas/forgepanel/pull/43) fusionnées, CI [Go](https://github.com/yyogas/forgepanel/actions/runs/42120185132) et [documentation](https://github.com/yyogas/forgepanel/actions/runs/42120185238) réussies. Les **62 tests Go synthétiques** ne démarrent aucun QEMU et ne certifient ni OS ni isolement.
 - **Hub candidat** : [CI Hub du commit de référence](https://github.com/yyogas/forgepanel-hub/actions/runs/42066987234) réussie pour les documents/contrats/prototypes, pas une intégration fonctionnelle Symfony/ABI/paiement.

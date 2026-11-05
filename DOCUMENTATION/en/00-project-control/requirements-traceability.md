@@ -34,6 +34,8 @@ All **22 rows** are grounded in the [bilingual gap register](documentation-readi
 
 ## Evidence levels and work actually verified
 
+**R3:** all KVM observation/QCOW2 admission and staging results remain `qualification=NOT_EXECUTED`. No host observation or private copy proves VM execution, OS certification or isolation.
+
 - **R1 tooling only**: PR [#37](https://github.com/yyogas/forgepanel/pull/37), [#38](https://github.com/yyogas/forgepanel/pull/38), [#39](https://github.com/yyogas/forgepanel/pull/39) merged; [latest R1 CI](https://github.com/yyogas/forgepanel/actions/runs/42109154403) passed on **synthetic** ZIPs. Original SRC-03 source has not been imported.
 - **R3 preparation only**: PR [#40](https://github.com/yyogas/forgepanel/pull/40), [#41](https://github.com/yyogas/forgepanel/pull/41), [#43](https://github.com/yyogas/forgepanel/pull/43) merged; [Go](https://github.com/yyogas/forgepanel/actions/runs/42120185132) and [documentation](https://github.com/yyogas/forgepanel/actions/runs/42120185238) CI passed. **62 synthetic Go test functions** boot no QEMU guest and certify no OS or isolation.
 - **Hub candidate only**: [Hub baseline CI](https://github.com/yyogas/forgepanel-hub/actions/runs/42066987234) passed docs/contracts/prototype checks, not working Symfony/ABI/payment integration.

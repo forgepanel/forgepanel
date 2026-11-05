@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19 revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-19 revision=4 status=documented -->
 # Audit, contradictions et risques
 
 [English](../../en/19-audits-risks/README.md) · [Index](../README.md)
@@ -43,3 +43,10 @@ Le [préflight R1](../12-development/source-archive-intake.md) réduit certains 
 - **RISK-016** — Noms d'entrées trompeurs et registre de preuves personnalisable : préflight refuse Unicode non canonique/bidi, `.git`, fichiers d'environnement sensibles et modes setuid/setgid ; le CLI `--stage` refuse la substitution de `--evidence`. Des contrôles heuristiques ne prouvent pas l'absence de secrets.
 
 Les 33 tests synthétiques valident les garde-fous de code, **pas l'archive originale ou l'intégration du Core**. [Spécification](../12-development/source-staging.md).
+
+## Constat ciblé de revue R1 — contrôle indépendant de la quarantaine
+
+- **RISK-017** — Le reçu de staging peut être altéré après génération : audit en lecture seule imposant **archive originale et SHA canonique**, comparaison stricte des fichiers/reçu et refus des permissions exécutables, liens et éléments ajoutés/manquants.
+- **RISK-018** — Risque de substitution du répertoire lors d'un échec de staging : nettoyage ancré dans un descripteur de parent privé et vérification inode/dev ; abandon signalé du nettoyage si l'identité change. Le **même UID** peut encore modifier la quarantaine **après l'audit** ; révalidation dans l'importeur final indispensable.
+
+Ces mesures ne remplacent pas l'audit de code source ou la preuve de signature éditeur. [Contrat FR/EN](../12-development/source-staging-audit.md).

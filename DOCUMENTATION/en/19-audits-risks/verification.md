@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19-VERIFICATION revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-19-VERIFICATION revision=4 status=documented -->
 # Verification record
 
 [Français](../../fr/19-audits-risks/verification.md) · [Audit index](README.md)
@@ -37,3 +37,7 @@ The successful run warned that its pinned v4 actions targeted a deprecated Node 
 ## Additional R1 verification: no real SRC-03 rescan
 
 **Local command**: `python3 -m unittest discover -s tests/source_intake -p 'test_*.py' -v`. **Observed result**: 16/16 PASS on Linux/Python stdlib, with synthetic archives only. Negative cases: wrong SHA, missing archive, absolute/Windows/traversal paths, symlinks, duplicates, count/size/ratio and recognizable secrets. **The genuine v0.7 source archive was unavailable**; no product Go/PHP, PostgreSQL, VM or actual restore was executed in this lot. Exact SHA GitHub CI is checked independently. [Tool](../12-development/source-archive-intake.md).
+
+## Additional verification — quarantined file integrity
+
+`tests/source_intake` now also covers the independent `audit_staged_archive.py` utility: positive/negative synthetic ZIP/receipt/disk consistency, link/mode/content/inventory denial, and replacement-race cleanup checks. **Read results on the exact PR-head and post-merge commits**, without reusing earlier CI outcomes. No actual Foundation archive, running Core or certified OS is claimed. [Contract](../12-development/source-staging-audit.md).

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19-VERIFICATION revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-19-VERIFICATION revision=4 status=documented -->
 # Rapport de vérification
 
 [English](../../en/19-audits-risks/verification.md) · [Index d'audit](README.md)
@@ -37,3 +37,7 @@ Ce run réussi signalait que ses actions v4 figées ciblaient un runtime Node d�
 ## Vérification supplémentaire R1 : aucun SRC-03 réel re-testé
 
 **Commande locale** : `python3 -m unittest discover -s tests/source_intake -p 'test_*.py' -v`. **Résultat mesuré** : 16 tests sur 16 PASS, sur Linux/Python stdlib, avec archives fictives. Tests de refus : SHA incorrect, archive absente, chemins absolus/Windows/traversée, symlinks, doublons, compte/taille/ratio, secrets reconnaissables. **L'archive source v0.7 n'était pas disponible** ; aucun Go/PHP, PostgreSQL, VM ni processus de restauration du produit n'a été exécuté ici. Les résultats CI sur le commit précis de la PR sont vérifiés séparément. [Outil](../12-development/source-archive-intake.md).
+
+## Campagne supplémentaire — audit de fichiers en quarantaine
+
+La campagne `tests/source_intake` couvre également l'outil indépendant `audit_staged_archive.py` : cas synthétiques positifs/négatifs de cohérence ZIP/reçu/disque, refus des liens, permissions, modifications, inventaire additionnel/supprimé et courses de nettoyage. **État de validation à lire sur l'exact commit de la PR et sur le commit post-fusion**, sans inférer de résultats de CI antérieurs. Aucune vraie archive Foundation, aucun Core exécuté ni OS certifié. [Contrat](../12-development/source-staging-audit.md).

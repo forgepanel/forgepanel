@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-EXECUTION revision=9 status=specified -->
+<!-- forgepanel-doc id=FP-00-EXECUTION revision=10 status=specified -->
 # Roadmap technique de réalisation — décision Q120 D et MVP Q119 B
 
 [English](../../en/00-project-control/implementation-roadmap.md) · [État officiel](status.md) · [Décisions Q111–Q120](decisions-q111-q120.md)
@@ -77,3 +77,7 @@ Le code Core n'est **pas encore importé** dans `develop` ; le prototype v0.7.1 
 ## Porte R1 — vérification et quarantaine des sources sans import
 
 La chaîne outillée R1 possède désormais `verify_source_archive.py` (préflight en lecture seule) et `stage_source_archive.py` (**prévisualisation par défaut**, puis copie explicite non-root, répertoire privé neuf et hash de chaque fichier). Cette préparation n'exécute pas le PHP/Go historique, n'ajoute aucun fichier Core au dépôt, ne valide ni licence ni installation ; elle précède la revue humaine et la PR d'import des sources originales. L'archive SRC-03 demeure indisponible : **import R1 bloqué, R2–R6 inchangés**. [Contrat de quarantaine](../12-development/source-staging.md).
+
+## Critère d'entrée R1 supplémentaire : audit des fichiers copiés
+
+L'issue #2 (import du vrai code Foundation) exige désormais la séquence explicite : archive SRC-03 originale → [préflight](../12-development/source-archive-intake.md) → [copie privée](../12-development/source-staging.md) → [comparaison ZIP/reçu/disque](../12-development/source-staging-audit.md) → revue licence/sécurité → import en PR distincte avec **re-hash des octets à l'import** → tests PHP/Go. Les utilitaires de préflight et audit ne sont **pas** l'implémentation du panneau, et le vrai ZIP n'est pas disponible dans ce contexte.

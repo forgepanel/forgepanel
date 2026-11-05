@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=11 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=12 status=documented -->
 # Installation, promotion Git et releases
 
 [English](../../en/14-devops-releases/README.md) · [Index](../README.md)
@@ -64,3 +64,7 @@ Le nouveau préflight `scripts/verify_source_archive.py` lit le ZIP original SRC
 ## R1 — Quarantaine avant import : jamais un déploiement
 
 `stage_source_archive.py` prépare seulement les fichiers réguliers vérifiés dans un dossier privé **hors dépôt**, sous utilisateur non-root, mode aperçu par défaut et `--stage` explicite. Dossier existant, parent modifiable par d'autres, métadonnées suspectes ou changement de source → refus. Le reçu `STAGED_FOR_MANUAL_REVIEW` porte `import_approved=false` : aucune installation, signature release, migration ou exécution root ne peut partir de cet outil. Le vrai ZIP reste indisponible et les étapes R1 import/R2–R6 ne sont pas débloquées. [Procédure](../12-development/source-staging.md).
+
+## R1 — le reçu d'intégrité n'est ni une release ni une approbation
+
+`audit_staged_archive.py` peut confirmer en **lecture seule** que le dossier de quarantaine correspond toujours au ZIP SRC-03 enregistré. Même un verdict `CONSISTENT_FOR_MANUAL_REVIEW` n'autorise ni `install apply`, ni compilation, ni déploiement, ni import automatique : un audit humain des licences/secrets et une revérification des fichiers au moment de leur import Git restent nécessaires. [Procédure](../12-development/source-staging-audit.md).

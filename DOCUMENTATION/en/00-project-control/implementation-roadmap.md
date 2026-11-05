@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-EXECUTION revision=9 status=specified -->
+<!-- forgepanel-doc id=FP-00-EXECUTION revision=10 status=specified -->
 # Technical implementation roadmap — Q120 D and Q119 B MVP
 
 [Français](../../fr/00-project-control/implementation-roadmap.md) · [Project status](status.md) · [Q111–Q120 decisions](decisions-q111-q120.md)
@@ -77,3 +77,7 @@ Core source remains **unimported** from the separate v0.7 archive; optional-MFA 
 ## R1 gate — verified private staging without source import
 
 R1 tooling now includes `verify_source_archive.py` (read-only preflight) and `stage_source_archive.py` (**preview by default**, then explicit non-root copy to a fresh private directory with per-file digest validation). This executes no historical PHP/Go, adds no Core application files to Git and validates neither licensing nor installation. It precedes independent source review and import PR. Genuine SRC-03 remains unavailable: **R1 source import blocked, R2–R6 unchanged**. [Quarantine contract](../12-development/source-staging.md).
+
+## Additional R1 entry gate: independently audit staged files
+
+Issue #2 (genuine Foundation source import) now explicitly requires: original SRC-03 archive → [preflight](../12-development/source-archive-intake.md) → [private staging](../12-development/source-staging.md) → [ZIP/receipt/disk comparison](../12-development/source-staging-audit.md) → license/security review → separate import PR with **byte re-hashing during import** → real PHP/Go tests. Preflight/audit tools are **not** the hosting Core implementation, and the actual ZIP remains unavailable here.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=11 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=12 status=documented -->
 # Installation, Git promotion and releases
 
 [Français](../../fr/14-devops-releases/README.md) · [Index](../README.md)
@@ -64,3 +64,7 @@ The new `scripts/verify_source_archive.py` preflight reads genuine SRC-03 **with
 ## R1 — quarantine is not deployment
 
 `stage_source_archive.py` only copies verified regular source files to a private **off-repository** directory as nonroot, with read-only preview by default and explicit `--stage`. Existing target, other-user-writable parent, suspicious metadata or changed source → deny. Receipt `STAGED_FOR_MANUAL_REVIEW` includes `import_approved=false`: no install, release signing, migration or privileged execution can follow automatically. Genuine ZIP remains unavailable; R1 import and R2–R6 gates remain blocked. [Procedure](../12-development/source-staging.md).
+
+## R1 — integrity receipt is neither a release nor import approval
+
+`audit_staged_archive.py` can **read-only** confirm the quarantine still matches pinned SRC-03 source ZIP. Even `CONSISTENT_FOR_MANUAL_REVIEW` never authorizes `install apply`, compilation, deployment or automated Git import: manual license/secret review and re-hashing at final source import remain necessary. [Procedure](../12-development/source-staging-audit.md).

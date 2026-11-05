@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-17 revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-17 revision=3 status=documented -->
 # Guides utilisateurs et administrateurs
 
 [English](../../en/17-user-guides/README.md) · [Index](../README.md)
@@ -16,6 +16,10 @@ L'archive actuelle ne prototype que l'enrôlement et l'export de configuration. 
 ## Choix de WebStack pour un site (Q79)
 
 Dans le parcours utilisateur visé, le nouveau site affiche une **WebStack conseillée pour ce site**, pourquoi elle convient et quelles alternatives sont compatibles. L'administrateur du site peut choisir avant la création, puis demander un **changement de profil ultérieur** avec prévisualisation, tests des règles et chemins de récupération ; le changement ne touche pas tous les sites du serveur. [Spécification](../02-architecture/site-webstack-advisor.md). Ces écrans ne sont pas encore réalisés.
+
+## Gestion d'un site visée (Q81–Q90)
+
+Pour chaque site, l'utilisateur autorisé pourra consulter la WebStack recommandée (application/`.htaccess`/PHP/isolation/ressources/ports), choisir un profil compatible et demander un changement ultérieur avec prévisualisation, fenêtre de maintenance, route de test ou bascule progressive **si techniquement possible**. Les écrans visés couvriront PHP/extensions/FPM, certificats ACME et wildcard, Git Deploy/staging, bases/cache, fichiers/SFTP/SSH limité, mail/webmail, quotas et restauration sélective ou clonage. **Aucun de ces écrans n'est encore disponible comme parcours opérationnel.** [Spécifications](../00-project-control/decisions-q81-q90.md).
 
 ## Parcours client et revendeur
 

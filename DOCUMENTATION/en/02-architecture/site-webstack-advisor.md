@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-SITE-WEBSTACK revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-02-SITE-WEBSTACK revision=2 status=specified -->
 # Per-site WebStack recommendation and safe profile switching
 
 [Français](../../fr/02-architecture/site-webstack-advisor.md) · [Architecture](README.md) · [Q71–Q80 decisions](../00-project-control/decisions-q71-q80.md)
@@ -8,6 +8,12 @@
 **When creating each website**, ForgePanel computes one or more **recommended WebStack profiles for that individual site** based on declared requirements and actual server capabilities. The UI displays a recommendation, reasons, and feasible alternatives. An administrator may **accept or select any other compatible profile**.
 
 **After creation**, site settings allow the operator to **request a WebStack switch**. It must pass authorization, preview, validation and a staged transition. The selection becomes active only after checks; no blind switch, zero-downtime guarantee or server-wide change to unrelated websites.
+
+## Q81 C and Q82 D — compatibility and transition
+
+The advisor Q81 **must** account for `.htaccess`, PHP version/extensions, OS, tenant isolation, security constraints, resource quotas and IP:port listener ownership. Ineligible profiles are rejected; recommendations are **specific to each site** under Q79.
+
+For changes Q82 permits an **isolated temporary test route** or **progressive cutover only when supported by topology**, following preview, backup, validation and maintenance window/notification planning. Cookies, sessions, application writes and protected files must stay consistent. Otherwise warn about a potentially interrupted controlled cutover. No unrelated site sharing 443 may be altered. [Site lifecycle](website-lifecycle.md).
 
 ## Recommendation criteria (future)
 

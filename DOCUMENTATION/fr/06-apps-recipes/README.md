@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-06 revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-06 revision=2 status=documented -->
 # Applications et recettes d'installation
 
 [English](../../en/06-apps-recipes/README.md) · [Index](../README.md)
@@ -14,6 +14,10 @@ Une recette consomme un compte d'hébergement, un runtime approuvé, une base et
 ## Cycle de vie
 
 Planifier prérequis et quotas ; préparer des entrées immuables ; valider ; sauvegarder avant migration ; activer sous verrous ; contrôler la santé ; enregistrer artefact et version. Un retour arrière du code est distinct d'une migration SQL : ne pas promettre un rollback lorsque schéma ou données sont modifiés irréversiblement. Le retrait précise la conservation des données, bases et sauvegardes.
+
+## Déploiements et staging (Q83–Q85, Q90)
+
+Les recettes précisent PHP/extensions, WebStack/TLS, déploiement fichiers/SFTP/Git, staging, rollback de code **distinct des migrations DB**, clonage et restauration sélective. Comptes, secrets, données et URL staging restent isolés. Q85 C demande Git Deploy, aperçu, sauvegarde et récupération ; blue-green/canary et pipelines avancés ne sont pas sélectionnés. [Cycle du site](../02-architecture/website-lifecycle.md).
 
 ## Acceptation et observabilité
 

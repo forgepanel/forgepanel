@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-06 revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-06 revision=2 status=documented -->
 # Applications and installation recipes
 
 [Français](../../fr/06-apps-recipes/README.md) · [Index](../README.md)
@@ -14,6 +14,10 @@ A recipe consumes a hosting account, approved runtime, database and storage allo
 ## Lifecycle
 
 Plan prerequisites and quota impact; stage immutable input; validate configuration; back up data before migration; activate under resource locks; check health; record the installed artifact and version. A failed code deployment can be reverted separately from a database migration: never promise rollback when the schema/data change is irreversible. Removal must ask whether data, databases and backups are retained.
+
+## Deployment and staging (Q83–Q85, Q90)
+
+Recipes must describe PHP/extensions, WebStack/TLS, files/SFTP/Git deployment, staging, code rollback **distinct from DB migrations**, selective clone/restore. Tenant identity, credentials, data and staging URLs stay isolated. Q85 C selects Git Deploy, preview, backup and controlled recovery, not automatically blue-green/canary pipelines. [Website lifecycle](../02-architecture/website-lifecycle.md).
 
 ## Acceptance and observability
 

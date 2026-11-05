@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-01 revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-01 revision=3 status=documented -->
 # Product scope and journeys
 
 [Français](../../fr/01-product/README.md) · [Index](../README.md)
@@ -23,6 +23,10 @@ The archive reaches a reviewed configuration draft, not installation completion.
 ## Q61–Q70 infrastructure decisions
 
 The target experience combines verified universal installation, configurable web/DNS/mail adapters, replicated backup and restore, eventually multi-server administration, monitoring and a visual editor. **Shared hosting + VPS administration remain first priorities** (Q54), without claiming full HA is shipped first. Optional MFA and one brand per organization remain unchanged. See [Q61–Q70](../00-project-control/infrastructure-decisions.md).
+
+## Q81–Q90 hosting journeys
+
+The target site can have a **per-site recommended WebStack and later controlled switching**, per-site PHP-FPM/extensions/limits, ACME/wildcard TLS, Git Deploy/staging, MariaDB/MySQL/PostgreSQL with optional Redis/Valkey, file manager/SFTP/restricted SSH, webmail/quarantine, hosting plans/alerts and selective restore/staging clones. Temporary test routes or progressive WebStack cutover apply **only when supported**; zero downtime is not guaranteed. [Q81–Q90 contract](../00-project-control/decisions-q81-q90.md). Not implemented.
 
 ## Scope discipline
 

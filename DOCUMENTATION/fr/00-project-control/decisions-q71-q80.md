@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-Q71-80 revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-00-Q71-80 revision=2 status=specified -->
 # Arbitrages Q71–Q80 — Exploitation configurable et WebStacks par site
 
 [English](../../en/00-project-control/decisions-q71-q80.md) · [Registre](decisions.md) · [Architecture WebStack](../02-architecture/site-webstack-advisor.md)
@@ -19,6 +19,10 @@ Ces décisions **complètent Q1–Q70 sans les remplacer**. Il s'agit d'une poli
 | Q78 C | **Prometheus et OpenTelemetry via adaptateurs** | Métriques, traces/événements supportés par capacités, règles d'export et destinataires configurables. Pas de collecte de données clientes ni export Hub sans consentement explicite. |
 | Q79 D + précision | **Recommandation initiale par site ; sélection libre et changement ultérieur** | Ne pas imposer le même profil aux sites ; afficher raisons, prérequis, incompatibilités et impact. Le changement d'un site passe par un plan vérifié et récupérable, pas par un simple toggle. |
 | Q80 C | **Widgets officiels/partenaires + widgets personnalisés déclaratifs** | Manifeste/version, sources de données autorisées, RBAC, contrôle des requêtes et rendu sûr. Aucun widget ne peut exécuter librement PHP/JS/shell ni lire des secrets d'autres tenants. |
+
+## Précisions Q81–Q90 (sans modification de Q71–Q80)
+
+Le choix Q79 d'une WebStack conseillée à la création de **chaque site** est désormais complété par Q81 C (application, PHP, `.htaccess`, OS, isolation, sécurité, ressources et listeners) et Q82 D (prévisualisation, maintenance/notifications, route de test ou bascule progressive **si possible**, avec sauvegarde/récupération). Les options PHP, TLS, Git, données, SSH, email, quotas et restauration sont définies dans les [décisions Q81–Q90](decisions-q81-q90.md). Aucun changement de l'ADR précédent ne promet de zéro interruption.
 
 ## Règles communes à tous les paramètres
 

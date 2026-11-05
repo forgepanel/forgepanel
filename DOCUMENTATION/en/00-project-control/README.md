@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00 revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-00 revision=4 status=documented -->
 # Project control
 
 [Français](../../fr/00-project-control/README.md) · [Index](../README.md)
@@ -26,4 +26,4 @@ These are responsibilities, not claims that separate agents or services already 
 
 A task identifies scope and affected components, specifies acceptance criteria, implements a bounded change, verifies it, updates both languages and changelog, and records branch/commit/PR plus limitations. A passing unit test is not a release or deployment.
 
-[Q56–Q60 decisions](commerce-identity-release-policy.md) · [Q71–Q80 decisions](decisions-q71-q80.md) · [Per-site WebStack](../02-architecture/site-webstack-advisor.md) · [Status and roadmap](status.md) · [Commercial/customization decisions](product-policy.md) · [Dual licensing and commercial protection](license-commerce.md) · [Decision register](decisions.md) · [Coverage matrix](coverage.md) · [Audit](../19-audits-risks/README.md)
+[Q56–Q60 decisions](commerce-identity-release-policy.md) · [Q81–Q90 decisions](decisions-q81-q90.md) · [Q71–Q80 decisions](decisions-q71-q80.md) · [Per-site WebStack](../02-architecture/site-webstack-advisor.md) · [Status and roadmap](status.md) · [Commercial/customization decisions](product-policy.md) · [Dual licensing and commercial protection](license-commerce.md) · [Decision register](decisions.md) · [Coverage matrix](coverage.md) · [Audit](../19-audits-risks/README.md)

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-09 revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-09 revision=2 status=documented -->
 # Base de données, transactions et migrations
 
 [English](../../en/09-database/README.md) · [Index](../README.md)
@@ -14,6 +14,10 @@ SRC-03 `apps/panel/migrations/001_setup.sql` définit trois tables, pas le vaste
 | `fp_setup_audit` | Clé primaire bigint générée, événement, métadonnées JSONB et horodatage |
 
 Un index unique partiel autorise un seul `initial_admin=true`. `PdoSetupRepository` verrouille le setup par `FOR UPDATE` ; compte/état/audit sont écrits dans la même transaction. C'est une implémentation inspectée, pas une garantie concurrente démontrée dans cet environnement.
+
+## Services de données Q86/Q90 — cibles
+
+Les **bases clients MariaDB/MySQL et PostgreSQL** utiliseront des pilotes distincts et identités/quotas dédiés ; **Redis/Valkey** restent facultatifs pour le cache/queues. Ces ressources ne figurent pas dans le schéma actuel, limité au setup. Le clonage staging et la restauration sélective nécessitent snapshots cohérents, protection des secrets, autorisations tenant et contrôle avant écrasement. Le PostgreSQL du panneau reste séparé des DB clientes. [Cycle du site](../02-architecture/website-lifecycle.md).
 
 ## Migrations et responsabilités
 

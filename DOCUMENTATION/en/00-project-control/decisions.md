@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DECISIONS revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-00-DECISIONS revision=5 status=documented -->
 # Decision register
 
 [Français](../../fr/00-project-control/decisions.md) · [Project control](README.md)
@@ -61,6 +61,17 @@ Source IDs refer to the [baseline](../19-audits-risks/baseline.md). A decision a
 | ADR-047 | Prometheus + OpenTelemetry adapters (Q78 C) | Configurable exporters, data filtering and outbound consent |
 | ADR-048 | **Per-site** recommended WebStack, changeable after creation (Q79 D, owner clarification) | Explicit initial choice; future switch uses PLAN/VALIDATE/STAGE/HEALTH/RECOVER; preserve `.htaccess` and listeners |
 | ADR-049 | Official/partner widgets plus declarative custom widgets (Q80 C) | Authorized data sources, manifests, RBAC, safe rendering, one brand per org, no arbitrary code |
+
+| ADR-050 | Application/security/resource/listener-aware WebStack advisor (Q81 C) | Per-site suggestion based on .htaccess, PHP, OS and isolation; deny incompatible profiles |
+| ADR-051 | WebStack switch with temporary route/progressive cutover when feasible (Q82 D) | Plans, snapshots, notice, maintenance, TLS/access checks, recovery; no zero-downtime guarantee |
+| ADR-052 | Per-site PHP versions/extensions/FPM/quotas (Q83 C) | Separate panel runtime and validated, scoped pools/settings |
+| ADR-053 | ACME, custom certificates, DNS-01, wildcard and renewal (Q84 C) | Domain ownership, compatible DNS provider, secrets and expiry alerts |
+| ADR-054 | Files/SFTP + Git Deploy + staging/preview/backup/rollback (Q85 C) | SQL migrations not automatically reversible; no full blue-green/canary requirement |
+| ADR-055 | MariaDB/MySQL, PostgreSQL, optional Redis/Valkey (Q86 D) | Tenant-scoped drivers, optional cache/queues and separate panel PostgreSQL |
+| ADR-056 | File manager/SFTP + restricted SSH for authorized accounts (Q87 B) | Unix scopes, safe paths, quotas, no implicit web terminal |
+| ADR-057 | Protected email, webmail, quarantine, per-domain rules/reports (Q88 C) | SPF/DKIM/DMARC/TLS, antispam/AV and mailbox/domain authorization |
+| ADR-058 | Inherited hosting plans/quotas with alerts/usage (Q89 C) | Disk, domain, mailbox, DB, CPU/RAM/PHP/process constraints enforced |
+| ADR-059 | Selective restore, staging clone, controlled cross-environment recovery (Q90 D) | Scope, target backup, isolated URLs/secrets and real recovery tests |
 
 ## Replaced or unresolved proposals
 

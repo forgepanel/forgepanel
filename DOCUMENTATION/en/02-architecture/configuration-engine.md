@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-CONFIG revision=4 status=specified -->
+<!-- forgepanel-doc id=FP-02-CONFIG revision=5 status=specified -->
 # Configuration Engine — administrable settings specification
 
 [Français](../../fr/02-architecture/configuration-engine.md) · [Architecture](README.md) · [Product policy](../00-project-control/product-policy.md)
@@ -55,6 +55,12 @@ Release signature/channel/approvals (Q61); verified DEB/RPM setup (Q62); capabil
 ## Q71–Q80 policy and site-specific choices
 
 The settings registry must expose key custody/rotation, eligible existing-service adoption, tested DNS/mail adapters, 3-2-1 backups and restore drills, approval/recovery policies, server groups, Prometheus/OpenTelemetry exports and approved declarative widgets. **Q79** adds `recommended_webstack` **per site** and a separate `webstack.planSwitch(site_id,target_profile,revision)` operation, subject to PLAN/VALIDATE/SNAPSHOT/STAGE/VERIFY/RECOVER without touching unrelated vhosts. [Details](site-webstack-advisor.md).
+
+## Q81–Q90 website settings
+
+Candidate typed allowlisted keys: `site.webstack.profile`, `site.webstack.recommendation_revision`, `site.php.version`, `site.php.extensions`, `site.php.fpm_limits`, `site.tls.mode`, `site.tls.acme_challenge`, `site.deploy.git_ref`, `site.staging.policy`, `account.database.drivers`, `account.cache.drivers`, `account.ssh.access`, `mail.domain.filters`, `plan.quota.*`, `site.restore.scope`. Child settings cannot bypass plan/server ceilings. These are proposed contract examples, not working API keys.
+
+Q82 switching requires `PLAN → PREFLIGHT → SNAPSHOT → STAGE → TEMP_ROUTE_TEST (when supported) → CUTOVER (progressive only if safe) → VERIFY → FINALIZE/RECOVER`. Show maintenance, notifications, potential downtime and recovery limits. Q90 restores/staging clones require the same controls. [Website lifecycle](website-lifecycle.md) and [Q81–Q90](../00-project-control/decisions-q81-q90.md).
 
 ## Proposed API and acceptance
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08 revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-08 revision=4 status=documented -->
 # APIs and contracts
 
 [Français](../../fr/08-api-contracts/README.md) · [Index](../README.md)
@@ -28,6 +28,10 @@ Signed artifact registry and anti-rollback metadata (Q61), capability-based DNS/
 ## Per-site WebStack advisor contract (Q79)
 
 Candidate `webstack.recommend(site_draft,server_facts,policy_revision)` returns eligible profiles, reasons, dependencies and warnings; `webstack.planSwitch(site_id,target,revision)` plans an existing site's transition with idempotency, authorization, listener ownership, `.htaccess` security and backup. Switching must not merely edit a database field or the server's global stack. [Specification](../02-architecture/site-webstack-advisor.md). No such working API exists.
+
+## Candidate Q81–Q90 hosting contracts
+
+`site.webstack.recommend`, `site.webstack.planSwitch`, `site.php.planConfig`, `site.tls.issueOrImport`, `site.deploy.planGit`, `site.staging.clone`, `tenant.database.allocate`, `tenant.cache.provision`, `tenant.files.list/write`, `tenant.ssh.configure`, `mail.domain.rules`, `hosting.plan.effectiveQuotas`, `site.restore.plan`. All require identity, tenant/org, hosting plan, real capabilities, revision, idempotency and audit, no generic root shell. None is operational. [Website lifecycle](../02-architecture/website-lifecycle.md).
 
 ## Future protocol requirements
 

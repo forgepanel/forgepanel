@@ -4,6 +4,11 @@ One chronology, both languages. / Une chronologie, deux langues.
 
 ## Unreleased / Non publié
 
+### Added / Ajouts — R2 bootstrap, optional MFA and PostgreSQL candidate contracts
+
+- **Bilingual R2 specification / Spécification R2 bilingue** — Added 12 identity/session/bootstrap requirements (`R2-ID-001..012`), 12 PostgreSQL setup/atomicity/concurrency/recovery requirements (`R2-DB-001..012`) and 20 `PLANNED` positive/negative HTTP/MFA/SQL integration cases (`R2-AUTH-001..010`, `R2-DB-TEST-001..010`). Updated FR/EN Core/Database/QA indexes and documentation CI assertions. **No historical source import, actual Symfony boot, PostgreSQL migration, runtime functional test or owner decision Q171+**. / Ajout des fiches FR/EN R2 : 12 exigences identité/bootstrap/sessions/MFA facultative, 12 exigences PostgreSQL transactions/concurrence/reprise et 20 scénarios d'intégration positifs/négatifs au statut `PLANNED`. Index Core/Database/QA et contrôles documentaires mis à jour. **Aucun import des sources d'origine, démarrage Symfony, migration PG, test fonctionnel réel ni nouvelle décision produit**.
+
+
 ### Changed / Modifications — documentation readiness reconciliation (Core)
 
 - **Documentation audit / Audit documentaire** — Reconciled live `develop` R1/R3 status for PRs #37–#43, added a **22-item bilingual gap register**, versioned JSON evidence/dependency graph and **22-entry owner-decision-to-contract/test traceability matrix**, refreshed coverage/navigation and introduced a static CI test for FR/EN IDs, dependency acyclicity and evidence boundaries. **This is a documentation change, not approval of open Q171+ decisions or certification of HTTP/SQL/OS/VM/hosting/Hub.** / Réconciliation des statuts R1/R3 avec les PR #37–#43 fusionnées, **22 lacunes documentaires FR/EN**, registre JSON versionné et graphe de dépendances, **22 lignes de traçabilité** décisions/contrats/QA, navigation/couverture et test CI statique des IDs/parité/dépendances. **Aucune décision Q171+ approuvée ni certification de services HTTP/SQL/OS/VM/hébergement/Hub.**

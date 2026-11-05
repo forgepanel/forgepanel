@@ -40,4 +40,6 @@ R3 image admission is a **read-only review gate**, not QEMU execution authority.
 
 R3 private image staging: `tools/kvm-host-probe/staging` copies admitted QCOW2 bytes into a new per-run 0700 directory with read-only 0400 files and SHA-256-bound review receipt. This is **not immutable storage or QEMU execution permission**: same-UID mutation remains possible after checking; future runner must pin and rehash exact bytes at launch. A partial stage requires manual controlled cleanup, never automatic recursive deletion. See `DOCUMENTATION/en/14-devops-releases/kvm-image-staging.md`.
 
+R2 documentation candidate contracts live at `DOCUMENTATION/en/03-core/bootstrap-identity-r2.md`, `DOCUMENTATION/en/09-database/setup-transaction-r2.md` and `DOCUMENTATION/en/13-tests-quality/r2-integration-gates.md` (mirrored in FR). All 20 HTTP/SQL tests are PLANNED, not PASS; database schema, migration, API routes, recovery proof, TTL and limits remain subject to specialized review after original SRC-03 import. Admin MFA remains explicitly optional. Documentation CI proves parity only.
+
 Leave a factual handover: completed work, remaining work, evidence, unresolved decisions, branch/commit/PR and checks not run. Never ask the owner to patch code.

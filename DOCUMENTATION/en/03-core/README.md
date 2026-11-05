@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-03 revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-03 revision=2 status=documented -->
 # Core and bootstrap
 
 [Français](../../fr/03-core/README.md) · [Index](../README.md)
@@ -14,6 +14,10 @@ Web setup uses `SetupService`, `SetupRepository` and `SetupTransaction`. Postgre
 The source generates 32-byte random bootstrap secrets, stores SHA-256 verifiers, expires tokens after 900 seconds and locks token attempts after five failures. Setup grants last 1800 seconds. The external v0.7 prototype creates a pending-MFA administrator and requires TOTP before configuration. **This requirement is now superseded**: the wizard must offer both “enable MFA” and “continue without MFA”, then enter CONFIGURING either way. The external v0.7 source is not yet imported or fixed. Local resume revokes the old grant and issues a new one-use code; it is not a permanent administrator login.
 
 The SQL implementation locks `fp_setup` and writes account/state/audit together. Invalid attempts must persist; infrastructure errors roll back. The in-memory tests do not prove PostgreSQL concurrency or lost-response recovery. Client retries after an uncertain commit need explicit integration tests before exposure.
+
+## First-release roles (Q124 B)
+
+The verified initial flow must provide permanent local administrator login with recovery and a **website-manager** role restricted to its authorized resources. Linux root remains separate from application Super Administrator. Administrator MFA is **optional**; skipping TOTP enrollment cannot block the wizard. Sessions, CSRF, API/agent enforcement and cross-tenant denial need real Symfony/PG integration testing. [Qualification](../00-project-control/mvp-qualification.md). These remain release criteria, not operating features.
 
 ## Target kernel contracts
 

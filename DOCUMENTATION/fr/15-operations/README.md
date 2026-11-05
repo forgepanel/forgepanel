@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-15 revision=7 status=documented -->
+<!-- forgepanel-doc id=FP-15 revision=8 status=documented -->
 # Exploitation, diagnostic et récupération
 
 [English](../../en/15-operations/README.md) · [Index](../README.md)
@@ -40,6 +40,10 @@ La maintenance PHP surveille les fins de support, avertit les responsables et pl
 ## Maintenance, exceptions et haute disponibilité conditionnelle (Q101–Q110)
 
 Exploiter les exceptions PHP obsolètes avec **expiration, responsable et plan de migration** ; vérifier régulièrement conformité et capacité d'isolation Linux (Q101/102). Différencier déclencheurs/approbations de staging et production, journaliser les copies de données sensibles avec rétention et nettoyage (Q103/104). Renouvellement ACME : essais bornés, alertes et secours conservant le certificat sain (Q105). Les bases mutualisées/dédiées et clusters éventuels ne deviennent utilisables qu'après certification de la réplication/restauration (Q106). SSH temporaire/certifié, Webmail conseillé sur qualification et grâce de quota par ressource ont expiration, alertes et audit (Q107–109). Pré-synchronisation et bascule avancée (Q110) exigent cohérence prouvée et fallback ; maintenance obligatoire sinon. [Politiques Q101–Q110](../02-architecture/runtime-exceptions-and-data-continuity.md).
+
+## Exploitation minimale Q125–Q126
+
+La première version devra observer services, métriques et logs en lecture seule, puis proposer des **opérations de paquets/mises à jour OS contrôlées** : origine fiable, diff, analyse d'impact, autorisation, état durable, avertissement de reboot, contrôle de santé et récupération. Les sauvegardes initiales couvrent **configuration du panneau + fichiers du site PHP**, avec manifeste et **restauration testée** (et état PG cohérent si indispensable au panneau) ; les engagements de backup 3-2-1, DR, mail et bases clientes restent des phases distinctes. [Matrice MVP](../00-project-control/mvp-qualification.md).
 
 ## Sauvegarde et restauration requises
 

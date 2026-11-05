@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=8 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=9 status=documented -->
 # Status and dependency-ordered roadmap
 
 [Français](../../fr/00-project-control/status.md) · [Project control](README.md)
@@ -53,5 +53,7 @@ The owner has confirmed **Q71–Q80**: protected key rotation, controlled servic
 **Q91–Q100** are confirmed: maintained PHP and planned migrations, confined per-site PHP-FPM, validated manual/webhook Git Deploy, site-scoped staging privacy/retention, multiple ACME and DNS-01, multiple tenant DB/cache engines, plan-scoped restricted SSH, configurable Webmail, quotas with bounded grace and authorized increments, secure cross-server migration/restore. [Q91–Q100 register](decisions-q91-q100.md). All remain **specified, not implemented or certified**.
 
 **Q101–Q110 confirmed (2026-11-05)**: time-limited PHP EOL exceptions/planned migration, OS-certified plan/site isolation, manual/webhook Git with per-environment approvals, sensitive staging requiring extra permission, multi-CA ACME with recovery, shared/dedicated SQL and optional certified clusters, temporary/certified SSH access, test-qualified Webmail advice, quota grace by resource and conditional pre-sync/replication/failover. [Q101–Q110 decisions](decisions-q101-q110.md). **Specified only; no new runtime or OS certification.**
+
+**Q121–Q130 confirmed (2026-11-05)**: first OS/WebStack **after comparative VM/security testing** (neither selected), external DNS with ACME **HTTP-01**, local administrator and site-manager roles, VPS observation plus controlled OS package upgrades, actual panel-config/PHP-file backup/restore, internal tests then **authorized private beta** after prerequisites, premium self-service transfers with manual lost-server recovery, contractual partner maintenance/alerts/withdrawal and security lead+deputy/triage. [Q121–Q130 decisions](decisions-q121-q130.md) · [MVP qualification](mvp-qualification.md). **Specified only; no running VM/product delivered.**
 
 No date or version commitment is implied by these priorities. Product-owner decisions still needed: software/contribution license and authorized private security contact. Package/runtime choices require an evidence-based technical proposal, not a new architecture by assumption.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=8 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=9 status=documented -->
 # État et roadmap ordonnée par dépendances
 
 [English](../../en/00-project-control/status.md) · [Pilotage](README.md)
@@ -53,5 +53,7 @@ Les décisions **Q71–Q80** sont confirmées : protection/rotation des clés, a
 **Q91–Q100** sont confirmées : PHP maintenu et migration planifiée ; pools PHP-FPM isolés et Linux renforcé ; Git manuel/webhook validé ; staging par site avec confidentialité/rétention ; ACME multi-autorités et DNS-01 ; plusieurs moteurs de bases/cache par compte ; SSH limité par plan ; webmail configurable ; quotas avec grâce et allocations autorisées ; restauration/migration inter-serveurs sécurisée. [Registre Q91–Q100](decisions-q91-q100.md). Ces composants sont **spécifiés, pas implémentés ou certifiés**.
 
 **Q101–Q110 confirmées (2026-11-05)** : PHP EOL dérogatoire temporaire et migration planifiée, isolation par profils certifiés selon plan/site, Git manuel/webhook avec approbation par environnement, staging sensible sous autorisation spéciale, ACME multi-CA avec secours, DB mutualisées/dédiées et clusters optionnels certifiés, SSH temporaire/certificats, Webmail conseillé après tests, délais/plafonds de quotas par ressource et migration présynchronisée avec réplication/bascule **conditionnelles**. [Décisions Q101–Q110](decisions-q101-q110.md). **Spécifications seulement ; aucune nouvelle fonctionnalité ni certification VM.**
+
+**Q121–Q130 confirmées (2026-11-05)** : premier OS/WebStack **après comparaison des tests VM et sécurité** (aucun présélectionné), domaine géré via **DNS externe** et certificat ACME **HTTP-01**, rôle administrateur + gestionnaire de site, VPS observable avec paquets/mises à jour contrôlés, backup configuration panneau/fichiers PHP et restauration réellement testée, tests internes puis **bêta privée autorisée** après prérequis, licences premium transférables et récupération manuelle de serveur perdu, obligations partenaires contractuelles/alertes/retrait, responsable sécurité + suppléant/triage. [Décisions Q121–Q130](decisions-q121-q130.md) · [Qualification MVP](mvp-qualification.md). **Spécification uniquement, pas de VM/logiciel livré.**
 
 Ces priorités n'engagent aucune date ni version. Arbitrages produit nécessaires : licence du logiciel/des contributions et canal privé de sécurité autorisé. Les choix paquets/runtimes nécessitent une proposition technique étayée, pas une nouvelle architecture implicite.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=6 status=documented -->
 # Installation, promotion Git et releases
 
 [English](../../en/14-devops-releases/README.md) · [Index](../README.md)
@@ -34,6 +34,10 @@ La stratégie Q71 précise l'utilisation d'un KMS/HSM ou service de clés proté
 ## Périmètre première version et ordre d'exécution (Q119 B, Q120 D)
 
 **R1 sources importées avec provenance → R2 tests réels Symfony/PostgreSQL/identité/MFA optionnel → R3 installateur vérifié et testé → R4 premier site PHP administrable, domaine et HTTPS, administration VPS minimale → R5 contrat d'extension générique → R6 Hub privé.** La [roadmap](../00-project-control/implementation-roadmap.md) fixe les critères VM/HTTP/SQL et les cas de reprise ; les étapes Hub sont **après** le premier produit Core utilisable. La décision Q119 B n'exige pas toutes les WebStacks/OS ni DNS/mail natifs dès le premier jalon. Avant diffusion publique : finaliser licences/CLA après revue (Q111/Q112) et les deux canaux de signalement privés vérifiés (Q118). Aucun de ces résultats n'est présumé opérationnel.
+
+## Qualification et diffusion privée (Q121–Q127)
+
+**Q121/122 :** aucun OS ni profil WebStack choisi par défaut : premier pilote après comparaison VM et sécurité. **Q123 :** domaine DNS externe, ACME HTTP-01/port 80 puis HTTPS automatique. **Q124 :** admin local + gestionnaire de site et récupération. **Q125 :** observation VPS et opérations de paquets/mises à jour OS allowlistées, planifiées, autorisées et vérifiées, sans root shell arbitraire. **Q126 :** backup du panneau et fichiers PHP avec restauration réelle et reprise cohérente du PG du panneau si nécessaire. **Q127 :** tester en interne, puis bêta **privée** uniquement après validation des preuves, consentements/conditions de distribution, droits logiciels et canaux sécurité. Aucun déploiement en production n'est autorisé par ces spécifications. [Qualification MVP](../00-project-control/mvp-qualification.md).
 
 ## Preuves de livraison
 

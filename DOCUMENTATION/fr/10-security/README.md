@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=8 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=9 status=documented -->
 # Modèle de sécurité et signalement
 
 [English](../../en/10-security/README.md) · [Index](../README.md)
@@ -58,6 +58,10 @@ Le verrouillage après cinq essais bootstrap peut servir au déni de service ; r
 ## Signalement de vulnérabilités retenu (Q118 C)
 
 Avant toute diffusion publique, **configurer et vérifier** deux canaux : signalement **privé sur GitHub** si le dépôt le permet, et **adresse email de sécurité dédiée dont les destinataires sont autorisés**. Les procédures cibles couvrent triage, gravité, accusé de réception, accès restreint, suivi des correctifs et notifications responsables ; aucune adresse, délai contractuel de réponse ou programme de récompense n'est établi ici. Le dépôt et les canaux doivent être vérifiés sur le compte réel avant d'en faire la promotion. [Décisions Q111–Q120](../00-project-control/decisions-q111-q120.md).
+
+## Responsable et suppléant, bêta privée (Q127/Q130)
+
+Q130 C exige un **responsable sécurité identifié et un suppléant**, autorisés à consulter les signalements, trier les incidents, coordonner les correctifs/notifications et escalader pendant une absence. Ces rôles ne sont **pas encore attribués** par ce document. Vérifier réellement le signalement privé GitHub et l'email dédié Q118 avant de laisser des testeurs externes accéder à la bêta privée. Q127 ne justifie ni collecte de secrets clients, ni communication publique de vulnérabilités, ni contournement des obligations de diffusion logicielle. [Décisions](../00-project-control/decisions-q121-q130.md).
 
 ## Signalement et revue
 

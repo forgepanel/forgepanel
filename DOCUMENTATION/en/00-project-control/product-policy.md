@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-POLICY revision=8 status=documented -->
+<!-- forgepanel-doc id=FP-00-POLICY revision=9 status=documented -->
 # Product decisions of 5 November 2026 — free Core, commercial model and configuration
 
 [Français](../../fr/00-project-control/product-policy.md) · [ADR register](decisions.md) · [Configuration Engine](../02-architecture/configuration-engine.md)
@@ -68,6 +68,10 @@ The choices add **time-limited** PHP exceptions and planned migration (Q101), OS
 Exact AGPL variant follows **legal review** (Q111 C); electronic CLA and verification of individual/corporate signing rights precede merge (Q112 C). Hub plans organization license pools/transfers/server replacement (Q113 D), manual review of every partner release and withdrawal (Q114 C), sandbox payment adapters before per-market provider selection (Q115 D), per-jurisdiction/category retention (Q116 C), and reason-scoped premium revocations without stopping free Core (Q117 C). Security channels chosen are **private GitHub reporting plus verified dedicated email**, with triage/notices (Q118 C); no such address/channel is automatically configured.
 
 **Q119 B first functional version** covers verified installer, CLI, wizard, identity/PostgreSQL and manageable PHP site/domain/HTTPS. **Q120 D specifies the dependency order**: sources → Symfony/PG → installer → first site/VPS → neutral Core ABI → Hub. [Decisions](decisions-q111-q120.md) · [Roadmap](implementation-roadmap.md). All other Q1–Q110 functions remain phased goals.
+
+## Confirmed Q121–Q130
+
+**Q121 D/Q122 D** require **evidence-based VM/security/compatibility comparison** before selecting first OS and WebStack; no user default is set. **Q123 A** scopes initial hosting to an external-DNS domain with **HTTP-01 and automatic HTTPS**, deferring local authoritative DNS and DNS-01. **Q124 B** adds local admin and site-manager roles; **Q125 B** adds controlled OS package upgrades to VPS diagnostics; **Q126 B** requires actual panel-config/PHP-site-file backup and restore. **Q127 B** permits isolated internal testing followed by authorized private beta after distribution-license and security checks. **Q128 D/Q129 C/Q130 C** specify license transfer with manual lost-server recovery, partner contractual maintenance/alerts/withdrawal and security lead/deputy/triage. None is shipped. [Decisions](decisions-q121-q130.md) · [Qualification](mvp-qualification.md).
 
 ## Open follow-ups — no default assumed
 

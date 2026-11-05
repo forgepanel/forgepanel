@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-03 revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-03 revision=2 status=documented -->
 # Core et bootstrap
 
 [English](../../en/03-core/README.md) · [Index](../README.md)
@@ -14,6 +14,10 @@ Le setup web utilise `SetupService`, `SetupRepository` et `SetupTransaction`. Po
 Le code génère des secrets bootstrap aléatoires de 32 octets, conserve des vérificateurs SHA-256, expire les jetons après 900 secondes et verrouille les essais après cinq échecs. Les autorisations de setup durent 1800 secondes. Le prototype v0.7 crée un administrateur en attente de MFA et impose TOTP avant configuration. **Cette obligation est maintenant obsolète** : le wizard doit offrir « activer MFA » ou « continuer sans MFA », puis passer à CONFIGURING dans les deux cas. Le code v0.7 externe demeure inchangé tant qu'il n'a pas été importé et corrigé. La reprise locale révoque l'autorisation précédente et émet un code à usage unique ; elle ne constitue pas une connexion administrateur permanente.
 
 L'implémentation SQL verrouille `fp_setup` et écrit compte/état/audit ensemble. Les tentatives invalides persistent ; les erreurs d'infrastructure annulent la transaction. Les tests en mémoire ne prouvent ni concurrence PostgreSQL ni récupération après perte de réponse. Les reprises après commit incertain nécessitent des tests d'intégration avant exposition.
+
+## Rôles initiaux de la v1 (Q124 B)
+
+Le premier parcours vérifié doit fournir une connexion administrateur locale permanente avec récupération et un rôle **gestionnaire de site** qui ne peut consulter ou administrer que ses ressources autorisées. La distinction root Linux / super-administrateur application demeure. Le MFA administrateur est **facultatif** ; l'absence d'enrôlement TOTP ne doit pas bloquer le wizard. Sessions, CSRF, vérifications API/agent et refus inter-tenants seront testés sur Symfony/PG réel. [Qualification](../00-project-control/mvp-qualification.md). Il s'agit encore de critères de livraison, non de fonctions en service.
 
 ## Contrats du noyau cible
 

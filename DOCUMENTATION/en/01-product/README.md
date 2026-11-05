@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-01 revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-01 revision=4 status=documented -->
 # Product scope and journeys
 
 [Français](../../fr/01-product/README.md) · [Index](../README.md)
@@ -27,6 +27,10 @@ The target experience combines verified universal installation, configurable web
 ## Q81–Q90 hosting journeys
 
 The target site can have a **per-site recommended WebStack and later controlled switching**, per-site PHP-FPM/extensions/limits, ACME/wildcard TLS, Git Deploy/staging, MariaDB/MySQL/PostgreSQL with optional Redis/Valkey, file manager/SFTP/restricted SSH, webmail/quarantine, hosting plans/alerts and selective restore/staging clones. Temporary test routes or progressive WebStack cutover apply **only when supported**; zero downtime is not guaranteed. [Q81–Q90 contract](../00-project-control/decisions-q81-q90.md). Not implemented.
+
+## First PHP/HTTPS website and private beta — Q121–Q127
+
+The first functional experience targets **one PHP site with an externally managed DNS domain and ACME HTTP-01 HTTPS**, without requiring native DNS. First OS and WebStack are **chosen after comparative VM testing**, never assumed defaults. Include local admin and website-manager roles, VPS diagnostics with **controlled OS updates**, backed-up panel/site files and **tested restores**. Private beta follows only after isolated internal tests and verified distribution/security reporting prerequisites. None of these journeys is **implemented**. [MVP](../00-project-control/mvp-qualification.md).
 
 ## Scope discipline
 

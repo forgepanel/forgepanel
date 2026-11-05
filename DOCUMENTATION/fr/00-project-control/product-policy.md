@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-POLICY revision=8 status=documented -->
+<!-- forgepanel-doc id=FP-00-POLICY revision=9 status=documented -->
 # Décisions produit du 5 novembre 2026 — gratuit, commercial et configurable
 
 [English](../../en/00-project-control/product-policy.md) · [Registre ADR](decisions.md) · [Configuration Engine](../02-architecture/configuration-engine.md)
@@ -68,6 +68,10 @@ Les nouveaux choix encadrent les exceptions PHP **temporaires** avec migration (
 La variante AGPL exacte reste à choisir **après revue juridique** (Q111 C), et le CLA exige signature électronique et vérification des droits individuels/entreprises avant fusion (Q112 C). Le Hub gérera pools de licences/transferts/remplacement de serveur (Q113 D), revue manuelle de chaque release partenaire et retrait (Q114 C), pilotes de paiement sandbox puis choix par marché (Q115 D), rétention par catégorie/juridiction (Q116 C) et révocations premium par motif sans bloquer le Core gratuit (Q117 C). Les canaux de sécurité retenus sont **GitHub privé + email dédié vérifié**, avec triage/notification (Q118 C) : aucun contact n'est encore configuré par cette documentation.
 
 La **première version fonctionnelle Q119 B** comprend installateur vérifié, CLI, wizard, identité/PostgreSQL et un site PHP administrable avec domaine et HTTPS. **Q120 D fixe les dépendances** : sources → Symfony/PG → installateur → site/VPS → ABI Core générique → Hub. [Détails](decisions-q111-q120.md) · [Roadmap](implementation-roadmap.md). Les autres modules Q1–Q110 restent des cibles par phases.
+
+## Décisions Q121–Q130 confirmées
+
+**Q121 D et Q122 D** imposent un **choix technique étayé par comparaison VM/compatibilité/sécurité** du premier OS et de la première WebStack ; aucun ne devient un choix utilisateur par défaut. **Q123 A** borne la première version au domaine sous DNS externe avec **HTTP-01 et HTTPS automatique** (DNS autoritatif local et DNS-01 seront ajoutés plus tard). **Q124 B** exige les rôles administrateur local et gestionnaire de site ; **Q125 B** ajoute le contrôle des paquets/mises à jour OS aux diagnostics VPS ; **Q126 B** les backups/restaurations prouvés de configuration panneau et fichiers PHP. **Q127 B** prévoit tests internes puis bêta privée avec revue des obligations de distribution et contact sécurité. **Q128 D**, **Q129 C** et **Q130 C** précisent transfert de licences avec reprise manuelle, obligations partenaires avec alertes/retrait, et responsable sécurité + suppléant/triage. Aucun de ces services n'est déclaré disponible. [Décisions](decisions-q121-q130.md) · [Qualification](mvp-qualification.md).
 
 ## Questions encore ouvertes — ne pas présumer
 

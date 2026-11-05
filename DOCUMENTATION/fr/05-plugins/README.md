@@ -17,6 +17,6 @@ L'installation prépare et vérifie l'artefact sans l'activer. L'activation exig
 
 L'acceptation exige tests de refus de capacités, signature/intégrité invalides, incompatibilité de version, cycles de dépendances, migration interrompue et retrait sûr. L'audit indique acteur, identité du plugin, permissions approuvées, artefact et résultat, sans secrets.
 
-Les services privés de catalogue, licence ou facturation ne sont pas des composants approuvés. S'ils sont introduits, leurs secrets, autorité de signature et données d'exploitation restent hors du dépôt public ; seuls les contrats versionnés y figurent. Cette documentation n'autorise aucun achat, compte de service ou publication de plugin.
+ForgePanel-Hub est désormais spécifié dans le dépôt privé `yyogas/forgepanel-hub` comme une extension éditeur détachée et facultative. **Aucun chargeur compatible ou plugin réellement actif n'existe encore.** Les services privés de catalogue, licence ou facturation ne sont pas des composants approuvés. S'ils sont introduits, leurs secrets, autorité de signature et données d'exploitation restent hors du dépôt public ; seuls les contrats versionnés y figurent. Cette documentation n'autorise aucun achat, compte de service ou publication de plugin.
 
 [Modules natifs](../04-modules/README.md) · [Sécurité](../10-security/README.md) · [Critères de livraison](../14-devops-releases/README.md)

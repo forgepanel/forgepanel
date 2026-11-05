@@ -12,7 +12,7 @@ ForgePanel targets server owners, hosting operators, agencies, resellers and hos
 | ID | Journey | Acceptance criterion |
 |---|---|---|
 | REQ-001 | Install from one command | On a supported clean VM, verify origin/signatures, preflight, install isolated panel services, report verified HTTPS access; interruption and rerun must not corrupt state |
-| REQ-002 | Claim the installation | Local privileged proof issues a short-lived one-use token; create an independent panel account, require MFA, close initial registration |
+| REQ-002 | Claim the installation | Local privileged proof issues a short-lived one-use token; create an independent panel account, offer optional MFA (now or later) and close initial registration |
 | REQ-003 | Configure through a resumable wizard | Explain service dependencies and system changes; save progress; validate the plan before applying it; no ambiguous success after partial failure |
 | REQ-004 | Host a site without marketplace plugins | Native account, domain, PHP runtime, TLS, database/files and backup capabilities work under explicit resource permissions |
 | REQ-005 | Diagnose and recover locally | Read-only diagnosis works without the web UI; repairs are previewed, bounded, audited and preserve unrelated data |

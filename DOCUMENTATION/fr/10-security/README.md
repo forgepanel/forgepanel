@@ -17,6 +17,10 @@ Protéger privilèges Linux, données clientes, identifiants SQL, clés MFA/chif
 
 SRC-03 n'implémente que les contrôles métier du setup et des protections HTTP dans les sources. Durcissement systemd, contrôles obligatoires, isolation client, rotation de secrets en production, connexion/RBAC complets et restauration ne sont pas démontrés.
 
+## Politique MFA facultatif
+
+Le MFA administrateur est **facultatif**, pas une condition de création du premier compte ni d'accès au wizard. Proposer TOTP et, plus tard, WebAuthn ; permettre activation différée, désactivation contrôlée et codes de récupération si activé. Protéger les actions sensibles par réauthentification et autorisations contextualisées. Le code v0.7 encore obligatoire nécessite une correction et des tests.
+
 ## Critères minimaux de livraison
 
 Ne jamais demander le mot de passe root Linux dans le panneau. Maintenir USER fermé avant validation des autorisations et sessions. Ne pas désactiver SELinux/AppArmor ou le pare-feu pour réussir un test. Éviter les secrets dans URL, logs et artefacts. Exiger diagnostic en lecture seule avant réparation proposée et autorisation explicite avant destruction. Les tests de restauration couvrent les clés, pas seulement SQL/fichiers.

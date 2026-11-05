@@ -9,7 +9,7 @@ Cette documentation sert à exprimer les priorités et examiner les résultats p
 
 ## Parcours initial visé
 
-Un futur installateur vérifié en une commande contrôle le serveur, installe le panneau indépendamment des stacks clientes et affiche un accès HTTPS vérifié. Le propriétaire reçoit un code à usage unique dans son terminal local privilégié, crée un administrateur indépendant de root Linux, active le MFA et choisit les services dans un wizard reprenable. Le plan explique les modifications avant application. La fin du wizard distingue services sélectionnés, réellement installés et en bonne santé.
+Un futur installateur vérifié en une commande contrôle le serveur, installe le panneau indépendamment des stacks clientes et affiche un accès HTTPS vérifié. Le propriétaire reçoit un code à usage unique dans son terminal local privilégié, crée un administrateur indépendant de root Linux, peut choisir d'activer ou non le MFA et sélectionne les services dans un wizard reprenable. Le plan explique les modifications avant application. La fin du wizard distingue services sélectionnés, réellement installés et en bonne santé.
 
 L'archive actuelle ne prototype que l'enrôlement et l'export de configuration. Ne pas saisir le mot de passe Linux dans un formulaire web non vérifié. Ne pas ignorer un avertissement d'identité TLS pour terminer le bootstrap. Les domaines d'exemple sont documentaires, pas des services officiels.
 

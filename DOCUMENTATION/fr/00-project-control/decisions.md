@@ -19,6 +19,8 @@ Les identifiants sources renvoient à l'[état initial](../19-audits-risks/basel
 | ADR-010 | Politique du runtime applicatif | Ouverte : l'archive accepte PHP >=8.2 ; la préférence PHP 8.4 ne certifie pas une politique de paquets sur six OS |
 | ADR-011 | Licence et règles de contribution | Arbitrage propriétaire ouvert ; aucune présomption AGPL, GPL, propriétaire ou double licence |
 | ADR-012 | Outil documentaire limité à la bibliothèque standard Python | Nouveau choix d'outillage borné ; ne rend pas Python obligatoire pour le produit |
+| ADR-013 | MFA administrateur facultatif (décision explicite du propriétaire, 2026-11-05) | Premier compte sans obligation TOTP ; activation immédiate ou différée, réauthentification sensible ; code v0.7 encore bloquant à corriger lors de son import. |
+| ADR-014 | ForgePanel-Hub, extension éditeur privée détachée dans `yyogas/forgepanel-hub` | Même Core standard avec/sans Hub ; ABI générique encore absente ; aucune injection de PHP privé ni accès root. |
 
 ## Propositions remplacées ou non résolues
 

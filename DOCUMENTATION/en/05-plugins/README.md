@@ -17,6 +17,6 @@ Installation stages and verifies the artifact without activating it. Activation 
 
 Acceptance requires capability-denial tests, signature/integrity failures, version incompatibility, dependency-cycle detection, interrupted migration and safe removal tests. Audit records include actor, plugin identity, approved permissions, artifact identity and outcome; secrets are excluded.
 
-Private catalog, license or billing services are not yet approved components. If introduced, their credentials, signing authority and operational data stay outside the public repository; only versioned integration contracts belong here. No marketplace purchase, service account or plugin publication is authorized by this documentation.
+ForgePanel-Hub is now specified in the private `yyogas/forgepanel-hub` repository as an optional detached publisher extension. **No compatible plugin loader or activated Hub plugin exists yet.** Private catalog, license or billing services are not yet approved components. If introduced, their credentials, signing authority and operational data stay outside the public repository; only versioned integration contracts belong here. No marketplace purchase, service account or plugin publication is authorized by this documentation.
 
 [Native modules](../04-modules/README.md) · [Security](../10-security/README.md) · [Release gates](../14-devops-releases/README.md)

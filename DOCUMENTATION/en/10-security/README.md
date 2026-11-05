@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=12 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=13 status=documented -->
 # Security model and disclosure
 
 [Français](../../fr/10-security/README.md) · [Index](../README.md)
@@ -78,3 +78,7 @@ Q137 D requires **invited testers, accepted terms, staged waves, a private bugs/
 ## Reporting and review
 
 No supported production release, private reporting email or response SLA has been established. Use GitHub private reporting only when available; otherwise request a private channel without posting exploit details or secrets publicly. Establish that channel before public distribution. Review sensitive code separately from implementation; no independent reviewer was available in this documentation audit. See [risk register](../19-audits-risks/README.md).
+
+## Q161–Q170 security and exceptions
+
+Ephemeral KVM runners are isolated and cleaned of secrets; signed Q162 evidence persists outside VM in private immutable RBAC-controlled storage. Q163 permits only separately approved, scoped, expiring, audited **noncritical performance** exceptions; Q132 critical failures remain FAIL. External Q164 DNS probe is SSRF protected and bounded; Q165 OS repair is explicit/allowlisted, nondestructive and retry-limited; Q166 backup is never recoverable without full isolated PASS restore and verified keys; Q167 SFTP public keys require possession/rotation/site scoping. Q168 prevents cohort reidentification/forced collection; Hub Q169–170 protects premium transfers and signed notices without disrupting free Core or revealing secrets. [Decisions](../00-project-control/decisions-q161-q170.md).

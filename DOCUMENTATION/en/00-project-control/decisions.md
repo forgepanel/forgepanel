@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DECISIONS revision=12 status=documented -->
+<!-- forgepanel-doc id=FP-00-DECISIONS revision=13 status=documented -->
 # Decision register
 
 [Français](../../fr/00-project-control/decisions.md) · [Project control](README.md)
@@ -149,6 +149,17 @@ Source IDs refer to the [baseline](../19-audits-risks/baseline.md). A decision a
 | ADR-127 | Beta local health/manual reports/minimal opt-in diagnostics by cohort (Q158 C) | Separate Q6 consents, per-cohort pause, no mandatory telemetry |
 | ADR-128 | Premium transfer risk: lost host, repetition, org mismatch/compromise (Q159 C) | Q138 conditional extra approval and Q148 challenge/manual Hub recovery |
 | ADR-129 | Signed human FR/EN + machine-structured advisories (Q160 C) | Configurable notices, protected details, no mandatory advanced standard |
+
+| ADR-130 | Isolated ephemeral local KVM runners with pinned images, quotas and automated cleanup (Q161 C) | Q151 local before cloud. Verify KVM capabilities, pinned image/commit hashes, resources and secret cleanup; keep signed evidence outside ephemeral runner. |
+| ADR-131 | Private immutable storage for signed reports with history, retention and access control (Q162 B) | Q152 internal evidence: verify signatures, provenance, snapshots, versions, history and RBAC; option C independent replica is NOT selected. |
+| ADR-132 | Severity-based performance waiver approval with separation, scope, expiry and periodic review (Q163 C) | Only noncritical Q153/Q142 performance budgets: separate requester/approver according to policy, revoke and audit. Q132 security, isolation and recovery vetoes cannot be waived. |
+| ADR-133 | Local DNS check plus one independent external probe (Q164 B) | Q154: verify only actually published A/AAAA on port 80/HTTP-01 and HTTPS. External probe must be authorized, bounded and SSRF-safe; option C multiple probe networks not adopted. |
+| ADR-134 | Bounded nondestructive repair with checkpoints and human approval for risky actions (Q165 C) | Q155: explicit allowlisted system operations, capped retries/timeouts and health/audit; no arbitrary root shell or destructive rollback without approval. |
+| ADR-135 | Isolated restore for each backup, deeper periodic functional tests and severity-based outage drills (Q166 C) | Q156: recoverable status only after PASS isolated full-scope restore and accessible protected recovery key; host/key/outage drills cannot destroy real recovery secrets. |
+| ADR-136 | SFTP public-key verification, expiry, rotation, allowed algorithms, audit and sensitive-action checks (Q167 C) | Q157/Q146: site-manager scope, possession proof, quotas, canonical isolation, revocation and action approval; no tenant private key or shell. |
+| ADR-137 | Separate consents, per-data/cohort thresholds, aggregation, redaction and anti-reidentification (Q168 C) | Q158/Q6: telemetry never forced. Configurable data/cohort minimums and protection against differencing; local health/manual reports work without Hub. |
+| ADR-138 | Versioned risk policy with low-risk automated premium transfer, additional approval and safe recovery (Q169 C) | Q159/Q138/Q148: verify org/rights/fresh nonce before automation; suspicious repetition, lost source, mismatch or compromise triggers manual review and target-transfer hold only. No arbitrary per-product Q159 D engine. |
+| ADR-139 | Signed validated versioned JSON Schema for advisory with synchronized FR/EN and history (Q170 B) | Q160/Q150: single canonical source for structured and human versions, authorized recipients, configurable notices and protected sensitive fields; no mandatory advanced interchange option C. |
 
 ## Replaced or unresolved proposals
 

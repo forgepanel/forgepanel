@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-MVP-QUAL revision=5 status=specified -->
+<!-- forgepanel-doc id=FP-00-MVP-QUAL revision=6 status=specified -->
 # First PHP/HTTPS ForgePanel qualification — Q121–Q127
 
 [Français](../../fr/00-project-control/mvp-qualification.md) · [Roadmap](implementation-roadmap.md) · [Q121–Q130 decisions](decisions-q121-q130.md)
@@ -79,3 +79,9 @@ Private beta is not stable/public release and does not automatically exempt soft
 A security owner and **deputy** (Q130 C), their access, triage workflow, escalation, audit and coordinated notices must be **actually appointed and verified** before sharing. Both Q118 routes (GitHub private reporting + dedicated security email) must be configured/tested; never invent names, mailbox, response SLA or operational team.
 
 **Status: test plan only. No first OS/WebStack, ACME vendor or beta team has been qualified.**
+
+## Additional operational qualification — Q161–Q168
+
+Run on **local ephemeral isolated QEMU/KVM system VMs** Q161 with pinned images/commits/resources and secret cleanup; keep signed **internal** qualification reports in a private immutable access-controlled historical store Q162. Q163 waivers apply solely to **noncritical performance** budgets with separated approvals, scope/expiry/review and **unwaivable Q132 vetoes**.
+
+**DNS Q164 B**: check each actually advertised A/AAAA family both locally **and from one independent external probe** for port 80/HTTP-01 and TLS, protect against SSRF and reject false success if probe missing. **OS recovery Q165 C**: explicitly authorized nondestructive commands, bounded retry/checkpoints and approval for sensitive operations. **Backup Q166 C**: restore every archive in an isolated environment before labelling recoverable; check protected recovery-key export and periodic accessibility, deeper functional checks and risk-based host/key-loss drills. **SFTP Q167 C**: verify public key possession, allowed algorithms, expiry/rotation, site scope and audit. **Beta Q168 C**: optional purpose-based diagnostics and anti-reidentification cohorts. [Planned matrix](../13-tests-quality/mvp-gates-q161-q170.md) — **no real VM execution**.

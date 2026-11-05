@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=7 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=8 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
@@ -58,3 +58,7 @@ Une revue de sécurité distincte est nécessaire avant les fonctions sensibles 
 ## Traçabilité de qualification Q151–Q160
 
 La [matrice des tests positifs et négatifs](mvp-gates-q151-q160.md) définit les cas **MVP-Q151-01 à MVP-Q160-01**, avec statut initial **PLANNED**, jalon R3/R4/bêta/Hub et preuves exigées. Priorités : VM KVM réelle, rapport interne signé, exceptions performance sans contournement Q132, vérification HTTP-01 par familles IP publiées, reboot par serveur, restauration isolée avec contrôle des clés, SFTP à clés publiques, consentements distincts, risque premium et avis signés bilingues/structurés. Le nouveau test Python vérifie l'existence et la parité des cas, **pas l'exécution des services**.
+
+## Matrice QA Q161–Q170
+
+[Les dix cas MVP-Q161-01 à MVP-Q170-01](mvp-gates-q161-q170.md) sont **PLANNED**, avec chemin positif, refus négatif, phase R3/R4/bêta/Hub et preuves attendues. Les cas bloquants incluent fuite de secret runner, rapport signé altéré, dérogation critique Q132, sonde SSRF, récupération OS non bornée, backup sans restauration isolée, algorithme SFTP interdit, cohorte réidentifiable, transfert premium suspect et avis JSON/FR/EN incohérents. Un test Python statique vérifie décisions/ADR/couverture bilingue ; **pas de test matériel, Linux ou restauration réelle**.

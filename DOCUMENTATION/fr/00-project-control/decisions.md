@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DECISIONS revision=12 status=documented -->
+<!-- forgepanel-doc id=FP-00-DECISIONS revision=13 status=documented -->
 # Registre de décisions
 
 [English](../../en/00-project-control/decisions.md) · [Pilotage](README.md)
@@ -149,6 +149,17 @@ Les identifiants sources renvoient à l'[état initial](../19-audits-risks/basel
 | ADR-127 | Bêta : santé locale, rapports manuels et diagnostic minimal opt-in par cohorte (Q158 C) | Consentements Q6 séparés, pause par seuils, pas de télémétrie forcée |
 | ADR-128 | Transfert premium suspect : serveur perdu, répétition, incohérence org ou compromission (Q159 C) | Q138 approbation conditionnelle et Q148 challenge, secours manuel Hub |
 | ADR-129 | Avis sécurité signés FR/EN humains + structurés machine (Q160 C) | Notifications configurables, contenus sensibles protégés, pas de standard avancé imposé |
+
+| ADR-130 | Runners KVM éphémères isolés, images figées, quotas et nettoyage automatique (Q161 C) | Q151 local d'abord, puis pilotes cloud. Vérifier capacités KVM, empreintes images/commits, ressources et nettoyage des secrets ; conserver les preuves signées hors runner. |
+| ADR-131 | Stockage privé immuable des rapports signés avec historique, rétention et contrôle d'accès (Q162 B) | Q152 rapports internes : vérifier signatures, provenance, snapshots, versions, historique et RBAC ; seconde réplication indépendante (option C) non adoptée. |
+| ADR-132 | Exceptions de performance approuvées selon gravité, séparation des rôles, portée, expiration et révision (Q163 C) | Q153/Q142 uniquement budgets de performance non critiques : approbateur différent du demandeur selon politique, révocation et audit. Veto sécurité, isolation et récupération Q132 non dérogeables. |
+| ADR-133 | Contrôles DNS locaux et une sonde externe indépendante (Q164 B) | Q154 : vérifier uniquement A/AAAA réellement publiés sur port 80/HTTP-01 et HTTPS ; la sonde externe doit être bornée, autorisée et protégée contre SSRF. Pas de réseau de sondes multiples (option C). |
+| ADR-134 | Réparation non destructive bornée, checkpoints et validation humaine des opérations risquées (Q165 C) | Q155 : actions système explicites allowlistées, tentatives et délais plafonnés, audit/état santé ; pas de shell root arbitraire ni de rollback destructif sans approbation. |
+| ADR-135 | Restaurer chaque sauvegarde sur environnement isolé ; vérifications profondes périodiques et exercices de panne selon criticité (Q166 C) | Q156 : sauvegarde récupérable seulement si périmètre complet restauré isolément PASS, clé de secours protégée accessible ; essais périodiques perte hôte/clé/panne sans détruire les vraies clés. |
+| ADR-136 | SFTP par clé publique vérifiée, expiration, rotation, algorithmes autorisés, audit et contrôle sensible (Q167 C) | Q157/Q146 : gestionnaire limité à ses sites ; possession de clé, quotas, confinement canonique, révocation, validation des opérations sensibles ; jamais de clé privée cliente ni shell. |
+| ADR-137 | Consentements séparés, seuils par catégorie/cohorte, agrégation, expurgation et protection anti-réidentification (Q168 C) | Q158/Q6 : pas de télémétrie forcée. Seuils configurables par donnée/cohorte, minimisation et protection contre recoupements ; santé locale et rapports manuels préservés sans Hub. |
+| ADR-138 | Transferts premium simples automatisés sous règles de risque versionnées, seconde approbation et secours sécurisé (Q169 C) | Q159/Q138/Q148 : identité, droits, org et challenge nonce vérifiés ; revue humaine et gel du transfert premium en cas de répétition, source perdue, incohérence ou compromission. Pas de moteur arbitraire par produit (Q159 D). |
+| ADR-139 | Avis sous JSON Schema versionné, signé, validé, avec rendus FR/EN synchronisés et historique (Q170 B) | Q160/Q150 : source canonique commune aux formes structurée et humaine, destinataires autorisés, notifications configurables et données sensibles protégées ; interopérabilité avancée option C non imposée. |
 
 ## Propositions remplacées ou non résolues
 

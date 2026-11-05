@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=12 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=13 status=documented -->
 # Modèle de sécurité et signalement
 
 [English](../../en/10-security/README.md) · [Index](../README.md)
@@ -78,3 +78,7 @@ La bêta Q137 D utilisera **invitations et conditions acceptées, diffusion par 
 ## Signalement et revue
 
 Aucune release de production supportée, adresse privée de signalement ou garantie de réponse n'est établie. Utiliser le signalement privé GitHub seulement s'il est disponible ; sinon demander un canal privé sans publier exploitation ou secrets. Établir ce canal avant distribution publique. La revue sensible doit être distincte de l'implémentation ; aucun relecteur indépendant n'était disponible pour cet audit documentaire. Voir le [registre des risques](../19-audits-risks/README.md).
+
+## Sécurité et exceptions Q161–Q170
+
+Le runner KVM éphémère est isolé, ses secrets nettoyés et les preuves signées Q162 conservées hors VM sur stockage privé immuable contrôlé. Seules les exceptions Q163 de **performance non critique** avec approbation séparée, durée, révision et audit sont permises ; les échecs critiques Q132 ne changent jamais en PASS. Sonde DNS externe Q164 bornée, protection SSRF ; réparations OS Q165 allowlistées, non destructives et à retry plafonné ; backup Q166 jamais récupérable sans restauration isolée intégrale PASS et clés vérifiées ; SFTP Q167 par clé publique autorisée avec possession/rotation/portée site. Q168 évite réidentification et collecte forcée ; Hub Q169–170 protège les transferts premium et avis signés, sans interrompre le Core ni exposer les secrets. [Décisions](../00-project-control/decisions-q161-q170.md).

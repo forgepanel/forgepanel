@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-MVP-QUAL revision=5 status=specified -->
+<!-- forgepanel-doc id=FP-00-MVP-QUAL revision=6 status=specified -->
 # Qualification du premier ForgePanel PHP/HTTPS — Q121–Q127
 
 [English](../../en/00-project-control/mvp-qualification.md) · [Roadmap](implementation-roadmap.md) · [Décisions Q121–Q130](decisions-q121-q130.md)
@@ -79,3 +79,9 @@ La bêta privée n'est ni une publication stable, ni une exemption aux obligatio
 Le responsable sécurité et le **suppléant** (Q130 C), leurs accès, procédure de triage, escalade, journaux et notifications coordonnées doivent être **effectivement nommés et vérifiés** avant diffusion. Les deux voies Q118 (GitHub privé + email sécurité dédié) doivent être configurées/testées ; n'inventer ni noms, adresses, garanties de réponse ou rôles opérationnels.
 
 **État : plan de qualification uniquement. Aucun candidat OS, WebStack, fournisseur ACME ou équipe de bêta n'est encore validé.**
+
+## Qualification opérationnelle complémentaire — Q161–Q168
+
+Sur VM **QEMU/KVM locale éphémère et isolée** Q161, fixer image/commit/ressources et nettoyer les secrets runner ; archiver les rapports de qualification **internes signés** dans un espace privé immuable à historique et droits contrôlés Q162. Les dérogations Q163 concernent exclusivement les budgets de **performance non critiques**, avec séparation des approbateurs, portée/expiration/revue et **veto Q132 irrévocable**.
+
+**DNS Q164 B** : vérifier chaque famille A/AAAA effectivement publiée depuis le serveur **et une sonde indépendante extérieure** pour 80/HTTP-01 et TLS, avec protection anti-SSRF et refus du faux succès si sonde indisponible. **Reprise OS Q165 C** : fonctions non destructives spécifiquement autorisées, retry plafonné, checkpoints et approbation des actes sensibles. **Backup Q166 C** : chaque archive restaurée sur environnement isolé avant de recevoir la mention récupérable ; vérifier clé exportée protégée et accès périodique, ajouter tests fonctionnels profonds et exercices perte hôte/clé selon criticité. **SFTP Q167 C** : possession de la clé publique, algorithmes autorisés, expiration/rotation, périmètre site et audit. **Bêta Q168 C** : diagnostics par finalité facultatifs et agrégats de cohorte empêchant la réidentification. [Tests planifiés](../13-tests-quality/mvp-gates-q161-q170.md) — **aucun test réel exécuté**.

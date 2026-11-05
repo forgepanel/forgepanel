@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-EXECUTION revision=7 status=specified -->
+<!-- forgepanel-doc id=FP-00-EXECUTION revision=8 status=specified -->
 # Technical implementation roadmap — Q120 D and Q119 B MVP
 
 [Français](../../fr/00-project-control/implementation-roadmap.md) · [Project status](status.md) · [Q111–Q120 decisions](decisions-q111-q120.md)
@@ -69,3 +69,7 @@ Core source remains **unimported** from the separate v0.7 archive; optional-MFA 
 ## Additional Q151–Q160 exit-test evidence
 
 [Per-gate R3/R4/R5/R6 MVP matrix](../13-tests-quality/mvp-gates-q151-q160.md) requires both positive **and negative** cases. KVM/signed internal report/performance-only Q153 gates at R3; published-IP DNS, per-server reboot, **accessible keys and actual isolated restoration**, site-scoped public-key SFTP at R4; consented cohort beta afterwards; Hub fraud review and signed human+machine advisory after R5 neutral ABI. **PLANNED: document checks do not execute VM or backups.**
+
+## Q161–Q170 roadmap additions — real exit evidence
+
+**R3**: ephemeral local KVM runner with pinned images/quotas/cleanup (Q161 C); private immutable **internal signed** evidence (Q162 B); **performance-only** severity-based, independently approved, expiring audited waivers without weakening Q132 vetoes (Q163 C). **R4**: DNS/HTTP-01 checked locally **and** via one independent external probe for each advertised A/AAAA (Q164 B); bounded nondestructive OS recovery with human risk approvals (Q165 C); isolated restore of each backup before recoverable status plus periodic deep checks/host-key disaster drills (Q166 C); scoped **public** SFTP keys with allowed algorithm/rotation/approvals (Q167 C). **Post-R4 beta**: separate consents and reidentification-safe cohorts (Q168 C). **Hub R6 after R5 ABI**: versioned premium fraud policy (Q169 C), signed JSON Schema synchronized FR/EN advisories (Q170 B). [Test matrix](../13-tests-quality/mvp-gates-q161-q170.md). No real VM/recovery execution is claimed.

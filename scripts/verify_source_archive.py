@@ -11,6 +11,7 @@ import hashlib
 import json
 import re
 import stat
+import unicodedata
 import zipfile
 import zlib
 from dataclasses import dataclass, field
@@ -94,15 +95,26 @@ def unsafe_name(name: str, is_dir: bool) -> str | None:
         return "invalid_name"
     if name.startswith("/") or re.match(r"^[A-Za-z]:", name) or "\\" in name:
         return "absolute_or_non_posix_path"
+    if unicodedata.normalize("NFC", name) != name:
+        return "unicode_noncanonical_path"
+    if any(unicodedata.category(char) in ("Cf", "Cs") for char in name):
+        return "unicode_format_or_surrogate_path"
     pieces = name[:-1].split("/") if is_dir and name.endswith("/") else name.split("/")
     if any(piece in ("", ".", "..") for piece in pieces):
         return "unsafe_path_component"
+    if any(":" in piece or piece.rstrip(" .") != piece for piece in pieces):
+        return "nonportable_path_component"
+    if any(piece.casefold() == ".git" for piece in pieces):
+        return "embedded_git_metadata"
     return None
 
 
 def entry_kind(info: zipfile.ZipInfo) -> str:
     if info.create_system == 3:
-        unix_type = stat.S_IFMT((info.external_attr >> 16) & 0xFFFF)
+        mode = (info.external_attr >> 16) & 0xFFFF
+        if mode & (stat.S_ISUID | stat.S_ISGID):
+            return "privileged_mode_bits"
+        unix_type = stat.S_IFMT(mode)
         if unix_type and unix_type not in (stat.S_IFREG, stat.S_IFDIR):
             return "special_file_or_symlink"
         if unix_type == stat.S_IFREG and info.is_dir():
@@ -144,7 +156,7 @@ def scan_archive(
                 if error:
                     report.blockers.append(f"{error}:{info.filename!r}")
                     continue
-                if kind in ("special_file_or_symlink", "file_directory_conflict"):
+                if kind in ("special_file_or_symlink", "file_directory_conflict", "privileged_mode_bits"):
                     report.blockers.append(f"{kind}:{info.filename!r}")
                     continue
                 folded = normalized.casefold()
@@ -191,7 +203,9 @@ def scan_archive(
                 for match in sorted(matches):
                     # Never echo secret values into reports or CI logs.
                     report.blockers.append(f"sensitive_material_{match}:{info.filename!r}")
-                if normalized.split("/")[-1] == ".env":
+                base_name = normalized.split("/")[-1].casefold()
+                safe_env_templates = {".env.example", ".env.sample", ".env.dist", ".env.template"}
+                if base_name == ".env" or (base_name.startswith(".env.") and base_name not in safe_env_templates):
                     report.blockers.append(f"potential_live_environment_file:{info.filename!r}")
                 elif normalized.endswith((".key", ".pem", ".p12", ".pfx")):
                     report.warnings.append(f"manual_key_material_review_required:{info.filename!r}")

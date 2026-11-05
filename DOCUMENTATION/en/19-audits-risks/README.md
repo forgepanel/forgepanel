@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19 revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-19 revision=5 status=documented -->
 # Audit, contradictions and risks
 
 [Français](../../fr/19-audits-risks/README.md) · [Index](../README.md)
@@ -50,3 +50,7 @@ The 33 synthetic checks test tooling guardrails, **not genuine source or Core in
 - **RISK-018** — Directory-substitution risk during failure cleanup: anchor cleanup to private parent descriptor and verify created inode/device; skip and report cleanup if target identity changes. An attacker under the **same UID** may still alter quarantine **after verification**; final importer must revalidate bytes.
 
 These protections do not replace source code or publisher-signature review. [FR/EN contract](../12-development/source-staging-audit.md).
+
+## R3 observation: false-qualification risk
+
+- **RISK-019** — A `/dev/kvm` node or VMX/SVM CPU flags cannot prove device access, safe QEMU/KVM boot, isolation, quotas, snapshots or recovery. Standalone [KVM Host Probe](../14-devops-releases/kvm-host-probe.md) therefore only emits `qualification=NOT_EXECUTED`, explicit `false` gates and `INCONCLUSIVE`/deny states. CI success on a runner without KVM certifies no Debian, Ubuntu or other OS. Real R3 drivers and Q152/Q162 signed reports remain pending.

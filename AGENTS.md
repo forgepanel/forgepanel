@@ -34,4 +34,6 @@ R1 quarantine: `scripts/stage_source_archive.py` is preview-only by default; `--
 
 R1 post-staging verification: `python3 scripts/audit_staged_archive.py --archive <original.zip> --directory <private-quarantine>` verifies genuine pinned source ZIP, receipt and files read-only; it is not an import authorization. Quarantine failure cleanup is device/inode-anchored, with an explicit blocker on replacement; final importer must re-hash bytes. See `DOCUMENTATION/en/12-development/source-staging-audit.md`. Never treat synthetic fixture success as genuine source verification.
 
+R3 preflight separation: `tools/kvm-host-probe` is a standalone, nonprivileged, read-only QEMU/KVM host observation utility. It does not execute or certify VMs, does not sign Q152/Q162 reports, is not historical Foundation Core source and must not bypass R1/R2 gates. Tests are synthetic, and the GitHub Actions runner is not a supported-host certificate. See `DOCUMENTATION/en/14-devops-releases/kvm-host-probe.md`.
+
 Leave a factual handover: completed work, remaining work, evidence, unresolved decisions, branch/commit/PR and checks not run. Never ask the owner to patch code.

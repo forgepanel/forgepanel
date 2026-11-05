@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=12 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=13 status=documented -->
 # Installation, promotion Git et releases
 
 [English](../../en/14-devops-releases/README.md) · [Index](../README.md)
@@ -68,3 +68,7 @@ Le nouveau préflight `scripts/verify_source_archive.py` lit le ZIP original SRC
 ## R1 — le reçu d'intégrité n'est ni une release ni une approbation
 
 `audit_staged_archive.py` peut confirmer en **lecture seule** que le dossier de quarantaine correspond toujours au ZIP SRC-03 enregistré. Même un verdict `CONSISTENT_FOR_MANUAL_REVIEW` n'autorise ni `install apply`, ni compilation, ni déploiement, ni import automatique : un audit humain des licences/secrets et une revérification des fichiers au moment de leur import Git restent nécessaires. [Procédure](../12-development/source-staging-audit.md).
+
+## R3 — Préparation locale QEMU/KVM en lecture seule
+
+Un **module Go autonome hors Core historique** propose [l'inspection du candidat hôte KVM](kvm-host-probe.md) (Q151 A, Q161 C). Il lit un ensemble fixe de métadonnées Linux et rend un JSON sans démarrer de VM, sans commandes root ni collecte d'identité du serveur. **Il ne réalise aucun test d'isolement, snapshot, quotas, signature de preuve ni installation d'OS.** Le pilote QEMU/KVM éphémère et les rapports immuables restent des jalons R3 futurs ; R1 source Foundation demeure bloqué par l'archive originale manquante.

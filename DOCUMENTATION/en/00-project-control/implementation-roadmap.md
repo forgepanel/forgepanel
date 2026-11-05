@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-EXECUTION revision=10 status=specified -->
+<!-- forgepanel-doc id=FP-00-EXECUTION revision=11 status=specified -->
 # Technical implementation roadmap — Q120 D and Q119 B MVP
 
 [Français](../../fr/00-project-control/implementation-roadmap.md) · [Project status](status.md) · [Q111–Q120 decisions](decisions-q111-q120.md)
@@ -81,3 +81,7 @@ R1 tooling now includes `verify_source_archive.py` (read-only preflight) and `st
 ## Additional R1 entry gate: independently audit staged files
 
 Issue #2 (genuine Foundation source import) now explicitly requires: original SRC-03 archive → [preflight](../12-development/source-archive-intake.md) → [private staging](../12-development/source-staging.md) → [ZIP/receipt/disk comparison](../12-development/source-staging-audit.md) → license/security review → separate import PR with **byte re-hashing during import** → real PHP/Go tests. Preflight/audit tools are **not** the hosting Core implementation, and the actual ZIP remains unavailable here.
+
+## Parallel R3 preparation — KVM observation is not a VM runner
+
+Without changing the approved **R1 → R2 → R3 → R4 → R5 → R6** order, standalone [`tools/kvm-host-probe`](../14-devops-releases/kvm-host-probe.md) prepares **only a nonprivileged local host observation** (Q151 A/Q161 C). It is not the QEMU/KVM runner, selects no OS, produces no pinned images/quotas/snapshots or signed evidence, and cannot replace real installer/recovery test results. Its unit tests are independent of the still-blocked R1 original Foundation source import.

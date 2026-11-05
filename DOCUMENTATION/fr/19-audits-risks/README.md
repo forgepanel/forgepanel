@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19 revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-19 revision=5 status=documented -->
 # Audit, contradictions et risques
 
 [English](../../en/19-audits-risks/README.md) · [Index](../README.md)
@@ -50,3 +50,7 @@ Les 33 tests synthétiques valident les garde-fous de code, **pas l'archive orig
 - **RISK-018** — Risque de substitution du répertoire lors d'un échec de staging : nettoyage ancré dans un descripteur de parent privé et vérification inode/dev ; abandon signalé du nettoyage si l'identité change. Le **même UID** peut encore modifier la quarantaine **après l'audit** ; révalidation dans l'importeur final indispensable.
 
 Ces mesures ne remplacent pas l'audit de code source ou la preuve de signature éditeur. [Contrat FR/EN](../12-development/source-staging-audit.md).
+
+## Observation R3 : risque de qualification abusive
+
+- **RISK-019** — La présence de `/dev/kvm` ou des drapeaux VMX/SVM ne prouve ni l'accès effectif au device, ni le lancement sécurisé de QEMU/KVM, ni isolation/quotas/snapshot/récupération. L'outil séparé [KVM Host Probe](../14-devops-releases/kvm-host-probe.md) expose donc exclusivement `qualification=NOT_EXECUTED`, plusieurs indicateurs `false` et des états `INCONCLUSIVE`/refus. Aucun résultat de CI sur runner sans KVM ne vaut certification Debian, Ubuntu ou autre OS. Le vrai pilote R3 et les rapports signés Q152/Q162 restent à implémenter.

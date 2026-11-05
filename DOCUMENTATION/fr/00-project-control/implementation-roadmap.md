@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-EXECUTION revision=10 status=specified -->
+<!-- forgepanel-doc id=FP-00-EXECUTION revision=11 status=specified -->
 # Roadmap technique de réalisation — décision Q120 D et MVP Q119 B
 
 [English](../../en/00-project-control/implementation-roadmap.md) · [État officiel](status.md) · [Décisions Q111–Q120](decisions-q111-q120.md)
@@ -81,3 +81,7 @@ La chaîne outillée R1 possède désormais `verify_source_archive.py` (préflig
 ## Critère d'entrée R1 supplémentaire : audit des fichiers copiés
 
 L'issue #2 (import du vrai code Foundation) exige désormais la séquence explicite : archive SRC-03 originale → [préflight](../12-development/source-archive-intake.md) → [copie privée](../12-development/source-staging.md) → [comparaison ZIP/reçu/disque](../12-development/source-staging-audit.md) → revue licence/sécurité → import en PR distincte avec **re-hash des octets à l'import** → tests PHP/Go. Les utilitaires de préflight et audit ne sont **pas** l'implémentation du panneau, et le vrai ZIP n'est pas disponible dans ce contexte.
+
+## Préparation parallèle R3 — inspection KVM distincte du pilote de VM
+
+Sans modifier l'ordre approuvé **R1 → R2 → R3 → R4 → R5 → R6**, l'utilitaire Go isolé [`tools/kvm-host-probe`](../14-devops-releases/kvm-host-probe.md) prépare **uniquement une observation non privilégiée** de l'hôte local (Q151 A/Q161 C). Il ne devient pas le pilote QEMU/KVM, ne choisit pas d'OS, ne produit ni images épinglées/quotas/snapshots ni rapport signé et ne remplace aucune preuve d'installation ou de restauration. Ses tests unitaires sont indépendants de l'import Foundation original encore bloqué en R1.

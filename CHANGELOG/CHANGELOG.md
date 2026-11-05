@@ -12,6 +12,10 @@ One chronology, both languages. / Une chronologie, deux langues.
 - **Quality / Qualité** — Added documentation validation tooling and a scoped read-only CI workflow; actual run results are recorded in PR checks. / Ajout d'un vérificateur documentaire et d'une CI limitée en lecture seule ; les résultats réels figurent dans les contrôles de PR.
 - **Evidence / Preuves** — Recorded supplied-archive checksums, native v0.7 test re-execution and explicit SQL/HTTP/OS validation gaps. / Enregistrement des empreintes d'archives, de la réexécution des tests natifs v0.7 et des validations SQL/HTTP/OS manquantes.
 
+### Changed / Modifications
+
+- **Documentation CI / CI documentaire** — Replaced deprecated-runtime action pins with verified official Node 24 action commits after the first successful run; kept read-only permissions. Recorded actual CI evidence and follow-up issues #2–#4. / Remplacement des actions à runtime déprécié par des commits officiels vérifiés utilisant Node 24 après le premier run réussi ; permissions conservées en lecture seule. Consignation des preuves CI réelles et des tâches nº 2–4.
+
 ### Clarified / Clarifications
 
 - **Status / État** — Development archives are not GitHub releases or imported application source. No installer, production deployment, full RBAC or certified hosting stack is delivered by this documentation lot. / Les archives ne sont ni des releases GitHub ni des sources applicatives importées. Ce lot ne livre aucun installateur, déploiement de production, RBAC complet ou stack certifiée.

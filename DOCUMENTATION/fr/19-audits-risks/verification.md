@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19-VERIFICATION revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-19-VERIFICATION revision=2 status=documented -->
 # Rapport de vérification
 
 [English](../../en/19-audits-risks/verification.md) · [Index d'audit](README.md)
@@ -27,3 +27,9 @@ Les logs historiques de l'archive sont des preuves distinctes. Aucun démarrage 
 Le vérificateur contrôle 20 index par langue, chemins parallèles, ID/révisions/statuts, certains identifiants d'exigences partagés, liens relatifs, changelog unique, syntaxe JSON et quelques motifs de secrets. Il ne prouve ni équivalence sémantique des traductions, ni fonctionnement applicatif, ni absence de tout secret. L'auteur relit aussi sources/affirmations et deux langues ; aucune revue indépendante n'est revendiquée.
 
 L'exécution réelle se consulte dans les contrôles et logs de la PR documentaire. Ajouter un workflow ne signifie pas réussir la CI. Tout échec ou contrôle ignoré reste visible dans le compte rendu et doit être corrigé ou explicitement consigné avant promotion.
+
+## Preuves documentaires observées
+
+La [PR nº 1](https://github.com/yyogas/forgepanel/pull/1), tête `04e75476fce679714429c62ac83897262b64fa45`, a réussi le [run Actions 41948356066](https://github.com/yyogas/forgepanel/actions/runs/41948356066) : 10 tests du vérificateur, 28 paires, 64 fichiers Markdown et 282 liens relatifs. GitHub a testé la prévisualisation temporaire de fusion `de3b954943728538e5bcfbb0d0b3351a0ea8db87` ; la PR n’était pas fusionnée. La copie téléchargée a réussi les mêmes contrôles localement.
+
+Ce run réussi signalait que ses actions v4 figées ciblaient un runtime Node déprécié. Ce complément fige les commits officiels vérifiés utilisant Node 24 (checkout v7.0.1 et upload-artifact v7.0.2), sans augmenter les permissions du dépôt. Son résultat CI propre doit être vérifié sur la nouvelle tête de PR, pas déduit du run précédent.

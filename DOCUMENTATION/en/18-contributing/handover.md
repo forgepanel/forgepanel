@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-18-HANDOVER revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-18-HANDOVER revision=2 status=documented -->
 # Handover to the next contributor
 
 [Français](../../fr/18-contributing/handover.md) · [Contribution guide](README.md)
@@ -20,3 +20,7 @@ Repeat tests on the actual imported commit. Then prepare Symfony/PostgreSQL inte
 License/contribution terms and private security reporting contact need owner decisions before external publication. Runtime/package policy, full identity, agent execution, TLS, six-OS certification and signed distribution remain technical work. Repository protection reads were denied; do not bypass them. There was no independent review in this lot.
 
 Report what changed, exact commands/results, branch/commit/PR, remaining blockers and a concrete next task. The owner is not expected to program, correct files or approve code technically.
+
+## Tracked follow-up
+
+The documentation lot is [PR #1](https://github.com/yyogas/forgepanel/pull/1). [Issue #2](https://github.com/yyogas/forgepanel/issues/2) tracks source import; [issue #3](https://github.com/yyogas/forgepanel/issues/3) tracks Symfony/PostgreSQL integration and depends on #2; [issue #4](https://github.com/yyogas/forgepanel/issues/4) tracks licensing and private reporting decisions. These issues describe work to do, not completed implementations. Before continuing, read the actual PR state and current `develop` head; creation of the PR did not merge it.

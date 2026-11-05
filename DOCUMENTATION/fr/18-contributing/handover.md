@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-18-HANDOVER revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-18-HANDOVER revision=2 status=documented -->
 # Passage de relais
 
 [English](../../en/18-contributing/handover.md) · [Guide de contribution](README.md)
@@ -20,3 +20,7 @@ Répéter les tests sur le commit effectivement importé. Préparer ensuite l'in
 Licence/contributions et contact privé de sécurité nécessitent un arbitrage propriétaire avant publication externe. Politique runtimes/paquets, identité complète, exécution agent, TLS, certification six OS et distribution signée restent des travaux techniques. Les lectures de protections sont refusées ; ne pas les contourner. Aucune revue indépendante n'a été réalisée dans ce lot.
 
 Rapporter changements, commandes/résultats exacts, branche/commit/PR, blocages et prochaine tâche concrète. Le propriétaire n'a pas à programmer, corriger les fichiers ou valider techniquement le code.
+
+## Suivi des prochaines tâches
+
+Le lot documentaire est la [PR nº 1](https://github.com/yyogas/forgepanel/pull/1). L’[issue nº 2](https://github.com/yyogas/forgepanel/issues/2) suit l’import du code ; l’[issue nº 3](https://github.com/yyogas/forgepanel/issues/3) suit l’intégration Symfony/PostgreSQL et dépend de la nº 2 ; l’[issue nº 4](https://github.com/yyogas/forgepanel/issues/4) suit licence et signalement privé. Ces issues décrivent des travaux à faire, pas des implémentations terminées. Avant de poursuivre, lire l’état réel de la PR et la tête actuelle de `develop` ; créer la PR ne la fusionne pas.

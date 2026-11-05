@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=12 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=13 status=documented -->
 # Tests, quality and definition of done
 
 [Français](../../fr/13-tests-quality/README.md) · [Index](../README.md)
@@ -76,3 +76,7 @@ The [positive/negative MVP test matrix](mvp-gates-q151-q160.md) defines **MVP-Q1
 Added `tests/source_intake/test_audit_staged_archive.py` and regression cases in `test_stage_source_archive.py`. Using **only synthetic archives**, they cover ZIP/receipt/file consistency, symlinks/hardlinks, missing/unexpected files/directories, excessive permissions, forged receipts and concurrent directory substitution during staging failure. [Specification](../12-development/source-staging-audit.md). CI must run all `tests/source_intake` cases on the final SHA. Passing them does not establish a completed R1 import, HTTP/SQL, VM or real restore.
 
 **PR #39 branch result: 60 synthetic R1 tests succeeded.** The exact commit's GitHub Actions run is authoritative; the original archive tracked by issue #2 has not been accessible or scanned. No production certification claim.
+
+## Go KVM observation tests — preparatory R3 lot
+
+Standalone [KVM Host Probe](../14-devops-releases/kvm-host-probe.md) has **14 synthetic Go unit tests**: character/missing/fake/symlink KVM device, exact VMX/SVM flags, other architectures, read failures, sanitized OS values and **no false VM qualification**. Its separate CI workflow runs `go test ./...`, `go test -race ./...`, `go vet ./...` and checks the real host JSON still has `qualification=NOT_EXECUTED`. **The GitHub runner is not a certified KVM system; real VMs, snapshots, failure injections, quotas, backups and restores remain PLANNED.**

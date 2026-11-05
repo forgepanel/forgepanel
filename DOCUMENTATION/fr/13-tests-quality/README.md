@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=12 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=13 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
@@ -76,3 +76,7 @@ La [quarantaine de provenance](../12-development/source-staging.md) et le préfl
 Nouvelle suite `tests/source_intake/test_audit_staged_archive.py` et cas complémentaires dans `test_stage_source_archive.py`. Elle teste **sans archive réelle** la cohérence ZIP/reçu/fichiers, les liens symboliques et physiques, les dossiers ou fichiers ajoutés/manquants, les permissions excessives, les reçus invalides et les substitutions concurrentes de dossier pendant un échec de staging. [Spécification](../12-development/source-staging-audit.md). La CI doit exécuter tous les tests du répertoire `tests/source_intake` sur le SHA final. Un succès ne garantit ni R1 importé, ni SQL/HTTP, ni VM ou restauration.
 
 **Campagne sur la branche PR #39 : 60 tests R1 synthétiques réussis**. Le rapport CI exact du commit de PR reste l'autorité ; l'archive historique de l'issue #2 n'a pas été accessible ni contrôlée. Aucune affirmation de conformité production.
+
+## Tests Go de l'observation KVM — lot préparatoire R3
+
+Le module séparé [KVM Host Probe](../14-devops-releases/kvm-host-probe.md) possède **14 tests Go synthétiques** : périphérique KVM caractère/absent/faux/symlink, drapeaux VMX/SVM exacts, autres architectures, erreurs de lecture, données OS filtrées et **interdiction de fausse qualification**. Son workflow dédié exécute `go test ./...`, `go test -race ./...`, `go vet ./...` et vérifie que le JSON réel conserve `qualification=NOT_EXECUTED`. **Le runner GitHub n'est pas un hôte KVM certifié ; les VMs, snapshots, pannes, quotas, sauvegardes et restaurations réelles restent PLANNED.**

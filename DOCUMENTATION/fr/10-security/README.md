@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=15 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=16 status=documented -->
 # Modèle de sécurité et signalement
 
 [English](../../en/10-security/README.md) · [Index](../README.md)
@@ -90,3 +90,7 @@ L'import des sources requiert des octets SRC-03 authentifiés selon le registre 
 ## Revue de sécurité R1 — intégrité et nettoyage de quarantaine
 
 Les fichiers de staging peuvent être contrôlés indépendamment contre **ZIP original + reçu + contenu sur disque**. [Contrat d'audit](../12-development/source-staging-audit.md). Refus : reçus falsifiés, chemins symboliques, hardlinks, permissions non privées ou exécutables, fichier ajouté/supprimé et source modifiée. Le nettoyage d'échec se fait via le **descripteur du parent privé** et vérification `dev/inode` pour ne pas supprimer un autre répertoire si son nom change. Reste une limite : un acteur contrôlant le même UID peut changer les sources **après** l'audit ; l'importeur final doit revalider les octets. Jamais de root, shell générique, import automatique ni élévation Hub.
+
+## Q161 — Sécurité de la préinspection KVM
+
+[`tools/kvm-host-probe`](../14-devops-releases/kvm-host-probe.md) est un outil Go **sans privilèges** : aucune API Linux de commande arbitraire, `ioctl`, accès `/dev/kvm`, exécution de VM, création de fichiers, réseau ou collecte de hostname/IP. Seuls quatre chemins Linux **fixes** sont lus ou inspectés, avec tailles bornées et refus des liens symboliques pour le périphérique KVM. Une détection positive ne permet pas de contourner les gates de sécurité Q132, de restauration Q156 ni les exigences de rapports signés Q152/Q162. L'outil est distinct du daemon privilégié et du Hub.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-EXECUTION revision=6 status=specified -->
+<!-- forgepanel-doc id=FP-00-EXECUTION revision=7 status=specified -->
 # Roadmap technique de réalisation — décision Q120 D et MVP Q119 B
 
 [English](../../en/00-project-control/implementation-roadmap.md) · [État officiel](status.md) · [Décisions Q111–Q120](decisions-q111-q120.md)
@@ -65,3 +65,7 @@ Avant **distribution publique** : conclure la revue juridique AGPL/commercial (Q
 ## Risques et dépendances
 
 Le code Core n'est **pas encore importé** dans `develop` ; le prototype v0.7.1 MFA facultatif reste en archive séparée. Les intégrations Symfony/PG et l'installateur ne sont pas démontrés par les workflows actuels. Le plan ne promet pas de calendrier ou d'effet système immédiat. Toute revendication de progression doit être attachée à un commit, un test et un environnement vérifiables.
+
+## Preuves de sortie additionnelles Q151–Q160
+
+[Tests MVP par gate R3/R4/R5/R6](../13-tests-quality/mvp-gates-q151-q160.md) : les conditions de sortie sont des scénarios positifs **et négatifs**. KVM/rapports signés/budgets Q153 en R3 ; DNS sur IP publiées, reboot par serveur, **clés accessibles + restauration isolée réelle** et SFTP public-key limité en R4 ; bêta à consentement/cohortes ensuite ; Hub antifraude/avis signés et structurés après ABI R5. **PLANNED : aucune VM ni sauvegarde testée par les contrôles documentaires.**

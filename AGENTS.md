@@ -30,4 +30,6 @@ No arbitrary privileged command API. Keep Linux root separate from the applicati
 
 R1 source preparation: `scripts/verify_source_archive.py` is read-only; `python3 -m unittest discover -s tests/source_intake -p 'test_*.py' -v` uses synthetic ZIPs. Do not import/recreate Foundation source without exact SRC-03 archive and provenance review. A preflight PASS never authorizes production apply.
 
+R1 quarantine: `scripts/stage_source_archive.py` is preview-only by default; `--stage` is allowed only for nonroot/private/off-repo targets after canonical preflight, and never constitutes a source import. Do not treat synthetic tests or the receipt as runtime certification. See `DOCUMENTATION/en/12-development/source-staging.md`.
+
 Leave a factual handover: completed work, remaining work, evidence, unresolved decisions, branch/commit/PR and checks not run. Never ask the owner to patch code.

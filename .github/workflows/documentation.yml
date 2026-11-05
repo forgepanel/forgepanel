@@ -28,7 +28,7 @@ jobs:
         run: python3 tests/documentation/test_q151_q160.py -v
       - name: Validate Q161-Q170 owner decisions and test matrix
         run: python3 tests/documentation/test_q161_q170.py -v
-      - name: Test source ZIP intake with synthetic fixtures only
+      - name: Test source intake and private staging with synthetic fixtures
         run: python3 -m unittest discover -s tests/source_intake -p 'test_*.py' -v
       - name: Validate documentation
         run: python3 scripts/check_documentation.py

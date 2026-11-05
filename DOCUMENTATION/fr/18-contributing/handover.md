@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-18-HANDOVER revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-18-HANDOVER revision=4 status=documented -->
 # Passage de relais
 
 [English](../../en/18-contributing/handover.md) · [Guide de contribution](README.md)
@@ -28,3 +28,7 @@ Le lot documentaire est la [PR nº 1](https://github.com/yyogas/forgepanel/pull/
 ## Relais R1 mis à jour — sécurité d'import
 
 Le préflight `scripts/verify_source_archive.py` est disponible avec 16 tests synthétiques, et sa documentation [FR/EN](../12-development/source-archive-intake.md). Il **n'importe rien**. La priorité reste l'obtention du ZIP authentique SRC-03, SHA-256/92 fichiers dans [le registre](../../evidence/sources.json), puis revue manuelle de licence/secrets et import source versionné en PR sur `develop`. Les tests Go/race/vet/PHP sur code réel et R2 doivent suivre ; ne pas débloquer `install apply` avant qualification. Aucune action de codage n'est demandée au propriétaire.
+
+## Relais R1 — préparation en quarantaine terminée, import toujours ouvert
+
+La chaîne de préparation source comprend désormais `verify_source_archive.py` et `stage_source_archive.py`, **33 tests synthétiques**, documentation [FR/EN](../12-development/source-staging.md) et CI. Le mode par défaut n'écrit pas, `--stage` copie uniquement après contrôle vers un dossier privé neuf hors dépôt sous utilisateur nonroot ; le reçu exige une **revue manuelle**, pas un import automatique. Prochain véritable travail : récupérer **le ZIP original** SRC-03 et sa preuve SHA-256, analyser licences/diff/secrets, puis produire une **PR distincte d'import** avec tests Go/PHP réels. R2 Symfony/PostgreSQL dépend de cet import. La V3 UI reste candidate, Hub séparé.

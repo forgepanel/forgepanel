@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-18-HANDOVER revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-18-HANDOVER revision=5 status=documented -->
 # Passage de relais
 
 [English](../../en/18-contributing/handover.md) · [Guide de contribution](README.md)
@@ -32,3 +32,7 @@ Le préflight `scripts/verify_source_archive.py` est disponible avec 16 tests sy
 ## Relais R1 — préparation en quarantaine terminée, import toujours ouvert
 
 La chaîne de préparation source comprend désormais `verify_source_archive.py` et `stage_source_archive.py`, **33 tests synthétiques**, documentation [FR/EN](../12-development/source-staging.md) et CI. Le mode par défaut n'écrit pas, `--stage` copie uniquement après contrôle vers un dossier privé neuf hors dépôt sous utilisateur nonroot ; le reçu exige une **revue manuelle**, pas un import automatique. Prochain véritable travail : récupérer **le ZIP original** SRC-03 et sa preuve SHA-256, analyser licences/diff/secrets, puis produire une **PR distincte d'import** avec tests Go/PHP réels. R2 Symfony/PostgreSQL dépend de cet import. La V3 UI reste candidate, Hub séparé.
+
+## Prochain contrôle R1 — reçu indépendant
+
+Avant toute PR d'import de sources PHP/Go, obtenir l'archive SRC-03 exacte ; exécuter préflight et staging privé ; puis lancer [l'audit en lecture seule](../12-development/source-staging-audit.md) avec la **même archive originale**, et examiner chaque fichier/licence/secret. L'audit ne rend pas l'import automatiquement autorisé et doit être revalidé lors de la copie finale dans Git. Le design V3 n'est pas une baseline approuvée. L'utilisateur ne doit pas coder ni manipuler root pour ce flux.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-18-HANDOVER revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-18-HANDOVER revision=5 status=documented -->
 # Handover to the next contributor
 
 [Français](../../fr/18-contributing/handover.md) · [Contribution guide](README.md)
@@ -32,3 +32,7 @@ The read-only `scripts/verify_source_archive.py` and 16 synthetic tests are avai
 ## R1 handover — quarantine preparation complete, actual import still open
 
 Source intake now includes `verify_source_archive.py` and `stage_source_archive.py`, **33 synthetic tests**, [FR/EN documentation](../12-development/source-staging.md) and CI. Preview mode writes nothing; `--stage` only copies verified files into a fresh nonroot private off-repository destination and receipt requires **manual review**, not automatic import. Next real work: recover **original SRC-03 ZIP**, verify checksum, inspect licensing/diffs/secrets, then open a **separate source-import PR** with actual Go/PHP checks. R2 Symfony/PostgreSQL depends on that import. V3 UI stays a candidate, Hub separate.
+
+## Next R1 gate — independent receipt verification
+
+Before a PHP/Go source import PR, recover the exact SRC-03 ZIP, perform preflight and private staging, then run the [read-only integrity audit](../12-development/source-staging-audit.md) against the **same genuine archive** and review every file/license/secret. Auditing never authorizes automatic import; re-hash bytes during eventual Git import. V3 design is not an approved baseline. The owner must not be required to code or use root for this workflow.

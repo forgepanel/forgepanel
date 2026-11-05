@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=10 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=11 status=documented -->
 # Tests, quality and definition of done
 
 [Français](../../fr/13-tests-quality/README.md) · [Index](../README.md)
@@ -70,3 +70,7 @@ The [positive/negative MVP test matrix](mvp-gates-q151-q160.md) defines **MVP-Q1
 ## Expanded R1 synthetic tests — 33 scenarios
 
 [Provenance quarantine](../12-development/source-staging.md) and R1 preflight now have **33 synthetic unit tests**: 16 previous ZIP tests, 6 new negative cases (spoofed Unicode, embedded `.git`, privileged modes, live `.env` variants) and 11 staging cases (read-only default, private destination/modes, root and overwrite denial, staging blocked with custom `--evidence`, source mutation detection/cleanup). CI command: `python3 -m unittest discover -s tests/source_intake -p 'test_*.py' -v`. **This is not evidence of actual SRC-03 import or running application**.
+
+## Post-staging integrity negative tests — R1
+
+Added `tests/source_intake/test_audit_staged_archive.py` and regression cases in `test_stage_source_archive.py`. Using **only synthetic archives**, they cover ZIP/receipt/file consistency, symlinks/hardlinks, missing/unexpected files/directories, excessive permissions, forged receipts and concurrent directory substitution during staging failure. [Specification](../12-development/source-staging-audit.md). CI must run all `tests/source_intake` cases on the final SHA. Passing them does not establish a completed R1 import, HTTP/SQL, VM or real restore.

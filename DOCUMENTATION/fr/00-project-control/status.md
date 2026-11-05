@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=15 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=16 status=documented -->
 # État et roadmap ordonnée par dépendances
 
 [English](../../en/00-project-control/status.md) · [Pilotage](README.md)
@@ -75,3 +75,7 @@ Un vérificateur de provenance SRC-03 en lecture seule est **implémenté** et v
 ## État de l'outillage R1 : quarantaine de provenance
 
 Le Core contient maintenant les outils autonomes `verify_source_archive.py` et `stage_source_archive.py`, permettant de vérifier puis de **préparer sans privilèges** une copie source hors du dépôt. **33 tests unitaires synthétiques locaux ont réussi** ; la CI du commit de PR doit être vérifiée séparément. La quarantaine et son reçu `STAGED_FOR_MANUAL_REVIEW` ne sont pas un import ; **aucun Core Symfony/Go ni installateur n'a été importé ou mis en service**. L'archive Foundation v0.7 reste absente ; l'issue #2 reste ouverte. [Procédure](../12-development/source-staging.md).
+
+## R1 — Vérification d'intégrité de quarantaine
+
+La branche de travail ajoute l'outil **en lecture seule** `audit_staged_archive.py` et renforce le nettoyage du staging contre la substitution d'un dossier en cours d'opération. État : **IMPLEMENTATION CANDIDATE** jusqu'à CI/PR fusionnée ; les tests ne concernent que des ZIP synthétiques. [Règles et limitations](../12-development/source-staging-audit.md). L'archive Foundation v0.7 authentique reste indisponible dans ce lot, l'issue #2 d'import applicatif demeure OPEN et R2–R6 ne sont pas démontrés. Aucun changement de Design System V3 ni de Hub.

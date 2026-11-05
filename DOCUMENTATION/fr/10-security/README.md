@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=14 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=15 status=documented -->
 # Modèle de sécurité et signalement
 
 [English](../../en/10-security/README.md) · [Index](../README.md)
@@ -86,3 +86,7 @@ Le runner KVM éphémère est isolé, ses secrets nettoyés et les preuves sign�
 ## Sécurité de l'admission du code source R1
 
 L'import des sources requiert des octets SRC-03 authentifiés selon le registre canonique. Le nouvel outil `stage_source_archive.py` ajoute une **quarantaine non privilégiée**, sans réseau, exécution ni écrasement du Core, après préflight. Défenses : refus des chemins Unicode trompeurs/métadonnées Git/permissions setuid, séparation des étapes validation/copie, répertoire privé, fichiers 0600 et manifeste de provenance. Ces garde-fous ne sont pas une sandbox pour exécuter du code non fiable : aucune archive staging ne doit être exécutée ou déployée. Les plugins/Hub ne peuvent ni autoriser cette opération ni contourner la chaîne R1. [Contrat](../12-development/source-staging.md).
+
+## Revue de sécurité R1 — intégrité et nettoyage de quarantaine
+
+Les fichiers de staging peuvent être contrôlés indépendamment contre **ZIP original + reçu + contenu sur disque**. [Contrat d'audit](../12-development/source-staging-audit.md). Refus : reçus falsifiés, chemins symboliques, hardlinks, permissions non privées ou exécutables, fichier ajouté/supprimé et source modifiée. Le nettoyage d'échec se fait via le **descripteur du parent privé** et vérification `dev/inode` pour ne pas supprimer un autre répertoire si son nom change. Reste une limite : un acteur contrôlant le même UID peut changer les sources **après** l'audit ; l'importeur final doit revalider les octets. Jamais de root, shell générique, import automatique ni élévation Hub.

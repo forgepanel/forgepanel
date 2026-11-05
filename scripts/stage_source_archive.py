@@ -180,6 +180,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--source-id", default="SRC-03")
     parser.add_argument("--stage", action="store_true", help="Explicitly create private staging directory (default: inspect only)")
     args = parser.parse_args(argv)
+    if args.stage and args.evidence.resolve() != DEFAULT_EVIDENCE.resolve():
+        print(json.dumps({"status": "BLOCKED", "blockers": ["custom_evidence_staging_forbidden"], "staged": False}))
+        return 2
     try:
         result = stage(args.archive, args.destination, args.evidence, args.source_id, args.stage)
     except (OSError, ValueError, json.JSONDecodeError):

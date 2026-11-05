@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-07 revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-07 revision=3 status=documented -->
 # Portals, identities and authorization
 
 [Français](../../fr/07-interfaces-roles/README.md) · [Index](../README.md)
@@ -14,6 +14,10 @@ The target authorization decision combines permission, tenant/resource ownership
 Target admin direct access is 8447, customer access 8446, with configurable distinct hosts on HTTPS 443 later. The prototype accepts distinct non-privileged ports; the customer portal remains disabled. Same IP with different ports must not be treated as cookie isolation. Distinct hosts, session contexts and server-side authorization are required before opening both portals.
 
 The setup cookie is configured as `__Host-FORGE_ADMIN`, Secure, HttpOnly, SameSite Strict, path `/`. Real HTTP tests remain pending. `PUBLIC_ACCESS` on setup routes does not remove SetupService's token/grant checks; it also does not create a permanent authenticated administrator session.
+
+## Approvals, visual modes and sessions (Q66, Q70)
+
+Sensitive operations require recent authentication, with **configurable extra approval** when policy requires it (Q66 C). MFA remains optional; an audited controlled emergency path is required for single-admin scenarios. The visual editor (Q70 D) only exposes validated widgets/routes; menu visibility never changes access rights. [Design](../11-design-system/visual-editor.md) · [Decisions](../00-project-control/infrastructure-decisions.md).
 
 ## Required tests before expansion
 

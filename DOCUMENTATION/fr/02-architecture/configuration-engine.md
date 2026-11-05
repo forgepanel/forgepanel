@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-CONFIG revision=2 status=specified -->
+<!-- forgepanel-doc id=FP-02-CONFIG revision=3 status=specified -->
 # Configuration Engine — spécification des réglages administrables
 
 [English](../../en/02-architecture/configuration-engine.md) · [Architecture](README.md) · [Politique produit](../00-project-control/product-policy.md)
@@ -47,6 +47,10 @@ Les changements purement visuels peuvent s'appliquer immédiatement. Une modific
 ## Nouveaux réglages Q56–Q60
 
 Le Core propose une politique de canaux **Stable/Beta/Dev**, avec contrôle d'accès et compatibilité (Q57) ; comptes locaux et SSO/OIDC facultatif avec MFA administrateur optionnel (Q58) ; conservation par catégorie et plafonds légaux/de sécurité (Q59). Prestataires de paiement et offres achat définitif/abonnements/essais/coupons/packs/options relèvent du **Hub**, pas du Core (Q56/Q60). Tous ces réglages restent à implémenter. [Spécification](../00-project-control/commerce-identity-release-policy.md).
+
+## Paramètres nouveaux liés à Q61–Q70
+
+Contrôle des canaux/signatures/approbations de publication (Q61) ; installation DEB/RPM vérifiée (Q62) ; DNS/mail par fournisseur et capacité (Q63–Q64) ; destinations, chiffrement, rétention, réplication et immutabilité des backups (Q65) ; réauthentification et approbation supplémentaire (Q66) ; politiques de groupes et clusters (Q67) ; seuils/destinataires d'alertes (Q68) ; propriété des IP/ports et profils par site (Q69) ; édition visuelle versionnée (Q70). Les modifications sensibles restent soumises à PLAN/VALIDATE/SNAPSHOT/APPLY/VERIFY/RECOVER. [Détails](../00-project-control/infrastructure-decisions.md).
 
 ## API cible et critères de validation
 

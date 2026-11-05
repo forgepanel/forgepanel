@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=3 status=documented -->
 # Security model and disclosure
 
 [Français](../../fr/10-security/README.md) · [Index](../README.md)
@@ -28,6 +28,10 @@ Under Q6, Hub enrollment is voluntary; premium checks, version discovery, diagno
 ## Identity, payments and retention (Q56, Q58, Q59)
 
 Hub payment providers use independent drivers with authenticated and deduplicated webhooks, never rights based only on browser redirects. SSO/OIDC is **optional**, with secure local recovery; administrator MFA stays optional. Per-category retention is limited by law, audit and backup requirements. These components are not operational.
+
+## Trust chain and sensitive operations (Q61, Q65, Q66)
+
+Signed packages/release metadata with protected trust roots, anti-rollback and approvals; encrypted replicated/immutable backup and real restore tests; recent authentication and configurable extra approval for sensitive operations. **Administrator MFA stays optional**, including setup. Signatures, backups and approval are not substitutes for independent permission enforcement. [Q61–Q70](../00-project-control/infrastructure-decisions.md).
 
 ## Minimum release gates
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-15 revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-15 revision=3 status=documented -->
 # Operations, diagnosis and recovery
 
 [Français](../../fr/15-operations/README.md) · [Index](../README.md)
@@ -20,6 +20,10 @@ Observe service health, operation IDs, duration, failure categories, resource sa
 ## Category-based retention (Q59)
 
 Privileged audit records, system logs, jobs, metrics, diagnostics, sessions, backups, tickets and Hub commercial records require distinct policies. Retention, anonymization, archives and purges are configurable within legal/security limits; no default duration is invented and required incident/recovery evidence cannot be erased. [Q56–Q60](../00-project-control/commerce-identity-release-policy.md).
+
+## Advanced operation and monitoring (Q65, Q67, Q68)
+
+Encrypted multi-destination backups with replication/immutability, local monitoring and email/webhook/external alert integrations, and a phased multi-server/HA/DR target. All adapters expose quotas, consent, retention and recovery; real availability needs restore/failure tests. Clustering follows the foundation milestone. [Architecture](../02-architecture/service-drivers-and-ha.md).
 
 ## Backup and restoration requirements
 

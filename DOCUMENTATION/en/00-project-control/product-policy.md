@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-POLICY revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-00-POLICY revision=3 status=documented -->
 # Product decisions of 5 November 2026 — free Core, commercial model and configuration
 
 [Français](../../fr/00-project-control/product-policy.md) · [ADR register](decisions.md) · [Configuration Engine](../02-architecture/configuration-engine.md)
@@ -43,8 +43,12 @@ Q56 **C** — independent payment provider drivers; Q57 **C** — Stable/Beta/De
 
 Core remains free and complete. Hub owns payments/offers; Core owns local update verification and execution. No particular vendor, rollout percentage, retention day count or automatic-update default has been chosen. See [Q56–Q60 technical decisions](commerce-identity-release-policy.md).
 
+## Confirmed Q61–Q70
+
+The owner approved Q61 C, Q62 C, Q63 C, Q64 C, Q65 D, Q66 C, Q67 D, Q68 C, Q69 D and Q70 D: signed publishing and universal installer, modular local/external DNS/mail, replicated/immutable backups, sensitive action approvals, phased multi-server/HA, external monitoring, multiple web ingresses and visual customization. **One brand per organization** (Q55) and **optional admin MFA** remain unchanged. HA and advanced functions are phased, not mandatory for the first release. [Q61–Q70 requirements](infrastructure-decisions.md).
+
 ## Open follow-ups — no default assumed
 
-Q48–Q55 are **confirmed** (see table). Open details include AGPL only/or-later and commercial grant text, CLA and copyright ownership, precise independent premium-package conditions, OS default runtime and containment, explicit revocation/expiry versus network loss, partner review criteria, exact delivery milestones and verified domain ownership for one brand per organization. Next questions Q56–Q70 cover providers, subscriptions, publishing, security and operations.
+Q48–Q55 are **confirmed** (see table). Open details include AGPL only/or-later and commercial grant text, CLA and copyright ownership, precise independent premium-package conditions, OS default runtime and containment, explicit revocation/expiry versus network loss, partner review criteria, exact delivery milestones and verified domain ownership for one brand per organization. Operational details for Q56–Q70 (providers, policies, security and operations) still need design and validation.
 
 **State: documented owner decisions, no implementation.** See [project status](status.md) and [modules](../04-modules/README.md).

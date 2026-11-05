@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-04 revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-04 revision=2 status=documented -->
 # Catalogue des modules natifs
 
 [English](../../en/04-modules/README.md) · [Index](../README.md)
@@ -16,6 +16,10 @@ Un module natif appartient au produit revu et utilise les contrats du Core. Son 
 | Files / SFTP | Identité client, chemins sûrs, quotas | Choix `sftp` ; aucun code de file manager fourni |
 | Backup / Restore | Stockage, secrets, cohérence des ressources | Choix `backup` ; aucun moteur de sauvegarde |
 | Monitoring / Jobs / Updates | Observabilité, exécution durable, racines de confiance | Doctor en lecture seule et prototype de vérification de signatures |
+
+## Décisions Q63–Q68 et responsabilités natives
+
+La cible prévoit pilotes DNS local/externe (Q63), mail natif/externe (Q64), sauvegardes chiffrées répliquées/immuables avec restauration (Q65), monitoring/alertes intégrables (Q68) et agents multi-serveurs/HA (Q67). Les modules partagent des contrats de capacités, autorisations et états ; aucune fonction n'est installée automatiquement sans choix/prérequis. La HA viendra progressivement, pas nécessairement avec le premier lot d'hébergement. [Architecture](../02-architecture/service-drivers-and-ha.md).
 
 ## Contrat de cycle de vie
 

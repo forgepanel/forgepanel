@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-04 revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-04 revision=2 status=documented -->
 # Native module catalog
 
 [Français](../../fr/04-modules/README.md) · [Index](../README.md)
@@ -16,6 +16,10 @@ A native module belongs to the reviewed product and uses core contracts. It may 
 | Files / SFTP | Tenant identity, safe paths, storage quotas | `sftp` token; no file manager source supplied |
 | Backup / Restore | Storage, secrets, resource consistency | `backup` token; no backup engine |
 | Monitoring / Jobs / Updates | Observability, durable execution, trust roots | Read-only doctor and signature-verification prototype only |
+
+## Q63–Q68 native module responsibilities
+
+The design includes local/external DNS (Q63), native/external mail (Q64), encrypted replicated/immutable backup and restore (Q65), integrations and alerting (Q68), and multi-server/HA agents (Q67). Modules expose capabilities, authorization and observed state; no optional service is implicitly installed. HA is a phased target, not necessarily part of the first hosting milestone. [Architecture](../02-architecture/service-drivers-and-ha.md).
 
 ## Lifecycle contract
 

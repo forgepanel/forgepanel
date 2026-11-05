@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=3 status=documented -->
 # Installation, Git promotion and releases
 
 [Français](../../fr/14-devops-releases/README.md) · [Index](../README.md)
@@ -22,6 +22,10 @@ The installer and service controllers must show impact plans, validate prerequis
 ## Channels and progressive rollouts (Q57)
 
 The target provides **Stable, Beta, Dev**, pilot cohorts, progressive rollout, verified artifacts and controlled recovery. Hub may publish metadata; local Core authorizes updates. Code rollback alone cannot undo an irreversible database migration. Automation defaults remain open; no real update engine is implemented. See [Q56–Q60](../00-project-control/commerce-identity-release-policy.md).
+
+## Secure installation and release (Q61, Q62)
+
+Target: simple verified bootstrap and signed **DEB/RPM** repositories for all six OS targets, CI/CD builds with signed artifacts/metadata, anti-rollback and approval gates. Package signatures alone do not prove compatibility. Keep publisher private signing keys out of the installer. Test interrupted installs, idempotent retry and recovery. See [Q61–Q70](../00-project-control/infrastructure-decisions.md). No operational release has occurred.
 
 ## Release evidence
 

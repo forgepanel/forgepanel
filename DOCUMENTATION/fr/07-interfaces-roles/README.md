@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-07 revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-07 revision=3 status=documented -->
 # Portails, identités et autorisations
 
 [English](../../en/07-interfaces-roles/README.md) · [Index](../README.md)
@@ -14,6 +14,10 @@ La décision d'autorisation cible combine permission, propriété client/ressour
 Les accès directs cibles sont 8447 pour l'administration et 8446 pour les clients, puis des hôtes distincts configurables sur HTTPS 443. Le prototype accepte des ports non privilégiés distincts ; le portail client reste désactivé. Une même IP sur deux ports ne constitue pas une isolation des cookies. Hôtes distincts, contextes de session et autorisation serveur sont requis avant d'ouvrir les deux portails.
 
 Le cookie de setup est configuré `__Host-FORGE_ADMIN`, Secure, HttpOnly, SameSite Strict, chemin `/`. Les tests HTTP réels restent à exécuter. `PUBLIC_ACCESS` des routes de setup ne supprime pas les contrôles jeton/autorisation de SetupService ; il ne crée pas non plus une session administrateur permanente.
+
+## Approbations, modes visuels et sessions (Q66, Q70)
+
+L'administration des opérations sensibles exige réauthentification, avec **approbation supplémentaire configurable** lorsque la politique le demande (Q66 C). Le MFA reste facultatif ; prévoir procédure de secours contrôlée pour l'administrateur unique sans supprimer les audits. L'éditeur visuel (Q70 D) autorise seulement widgets et routes validés, sans transformer la visibilité d'un menu en permission. [Design](../11-design-system/visual-editor.md) · [Décisions](../00-project-control/infrastructure-decisions.md).
 
 ## Tests exigés avant extension
 

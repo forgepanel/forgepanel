@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08 revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-08 revision=2 status=documented -->
 # APIs and contracts
 
 [Français](../../fr/08-api-contracts/README.md) · [Index](../README.md)
@@ -20,6 +20,10 @@ All fields are required; extra fields are rejected. Cross-field checks are in co
 Routes: `/setup`, `/setup/resume`, `/setup/mfa`, `/setup/recovery`, `/setup/configuration` accept their declared GET/POST methods; `/setup/review` and `/setup/configuration.json` are GET views/exports. POST operations use CSRF checks and setup grants. These source routes are not deployed endpoints.
 
 CLI exit codes in source: 0 success, 2 preflight failure, 64 invalid/unsupported usage, 70 internal/unimplemented operation, 77 permission/TTY refusal. `install apply` is refused; `release verify` validates the manifest signature, not downloaded artifact bytes.
+
+## Proposed Q61–Q70 contracts
+
+Signed artifact registry and anti-rollback metadata (Q61), capability-based DNS/mail/backup/monitoring adapters (Q63–Q65/Q68), idempotent scoped multi-server operations with observed state (Q67), listener ownership and WebStack generations (Q69), versioned navigation/widgets (Q70). Typed scoped operations only; agent API never accepts an arbitrary shell command. [Specification](../00-project-control/infrastructure-decisions.md). **Candidate contracts only**, no new working endpoints.
 
 ## Future protocol requirements
 

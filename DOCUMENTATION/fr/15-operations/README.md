@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-15 revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-15 revision=3 status=documented -->
 # Exploitation, diagnostic et récupération
 
 [English](../../en/15-operations/README.md) · [Index](../README.md)
@@ -20,6 +20,10 @@ Observer santé des services, ID d'opérations, durées, catégories d'échec, s
 ## Conservation par catégorie (Q59)
 
 Les audits de privilèges, logs système, jobs, métriques, diagnostics, sessions, sauvegardes, tickets et données commerciales Hub ont des politiques distinctes. Rétention, anonymisation, archive et purge configurables dans le cadre légal et sécuritaire ; aucune durée arbitraire fixée et aucun effacement des preuves requises pour incident ou restauration. [Q56–Q60](../00-project-control/commerce-identity-release-policy.md).
+
+## Gestion avancée et supervision (Q65, Q67, Q68)
+
+Sauvegardes chiffrées multi-destinations avec réplication et immutabilité, supervision locale et alertes email/webhooks/intégrations externes, et cible multi-serveurs/HA/DR. Chaque adaptation doit exposer quotas, consentement, rétention et opérations de récupération ; la disponibilité effective exige tests de restauration et de défaillance. Le clustering est à développer après la fondation. [Architecture](../02-architecture/service-drivers-and-ha.md).
 
 ## Sauvegarde et restauration requises
 

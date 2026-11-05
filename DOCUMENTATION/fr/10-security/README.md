@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=3 status=documented -->
 # Modèle de sécurité et signalement
 
 [English](../../en/10-security/README.md) · [Index](../README.md)
@@ -28,6 +28,10 @@ Conformément à Q6, l'enregistrement Hub est volontaire, les vérifications pre
 ## Identité, paiements et conservation (Q56, Q58, Q59)
 
 Les prestataires de paiement sont des pilotes Hub indépendants : webhooks authentifiés et dédoublonnés, jamais de droit accordé par la seule redirection navigateur. L'authentification SSO/OIDC est **facultative**, avec récupération locale sécurisée ; MFA administrateur facultatif. Les rétentions par catégorie restent contraintes par la loi, les audits et les sauvegardes. Ces composants ne sont pas opérationnels.
+
+## Chaîne de confiance et opérations sensibles (Q61, Q65, Q66)
+
+Paquets et métadonnées de publication signés avec racines de confiance protégées, anti-rétrogradation et approbations. Sauvegardes chiffrées, distantes/immuables et récupérables, avec tests de restauration réels. Réauthentification des opérations sensibles et approbation supplémentaire selon politique ; **MFA administrateur facultatif**, non imposé comme prérequis. Ni signature, ni sauvegarde, ni deuxième validation ne remplacent un contrôle de permissions indépendant. [Q61–Q70](../00-project-control/infrastructure-decisions.md).
 
 ## Critères minimaux de livraison
 

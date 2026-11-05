@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-POLICY revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-00-POLICY revision=3 status=documented -->
 # Décisions produit du 5 novembre 2026 — gratuit, commercial et configurable
 
 [English](../../en/00-project-control/product-policy.md) · [Registre ADR](decisions.md) · [Configuration Engine](../02-architecture/configuration-engine.md)
@@ -43,8 +43,12 @@ Q56 **C** — paiements multi-prestataires via pilotes indépendants ; Q57 **C**
 
 Le Core demeure complet et gratuit. Les paiements/offres appartiennent au Hub, tandis que la vérification et l'exécution locales des mises à jour relèvent du Core. Aucun fournisseur, pourcentage de diffusion, nombre de jours de conservation ou politique de mises à jour automatiques n'a encore été choisi. Le détail des interfaces et tests figure dans [Q56–Q60](commerce-identity-release-policy.md).
 
+## Décisions Q61–Q70 confirmées
+
+L'éditeur a validé les dix choix Q61 C, Q62 C, Q63 C, Q64 C, Q65 D, Q66 C, Q67 D, Q68 C, Q69 D, Q70 D. Ils prévoient publication signée et installateur universel, services DNS/mail modulaires, sauvegardes avec réplication/immutabilité, approbations sensibles, orchestration et HA, monitoring externe, frontaux multiples et édition visuelle. La marque demeure **unique par organisation** (Q55) et le MFA administrateur reste **facultatif**. La haute disponibilité et les fonctions avancées se déploient par phases, sans contraindre la première version. [Exigences Q61–Q70](infrastructure-decisions.md).
+
 ## Questions encore ouvertes — ne pas présumer
 
-Q48–Q55 sont **décidées** (voir tableau). Sujets ouverts : AGPL `only` ou `or-later` et licence commerciale, texte CLA et détenteur de droits, conditions de commercialisation de chaque module, moteur par défaut par OS et confinement, expirations/révocations distinctes de la simple perte de réseau, liste des critères partenaires, calendrier exact des jalons et validation des domaines de la marque unique. Les nouveaux arbitrages Q56–Q70 traiteront les fournisseurs, abonnements, distribution, sécurité et exploitation.
+Q48–Q55 sont **décidées** (voir tableau). Sujets ouverts : AGPL `only` ou `or-later` et licence commerciale, texte CLA et détenteur de droits, conditions de commercialisation de chaque module, moteur par défaut par OS et confinement, expirations/révocations distinctes de la simple perte de réseau, liste des critères partenaires, calendrier exact des jalons et validation des domaines de la marque unique. Les modalités opérationnelles de Q56–Q70 (fournisseurs, politiques exactes, sécurité et exploitation) restent à concevoir et tester.
 
 **État : décision documentaire adoptée, implémentation non commencée.** Voir le [statut du projet](status.md) et les [modules](../04-modules/README.md).

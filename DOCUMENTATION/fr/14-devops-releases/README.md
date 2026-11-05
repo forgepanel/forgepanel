@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=3 status=documented -->
 # Installation, promotion Git et releases
 
 [English](../../en/14-devops-releases/README.md) · [Index](../README.md)
@@ -22,6 +22,10 @@ L'installateur et les gestionnaires de services devront présenter le plan et so
 ## Canaux et déploiements progressifs (Q57)
 
 La cible propose **Stable, Beta, Dev** avec groupes pilotes, déploiement progressif, signatures/compatibilité et récupération contrôlée. Le Hub publie les métadonnées ; le Core local autorise et applique. Un rollback de code ne suffit pas pour une migration de base irréversible. La politique d'automatisation reste ouverte ; aucune mise à jour réelle n'est implémentée. Voir [Q56–Q60](../00-project-control/commerce-identity-release-policy.md).
+
+## Installation et publication sécurisées (Q61, Q62)
+
+Cible : commandes d'installation simples avec vérification de provenance et **DEB/RPM signés** pour les six OS visés ; builds CI/CD, artefacts et métadonnées signés, anti-retour arrière et barrières d'approbation. Une signature de paquet n'est pas une preuve de test de compatibilité. Les clés privées d'éditeur ne doivent pas être embarquées dans l'installateur. Tester l'installation interrompue, la relance idempotente et la récupération. Voir [Q61–Q70](../00-project-control/infrastructure-decisions.md). Aucune publication opérationnelle n'a été réalisée.
 
 ## Preuves de livraison
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=3 status=documented -->
 # État et roadmap ordonnée par dépendances
 
 [English](../../en/00-project-control/status.md) · [Pilotage](README.md)
@@ -38,6 +38,8 @@ Décisions complémentaires Q48–Q55 du 2026-11-05 : **AGPL-3.0 + licence comme
 
 Nouvelles décisions produit Q1–Q8 et Q47 du 2026-11-05 : **double licence (textes non choisis)**, Core gratuit complet + premium/support facultatifs, toutes cibles par phases, runtimes clients PHP/Node.js/Python/conteneurs, white-label par organisation, Hub avec consentements séparés, grâce commerciale hors ligne **60 jours**, catalogue officiel/partenaires vérifiés, changements sensibles contrôlés. [Politique détaillée](product-policy.md). Elles ne constituent pas des fonctionnalités implémentées.
 
-Décisions Q56–Q60 confirmées : **prestataires de paiement indépendants**, **Stable/Beta/Dev + diffusion progressive/récupération**, **identité locale + SSO/OIDC facultatif**, **rétention par catégorie**, **achat définitif + abonnement + essai/coupons/packs/options**. Ces fonctionnalités restent **spécifiées**, non opérationnelles. Q61–Q70 sont encore sans réponse. Voir [Q56–Q60](commerce-identity-release-policy.md).
+Décisions Q56–Q60 confirmées : **prestataires de paiement indépendants**, **Stable/Beta/Dev + diffusion progressive/récupération**, **identité locale + SSO/OIDC facultatif**, **rétention par catégorie**, **achat définitif + abonnement + essai/coupons/packs/options**. Ces fonctionnalités restent **spécifiées**, non opérationnelles. Q61–Q70 sont maintenant décidées, mais pas implémentées. Voir [Q56–Q60](commerce-identity-release-policy.md).
+
+Q61–Q70 sont **confirmées (2026-11-05)** : signatures CI/CD avec anti-rétrogradation/approbations ; installateur universel + DEB/RPM signés ; DNS et mail locaux/externes ; sauvegardes chiffrées immuables et réplication ; réauthentification/approbation sensibles ; multi-serveurs/HA ; monitoring/alertes intégrables ; WebStacks par site/IP/port ; éditeur visuel/widgets et marque unique. [Spécification Q61–Q70](infrastructure-decisions.md). **État : spécifié, aucun service ou cluster certifié.**
 
 Ces priorités n'engagent aucune date ni version. Arbitrages produit nécessaires : licence du logiciel/des contributions et canal privé de sécurité autorisé. Les choix paquets/runtimes nécessitent une proposition technique étayée, pas une nouvelle architecture implicite.

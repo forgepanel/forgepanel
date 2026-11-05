@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DECISIONS revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-00-DECISIONS revision=3 status=documented -->
 # Registre de décisions
 
 [English](../../en/00-project-control/decisions.md) · [Pilotage](README.md)
@@ -39,6 +39,17 @@ Les identifiants sources renvoient à l'[état initial](../19-audits-risks/basel
 | ADR-027 | Comptes locaux et SSO/OIDC facultatif (Q58 C) | Authentification locale et récupération conservées ; identités externes permissionnées, MFA toujours facultatif |
 | ADR-028 | Rétentions par catégorie (Q59 C) | Durées configurables dans les limites de sécurité et légales ; périodes exactes à définir |
 | ADR-029 | Achat définitif + abonnements + essais/coupons/packs/options (Q60 C) | Modèle commercial Hub ; droits issus d'événements de paiement vérifiés, pas d'une redirection navigateur |
+
+| ADR-030 | CI/CD signé + anti-rétrogradation + approbations (Q61 C) | Artefacts et métadonnées signés, racines de confiance protégées et validation avant publication ; système à réaliser |
+| ADR-031 | Installation universelle + dépôts DEB/RPM signés (Q62 C) | Bootstrap d'origine vérifiée, installateur reprenable et paquets adaptés à chaque OS cible ; pas d'installateur disponible |
+| ADR-032 | DNS local + fournisseurs externes par drivers (Q63 C) | Autorité par zone, validation des enregistrements et changement de fournisseur contrôlé |
+| ADR-033 | Mail natif + fournisseurs externes (Q64 C) | Services locaux/externes via pilotes, séparation des comptes et vérification DNS/TLS |
+| ADR-034 | Sauvegardes distantes répliquées, chiffrées, immuables, récupération (Q65 D) | Restaurations testées, limites de stockage et objectifs de reprise mesurés |
+| ADR-035 | Réauthentification sensible et approbation supplémentaire configurable (Q66 C) | MFA administrateur toujours facultatif ; policy d'approbation, audit et mode secours |
+| ADR-036 | Multi-serveurs et HA/clustering/DR (Q67 D) | Cible par phases ; pas de cluster certifié ni de dépendance au Hub |
+| ADR-037 | Monitoring local + alertes email/webhooks + intégrations externes (Q68 C) | Règles configurables et maîtrise des données exportées |
+| ADR-038 | WebStacks par site et frontaux selon IP/port (Q69 D) | Listeners exclusifs, vérification TLS et protections `.htaccess`, configurations planifiées |
+| ADR-039 | Éditeur visuel avec widgets/navigation et marque unique (Q70 D, Q55 A) | Composants approuvés, thème/historique et permissions, sans code arbitraire |
 
 ## Propositions remplacées ou non résolues
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00 revision=12 status=documented -->
+<!-- forgepanel-doc id=FP-00 revision=13 status=documented -->
 # Pilotage du projet
 
 [English](../../en/00-project-control/README.md) · [Index](../README.md)
@@ -31,3 +31,7 @@ Chaque tâche identifie son périmètre et ses composants, fixe les critères d'
 ## Nouveaux arbitrages Q161–Q170
 
 [Décisions Q161–Q170](decisions-q161-q170.md) · [Contrats de qualification et reprise](../02-architecture/evidence-and-recovery-q161-q170.md) · [Tests MVP planifiés](../13-tests-quality/mvp-gates-q161-q170.md). **Q1–Q160 restent en vigueur ; Q171+ sont ouverts**, aucun code ou OS certifié par ces documents.
+
+## Audit de complétude et traçabilité
+
+[Registre des lacunes et priorités documentaires](documentation-readiness.md) · [Matrice de traçabilité des 22 exigences de clôture](requirements-traceability.md) · [Manifest JSON versionné](../../evidence/documentation-readiness-v1.json) · [Statut réconcilié R1/R3](status.md). Les statuts `OPEN`/`BLOCKED` concernent la **documentation et ses preuves manquantes**, pas de nouveaux arbitrages Q171+. Aucune étape R2/R3/R4 n'est déclarée certifiée par ces tableaux.

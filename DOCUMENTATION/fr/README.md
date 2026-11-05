@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-INDEX revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-INDEX revision=2 status=documented -->
 # Référence de développement
 
 [English](../en/README.md) · [Choix de langue](../README.md)
@@ -29,3 +29,7 @@ Commencer par l'état du projet, les décisions et la provenance de l'audit. Le 
 | 19 Audits et risques | [Preuves, contradictions et blocages](19-audits-risks/README.md) |
 
 Les deux langues évoluent ensemble. Les contrôles de métadonnées et de liens ne prouvent pas l'équivalence sémantique ; une lecture bilingue reste nécessaire. Les travaux prévus, les déclarations historiques non reproduites et les validations actuelles sont distingués explicitement.
+
+## Où en est la complétude ?
+
+La navigation des 20 catégories est structurée et bilingue, **mais les contrats et preuves ne sont pas achevés**. Commencer par le [registre des 22 lacunes](00-project-control/documentation-readiness.md), la [traçabilité exigences → contrats → QA](00-project-control/requirements-traceability.md), la [matrice de couverture](00-project-control/coverage.md) et le [statut Core réconcilié](00-project-control/status.md). Le manifeste source [JSON versionné](../evidence/documentation-readiness-v1.json) se trouve dans le sous-dossier `DOCUMENTATION/evidence` et ne constitue pas une décision produit.

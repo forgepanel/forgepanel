@@ -92,6 +92,7 @@ class QuarantineAuditTests(unittest.TestCase):
         self.assert_block("staged_special_file_or_symlink")
 
     def test_staged_hardlink_detected(self):
+        (self.destination / "src" / "main.go").unlink()
         os.link(self.destination / "README.md", self.destination / "src" / "main.go")
         self.assert_block("staged_file_type_owner_or_link_mismatch")
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=2 status=documented -->
 # Tests, quality and definition of done
 
 [Français](../../fr/13-tests-quality/README.md) · [Index](../README.md)
@@ -18,6 +18,10 @@ A test record identifies input commit/archive hash, tool versions, environment, 
 | Documentation | Checker and bilingual review | Relative links, mirrored metadata, nonempty content, limited secret scan |
 
 PHPUnit, Go testing, Playwright, Bats, static analysis and load tools remain the target quality stack where relevant. Do not claim those pipelines exist just because they were recommended. Docker-only tests do not replace VM validation of Linux service/security behavior.
+
+## Q119 B first-release acceptance gate
+
+The first usable release needs an **end-to-end test on an authorized VM**: verified artifact install, optional-MFA initial setup, permanent admin login, real PostgreSQL, create PHP website, validate domain, valid HTTPS certificate, successful HTTPS request, RBAC denials, diagnosis and recovery from failed config. Include TLS failure, IP:port conflict and denied permission tests. Name OS/WebStack/commit and exact results; Go fixtures, in-memory PHP tests and documentation CI do not certify hosting. [Q120 D roadmap](../00-project-control/implementation-roadmap.md).
 
 ## Definition of done
 

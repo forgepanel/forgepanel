@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=7 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=8 status=documented -->
 # Status and dependency-ordered roadmap
 
 [Français](../../fr/00-project-control/status.md) · [Project control](README.md)
@@ -20,6 +20,10 @@
 | Release and production | None evidenced; license unresolved |
 
 All six OS targets and five profiles are planning inputs. Thirty fixture combinations are not thirty installations. The `production` branch initially points to a README-only bootstrap commit and deploys nothing.
+
+## Roadmap — Q120 D order, Q119 B MVP
+
+**Approved dependency chain: source import → real Symfony/PostgreSQL and optional MFA/identity tests → safe installer → first PHP site/domain/HTTPS and basic VPS administration → neutral extension ABI → private Hub.** The [detailed roadmap](implementation-roadmap.md) defines R1–R6 and evidence gates. **Q119 B first functional version ends with a verified HTTPS PHP site**: native DNS, mail, HA, marketplace and all six OSes are not day-one certified prerequisites. Core source is still unimported; no stage is declared delivered.
 
 ## Roadmap
 

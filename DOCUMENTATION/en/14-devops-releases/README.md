@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=5 status=documented -->
 # Installation, Git promotion and releases
 
 [Français](../../fr/14-devops-releases/README.md) · [Index](../README.md)
@@ -30,6 +30,10 @@ Target: simple verified bootstrap and signed **DEB/RPM** repositories for all si
 ## Controlled adoption and trust chain (Q71, Q72)
 
 Q71 adds protected KMS/HSM or signing service, anti-rollback metadata and key rotation, without selecting a provider. Q72 supports servers already running services via **read-only discovery → takeover plan → backup → confirmation → validation/recovery**, alongside clean install. Installer must refuse to overwrite unmanaged files/services without explicitly verified ownership. Both paths require real conflict/VM testing before declared supported. [Specification](../00-project-control/decisions-q71-q80.md).
+
+## First-release scope and order (Q119 B, Q120 D)
+
+**R1 provenance-preserving source import → R2 real Symfony/PostgreSQL/identity/optional-MFA tests → R3 verified tested installer → R4 manageable PHP site, domain and HTTPS plus minimal VPS administration → R5 generic detached-extension ABI → R6 private Hub.** The [roadmap](../00-project-control/implementation-roadmap.md) defines VM/HTTP/SQL and recovery gates; Hub follows the first usable Core release. Q119 B does not require all OSes/WebStacks or native DNS/mail in the first gate. Before public distribution complete license/CLA review (Q111/Q112) and verify both private security-report channels (Q118). None is operationally completed by this documentation.
 
 ## Release evidence
 

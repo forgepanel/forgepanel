@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-POLICY revision=7 status=documented -->
+<!-- forgepanel-doc id=FP-00-POLICY revision=8 status=documented -->
 # Product decisions of 5 November 2026 — free Core, commercial model and configuration
 
 [Français](../../fr/00-project-control/product-policy.md) · [ADR register](decisions.md) · [Configuration Engine](../02-architecture/configuration-engine.md)
@@ -62,6 +62,12 @@ The owner approved maintained PHP with EOL alerts and per-site migration (Q91), 
 ## Confirmed Q101–Q110
 
 The choices add **time-limited** PHP exceptions and planned migration (Q101), OS-certified plan/site isolation profiles (Q102), Git manual/webhook with per-environment approval (Q103), specially approved sensitive staging copies (Q104), bounded retries/recovery across ACME issuers (Q105), shared/dedicated DB and optional certified clusters (Q106), temporary/certificate-based SSH where available (Q107), Webmail recommendation after tests (Q108), quota grace by plan/resource (Q109) and conditional pre-sync/replication/failover (Q110). Core remains standalone; Hub has no access to hosted resources. [Q101–Q110](decisions-q101-q110.md).
+
+## Confirmed Q111–Q120
+
+Exact AGPL variant follows **legal review** (Q111 C); electronic CLA and verification of individual/corporate signing rights precede merge (Q112 C). Hub plans organization license pools/transfers/server replacement (Q113 D), manual review of every partner release and withdrawal (Q114 C), sandbox payment adapters before per-market provider selection (Q115 D), per-jurisdiction/category retention (Q116 C), and reason-scoped premium revocations without stopping free Core (Q117 C). Security channels chosen are **private GitHub reporting plus verified dedicated email**, with triage/notices (Q118 C); no such address/channel is automatically configured.
+
+**Q119 B first functional version** covers verified installer, CLI, wizard, identity/PostgreSQL and manageable PHP site/domain/HTTPS. **Q120 D specifies the dependency order**: sources → Symfony/PG → installer → first site/VPS → neutral Core ABI → Hub. [Decisions](decisions-q111-q120.md) · [Roadmap](implementation-roadmap.md). All other Q1–Q110 functions remain phased goals.
 
 ## Open follow-ups — no default assumed
 

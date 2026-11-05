@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-POLICY revision=7 status=documented -->
+<!-- forgepanel-doc id=FP-00-POLICY revision=8 status=documented -->
 # Décisions produit du 5 novembre 2026 — gratuit, commercial et configurable
 
 [English](../../en/00-project-control/product-policy.md) · [Registre ADR](decisions.md) · [Configuration Engine](../02-architecture/configuration-engine.md)
@@ -62,6 +62,12 @@ Le propriétaire a validé PHP maintenu avec alertes EOL et migrations par site 
 ## Décisions Q101–Q110 confirmées
 
 Les nouveaux choix encadrent les exceptions PHP **temporaires** avec migration (Q101), l'isolation par profils certifiés du plan/site (Q102), les modes Git manuel/webhook et les approbations selon environnement (Q103), l'usage de données sensibles en staging uniquement avec approbation dédiée (Q104), les essais et secours ACME multi-autorités (Q105), les bases mutualisées ou dédiées avec clusters optionnels certifiés (Q106), l'accès SSH temporaire ou par certificats compatibles (Q107), les Webmails recommandés après tests (Q108), les grâces de quotas par plan/type (Q109) et la migration présynchronisée avec réplication/bascule conditionnelles (Q110). Le Core reste autonome et le Hub n'accède pas aux ressources clientes. [Q101–Q110](decisions-q101-q110.md).
+
+## Décisions Q111–Q120 confirmées
+
+La variante AGPL exacte reste à choisir **après revue juridique** (Q111 C), et le CLA exige signature électronique et vérification des droits individuels/entreprises avant fusion (Q112 C). Le Hub gérera pools de licences/transferts/remplacement de serveur (Q113 D), revue manuelle de chaque release partenaire et retrait (Q114 C), pilotes de paiement sandbox puis choix par marché (Q115 D), rétention par catégorie/juridiction (Q116 C) et révocations premium par motif sans bloquer le Core gratuit (Q117 C). Les canaux de sécurité retenus sont **GitHub privé + email dédié vérifié**, avec triage/notification (Q118 C) : aucun contact n'est encore configuré par cette documentation.
+
+La **première version fonctionnelle Q119 B** comprend installateur vérifié, CLI, wizard, identité/PostgreSQL et un site PHP administrable avec domaine et HTTPS. **Q120 D fixe les dépendances** : sources → Symfony/PG → installateur → site/VPS → ABI Core générique → Hub. [Détails](decisions-q111-q120.md) · [Roadmap](implementation-roadmap.md). Les autres modules Q1–Q110 restent des cibles par phases.
 
 ## Questions encore ouvertes — ne pas présumer
 

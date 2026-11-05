@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=2 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
@@ -18,6 +18,10 @@ Un compte rendu identifie commit/empreinte d'archive, outils, environnement, com
 | Documentation | Vérificateur et lecture bilingue | Liens relatifs, métadonnées parallèles, contenu non vide, détection limitée de secrets |
 
 PHPUnit, Go testing, Playwright, Bats, analyse statique et outils de charge restent la cible qualité selon les besoins. Leur recommandation ne prouve pas l'existence des pipelines. Docker seul ne remplace pas les VM pour services et sécurité Linux.
+
+## Porte de sortie de la première version Q119 B
+
+Une première livraison fonctionnelle exige un **test complet sur VM autorisée** : installation depuis artefact vérifié, setup initial avec choix MFA facultatif, connexion administrateur permanente, PostgreSQL réel, création d'un site PHP, validation de domaine, certificat HTTPS valide, requête HTTPS, droits RBAC, diagnostic et restauration d'une configuration en panne. Tester aussi échec de TLS, conflit IP:port et autorisation refusée. Nommer OS, WebStack, commit et résultats exacts ; ne pas assimiler des fixtures Go, tests PHP en mémoire ou CI documentaire à une certification d'hébergement. [Roadmap Q120 D](../00-project-control/implementation-roadmap.md).
 
 ## Définition de terminé
 

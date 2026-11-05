@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=7 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=8 status=documented -->
 # Modèle de sécurité et signalement
 
 [English](../../en/10-security/README.md) · [Index](../README.md)
@@ -54,6 +54,10 @@ Une exception PHP EOL est **temporaire, limitée à un site, autorisée et audit
 Ne jamais demander le mot de passe root Linux dans le panneau. Maintenir USER fermé avant validation des autorisations et sessions. Ne pas désactiver SELinux/AppArmor ou le pare-feu pour réussir un test. Éviter les secrets dans URL, logs et artefacts. Exiger diagnostic en lecture seule avant réparation proposée et autorisation explicite avant destruction. Les tests de restauration couvrent les clés, pas seulement SQL/fichiers.
 
 Le verrouillage après cinq essais bootstrap peut servir au déni de service ; restrictions réseau et tests de récupération restent nécessaires. Des vecteurs TOTP validés ne constituent pas un audit cryptographique. Un port n'est pas une frontière d'autorisation.
+
+## Signalement de vulnérabilités retenu (Q118 C)
+
+Avant toute diffusion publique, **configurer et vérifier** deux canaux : signalement **privé sur GitHub** si le dépôt le permet, et **adresse email de sécurité dédiée dont les destinataires sont autorisés**. Les procédures cibles couvrent triage, gravité, accusé de réception, accès restreint, suivi des correctifs et notifications responsables ; aucune adresse, délai contractuel de réponse ou programme de récompense n'est établi ici. Le dépôt et les canaux doivent être vérifiés sur le compte réel avant d'en faire la promotion. [Décisions Q111–Q120](../00-project-control/decisions-q111-q120.md).
 
 ## Signalement et revue
 

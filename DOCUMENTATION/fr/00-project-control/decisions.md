@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DECISIONS revision=7 status=documented -->
+<!-- forgepanel-doc id=FP-00-DECISIONS revision=8 status=documented -->
 # Registre de décisions
 
 [English](../../en/00-project-control/decisions.md) · [Pilotage](README.md)
@@ -94,6 +94,17 @@ Les identifiants sources renvoient à l'[état initial](../19-audits-risks/basel
 | ADR-077 | Webmail recommandé après tests de sécurité/compatibilité/maintenance (Q108 D) | Aucune présomption Roundcube/SnappyMail ; choix serveur/fournisseur/domaine |
 | ADR-078 | Grâce et plafonds de quotas par plan et ressource (Q109 C) | Seuils/échéances et allocations administrateur Q99 ; limites physiques non franchissables |
 | ADR-079 | Pré-synchronisation et bascule avancée conditionnelle (Q110 D) | Test staging et DNS/proxy, réplication/failover uniquement si application/infrastructure compatibles ; pas de zéro downtime garanti |
+
+| ADR-080 | AGPL-3.0 + commerciale, variante après revue juridique (Q111 C) | Choix stratégique maintenu ; only/or-later et texte commercial non sélectionnés, aucun LICENSE final |
+| ADR-081 | CLA électronique avec vérification des pouvoirs individuels/entreprises avant fusion (Q112 C) | Texte, identité juridique, signataires, preuves d'accord et autorisation de double licence à valider |
+| ADR-082 | Pools de licences par organisation, transferts et remplacement serveur (Q113 D) | Plafonds, affectations et reprise auditables ; aucun privilège Linux |
+| ADR-083 | Partenaires : revue de chaque version, maintenance/sécurité et retrait (Q114 C) | Vérification manuelle continue, provenance, signatures et réponse aux incidents |
+| ADR-084 | Paiements : adaptateurs sandbox puis choix par marché (Q115 D) | Prestataires réels, pays, monnaies et taxes non présumés |
+| ADR-085 | Rétention par catégorie et juridiction sous loi (Q116 C) | Durées min/max, gel légal, purge et audits configurables ; pas de chiffres inventés |
+| ADR-086 | Révocation premium selon motif sans couper Core (Q117 C) | Sécurité/fraude/remboursement/expiration ; révocation connue ≠ 60 jours hors ligne automatiques |
+| ADR-087 | Signalement privé GitHub + email sécurité vérifié, triage/notifications (Q118 C) | Configurer et vérifier les deux canaux avant diffusion ; aucune adresse inventée |
+| ADR-088 | Première version testable : installateur/CLI/wizard/identité/PG + site PHP/domaine/HTTPS (Q119 B) | Preuve VM/HTTP/TLS, diagnostics/récupération et permissions, pas les modules avancés |
+| ADR-089 | Ordre : sources → Symfony/PG → installateur → premier site/VPS → ABI → Hub (Q120 D) | Dépendances et critères de sortie dans la roadmap ; le Hub ne bloque pas le MVP Core |
 
 ## Propositions remplacées ou non résolues
 

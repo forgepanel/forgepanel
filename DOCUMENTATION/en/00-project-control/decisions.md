@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DECISIONS revision=7 status=documented -->
+<!-- forgepanel-doc id=FP-00-DECISIONS revision=8 status=documented -->
 # Decision register
 
 [Français](../../fr/00-project-control/decisions.md) · [Project control](README.md)
@@ -94,6 +94,17 @@ Source IDs refer to the [baseline](../19-audits-risks/baseline.md). A decision a
 | ADR-077 | Webmail recommended after security/compatibility/maintenance tests (Q108 D) | No unverified Roundcube/SnappyMail default; server/provider/domain choice |
 | ADR-078 | Quota grace duration/cap per plan and resource type (Q109 C) | Limits, expiry and Q99 admin grants never exceed physical capacity |
 | ADR-079 | Conditional pre-sync and advanced migration cutover (Q110 D) | Staging/DNS-proxy; replication/failover only when app/infrastructure support, no zero-downtime promise |
+
+| ADR-080 | AGPL-3.0 + commercial; exact variant after legal review (Q111 C) | Strategy retained; only/or-later and commercial text unselected, no operative LICENSE |
+| ADR-081 | Electronic CLA with individual/corporate authority checks before merge (Q112 C) | Legal text/entity/signatures/evidence and dual-license grants to approve |
+| ADR-082 | Organization license pools, controlled transfers and server replacement (Q113 D) | Audited caps/assignments/recovery, no Linux privilege |
+| ADR-083 | Per-partner-release review, maintenance/security and withdrawal (Q114 C) | Continuing manual review, provenance/signatures and incident response |
+| ADR-084 | Sandbox payment adapters, providers selected later per market (Q115 D) | No assumed live vendor, region, currency or tax rule |
+| ADR-085 | Retention by category and jurisdiction within law (Q116 C) | Configurable limits, legal hold and audit; no invented durations |
+| ADR-086 | Reason-scoped premium revocation without stopping Core (Q117 C) | Security/fraud/refund/expiry; known revocation not automatically 60-day grace |
+| ADR-087 | GitHub private reports plus verified security email with triage/notices (Q118 C) | Configure and test both before distribution, no fabricated contact |
+| ADR-088 | First testable installer/CLI/wizard/identity/PG + PHP site/domain/HTTPS (Q119 B) | Real VM/HTTP/TLS/RBAC/recovery proof, advanced modules not prerequisite |
+| ADR-089 | Source → Symfony/PG → installer → first site/VPS → ABI → Hub (Q120 D) | Explicit roadmap gates; commercial Hub cannot gate Core MVP |
 
 ## Replaced or unresolved proposals
 

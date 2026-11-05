@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=7 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=8 status=documented -->
 # Security model and disclosure
 
 [Français](../../fr/10-security/README.md) · [Index](../README.md)
@@ -54,6 +54,10 @@ EOL PHP exceptions are **temporary, site-scoped, authorized and audited**, with 
 Never request the Linux root password through the panel. Keep the customer portal closed until authorization/session isolation is tested. Do not disable SELinux/AppArmor or firewall rules to make tests pass. Avoid secret-bearing URLs, logs and artifacts. Require read-only diagnosis before a proposed repair and explicit authorization for destructive changes. Restore tests must cover encryption keys, not just SQL/files.
 
 Five-attempt bootstrap lockout can itself be abused for denial of service; network restrictions and recovery tests remain needed. TOTP code vectors do not equal a cryptographic audit. A port number is not an authorization boundary.
+
+## Owner-approved vulnerability reporting (Q118 C)
+
+Before public distribution **configure and verify** two channels: **GitHub private vulnerability reporting** if supported on the actual repository, plus a **dedicated security email with authorized recipients**. Define triage, severity, acknowledgement, restricted access, patch tracking and responsible notifications. No email address, contractual response time or bounty program is established by this document; verify the actual account configuration before advertising a reporting route. [Q111–Q120 decisions](../00-project-control/decisions-q111-q120.md).
 
 ## Reporting and review
 

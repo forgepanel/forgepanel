@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-MVP-QUAL revision=2 status=specified -->
+<!-- forgepanel-doc id=FP-00-MVP-QUAL revision=3 status=specified -->
 # First PHP/HTTPS ForgePanel qualification — Q121–Q127
 
 [Français](../../fr/00-project-control/mvp-qualification.md) · [Roadmap](implementation-roadmap.md) · [Q121–Q130 decisions](decisions-q121-q130.md)
@@ -34,7 +34,7 @@ Verify domain **A and AAAA** resolution, conflicting IPv4/IPv6 targets, publicly
 
 - **Q134 C**: planned OS updates with package/impact preview, role approval, maintenance window, **recoverable backup**, durable job/reboot warning, health checks and **recovery procedure**; never expose arbitrary root commands.
 - **Q135 B**: **encrypted local backups** with **optional remote destination** only if a driver is qualified, covering panel config and **PHP website files**, real restore drills and accessible recovery keys. Recover panel PostgreSQL consistently if needed. Local copies do not survive every whole-disk failure; remote/3-2-1 targets remain planned.
-- **Q136 C**: **website-manager** limited to owned websites: status, PHP/domains/TLS/files, **SFTP and backup/restore** under admin policies/quotas. Deny other tenants, quota increases, OS packages and root actions; apply Q47 to TLS/restores.
+- **Q136 C**: **website-manager** limited to owned websites: status, PHP/domains/TLS/files, **SFTP and backup/restore** under admin policies/quotas. Test **real SFTP allowed on the owned site and denied across tenants**, plus quota increases, OS packages and root actions; apply Q47 to TLS/restores.
 
 ## Q127 B private beta gate
 

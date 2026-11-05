@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-MVP-QUAL revision=2 status=specified -->
+<!-- forgepanel-doc id=FP-00-MVP-QUAL revision=3 status=specified -->
 # Qualification du premier ForgePanel PHP/HTTPS — Q121–Q127
 
 [English](../../en/00-project-control/mvp-qualification.md) · [Roadmap](implementation-roadmap.md) · [Décisions Q121–Q130](decisions-q121-q130.md)
@@ -34,7 +34,7 @@ L'assistant vérifie la résolution **A et AAAA** des noms du site, les écarts 
 
 - **Q134 C** : mises à jour OS avec prévisualisation des paquets/impact, autorisation par rôle, créneau de maintenance, **sauvegarde récupérable**, état de tâche/éventuel reboot, vérification des services et **procédure de récupération**. Refuser commandes root libres.
 - **Q135 B** : sauvegardes **locales chiffrées**, avec **destination distante facultative** si un pilote est qualifié ; inclure configuration du panneau et **fichiers PHP du site**, tests de restauration réels et clés accessibles en secours. Prévoir reprise cohérente de PostgreSQL du panneau si nécessaire. Ne pas prétendre que la copie locale résiste à la perte du disque ; la cible distante/3-2-1 reste extensible.
-- **Q136 C** : rôle **gestionnaire de site** limité à ses sites : lecture d'état, PHP/domaines/TLS/fichiers, **SFTP et sauvegarde/restauration** sous quotas, droits et politiques admin. Tester les refus sur autres tenants, changement de quotas, paquets OS et actions root ; appliquer Q47 pour TLS/restauration.
+- **Q136 C** : rôle **gestionnaire de site** limité à ses sites : lecture d'état, PHP/domaines/TLS/fichiers, **SFTP et sauvegarde/restauration** sous quotas, droits et politiques admin. Tester **un SFTP réel autorisé sur le bon site et refusé sur un site tiers**, puis les refus de changement de quotas, paquets OS et actions root ; appliquer Q47 pour TLS/restauration.
 
 ## Bêta privée Q127 B — passage après tests internes
 

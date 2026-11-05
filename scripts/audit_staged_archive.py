@@ -16,7 +16,7 @@ from pathlib import Path
 from typing import Any
 
 from stage_source_archive import RECEIPT
-from verify_source_archive import DEFAULT_EVIDENCE, evidence_record, scan_archive, sha256_file, unsafe_name
+from verify_source_archive import DEFAULT_EVIDENCE, ROOT, evidence_record, scan_archive, sha256_file, unsafe_name
 
 MAX_RECEIPT_BYTES = 2 * 1024 * 1024
 MAX_STAGED_ENTRIES = 4096
@@ -139,6 +139,8 @@ def verify(archive: Path, directory: Path, evidence: Path = DEFAULT_EVIDENCE,
         # Do not accept symlinked parent aliases or relative path tricks.
         if directory.resolve(strict=True) != directory:
             raise AuditRejected("staged_directory_must_be_canonical")
+        if directory.is_relative_to(ROOT):
+            raise AuditRejected("staged_directory_inside_repository_forbidden")
     except (OSError, ValueError, json.JSONDecodeError, AuditRejected) as exc:
         result["blockers"].append(str(exc) if isinstance(exc, AuditRejected) else "invalid_zip_or_directory")
         return result

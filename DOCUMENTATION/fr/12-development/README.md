@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-12 revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-12 revision=3 status=documented -->
 # Environnement et conventions de développement
 
 [English](../../en/12-development/README.md) · [Index](../README.md)
@@ -24,3 +24,7 @@ Un agent inspecte espace de travail et branches distantes, réutilise les branch
 ## Admission R1 : outil de code vérifiable
 
 L'utilitaire `scripts/verify_source_archive.py` vérifie en **lecture seule** l'archive originale SRC-03 avant import. Il compare son empreinte et son inventaire au registre, analyse le ZIP et génère un rapport JSON, sans exécuter ni installer de code. **16 tests unitaires utilisant uniquement des archives synthétiques** sont automatisés dans la CI. Le Core applicatif PHP/Go n'est toujours **pas importé**. [Contrat et mode d'emploi](source-archive-intake.md).
+
+## R1 — Copie en quarantaine uniquement après préflight
+
+[Procédure de mise en quarantaine](source-staging.md) : un outil Python non privilégié peut préparer les octets vérifiés dans un répertoire privé neuf **sans les importer ni les exécuter**. Le mode par défaut ne modifie rien ; `--stage` exige preuves officielles, destination contrôlée et refus d'écrasement. La CI contient **33 tests synthétiques** pour le préflight et la quarantaine.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=14 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=15 status=documented -->
 # État et roadmap ordonnée par dépendances
 
 [English](../../en/00-project-control/status.md) · [Pilotage](README.md)
@@ -71,3 +71,7 @@ Ces priorités n'engagent aucune date ni version. Arbitrages produit nécessaire
 ## R1 — Progrès vérifiable, sources applicatives toujours absentes
 
 Un vérificateur de provenance SRC-03 en lecture seule est **implémenté** et validé sur 16 ZIP synthétiques ; voir [préflight R1](../12-development/source-archive-intake.md). Il bloque archives modifiées, chemins dangereux, liens, collisions, décompression excessive et quelques formats secrets, **sans import ni effet système**. L'archive v0.7 originale requise par [l'issue #2](https://github.com/yyogas/forgepanel/issues/2) n'est toujours pas disponible ici : **R1 source import = BLOCKED**, R2 Symfony/PG et suites R3–R6 non réalisées. Le prototype UI V3 demeure une proposition visuelle séparée, non une base Core validée.
+
+## État de l'outillage R1 : quarantaine de provenance
+
+Le Core contient maintenant les outils autonomes `verify_source_archive.py` et `stage_source_archive.py`, permettant de vérifier puis de **préparer sans privilèges** une copie source hors du dépôt. **33 tests unitaires synthétiques locaux ont réussi** ; la CI du commit de PR doit être vérifiée séparément. La quarantaine et son reçu `STAGED_FOR_MANUAL_REVIEW` ne sont pas un import ; **aucun Core Symfony/Go ni installateur n'a été importé ou mis en service**. L'archive Foundation v0.7 reste absente ; l'issue #2 reste ouverte. [Procédure](../12-development/source-staging.md).

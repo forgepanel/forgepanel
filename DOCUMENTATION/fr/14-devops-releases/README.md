@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=10 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=11 status=documented -->
 # Installation, promotion Git et releases
 
 [English](../../en/14-devops-releases/README.md) · [Index](../README.md)
@@ -60,3 +60,7 @@ Le workflow documentaire est conçu avec permission de lecture seule, actions of
 ## Gate R1 d'admission de l'archive source
 
 Le nouveau préflight `scripts/verify_source_archive.py` lit le ZIP original SRC-03 en **lecture seule**, contrôle empreinte, chemins et limites et ne fait **aucune extraction, installation ou exécution**. Il ne constitue pas un installateur et ne peut pas autoriser `install apply`. Un PASS est suivi d'une revue des licences/secrets et de tests sur le commit importé ; le ZIP original reste manquant dans ce lot. [Procédure](../12-development/source-archive-intake.md).
+
+## R1 — Quarantaine avant import : jamais un déploiement
+
+`stage_source_archive.py` prépare seulement les fichiers réguliers vérifiés dans un dossier privé **hors dépôt**, sous utilisateur non-root, mode aperçu par défaut et `--stage` explicite. Dossier existant, parent modifiable par d'autres, métadonnées suspectes ou changement de source → refus. Le reçu `STAGED_FOR_MANUAL_REVIEW` porte `import_approved=false` : aucune installation, signature release, migration ou exécution root ne peut partir de cet outil. Le vrai ZIP reste indisponible et les étapes R1 import/R2–R6 ne sont pas débloquées. [Procédure](../12-development/source-staging.md).

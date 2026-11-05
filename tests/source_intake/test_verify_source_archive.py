@@ -126,5 +126,39 @@ class ArchiveIntakeTests(unittest.TestCase):
         self.assertEqual(json.loads(buffer.getvalue())["state"], "BLOCKED")
 
 
+
+class ArchivePathHardeningTests(unittest.TestCase):
+    setUp = ArchiveIntakeTests.setUp
+    make_zip = ArchiveIntakeTests.make_zip
+    scan = ArchiveIntakeTests.scan
+
+    def test_unicode_decomposed_path_rejected(self):
+        result = self.scan([("cafe\u0301.txt", b"x")])
+        self.assertTrue(any("unicode_noncanonical_path" in x for x in result.blockers))
+
+    def test_unicode_format_character_rejected(self):
+        result = self.scan([("name\u202e.txt", b"x")])
+        self.assertTrue(any("unicode_format_or_surrogate_path" in x for x in result.blockers))
+
+    def test_windows_trailing_dot_rejected(self):
+        result = self.scan([("folder./file.txt", b"x")])
+        self.assertTrue(any("nonportable_path_component" in x for x in result.blockers))
+
+    def test_embedded_git_metadata_rejected(self):
+        result = self.scan([("source/.git/config", b"unsafe")])
+        self.assertTrue(any("embedded_git_metadata" in x for x in result.blockers))
+
+    def test_env_variant_is_blocked(self):
+        result = self.scan([(".env.production", b"SECRET=hidden")])
+        self.assertTrue(any("potential_live_environment_file" in x for x in result.blockers))
+
+    def test_setuid_member_mode_is_blocked(self):
+        info = zipfile.ZipInfo("script")
+        info.create_system = 3
+        info.external_attr = (stat.S_IFREG | stat.S_ISUID | 0o755) << 16
+        result = self.scan([(info, b"echo nope")])
+        self.assertTrue(any("privileged_mode_bits" in x for x in result.blockers))
+
+
 if __name__ == "__main__":
     unittest.main()

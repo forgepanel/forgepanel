@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=14 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=15 status=documented -->
 # Status and dependency-ordered roadmap
 
 [Français](../../fr/00-project-control/status.md) · [Project control](README.md)
@@ -71,3 +71,7 @@ No date or version commitment is implied by these priorities. Product-owner deci
 ## R1 — Verifiable progress while application source remains absent
 
 A read-only SRC-03 provenance preflight is **implemented** and tested on 16 synthetic ZIPs; see [R1 preflight](../12-development/source-archive-intake.md). It rejects changed archives, unsafe paths, links, collisions, excessive expansion and selected secret patterns, with **no import or system side effects**. The original v0.7 source required by [issue #2](https://github.com/yyogas/forgepanel/issues/2) is still unavailable here: **R1 source import = BLOCKED**, R2 Symfony/PG and R3–R6 remain unimplemented. V3 HTML UI is a separate visual proposal, not an adopted Core baseline.
+
+## R1 tooling status: provenance quarantine
+
+Core now contains standalone `verify_source_archive.py` and `stage_source_archive.py`, which can verify and **prepare nonprivileged off-repository** source copies. **33 synthetic local unit tests passed**; exact-commit PR CI must be checked separately. Quarantine receipt `STAGED_FOR_MANUAL_REVIEW` is not an import; **no Symfony/Go application or installer has been imported or deployed**. Foundation v0.7 original ZIP remains missing and issue #2 stays open. [Procedure](../12-development/source-staging.md).

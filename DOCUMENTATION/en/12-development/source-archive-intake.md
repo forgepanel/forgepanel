@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-12-SOURCE-INTAKE revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-12-SOURCE-INTAKE revision=2 status=documented -->
 # Secure source ZIP preflight before R1 import
 
 [Français](../../fr/12-development/source-archive-intake.md) · [Development](README.md) · [Provenance](../19-audits-risks/baseline.md) · [Roadmap](../00-project-control/implementation-roadmap.md)
@@ -33,3 +33,7 @@ Current **defensive implementation limits**: 64 MiB ZIP, 2,048 entries, 32 MiB/e
 All 16 cases use **synthetic ZIP fixtures only**. Pattern-based secret screening is not exhaustive or a legal review, a hash is not a publisher trust chain, and a valid ZIP does not establish PHP/Go/Symfony/PostgreSQL or operating-system safety. **No genuine SRC-03 scan occurred in this lot because the bytes are absent.**
 
 Next R1 under [issue #2](https://github.com/yyogas/forgepanel/issues/2): recover exact archive → run preflight → manually review files/license/secrets/history → import only approved source in \`features/* → develop\` → run Go/race/vet/PHP tests on imported commit → R2 Symfony/PostgreSQL. [Handover](../18-contributing/handover.md).
+
+## Next step — private quarantine staging
+
+The [private staging tool](source-staging.md) can prepare verified **regular ZIP files** in a fresh non-root directory outside the repository with member hashes and a receipt. Preview is default, explicit `--stage` is required. **This is not the R1 application source import**, still pending original SRC-03.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-EXECUTION revision=8 status=specified -->
+<!-- forgepanel-doc id=FP-00-EXECUTION revision=9 status=specified -->
 # Roadmap technique de réalisation — décision Q120 D et MVP Q119 B
 
 [English](../../en/00-project-control/implementation-roadmap.md) · [État officiel](status.md) · [Décisions Q111–Q120](decisions-q111-q120.md)
@@ -73,3 +73,7 @@ Le code Core n'est **pas encore importé** dans `develop` ; le prototype v0.7.1 
 ## Complément de roadmap Q161–Q170 — sorties réelles
 
 **R3** : runner local KVM éphémère avec images/quotas/nettoyage (Q161 C), rapports **internes signés** en stockage privé immuable (Q162 B), exceptions **performance** fondées sur gravité, séparation des approbateurs, expiration et audit sans toucher aux veto Q132 (Q163 C). **R4** : DNS/HTTP-01 vérifié localement **et** depuis une sonde externe indépendante sur chaque A/AAAA publié (Q164 B) ; actions non destructives de récupération OS bornées avec approbation des risques (Q165 C) ; chaque backup restauré isolément avant statut récupérable, tests profonds périodiques et exercices perte hôte/clé selon criticité (Q166 C) ; clés **publiques** SFTP sous politique d'algorithmes/rotation/approbations (Q167 C). **Bêta après R4** : consentements distincts et cohortes anti-réidentification (Q168 C). **Hub R6 après ABI R5** : règles versionnées antifraude transferts (Q169 C) et avis signés JSON Schema FR/EN (Q170 B). [Matrice de tests](../13-tests-quality/mvp-gates-q161-q170.md). Aucun des tests VM/récupération n'est encore exécuté.
+
+## Porte R1 — vérification et quarantaine des sources sans import
+
+La chaîne outillée R1 possède désormais `verify_source_archive.py` (préflight en lecture seule) et `stage_source_archive.py` (**prévisualisation par défaut**, puis copie explicite non-root, répertoire privé neuf et hash de chaque fichier). Cette préparation n'exécute pas le PHP/Go historique, n'ajoute aucun fichier Core au dépôt, ne valide ni licence ni installation ; elle précède la revue humaine et la PR d'import des sources originales. L'archive SRC-03 demeure indisponible : **import R1 bloqué, R2–R6 inchangés**. [Contrat de quarantaine](../12-development/source-staging.md).

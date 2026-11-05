@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19 revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-19 revision=3 status=documented -->
 # Audit, contradictions and risks
 
 [Français](../../fr/19-audits-risks/README.md) · [Index](../README.md)
@@ -36,3 +36,10 @@ This audit examined repository metadata, supplied archive structure, key code/co
 - **RISK-014** — Evidence SHA-256 and limited secret signatures are not publisher authentication or exhaustive audit; legal, dependencies, secrets, diff and architecture review still required before import.
 
 [R1 preflight](../12-development/source-archive-intake.md) mitigates certain archive risks but **does not close RISK-002 or qualify production**.
+
+## R1 quarantine risks: controls without source import
+
+- **RISK-015** — Accidental overwriting or execution on extraction: refuse root, use fresh private off-repo directory, file mode 0600 and Linux `O_NOFOLLOW` path traversal, stop/clean on changed member digests. Human review still precedes any import.
+- **RISK-016** — Spoofed archive names and overridden evidence: preflight rejects noncanonical/bidi Unicode, embedded `.git`, live environment files and setuid/setgid modes; CLI `--stage` refuses a custom `--evidence` override. Heuristic controls cannot guarantee no secrets.
+
+The 33 synthetic checks test tooling guardrails, **not genuine source or Core integration**. [Specification](../12-development/source-staging.md).

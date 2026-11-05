@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=13 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=14 status=documented -->
 # Modèle de sécurité et signalement
 
 [English](../../en/10-security/README.md) · [Index](../README.md)
@@ -82,3 +82,7 @@ Aucune release de production supportée, adresse privée de signalement ou garan
 ## Sécurité et exceptions Q161–Q170
 
 Le runner KVM éphémère est isolé, ses secrets nettoyés et les preuves signées Q162 conservées hors VM sur stockage privé immuable contrôlé. Seules les exceptions Q163 de **performance non critique** avec approbation séparée, durée, révision et audit sont permises ; les échecs critiques Q132 ne changent jamais en PASS. Sonde DNS externe Q164 bornée, protection SSRF ; réparations OS Q165 allowlistées, non destructives et à retry plafonné ; backup Q166 jamais récupérable sans restauration isolée intégrale PASS et clés vérifiées ; SFTP Q167 par clé publique autorisée avec possession/rotation/portée site. Q168 évite réidentification et collecte forcée ; Hub Q169–170 protège les transferts premium et avis signés, sans interrompre le Core ni exposer les secrets. [Décisions](../00-project-control/decisions-q161-q170.md).
+
+## Sécurité de l'admission du code source R1
+
+L'import des sources requiert des octets SRC-03 authentifiés selon le registre canonique. Le nouvel outil `stage_source_archive.py` ajoute une **quarantaine non privilégiée**, sans réseau, exécution ni écrasement du Core, après préflight. Défenses : refus des chemins Unicode trompeurs/métadonnées Git/permissions setuid, séparation des étapes validation/copie, répertoire privé, fichiers 0600 et manifeste de provenance. Ces garde-fous ne sont pas une sandbox pour exécuter du code non fiable : aucune archive staging ne doit être exécutée ou déployée. Les plugins/Hub ne peuvent ni autoriser cette opération ni contourner la chaîne R1. [Contrat](../12-development/source-staging.md).

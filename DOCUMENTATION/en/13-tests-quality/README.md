@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=9 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=10 status=documented -->
 # Tests, quality and definition of done
 
 [Français](../../fr/13-tests-quality/README.md) · [Index](../README.md)
@@ -66,3 +66,7 @@ The [positive/negative MVP test matrix](mvp-gates-q151-q160.md) defines **MVP-Q1
 ## Real R1 preflight tool tests (and limitations)
 
 `python3 -m unittest discover -s tests/source_intake -p 'test_*.py' -v`: **16 local unit tests PASS**, on synthetic ZIPs only. Cases: valid archive, bad SHA, missing file, dangerous paths, collisions, symlink, size/ratio controls, `.env`, private-key marker, member count and source evidence. CI integration does not certify the genuine SRC-03 archive, Go/PHP, PostgreSQL/HTTP/VM or restore. [Source provenance procedure](../12-development/source-archive-intake.md).
+
+## Expanded R1 synthetic tests — 33 scenarios
+
+[Provenance quarantine](../12-development/source-staging.md) and R1 preflight now have **33 synthetic unit tests**: 16 previous ZIP tests, 6 new negative cases (spoofed Unicode, embedded `.git`, privileged modes, live `.env` variants) and 11 staging cases (read-only default, private destination/modes, root and overwrite denial, staging blocked with custom `--evidence`, source mutation detection/cleanup). CI command: `python3 -m unittest discover -s tests/source_intake -p 'test_*.py' -v`. **This is not evidence of actual SRC-03 import or running application**.

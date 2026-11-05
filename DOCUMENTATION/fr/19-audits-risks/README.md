@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19 revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-19 revision=3 status=documented -->
 # Audit, contradictions et risques
 
 [English](../../en/19-audits-risks/README.md) · [Index](../README.md)
@@ -36,3 +36,10 @@ L'audit a examiné métadonnées du dépôt, structure des archives, code/contra
 - **RISK-014** — SHA-256 de provenance et signatures de secrets détectées ne valent ni authentification éditeur, ni audit exhaustif ; maintenir revue juridique, dépendances, secrets, diff et architecture avant import.
 
 Le [préflight R1](../12-development/source-archive-intake.md) réduit certains risques d'archive, **sans fermer RISK-002 ni valider la production**.
+
+## Risques de quarantaine R1 : contrôles sans import
+
+- **RISK-015** — Écrasement ou exécution involontaire lors d'une extraction : staging interdit sous root, dossier privé neuf hors dépôt, fichiers 0600 et chemins Linux `O_NOFOLLOW` ; arrêt/nettoyage en cas de changement d'empreinte. Une revue humaine reste impérative avant tout import.
+- **RISK-016** — Noms d'entrées trompeurs et registre de preuves personnalisable : préflight refuse Unicode non canonique/bidi, `.git`, fichiers d'environnement sensibles et modes setuid/setgid ; le CLI `--stage` refuse la substitution de `--evidence`. Des contrôles heuristiques ne prouvent pas l'absence de secrets.
+
+Les 33 tests synthétiques valident les garde-fous de code, **pas l'archive originale ou l'intégration du Core**. [Spécification](../12-development/source-staging.md).

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=9 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=10 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
@@ -66,3 +66,7 @@ La [matrice des tests positifs et négatifs](mvp-gates-q151-q160.md) définit le
 ## Tests réels de l'outil de préflight R1 (et limites)
 
 `python3 -m unittest discover -s tests/source_intake -p 'test_*.py' -v` : **16 tests unitaires locaux PASS**, sur ZIP fictifs seulement. Cas : archive saine, SHA erroné, fichier absent, chemins dangereux, collisions, symlink, quotas/ratio, `.env`, indicateur de clé privée, nombre de membres et preuve source. Leur ajout au workflow CI ne certifie ni l'archive originale SRC-03, ni Go/PHP, ni PostgreSQL/HTTP/VM/restore. [Procédure de provenance](../12-development/source-archive-intake.md).
+
+## Tests synthétiques R1 étendus — 33 scénarios
+
+La [quarantaine de provenance](../12-development/source-staging.md) et le préflight R1 sont désormais couverts par **33 tests synthétiques** : 16 vérifications ZIP existantes, 6 refus supplémentaires (Unicode trompeur, `.git`, modes privilégiés, variantes `.env`) et 11 cas staging (mode lecture seule, destination privée/permissions, refus root et remplacement, preuve personnalisée bloquée pour `--stage`, modification d'archive détectée/nettoyée). Commande CI : `python3 -m unittest discover -s tests/source_intake -p 'test_*.py' -v`. **Ces résultats ne prouvent ni import réel de SRC-03 ni exécution applicative**.

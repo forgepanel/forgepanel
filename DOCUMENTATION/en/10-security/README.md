@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=13 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=14 status=documented -->
 # Security model and disclosure
 
 [Français](../../fr/10-security/README.md) · [Index](../README.md)
@@ -82,3 +82,7 @@ No supported production release, private reporting email or response SLA has bee
 ## Q161–Q170 security and exceptions
 
 Ephemeral KVM runners are isolated and cleaned of secrets; signed Q162 evidence persists outside VM in private immutable RBAC-controlled storage. Q163 permits only separately approved, scoped, expiring, audited **noncritical performance** exceptions; Q132 critical failures remain FAIL. External Q164 DNS probe is SSRF protected and bounded; Q165 OS repair is explicit/allowlisted, nondestructive and retry-limited; Q166 backup is never recoverable without full isolated PASS restore and verified keys; Q167 SFTP public keys require possession/rotation/site scoping. Q168 prevents cohort reidentification/forced collection; Hub Q169–170 protects premium transfers and signed notices without disrupting free Core or revealing secrets. [Decisions](../00-project-control/decisions-q161-q170.md).
+
+## R1 source intake security boundary
+
+Source import requires exact SRC-03 bytes matched to canonical evidence. New `stage_source_archive.py` offers **unprivileged quarantine** after preflight, with no network, execution, Core overwrite or system deployment. Defenses include rejection of deceptive Unicode paths/Git metadata/setuid modes, separated validate/copy steps, private directory, 0600 regular files and provenance receipt. These controls are not a sandbox for running untrusted code: staged sources must not be executed/deployed. Neither Hub nor a plugin may authorize or bypass R1 source intake. [Contract](../12-development/source-staging.md).

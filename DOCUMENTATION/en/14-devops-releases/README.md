@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=6 status=documented -->
 # Installation, Git promotion and releases
 
 [Français](../../fr/14-devops-releases/README.md) · [Index](../README.md)
@@ -34,6 +34,10 @@ Q71 adds protected KMS/HSM or signing service, anti-rollback metadata and key ro
 ## First-release scope and order (Q119 B, Q120 D)
 
 **R1 provenance-preserving source import → R2 real Symfony/PostgreSQL/identity/optional-MFA tests → R3 verified tested installer → R4 manageable PHP site, domain and HTTPS plus minimal VPS administration → R5 generic detached-extension ABI → R6 private Hub.** The [roadmap](../00-project-control/implementation-roadmap.md) defines VM/HTTP/SQL and recovery gates; Hub follows the first usable Core release. Q119 B does not require all OSes/WebStacks or native DNS/mail in the first gate. Before public distribution complete license/CLA review (Q111/Q112) and verify both private security-report channels (Q118). None is operationally completed by this documentation.
+
+## Qualification and private distribution (Q121–Q127)
+
+**Q121/122:** no default first OS/WebStack; select only from VM/security comparison. **Q123:** externally managed DNS, ACME HTTP-01 on port 80 and automatic HTTPS. **Q124:** local admin plus website-manager role/recovery. **Q125:** VPS observation and allowlisted, planned, authorized, verified OS package upgrades, never arbitrary root shells. **Q126:** real panel-config/PHP-site-files backup and restore, consistently restoring needed panel PG state. **Q127:** test internally first, then **private** beta after evidence, software distribution/recipient rights and actually verified security channels. Docs do not authorize any production deployment. [MVP qualification](../00-project-control/mvp-qualification.md).
 
 ## Release evidence
 

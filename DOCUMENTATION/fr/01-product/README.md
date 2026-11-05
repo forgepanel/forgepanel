@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-01 revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-01 revision=4 status=documented -->
 # Périmètre produit et parcours
 
 [English](../../en/01-product/README.md) · [Index](../README.md)
@@ -27,6 +27,10 @@ L'expérience cible combine installation universelle vérifiée, profils web et 
 ## Parcours d'hébergement Q81–Q90
 
 La cible prévoit un site personnalisable : **WebStack recommandée par site, modifiable plus tard**, PHP-FPM/extensions et limites propres, certificats ACME/wildcards, Git Deploy/staging, moteurs MariaDB/MySQL/PostgreSQL avec Redis/Valkey facultatifs, fichiers/SFTP/SSH limité, webmail/quarantaine, plans/alertes et restauration sélective/clonage staging. Le changement de WebStack utilise une route temporaire ou une bascule progressive **si les capacités le permettent**, sans garantie zéro interruption. [Contrat Q81–Q90](../00-project-control/decisions-q81-q90.md). Aucune implémentation annoncée.
+
+## Premier site PHP/HTTPS et bêta privée — Q121–Q127
+
+La première expérience fonctionnelle cible **un site PHP avec domaine sous DNS externe et HTTPS ACME HTTP-01**, sans exiger de DNS natif. Les premiers OS et profil WebStack seront **choisis après comparaison des tests VM**, pas définis par défaut. Elle inclut administration locale + rôle gestionnaire de site, diagnostic VPS et mises à jour OS **contrôlées**, sauvegarde du panneau et des fichiers du site **avec restauration testée**. Une bêta privée ne suit qu'après tests internes et vérification des conditions de distribution et du signalement de sécurité. Tous ces parcours sont **à construire**. [MVP](../00-project-control/mvp-qualification.md).
 
 ## Maîtrise du périmètre
 

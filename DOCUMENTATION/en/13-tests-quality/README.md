@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=3 status=documented -->
 # Tests, quality and definition of done
 
 [Français](../../fr/13-tests-quality/README.md) · [Index](../README.md)
@@ -22,6 +22,10 @@ PHPUnit, Go testing, Playwright, Bats, static analysis and load tools remain the
 ## Q119 B first-release acceptance gate
 
 The first usable release needs an **end-to-end test on an authorized VM**: verified artifact install, optional-MFA initial setup, permanent admin login, real PostgreSQL, create PHP website, validate domain, valid HTTPS certificate, successful HTTPS request, RBAC denials, diagnosis and recovery from failed config. Include TLS failure, IP:port conflict and denied permission tests. Name OS/WebStack/commit and exact results; Go fixtures, in-memory PHP tests and documentation CI do not certify hosting. [Q120 D roadmap](../00-project-control/implementation-roadmap.md).
+
+## Revised qualification gate (Q121–Q127)
+
+Before choosing **the first OS/WebStack**, compare VMs/profiles for security, packages, PHP, listeners, HTTP/TLS and recovery (Q121/122). Verify **external** DNS, HTTP-01 challenge on **port 80**, HTTPS success and bad DNS/IPv6/port cases (Q123). Test admin/website-manager permission separation, local recovery, sessions/CSRF and optional MFA (Q124); planned/authorized/audited/recoverable OS package operations (Q125); **real restore** of panel config and PHP-site files with coherent panel PG state where needed (Q126). Only then consider **private beta** after external-distribution and verified security-reporting gates (Q127). [MVP matrix](../00-project-control/mvp-qualification.md). **No such integration test was run in this docs PR.**
 
 ## Definition of done
 

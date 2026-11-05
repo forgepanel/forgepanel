@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DECISIONS revision=8 status=documented -->
+<!-- forgepanel-doc id=FP-00-DECISIONS revision=9 status=documented -->
 # Registre de décisions
 
 [English](../../en/00-project-control/decisions.md) · [Pilotage](README.md)
@@ -105,6 +105,17 @@ Les identifiants sources renvoient à l'[état initial](../19-audits-risks/basel
 | ADR-087 | Signalement privé GitHub + email sécurité vérifié, triage/notifications (Q118 C) | Configurer et vérifier les deux canaux avant diffusion ; aucune adresse inventée |
 | ADR-088 | Première version testable : installateur/CLI/wizard/identité/PG + site PHP/domaine/HTTPS (Q119 B) | Preuve VM/HTTP/TLS, diagnostics/récupération et permissions, pas les modules avancés |
 | ADR-089 | Ordre : sources → Symfony/PG → installateur → premier site/VPS → ABI → Hub (Q120 D) | Dépendances et critères de sortie dans la roadmap ; le Hub ne bloque pas le MVP Core |
+
+| ADR-090 | Premier OS par comparaison des prérequis et VM (Q121 D) | Aucun OS choisi sans essais ; qualification réelle par distribution |
+| ADR-091 | Première WebStack après tests compatibilité et sécurité (Q122 D) | Aucun profil imposé ; conseil indépendant par site (Q79) conservé |
+| ADR-092 | MVP : DNS externe et HTTPS ACME HTTP-01 (Q123 A) | Challenge port 80 et certificat HTTPS vérifiés ; DNS natif/DNS-01 restent ultérieurs |
+| ADR-093 | MVP : admin local et rôle gestionnaire de site (Q124 B) | Identité permanente, récupération, sessions et RBAC ; MFA facultatif |
+| ADR-094 | MVP : monitoring VPS et mises à jour/paquets OS contrôlés (Q125 B) | PLAN/préflight/autorisation/audit/récupération ; jamais de shell root arbitraire |
+| ADR-095 | MVP : backup config panneau + fichiers site PHP et restauration testée (Q126 B) | Intégrité/reprise réelle ; cohérence PG nécessaire au panneau, sans exiger 3-2-1 au MVP |
+| ADR-096 | Tests internes puis bêta privée autorisée après prérequis (Q127 B) | Tests VM, revue des obligations de distribution, canal sécurité et approbation propriétaire |
+| ADR-097 | Licences premium transférables en self-service et récupération manuelle (Q128 D) | Preuve d'identité/possession, plafond, audit et anti-double affectation ; Hub ultérieur |
+| ADR-098 | Partenaires : obligations/délais contractuels, alertes et retrait (Q129 C) | Chaque version vérifiée, responsabilité et escalade ; aucun délai inventé |
+| ADR-099 | Responsable sécurité + suppléant et triage coordonné (Q130 C) | Rôles/contacts réellement vérifiés avant bêta, pas de nom/adresse implicite |
 
 ## Propositions remplacées ou non résolues
 

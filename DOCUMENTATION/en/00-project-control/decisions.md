@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DECISIONS revision=8 status=documented -->
+<!-- forgepanel-doc id=FP-00-DECISIONS revision=9 status=documented -->
 # Decision register
 
 [Français](../../fr/00-project-control/decisions.md) · [Project control](README.md)
@@ -105,6 +105,17 @@ Source IDs refer to the [baseline](../19-audits-risks/baseline.md). A decision a
 | ADR-087 | GitHub private reports plus verified security email with triage/notices (Q118 C) | Configure and test both before distribution, no fabricated contact |
 | ADR-088 | First testable installer/CLI/wizard/identity/PG + PHP site/domain/HTTPS (Q119 B) | Real VM/HTTP/TLS/RBAC/recovery proof, advanced modules not prerequisite |
 | ADR-089 | Source → Symfony/PG → installer → first site/VPS → ABI → Hub (Q120 D) | Explicit roadmap gates; commercial Hub cannot gate Core MVP |
+
+| ADR-090 | Choose first OS after prerequisite/VM comparison (Q121 D) | No preselected OS; qualify each supported OS independently |
+| ADR-091 | Choose first WebStack after compatibility/security tests (Q122 D) | No mandatory default; per-site recommendation (Q79) remains |
+| ADR-092 | MVP external DNS and ACME HTTP-01 for HTTPS (Q123 A) | Verify port-80 challenge/HTTPS; native DNS/DNS-01 remain later |
+| ADR-093 | MVP local admin plus website-manager role (Q124 B) | Permanent identity, recovery, sessions/RBAC and optional MFA |
+| ADR-094 | MVP VPS observation plus controlled OS package upgrades (Q125 B) | PLAN/preflight/permissions/audit/recovery; no arbitrary root shell |
+| ADR-095 | MVP panel-config and PHP-site-file backup with real restore (Q126 B) | Verified integrity/recovery and consistent needed panel PG state, no mandatory 3-2-1 at MVP |
+| ADR-096 | Isolated internal tests then authorized private beta (Q127 B) | VM evidence, external-recipient license review, verified security channels and owner approval |
+| ADR-097 | Self-service premium transfers plus manual lost-server recovery (Q128 D) | Ownership/possession proof, caps, audit, no duplicate allocation; deferred Hub |
+| ADR-098 | Partner contractual maintenance/security duties, alerts and withdrawal (Q129 C) | Review each version and define responsibilities; no invented SLA |
+| ADR-099 | Security lead plus deputy and coordinated triage (Q130 C) | Actually verified roles/channels before beta; no invented contact |
 
 ## Replaced or unresolved proposals
 

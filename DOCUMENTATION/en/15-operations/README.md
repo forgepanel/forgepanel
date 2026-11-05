@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-15 revision=7 status=documented -->
+<!-- forgepanel-doc id=FP-15 revision=8 status=documented -->
 # Operations, diagnosis and recovery
 
 [Français](../../fr/15-operations/README.md) · [Index](../README.md)
@@ -40,6 +40,10 @@ PHP maintenance tracks EOL, notifies owners and plans verified upgrades without 
 ## Maintenance, exceptions and conditional HA (Q101–Q110)
 
 Operate EOL PHP exceptions with **expiry, owner and migration plan**; periodically review host-certified Linux isolation capability (Q101/102). Distinguish staging/production deployment triggers and approvals, audit sensitive-data copies with retention/cleanup (Q103/104). ACME renewal has bounded retries, alerts and preservation of last valid certificate (Q105). Shared/dedicated DB and any cluster require qualified replication/restore first (Q106). Temporary/certified SSH, test-recommended Webmail and quota grace per resource have expiry, alerts and audit (Q107–109). Pre-sync and advanced cutover (Q110) need proven consistency and fallback; maintenance otherwise. [Q101–Q110 policies](../02-architecture/runtime-exceptions-and-data-continuity.md).
+
+## Minimum Q125–Q126 operation
+
+First release observes services, metrics and logs read-only, then offers **controlled OS package updates** with trusted source, diff, impact plan, permissions, durable outcome, reboot notice, health and recovery. Initial backups cover **panel configuration plus PHP website files**, include integrity manifests and **tested restore** (with consistent panel PostgreSQL state if necessary); 3-2-1, DR, mail and hosted DB backup remain separate future targets. [MVP matrix](../00-project-control/mvp-qualification.md).
 
 ## Backup and restoration requirements
 

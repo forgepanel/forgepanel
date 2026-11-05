@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=8 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=9 status=documented -->
 # Security model and disclosure
 
 [Français](../../fr/10-security/README.md) · [Index](../README.md)
@@ -58,6 +58,10 @@ Five-attempt bootstrap lockout can itself be abused for denial of service; netwo
 ## Owner-approved vulnerability reporting (Q118 C)
 
 Before public distribution **configure and verify** two channels: **GitHub private vulnerability reporting** if supported on the actual repository, plus a **dedicated security email with authorized recipients**. Define triage, severity, acknowledgement, restricted access, patch tracking and responsible notifications. No email address, contractual response time or bounty program is established by this document; verify the actual account configuration before advertising a reporting route. [Q111–Q120 decisions](../00-project-control/decisions-q111-q120.md).
+
+## Security lead/deputy and private beta (Q127/Q130)
+
+Q130 C requires an **appointed security lead and deputy** with authorized vulnerability access, incident triage, patch/notice coordination and escalation during absence. No such individuals are **appointed by this document**. Verify both Q118 private GitHub reporting and dedicated email before allowing external private-beta testers. Q127 never authorizes collection of customer secrets, public exploit details or skipping distribution-license obligations. [Decisions](../00-project-control/decisions-q121-q130.md).
 
 ## Reporting and review
 

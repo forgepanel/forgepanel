@@ -73,6 +73,13 @@ class StageArchiveTests(unittest.TestCase):
         self.assertIn("destination_already_exists", result["blockers"])
         self.assertEqual((self.destination / "keep.txt").read_text(), "preserve")
 
+    def test_staging_inside_repo_is_refused(self):
+        path = ROOT / "never-create-quarantine"
+        with patch.object(os, "geteuid", return_value=os.stat(ROOT).st_uid):
+            outcome = module.stage(self.archive, path, self.evidence, commit=True)
+        self.assertIn("staging_inside_source_repo_forbidden", outcome["blockers"])
+        self.assertFalse(path.exists())
+
     def test_wrong_checksum_cannot_stage(self):
         self.archive.write_bytes(b"tampered")
         result = self.stage_nonroot()

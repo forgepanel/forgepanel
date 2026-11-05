@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-09 revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-09 revision=5 status=documented -->
 # Base de données, transactions et migrations
 
 [English](../../en/09-database/README.md) · [Index](../README.md)
@@ -38,3 +38,7 @@ La récupération des secrets exige base et clé de chiffrement. Ne pas placer l
 Exécuter le test PostgreSQL fourni uniquement sur une base `_test` dédiée et explicitement autorisée. Il couvre rollback forcé et persistance, pas tous les modes de concurrence/panne. Ajouter activations simultanées, réponse perdue après commit, redémarrage SQL, révision obsolète et restauration/perte de clé. Aucun pilote PDO PostgreSQL/serveur n'était disponible pour cet audit ; les tests en mémoire ne sont pas des tests SQL.
 
 [Core](../03-core/README.md) · [Qualité](../13-tests-quality/README.md)
+
+## R2 — Contrat transactionnel candidat, sans migration
+
+Le [contrat R2 PostgreSQL/transactions](setup-transaction-r2.md) trace `R2-DB-001` à `R2-DB-012` : singleton, unicité administrateur initial, verrous/révisions, retries après réponse perdue, rollback/audit et récupération des clés. **Aucune nouvelle table, colonne, migration, niveau d'isolation ou TTL n'est arrêté** par ce document. Revue Database indispensable après import SRC-03, puis tests PostgreSQL réels [R2](../13-tests-quality/r2-integration-gates.md).

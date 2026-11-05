@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-03 revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-03 revision=3 status=documented -->
 # Core and bootstrap
 
 [Français](../../fr/03-core/README.md) · [Index](../README.md)
@@ -26,3 +26,7 @@ Startup must validate configuration and dependencies, recover durable operations
 Future jobs require correlation and idempotency keys, resource locks, bounded retries, failure classification and compensating actions. Reconciliation compares desired and observed state without overwriting administrator-owned files. Module registration must reject dependency cycles and incompatible contract versions. These mechanisms are specified requirements, not archive functionality.
 
 [Component records](../04-modules/components.md) · [Database](../09-database/README.md) · [Operations](../15-operations/README.md)
+
+## R2 — Detailed identity and bootstrap contract (candidate)
+
+[Candidate R2 identity/session/optional-MFA contract](bootstrap-identity-r2.md) separates historical SRC-03 states, durable administrator, bootstrap grants, recovery and session scope. It defines `R2-ID-001`–`R2-ID-012`; endpoint schemas, durations and recovery policies still require Security/API/Database review and real tests. **No Symfony runtime or historical MFA patch is imported** by this document.

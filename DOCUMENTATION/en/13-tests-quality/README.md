@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=16 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=17 status=documented -->
 # Tests, quality and definition of done
 
 [Français](../../fr/13-tests-quality/README.md) · [Index](../README.md)
@@ -90,3 +90,7 @@ Synthetic Go tests under `tools/kvm-host-probe/admission` and its CLI cover SHA-
 ## R3 — Private pinned-copy tests
 
 New Go tests for [image staging](../14-devops-releases/kvm-image-staging.md) verify identical SHA-256 copy, 0700/0400 permissions, overwrite/symlink/nested/shared path denial, unsafe requests, source mutation, interruptions and no receipt after partial copying. CLI tests include private policy/request input gates and schema-to-Go field parity. The standalone module has **62 Go test functions total** and locally passed `go test ./...`, `go test -race ./...`, `go vet ./...`. Exact-SHA GitHub CI remains to confirm; **no QEMU guest boot or actual quota enforcement**.
+
+## R2 — HTTP, optional MFA and PostgreSQL test matrix
+
+[R2 integration matrix](r2-integration-gates.md) adds **20 planned scenarios**: `R2-AUTH-001..010` and `R2-DB-TEST-001..010`, each with positive and negative/denial path. [Identity](../03-core/bootstrap-identity-r2.md) and [SQL transaction](../09-database/setup-transaction-r2.md) documents remain candidates. **None of these 20 functional tests ran** on Symfony/PostgreSQL in this lot; Python documentation checks validate only FR/EN coverage/parity.

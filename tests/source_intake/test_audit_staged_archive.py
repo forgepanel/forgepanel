@@ -65,8 +65,12 @@ class QuarantineAuditTests(unittest.TestCase):
         self.assertFalse(result["executed"])
 
     def test_modified_staged_file_detected(self):
-        (self.destination / "README.md").write_text("altered\n")
+        (self.destination / "README.md").write_text("world\n")
         self.assert_block("staged_file_digest_mismatch")
+
+    def test_modified_staged_file_size_detected(self):
+        (self.destination / "README.md").write_text("altered-longer\n")
+        self.assert_block("staged_file_size_mismatch")
 
     def test_missing_staged_file_detected(self):
         (self.destination / "README.md").unlink()

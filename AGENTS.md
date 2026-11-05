@@ -36,4 +36,6 @@ R1 post-staging verification: `python3 scripts/audit_staged_archive.py --archive
 
 R3 preflight separation: `tools/kvm-host-probe` is a standalone, nonprivileged, read-only QEMU/KVM host observation utility. It does not execute or certify VMs, does not sign Q152/Q162 reports, is not historical Foundation Core source and must not bypass R1/R2 gates. Tests are synthetic, and the GitHub Actions runner is not a supported-host certificate. See `DOCUMENTATION/en/14-devops-releases/kvm-host-probe.md`.
 
+R3 image admission is a **read-only review gate**, not QEMU execution authority. `tools/kvm-host-probe/admission` accepts only pinned private QCOW2 files under explicit versioned test limits, never root or guest network/shares/privileges. `REVIEW_REQUIRED` and `artifact_verified=true` never mean VM/isolation/recovery certification or Q132 PASS. Future runner must preserve immutable verified bytes and enforce quotas independently. See `DOCUMENTATION/en/14-devops-releases/kvm-image-admission.md`.
+
 Leave a factual handover: completed work, remaining work, evidence, unresolved decisions, branch/commit/PR and checks not run. Never ask the owner to patch code.

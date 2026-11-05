@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=9 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=10 status=documented -->
 # Installation, Git promotion and releases
 
 [Français](../../fr/14-devops-releases/README.md) · [Index](../README.md)
@@ -56,3 +56,7 @@ First test driver is **local QEMU/KVM**, preserving Q141 abstraction for later c
 A release must map version, tag, commit, build inputs/toolchains, dependency lockfiles, checksums, signatures, tests, OS/profile support and upgrade/rollback instructions. Keep application and documentation checks separate. No tag, release, publication or deployment is created merely by this documentation PR or by the `production` branch.
 
 The documentation workflow is designed with read-only repository permission, pinned official actions and no deployment secrets. Its actual execution status belongs to PR checks, not an assumed badge. Runtime CI and protected promotion still need implementation after source import.
+
+## R1 source archive intake gate
+
+The new `scripts/verify_source_archive.py` preflight reads genuine SRC-03 **without extracting, installing or executing anything**, checking checksum, paths and bounded expansion. It is not an installer and never authorizes `install apply`. A PASS must be followed by licensing/secret review and tests on the actual imported commit; the genuine archive remains missing in this lot. [Procedure](../12-development/source-archive-intake.md).

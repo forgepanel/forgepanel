@@ -4,6 +4,9 @@ One chronology, both languages. / Une chronologie, deux langues.
 
 ## Unreleased / Non publié
 
+### Added / Ajouts — R1 source archive preflight
+- **Development tooling / Outil de développement** — Added read-only, pinned-SHA-256 ZIP intake scanner with path/link/collision/size/secret screening and member JSON manifest; 16 synthetic-archive tests and CI. FR/EN source-intake contract, risks and R1 handover updated. Genuine Foundation v0.7 archive remains unavailable; **no imported Go/PHP source, release, OS certification or privileged installer**. / Ajout d'un vérificateur ZIP en lecture seule avec empreinte épinglée, vérifications chemins/liens/collisions/taille/secrets et manifeste JSON ; 16 tests sur ZIP fictifs et CI. Contrat FR/EN, risques et relais R1 mis à jour. Archive originale v0.7 indisponible : **aucun code Go/PHP importé, aucune release, certification OS ni installateur privilégié**.
+
 ### Changed / Modifications — Q161–Q170
 - **Owner choices / Arbitrages propriétaire** — Q161 C, Q162 B, Q163 C, Q164 B, Q165 C, Q166 C, Q167 C, Q168 C, Q169 C, Q170 B. Scoped ephemeral KVM/immutable private evidence, approved performance-only waivers, dual local/external DNS checks, bounded nondestructive recovery, each-backup isolated restore and severity-based drills, public-key SFTP policy, consented privacy cohorts, versioned premium transfer risk and signed JSON Schema FR/EN advisories. Paired FR/EN specs, ADR-130–139 and planned negative/positive test matrix. **No functional release or VM qualification.** / KVM éphémère/preuves privées immuables, dérogations performance approuvées, DNS local + sonde externe, reprise OS limitée, restauration isolée de chaque backup et exercices, clés SFTP publiques, cohortes consenties, règles antifraude versionnées et avis JSON signés FR/EN. Spécifications FR/EN, ADR-130–139, tests positifs/négatifs planifiés. **Aucune release ni certification VM.**
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=9 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=10 status=documented -->
 # Installation, promotion Git et releases
 
 [English](../../en/14-devops-releases/README.md) · [Index](../README.md)
@@ -56,3 +56,7 @@ Le premier pilote de test est **QEMU/KVM local** ; conserver l'abstraction Q141 
 Une release relie version, tag, commit, entrées/outils de build, lockfiles, empreintes, signatures, tests, support OS/profil et procédures upgrade/rollback. Séparer tests applicatifs et documentaires. Cette PR et la branche `production` ne créent à elles seules aucun tag, release, publication ou déploiement.
 
 Le workflow documentaire est conçu avec permission de lecture seule, actions officielles figées et aucun secret de déploiement. Son exécution réelle se constate dans les contrôles de PR, pas dans un badge présumé. CI applicative et promotion protégée restent à implémenter après import.
+
+## Gate R1 d'admission de l'archive source
+
+Le nouveau préflight `scripts/verify_source_archive.py` lit le ZIP original SRC-03 en **lecture seule**, contrôle empreinte, chemins et limites et ne fait **aucune extraction, installation ou exécution**. Il ne constitue pas un installateur et ne peut pas autoriser `install apply`. Un PASS est suivi d'une revue des licences/secrets et de tests sur le commit importé ; le ZIP original reste manquant dans ce lot. [Procédure](../12-development/source-archive-intake.md).

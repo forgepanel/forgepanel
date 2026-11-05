@@ -28,4 +28,6 @@ No arbitrary privileged command API. Keep Linux root separate from the applicati
 
 `python3 scripts/check_documentation.py` validates documentation structure, bilingual metadata, local links and a limited secret-pattern set. Its success is not a security audit or application test. Source-archive tests and future CI gates are described in [quality](DOCUMENTATION/en/13-tests-quality/README.md). Do not run `make check` at repository root while application source is absent.
 
+R1 source preparation: `scripts/verify_source_archive.py` is read-only; `python3 -m unittest discover -s tests/source_intake -p 'test_*.py' -v` uses synthetic ZIPs. Do not import/recreate Foundation source without exact SRC-03 archive and provenance review. A preflight PASS never authorizes production apply.
+
 Leave a factual handover: completed work, remaining work, evidence, unresolved decisions, branch/commit/PR and checks not run. Never ask the owner to patch code.

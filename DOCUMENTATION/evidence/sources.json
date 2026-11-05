@@ -1,0 +1,41 @@
+{
+  "audit_date": "2026-11-05",
+  "repository": "yyogas/forgepanel",
+  "initial_visibility": "private",
+  "initial_repository_state": "empty",
+  "initialization_commit": "26b7c773a0831c20e7f14bb86ef8c2697a19d523",
+  "application_sources_imported": false,
+  "inputs": [
+    {"id": "SRC-01", "name": "Texte collé.txt", "sha256": "10f41372f86f7612faa09fef7d6d5d4c9bc5ddace0d449fd132c42044ccaee9d", "kind": "owner_instructions"},
+    {"id": "SRC-02", "name": "Visible project conversation", "kind": "conversation", "sha256": null},
+    {"id": "SRC-03", "name": "ForgePanel_Foundation_v0.7_source.zip", "sha256": "19479d5be9da9bb0ff9180f9b8819ea48baff785ccc3fef59deb2bb0894faf1a", "file_count": 92, "kind": "development_archive", "published_release": false},
+    {"id": "SRC-04", "name": "ForgePanel_Core_Foundation_v0.6_source.zip", "sha256": "8f800471ab4c2823ae6151ac478fe821cf26f5718e1449ad8f02ab0d430983b0", "file_count": 14, "kind": "historical_development_archive", "published_release": false},
+    {"id": "SRC-05-README", "name": "ForgePanel_v0.7_README.md", "sha256": "1d7b8c449329b37aa7664b779d8c359d3d0ab0961cce710722592addc8e335c3"},
+    {"id": "SRC-05-TESTS", "name": "ForgePanel_v0.7_Test_Report.md", "sha256": "dac5e659e4bc87d66bb042a202c86176ef9505fa3656a7c68cc67025a2423c26"},
+    {"id": "SRC-05-CHECKSUM", "name": "ForgePanel_Foundation_v0.7_source.zip.sha256", "sha256": "578ad2333b0da15363a9a85191c6416a145dedb2c860229b186283aab9f5ae9f", "comparison": "matched SRC-03"}
+  ],
+  "access_limits": {
+    "main_branch_protection": "403 Resource not accessible by integration",
+    "rulesets": "403 plan/visibility requirement",
+    "workflow_definition_list": "connector URL rejected; initial repository tree empty",
+    "workflow_runs": "initial total_count=0",
+    "tags": "list URL rejected; git refs query reported empty repository"
+  },
+  "reexecuted_archive_checks": {
+    "go": "go1.23.2 linux/amd64",
+    "php": "8.4.24",
+    "script": "bash scripts/check.sh",
+    "script_exit": 0,
+    "go_packages_passed": 6,
+    "php_tests": 28,
+    "php_assertions": 184,
+    "php_failures": 0,
+    "php_linted_files": 26,
+    "postgres_exit": 77,
+    "postgres_result": "SKIP",
+    "install_apply_exit": 64,
+    "install_apply_result": "expected refusal"
+  },
+  "independent_review": false,
+  "production_certification": false
+}

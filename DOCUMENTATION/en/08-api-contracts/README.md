@@ -1,0 +1,30 @@
+<!-- forgepanel-doc id=FP-08 revision=1 status=documented -->
+# APIs and contracts
+
+[Français](../../fr/08-api-contracts/README.md) · [Index](../README.md)
+
+## Contracts observed in SRC-03
+
+The archive contains `contracts/install-config.schema.json` (JSON Schema 2020-12, schema_version 1), Go/PHP validators and setup routes. There is no implemented public hosting REST API, OpenAPI document, agent socket protocol, webhook dispatcher or distributed job broker.
+
+| Field | Existing contract |
+|---|---|
+| `schema_version` | Exactly 1 |
+| `admin_port`, `user_port` | Integers 1024–65535; must differ |
+| `admin_host`, `user_host` | Strings up to 253 characters; ASCII host validation in code; a nonempty user host requires a distinct nonempty admin host |
+| `webstack` | One of `nginx_apache_fpm`, `nginx_fpm`, `apache_fpm`, `caddy_fpm`, `caddy_frankenphp` |
+| `modules` | Unique values from `dns`, `mail`, `database`, `sftp`, `backup` |
+
+All fields are required; extra fields are rejected. Cross-field checks are in code, not fully expressed by the schema. Valid intent is not available infrastructure. Do not silently change a field's meaning when adding execution.
+
+Routes: `/setup`, `/setup/resume`, `/setup/mfa`, `/setup/recovery`, `/setup/configuration` accept their declared GET/POST methods; `/setup/review` and `/setup/configuration.json` are GET views/exports. POST operations use CSRF checks and setup grants. These source routes are not deployed endpoints.
+
+CLI exit codes in source: 0 success, 2 preflight failure, 64 invalid/unsupported usage, 70 internal/unimplemented operation, 77 permission/TTY refusal. `install apply` is refused; `release verify` validates the manifest signature, not downloaded artifact bytes.
+
+## Future protocol requirements
+
+Specify an operation envelope with version, operation ID, actor/scope, target resource, correlation/idempotency key and typed parameters. Authenticate local peers or remote agent identities; never accept shell commands. Persist admission before acknowledging asynchronous work. Define retries, cancellation, lease expiry, duplicate delivery and partial-failure semantics. An event is a recorded fact, not proof that all consumers succeeded.
+
+Version compatibility and migration tests precede any new public API. Proposed endpoints from earlier conversations are examples, not published contracts.
+
+[Core](../03-core/README.md) · [Database](../09-database/README.md)

@@ -1,0 +1,39 @@
+name: Documentation
+
+on:
+  pull_request:
+    branches: [develop, stable, main, production]
+  push:
+    branches: [develop, stable, main, production]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  documentation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Check out the reviewed revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Test the documentation checker
+        run: python3 tests/documentation/test_checker.py -v
+      - name: Validate documentation
+        run: python3 scripts/check_documentation.py
+      - name: Package the documentation snapshot
+        run: |
+          mkdir -p /tmp/forgepanel-documentation-output
+          git archive --format=zip --output=/tmp/forgepanel-documentation-output/forgepanel-documentation.zip HEAD
+      - name: Retain documentation evidence
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: forgepanel-documentation
+          path: /tmp/forgepanel-documentation-output/forgepanel-documentation.zip
+          if-no-files-found: error
+          retention-days: 7

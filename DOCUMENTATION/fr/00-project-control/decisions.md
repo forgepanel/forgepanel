@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DECISIONS revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-00-DECISIONS revision=4 status=documented -->
 # Registre de décisions
 
 [English](../../en/00-project-control/decisions.md) · [Pilotage](README.md)
@@ -48,8 +48,19 @@ Les identifiants sources renvoient à l'[état initial](../19-audits-risks/basel
 | ADR-035 | Réauthentification sensible et approbation supplémentaire configurable (Q66 C) | MFA administrateur toujours facultatif ; policy d'approbation, audit et mode secours |
 | ADR-036 | Multi-serveurs et HA/clustering/DR (Q67 D) | Cible par phases ; pas de cluster certifié ni de dépendance au Hub |
 | ADR-037 | Monitoring local + alertes email/webhooks + intégrations externes (Q68 C) | Règles configurables et maîtrise des données exportées |
-| ADR-038 | WebStacks par site et frontaux selon IP/port (Q69 D) | Listeners exclusifs, vérification TLS et protections `.htaccess`, configurations planifiées |
+| ADR-038 | WebStacks par site et frontaux selon IP/port (Q69 D) | Listeners exclusifs, vérification TLS, `.htaccess` et configurations planifiées ; Q79 précise la recommandation et le changement **par site** |
 | ADR-039 | Éditeur visuel avec widgets/navigation et marque unique (Q70 D, Q55 A) | Composants approuvés, thème/historique et permissions, sans code arbitraire |
+
+| ADR-040 | Clés sécurisées, anti-rétrogradation et rotation (Q71 C) | Signature CI avec service de clés/KMS/HSM approprié, métadonnées de confiance, rotation et récupération ; fournisseur non arrêté |
+| ADR-041 | Installation vierge + adoption contrôlée de services existants (Q72 C) | Inventaire en lecture seule, plan, conflits, confirmation, backup/restore ; aucune prise de possession silencieuse |
+| ADR-042 | DNS multi-pilotes et recommandation locale après tests (Q73 D) | Aucun moteur DNS local imposé ; détecter capacités/certifier avant recommandation |
+| ADR-043 | Postfix + Dovecot premier pilote mail et externes (Q74 C) | Backend natif initial, fournisseurs/relais par adaptateurs, sécurité et compatibilité à certifier |
+| ADR-044 | Sauvegarde 3-2-1, restauration testée, réplication configurable (Q75 C) | Politique cible, nombre/cadence/destinations selon capacités, immutabilité Q65 maintenue |
+| ADR-045 | Approbation par action avec secours audité (Q76 C) | Réauthentification, contrôle de séparation des rôles, méthode de récupération sûre ; MFA facultatif maintenu |
+| ADR-046 | Multi-serveurs puis HA et orchestrateurs externes par modules (Q77 D) | Capacité progressive, sans dépendance au cluster pour premiers sites |
+| ADR-047 | Prometheus + OpenTelemetry via pilotes (Q78 C) | Exportateurs/capacités configurables, filtrage et consentement aux sorties |
+| ADR-048 | WebStack recommandée **par site**, modifiable après création (Q79 D, précision propriétaire) | Choix non imposé au provisionnement, changements futurs avec PLAN/VALIDATE/STAGE/HEALTH/RECOVER ; préserver `.htaccess` et listeners |
+| ADR-049 | Widgets officiels/partenaires et widgets déclaratifs (Q80 C) | Sources autorisées, manifests, RBAC, rendu sûr, une marque par organisation, aucun code arbitraire |
 
 ## Propositions remplacées ou non résolues
 

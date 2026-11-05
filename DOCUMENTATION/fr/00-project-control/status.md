@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=4 status=documented -->
 # État et roadmap ordonnée par dépendances
 
 [English](../../en/00-project-control/status.md) · [Pilotage](README.md)
@@ -41,5 +41,7 @@ Nouvelles décisions produit Q1–Q8 et Q47 du 2026-11-05 : **double licence (te
 Décisions Q56–Q60 confirmées : **prestataires de paiement indépendants**, **Stable/Beta/Dev + diffusion progressive/récupération**, **identité locale + SSO/OIDC facultatif**, **rétention par catégorie**, **achat définitif + abonnement + essai/coupons/packs/options**. Ces fonctionnalités restent **spécifiées**, non opérationnelles. Q61–Q70 sont maintenant décidées, mais pas implémentées. Voir [Q56–Q60](commerce-identity-release-policy.md).
 
 Q61–Q70 sont **confirmées (2026-11-05)** : signatures CI/CD avec anti-rétrogradation/approbations ; installateur universel + DEB/RPM signés ; DNS et mail locaux/externes ; sauvegardes chiffrées immuables et réplication ; réauthentification/approbation sensibles ; multi-serveurs/HA ; monitoring/alertes intégrables ; WebStacks par site/IP/port ; éditeur visuel/widgets et marque unique. [Spécification Q61–Q70](infrastructure-decisions.md). **État : spécifié, aucun service ou cluster certifié.**
+
+Les décisions **Q71–Q80** sont confirmées : protection/rotation des clés, adoption contrôlée, DNS conseillé après tests, Postfix/Dovecot + relais, 3-2-1 et restaurations, approbation par action, HA/orchestrateurs progressifs, Prometheus/OpenTelemetry, **WebStack conseillée par site et modifiable ensuite**, widgets déclaratifs. [Référence produit](decisions-q71-q80.md) · [WebStack par site](../02-architecture/site-webstack-advisor.md). Ce sont des spécifications, sans aucune release ni certification supplémentaires.
 
 Ces priorités n'engagent aucune date ni version. Arbitrages produit nécessaires : licence du logiciel/des contributions et canal privé de sécurité autorisé. Les choix paquets/runtimes nécessitent une proposition technique étayée, pas une nouvelle architecture implicite.

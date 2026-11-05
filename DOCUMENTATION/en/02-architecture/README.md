@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02 revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-02 revision=3 status=documented -->
 # System architecture
 
 [Français](../../fr/02-architecture/README.md) · [Index](../README.md)
@@ -40,5 +40,7 @@ The future [Configuration Engine](configuration-engine.md) governs inherited set
 Q51 targets [independent Docker and Podman adapters](container-drivers.md) without requiring both on each host. This is a design goal, not a delivered feature.
 
 The Q63–Q69 design is in [services and HA](service-drivers-and-ha.md): local/external DNS/mail, replicated/immutable backups, multi-server orchestration, monitoring and IP/port ingresses. Signing and package distribution appear in [Q61–Q70](../00-project-control/infrastructure-decisions.md). These drivers remain unimplemented.
+
+Under Q79 a [per-site WebStack advisor](site-webstack-advisor.md) will recommend compatible profiles at creation and later support controlled switching with migration plans, `.htaccess`/listener checks and recovery. Q72 allows safe adoption of existing services without overwriting foreign configuration; Q77 phases multi-server management before HA. [Q71–Q80 decisions](../00-project-control/decisions-q71-q80.md).
 
 [Decisions](../00-project-control/decisions.md) · [Contracts](../08-api-contracts/README.md) · [Security](../10-security/README.md)

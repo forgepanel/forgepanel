@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-CONFIG revision=3 status=specified -->
+<!-- forgepanel-doc id=FP-02-CONFIG revision=4 status=specified -->
 # Configuration Engine — administrable settings specification
 
 [Français](../../fr/02-architecture/configuration-engine.md) · [Architecture](README.md) · [Product policy](../00-project-control/product-policy.md)
@@ -51,6 +51,10 @@ Core will expose **Stable/Beta/Dev** channels with authorization and compatibili
 ## New Q61–Q70 configuration families
 
 Release signature/channel/approvals (Q61); verified DEB/RPM setup (Q62); capability-based DNS/mail providers (Q63–Q64); backup destinations, encryption, retention, replication/immutability (Q65); reauthentication and extra approval (Q66); server groups/HA policy (Q67); alert rules and recipients (Q68); IP/port listener ownership and per-site profile (Q69); versioned visual editing (Q70). Sensitive mutations follow PLAN/VALIDATE/SNAPSHOT/APPLY/VERIFY/RECOVER. [Details](../00-project-control/infrastructure-decisions.md).
+
+## Q71–Q80 policy and site-specific choices
+
+The settings registry must expose key custody/rotation, eligible existing-service adoption, tested DNS/mail adapters, 3-2-1 backups and restore drills, approval/recovery policies, server groups, Prometheus/OpenTelemetry exports and approved declarative widgets. **Q79** adds `recommended_webstack` **per site** and a separate `webstack.planSwitch(site_id,target_profile,revision)` operation, subject to PLAN/VALIDATE/SNAPSHOT/STAGE/VERIFY/RECOVER without touching unrelated vhosts. [Details](site-webstack-advisor.md).
 
 ## Proposed API and acceptance
 

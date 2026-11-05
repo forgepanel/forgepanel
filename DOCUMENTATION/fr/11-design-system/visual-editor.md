@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-11-VISUAL revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-11-VISUAL revision=2 status=specified -->
 # Éditeur visuel du Panel, widgets et navigation (Q70 D)
 
 [English](../../en/11-design-system/visual-editor.md) · [Design system](README.md) · [Décisions](../00-project-control/infrastructure-decisions.md)
@@ -6,6 +6,10 @@
 ## Décision produit et limites
 
 L'interface cible est **100 % Symfony** : Twig, Symfony UX Live Components, Stimulus, Turbo et Tailwind (outillage frontend léger). Le propriétaire a retenu un **éditeur visuel de mise en page**, des widgets configurables, une navigation personnalisable, l'aperçu et l'historique. Selon Q55 A, **une seule marque par organisation** ; on peut utiliser différents layouts/périmètres au sein de cette marque, pas créer plusieurs identités distinctes.
+
+## Q80 — widgets officiels, partenaires et déclaratifs
+
+Le catalogue cible permet les widgets **officiels et partenaires approuvés** plus des **widgets personnalisés déclaratifs** : composition de données existantes autorisées, filtres/agrégations bornés, graphiques et mises en page, sans interprétation de scripts libres. Le manifeste précise le propriétaire, les champs et ressources accessibles, les permissions RBAC, la version du schéma, la fréquence/limite des requêtes et le comportement en cas d'indisponibilité. Le simple affichage d'une source ne donne aucun droit de lecture nouveau. L'éditeur conserve une marque par organisation (Q55). [Décision Q80](../00-project-control/decisions-q71-q80.md).
 
 ## Modèle de personnalisation
 

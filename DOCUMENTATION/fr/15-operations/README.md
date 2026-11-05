@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-15 revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-15 revision=4 status=documented -->
 # Exploitation, diagnostic et récupération
 
 [English](../../en/15-operations/README.md) · [Index](../README.md)
@@ -24,6 +24,10 @@ Les audits de privilèges, logs système, jobs, métriques, diagnostics, session
 ## Gestion avancée et supervision (Q65, Q67, Q68)
 
 Sauvegardes chiffrées multi-destinations avec réplication et immutabilité, supervision locale et alertes email/webhooks/intégrations externes, et cible multi-serveurs/HA/DR. Chaque adaptation doit exposer quotas, consentement, rétention et opérations de récupération ; la disponibilité effective exige tests de restauration et de défaillance. Le clustering est à développer après la fondation. [Architecture](../02-architecture/service-drivers-and-ha.md).
+
+## 3-2-1, observabilité et reprise (Q75, Q77, Q78)
+
+Le profil de sauvegarde visé est **3-2-1**, avec tests de restauration planifiés, réplication et copie distante, selon capacités et budgets réels ; l'immutabilité Q65 reste une exigence de destination prise en charge. La supervision Q78 utilise des pilotes Prometheus/OpenTelemetry et des règles d'export autorisées. Q77 prévoit les agents distants en premier puis des modules HA/orchestrateurs optionnels : redondance, quorum et reprise exigent des essais, pas une simple case dans l'interface. [Référence](../00-project-control/decisions-q71-q80.md).
 
 ## Sauvegarde et restauration requises
 

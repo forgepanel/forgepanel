@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-CONFIG revision=3 status=specified -->
+<!-- forgepanel-doc id=FP-02-CONFIG revision=4 status=specified -->
 # Configuration Engine — spécification des réglages administrables
 
 [English](../../en/02-architecture/configuration-engine.md) · [Architecture](README.md) · [Politique produit](../00-project-control/product-policy.md)
@@ -51,6 +51,10 @@ Le Core propose une politique de canaux **Stable/Beta/Dev**, avec contrôle d'ac
 ## Paramètres nouveaux liés à Q61–Q70
 
 Contrôle des canaux/signatures/approbations de publication (Q61) ; installation DEB/RPM vérifiée (Q62) ; DNS/mail par fournisseur et capacité (Q63–Q64) ; destinations, chiffrement, rétention, réplication et immutabilité des backups (Q65) ; réauthentification et approbation supplémentaire (Q66) ; politiques de groupes et clusters (Q67) ; seuils/destinataires d'alertes (Q68) ; propriété des IP/ports et profils par site (Q69) ; édition visuelle versionnée (Q70). Les modifications sensibles restent soumises à PLAN/VALIDATE/SNAPSHOT/APPLY/VERIFY/RECOVER. [Détails](../00-project-control/infrastructure-decisions.md).
+
+## Politique Q71–Q80 et choix par site
+
+Le registre de configuration devra afficher l'autorité du prestataire de clés et la rotation, les services Linux existants admissibles à l'adoption, les pilotes DNS et mail vérifiés, les sauvegardes 3-2-1 et leurs tests, les demandes d'approbation et secours, les groupes de serveurs, les exports Prometheus/OpenTelemetry et les widgets déclaratifs approuvés. **Q79** ajoute une `recommended_webstack` **par site** et une opération `webstack.planSwitch(site_id,target_profile,revision)` distincte du choix initial, soumise à PLAN/VALIDATE/SNAPSHOT/STAGE/VERIFY/RECOVER ; ne pas changer les autres vhosts. [Détails](../02-architecture/site-webstack-advisor.md).
 
 ## API cible et critères de validation
 

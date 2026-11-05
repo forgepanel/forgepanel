@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-17 revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-17 revision=2 status=documented -->
 # Guides utilisateurs et administrateurs
 
 [English](../../en/17-user-guides/README.md) · [Index](../README.md)
@@ -12,6 +12,10 @@ Cette documentation sert à exprimer les priorités et examiner les résultats p
 Un futur installateur vérifié en une commande contrôle le serveur, installe le panneau indépendamment des stacks clientes et affiche un accès HTTPS vérifié. Le propriétaire reçoit un code à usage unique dans son terminal local privilégié, crée un administrateur indépendant de root Linux, peut choisir d'activer ou non le MFA et sélectionne les services dans un wizard reprenable. Le plan explique les modifications avant application. La fin du wizard distingue services sélectionnés, réellement installés et en bonne santé.
 
 L'archive actuelle ne prototype que l'enrôlement et l'export de configuration. Ne pas saisir le mot de passe Linux dans un formulaire web non vérifié. Ne pas ignorer un avertissement d'identité TLS pour terminer le bootstrap. Les domaines d'exemple sont documentaires, pas des services officiels.
+
+## Choix de WebStack pour un site (Q79)
+
+Dans le parcours utilisateur visé, le nouveau site affiche une **WebStack conseillée pour ce site**, pourquoi elle convient et quelles alternatives sont compatibles. L'administrateur du site peut choisir avant la création, puis demander un **changement de profil ultérieur** avec prévisualisation, tests des règles et chemins de récupération ; le changement ne touche pas tous les sites du serveur. [Spécification](../02-architecture/site-webstack-advisor.md). Ces écrans ne sont pas encore réalisés.
 
 ## Parcours client et revendeur
 

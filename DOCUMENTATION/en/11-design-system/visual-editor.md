@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-11-VISUAL revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-11-VISUAL revision=2 status=specified -->
 # Visual panel editor, widgets and navigation (Q70 D)
 
 [Français](../../fr/11-design-system/visual-editor.md) · [Design system](README.md) · [Decisions](../00-project-control/infrastructure-decisions.md)
@@ -6,6 +6,10 @@
 ## Product decision and boundaries
 
 The target UI stays **entirely Symfony-based**: Twig, Symfony UX Live Components, Stimulus, Turbo and Tailwind (light frontend tooling). The owner selected a **visual layout editor**, configurable widgets, customizable navigation, previews and revision history. Q55 A preserves **one brand per organization**; several layouts/scoped experiences can exist within that brand, not multiple separate brands.
+
+## Q80 — official, partner and declarative widgets
+
+The target catalog supports **official and approved-partner widgets** plus **custom declarative widgets**: composition of permitted existing data, bounded filters/aggregations, charts and layouts, without arbitrary script evaluation. Manifests specify owner, fields/resources, RBAC, schema version, query budgets and unavailable-data behavior. Displaying a source never grants new read privileges. One brand per organization (Q55) remains in force. [Decision Q80](../00-project-control/decisions-q71-q80.md).
 
 ## Customization model
 

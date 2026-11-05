@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-04 revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-04 revision=3 status=documented -->
 # Catalogue des modules natifs
 
 [English](../../en/04-modules/README.md) · [Index](../README.md)
@@ -20,6 +20,10 @@ Un module natif appartient au produit revu et utilise les contrats du Core. Son 
 ## Décisions Q63–Q68 et responsabilités natives
 
 La cible prévoit pilotes DNS local/externe (Q63), mail natif/externe (Q64), sauvegardes chiffrées répliquées/immuables avec restauration (Q65), monitoring/alertes intégrables (Q68) et agents multi-serveurs/HA (Q67). Les modules partagent des contrats de capacités, autorisations et états ; aucune fonction n'est installée automatiquement sans choix/prérequis. La HA viendra progressivement, pas nécessairement avec le premier lot d'hébergement. [Architecture](../02-architecture/service-drivers-and-ha.md).
+
+## Sélection et adaptation des modules (Q72–Q79)
+
+L'installateur peut détecter/adopter des services présents après inventaire, permission et plan de récupération (Q72), mais ne prend jamais automatiquement possession de fichiers externes. DNS local multi-pilotes conseillé par tests (Q73) ; premier mail natif Postfix/Dovecot et services/relais externes (Q74) ; politiques 3-2-1 avec exercices de restauration (Q75) ; connecteurs Prometheus/OpenTelemetry (Q78). Pour chaque site, recommander une WebStack sans l'imposer, puis permettre un **changement contrôlé** plus tard (Q79) via le Core. [Détails](../00-project-control/decisions-q71-q80.md).
 
 ## Contrat de cycle de vie
 

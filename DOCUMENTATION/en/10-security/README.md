@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=4 status=documented -->
 # Security model and disclosure
 
 [Français](../../fr/10-security/README.md) · [Index](../README.md)
@@ -32,6 +32,10 @@ Hub payment providers use independent drivers with authenticated and deduplicate
 ## Trust chain and sensitive operations (Q61, Q65, Q66)
 
 Signed packages/release metadata with protected trust roots, anti-rollback and approvals; encrypted replicated/immutable backup and real restore tests; recent authentication and configurable extra approval for sensitive operations. **Administrator MFA stays optional**, including setup. Signatures, backups and approval are not substitutes for independent permission enforcement. [Q61–Q70](../00-project-control/infrastructure-decisions.md).
+
+## Keys, adoption and approvals (Q71, Q72, Q76)
+
+Signed releases need protected key custody, rotation and anti-rollback (Q71); never distribute publisher private keys in code/packages. Adopting existing services (Q72) requires permissions, ownership inventory, snapshots and protection of unmanaged configurations. Sensitive actions (Q76) may require an independent approver; local emergency access remains audited. **Admin MFA remains optional** and approvals do not replace RBAC. [Decisions](../00-project-control/decisions-q71-q80.md).
 
 ## Minimum release gates
 

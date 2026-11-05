@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08 revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-08 revision=3 status=documented -->
 # APIs and contracts
 
 [Français](../../fr/08-api-contracts/README.md) · [Index](../README.md)
@@ -24,6 +24,10 @@ CLI exit codes in source: 0 success, 2 preflight failure, 64 invalid/unsupported
 ## Proposed Q61–Q70 contracts
 
 Signed artifact registry and anti-rollback metadata (Q61), capability-based DNS/mail/backup/monitoring adapters (Q63–Q65/Q68), idempotent scoped multi-server operations with observed state (Q67), listener ownership and WebStack generations (Q69), versioned navigation/widgets (Q70). Typed scoped operations only; agent API never accepts an arbitrary shell command. [Specification](../00-project-control/infrastructure-decisions.md). **Candidate contracts only**, no new working endpoints.
+
+## Per-site WebStack advisor contract (Q79)
+
+Candidate `webstack.recommend(site_draft,server_facts,policy_revision)` returns eligible profiles, reasons, dependencies and warnings; `webstack.planSwitch(site_id,target,revision)` plans an existing site's transition with idempotency, authorization, listener ownership, `.htaccess` security and backup. Switching must not merely edit a database field or the server's global stack. [Specification](../02-architecture/site-webstack-advisor.md). No such working API exists.
 
 ## Future protocol requirements
 

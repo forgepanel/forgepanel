@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-02-SERVICES revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-02-SERVICES revision=2 status=specified -->
 # Services natifs et externes, sauvegardes, orchestration multi-serveurs
 
 [English](../../en/02-architecture/service-drivers-and-ha.md) · [Architecture](README.md) · [Décisions Q61–Q70](../00-project-control/infrastructure-decisions.md)
+
+## Choix précis Q73–Q75 et Q77–Q79
+
+La famille DNS reste **multi-pilotes** et le moteur local recommandé sera déterminé **après essais par OS et capacité** (Q73 D) ; aucun choix définitif PowerDNS/BIND/Knot n'est implicite. Le premier pilote de messagerie native visé est **Postfix + Dovecot**, avec fournisseur ou relais externe configurable (Q74 C). La sauvegarde propose un profil **3-2-1**, exercice de restauration planifié et réplication autorisée (Q75 C), en plus des objectifs immutables Q65. L'administration multi-serveurs précède les modules HA et les orchestrateurs externes (Q77 D). Prometheus/OpenTelemetry sont des interfaces d'observabilité séparées (Q78 C). Voir [Q71–Q80](../00-project-control/decisions-q71-q80.md).
 
 ## Drivers DNS et mail (Q63 C, Q64 C)
 

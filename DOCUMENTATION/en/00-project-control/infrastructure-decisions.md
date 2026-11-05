@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-INFRA revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-00-INFRA revision=2 status=specified -->
 # Q61–Q70 decisions — Infrastructure, administration and interface
 
 [Français](../../fr/00-project-control/infrastructure-decisions.md) · [Previous decisions](commerce-identity-release-policy.md) · [ADR register](decisions.md)
@@ -19,6 +19,10 @@ The owner confirmed **all ten Q61–Q70 decisions on 5 November 2026**. These ex
 | Q68 C | **Local monitoring, email/webhooks, external integrations, configurable alert rules** | Health, metrics, thresholds, recipients and acknowledgments by role; no implicit export of tenant secrets. Predictive analytics were not selected. |
 | Q69 D | **Installation/per-site profiles plus multiple frontends by IP/port** | Nginx, Apache, Caddy, PHP-FPM, FrankenPHP by capability; exclusive listener ownership, TLS/routing, `.htaccess` security and validate/reload before activation. |
 | Q70 D | **One brand per organization with visual editor, widgets and configurable navigation** | Symfony Twig/UX design system, themes/preview/history and permissions; allowlisted blocks/routes, no arbitrary executable code injection into Core. |
+
+## Q71–Q80 refinements
+
+Q71–Q80 refine, rather than replace, these choices: key custody/rotation, existing-service adoption, tested DNS recommendations, Postfix/Dovecot first, 3-2-1 backup, per-action approval/recovery, phased HA/orchestrators, Prometheus/OpenTelemetry and declarative widgets. **Q79 now explicitly requires a WebStack recommendation for each site at creation and the option to switch later, under a safe plan.** See [Q71–Q80 decisions](decisions-q71-q80.md) and [WebStack workflow](../02-architecture/site-webstack-advisor.md).
 
 ## Administration and phased delivery
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-11 revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-11 revision=3 status=documented -->
 # Design system et internationalisation
 
 [English](../../en/11-design-system/README.md) · [Index](../README.md)
@@ -22,5 +22,7 @@ Cible : clés de traduction stables en anglais dans les catalogues Symfony, mess
 Chaque écran exige les deux langues, textes longs, petit écran, états d'accès refusé et vérification de l'absence de secrets. Langues produit et tokens graphiques de production restent à spécifier ; ce chapitre n'introduit aucun nouveau framework frontend.
 
 Q70 D ajoute un [éditeur visuel de thèmes, layouts, widgets et navigation](visual-editor.md), toujours basé sur Symfony Twig/UX ; Q55 A limite à **une identité de marque par organisation**. Les composants doivent être validés, accessibles et permissionnés, sans code JavaScript/PHP arbitraire. Ce n'est pas encore implémenté.
+
+Q80 confirme les **widgets officiels et partenaires approuvés**, complétés par des **widgets déclaratifs personnalisés** avec sources de données autorisées, contrôle de paramètres et droits. Un widget n'est pas un script PHP/JS exécutable libre ; rester sur Symfony/Twig/UX et une marque par organisation. Voir [éditeur visuel](visual-editor.md) et [Q71–Q80](../00-project-control/decisions-q71-q80.md).
 
 [Interfaces](../07-interfaces-roles/README.md) · [Qualité](../13-tests-quality/README.md)

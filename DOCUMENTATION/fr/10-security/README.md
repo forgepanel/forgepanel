@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=4 status=documented -->
 # Modèle de sécurité et signalement
 
 [English](../../en/10-security/README.md) · [Index](../README.md)
@@ -32,6 +32,10 @@ Les prestataires de paiement sont des pilotes Hub indépendants : webhooks authe
 ## Chaîne de confiance et opérations sensibles (Q61, Q65, Q66)
 
 Paquets et métadonnées de publication signés avec racines de confiance protégées, anti-rétrogradation et approbations. Sauvegardes chiffrées, distantes/immuables et récupérables, avec tests de restauration réels. Réauthentification des opérations sensibles et approbation supplémentaire selon politique ; **MFA administrateur facultatif**, non imposé comme prérequis. Ni signature, ni sauvegarde, ni deuxième validation ne remplacent un contrôle de permissions indépendant. [Q61–Q70](../00-project-control/infrastructure-decisions.md).
+
+## Clés, adoption et approbations (Q71, Q72, Q76)
+
+La publication signée utilisera une autorité de clés protégée avec rotation et protection anti-rétrogradation (Q71), jamais de clé privée dans le dépôt ou le package. L'adoption d'un service existant (Q72) exige permission, inventaire des ressources, snapshot et refus d'écrasement des configurations non gérées. Les actions sensibles (Q76) peuvent nécessiter un approbateur indépendant ; une procédure locale de secours doit rester auditée. **MFA administrateur toujours facultatif**, et aucun droit d'approval ne remplace RBAC. [Décisions](../00-project-control/decisions-q71-q80.md).
 
 ## Critères minimaux de livraison
 

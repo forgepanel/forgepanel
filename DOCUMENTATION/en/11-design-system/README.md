@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-11 revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-11 revision=3 status=documented -->
 # Design system and internationalization
 
 [Français](../../fr/11-design-system/README.md) · [Index](../README.md)
@@ -22,5 +22,7 @@ Target stable English translation keys in Symfony translation catalogs with Fren
 Each new screen needs both locales, long-text and small-screen cases, permission-denied states and secret-redaction tests. Product language choices and a production design token set remain to be specified; this chapter introduces no new frontend framework.
 
 Q70 D adds a [visual theme/layout/widget/navigation editor](visual-editor.md) using Symfony Twig/UX. Q55 A preserves **one brand per organization**. Components must be schema-validated, accessible and permissioned; arbitrary JavaScript/PHP is not accepted. This is not implemented.
+
+Q80 confirms **official and approved-partner widgets** plus **declarative custom widgets** using allowlisted data sources, validated props and scoped permissions. Widgets are not unrestricted PHP/JS programs; keep Symfony/Twig/UX and one brand per organization. See [visual editor](visual-editor.md) and [Q71–Q80](../00-project-control/decisions-q71-q80.md).
 
 [Interfaces](../07-interfaces-roles/README.md) · [Quality](../13-tests-quality/README.md)

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=12 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=13 status=documented -->
 # Status and dependency-ordered roadmap
 
 [Français](../../fr/00-project-control/status.md) · [Project control](README.md)
@@ -63,3 +63,7 @@ The owner has confirmed **Q71–Q80**: protected key rotation, controlled servic
 **Q151–Q160 confirmed (2026-11-05)**: **local QEMU/KVM first**, cloud adapters later; signed historical internal VM reports; severity-based performance regression blocking with audited exceptions **never bypassing safety vetoes**; A/AAAA checks **only where published** for HTTP-01; approved **per-server** OS reboot/backup/recovery policies; encrypted archives deemed recoverable **only after isolated restore** and key checks; site-scoped public SFTP key expiry/audit; beta cohorts with local health and **separately consented** diagnostics; later Hub transfer risk triggers (lost host, repetition, identity) and signed **human FR/EN + structured machine** advisories. [Decisions](decisions-q151-q160.md) · [MVP qualification](mvp-qualification.md). **No runtime/VM certified.**
 
 No date or version commitment is implied by these priorities. Product-owner decisions still needed: software/contribution license and authorized private security contact. Package/runtime choices require an evidence-based technical proposal, not a new architecture by assumption.
+
+## Q161–Q170 adopted — no implemented feature claim
+
+**Q161 C, Q162 B, Q163 C, Q164 B, Q165 C, Q166 C, Q167 C, Q168 C, Q169 C, Q170 B** are SPECIFIED, preserving Q1–Q160. R3 requires ephemeral KVM/private immutable proofs; R4 external DNS probe, bounded OS recovery, each-backup isolated restore and public SFTP keys; beta privacy cohorts; Hub R6 after R5 ABI for versioned risk-based transfers and signed JSON FR/EN advisories. [Decisions](decisions-q161-q170.md) · [Tests](../13-tests-quality/mvp-gates-q161-q170.md). No Core runtime was imported or verified by this documentation.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=12 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=13 status=documented -->
 # État et roadmap ordonnée par dépendances
 
 [English](../../en/00-project-control/status.md) · [Pilotage](README.md)
@@ -63,3 +63,7 @@ Les décisions **Q71–Q80** sont confirmées : protection/rotation des clés, a
 **Q151–Q160 confirmées (2026-11-05)** : QEMU/KVM **local d'abord**, pilotes cloud plus tard ; matrice interne/rapports VM signés et historisés ; blocage des régressions de performances selon criticité avec dérogation auditée **sans lever les veto sécurité** ; A/AAAA contrôlés **uniquement si publiés** pour HTTP-01 ; politiques reboot OS **par serveur** avec approbation/backup/reprise ; archives chiffrées déclarées récupérables **après restauration isolée** et vérification des clés ; clés publiques SFTP gérées par site avec expiration/audit ; bêta par cohorte avec santé locale et diagnostics sous **consentements distincts** ; futur Hub : transfert risqué identifié (serveur perdu, répétition, identité) et avis signés **FR/EN + données machine**. [Décisions](decisions-q151-q160.md) · [Qualification](mvp-qualification.md). **Aucune VM/feature déclarée livrée.**
 
 Ces priorités n'engagent aucune date ni version. Arbitrages produit nécessaires : licence du logiciel/des contributions et canal privé de sécurité autorisé. Les choix paquets/runtimes nécessitent une proposition technique étayée, pas une nouvelle architecture implicite.
+
+## Décisions Q161–Q170 adoptées — aucune fonctionnalité livrée
+
+**Q161 C, Q162 B, Q163 C, Q164 B, Q165 C, Q166 C, Q167 C, Q168 C, Q169 C, Q170 B** sont SPECIFIED, sans remise en cause de Q1–Q160. Les jalons R3 incluent KVM éphémère et preuves privées immuables ; R4 inclut sonde DNS externe, reprise OS bornée, restauration isolée de chaque backup, clés publiques SFTP ; bêta à cohortes privées, Hub R6 après ABI R5 pour transferts sous règles versionnées et avis JSON signés FR/EN. [Décisions](decisions-q161-q170.md) · [Tests](../13-tests-quality/mvp-gates-q161-q170.md). Aucun runtime Core n'a été importé ou testé du seul fait de cette documentation.

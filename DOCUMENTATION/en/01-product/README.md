@@ -24,6 +24,6 @@ The archive reaches a reviewed configuration draft, not installation completion.
 
 Core foundations are mandatory; native service modules may be selected without depending on third-party plugins. Plugins extend capabilities rather than provide basic authorization or safety. Recipes install customer applications; they are neither core modules nor privileged extensions.
 
-No pricing, trial period, license server, marketplace business model or WCP360 commercial rule is adopted by this baseline. Such choices require separate product decisions. Success is verified operation and recovery, not a large number of dashboard screens.
+The owner has now confirmed a **complete free Core plus optional premium components/services and paid support (Q2)**, a dual-license model requiring exact texts (Q1), official/verified-partner catalog (Q8) and 60 days offline grace for relevant premium rights (Q7). Pricing, trials, entitlement mechanisms and older WCP360 rules are not presumed. See [product policy](../00-project-control/product-policy.md). Success is verified operation and recovery, not a large number of dashboard screens.
 
 [Module catalog](../04-modules/README.md) · [Priorities](../00-project-control/status.md)

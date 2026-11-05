@@ -19,4 +19,6 @@ Plan prerequisites and quota impact; stage immutable input; validate configurati
 
 Test a clean installation, duplicate request, interrupted download, invalid signature/hash, invalid runtime, database migration failure, restoration and removal within an isolated tenant. Observe job/correlation IDs, artifact identity, duration and sanitized errors. Future catalog entries must link to those tests and name the qualifying OS/profile/runtime combination. No executable recipe may be advertised until these records exist.
 
+Decision Q4 adds **PHP, Node.js, Python and containerized customer applications** as target runtimes, independently isolated, quota-bounded, versioned and configurable. Docker/Podman, signed images, networking and volumes remain to decide and implement; this is not shipped.
+
 [Modules](../04-modules/README.md) · [Contracts](../08-api-contracts/README.md) · [Operations](../15-operations/README.md)

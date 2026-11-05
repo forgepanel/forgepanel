@@ -19,4 +19,6 @@ The setup cookie is configured as `__Host-FORGE_ADMIN`, Secure, HttpOnly, SameSi
 
 Verify customer-to-admin denial, cross-account object access, reseller scope, direct API access without UI, stale/revoked authorization, session rotation, logout, CSRF, rate limits and recovery-code replay. Record actor and effective scope in audit without logging credentials. Reseller/user guides must remain marked future until these flows exist.
 
+Q5 adds organization/reseller white-label themes, HTTPS domains, logos and email templates. Branding permissions never grant cross-tenant file or customer access. The [Configuration Engine](../02-architecture/configuration-engine.md) defines inheritance; no runtime exists yet.
+
 [Security](../10-security/README.md) · [Setup core](../03-core/README.md) · [Design system](../11-design-system/README.md)

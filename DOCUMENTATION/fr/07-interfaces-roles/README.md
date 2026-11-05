@@ -19,4 +19,6 @@ Le cookie de setup est configuré `__Host-FORGE_ADMIN`, Secure, HttpOnly, SameSi
 
 Vérifier refus client-vers-admin, accès inter-comptes, périmètre revendeur, API directe sans UI, autorisations périmées/révoquées, rotation de session, déconnexion, CSRF, limites d'essais et rejeu des codes de secours. Auditer acteur et périmètre effectif sans identifiants secrets. Les guides revendeur/client restent futurs tant que ces parcours n'existent pas.
 
+Le white-label Q5 ajoute une identité visuelle, des thèmes, des domaines HTTPS et des emails/templates par organisation ou revendeur. Les permissions de personnalisation ne donnent jamais accès aux fichiers/clients d'autrui, et l'héritage est défini dans le [Configuration Engine](../02-architecture/configuration-engine.md). Non disponible aujourd'hui.
+
 [Sécurité](../10-security/README.md) · [Core du setup](../03-core/README.md) · [Design system](../11-design-system/README.md)

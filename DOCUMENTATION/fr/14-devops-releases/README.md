@@ -15,6 +15,10 @@ L'installation en une commande reste exigée, mais aucune URL officielle n'exist
 
 La vérification de signatures du prototype n'établit ni racine de confiance de production, ni rotation/révocation des clés, ni anti-retour arrière persistant, ni updater installé. La commande de manifeste ne vérifie pas elle-même les octets des artefacts.
 
+## Application des paramètres sensibles (Q47)
+
+L'installateur et les gestionnaires de services devront présenter le plan et son impact, valider les préconditions et les signatures, sauvegarder l'état nécessaire, appliquer avec verrous, vérifier le fonctionnement et documenter récupération/compensation. Préserver un accès de secours lors de modifications de ports ou de pare-feu. Les éléments non réversibles doivent être annoncés avant confirmation. Voir [Configuration Engine](../02-architecture/configuration-engine.md).
+
 ## Preuves de livraison
 
 Une release relie version, tag, commit, entrées/outils de build, lockfiles, empreintes, signatures, tests, support OS/profil et procédures upgrade/rollback. Séparer tests applicatifs et documentaires. Cette PR et la branche `production` ne créent à elles seules aucun tag, release, publication ou déploiement.

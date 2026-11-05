@@ -5,7 +5,7 @@
 
 ## Design baseline versus implementation
 
-The target is a modular Symfony monolith and a separate Go system agent, not a fleet of premature microservices. Symfony owns identity, scoped authorization, UI, API and business workflows. Go owns typed Linux operations and OS/service adapters. PostgreSQL holds application state. A narrow privileged executor is a target boundary, not an existing archive daemon.
+The target is a modular Symfony monolith and a separate Go system agent, not a fleet of premature microservices. Hosting, VPS, developer and reseller audiences will be served in phases (Q3); Core stays independent of Hub and premium subscriptions. Symfony owns identity, scoped authorization, UI, API and business workflows. Go owns typed Linux operations and OS/service adapters. PostgreSQL holds application state. A narrow privileged executor is a target boundary, not an existing archive daemon.
 
 ```text
 Admin / Customer portal (separate hosts and authorization)
@@ -34,5 +34,7 @@ Retain SELinux/AppArmor and detect firewall ownership. Package selection and PHP
 `nginx_apache_fpm`, `nginx_fpm`, `apache_fpm`, `caddy_fpm`, `caddy_frankenphp` are the archive's profile identifiers. They validate intent only. For strict `.htaccess` compatibility, route relevant requests through Apache; a Nginx static bypass must not bypass access rules. FrankenPHP worker mode requires application compatibility and per-tenant isolation evidence before enablement.
 
 Configuration changes follow plan, stage, validate, activate, reload, health-check and finalize/compensate. This is a target protocol, not a globally atomic Linux transaction. Destructive data changes need explicit recovery semantics.
+
+The future [Configuration Engine](configuration-engine.md) governs inherited settings and safe plan/validate/backup/recover lifecycle (Q47). Customer runtimes PHP, Node.js, Python and containers (Q4) will be independent from the panel runtime. Not implemented.
 
 [Decisions](../00-project-control/decisions.md) · [Contracts](../08-api-contracts/README.md) · [Security](../10-security/README.md)

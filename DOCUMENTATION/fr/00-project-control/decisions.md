@@ -17,10 +17,19 @@ Les identifiants sources renvoient à l'[état initial](../19-audits-risks/basel
 | ADR-008 | Ports directs 8447/8446 et hôtes de portails distincts (SRC-02/03) | Valeurs du prototype ; suggestion 446/447 non retenue ; USER fermé ; les ports n'isolent pas les cookies |
 | ADR-009 | Documentation bilingue, changelog unique, quatre branches permanentes (propriétaire, SRC-01) | Régit ce lot ; créer une branche n'autorise ni release ni déploiement |
 | ADR-010 | Politique du runtime applicatif | Ouverte : l'archive accepte PHP >=8.2 ; la préférence PHP 8.4 ne certifie pas une politique de paquets sur six OS |
-| ADR-011 | Licence et règles de contribution | Arbitrage propriétaire ouvert ; aucune présomption AGPL, GPL, propriétaire ou double licence |
+| ADR-011 | Licence et contributions | **Double licence choisie (Q1)** ; textes libre/commercial, propriété intellectuelle et modalités de contributions toujours ouverts ; aucun fichier LICENSE sélectionné |
 | ADR-012 | Outil documentaire limité à la bibliothèque standard Python | Nouveau choix d'outillage borné ; ne rend pas Python obligatoire pour le produit |
 | ADR-013 | MFA administrateur facultatif (décision explicite du propriétaire, 2026-11-05) | Premier compte sans obligation TOTP ; activation immédiate ou différée, réauthentification sensible ; code v0.7 encore bloquant à corriger lors de son import. |
 | ADR-014 | ForgePanel-Hub, extension éditeur privée détachée dans `yyogas/forgepanel-hub` | Même Core standard avec/sans Hub ; ABI générique encore absente ; aucune injection de PHP privé ni accès root. |
+
+| ADR-015 | Core complet gratuit, services premium et support (Q2) | Fonctions essentielles jamais conditionnées par Hub ni clé payante ; tarifs et limites premium restent à détailler |
+| ADR-016 | Publics hébergement, VPS, développeurs, revendeurs par étapes (Q3) | Priorités exactes à ordonner ; pas de promesse de livrables déjà opérationnels |
+| ADR-017 | PHP, Node.js, Python et conteneurs clients (Q4) | Runtimes clients distincts du panneau ; moteur Docker/Podman et isolation à arbitrer |
+| ADR-018 | White-label par organisation/revendeur (Q5) | Logo, thèmes, domaines, emails, branding configurables et permissionnés |
+| ADR-019 | Enregistrement Hub et communications séparés et consentis (Q6) | Autorisations distinctes : inscription, droits premium, versions, diagnostics, marketing ; aucune collecte implicite |
+| ADR-020 | Délai hors ligne commercial 60 jours (Q7) | Portée premium seulement, pas le Core ; cas expiré/révoqué et preuve temporelle à fixer |
+| ADR-021 | Marketplace officielle et partenaires vérifiés (Q8) | Contrôle identité, artefacts signés, validation et retrait ; pas de soumissions publiques libres |
+| ADR-022 | Modification sensible : plan, validation, sauvegarde et récupération (Q47) | Config Engine cible ; aucune garantie de rollback OS/SQL universel |
 
 ## Propositions remplacées ou non résolues
 

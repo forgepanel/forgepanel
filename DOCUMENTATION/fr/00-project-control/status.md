@@ -34,4 +34,6 @@ Les six OS et cinq profils sont des entrées de planification. Trente combinaiso
 | P6 | Modules d'hébergement et autres stacks | Isolation, limites, sauvegardes/restaurations et preuves VM par profil |
 | P7 | Écosystème tiers | Modèle de confiance, contrats, isolation et maintenance validés avant exécution |
 
+Nouvelles décisions produit Q1–Q8 et Q47 du 2026-11-05 : **double licence (textes non choisis)**, Core gratuit complet + premium/support facultatifs, toutes cibles par phases, runtimes clients PHP/Node.js/Python/conteneurs, white-label par organisation, Hub avec consentements séparés, grâce commerciale hors ligne **60 jours**, catalogue officiel/partenaires vérifiés, changements sensibles contrôlés. [Politique détaillée](product-policy.md). Elles ne constituent pas des fonctionnalités implémentées.
+
 Ces priorités n'engagent aucune date ni version. Arbitrages produit nécessaires : licence du logiciel/des contributions et canal privé de sécurité autorisé. Les choix paquets/runtimes nécessitent une proposition technique étayée, pas une nouvelle architecture implicite.

@@ -20,6 +20,10 @@ One chronology, both languages. / Une chronologie, deux langues.
 
 - **Documentation CI / CI documentaire** — Replaced deprecated-runtime action pins with verified official Node 24 action commits after the first successful run; kept read-only permissions. Recorded actual CI evidence and follow-up issues #2–#4. / Remplacement des actions à runtime déprécié par des commits officiels vérifiés utilisant Node 24 après le premier run réussi ; permissions conservées en lecture seule. Consignation des preuves CI réelles et des tâches nº 2–4.
 
+### Changed / Modifications
+
+- **Product decisions / Décisions produit** — Recorded the owner's choices Q1–Q8 and Q47: dual-license strategy (texts open), free full Core with paid optional services, phased audience support, PHP/Node/Python/container hosting, organization white-label, separate Hub contacts/consents, 60-day premium offline grace, official/verified-partner catalog and safe configuration apply. These are specifications, not shipped code. / Consignation des choix Q1–Q8 et Q47 : double licence (textes ouverts), Core complet gratuit et services facultatifs payants, publics par étapes, hébergement PHP/Node/Python/conteneurs, marque par organisation, consentements Hub séparés, grâce commerciale 60 jours, partenaires vérifiés et application sûre des paramètres. Spécifications, pas fonctionnalités livrées.
+
 ### Clarified / Clarifications
 
 - **Status / État** — Development archives are not GitHub releases or imported application source. No installer, production deployment, full RBAC or certified hosting stack is delivered by this documentation lot. / Les archives ne sont ni des releases GitHub ni des sources applicatives importées. Ce lot ne livre aucun installateur, déploiement de production, RBAC complet ou stack certifiée.

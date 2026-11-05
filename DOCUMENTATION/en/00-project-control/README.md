@@ -26,4 +26,4 @@ These are responsibilities, not claims that separate agents or services already 
 
 A task identifies scope and affected components, specifies acceptance criteria, implements a bounded change, verifies it, updates both languages and changelog, and records branch/commit/PR plus limitations. A passing unit test is not a release or deployment.
 
-[Status and roadmap](status.md) · [Decision register](decisions.md) · [Coverage matrix](coverage.md) · [Audit](../19-audits-risks/README.md)
+[Status and roadmap](status.md) · [Commercial/customization decisions](product-policy.md) · [Decision register](decisions.md) · [Coverage matrix](coverage.md) · [Audit](../19-audits-risks/README.md)

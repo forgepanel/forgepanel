@@ -1,0 +1,53 @@
+<!-- forgepanel-doc id=FP-02-CONFIG revision=1 status=specified -->
+# Configuration Engine — administrable settings specification
+
+[Français](../../fr/02-architecture/configuration-engine.md) · [Architecture](README.md) · [Product policy](../00-project-control/product-policy.md)
+
+## Goal and scopes
+
+Every setting must declare a stable `key`, schema/type/units, default, documentation, group, scope, revision, source, effective value, required OS/WebStack capability, dependencies, permissions, secret classification, impact class, validation and recovery policy.
+
+**Intended precedence**: product defaults → global server administrator policy → server → organization/reseller → hosting plan → account → website/application → explicitly permitted per-user override. A narrower scope may override only delegated keys within parent constraints. Security minima and upper-tier limits always apply; Expert mode affects presentation, never real authorization.
+
+Secrets must be referenced through protected storage, not exposed as plaintext values in API responses, logs, exports, views, unprotected backups or manifests.
+
+## Configurable setting families
+
+| Family | Exposed options | Authority and limits |
+|---|---|---|
+| General UI | Locale, timezone, density, dark/light themes, widgets, announcements | User/organization preference; no rights change |
+| Branding / white-label | Logo, palettes, favicon, name, domain, email templates, reseller identity | Authorized organization; DNS/TLS validation; distinct cookie origins |
+| Identity and RBAC | Roles, permissions, sessions, API access, **optional** MFA, login policy | Server/super-admin authority; safeguards and recent authentication |
+| Ports/network | IP/IPv6, portal ports, listeners, hostnames, proxies | System administrator; retain last known good access until new one confirmed |
+| WebStack and PHP | Nginx/Apache/Caddy profiles, PHP-FPM/FrankenPHP versions, limits and compatible rules | Server policy, real capability, tenant isolation |
+| Application runtimes | PHP, Node.js, Python, versions, extensions, container deployment | Authorized tenants/servers; cgroups, signed images, restrictions |
+| DB, DNS and mail | Providers, quotas, zones, mailboxes, storage, backups | Native service/tenant boundaries; no privilege escalation |
+| System security | Firewall, SELinux/AppArmor, SSH, SFTP, lockouts, audit | Administrator; **no implicit disablement of controls** |
+| Backups | Destinations, retention, encryption, schedules, restore tests | Server/tenant rights and anti-deletion policy |
+| Jobs and updates | Time windows, stable/beta channels, retries, locks, alerts | Dedicated permissions and signature validation |
+| Modules/extensions | Activation, versions, settings, package sources, contracts, grants | Signed trust; Core works without any extension |
+| Hub communication | Opt-in registration, premium entitlement queries, update discovery, minimal metrics, diagnostics and marketing **separate** | Distinct permissions/consents; free Core independent |
+| Commercial licenses | Entitlement state, expiry, last proof, 60-day offline policy and alerts | **Displayed** status; entitlement issuance controlled by publisher, client may not self-extend |
+
+Performance options cannot become unrestricted shell execution or disable tenant isolation.
+
+## Q47 safe-change lifecycle
+
+1. `DRAFT`: local change, read-only diff, actor/scope.
+2. `PLAN`: compile platform-specific steps, permissions, dependencies, listener conflicts and compatibility.
+3. `PREFLIGHT`: verify resources, syntax, certificates, existing backups and preconditions.
+4. `SNAPSHOT`: preserve relevant configuration/data before modification, encrypted where appropriate; define restore scope.
+5. `APPLY`: lock affected resources, prepare versioned generation, apply idempotent steps and durable audit.
+6. `VERIFY`: systemd service status, panel health, local and functional service checks.
+7. `COMMIT`: persist applied revision, audit and notification state.
+8. `RECOVER`: restore reversible pieces and explicitly compensate/flag irreversible results.
+
+Presentation-only changes may apply immediately. Changes to ports, firewall, WebStack, RBAC or storage require at least PLAN/PREFLIGHT/SNAPSHOT/APPLY/VERIFY. Maintain emergency admin access for network changes; do not promise universal rollback for database deletion or package installation.
+
+## Proposed API and acceptance
+
+Candidate operations: `config.readEffective(scope)`, `config.plan(changes,expected_revision)`, `config.apply(plan_id,idempotency_key)`, `config.history(resource)`, `config.recover(generation_id)`. Use schema revisions and errors `PERMISSION_DENIED`, `POLICY_LOCKED`, `CAPABILITY_UNAVAILABLE`, `CONFLICT`, `PLAN_STALE`, `PARTIAL_RECOVERY`.
+
+Tests: prevent tenant scope escalation; deny unauthorized CLI/API; reject stale revision; invalid configuration never activated; detect port collision; prove new admin endpoint before dropping old; failure after snapshot; explicit partial compensation; detect drift without overwriting foreign-owned files; show effective values and permission reasoning without exposing secrets.
+
+**Status: specified only. There is no functioning Configuration Engine in the current repository.**

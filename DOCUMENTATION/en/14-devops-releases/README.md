@@ -15,6 +15,10 @@ The one-command outcome is required but no official installer URL exists. SRC-03
 
 Signature verification in the prototype does not establish a production trust root, key rotation/revocation policy, persistent anti-rollback state or an installed updater. The CLI manifest check does not validate artifact bytes itself.
 
+## Sensitive configuration apply (Q47)
+
+The installer and service controllers must show impact plans, validate prerequisites and signatures, preserve relevant state, apply under locks, verify health and document recovery/compensation. Preserve a safe admin path when changing ports or firewall. Irreversible operations require explicit disclosure before confirmation. See [Configuration Engine](../02-architecture/configuration-engine.md).
+
 ## Release evidence
 
 A release must map version, tag, commit, build inputs/toolchains, dependency lockfiles, checksums, signatures, tests, OS/profile support and upgrade/rollback instructions. Keep application and documentation checks separate. No tag, release, publication or deployment is created merely by this documentation PR or by the `production` branch.

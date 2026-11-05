@@ -34,4 +34,6 @@ All six OS targets and five profiles are planning inputs. Thirty fixture combina
 | P6 | Hosting modules and additional stacks | Proven isolation, resource controls, backups/restores and per-profile VM evidence |
 | P7 | Third-party ecosystem | Trust model, contracts, isolation and maintenance policy accepted before execution |
 
+New owner product decisions Q1–Q8 and Q47 on 2026-11-05: **dual licensing (exact texts open)**, full free Core with optional premium/support, all audiences phased, customer PHP/Node.js/Python/containers, organization white-label, separately consented Hub exchange, **60-day** commercial offline grace, official/verified partners, safe sensitive changes. [Full policy](product-policy.md). These are not implemented features.
+
 No date or version commitment is implied by these priorities. Product-owner decisions still needed: software/contribution license and authorized private security contact. Package/runtime choices require an evidence-based technical proposal, not a new architecture by assumption.

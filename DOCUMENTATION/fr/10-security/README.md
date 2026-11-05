@@ -21,6 +21,10 @@ SRC-03 n'implémente que les contrôles métier du setup et des protections HTTP
 
 Le MFA administrateur est **facultatif**, pas une condition de création du premier compte ni d'accès au wizard. Proposer TOTP et, plus tard, WebAuthn ; permettre activation différée, désactivation contrôlée et codes de récupération si activé. Protéger les actions sensibles par réauthentification et autorisations contextualisées. Le code v0.7 encore obligatoire nécessite une correction et des tests.
 
+## Hub, communication et licences commerciales
+
+Conformément à Q6, l'enregistrement Hub est volontaire, les vérifications premium, la recherche de versions, les diagnostics/support et les communications marketing ont des consentements ou bases de traitement distincts. Aucune collecte par défaut de fichiers, emails, bases ou secrets. Selon Q7, la durée hors ligne commerciale est de **60 jours** pour les droits premium éligibles déjà vérifiés, sous réserve des dates contractuelles ; un refus ou une révocation doit être explicite et non destructif pour l'hébergement de base. Voir la [politique produit](../00-project-control/product-policy.md).
+
 ## Critères minimaux de livraison
 
 Ne jamais demander le mot de passe root Linux dans le panneau. Maintenir USER fermé avant validation des autorisations et sessions. Ne pas désactiver SELinux/AppArmor ou le pare-feu pour réussir un test. Éviter les secrets dans URL, logs et artefacts. Exiger diagnostic en lecture seule avant réparation proposée et autorisation explicite avant destruction. Les tests de restauration couvrent les clés, pas seulement SQL/fichiers.

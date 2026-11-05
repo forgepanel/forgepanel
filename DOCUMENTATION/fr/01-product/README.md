@@ -24,6 +24,6 @@ L'archive s'arrête au brouillon de configuration revu, pas à la fin d'une inst
 
 Les fondations Core sont obligatoires ; les modules de services natifs sont sélectionnables sans dépendre de plugins tiers. Les plugins enrichissent les capacités, mais ne fournissent pas les garanties fondamentales de sécurité. Les recettes installent les applications clientes ; elles ne sont ni des modules Core ni des extensions privilégiées.
 
-Cette référence n'adopte aucun tarif, essai, serveur de licence, modèle économique de marketplace ou règle commerciale WCP360. Ces choix nécessitent des décisions produit séparées. La réussite se mesure au fonctionnement et à la récupération vérifiés, pas au nombre d'écrans.
+Le propriétaire a maintenant validé **un Core complet gratuit avec services/extensions premium et support payant (Q2)**, la double licence à finaliser (Q1), les catalogues officiels/partenaires vérifiés (Q8) et 60 jours de tolérance hors ligne pour les droits premium concernés (Q7). Les tarifs, l'essai, les conditions commerciales, l'application des droits et les anciennes règles WCP360 ne sont pas présumés. Voir la [politique produit](../00-project-control/product-policy.md). La réussite se mesure au fonctionnement et à la récupération vérifiés, pas au nombre d'écrans.
 
 [Catalogue des modules](../04-modules/README.md) · [Priorités](../00-project-control/status.md)

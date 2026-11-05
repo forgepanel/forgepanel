@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-EXECUTION revision=5 status=specified -->
+<!-- forgepanel-doc id=FP-00-EXECUTION revision=6 status=specified -->
 # Roadmap technique de réalisation — décision Q120 D et MVP Q119 B
 
 [English](../../en/00-project-control/implementation-roadmap.md) · [État officiel](status.md) · [Décisions Q111–Q120](decisions-q111-q120.md)
@@ -55,3 +55,7 @@ Avant **distribution publique** : conclure la revue juridique AGPL/commercial (Q
 ## Risques et dépendances
 
 Le code Core n'est **pas encore importé** dans `develop` ; le prototype v0.7.1 MFA facultatif reste en archive séparée. Les intégrations Symfony/PG et l'installateur ne sont pas démontrés par les workflows actuels. Le plan ne promet pas de calendrier ou d'effet système immédiat. Toute revendication de progression doit être attachée à un commit, un test et un environnement vérifiables.
+
+## Portes Q151–Q160
+
+**R3** : QEMU/KVM local d'abord Q151, cloud ultérieur selon Q141 ; preuve signée/provenance/snapshots/historique Q152 ; gates gravité/seuil Q153, dérogations non critiques approuvées/auditées, jamais les veto Q132. **R4** : vérifier seulement A/AAAA publiés et compatibles HTTP-01 Q154 ; updates OS par serveur approuvées avec backup/santé/reprise Q155 ; restauration isolée PASS avant backup récupérable Q156 ; expiration/limites site/audit/approbation sensible Q157. **Post-R4/Hub R6 après ABI R5** : Q158 diagnostics minimisés, consentements/coupe cohortes ; Q159 risque identité/org/compromission ; Q160 notifications configurables et données sensibles protégées. [Arbitrages](decisions-q151-q160.md) · [Tests](../13-tests-quality/mvp-gates-q151-q160.md). Rien n'est implémenté ou certifié.

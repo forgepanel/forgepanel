@@ -24,6 +24,8 @@ jobs:
           persist-credentials: false
       - name: Test the documentation checker
         run: python3 tests/documentation/test_checker.py -v
+      - name: Check Q151-Q160 decision and MVP matrix parity
+        run: python3 tests/documentation/test_q151_q160.py -v
       - name: Validate documentation
         run: python3 scripts/check_documentation.py
       - name: Package the documentation snapshot

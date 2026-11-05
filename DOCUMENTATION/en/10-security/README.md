@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=11 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=12 status=documented -->
 # Security model and disclosure
 
 [Français](../../fr/10-security/README.md) · [Index](../README.md)
@@ -74,3 +74,7 @@ Q137 D requires **invited testers, accepted terms, staged waves, a private bugs/
 ## Reporting and review
 
 No supported production release, private reporting email or response SLA has been established. Use GitHub private reporting only when available; otherwise request a private channel without posting exploit details or secrets publicly. Establish that channel before public distribution. Review sensitive code separately from implementation; no independent reviewer was available in this documentation audit. See [risk register](../19-audits-risks/README.md).
+
+## Q151–Q160 invariants
+
+Verify signed Q152 CI proof. Q153 waivers only for noncritical failures: never PASS a Q132 tenant leak or unusable recovery. Q155 approved per-server updates need recoverable prebackup, Q156 isolated restoration evidence. Q157 site-scoped expiring delegations, shell-free SFTP, sensitive approvals, redacted audit. Q158 separate consent/cohorts; Q159 hold only suspicious premium transfers, not Core; Q160 redacted notices. [Decisions](../00-project-control/decisions-q151-q160.md).

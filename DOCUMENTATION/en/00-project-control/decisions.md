@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DECISIONS revision=11 status=documented -->
+<!-- forgepanel-doc id=FP-00-DECISIONS revision=12 status=documented -->
 # Decision register
 
 [Français](../../fr/00-project-control/decisions.md) · [Project control](README.md)
@@ -138,6 +138,17 @@ Source IDs refer to the [baseline](../19-audits-risks/baseline.md). A decision a
 | ADR-117 | Premium server identity keys/challenge, anti-replay/org/lost-host route (Q148 C) | Hub after ABI; Q138 risk-based second approval remains |
 | ADR-118 | Partner severity, contractual deadlines, alerts/escalation/withdrawal (Q149 C) | Human per-version review; no invented numeric SLA |
 | ADR-119 | Signed historical security notices, coordinated risk-based disclosure (Q150 D) | Verified lead/deputy and channels; no automatic exploit publishing |
+
+| ADR-120 | Local QEMU/KVM first, followed by cloud drivers (Q151 A) | Q141 D still targets both local+cloud; cloud is a later independently qualified phase. |
+| ADR-121 | Option B plus signed reports, provenance, snapshots and result history (Q152 C) | Verify report signatures/digests; link run/image/commit/snapshots and maintain auditable PASS/FAIL/SKIP history. |
+| ADR-122 | Block by severity/thresholds with approved, audited exceptions (Q153 C) | Only scoped, justified, expiring noncritical waivers; Q132 critical security/isolation/recoverability vetoes still disqualify. |
+| ADR-123 | Only check actually published IP families, compatible with the challenge (Q154 C) | Public A = IPv4; published AAAA = IPv6; both if advertised, port 80/ACME HTTP-01 and TLS; no automatic DNS write Q143. |
+| ADR-124 | Per-server OS update policy with approvals, backup, health and recovery (Q155 C) | Allowlisted package plans; deny without a proven recoverable prebackup, local approval and recovery procedure. |
+| ADR-125 | Option B plus isolated restore before calling a backup recoverable (Q156 C) | Check off-host keys, control panel/config, PHP files and consistent PostgreSQL state; backup completion is not restore PASS. |
+| ADR-126 | Option B plus expiry, site limits, audit and sensitive approval (Q157 C) | Scoped site manager/shell-free SFTP, revocable expiring grants, redacted audit and contextual approval of sensitive actions. |
+| ADR-127 | Option B plus minimized diagnostics, separate consents and cohort thresholds (Q158 C) | No forced collection; Q6 purpose-specific consent, suppress small groups, exclude unnecessary customer data and secrets. |
+| ADR-128 | Option B plus identity/organization mismatch or suspected compromise (Q159 C) | Hold/review the affected premium transfer, risk-based Q138 approval and manual verification; never disable free Core. |
+| ADR-129 | Combine A + B with configurable notices and protected sensitive data (Q160 C) | Q149/Q150 partner alerts/signed advisories: authorized recipients/channels, redaction and protected history, preserving mandatory legal notices. |
 
 ## Replaced or unresolved proposals
 

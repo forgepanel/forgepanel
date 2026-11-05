@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DECISIONS revision=11 status=documented -->
+<!-- forgepanel-doc id=FP-00-DECISIONS revision=12 status=documented -->
 # Registre de décisions
 
 [English](../../en/00-project-control/decisions.md) · [Pilotage](README.md)
@@ -138,6 +138,17 @@ Les identifiants sources renvoient à l'[état initial](../19-audits-risks/basel
 | ADR-117 | Identité serveur premium clés/challenge, anti-rejeu/org et secours manuel (Q148 C) | Transfert Hub après ABI, seconde approbation selon risque Q138 conservée |
 | ADR-118 | Partenaires : gravité, délais contractuels, escalade/alertes/retrait (Q149 C) | Revue humaine de chaque version, aucun SLA numérique inventé |
 | ADR-119 | Avis sécurité signés/historisés, notification et divulgation coordonnée selon risque (Q150 D) | Responsable/suppléant, canaux vérifiés, pas de publication automatique d'exploits |
+
+| ADR-120 | QEMU/KVM local en premier, puis pilotes cloud (Q151 A) | Q141 D local+cloud reste le but ; le cloud est une phase ultérieure, sans certification implicite. |
+| ADR-121 | Choix B + rapports signés, provenance, snapshots, historique des résultats (Q152 C) | Signatures et empreintes vérifiées, run/image/commit/snapshot rattachés, PASS/FAIL/SKIP et historique auditable. |
+| ADR-122 | Blocage selon criticité/seuils, exception approuvée et auditée (Q153 C) | Dérogation bornée, justifiée, expirante et non critique seulement ; les veto Q132 de sécurité/isolation/récupération restent éliminatoires. |
+| ADR-123 | Vérifier uniquement les familles IP publiées, compatibles avec le challenge (Q154 C) | A public = IPv4 ; AAAA public = IPv6 ; les deux si publiées, port 80/ACME HTTP-01 et TLS ; aucune écriture DNS automatique Q143. |
+| ADR-124 | Politique de mises à jour OS par serveur avec approbation, backup, santé, récupération (Q155 C) | Plans de paquets autorisés ; refus sans backup préalablement récupérable, approbation et procédure locale de reprise. |
+| ADR-125 | Choix B + restauration isolée avant déclaration de sauvegarde récupérable (Q156 C) | Vérifier clés hors domaine de panne, configuration/panneau, fichiers PHP et état PostgreSQL cohérent ; job terminé ≠ restore PASS. |
+| ADR-126 | Choix B + expiration, limites de site, audit et validation sensible (Q157 C) | Gestionnaire de site/SFTP sans shell, permission contextualisée, révocation et expiration, audit expurgé et approbation des opérations sensibles. |
+| ADR-127 | Choix B + diagnostics minimisés, consentements distincts et seuils par cohorte (Q158 C) | Pas de collecte obligatoire ; consentements Q6 par finalité, suppression des petits groupes, pas de secrets/données client non nécessaires. |
+| ADR-128 | Choix B + incohérence d'identité/organisation ou compromission suspectée (Q159 C) | Revue/gel de l'opération de transfert premium ciblée, approbation selon risque Q138, vérification manuelle ; Core libre inchangé. |
+| ADR-129 | Choix A + B, notifications configurables et données sensibles protégées (Q160 C) | Alertes partenaires et avis signés Q149/Q150 : destinataires/canaux autorisés, redaction, protection d'historique, obligations légales maintenues. |
 
 ## Propositions remplacées ou non résolues
 

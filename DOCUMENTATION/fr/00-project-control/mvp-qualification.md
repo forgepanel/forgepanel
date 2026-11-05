@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-MVP-QUAL revision=4 status=specified -->
+<!-- forgepanel-doc id=FP-00-MVP-QUAL revision=5 status=specified -->
 # Qualification du premier ForgePanel PHP/HTTPS — Q121–Q127
 
 [English](../../en/00-project-control/mvp-qualification.md) · [Roadmap](implementation-roadmap.md) · [Décisions Q121–Q130](decisions-q121-q130.md)
@@ -63,3 +63,7 @@ La bêta privée n'est ni une publication stable, ni une exemption aux obligatio
 Le responsable sécurité et le **suppléant** (Q130 C), leurs accès, procédure de triage, escalade, journaux et notifications coordonnées doivent être **effectivement nommés et vérifiés** avant diffusion. Les deux voies Q118 (GitHub privé + email sécurité dédié) doivent être configurées/testées ; n'inventer ni noms, adresses, garanties de réponse ou rôles opérationnels.
 
 **État : plan de qualification uniquement. Aucun candidat OS, WebStack, fournisseur ACME ou équipe de bêta n'est encore validé.**
+
+## Qualification complémentaire Q151–Q157
+
+La première matrice de VM utilise **QEMU/KVM local**, snapshots et provenance/rapports **signés** ; cloud ensuite. Un rapport sans signature valide, un SKIP ou un veto Q132 ne qualifient pas un OS ; la dérogation non critique Q153 exige approbation, durée, scope et audit. Tester **A/AAAA réellement publiés**, port 80/HTTP-01/TLS, sans pénaliser IPv6 absent ni accepter un AAAA cassé. Un OS update doit être autorisé par serveur après **backup récupérable** ; statut récupérable seulement après **restauration isolée réussie**, avec clés et données cohérentes ; SFTP/gestionnaire expirants et bornés par site. [Matrice](../13-tests-quality/mvp-gates-q151-q160.md) · [Contrats](../02-architecture/qualification-gates-q151-q160.md). **PLANNED, aucune exécution VM.**

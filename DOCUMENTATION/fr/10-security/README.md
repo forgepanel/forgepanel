@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=11 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=12 status=documented -->
 # Modèle de sécurité et signalement
 
 [English](../../en/10-security/README.md) · [Index](../README.md)
@@ -74,3 +74,7 @@ La bêta Q137 D utilisera **invitations et conditions acceptées, diffusion par 
 ## Signalement et revue
 
 Aucune release de production supportée, adresse privée de signalement ou garantie de réponse n'est établie. Utiliser le signalement privé GitHub seulement s'il est disponible ; sinon demander un canal privé sans publier exploitation ou secrets. Établir ce canal avant distribution publique. La revue sensible doit être distincte de l'implémentation ; aucun relecteur indépendant n'était disponible pour cet audit documentaire. Voir le [registre des risques](../19-audits-risks/README.md).
+
+## Invariants Q151–Q160
+
+Preuves CI Q152 signées et vérifiées. Dérogation Q153 non critique uniquement : jamais de PASS pour une fuite de tenant ou récupération impossible Q132. Mises à jour Q155 approuvées par serveur avec backup récupérable, reprise Q156 éprouvée sur environnement isolé. Délégation Q157 expirable et par site, SFTP sans shell, approbations sensibles, audit expurgé. Q158 consentements distincts/cohortes ; Q159 gel ciblé de transfert premium suspect sans couper le Core ; Q160 notices expurgées. [Décisions](../00-project-control/decisions-q151-q160.md).

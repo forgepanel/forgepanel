@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=11 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=12 status=documented -->
 # État et roadmap ordonnée par dépendances
 
 [English](../../en/00-project-control/status.md) · [Pilotage](README.md)
@@ -61,3 +61,7 @@ Les décisions **Q71–Q80** sont confirmées : protection/rotation des clés, a
 **Q141–Q150 confirmées (2026-11-05)** : VM **locales + cloud** par pilotes, runners CI et rapports communs ; budgets de performance **par classe d'application** et régressions entre versions ; assistant proposant les enregistrements DNS puis revérifiant A/AAAA/80/HTTP-01/HTTPS (**sans correction automatique**) ; politiques de mises à jour OS par serveur, multi-serveurs ultérieur ; clés de backup en coffre avec récupération hors panne commune, KMS externe/multi-autorité facultatifs ; SFTP sans shell avec révocation/expiration/quotas/audit ; bêta privée avec seuils de santé, pause et récupération ; futur Hub : preuve crypto de possession/organisation, clauses partenaires par gravité et avis de sécurité signés coordonnés selon risque. [Décisions Q141–Q150](decisions-q141-q150.md). **Aucune certification ni fonctionnalité livrée.**
 
 Ces priorités n'engagent aucune date ni version. Arbitrages produit nécessaires : licence du logiciel/des contributions et canal privé de sécurité autorisé. Les choix paquets/runtimes nécessitent une proposition technique étayée, pas une nouvelle architecture implicite.
+
+## Statut Q151–Q160
+
+Choix confirmés : **Q151 A ; Q152–Q160 C**. KVM local avant cloud, preuves signées, seuils/exceptions sans contourner Q132, IP publiées, OS updates par serveur, restauration isolée, délégations temporaires, diagnostics minimisés/consentis, risques d'identité et avis protégés. [Registre](decisions-q151-q160.md) · [Tests](../13-tests-quality/mvp-gates-q151-q160.md). **SPECIFIED, aucune fonctionnalité ou certification livrée.**

@@ -4,6 +4,9 @@ One chronology, both languages. / Une chronologie, deux langues.
 
 ## Unreleased / Non publié
 
+### Changed / Modifications — Q151–Q160
+- **Qualification and MVP / Qualification et MVP** — Adopted Q151 A and Q152–Q160 C, preserving Q1–Q150: local QEMU/KVM before cloud, signed provenance/snapshot/history, critical gates and audited noncritical waivers, published A/AAAA HTTP-01 checks, per-server approved updates, isolated restore before recoverable status, expiring site grants, separately consented minimized cohorts, premium identity risk and sensitive-safe notices. Added paired FR/EN contracts, ADR-120–129, MVP positive/negative test matrix and static parity tests. **Documentation only; no VM/service certification.** / Arbitrages Q151 A et Q152–Q160 C conservant Q1–Q150 : KVM local puis cloud, preuves signées, veto critiques et dérogations non critiques auditées, A/AAAA publiés et HTTP-01, mises à jour OS par serveur, restauration isolée, délégations temporaires, cohortes sous consentements, risque identité premium et avis protégés. Documents FR/EN, ADR-120–129, matrice MVP et tests de parité. **Documentation uniquement, pas de certification.**
+
 ### Added / Ajouts
 
 - **Project control / Pilotage** — Initialized the previously empty repository and the requested permanent branch references from README-only commit `26b7c773a0831c20e7f14bb86ef8c2697a19d523`; no deployment. / Initialisation du dépôt auparavant vide et des branches permanentes depuis le commit README seul `26b7c773a0831c20e7f14bb86ef8c2697a19d523` ; aucun déploiement.

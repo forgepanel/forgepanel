@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-EXECUTION revision=5 status=specified -->
+<!-- forgepanel-doc id=FP-00-EXECUTION revision=6 status=specified -->
 # Technical implementation roadmap — Q120 D and Q119 B MVP
 
 [Français](../../fr/00-project-control/implementation-roadmap.md) · [Project status](status.md) · [Q111–Q120 decisions](decisions-q111-q120.md)
@@ -55,3 +55,7 @@ For every change: scoped `features/*` PR into `develop`, explicit acceptance and
 ## Current evidence
 
 Core source remains **unimported** from the separate v0.7 archive; optional-MFA v0.7.1 is also separate. Symfony/PG integration, live installer and hosting tests are not demonstrated by current repository documentation CI. This plan contains **no release date or actual deployment**.
+
+## Q151–Q160 gates
+
+**R3**: local QEMU/KVM first Q151, cloud later per Q141; signed provenance/snapshot/history evidence Q152; severity/threshold Q153 with approved audited noncritical waivers, never Q132 vetoes. **R4**: check only published A/AAAA compatible with HTTP-01 Q154; approved per-server OS updates with proven backup/health/recovery Q155; PASS isolated restore before recoverable label Q156; expiry/site limits/audit/sensitive approval Q157. **Post-R4/Hub R6 after R5 ABI**: Q158 minimized diagnostics/consents/cohort suppression; Q159 identity/org/compromise risk; Q160 configurable sensitive-safe notices. [Decisions](decisions-q151-q160.md) · [Tests](../13-tests-quality/mvp-gates-q151-q160.md). None is implemented or certified.

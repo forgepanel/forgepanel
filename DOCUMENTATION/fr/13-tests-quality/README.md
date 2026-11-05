@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=6 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
@@ -50,3 +50,7 @@ Tester A/AAAA (IPv4/IPv6), port 80, routage HTTP-01, domaine externe et HTTPS 44
 Les critères passent au bon niveau ; refus et récupération sont testés ; compatibilité données/API et rollback sont consignés ; les deux langues et le changelog sont actualisés ; les preuves correspondent exactement au changement ; risques et vérifications manquantes sont visibles. La publication ajoute ses propres critères et une promotion autorisée.
 
 Une revue de sécurité distincte est nécessaire avant les fonctions sensibles de production. Ce lot documentaire comporte une auto-revue de l'auteur, pas un second agent indépendant ni un audit externe. L'égalité des métadonnées ne prouve pas celle du sens ; la lecture sémantique bilingue reste nécessaire.
+
+## Tests ajoutés pour Q151–Q160
+
+[La matrice](mvp-gates-q151-q160.md) définit **MVP-Q151-01 à MVP-Q160-01**, leurs scénarios positifs et négatifs et leur phase R3/R4/Hub. La CI vérifie uniquement la présence et parité des décisions/cas, sans attester VM KVM, HTTP-01, mise à jour OS, restauration isolée, cohorte Hub ou avis signés. Tous les cas opérationnels demeurent **PLANNED**. [Décisions](../00-project-control/decisions-q151-q160.md).

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=11 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=12 status=documented -->
 # Status and dependency-ordered roadmap
 
 [Français](../../fr/00-project-control/status.md) · [Project control](README.md)
@@ -61,3 +61,7 @@ The owner has confirmed **Q71–Q80**: protected key rotation, controlled servic
 **Q141–Q150 confirmed (2026-11-05)**: **local/cloud** full VM drivers, compatible CI and common reports; **per-app-class** performance budgets and version regression tests; wizard suggesting external DNS records then rechecking A/AAAA/80/HTTP-01/HTTPS (**no auto-edit**); per-server OS update policy with later multi-server coordination; vault/off-failure backup recovery with optional external KMS/multiple custodians; shell-disabled, expiring/revocable/quota-audited SFTP; private beta health-based pause/recovery; later Hub cryptographic possession/org proof, severity/contract-driven partner action and signed coordinated risk-based security advisories. [Q141–Q150](decisions-q141-q150.md). **No shipped runtime or OS certification.**
 
 No date or version commitment is implied by these priorities. Product-owner decisions still needed: software/contribution license and authorized private security contact. Package/runtime choices require an evidence-based technical proposal, not a new architecture by assumption.
+
+## Q151–Q160 status
+
+Confirmed choices: **Q151 A; Q152–Q160 C**. Local KVM before cloud, signed evidence, severity/waivers without bypassing Q132, published IP families, per-server OS updates, isolated restores, expiring delegated access, minimized consented diagnostics, identity risk and protected notices. [Register](decisions-q151-q160.md) · [Tests](../13-tests-quality/mvp-gates-q151-q160.md). **SPECIFIED, no implementation or certification delivered.**

@@ -88,8 +88,7 @@ func cleanOSValue(raw string) string {
 
 func releaseFields(data []byte) (string, string) {
 	osID, version := "unknown", "unknown"
-	for _, line := range strings.Split(string(data), "
-") {
+	for _, line := range strings.Split(string(data), "\n") {
 		if strings.HasPrefix(line, "ID=") {
 			osID = cleanOSValue(strings.TrimPrefix(line, "ID="))
 		}
@@ -105,8 +104,7 @@ func cpuVirtualization(data []byte, arch string) string {
 		return "UNKNOWN_FOR_ARCH"
 	}
 	foundFlags := false
-	for _, line := range strings.Split(string(data), "
-") {
+	for _, line := range strings.Split(string(data), "\n") {
 		key, values, found := strings.Cut(line, ":")
 		if !found || strings.TrimSpace(key) != "flags" {
 			continue

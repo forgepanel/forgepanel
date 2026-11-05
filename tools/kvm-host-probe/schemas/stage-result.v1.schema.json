@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:forgepanel:r3:kvm-image-stage:result:v1",
+  "title": "ForgePanel pinned QCOW2 private staging evidence, not a VM execution authorization",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "tool",
+    "status",
+    "qualification",
+    "staged_bytes_verified",
+    "manual_review_required",
+    "execution_authorized",
+    "immutable_storage_verified",
+    "resource_quotas_enforced",
+    "vm_executed",
+    "report_signed",
+    "blockers"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1"
+    },
+    "tool": {
+      "const": "forgepanel-kvm-image-stage"
+    },
+    "status": {
+      "enum": [
+        "BLOCKED",
+        "PARTIAL_STAGE_REQUIRES_MANUAL_CLEANUP",
+        "STAGED_FOR_MANUAL_REVIEW"
+      ]
+    },
+    "qualification": {
+      "const": "NOT_EXECUTED"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+    },
+    "policy_id": {
+      "type": "string"
+    },
+    "policy_revision": {
+      "type": "string"
+    },
+    "staged_image_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "staged_bytes": {
+      "type": "integer",
+      "minimum": 8
+    },
+    "staged_filename": {
+      "const": "image.qcow2"
+    },
+    "staged_bytes_verified": {
+      "type": "boolean"
+    },
+    "manual_review_required": {
+      "const": true
+    },
+    "execution_authorized": {
+      "const": false
+    },
+    "immutable_storage_verified": {
+      "const": false
+    },
+    "resource_quotas_enforced": {
+      "const": false
+    },
+    "vm_executed": {
+      "const": false
+    },
+    "report_signed": {
+      "const": false
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "policy_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "request_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "requested_vcpus": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "requested_memory_mib": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "requested_duration_seconds": {
+      "type": "integer",
+      "minimum": 1
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "STAGED_FOR_MANUAL_REVIEW"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "run_id",
+          "policy_id",
+          "policy_revision",
+          "staged_image_sha256",
+          "staged_bytes",
+          "staged_filename",
+          "policy_sha256",
+          "request_sha256",
+          "requested_vcpus",
+          "requested_memory_mib",
+          "requested_duration_seconds"
+        ],
+        "properties": {
+          "staged_bytes_verified": {
+            "const": true
+          },
+          "blockers": {
+            "maxItems": 0
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "BLOCKED",
+              "PARTIAL_STAGE_REQUIRES_MANUAL_CLEANUP"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "staged_bytes_verified": {
+            "const": false
+          },
+          "blockers": {
+            "minItems": 1
+          }
+        }
+      }
+    }
+  ]
+}

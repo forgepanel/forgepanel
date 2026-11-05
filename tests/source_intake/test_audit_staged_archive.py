@@ -94,7 +94,7 @@ class QuarantineAuditTests(unittest.TestCase):
     def test_staged_hardlink_detected(self):
         (self.destination / "src" / "main.go").unlink()
         os.link(self.destination / "README.md", self.destination / "src" / "main.go")
-        self.assert_block("staged_file_type_owner_or_link_mismatch")
+        self.assert_block("staged_hardlink_detected")
 
     def test_executable_mode_detected(self):
         (self.destination / "README.md").chmod(0o700)

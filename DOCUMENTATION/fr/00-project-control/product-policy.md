@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-POLICY revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-00-POLICY revision=5 status=documented -->
 # Décisions produit du 5 novembre 2026 — gratuit, commercial et configurable
 
 [English](../../en/00-project-control/product-policy.md) · [Registre ADR](decisions.md) · [Configuration Engine](../02-architecture/configuration-engine.md)
@@ -50,6 +50,10 @@ L'éditeur a validé les dix choix Q61 C, Q62 C, Q63 C, Q64 C, Q65 D, Q66 C, Q67
 ## Décisions Q71–Q80 confirmées
 
 Les nouveaux arbitrages précisent le choix d'une infrastructure de clés sécurisée avec rotation/anti-rétrogradation (Q71), l'adoption réversible de services Linux existants (Q72), un moteur DNS local conseillé après qualification (Q73), Postfix/Dovecot avec services externes (Q74), sauvegardes 3-2-1 avec tests de récupération (Q75), approbation supplémentaire selon l'action (Q76), HA/orchestrateurs progressifs (Q77), Prometheus/OpenTelemetry (Q78), **recommandation de WebStack pour chaque site avec possibilité de changement ultérieur** (Q79) et widgets déclaratifs contrôlés (Q80). Aucun de ces systèmes n'est implémenté. [Spécification Q71–Q80](decisions-q71-q80.md).
+
+## Décisions Q81–Q90 confirmées
+
+ForgePanel proposera, **pour chaque site**, une WebStack expliquée selon application, PHP, OS, sécurité, isolation et listeners, avec changement ultérieur contrôlé : maintenance, notifications et test temporaire/bascule progressive **seulement si la topologie le permet**. Les autres choix couvrent PHP-FPM et extensions par site, ACME/DNS-01/wildcards, Git Deploy/staging, bases MariaDB/MySQL et PostgreSQL avec Redis/Valkey facultatifs, gestionnaire de fichiers/SFTP avec SSH limité, webmail/quarantaine, quotas hérités et clonage/restauration sécurisée. La règle Q55 d'une seule marque par organisation et le MFA administrateur facultatif restent inchangés. [Spécification Q81–Q90](decisions-q81-q90.md).
 
 ## Questions encore ouvertes — ne pas présumer
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-CONFIG revision=4 status=specified -->
+<!-- forgepanel-doc id=FP-02-CONFIG revision=5 status=specified -->
 # Configuration Engine — spécification des réglages administrables
 
 [English](../../en/02-architecture/configuration-engine.md) · [Architecture](README.md) · [Politique produit](../00-project-control/product-policy.md)
@@ -55,6 +55,12 @@ Contrôle des canaux/signatures/approbations de publication (Q61) ; installation
 ## Politique Q71–Q80 et choix par site
 
 Le registre de configuration devra afficher l'autorité du prestataire de clés et la rotation, les services Linux existants admissibles à l'adoption, les pilotes DNS et mail vérifiés, les sauvegardes 3-2-1 et leurs tests, les demandes d'approbation et secours, les groupes de serveurs, les exports Prometheus/OpenTelemetry et les widgets déclaratifs approuvés. **Q79** ajoute une `recommended_webstack` **par site** et une opération `webstack.planSwitch(site_id,target_profile,revision)` distincte du choix initial, soumise à PLAN/VALIDATE/SNAPSHOT/STAGE/VERIFY/RECOVER ; ne pas changer les autres vhosts. [Détails](../02-architecture/site-webstack-advisor.md).
+
+## Réglages de site Q81–Q90
+
+Proposer des clés typées/allowlistées : `site.webstack.profile`, `site.webstack.recommendation_revision`, `site.php.version`, `site.php.extensions`, `site.php.fpm_limits`, `site.tls.mode`, `site.tls.acme_challenge`, `site.deploy.git_ref`, `site.staging.policy`, `account.database.drivers`, `account.cache.drivers`, `account.ssh.access`, `mail.domain.filters`, `plan.quota.*` et `site.restore.scope`. Aucune valeur non autorisée ne peut contourner le plan/serveur. Les champs sont des exemples de contrat, non une API implémentée.
+
+Q82 exige pour un changement de WebStack : `PLAN → PREFLIGHT → SNAPSHOT → STAGE → TEMP_ROUTE_TEST (si disponible) → CUTOVER (progressif si sûr) → VERIFY → FINALIZE/RECOVER`. Les fenêtres de maintenance, notifications, interruptions possibles et limites de rollback sont affichées. Q90 exige le même contrôle avant restauration/clonage vers staging. [Cycle d'hébergement](website-lifecycle.md) et [Q81–Q90](../00-project-control/decisions-q81-q90.md).
 
 ## API cible et critères de validation
 

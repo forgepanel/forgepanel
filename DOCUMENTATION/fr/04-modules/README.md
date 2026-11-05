@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-04 revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-04 revision=4 status=documented -->
 # Catalogue des modules natifs
 
 [English](../../en/04-modules/README.md) · [Index](../README.md)
@@ -24,6 +24,10 @@ La cible prévoit pilotes DNS local/externe (Q63), mail natif/externe (Q64), sau
 ## Sélection et adaptation des modules (Q72–Q79)
 
 L'installateur peut détecter/adopter des services présents après inventaire, permission et plan de récupération (Q72), mais ne prend jamais automatiquement possession de fichiers externes. DNS local multi-pilotes conseillé par tests (Q73) ; premier mail natif Postfix/Dovecot et services/relais externes (Q74) ; politiques 3-2-1 avec exercices de restauration (Q75) ; connecteurs Prometheus/OpenTelemetry (Q78). Pour chaque site, recommander une WebStack sans l'imposer, puis permettre un **changement contrôlé** plus tard (Q79) via le Core. [Détails](../00-project-control/decisions-q71-q80.md).
+
+## Nouveaux modules et capacités Q81–Q90
+
+Le périmètre d'hébergement prévoit : conseiller WebStack et changement sécurisé, PHP-FPM version/extensions/quotas **par site**, ACME et certificats importés, Git Deploy avec staging, pilotes MariaDB/MySQL et PostgreSQL, cache Redis/Valkey facultatif, gestionnaire de fichiers/SFTP/SSH limité, webmail et quarantaine par domaine, plans/quotas hérités, restauration sélective et clonage vers staging. Les capacités restent facultatives selon le serveur et le plan ; la souscription commerciale Hub n'est pas requise pour la sécurité de base. Les services actuels ne sont **pas implémentés**. [Architecture](../02-architecture/website-lifecycle.md).
 
 ## Contrat de cycle de vie
 

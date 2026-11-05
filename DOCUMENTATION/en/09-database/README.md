@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-09 revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-09 revision=2 status=documented -->
 # Database, transactions and migrations
 
 [Français](../../fr/09-database/README.md) · [Index](../README.md)
@@ -14,6 +14,10 @@ SRC-03 `apps/panel/migrations/001_setup.sql` defines three tables, not the large
 | `fp_setup_audit` | Generated bigint primary key, event, JSONB metadata and timestamp |
 
 A partial unique index permits only one `initial_admin=true`. `PdoSetupRepository` locks the setup row with `FOR UPDATE`; account/state/audit writes use the same transaction. This is an inspected implementation, not a demonstrated concurrency guarantee in this environment.
+
+## Customer data services Q86/Q90 — targets
+
+**MariaDB/MySQL and PostgreSQL tenant DBs** will use separate drivers and scoped roles/quotas; **Redis/Valkey** are optional cache/queue services. These resources do not exist in the current setup-only schema. Staging clones/selective restores need consistent snapshots, protected credentials, tenant authorization and pre-overwrite checks. Panel PostgreSQL stays separate from customer databases. [Website lifecycle](../02-architecture/website-lifecycle.md).
 
 ## Migration and ownership requirements
 

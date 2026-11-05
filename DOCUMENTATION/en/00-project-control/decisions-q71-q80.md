@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-Q71-80 revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-00-Q71-80 revision=2 status=specified -->
 # Q71–Q80 decisions — Configurable operations and per-site WebStacks
 
 [Français](../../fr/00-project-control/decisions-q71-q80.md) · [Decision register](decisions.md) · [WebStack architecture](../02-architecture/site-webstack-advisor.md)
@@ -19,6 +19,10 @@ These choices **extend Q1–Q70 without superseding them**. They are **specified
 | Q78 C | **Prometheus and OpenTelemetry through adapters** | Supported metrics/traces/events according to capabilities, configurable exporters and receivers. No tenant-data harvesting or nonconsensual Hub export. |
 | Q79 D + owner clarification | **Initial per-site recommendation, free selection and later switching** | Do not force a server-wide profile; explain reasons/prerequisites/incompatibilities. Switching a live site requires a verified recoverable plan, not a simple toggle. |
 | Q80 C | **Official/partner widgets plus declarative custom widgets** | Versioned manifest, authorized data sources, RBAC, query limits and safe rendering. No arbitrary PHP/JS/shell execution or access to other tenants' secrets. |
+
+## Q81–Q90 refinements (without replacing Q71–Q80)
+
+Q79's initial recommendation for **each new website** is extended by Q81 C (application, PHP, `.htaccess`, OS, isolation, security, resources and listeners) and Q82 D (preview, maintenance/notice, test route or progressive cutover **where feasible**, with backups/recovery). PHP, TLS, Git, data, SSH, mail, quotas and restore choices are in [Q81–Q90 decisions](decisions-q81-q90.md). No new choice guarantees zero downtime.
 
 ## Shared configuration rules
 

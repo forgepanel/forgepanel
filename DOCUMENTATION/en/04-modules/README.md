@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-04 revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-04 revision=4 status=documented -->
 # Native module catalog
 
 [Français](../../fr/04-modules/README.md) · [Index](../README.md)
@@ -24,6 +24,10 @@ The design includes local/external DNS (Q63), native/external mail (Q64), encryp
 ## Module selection and adaptation (Q72–Q79)
 
 The installer may detect/adopt existing services following inventory, permission and recovery planning (Q72), never silently take ownership of foreign files. DNS local engine is recommended after driver testing (Q73); Postfix/Dovecot first mail driver with external providers/relays (Q74); 3-2-1 backup and restore drills (Q75); Prometheus/OpenTelemetry adapters (Q78). For every website Core recommends a WebStack without imposing it and later allows a **controlled switch** (Q79). [Details](../00-project-control/decisions-q71-q80.md).
+
+## New Q81–Q90 module capabilities
+
+Hosting scope now includes per-site WebStack recommendation and safe switching, PHP-FPM versions/extensions/quotas **per site**, ACME/imported certificates, Git Deploy and staging, MariaDB/MySQL and PostgreSQL drivers, optional Redis/Valkey cache, file manager/SFTP/restricted SSH, per-domain webmail/quarantine, inherited plan/quotas, selective restore and staging clones. Features remain capability- and plan-dependent; paid Hub entitlements never gate essential security. These services are **not implemented**. [Architecture](../02-architecture/website-lifecycle.md).
 
 ## Lifecycle contract
 

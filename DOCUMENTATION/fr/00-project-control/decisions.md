@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DECISIONS revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-00-DECISIONS revision=5 status=documented -->
 # Registre de décisions
 
 [English](../../en/00-project-control/decisions.md) · [Pilotage](README.md)
@@ -61,6 +61,17 @@ Les identifiants sources renvoient à l'[état initial](../19-audits-risks/basel
 | ADR-047 | Prometheus + OpenTelemetry via pilotes (Q78 C) | Exportateurs/capacités configurables, filtrage et consentement aux sorties |
 | ADR-048 | WebStack recommandée **par site**, modifiable après création (Q79 D, précision propriétaire) | Choix non imposé au provisionnement, changements futurs avec PLAN/VALIDATE/STAGE/HEALTH/RECOVER ; préserver `.htaccess` et listeners |
 | ADR-049 | Widgets officiels/partenaires et widgets déclaratifs (Q80 C) | Sources autorisées, manifests, RBAC, rendu sûr, une marque par organisation, aucun code arbitraire |
+
+| ADR-050 | Conseiller WebStack application/sécurité/ressources/listeners (Q81 C) | Recommandation par site selon .htaccess, PHP, OS et isolation ; refus incompatibles |
+| ADR-051 | Changement WebStack avec route test/bascule progressive si compatible (Q82 D) | Plan, snapshot, notifications, maintenance, TLS/règles et récupération ; aucune garantie zéro interruption |
+| ADR-052 | PHP par site avec extensions/PHP-FPM/quotas (Q83 C) | Runtime panneau séparé et pools/paramètres validés par serveur/plan/tenant |
+| ADR-053 | ACME, certificats importés, DNS-01, wildcards et renouvellement (Q84 C) | Propriété du domaine, fournisseur DNS compatible, secrets et alertes |
+| ADR-054 | Fichiers/SFTP + Git Deploy + staging/preview/backup/rollback (Q85 C) | Migration SQL non automatiquement réversible ; aucune obligation blue-green/canary |
+| ADR-055 | MariaDB/MySQL, PostgreSQL et Redis/Valkey facultatifs (Q86 D) | Pilotes tenant isolés ; cache/queues optionnels et PostgreSQL du panneau distinct |
+| ADR-056 | File manager/SFTP + SSH limité aux comptes autorisés (Q87 B) | Scopes Unix, chemins sûrs, quotas, pas de terminal web implicite |
+| ADR-057 | Email protégé, webmail, quarantaine, règles/rapports par domaine (Q88 C) | SPF/DKIM/DMARC/TLS, antispam/AV et autorisations par boîte/domaine |
+| ADR-058 | Plans et quotas hérités avec alertes/usage (Q89 C) | Stockage, domaines, boîtes, DB, CPU/RAM/PHP/processus avec limites effectives |
+| ADR-059 | Restauration sélective, clonage staging, retour contrôlé entre environnements (Q90 D) | Permissions, sauvegardes cible, secret/URL séparés, tests de récupération |
 
 ## Propositions remplacées ou non résolues
 

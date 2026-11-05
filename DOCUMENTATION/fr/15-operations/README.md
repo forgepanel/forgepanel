@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-15 revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-15 revision=5 status=documented -->
 # Exploitation, diagnostic et récupération
 
 [English](../../en/15-operations/README.md) · [Index](../README.md)
@@ -28,6 +28,10 @@ Sauvegardes chiffrées multi-destinations avec réplication et immutabilité, su
 ## 3-2-1, observabilité et reprise (Q75, Q77, Q78)
 
 Le profil de sauvegarde visé est **3-2-1**, avec tests de restauration planifiés, réplication et copie distante, selon capacités et budgets réels ; l'immutabilité Q65 reste une exigence de destination prise en charge. La supervision Q78 utilise des pilotes Prometheus/OpenTelemetry et des règles d'export autorisées. Q77 prévoit les agents distants en premier puis des modules HA/orchestrateurs optionnels : redondance, quorum et reprise exigent des essais, pas une simple case dans l'interface. [Référence](../00-project-control/decisions-q71-q80.md).
+
+## Restauration sélective et staging (Q85/Q90)
+
+Les sauvegardes de site devront permettre restauration complète ou sélective (fichiers/base/configuration), tests de restauration, clonage staging et transfert entre environnements **avec autorisation du propriétaire**. Avant tout écrasement : plan, vérification quotas/espace, snapshot de destination, séparation des secrets/URLs et contrôle de santé. Un déploiement Git et son retour au commit précédent n'annulent pas une migration SQL. Les échecs partiels exigent un état de récupération explicite. [Cycle du site](../02-architecture/website-lifecycle.md).
 
 ## Sauvegarde et restauration requises
 

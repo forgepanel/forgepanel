@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-17 revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-17 revision=3 status=documented -->
 # User and administrator guidance
 
 [Français](../../fr/17-user-guides/README.md) · [Index](../README.md)
@@ -16,6 +16,10 @@ The current archive only prototypes enrollment and configuration export. Do not 
 ## Choosing a site's WebStack (Q79)
 
 The target website workflow presents **a WebStack recommended for that individual site**, with reasons and compatible alternatives. The site administrator may select before creation and later request **a profile switch** using preview, security tests and recovery plans; changing one site must not modify all websites. [Specification](../02-architecture/site-webstack-advisor.md). These screens have not been implemented.
+
+## Target website management (Q81–Q90)
+
+Each authorized operator can inspect a WebStack recommended for the individual site (application/`.htaccess`/PHP/isolation/resources/listeners), choose a compatible profile and request a later switch with preview, maintenance notice, test route or progressive cutover **only when feasible**. Future screens cover PHP/extensions/FPM, ACME/wildcard certificates, Git Deploy/staging, databases/cache, files/SFTP/restricted SSH, mail/webmail, quotas and selective restore/clone. **None is currently operational.** [Specification](../00-project-control/decisions-q81-q90.md).
 
 ## Customer and reseller journeys
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=5 status=documented -->
 # Modèle de sécurité et signalement
 
 [English](../../en/10-security/README.md) · [Index](../README.md)
@@ -36,6 +36,10 @@ Paquets et métadonnées de publication signés avec racines de confiance proté
 ## Clés, adoption et approbations (Q71, Q72, Q76)
 
 La publication signée utilisera une autorité de clés protégée avec rotation et protection anti-rétrogradation (Q71), jamais de clé privée dans le dépôt ou le package. L'adoption d'un service existant (Q72) exige permission, inventaire des ressources, snapshot et refus d'écrasement des configurations non gérées. Les actions sensibles (Q76) peuvent nécessiter un approbateur indépendant ; une procédure locale de secours doit rester auditée. **MFA administrateur toujours facultatif**, et aucun droit d'approval ne remplace RBAC. [Décisions](../00-project-control/decisions-q71-q80.md).
+
+## Isolation des sites, certificats et données — Q81–Q90
+
+La bascule WebStack exige permissions, sécurité des listeners/`.htaccess`, HTTP/TLS et absence de fuite via une route temporaire (Q81/Q82). PHP-FPM par site : versions/directives/extensions allowlistées et quotas réellement appliqués (Q83). ACME/wildcard et import TLS : propriété des domaines, DNS-01 et clés protégées (Q84). Git Deploy/staging, clonage et restauration : aucun transfert implicite de credentials ou de données privées (Q85/Q90). MariaDB/MySQL/PostgreSQL/Redis/Valkey tenant-scopés (Q86), gestionnaire de fichiers/SFTP/SSH limité sans root ni terminal web implicite (Q87), quarantaine/webmail protégés (Q88) et plans/quotas enforceables (Q89). [Détails](../02-architecture/website-lifecycle.md). **Cibles non implémentées.**
 
 ## Critères minimaux de livraison
 

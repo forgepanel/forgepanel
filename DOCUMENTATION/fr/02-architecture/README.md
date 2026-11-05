@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02 revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-02 revision=4 status=documented -->
 # Architecture du système
 
 [English](../../en/02-architecture/README.md) · [Index](../README.md)
@@ -42,5 +42,7 @@ La décision Q51 prévoit [Docker et Podman via pilotes indépendants](container
 Les nouvelles décisions Q63–Q69 sont détaillées dans [services et HA](service-drivers-and-ha.md) : DNS/mail locaux ou distants, sauvegardes répliquées/immuables, orchestration multi-serveurs, alertes et ingress par IP/port. Les signatures et dépôts de paquets sont décrits par [Q61–Q70](../00-project-control/infrastructure-decisions.md). Ces drivers sont spécifiés, non livrés.
 
 Conformément à Q79, un [conseiller de WebStack par site](site-webstack-advisor.md) proposera des profils compatibles à la création et un changement ultérieur avec plan de transition, contrôle de `.htaccess`, des listeners et récupération. Q72 permettra l'adoption contrôlée de services préexistants sans écraser leur configuration ; Q77 prévoit l'extension progressive multi-serveurs vers HA. [Décisions Q71–Q80](../00-project-control/decisions-q71-q80.md).
+
+Le nouveau [cycle de vie des sites](website-lifecycle.md) précise Q81–Q90 : WebStack conseillée en tenant compte de l'isolation, des ressources et des listeners ; transition avec fenêtre de maintenance et route temporaire/bascule progressive **si faisable** ; PHP-FPM/extensions, TLS ACME, Git staging, moteurs SQL/cache, fichiers/SSH, webmail, quotas et clonage/restauration. Il reste spécifié et non opérationnel.
 
 [Décisions](../00-project-control/decisions.md) · [Contrats](../08-api-contracts/README.md) · [Sécurité](../10-security/README.md)

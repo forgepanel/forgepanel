@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-01 revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-01 revision=3 status=documented -->
 # Périmètre produit et parcours
 
 [English](../../en/01-product/README.md) · [Index](../README.md)
@@ -23,6 +23,10 @@ L'archive s'arrête au brouillon de configuration revu, pas à la fin d'une inst
 ## Arbitrages infrastructure Q61–Q70
 
 L'expérience cible combine installation universelle vérifiée, profils web et DNS/mail modulaires, sauvegardes distantes avec restauration, administration multi-serveurs à terme, monitoring et éditeur visuel. **Hébergement + VPS restent la première priorité** (Q54), sans prétendre livrer immédiatement la HA complète. MFA facultatif et une marque par organisation sont conservés. Voir [Q61–Q70](../00-project-control/infrastructure-decisions.md).
+
+## Parcours d'hébergement Q81–Q90
+
+La cible prévoit un site personnalisable : **WebStack recommandée par site, modifiable plus tard**, PHP-FPM/extensions et limites propres, certificats ACME/wildcards, Git Deploy/staging, moteurs MariaDB/MySQL/PostgreSQL avec Redis/Valkey facultatifs, fichiers/SFTP/SSH limité, webmail/quarantaine, plans/alertes et restauration sélective/clonage staging. Le changement de WebStack utilise une route temporaire ou une bascule progressive **si les capacités le permettent**, sans garantie zéro interruption. [Contrat Q81–Q90](../00-project-control/decisions-q81-q90.md). Aucune implémentation annoncée.
 
 ## Maîtrise du périmètre
 

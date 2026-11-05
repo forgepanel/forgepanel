@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-SITE-WEBSTACK revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-02-SITE-WEBSTACK revision=2 status=specified -->
 # Conseiller WebStack par site et changement de profil sécurisé
 
 [English](../../en/02-architecture/site-webstack-advisor.md) · [Architecture](README.md) · [Arbitrages Q71–Q80](../00-project-control/decisions-q71-q80.md)
@@ -8,6 +8,12 @@
 **À la création de chaque site**, ForgePanel calcule une ou plusieurs WebStacks **recommandées pour ce site** selon les besoins déclarés et capacités réellement détectées. Le panneau affiche une recommandation, ses motivations et alternatives admissibles. L'administrateur peut **accepter ou sélectionner un autre profil** compatible.
 
 **Après création**, la page du site permet de **demander un changement de WebStack** à tout moment, avec vérification des autorisations, prévisualisation et plan de transition. Le choix ne devient effectif qu'après tests ; aucun basculement aveugle, garantie de zéro interruption ou modification de tous les sites du serveur.
+
+## Décisions Q81 C et Q82 D — compatibilité et transition
+
+Le conseiller Q81 **doit** tenir compte de la présence de règles `.htaccess`, des versions/extensions PHP, de l'OS, de l'isolation du compte, des contraintes de sécurité, des ressources/quotas et de la propriété des listeners IP:port. Les profils non compatibles sont refusés, et la recommandation est **propre à chaque site**, conformément à Q79.
+
+Pour le changement d'un site, Q82 autorise une **route temporaire de test** ou une **bascule progressive uniquement lorsque l'infrastructure le permet**, après prévisualisation, sauvegarde, validation et gestion d'une fenêtre de maintenance/notification. Les cookies, sessions, écritures applicatives et fichiers protégés doivent rester cohérents. Sinon le système doit annoncer un cutover potentiellement interrompu. Aucun autre site partageant 443 ne doit changer de frontal par effet de bord. [Cycle du site](website-lifecycle.md).
 
 ## Critères de recommandation (futurs)
 

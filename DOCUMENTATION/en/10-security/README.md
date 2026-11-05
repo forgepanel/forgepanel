@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=5 status=documented -->
 # Security model and disclosure
 
 [Français](../../fr/10-security/README.md) · [Index](../README.md)
@@ -36,6 +36,10 @@ Signed packages/release metadata with protected trust roots, anti-rollback and a
 ## Keys, adoption and approvals (Q71, Q72, Q76)
 
 Signed releases need protected key custody, rotation and anti-rollback (Q71); never distribute publisher private keys in code/packages. Adopting existing services (Q72) requires permissions, ownership inventory, snapshots and protection of unmanaged configurations. Sensitive actions (Q76) may require an independent approver; local emergency access remains audited. **Admin MFA remains optional** and approvals do not replace RBAC. [Decisions](../00-project-control/decisions-q71-q80.md).
+
+## Website isolation, certificates and data — Q81–Q90
+
+WebStack switching needs permission, safe listeners/`.htaccess`, HTTP/TLS and no disclosure via temporary test routes (Q81/Q82). Per-site PHP-FPM version/directives/extensions are allowlisted and quotas enforced (Q83). ACME/wildcard/imported TLS requires domain proof, DNS-01 and protected keys (Q84). Git Deploy/staging, clone and restore must never silently copy credentials/private data (Q85/Q90). Tenant-scoped MariaDB/MySQL/PostgreSQL/Redis/Valkey (Q86), restricted file manager/SFTP/SSH without root or implicit web terminal (Q87), private webmail/quarantine (Q88) and enforceable plan quotas (Q89). [Details](../02-architecture/website-lifecycle.md). **Not implemented.**
 
 ## Minimum release gates
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=10 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=11 status=documented -->
 # Installation, Git promotion and releases
 
 [Français](../../fr/14-devops-releases/README.md) · [Index](../README.md)
@@ -60,3 +60,7 @@ The documentation workflow is designed with read-only repository permission, pin
 ## R1 source archive intake gate
 
 The new `scripts/verify_source_archive.py` preflight reads genuine SRC-03 **without extracting, installing or executing anything**, checking checksum, paths and bounded expansion. It is not an installer and never authorizes `install apply`. A PASS must be followed by licensing/secret review and tests on the actual imported commit; the genuine archive remains missing in this lot. [Procedure](../12-development/source-archive-intake.md).
+
+## R1 — quarantine is not deployment
+
+`stage_source_archive.py` only copies verified regular source files to a private **off-repository** directory as nonroot, with read-only preview by default and explicit `--stage`. Existing target, other-user-writable parent, suspicious metadata or changed source → deny. Receipt `STAGED_FOR_MANUAL_REVIEW` includes `import_approved=false`: no install, release signing, migration or privileged execution can follow automatically. Genuine ZIP remains unavailable; R1 import and R2–R6 gates remain blocked. [Procedure](../12-development/source-staging.md).

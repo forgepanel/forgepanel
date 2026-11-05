@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=5 status=documented -->
 # Installation, promotion Git et releases
 
 [English](../../en/14-devops-releases/README.md) · [Index](../README.md)
@@ -30,6 +30,10 @@ Cible : commandes d'installation simples avec vérification de provenance et **D
 ## Adoption et chaîne de confiance (Q71, Q72)
 
 La stratégie Q71 précise l'utilisation d'un KMS/HSM ou service de clés protégé, métadonnées anti-rétrogradation et rotation contrôlée, sans choisir un prestataire. Q72 élargit l'installation à un serveur contenant des services existants : **détection en lecture seule → plan d'adoption → sauvegarde → confirmation → validation et reprise**, en plus du cas serveur vierge. L'installateur doit refuser de remplacer des fichiers/service tiers sans propriété explicite. Ces modes ne seront supportés qu'après tests sur VM avec conflits réels. [Spécification](../00-project-control/decisions-q71-q80.md).
+
+## Périmètre première version et ordre d'exécution (Q119 B, Q120 D)
+
+**R1 sources importées avec provenance → R2 tests réels Symfony/PostgreSQL/identité/MFA optionnel → R3 installateur vérifié et testé → R4 premier site PHP administrable, domaine et HTTPS, administration VPS minimale → R5 contrat d'extension générique → R6 Hub privé.** La [roadmap](../00-project-control/implementation-roadmap.md) fixe les critères VM/HTTP/SQL et les cas de reprise ; les étapes Hub sont **après** le premier produit Core utilisable. La décision Q119 B n'exige pas toutes les WebStacks/OS ni DNS/mail natifs dès le premier jalon. Avant diffusion publique : finaliser licences/CLA après revue (Q111/Q112) et les deux canaux de signalement privés vérifiés (Q118). Aucun de ces résultats n'est présumé opérationnel.
 
 ## Preuves de livraison
 

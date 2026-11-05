@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-LICENSE revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-00-LICENSE revision=2 status=specified -->
 # AGPL-3.0 / commercial dual licensing and paid-offer protection
 
 [Français](../../fr/00-project-control/license-commerce.md) · [Decisions](decisions.md) · [Product policy](product-policy.md)
@@ -30,6 +30,10 @@ The copyright owner may dual-license its own code, but must track rights in thir
 ## Contribution and provenance prerequisites
 
 The CLA must identify publisher/legal entity, copyright/patent grants, explicit dual-licensing authority and authorized contributors. Retain proof of acceptance before licensing a contribution commercially. Audit third-party dependency grants; code not eligible for alternative licensing needs exclusion or additional rights. A CLA does not magically relicense unrelated third-party code.
+
+## Q111–Q112: license and contributor rights
+
+The owner selected **Q111 C**: retain AGPL-3.0 + commercial **without deciding** `AGPL-3.0-only` versus `AGPL-3.0-or-later` until legal, provenance and copyright-holder review. The documentation change is not publication of an operative license. **Q112 C** requires **electronic CLA acceptance** and verification of individual/corporate signatory authority **before merge**; legal text, signing provider, publisher legal entity and acceptance evidence remain open. A CLA cannot automatically relicense unrelated third-party work. [Q111–Q120](decisions-q111-q120.md).
 
 ## States and pending choices
 

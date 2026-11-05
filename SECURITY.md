@@ -8,7 +8,7 @@ No production release or supported deployment exists in this repository. Foundat
 
 ## Reporting a vulnerability
 
-Do not disclose secrets, customer data or actionable exploit details in a public issue. Use GitHub private vulnerability reporting **only if the repository actually exposes that feature**. A dedicated private reporting contact has not been supplied or verified; do not invent an email address. When no private channel is available, ask the owner for one without including sensitive details. Establishing that channel is a tracked prerequisite for public distribution.
+Do not disclose secrets, customer data or actionable exploit details in a public issue. Use GitHub private vulnerability reporting **only if the repository actually exposes that feature**. The owner selected **both GitHub private vulnerability reporting and a dedicated security email**, with triage, tracking and notifications (Q118 C). Their actual availability, mailbox/recipients and private reporting configuration **have not yet been verified**. Do not invent an email address or claim either channel is operational until configured and tested. See [the Q111–Q120 policy](DOCUMENTATION/en/00-project-control/decisions-q111-q120.md). When no private channel is available, ask the owner for one without including sensitive details. Establishing that channel is a tracked prerequisite for public distribution.
 
 For non-sensitive reports, give the affected commit/component, expected behavior, sanitized reproduction and impact. Avoid real credentials and production endpoints. Coordinate remediation privately before publishing a security advisory. No response SLA is promised before a maintained release and reporting process exist.
 

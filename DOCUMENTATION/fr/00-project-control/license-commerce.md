@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-LICENSE revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-00-LICENSE revision=2 status=specified -->
 # Double licence AGPL-3.0 / commerciale et protection des offres
 
 [English](../../en/00-project-control/license-commerce.md) · [Décisions](decisions.md) · [Politique produit](product-policy.md)
@@ -30,6 +30,10 @@ Une même portion de code peut être distribuée par l'ayant droit sous deux lic
 ## Conventions de contribution et provenance à établir
 
 Le futur CLA doit indiquer l'éditeur/entité juridique, les droits de copyright/brevet accordés, la possibilité explicite de double licence et la validité des contributions de tiers. Enregistrer la preuve d'accord de chaque contributeur avant fusion commerciale. Auditer les licences des dépendances et séparer les éléments qui ne peuvent légalement être vendus en licence alternative sans consentement. Ne pas présumer que toutes les contributions sont éligibles automatiquement.
+
+## Q111–Q112 : licence et contributions
+
+Le propriétaire a choisi **Q111 C** : maintenir le modèle AGPL-3.0 + commerciale **sans décider** entre `AGPL-3.0-only` et `AGPL-3.0-or-later` avant revue juridique, de provenance et d'ayants droit. Aucune licence exécutoire n'est publiée par cette décision documentaire. **Q112 C** impose un **CLA électronique** avec vérification du pouvoir du contributeur individuel ou du représentant de société **avant fusion** ; contenu juridique, service de signature, identité de l'éditeur et preuves de consentement restent à définir. Un CLA ne rend pas le code de tiers automatiquement double licenciable. [Décisions Q111–Q120](decisions-q111-q120.md).
 
 ## Statuts et arbitrages restants
 

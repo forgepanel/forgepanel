@@ -36,7 +36,10 @@ def _open_owned_parent(destination: Path) -> tuple[int, str]:
         raise StageError("root_execution_forbidden")
     if destination.name in ("", ".", ".."):
         raise StageError("invalid_destination")
-    parent = destination.parent
+    parent = destination.parent.resolve(strict=True)
+    target = parent / destination.name
+    if target.is_relative_to(Path(__file__).resolve().parents[1]):
+        raise StageError("staging_inside_source_repo_forbidden")
     try:
         fd = os.open(parent, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
     except OSError as exc:
@@ -45,9 +48,6 @@ def _open_owned_parent(destination: Path) -> tuple[int, str]:
     if meta.st_uid != os.geteuid() or meta.st_mode & 0o022:
         os.close(fd)
         raise StageError("parent_must_be_private_and_owned")
-    if destination.is_relative_to(Path(__file__).resolve().parents[1]):
-        os.close(fd)
-        raise StageError("staging_inside_source_repo_forbidden")
     return fd, destination.name
 
 

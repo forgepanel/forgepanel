@@ -16,7 +16,7 @@ from pathlib import Path
 from typing import Any
 
 from stage_source_archive import RECEIPT
-from verify_source_archive import DEFAULT_EVIDENCE, evidence_record, scan_archive, unsafe_name
+from verify_source_archive import DEFAULT_EVIDENCE, evidence_record, scan_archive, sha256_file, unsafe_name
 
 MAX_RECEIPT_BYTES = 2 * 1024 * 1024
 MAX_STAGED_ENTRIES = 4096
@@ -74,7 +74,8 @@ def _read_receipt(root_fd: int, expected_sha: str, count: int,
         raise AuditRejected("missing_or_unsafe_receipt") from exc
     with os.fdopen(fd, "rb") as handle:
         info = os.fstat(handle.fileno())
-        if not stat.S_ISREG(info.st_mode) or info.st_nlink != 1 or info.st_mode & 0o077:
+        if (not stat.S_ISREG(info.st_mode) or info.st_nlink != 1
+                or info.st_mode & (0o177 | stat.S_ISUID | stat.S_ISGID | stat.S_ISVTX)):
             raise AuditRejected("receipt_not_private_regular_file")
         if info.st_size > MAX_RECEIPT_BYTES:
             raise AuditRejected("oversized_receipt")
@@ -98,7 +99,7 @@ def _file_digest_in_dir(directory_fd: int, name: str, expected: dict[str, Any], 
         before = os.fstat(file_handle.fileno())
         if not stat.S_ISREG(before.st_mode) or before.st_uid != owner_uid or before.st_nlink != 1:
             raise AuditRejected("staged_file_type_owner_or_link_mismatch")
-        if before.st_mode & 0o177:
+        if before.st_mode & (0o177 | stat.S_ISUID | stat.S_ISGID | stat.S_ISVTX):
             raise AuditRejected("staged_file_has_executable_or_shared_mode")
         if before.st_size != expected["bytes"] or before.st_size > MAX_STAGED_BYTES:
             raise AuditRejected("staged_file_size_mismatch")
@@ -135,10 +136,9 @@ def verify(archive: Path, directory: Path, evidence: Path = DEFAULT_EVIDENCE,
             return result
         if not directory.is_absolute() or directory.name in ("", ".", ".."):
             raise AuditRejected("staged_directory_must_be_absolute")
-        # No symlink resolution is accepted at the final directory boundary.
-        fd = os.open(directory, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
-        with os.fdopen(fd) as _:
-            pass
+        # Do not accept symlinked parent aliases or relative path tricks.
+        if directory.resolve(strict=True) != directory:
+            raise AuditRejected("staged_directory_must_be_canonical")
     except (OSError, ValueError, json.JSONDecodeError, AuditRejected) as exc:
         result["blockers"].append(str(exc) if isinstance(exc, AuditRejected) else "invalid_zip_or_directory")
         return result
@@ -147,7 +147,8 @@ def verify(archive: Path, directory: Path, evidence: Path = DEFAULT_EVIDENCE,
         root_fd = os.open(directory, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
         try:
             root_stat = os.fstat(root_fd)
-            if root_stat.st_uid != os.geteuid() or root_stat.st_mode & 0o077:
+            if (root_stat.st_uid != os.geteuid()
+                    or root_stat.st_mode & (0o077 | stat.S_ISUID | stat.S_ISGID | stat.S_ISVTX)):
                 raise AuditRejected("staged_directory_not_private_or_owned")
             expected = _read_receipt(root_fd, expected_sha, expected_count,
                                      source_id, archive_report.entries)
@@ -159,6 +160,7 @@ def verify(archive: Path, directory: Path, evidence: Path = DEFAULT_EVIDENCE,
             actual_directories: set[str] = set()
             seen = 0
             total_bytes = 0
+            receipt_seen = False
             for current, dirs, files, dirfd in os.fwalk(".", topdown=True,
                                                          follow_symlinks=False, dir_fd=root_fd):
                 for item in dirs + files:
@@ -177,13 +179,16 @@ def verify(archive: Path, directory: Path, evidence: Path = DEFAULT_EVIDENCE,
                     if stat.S_ISDIR(info.st_mode):
                         if item not in dirs or relative not in allowed_directories:
                             raise AuditRejected("unexpected_staged_directory")
-                        if info.st_mode & 0o077:
+                        if info.st_mode & (0o077 | stat.S_ISUID | stat.S_ISGID | stat.S_ISVTX):
                             raise AuditRejected("staged_directory_shared_mode")
                         actual_directories.add(relative)
                     elif stat.S_ISREG(info.st_mode):
                         if item not in files:
                             raise AuditRejected("staged_file_directory_conflict")
                         if relative == RECEIPT:
+                            receipt_seen = True
+                            if not stat.S_ISREG(info.st_mode) or info.st_nlink != 1:
+                                raise AuditRejected("receipt_replaced_after_read")
                             continue
                         if relative not in expected:
                             raise AuditRejected("unexpected_staged_file")
@@ -197,10 +202,14 @@ def verify(archive: Path, directory: Path, evidence: Path = DEFAULT_EVIDENCE,
                         result["files_verified"] += 1
                     else:
                         raise AuditRejected("staged_special_file_or_symlink")
+            if not receipt_seen:
+                raise AuditRejected("receipt_removed_during_verification")
             if actual_files != set(expected) or actual_directories != allowed_directories:
                 raise AuditRejected("staged_inventory_incomplete")
             if result["files_verified"] != expected_count:
                 raise AuditRejected("staged_file_count_mismatch")
+            if sha256_file(archive) != expected_sha:
+                raise AuditRejected("source_archive_changed_during_audit")
             result["status"] = "CONSISTENT_FOR_MANUAL_REVIEW"
             return result
         finally:

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19-VERIFICATION revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-19-VERIFICATION revision=3 status=documented -->
 # Verification record
 
 [Français](../../fr/19-audits-risks/verification.md) · [Audit index](README.md)
@@ -33,3 +33,7 @@ Actual run status must be read from the documentation PR's checks and logs. Addi
 [PR #1](https://github.com/yyogas/forgepanel/pull/1) at head `04e75476fce679714429c62ac83897262b64fa45` passed [Actions run 41948356066](https://github.com/yyogas/forgepanel/actions/runs/41948356066): 10 checker tests, 28 document pairs, 64 Markdown files and 282 relative links. GitHub tested the temporary merge preview `de3b954943728538e5bcfbb0d0b3351a0ea8db87`; the PR was not merged. The downloaded snapshot passed the same checks locally.
 
 The successful run warned that its pinned v4 actions targeted a deprecated Node runtime. This follow-up pins verified official Node 24 action commits (checkout v7.0.1 and upload-artifact v7.0.2) without increasing repository permissions. Its own CI outcome must be checked on the updated PR head, not inferred from the earlier run.
+
+## Additional R1 verification: no real SRC-03 rescan
+
+**Local command**: `python3 -m unittest discover -s tests/source_intake -p 'test_*.py' -v`. **Observed result**: 16/16 PASS on Linux/Python stdlib, with synthetic archives only. Negative cases: wrong SHA, missing archive, absolute/Windows/traversal paths, symlinks, duplicates, count/size/ratio and recognizable secrets. **The genuine v0.7 source archive was unavailable**; no product Go/PHP, PostgreSQL, VM or actual restore was executed in this lot. Exact SHA GitHub CI is checked independently. [Tool](../12-development/source-archive-intake.md).

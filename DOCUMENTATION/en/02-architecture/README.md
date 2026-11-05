@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02 revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-02 revision=5 status=documented -->
 # System architecture
 
 [Français](../../fr/02-architecture/README.md) · [Index](../README.md)
@@ -44,5 +44,7 @@ The Q63–Q69 design is in [services and HA](service-drivers-and-ha.md): local/e
 Under Q79 a [per-site WebStack advisor](site-webstack-advisor.md) will recommend compatible profiles at creation and later support controlled switching with migration plans, `.htaccess`/listener checks and recovery. Q72 allows safe adoption of existing services without overwriting foreign configuration; Q77 phases multi-server management before HA. [Q71–Q80 decisions](../00-project-control/decisions-q71-q80.md).
 
 The new [website lifecycle](website-lifecycle.md) covers Q81–Q90: WebStack advice considering isolation/resources/listeners; maintenance and test-route/progressive transition **where feasible**; PHP-FPM/extensions, ACME TLS, Git staging, SQL/cache engines, file/SSH, webmail, quotas and clone/restore. This is specified, not operational.
+
+Q91–Q100 add [PHP, staging, ACME, access and quota policies](php-staging-and-access-policy.md), plus [cross-server migration with preflight and recovery](cross-server-migration.md). These extend the [website lifecycle](website-lifecycle.md) without delivering running services. Operators will be able to select tenant PHP and per-site Git modes within verified security and capability constraints.
 
 [Decisions](../00-project-control/decisions.md) · [Contracts](../08-api-contracts/README.md) · [Security](../10-security/README.md)

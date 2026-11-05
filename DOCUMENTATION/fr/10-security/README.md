@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=6 status=documented -->
 # Modèle de sécurité et signalement
 
 [English](../../en/10-security/README.md) · [Index](../README.md)
@@ -40,6 +40,10 @@ La publication signée utilisera une autorité de clés protégée avec rotation
 ## Isolation des sites, certificats et données — Q81–Q90
 
 La bascule WebStack exige permissions, sécurité des listeners/`.htaccess`, HTTP/TLS et absence de fuite via une route temporaire (Q81/Q82). PHP-FPM par site : versions/directives/extensions allowlistées et quotas réellement appliqués (Q83). ACME/wildcard et import TLS : propriété des domaines, DNS-01 et clés protégées (Q84). Git Deploy/staging, clonage et restauration : aucun transfert implicite de credentials ou de données privées (Q85/Q90). MariaDB/MySQL/PostgreSQL/Redis/Valkey tenant-scopés (Q86), gestionnaire de fichiers/SFTP/SSH limité sans root ni terminal web implicite (Q87), quarantaine/webmail protégés (Q88) et plans/quotas enforceables (Q89). [Détails](../02-architecture/website-lifecycle.md). **Cibles non implémentées.**
+
+## Sécurité des runtimes et migrations (Q91–Q100)
+
+PHP 1 site = identité/pool FPM séparé et confinement Linux réellement vérifié, avec alertes de fin de support et migration planifiée (Q91/Q92). Git manuel/webhook : authentification, anti-rejeu, refs autorisées et logs sans secrets (Q93). Staging : anonymisation, secrets/URLs distincts, suppression des sorties réelles, conservation/audit (Q94). ACME : plusieurs CA/DNS-01 avec preuve de domaine et jetons protégés (Q95). Bases/cache/SSH isolés par compte avec quotas et révocation/expiration (Q96/Q97) ; Webmail et quarantaine visibles uniquement aux détenteurs autorisés (Q98). Grâce quotas bornée ne franchit jamais les limites physiques ni l'isolation (Q99). Migration inter-serveurs : autorisation source et destination, transfert chiffré, rotation des secrets et récupération auditée (Q100). [Référence](../00-project-control/decisions-q91-q100.md). **Non implémenté.**
 
 ## Critères minimaux de livraison
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-09 revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-09 revision=3 status=documented -->
 # Database, transactions and migrations
 
 [Français](../../fr/09-database/README.md) · [Index](../README.md)
@@ -18,6 +18,10 @@ A partial unique index permits only one `initial_admin=true`. `PdoSetupRepositor
 ## Customer data services Q86/Q90 — targets
 
 **MariaDB/MySQL and PostgreSQL tenant DBs** will use separate drivers and scoped roles/quotas; **Redis/Valkey** are optional cache/queue services. These resources do not exist in the current setup-only schema. Staging clones/selective restores need consistent snapshots, protected credentials, tenant authorization and pre-overwrite checks. Panel PostgreSQL stays separate from customer databases. [Website lifecycle](../02-architecture/website-lifecycle.md).
+
+## Customer engines and cross-server migration (Q96, Q100)
+
+One hosting account may own **separate MariaDB/MySQL and PostgreSQL** services plus optional Redis/Valkey cache/queues under verified capabilities, with per-engine quota/grant/secret policy (Q96). Panel-internal PostgreSQL is **not** shared with customer DBs. Cross-server migration Q100 needs version/schema preflight, consistent snapshot, authenticated encrypted transfer, DB account mapping, rotated secrets and audited recovery. No customer DB driver or cross-server migrator exists in the current setup-only prototype. [Details](../02-architecture/cross-server-migration.md).
 
 ## Migration and ownership requirements
 

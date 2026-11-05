@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=6 status=documented -->
 # État et roadmap ordonnée par dépendances
 
 [English](../../en/00-project-control/status.md) · [Pilotage](README.md)
@@ -45,5 +45,7 @@ Q61–Q70 sont **confirmées (2026-11-05)** : signatures CI/CD avec anti-rétrog
 Les décisions **Q71–Q80** sont confirmées : protection/rotation des clés, adoption contrôlée, DNS conseillé après tests, Postfix/Dovecot + relais, 3-2-1 et restaurations, approbation par action, HA/orchestrateurs progressifs, Prometheus/OpenTelemetry, **WebStack conseillée par site et modifiable ensuite**, widgets déclaratifs. [Référence produit](decisions-q71-q80.md) · [WebStack par site](../02-architecture/site-webstack-advisor.md). Ce sont des spécifications, sans aucune release ni certification supplémentaires.
 
 **Q81–Q90 sont confirmées (2026-11-05)** : WebStack recommandée selon compatibilité/sécurité/ressources et transition temporaire/progressive si admissible ; PHP et extensions/FPM par site ; ACME/wildcard/DNS-01 ; Git Deploy avec staging ; bases MariaDB/MySQL + PostgreSQL, Redis/Valkey facultatifs ; gestionnaire de fichiers/SFTP et SSH limité ; webmail/antispam/quarantaine ; quotas hérités ; restauration sélective et clonage staging. [Spécification Q81–Q90](decisions-q81-q90.md). **Tout est spécifié, non livré**.
+
+**Q91–Q100** sont confirmées : PHP maintenu et migration planifiée ; pools PHP-FPM isolés et Linux renforcé ; Git manuel/webhook validé ; staging par site avec confidentialité/rétention ; ACME multi-autorités et DNS-01 ; plusieurs moteurs de bases/cache par compte ; SSH limité par plan ; webmail configurable ; quotas avec grâce et allocations autorisées ; restauration/migration inter-serveurs sécurisée. [Registre Q91–Q100](decisions-q91-q100.md). Ces composants sont **spécifiés, pas implémentés ou certifiés**.
 
 Ces priorités n'engagent aucune date ni version. Arbitrages produit nécessaires : licence du logiciel/des contributions et canal privé de sécurité autorisé. Les choix paquets/runtimes nécessitent une proposition technique étayée, pas une nouvelle architecture implicite.

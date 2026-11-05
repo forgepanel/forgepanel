@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-04 revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-04 revision=5 status=documented -->
 # Native module catalog
 
 [Français](../../fr/04-modules/README.md) · [Index](../README.md)
@@ -28,6 +28,10 @@ The installer may detect/adopt existing services following inventory, permission
 ## New Q81–Q90 module capabilities
 
 Hosting scope now includes per-site WebStack recommendation and safe switching, PHP-FPM versions/extensions/quotas **per site**, ACME/imported certificates, Git Deploy and staging, MariaDB/MySQL and PostgreSQL drivers, optional Redis/Valkey cache, file manager/SFTP/restricted SSH, per-domain webmail/quarantine, inherited plan/quotas, selective restore and staging clones. Features remain capability- and plan-dependent; paid Hub entitlements never gate essential security. These services are **not implemented**. [Architecture](../02-architecture/website-lifecycle.md).
+
+## Q91–Q100 target modules
+
+Website management now targets a **maintained PHP catalog with EOL notices/planned migration** (Q91), **per-site FPM pools and stronger Linux profiles** (Q92), **manual/authenticated-webhook Git Deploy** (Q93), privacy-controlled staging (Q94), **multi-CA ACME/DNS-01** (Q95), per-account multi-engine SQL/cache grants (Q96), plan-scoped restricted expiring SSH (Q97), provider-selectable Webmail (Q98), quota alerts/grace/approved allocation (Q99) and safeguarded cross-server migration (Q100). Core gains no implicit web terminal and Hub cannot store site data. [Decisions](../00-project-control/decisions-q91-q100.md).
 
 ## Lifecycle contract
 

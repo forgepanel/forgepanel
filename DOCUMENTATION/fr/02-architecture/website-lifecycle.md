@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-WEBSITE revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-02-WEBSITE revision=2 status=specified -->
 # Architecture du site — WebStack, PHP, TLS, déploiement, données et restauration
 
 [English](../../en/02-architecture/website-lifecycle.md) · [Conseiller WebStack](site-webstack-advisor.md) · [Arbitrages Q81–Q90](../00-project-control/decisions-q81-q90.md)
@@ -44,6 +44,16 @@ Les plans comprennent stockage, domaines, bases, boîtes, CPU/RAM/processus, ver
 ## Clonage, restauration et contrôle de données (Q90 D)
 
 Un site peut recevoir des sauvegardes **complètes ou sélectives** (fichiers, base, configuration) et un **clone vers staging**. La sélection de source/destination déclenche plan, permissions tenant, vérification d'espace, snapshot cible avant écrasement, redaction des données selon droits, rotation des secrets/URLs et contrôle de santé. La restauration entre environnements n'accorde pas de nouveaux droits sur les données. Exiger tests de reprise et un suivi d'échec partiel ; les copies immuables et leur rétention restent applicables selon Q65/Q75.
+
+## Précisions des arbitrages Q91–Q100
+
+- **PHP Q91/Q92** : maintenir le catalogue PHP clients avec dates EOL amont/fournisseur et alertes ; migrations planifiées et tests de compatibilité ; pools PHP-FPM distincts par site, profils renforcés lorsque Linux fournit des mécanismes certifiés. Ne jamais imposer le PHP du panneau.
+- **Git/Staging Q93/Q94** : mode manuel et/ou webhook authentifié selon site ; référentiel/ref autorisé, anti-rejeu, contrôle des jobs ; staging avec copie sous consentement, anonymisation, secrets distincts, rétention/audit et sorties SMTP/webhooks neutralisées.
+- **TLS Q95** : plusieurs ACME CA et pilotes DNS-01 interchangeables, wildcards sous preuve de domaine, alertes et renouvellement contrôlé, sans perte prématurée de la configuration précédente.
+- **Ressources Q96/Q97/Q98/Q99** : plusieurs moteurs SQL/cache par compte avec quotas distincts ; SSH limité par plan, clé, expiration et révocation ; webmail choisi parmi les backends compatibles serveur/fournisseur avec règles de domaine ; soft/hard quotas, grâce bornée et allocations supplémentaires seulement par administrateur habilité, sans franchir la capacité réelle.
+- **Migration Q100** : sauvegarde de source/cible, préflight OS/WebStack/PHP/DB/mail, staging isolé, transfert authentifié, secret rotation, cutover et reprise auditée. [Processus inter-serveurs](cross-server-migration.md).
+
+[Détails PHP, staging et accès](php-staging-and-access-policy.md) · [Registre Q91–Q100](../00-project-control/decisions-q91-q100.md). Ces fonctions restent des cibles non implémentées.
 
 ## État, tests et non-implémentation
 

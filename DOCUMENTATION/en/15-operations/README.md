@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-15 revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-15 revision=6 status=documented -->
 # Operations, diagnosis and recovery
 
 [Français](../../fr/15-operations/README.md) · [Index](../README.md)
@@ -32,6 +32,10 @@ The target backup profile is **3-2-1**, with scheduled restore tests, replicatio
 ## Selective restore and staging (Q85/Q90)
 
 Site backups should support full or selective files/DB/config restoration, restore drills, staging clones and cross-environment transfers **with resource-owner authorization**. Before any overwrite: plan, disk/quota checks, destination snapshot, separate secrets/URLs and health verification. Git deployment rollback cannot reverse SQL migrations by itself. Partial failures require an explicit recovery state. [Website lifecycle](../02-architecture/website-lifecycle.md).
+
+## Q91–Q100 lifecycle and incidents
+
+PHP maintenance tracks EOL, notifies owners and plans verified upgrades without switching panel PHP (Q91). FPM per-site isolation requires qualified kernel/OS bounds (Q92). Manual/webhook Git and staging clones use audited jobs with outbound/retention safeguards (Q93/Q94). Multi-issuer ACME/DNS-01 monitors renewals/expiry (Q95). Data engines, SSH and Webmail need health/authorization checks (Q96–Q98). Q99 quota grace/extensions have bounded expiry. Q100 migrations retain source/target snapshots and define interruption, DNS/TLS switch and explicit recovery. [Cross-server migration](../02-architecture/cross-server-migration.md).
 
 ## Backup and restoration requirements
 

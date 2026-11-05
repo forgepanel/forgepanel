@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-15 revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-15 revision=6 status=documented -->
 # Exploitation, diagnostic et récupération
 
 [English](../../en/15-operations/README.md) · [Index](../README.md)
@@ -32,6 +32,10 @@ Le profil de sauvegarde visé est **3-2-1**, avec tests de restauration planifi�
 ## Restauration sélective et staging (Q85/Q90)
 
 Les sauvegardes de site devront permettre restauration complète ou sélective (fichiers/base/configuration), tests de restauration, clonage staging et transfert entre environnements **avec autorisation du propriétaire**. Avant tout écrasement : plan, vérification quotas/espace, snapshot de destination, séparation des secrets/URLs et contrôle de santé. Un déploiement Git et son retour au commit précédent n'annulent pas une migration SQL. Les échecs partiels exigent un état de récupération explicite. [Cycle du site](../02-architecture/website-lifecycle.md).
+
+## Cycle de vie et incidents Q91–Q100
+
+La maintenance PHP surveille les fins de support, avertit les responsables et planifie des migrations testables, sans changer le runtime du panneau (Q91). Les pools FPM isolés exigent un contrôle des limites kernel/OS (Q92). Les déploiements Git manuels/webhooks et les clones staging sont suivis par jobs audités, sécurité des sorties et rétention (Q93/Q94). ACME multi-autorités et DNS-01 doivent monitorer renouvellement/expiration (Q95). Services de données, SSH et Webmail disposent de contrôles de santé et de permissions (Q96–Q98). Les grâce/allocation quota Q99 sont bornées et expirent. Une migration Q100 conserve snapshots source/cible et un protocole explicite d'interruption, DNS/TLS et récupération. [Migration inter-serveurs](../02-architecture/cross-server-migration.md).
 
 ## Sauvegarde et restauration requises
 

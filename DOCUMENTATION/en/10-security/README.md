@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=6 status=documented -->
 # Security model and disclosure
 
 [Français](../../fr/10-security/README.md) · [Index](../README.md)
@@ -40,6 +40,10 @@ Signed releases need protected key custody, rotation and anti-rollback (Q71); ne
 ## Website isolation, certificates and data — Q81–Q90
 
 WebStack switching needs permission, safe listeners/`.htaccess`, HTTP/TLS and no disclosure via temporary test routes (Q81/Q82). Per-site PHP-FPM version/directives/extensions are allowlisted and quotas enforced (Q83). ACME/wildcard/imported TLS requires domain proof, DNS-01 and protected keys (Q84). Git Deploy/staging, clone and restore must never silently copy credentials/private data (Q85/Q90). Tenant-scoped MariaDB/MySQL/PostgreSQL/Redis/Valkey (Q86), restricted file manager/SFTP/SSH without root or implicit web terminal (Q87), private webmail/quarantine (Q88) and enforceable plan quotas (Q89). [Details](../02-architecture/website-lifecycle.md). **Not implemented.**
+
+## Runtime and migration security (Q91–Q100)
+
+Each website PHP pool/identity and actual Linux confinement require testing, with EOL notices and planned safe upgrade (Q91/Q92). Manual/webhook Git needs auth, anti-replay, allowed refs and secret-safe logs (Q93). Staging needs data masking, distinct secrets/URLs, blocked real outbound actions, retention/audit (Q94). ACME uses multiple issuers/DNS-01 with domain proof and protected tokens (Q95). Per-tenant DB/cache/SSH require quotas and expiry/revocation (Q96/Q97); Webmail and quarantine require authorized mailbox/domain access (Q98). Quota grace never bypasses host capacity or tenant separation (Q99). Cross-server migration requires both-side permissions, encryption, secret rotation and audited recovery (Q100). [Reference](../00-project-control/decisions-q91-q100.md). **Not implemented.**
 
 ## Minimum release gates
 

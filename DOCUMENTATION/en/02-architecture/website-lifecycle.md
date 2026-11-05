@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-WEBSITE revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-02-WEBSITE revision=2 status=specified -->
 # Website architecture — WebStack, PHP, TLS, deployment, data and recovery
 
 [Français](../../fr/02-architecture/website-lifecycle.md) · [WebStack advisor](site-webstack-advisor.md) · [Q81–Q90 decisions](../00-project-control/decisions-q81-q90.md)
@@ -44,6 +44,16 @@ Hosting plans define storage, domains, DBs, mailboxes, CPU/memory/processes, PHP
 ## Cloning, restore and data safeguards (Q90 D)
 
 Sites allow **full or selective** (files, DB, config) restore and **staging clones**. Source/destination selection requires authorization and tenant scope, disk check, target snapshot before overwrite, data redaction where appropriate, rotated secrets/URLs and health checks. Cross-environment restore never grants access to data the actor cannot already access. Test real recovery and partial failure; immutable copies and retention follow Q65/Q75.
+
+## Q91–Q100 refinements
+
+- **PHP Q91/Q92**: track upstream/vendor EOL and alert tenant PHP owners; plan compatible upgrades; per-site FPM pools and stronger confinement where Linux isolation is certified. Keep panel PHP separate.
+- **Git/Staging Q93/Q94**: manual and/or authenticated per-site webhook with allowed refs, replay checks and job policy; staging copies by consent, masking, distinct secrets, retention/audit and disabled outgoing SMTP/webhooks.
+- **TLS Q95**: multiple ACME issuers and swappable DNS-01 drivers with domain proof, wildcards, notices and controlled renewals, retaining known-good config until success.
+- **Resources Q96/Q97/Q98/Q99**: multiple per-account SQL/cache engines with separate quotas; restricted SSH by plan, key, expiry and revocation; compatible Webmail chosen per server/provider and domain policy; soft/hard quotas with bounded grace and separately authorized extra allocation, never above physical capacity.
+- **Migration Q100**: source/target backup, OS/WebStack/PHP/DB/mail preflight, isolated staging, authenticated transfer, secret rotation, cutover and audited recovery. [Cross-server pipeline](cross-server-migration.md).
+
+[PHP, staging and access details](php-staging-and-access-policy.md) · [Q91–Q100 decisions](../00-project-control/decisions-q91-q100.md). These remain unimplemented targets.
 
 ## State, tests and non-implementation
 

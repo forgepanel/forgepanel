@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-POLICY revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-00-POLICY revision=6 status=documented -->
 # Product decisions of 5 November 2026 — free Core, commercial model and configuration
 
 [Français](../../fr/00-project-control/product-policy.md) · [ADR register](decisions.md) · [Configuration Engine](../02-architecture/configuration-engine.md)
@@ -54,6 +54,10 @@ New choices specify protected key infrastructure with rotation/anti-rollback (Q7
 ## Confirmed Q81–Q90
 
 ForgePanel will offer an explainable **per-site WebStack** based on application, PHP, OS, security, isolation and listeners, with later controlled switching: maintenance, notification and temporary testing/progressive cutover **only when topology permits**. Other selected features include per-site PHP-FPM/extensions, ACME/DNS-01/wildcards, Git Deploy/staging, MariaDB/MySQL/PostgreSQL with optional Redis/Valkey, file manager/SFTP with restricted SSH, webmail/quarantine, inherited quotas and secure clone/restore. One brand per organization (Q55) and optional admin MFA are unchanged. [Q81–Q90 specification](decisions-q81-q90.md).
+
+## Confirmed Q91–Q100
+
+The owner approved maintained PHP with EOL alerts and per-site migration (Q91), stronger PHP-FPM isolation (Q92), validated manual/webhook Git Deploy (Q93), staging masking/secrets/retention/audit (Q94), multiple ACME issuers and DNS-01 drivers (Q95), multiple tenant SQL/cache engines (Q96), scoped expiring/audited SSH (Q97), Webmail chosen by provider/domain (Q98), bounded quota grace and authorized allocation (Q99), and secure cross-server migration/restore with privacy/recovery (Q100). These requirements **do not create working services** or Core dependence on Hub. [Q91–Q100 decisions](decisions-q91-q100.md).
 
 ## Open follow-ups — no default assumed
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-SITE-WEBSTACK revision=2 status=specified -->
+<!-- forgepanel-doc id=FP-02-SITE-WEBSTACK revision=3 status=specified -->
 # Per-site WebStack recommendation and safe profile switching
 
 [Français](../../fr/02-architecture/site-webstack-advisor.md) · [Architecture](README.md) · [Q71–Q80 decisions](../00-project-control/decisions-q71-q80.md)
@@ -14,6 +14,10 @@
 The advisor Q81 **must** account for `.htaccess`, PHP version/extensions, OS, tenant isolation, security constraints, resource quotas and IP:port listener ownership. Ineligible profiles are rejected; recommendations are **specific to each site** under Q79.
 
 For changes Q82 permits an **isolated temporary test route** or **progressive cutover only when supported by topology**, following preview, backup, validation and maintenance window/notification planning. Cookies, sessions, application writes and protected files must stay consistent. Otherwise warn about a potentially interrupted controlled cutover. No unrelated site sharing 443 may be altered. [Site lifecycle](website-lifecycle.md).
+
+## Maintained PHP and isolation (Q91–Q92)
+
+WebStack recommendations must reflect **maintained versus nearing-EOL** PHP/extensions and the actual available site isolation profiles. A planned PHP migration is distinct from a frontend switch; offer them separately or in an explicitly approved combined plan. Neither a high score nor an FPM pool toggle compensates for unavailable OS isolation. [PHP/staging policy](php-staging-and-access-policy.md).
 
 ## Recommendation criteria (future)
 

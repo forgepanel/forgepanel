@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=6 status=documented -->
 # Status and dependency-ordered roadmap
 
 [Français](../../fr/00-project-control/status.md) · [Project control](README.md)
@@ -45,5 +45,7 @@ Q61–Q70 are **confirmed (2026-11-05)**: signed CI/CD with anti-rollback and ap
 The owner has confirmed **Q71–Q80**: protected key rotation, controlled service adoption, DNS chosen after tests, Postfix/Dovecot with relays, 3-2-1 and restore drills, per-action approvals, phased HA/orchestration, Prometheus/OpenTelemetry, **per-site WebStack recommendations with later switching**, and declarative widgets. [Product reference](decisions-q71-q80.md) · [Per-site WebStack](../02-architecture/site-webstack-advisor.md). These are specifications, not a new release or certification.
 
 **Q81–Q90 confirmed (2026-11-05)**: per-site application/security/resource-aware WebStack recommendations and temporary/progressive transitions when feasible; per-site PHP/FPM/extensions; ACME/wildcard/DNS-01; Git Deploy with staging; MariaDB/MySQL/PostgreSQL with optional Redis/Valkey; file manager/SFTP with restricted SSH; webmail/antispam/quarantine; inherited quotas; selective restore and staging clones. [Q81–Q90 specification](decisions-q81-q90.md). **Specified, not shipped**.
+
+**Q91–Q100** are confirmed: maintained PHP and planned migrations, confined per-site PHP-FPM, validated manual/webhook Git Deploy, site-scoped staging privacy/retention, multiple ACME and DNS-01, multiple tenant DB/cache engines, plan-scoped restricted SSH, configurable Webmail, quotas with bounded grace and authorized increments, secure cross-server migration/restore. [Q91–Q100 register](decisions-q91-q100.md). All remain **specified, not implemented or certified**.
 
 No date or version commitment is implied by these priorities. Product-owner decisions still needed: software/contribution license and authorized private security contact. Package/runtime choices require an evidence-based technical proposal, not a new architecture by assumption.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-CONFIG revision=5 status=specified -->
+<!-- forgepanel-doc id=FP-02-CONFIG revision=6 status=specified -->
 # Configuration Engine — administrable settings specification
 
 [Français](../../fr/02-architecture/configuration-engine.md) · [Architecture](README.md) · [Product policy](../00-project-control/product-policy.md)
@@ -61,6 +61,12 @@ The settings registry must expose key custody/rotation, eligible existing-servic
 Candidate typed allowlisted keys: `site.webstack.profile`, `site.webstack.recommendation_revision`, `site.php.version`, `site.php.extensions`, `site.php.fpm_limits`, `site.tls.mode`, `site.tls.acme_challenge`, `site.deploy.git_ref`, `site.staging.policy`, `account.database.drivers`, `account.cache.drivers`, `account.ssh.access`, `mail.domain.filters`, `plan.quota.*`, `site.restore.scope`. Child settings cannot bypass plan/server ceilings. These are proposed contract examples, not working API keys.
 
 Q82 switching requires `PLAN → PREFLIGHT → SNAPSHOT → STAGE → TEMP_ROUTE_TEST (when supported) → CUTOVER (progressive only if safe) → VERIFY → FINALIZE/RECOVER`. Show maintenance, notifications, potential downtime and recovery limits. Q90 restores/staging clones require the same controls. [Website lifecycle](website-lifecycle.md) and [Q81–Q90](../00-project-control/decisions-q81-q90.md).
+
+## Q91–Q100 settings and sensitive operations
+
+Candidate keys: `site.php.support_policy` (maintained versions/EOL/migration window), `site.php.isolation_profile` (qualified Linux capability), `site.deploy.trigger_policy` (manual/signed webhook/allowed refs), `site.staging.data_policy` (masking, SMTP/webhooks, secrets and retention), `site.tls.issuer` and `site.tls.dns01_provider`, `account.data_services` (per-engine grants/quotas), `account.ssh.policy` (keys/revocation/expiry), `mail.domain.webmail_driver`, `plan.quota.grace_policy` (threshold and authorized extension), `site.migration.plan` (source/target compatibility). Sensitive values are references to protected secrets. Child scopes cannot relax server security.
+
+Cross-server migration and staging creation require durable idempotency, locks, plan/backup/test/commit or compensation. **Q99 cannot bypass physical hard limits**. [Q91–Q100](../00-project-control/decisions-q91-q100.md) · [Website lifecycle](website-lifecycle.md).
 
 ## Proposed API and acceptance
 

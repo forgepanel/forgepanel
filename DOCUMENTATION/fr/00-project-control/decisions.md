@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DECISIONS revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-00-DECISIONS revision=6 status=documented -->
 # Registre de décisions
 
 [English](../../en/00-project-control/decisions.md) · [Pilotage](README.md)
@@ -72,6 +72,17 @@ Les identifiants sources renvoient à l'[état initial](../19-audits-risks/basel
 | ADR-057 | Email protégé, webmail, quarantaine, règles/rapports par domaine (Q88 C) | SPF/DKIM/DMARC/TLS, antispam/AV et autorisations par boîte/domaine |
 | ADR-058 | Plans et quotas hérités avec alertes/usage (Q89 C) | Stockage, domaines, boîtes, DB, CPU/RAM/PHP/processus avec limites effectives |
 | ADR-059 | Restauration sélective, clonage staging, retour contrôlé entre environnements (Q90 D) | Permissions, sauvegardes cible, secret/URL séparés, tests de récupération |
+
+| ADR-060 | PHP maintenus, alertes EOL et migrations planifiées (Q91 C) | Inventaire PHP/extension et alertes par site ; PHP du panneau distinct ; migration non destructive |
+| ADR-061 | PHP-FPM isolé par site avec confinement Linux avancé (Q92 D) | Pools/identités/quotas séparés et capacités SELinux/AppArmor/cgroups certifiées ; pool seul insuffisant |
+| ADR-062 | Git Deploy manuel ou webhook validé, politique par site (Q93 C) | Contrôle des webhooks/refs, idempotence, RBAC et journaux expurgés |
+| ADR-063 | Staging privé par site, anonymisation/secrets/rétention/audit (Q94 D) | Envois mail/webhooks réels neutralisés, approbation de copie et purge contrôlée |
+| ADR-064 | Autorités ACME multiples, DNS-01 et renouvellement contrôlé (Q95 C) | Pilotes DNS, preuve du domaine, wildcard, secrets protégés, alertes |
+| ADR-065 | Plusieurs moteurs de données par compte avec droits/quotas séparés (Q96 D) | MariaDB/MySQL, PostgreSQL et Redis/Valkey optionnels ; SQL Core isolé |
+| ADR-066 | SSH limité par clés et plan, révocation/expiration/audit (Q97 C) | Identités Linux/chemins restreints ; aucun terminal web implicite |
+| ADR-067 | Webmail interchangeable selon serveur/fournisseur et politiques domaine (Q98 C) | Pilotes qualifiés, isolation boîtes, webmail/quarantaine compatibles |
+| ADR-068 | Quotas soft/hard, grâce et rallonge administrateur (Q99 D) | Autorisation explicite, limites réelles non contournables, trace et expiration |
+| ADR-069 | Migration/restauration inter-serveurs sécurisée et auditée (Q100 D) | Préflight OS/WebStack/PHP/DB, transfert chiffré, staging et secrets tournés, reprise |
 
 ## Propositions remplacées ou non résolues
 

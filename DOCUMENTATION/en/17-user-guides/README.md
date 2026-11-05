@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-17 revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-17 revision=4 status=documented -->
 # User and administrator guidance
 
 [Français](../../fr/17-user-guides/README.md) · [Index](../README.md)
@@ -20,6 +20,10 @@ The target website workflow presents **a WebStack recommended for that individua
 ## Target website management (Q81–Q90)
 
 Each authorized operator can inspect a WebStack recommended for the individual site (application/`.htaccess`/PHP/isolation/resources/listeners), choose a compatible profile and request a later switch with preview, maintenance notice, test route or progressive cutover **only when feasible**. Future screens cover PHP/extensions/FPM, ACME/wildcard certificates, Git Deploy/staging, databases/cache, files/SFTP/restricted SSH, mail/webmail, quotas and selective restore/clone. **None is currently operational.** [Specification](../00-project-control/decisions-q81-q90.md).
+
+## Q91–Q100 future website settings
+
+Authorized site operators will see maintained PHP versions and EOL alerts, qualify hardened FPM profiles, select manual/authenticated-webhook Git Deploy and configure private staging with retention, masking and independent secrets. TLS can use multiple ACME/DNS-01 issuers, account SQL/cache engines are allocated by quota, SSH keys expire/revoke, compatible Webmail is selectable, quota grace requires admin permission and cross-server migration is previewed. **No operational screens are shipped**; all actions require authorization and validation. [Q91–Q100 specification](../00-project-control/decisions-q91-q100.md).
 
 ## Customer and reseller journeys
 

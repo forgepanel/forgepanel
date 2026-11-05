@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-SITE-WEBSTACK revision=2 status=specified -->
+<!-- forgepanel-doc id=FP-02-SITE-WEBSTACK revision=3 status=specified -->
 # Conseiller WebStack par site et changement de profil sécurisé
 
 [English](../../en/02-architecture/site-webstack-advisor.md) · [Architecture](README.md) · [Arbitrages Q71–Q80](../00-project-control/decisions-q71-q80.md)
@@ -14,6 +14,10 @@
 Le conseiller Q81 **doit** tenir compte de la présence de règles `.htaccess`, des versions/extensions PHP, de l'OS, de l'isolation du compte, des contraintes de sécurité, des ressources/quotas et de la propriété des listeners IP:port. Les profils non compatibles sont refusés, et la recommandation est **propre à chaque site**, conformément à Q79.
 
 Pour le changement d'un site, Q82 autorise une **route temporaire de test** ou une **bascule progressive uniquement lorsque l'infrastructure le permet**, après prévisualisation, sauvegarde, validation et gestion d'une fenêtre de maintenance/notification. Les cookies, sessions, écritures applicatives et fichiers protégés doivent rester cohérents. Sinon le système doit annoncer un cutover potentiellement interrompu. Aucun autre site partageant 443 ne doit changer de frontal par effet de bord. [Cycle du site](website-lifecycle.md).
+
+## Versions PHP maintenues et isolation (Q91–Q92)
+
+Une recommandation WebStack doit tenir compte des versions PHP/extension **maintenues ou en voie de fin de support** et des profils de confinement réellement disponibles au site. Une migration PHP planifiée est distincte d'un changement de frontend ; proposer les deux séparément ou dans un plan composé explicitement validé. Un profil ne devient pas compatible par un simple score, ni par une option de pool FPM si l'isolation OS requise manque. [Politique PHP/staging](php-staging-and-access-policy.md).
 
 ## Critères de recommandation (futurs)
 

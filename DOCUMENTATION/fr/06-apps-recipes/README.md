@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-06 revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-06 revision=3 status=documented -->
 # Applications et recettes d'installation
 
 [English](../../en/06-apps-recipes/README.md) · [Index](../README.md)
@@ -18,6 +18,10 @@ Planifier prérequis et quotas ; préparer des entrées immuables ; valider ; sa
 ## Déploiements et staging (Q83–Q85, Q90)
 
 Les recettes précisent PHP/extensions, WebStack/TLS, déploiement fichiers/SFTP/Git, staging, rollback de code **distinct des migrations DB**, clonage et restauration sélective. Comptes, secrets, données et URL staging restent isolés. Q85 C demande Git Deploy, aperçu, sauvegarde et récupération ; blue-green/canary et pipelines avancés ne sont pas sélectionnés. [Cycle du site](../02-architecture/website-lifecycle.md).
+
+## Déclencheurs Git et staging confidentiel (Q91–Q94)
+
+Une recette précise le PHP maintenu, extensions et migrations compatibles (Q91), les restrictions PHP-FPM du site (Q92) et son mode de déploiement Git **manuel, webhook signé ou les deux** selon politique du site (Q93). L'environnement staging doit limiter les copies de données, anonymiser selon règles, utiliser des secrets distincts, neutraliser les envois mails/webhooks et appliquer audit/rétention (Q94). La recette ne peut ni lancer une commande root arbitraire depuis un webhook ni supposer le retour arrière automatique d'une migration SQL. [Politique](../02-architecture/php-staging-and-access-policy.md).
 
 ## Acceptation et observabilité
 

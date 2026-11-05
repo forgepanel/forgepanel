@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-06 revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-06 revision=4 status=documented -->
 # Applications et recettes d'installation
 
 [English](../../en/06-apps-recipes/README.md) · [Index](../README.md)
@@ -22,6 +22,10 @@ Les recettes précisent PHP/extensions, WebStack/TLS, déploiement fichiers/SFTP
 ## Déclencheurs Git et staging confidentiel (Q91–Q94)
 
 Une recette précise le PHP maintenu, extensions et migrations compatibles (Q91), les restrictions PHP-FPM du site (Q92) et son mode de déploiement Git **manuel, webhook signé ou les deux** selon politique du site (Q93). L'environnement staging doit limiter les copies de données, anonymiser selon règles, utiliser des secrets distincts, neutraliser les envois mails/webhooks et appliquer audit/rétention (Q94). La recette ne peut ni lancer une commande root arbitraire depuis un webhook ni supposer le retour arrière automatique d'une migration SQL. [Politique](../02-architecture/php-staging-and-access-policy.md).
+
+## Recettes et politiques Q101–Q110
+
+Une recette doit préciser versions PHP maintenues et exceptions EOL bornées, isolement Linux requis, branches/environnements/manual-webhook et barrières d'approbation, traitement des données staging sensibles et rétention. Elle décrit CA/DNS-01 compatibles, topologie SQL/cache attendue, besoin SSH temporaire et compatibilité Webmail. Les exigences de quota peuvent donner lieu à une grâce bornée approuvée sans dépasser la capacité physique. Pour une migration, distinguer présynchronisation, test de staging, bascule et réplication **seulement si prise en charge et testée**. Le manifeste est une déclaration, pas une permission root. [Règles](../02-architecture/runtime-exceptions-and-data-continuity.md).
 
 ## Acceptation et observabilité
 

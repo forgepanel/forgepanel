@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-XSERVER revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-02-XSERVER revision=2 status=specified -->
 # Cross-server website migration — planning, compatibility and recovery
 
 [Français](../../fr/02-architecture/cross-server-migration.md) · [Website lifecycle](website-lifecycle.md) · [Q91–Q100 decisions](../00-project-control/decisions-q91-q100.md)
@@ -23,6 +23,12 @@ Build a versioned compatibility matrix: OS/architecture, storage/quota, Unix acc
 8. **COMMIT/RECOVER**: persist resource ownership, revisions and durable job status; keep source backup and remove it by policy; on failure offer explicit restore and report irreversible effects.
 
 High-risk changes follow Q47. SQL schema migrations and third-party email cannot be undone by simple configuration rollback. Q100 does **not** choose active bidirectional data replication for application workloads.
+
+## Q110 D — presynchronization and conditional advanced failover
+
+The Q100 pipeline remains; Q110 adds **pre-sync** of files/data with digests and resumable transfer, **staging verification** and final synchronization followed by controlled **DNS/proxy cutover**. **Advanced replication/failover** is optional and only where application, SQL, storage, network, leader selection, session and transaction compatibility is tested for the OS/versions involved. Concurrent writes need proven consistency or a defined freeze/maintenance window. If uncertified, offer a traditional announced-interruption migration, **never guaranteed zero downtime**. Measure actual RPO/RTO, protect credentials, back up source/target, and document failback and irreversible effects.
+
+[Q101–Q110 policy](runtime-exceptions-and-data-continuity.md).
 
 ## Security boundaries
 

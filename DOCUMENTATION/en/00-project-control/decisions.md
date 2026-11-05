@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DECISIONS revision=6 status=documented -->
+<!-- forgepanel-doc id=FP-00-DECISIONS revision=7 status=documented -->
 # Decision register
 
 [Français](../../fr/00-project-control/decisions.md) · [Project control](README.md)
@@ -83,6 +83,17 @@ Source IDs refer to the [baseline](../19-audits-risks/baseline.md). A decision a
 | ADR-067 | Swappable Webmail per server/provider and domain policies (Q98 C) | Qualified engines, mailbox isolation, compatible Webmail/quarantine |
 | ADR-068 | Soft/hard quotas, grace and admin-approved extension (Q99 D) | Explicit permission, real hard limits, audit/expiry |
 | ADR-069 | Audited secure cross-server migration/restore (Q100 D) | OS/WebStack/PHP/DB preflight, encrypted transfer, staging, rotated secrets, recovery |
+
+| ADR-070 | Temporary PHP EOL exception with planned migration (Q101 C) | Admin-authorized per-site scoped expiry, audit, no silently permanent waiver |
+| ADR-071 | Isolation profiles selected by certified Linux capabilities (Q102 C) | Plan/site scoped, reject unavailable profiles; FPM pools are not full confinement |
+| ADR-072 | Git Deploy per site AND environment with configurable approval (Q103 C) | Separate staging/production ref, signed webhook, rights and approval policies |
+| ADR-073 | Extra approval for sensitive data copied into staging (Q104 D) | Files/schema/masked profiles, distinct secrets, retention, purge and audit |
+| ADR-074 | Multiple ACME CAs with bounded retry, alert and recovery (Q105 C) | Preapproved alternatives, compatible DNS-01, preserve known-good certificate |
+| ADR-075 | Shared/dedicated DB per plan plus optional certified cluster/replication (Q106 D) | Verified drivers and tenant isolation; Core not implicitly clustered |
+| ADR-076 | Restricted SSH/allowed IPs, temporary grants and compatible certificates (Q107 C) | Qualified SSH CA, expiry/revocation/audit; neither root nor web terminal |
+| ADR-077 | Webmail recommended after security/compatibility/maintenance tests (Q108 D) | No unverified Roundcube/SnappyMail default; server/provider/domain choice |
+| ADR-078 | Quota grace duration/cap per plan and resource type (Q109 C) | Limits, expiry and Q99 admin grants never exceed physical capacity |
+| ADR-079 | Conditional pre-sync and advanced migration cutover (Q110 D) | Staging/DNS-proxy; replication/failover only when app/infrastructure support, no zero-downtime promise |
 
 ## Replaced or unresolved proposals
 

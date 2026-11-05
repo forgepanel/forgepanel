@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=6 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=7 status=documented -->
 # État et roadmap ordonnée par dépendances
 
 [English](../../en/00-project-control/status.md) · [Pilotage](README.md)
@@ -47,5 +47,7 @@ Les décisions **Q71–Q80** sont confirmées : protection/rotation des clés, a
 **Q81–Q90 sont confirmées (2026-11-05)** : WebStack recommandée selon compatibilité/sécurité/ressources et transition temporaire/progressive si admissible ; PHP et extensions/FPM par site ; ACME/wildcard/DNS-01 ; Git Deploy avec staging ; bases MariaDB/MySQL + PostgreSQL, Redis/Valkey facultatifs ; gestionnaire de fichiers/SFTP et SSH limité ; webmail/antispam/quarantaine ; quotas hérités ; restauration sélective et clonage staging. [Spécification Q81–Q90](decisions-q81-q90.md). **Tout est spécifié, non livré**.
 
 **Q91–Q100** sont confirmées : PHP maintenu et migration planifiée ; pools PHP-FPM isolés et Linux renforcé ; Git manuel/webhook validé ; staging par site avec confidentialité/rétention ; ACME multi-autorités et DNS-01 ; plusieurs moteurs de bases/cache par compte ; SSH limité par plan ; webmail configurable ; quotas avec grâce et allocations autorisées ; restauration/migration inter-serveurs sécurisée. [Registre Q91–Q100](decisions-q91-q100.md). Ces composants sont **spécifiés, pas implémentés ou certifiés**.
+
+**Q101–Q110 confirmées (2026-11-05)** : PHP EOL dérogatoire temporaire et migration planifiée, isolation par profils certifiés selon plan/site, Git manuel/webhook avec approbation par environnement, staging sensible sous autorisation spéciale, ACME multi-CA avec secours, DB mutualisées/dédiées et clusters optionnels certifiés, SSH temporaire/certificats, Webmail conseillé après tests, délais/plafonds de quotas par ressource et migration présynchronisée avec réplication/bascule **conditionnelles**. [Décisions Q101–Q110](decisions-q101-q110.md). **Spécifications seulement ; aucune nouvelle fonctionnalité ni certification VM.**
 
 Ces priorités n'engagent aucune date ni version. Arbitrages produit nécessaires : licence du logiciel/des contributions et canal privé de sécurité autorisé. Les choix paquets/runtimes nécessitent une proposition technique étayée, pas une nouvelle architecture implicite.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08 revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-08 revision=6 status=documented -->
 # APIs and contracts
 
 [Français](../../fr/08-api-contracts/README.md) · [Index](../README.md)
@@ -36,6 +36,10 @@ Candidate `webstack.recommend(site_draft,server_facts,policy_revision)` returns 
 ## Proposed Q91–Q100 contracts
 
 `php.catalog.supportedVersions`, `site.php.planMigration`, `site.isolation.capabilities`, `site.git.deployManual`, `site.git.acceptWebhook`, `site.staging.privacyPolicy`, `site.tls.listIssuers`, `site.tls.dns01Driver`, `tenant.data.engineQuota`, `tenant.ssh.rotateOrRevoke`, `mail.webmail.capabilities`, `hosting.quota.graceGrant` and `site.migration.planTransfer`. Require identity, tenant, resource, policy, revision, idempotency and audit; Git notifications and remote operations never mean generic shell commands. These are **candidate interfaces only**. [Q91–Q100](../00-project-control/decisions-q91-q100.md).
+
+## Candidate Q101–Q110 contracts
+
+`php.exception.request/approve/expire`, `site.isolation.listCertifiedProfiles`, `site.deploy.environmentPolicy`, `staging.sensitiveData.approve`, `acme.issuer.retryOrRecover`, `database.topology.plan`, `ssh.access.tempGrant/revoke`, `webmail.driver.recommend`, `quota.grace.planGrant`, `migration.preSync.planFailover` are **candidate non-operational** actions. Each needs actor, tenant/account/site/environment, OS-qualified capability, typed input, approvals, expiry, revision, idempotency, redacted audit and recovery status. Approval never makes a webhook a root shell, and failed failover must preserve recovery. [Q101–Q110](../00-project-control/decisions-q101-q110.md).
 
 ## Future protocol requirements
 

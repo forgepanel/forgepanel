@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-09 revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-09 revision=4 status=documented -->
 # Base de données, transactions et migrations
 
 [English](../../en/09-database/README.md) · [Index](../README.md)
@@ -22,6 +22,10 @@ Les **bases clients MariaDB/MySQL et PostgreSQL** utiliseront des pilotes distin
 ## Moteurs clients et migrations inter-serveurs (Q96, Q100)
 
 Un même compte d'hébergement pourra posséder des ressources **MariaDB/MySQL et PostgreSQL** distinctes, et des Redis/Valkey cache/queue facultatifs selon capacité, avec quota/permission/secret par moteur (Q96). Le PostgreSQL interne du panneau n'est **pas** mutualisé avec les bases clientes. Migration inter-serveurs Q100 : préflight versions et schémas, snapshot cohérent, transfert authentifié/chiffré, mapping de comptes SQL, secrets régénérés et restauration auditée. Aucun pilote DB client ou migrateur inter-serveurs n'existe dans le schéma prototype de setup. [Détails](../02-architecture/cross-server-migration.md).
+
+## Topologies SQL/cache et migration Q106/Q110
+
+Au-delà des multiples moteurs DB par compte (Q96), **Q106 D** prévoit des moteurs **mutualisés ou dédiés par plan** et des modules clusters/réplication **facultatifs, disponibles uniquement après certification réelle**. Préciser pour chaque pilote : isolation des schémas/comptes, quorum/leader/failover éventuel, latence de réplication, sauvegarde cohérente, secrets et restauration. Redis/Valkey ne sont pas automatiquement un cluster ni une base SQL. **Q110 D** autorise présynchronisation et bascule avancée seulement si les écritures applicatives et transactions peuvent être réconciliées, sinon maintenance/gel et procédure de restauration. PostgreSQL du panneau reste distinct. [Migration](../02-architecture/cross-server-migration.md) · [Décisions](../00-project-control/decisions-q101-q110.md).
 
 ## Migrations et responsabilités
 

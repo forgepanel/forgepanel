@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-XSERVER revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-02-XSERVER revision=2 status=specified -->
 # Migration de site entre serveurs — plan, compatibilité et récupération
 
 [English](../../en/02-architecture/cross-server-migration.md) · [Cycle du site](website-lifecycle.md) · [Décisions Q91–Q100](../00-project-control/decisions-q91-q100.md)
@@ -23,6 +23,12 @@ Garder une matrice versionnée : OS/architecture, espace et quotas, compte Unix/
 8. **COMMIT/RECOVER** : confirmer ownership, journal/révision/état, sauvegarde source et nettoyage à échéance ; en échec, proposer la restauration explicite et signaler les effets non réversibles.
 
 Les opérations à forte incidence respectent Q47. Une migration de schéma SQL ou l'envoi de mails tiers ne peut pas être annulé par simple rollback de configuration. Une réplication bidirectionnelle active de données applicatives n'est **pas** décidée par Q100.
+
+## Q110 D — présynchronisation et bascule avancée conditionnelle
+
+Le pipeline Q100 est conservé ; Q110 permet d'ajouter **présynchronisation** d'artefacts/données sous empreintes et reprise, **tests de staging** puis synchronisation finale, et bascule **DNS/proxy contrôlée**. La **réplication et bascule avancées** sont facultatives et autorisées uniquement si application, SQL, stockage, réseau, mécanisme de leader, sessions et transactions ont passé des tests sur ces versions/OS. Les écritures concurrentes requièrent cohérence prouvée ou une fenêtre de gel/maintenance. Sans capacité certifiée, proposer migration classique avec interruption annoncée ; jamais de « zéro interruption » garanti. Mesurer RPO/RTO réels, protéger les credentials, sauvegarder source/cible et documenter failback et effets irréversibles.
+
+[Politique Q101–Q110](runtime-exceptions-and-data-continuity.md).
 
 ## Garanties de sécurité
 

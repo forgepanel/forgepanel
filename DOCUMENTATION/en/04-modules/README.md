@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-04 revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-04 revision=6 status=documented -->
 # Native module catalog
 
 [Français](../../fr/04-modules/README.md) · [Index](../README.md)
@@ -32,6 +32,10 @@ Hosting scope now includes per-site WebStack recommendation and safe switching, 
 ## Q91–Q100 target modules
 
 Website management now targets a **maintained PHP catalog with EOL notices/planned migration** (Q91), **per-site FPM pools and stronger Linux profiles** (Q92), **manual/authenticated-webhook Git Deploy** (Q93), privacy-controlled staging (Q94), **multi-CA ACME/DNS-01** (Q95), per-account multi-engine SQL/cache grants (Q96), plan-scoped restricted expiring SSH (Q97), provider-selectable Webmail (Q98), quota alerts/grace/approved allocation (Q99) and safeguarded cross-server migration (Q100). Core gains no implicit web terminal and Hub cannot store site data. [Decisions](../00-project-control/decisions-q91-q100.md).
+
+## Q101–Q110 module policies
+
+Future modules declare OS/plan/site capabilities for time-limited PHP EOL exemptions with migration (Q101), certified Linux isolation (Q102), manual/webhook Git with per-environment approvals (Q103), privacy-preserving staging with special sensitive-data approval (Q104), multi-CA ACME recovery (Q105), shared/dedicated DB with **optional certified** replication (Q106), temporary/qualified SSH certificates (Q107), test-recommended Webmail (Q108), per-resource quota grace (Q109) and conditional pre-sync/advanced failover (Q110). Core owns execution and tenant data. [Decisions](../00-project-control/decisions-q101-q110.md).
 
 ## Lifecycle contract
 

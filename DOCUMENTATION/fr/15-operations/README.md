@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-15 revision=6 status=documented -->
+<!-- forgepanel-doc id=FP-15 revision=7 status=documented -->
 # Exploitation, diagnostic et récupération
 
 [English](../../en/15-operations/README.md) · [Index](../README.md)
@@ -36,6 +36,10 @@ Les sauvegardes de site devront permettre restauration complète ou sélective (
 ## Cycle de vie et incidents Q91–Q100
 
 La maintenance PHP surveille les fins de support, avertit les responsables et planifie des migrations testables, sans changer le runtime du panneau (Q91). Les pools FPM isolés exigent un contrôle des limites kernel/OS (Q92). Les déploiements Git manuels/webhooks et les clones staging sont suivis par jobs audités, sécurité des sorties et rétention (Q93/Q94). ACME multi-autorités et DNS-01 doivent monitorer renouvellement/expiration (Q95). Services de données, SSH et Webmail disposent de contrôles de santé et de permissions (Q96–Q98). Les grâce/allocation quota Q99 sont bornées et expirent. Une migration Q100 conserve snapshots source/cible et un protocole explicite d'interruption, DNS/TLS et récupération. [Migration inter-serveurs](../02-architecture/cross-server-migration.md).
+
+## Maintenance, exceptions et haute disponibilité conditionnelle (Q101–Q110)
+
+Exploiter les exceptions PHP obsolètes avec **expiration, responsable et plan de migration** ; vérifier régulièrement conformité et capacité d'isolation Linux (Q101/102). Différencier déclencheurs/approbations de staging et production, journaliser les copies de données sensibles avec rétention et nettoyage (Q103/104). Renouvellement ACME : essais bornés, alertes et secours conservant le certificat sain (Q105). Les bases mutualisées/dédiées et clusters éventuels ne deviennent utilisables qu'après certification de la réplication/restauration (Q106). SSH temporaire/certifié, Webmail conseillé sur qualification et grâce de quota par ressource ont expiration, alertes et audit (Q107–109). Pré-synchronisation et bascule avancée (Q110) exigent cohérence prouvée et fallback ; maintenance obligatoire sinon. [Politiques Q101–Q110](../02-architecture/runtime-exceptions-and-data-continuity.md).
 
 ## Sauvegarde et restauration requises
 

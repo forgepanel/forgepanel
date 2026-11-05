@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02 revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-02 revision=6 status=documented -->
 # System architecture
 
 [Français](../../fr/02-architecture/README.md) · [Index](../README.md)
@@ -46,5 +46,7 @@ Under Q79 a [per-site WebStack advisor](site-webstack-advisor.md) will recommend
 The new [website lifecycle](website-lifecycle.md) covers Q81–Q90: WebStack advice considering isolation/resources/listeners; maintenance and test-route/progressive transition **where feasible**; PHP-FPM/extensions, ACME TLS, Git staging, SQL/cache engines, file/SSH, webmail, quotas and clone/restore. This is specified, not operational.
 
 Q91–Q100 add [PHP, staging, ACME, access and quota policies](php-staging-and-access-policy.md), plus [cross-server migration with preflight and recovery](cross-server-migration.md). These extend the [website lifecycle](website-lifecycle.md) without delivering running services. Operators will be able to select tenant PHP and per-site Git modes within verified security and capability constraints.
+
+New [Q101–Q110 continuity contracts](runtime-exceptions-and-data-continuity.md) define bounded PHP exceptions, qualified Linux confinement, per-environment Git policies, sensitive staging, multi-CA ACME, shared/dedicated DB with optional replication, temporary SSH, recommended Webmail, quota grace and conditional pre-sync/failover. They are **specified only**; real OS/profile availability needs evidence. [Register](../00-project-control/decisions-q101-q110.md).
 
 [Decisions](../00-project-control/decisions.md) · [Contracts](../08-api-contracts/README.md) · [Security](../10-security/README.md)

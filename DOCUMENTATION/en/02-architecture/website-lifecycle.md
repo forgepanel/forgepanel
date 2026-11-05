@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-WEBSITE revision=2 status=specified -->
+<!-- forgepanel-doc id=FP-02-WEBSITE revision=3 status=specified -->
 # Website architecture — WebStack, PHP, TLS, deployment, data and recovery
 
 [Français](../../fr/02-architecture/website-lifecycle.md) · [WebStack advisor](site-webstack-advisor.md) · [Q81–Q90 decisions](../00-project-control/decisions-q81-q90.md)
@@ -54,6 +54,12 @@ Sites allow **full or selective** (files, DB, config) restore and **staging clon
 - **Migration Q100**: source/target backup, OS/WebStack/PHP/DB/mail preflight, isolated staging, authenticated transfer, secret rotation, cutover and audited recovery. [Cross-server pipeline](cross-server-migration.md).
 
 [PHP, staging and access details](php-staging-and-access-policy.md) · [Q91–Q100 decisions](../00-project-control/decisions-q91-q100.md). These remain unimplemented targets.
+
+## Q101–Q110 extensions
+
+The website lifecycle adds **temporary PHP EOL exceptions and planned migrations** (Q101), OS-qualified isolation profiles chosen by plan/site (Q102), Git triggers **per site AND environment** with configurable approvals (Q103), specially approved sensitive staging copies with audit/retention (Q104), multi-CA ACME with bounded retries/recovery (Q105), **shared or dedicated** DB plus **optional certified** replication/clusters (Q106), temporary/certified SSH with allowed IPs (Q107), test-recommended Webmail (Q108), quota grace by plan and resource (Q109), and pre-sync/advanced migration failover **only if compatible** (Q110).
+
+Copy, execute and switch authorizations are separate. A maintenance window remains necessary when app state cannot be kept consistent; Core essential operations never depend on paid Hub services. [Decisions](../00-project-control/decisions-q101-q110.md) · [Technical policy](runtime-exceptions-and-data-continuity.md).
 
 ## State, tests and non-implementation
 

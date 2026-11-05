@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-17 revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-17 revision=5 status=documented -->
 # User and administrator guidance
 
 [Français](../../fr/17-user-guides/README.md) · [Index](../README.md)
@@ -24,6 +24,10 @@ Each authorized operator can inspect a WebStack recommended for the individual s
 ## Q91–Q100 future website settings
 
 Authorized site operators will see maintained PHP versions and EOL alerts, qualify hardened FPM profiles, select manual/authenticated-webhook Git Deploy and configure private staging with retention, masking and independent secrets. TLS can use multiple ACME/DNS-01 issuers, account SQL/cache engines are allocated by quota, SSH keys expire/revoke, compatible Webmail is selectable, quota grace requires admin permission and cross-server migration is previewed. **No operational screens are shipped**; all actions require authorization and validation. [Q91–Q100 specification](../00-project-control/decisions-q91-q100.md).
+
+## Configurable Q101–Q110 hosting policies (target UI)
+
+Authorized operators can request **time-limited PHP exceptions with migration** (Q101), select host-**certified** isolation profiles (Q102), set manual/webhook Git and approvals **by site/environment** (Q103), specially approve sensitive staging data/retention (Q104), manage ACME fallback (Q105), choose shared/dedicated DB and optional certified clusters (Q106), temporary/qualified SSH certificates (Q107), test-recommended Webmail (Q108), quota grace per resource (Q109), and pre-sync/replication **when compatible** with recovery (Q110). **No operating screens have been delivered.** [Reference](../00-project-control/decisions-q101-q110.md).
 
 ## Customer and reseller journeys
 

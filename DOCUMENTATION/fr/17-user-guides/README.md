@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-17 revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-17 revision=5 status=documented -->
 # Guides utilisateurs et administrateurs
 
 [English](../../en/17-user-guides/README.md) · [Index](../README.md)
@@ -24,6 +24,10 @@ Pour chaque site, l'utilisateur autorisé pourra consulter la WebStack recommand
 ## Paramètres de site Q91–Q100 (futurs écrans)
 
 L'administrateur du site pourra consulter les versions PHP maintenues et alertes EOL, sélectionner un profil d'isolation FPM réellement supporté, régler Git Deploy manuel ou webhook validé, et définir le staging privé avec rétention, anonymisation et secrets propres. Les certificats pourront être issus de plusieurs CA ACME/DNS-01, les moteurs SQL/cache attribués par compte, les clés SSH bornées/révoquées, le Webmail choisi si compatible, les quotas avec grâce autorisée et les migrations vers d'autres serveurs prévisualisées. **Aucun écran actif n'est livré** ; aucune opération ne s'exécute sans permission/validation. [Spécification Q91–Q100](../00-project-control/decisions-q91-q100.md).
+
+## Politiques d'hébergement configurables Q101–Q110 (parcours cible)
+
+Un administrateur pourra demander une dérogation PHP **temporaire avec migration** (Q101), choisir un profil d'isolation réellement **certifié pour son OS** (Q102), régler Git Deploy manuel/webhook et approbations **par site/environnement** (Q103), approuver spécialement des données sensibles dans staging et gérer la rétention (Q104). ACME proposera plusieurs autorités et procédure de secours (Q105), bases mutualisées/dédiées et clusters seulement après qualification (Q106), SSH temporaire/certificats compatibles (Q107), Webmail recommandé selon tests (Q108), grâces de quota par ressource (Q109), et migration présynchronisée/replication **si compatible** avec reprise (Q110). **Aucun écran opérationnel n'est livré.** [Référence](../00-project-control/decisions-q101-q110.md).
 
 ## Parcours client et revendeur
 

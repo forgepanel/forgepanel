@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-18-HANDOVER revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-18-HANDOVER revision=3 status=documented -->
 # Passage de relais
 
 [English](../../en/18-contributing/handover.md) · [Guide de contribution](README.md)
@@ -24,3 +24,7 @@ Rapporter changements, commandes/résultats exacts, branche/commit/PR, blocages 
 ## Suivi des prochaines tâches
 
 Le lot documentaire est la [PR nº 1](https://github.com/yyogas/forgepanel/pull/1). L’[issue nº 2](https://github.com/yyogas/forgepanel/issues/2) suit l’import du code ; l’[issue nº 3](https://github.com/yyogas/forgepanel/issues/3) suit l’intégration Symfony/PostgreSQL et dépend de la nº 2 ; l’[issue nº 4](https://github.com/yyogas/forgepanel/issues/4) suit licence et signalement privé. Ces issues décrivent des travaux à faire, pas des implémentations terminées. Avant de poursuivre, lire l’état réel de la PR et la tête actuelle de `develop` ; créer la PR ne la fusionne pas.
+
+## Relais R1 mis à jour — sécurité d'import
+
+Le préflight `scripts/verify_source_archive.py` est disponible avec 16 tests synthétiques, et sa documentation [FR/EN](../12-development/source-archive-intake.md). Il **n'importe rien**. La priorité reste l'obtention du ZIP authentique SRC-03, SHA-256/92 fichiers dans [le registre](../../evidence/sources.json), puis revue manuelle de licence/secrets et import source versionné en PR sur `develop`. Les tests Go/race/vet/PHP sur code réel et R2 doivent suivre ; ne pas débloquer `install apply` avant qualification. Aucune action de codage n'est demandée au propriétaire.

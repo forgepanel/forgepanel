@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=13 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=14 status=documented -->
 # Status and dependency-ordered roadmap
 
 [Français](../../fr/00-project-control/status.md) · [Project control](README.md)
@@ -67,3 +67,7 @@ No date or version commitment is implied by these priorities. Product-owner deci
 ## Q161–Q170 adopted — no implemented feature claim
 
 **Q161 C, Q162 B, Q163 C, Q164 B, Q165 C, Q166 C, Q167 C, Q168 C, Q169 C, Q170 B** are SPECIFIED, preserving Q1–Q160. R3 requires ephemeral KVM/private immutable proofs; R4 external DNS probe, bounded OS recovery, each-backup isolated restore and public SFTP keys; beta privacy cohorts; Hub R6 after R5 ABI for versioned risk-based transfers and signed JSON FR/EN advisories. [Decisions](decisions-q161-q170.md) · [Tests](../13-tests-quality/mvp-gates-q161-q170.md). No Core runtime was imported or verified by this documentation.
+
+## R1 — Verifiable progress while application source remains absent
+
+A read-only SRC-03 provenance preflight is **implemented** and tested on 16 synthetic ZIPs; see [R1 preflight](../12-development/source-archive-intake.md). It rejects changed archives, unsafe paths, links, collisions, excessive expansion and selected secret patterns, with **no import or system side effects**. The original v0.7 source required by [issue #2](https://github.com/yyogas/forgepanel/issues/2) is still unavailable here: **R1 source import = BLOCKED**, R2 Symfony/PG and R3–R6 remain unimplemented. V3 HTML UI is a separate visual proposal, not an adopted Core baseline.

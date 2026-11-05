@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19 revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-19 revision=2 status=documented -->
 # Audit, contradictions and risks
 
 [Français](../../fr/19-audits-risks/README.md) · [Index](../README.md)
@@ -29,3 +29,10 @@ Record source, affected documents/contracts, risk, proposed resolution and decis
 Documentation numbering v0.1–v0.5 in the conversation is design history, not a software release timeline. The archive's `0.7.0-dev` is its own identifier. Only actual repository changes enter the central changelog; roadmap intentions do not become release entries.
 
 This audit examined repository metadata, supplied archive structure, key code/contracts and native tests. It is not an exhaustive source security review, dependency audit, penetration test or six-OS certification. Add new findings to this register and propagate their effects to both languages.
+
+## R1 import blockers and preflight limitations
+
+- **RISK-013** — Original SRC-03 archive unavailable: no import or prose-based code recreation; recover genuine bytes and verify pinned checksum.
+- **RISK-014** — Evidence SHA-256 and limited secret signatures are not publisher authentication or exhaustive audit; legal, dependencies, secrets, diff and architecture review still required before import.
+
+[R1 preflight](../12-development/source-archive-intake.md) mitigates certain archive risks but **does not close RISK-002 or qualify production**.

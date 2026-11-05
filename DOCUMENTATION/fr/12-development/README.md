@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-12 revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-12 revision=2 status=documented -->
 # Environnement et conventions de développement
 
 [English](../../en/12-development/README.md) · [Index](../README.md)
@@ -20,3 +20,7 @@ Les dépendances Composer ne sont ni verrouillées ni installées dans l'archive
 Séparer règles métier et contrôleurs, particularités OS et contrats du domaine. Définir types bornés et erreurs avant les opérations privilégiées. Ne pas importer de code tiers sans examen licence/provenance. Binaires générés, caches, vendor et secrets réels sont exclus du socle initial.
 
 Un agent inspecte espace de travail et branches distantes, réutilise les branches pertinentes, évite les modifications concurrentes de fichiers partagés et laisse des preuves exactes. Un conteneur de développement ne certifie pas systemd, pare-feu, quotas ou politiques obligatoires sur les VM cibles.
+
+## Admission R1 : outil de code vérifiable
+
+L'utilitaire `scripts/verify_source_archive.py` vérifie en **lecture seule** l'archive originale SRC-03 avant import. Il compare son empreinte et son inventaire au registre, analyse le ZIP et génère un rapport JSON, sans exécuter ni installer de code. **16 tests unitaires utilisant uniquement des archives synthétiques** sont automatisés dans la CI. Le Core applicatif PHP/Go n'est toujours **pas importé**. [Contrat et mode d'emploi](source-archive-intake.md).

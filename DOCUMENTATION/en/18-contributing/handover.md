@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-18-HANDOVER revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-18-HANDOVER revision=3 status=documented -->
 # Handover to the next contributor
 
 [Français](../../fr/18-contributing/handover.md) · [Contribution guide](README.md)
@@ -24,3 +24,7 @@ Report what changed, exact commands/results, branch/commit/PR, remaining blocker
 ## Tracked follow-up
 
 The documentation lot is [PR #1](https://github.com/yyogas/forgepanel/pull/1). [Issue #2](https://github.com/yyogas/forgepanel/issues/2) tracks source import; [issue #3](https://github.com/yyogas/forgepanel/issues/3) tracks Symfony/PostgreSQL integration and depends on #2; [issue #4](https://github.com/yyogas/forgepanel/issues/4) tracks licensing and private reporting decisions. These issues describe work to do, not completed implementations. Before continuing, read the actual PR state and current `develop` head; creation of the PR did not merge it.
+
+## Updated R1 handover — intake safety
+
+The read-only `scripts/verify_source_archive.py` and 16 synthetic tests are available with [bilingual instructions](../12-development/source-archive-intake.md). It **imports nothing**. Next priority remains obtaining genuine SRC-03 ZIP, SHA-256/92 files recorded in [evidence](../../evidence/sources.json), then manual license/secret review and versioned source import PR into `develop`. Real Go/race/vet/PHP checks and R2 must follow; keep `install apply` disabled until qualified. The owner is not expected to code.

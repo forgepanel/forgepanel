@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=13 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=14 status=documented -->
 # État et roadmap ordonnée par dépendances
 
 [English](../../en/00-project-control/status.md) · [Pilotage](README.md)
@@ -67,3 +67,7 @@ Ces priorités n'engagent aucune date ni version. Arbitrages produit nécessaire
 ## Décisions Q161–Q170 adoptées — aucune fonctionnalité livrée
 
 **Q161 C, Q162 B, Q163 C, Q164 B, Q165 C, Q166 C, Q167 C, Q168 C, Q169 C, Q170 B** sont SPECIFIED, sans remise en cause de Q1–Q160. Les jalons R3 incluent KVM éphémère et preuves privées immuables ; R4 inclut sonde DNS externe, reprise OS bornée, restauration isolée de chaque backup, clés publiques SFTP ; bêta à cohortes privées, Hub R6 après ABI R5 pour transferts sous règles versionnées et avis JSON signés FR/EN. [Décisions](decisions-q161-q170.md) · [Tests](../13-tests-quality/mvp-gates-q161-q170.md). Aucun runtime Core n'a été importé ou testé du seul fait de cette documentation.
+
+## R1 — Progrès vérifiable, sources applicatives toujours absentes
+
+Un vérificateur de provenance SRC-03 en lecture seule est **implémenté** et validé sur 16 ZIP synthétiques ; voir [préflight R1](../12-development/source-archive-intake.md). Il bloque archives modifiées, chemins dangereux, liens, collisions, décompression excessive et quelques formats secrets, **sans import ni effet système**. L'archive v0.7 originale requise par [l'issue #2](https://github.com/yyogas/forgepanel/issues/2) n'est toujours pas disponible ici : **R1 source import = BLOCKED**, R2 Symfony/PG et suites R3–R6 non réalisées. Le prototype UI V3 demeure une proposition visuelle séparée, non une base Core validée.

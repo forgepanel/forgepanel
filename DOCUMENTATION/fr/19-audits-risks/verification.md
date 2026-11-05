@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19-VERIFICATION revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-19-VERIFICATION revision=3 status=documented -->
 # Rapport de vérification
 
 [English](../../en/19-audits-risks/verification.md) · [Index d'audit](README.md)
@@ -33,3 +33,7 @@ L'exécution réelle se consulte dans les contrôles et logs de la PR documentai
 La [PR nº 1](https://github.com/yyogas/forgepanel/pull/1), tête `04e75476fce679714429c62ac83897262b64fa45`, a réussi le [run Actions 41948356066](https://github.com/yyogas/forgepanel/actions/runs/41948356066) : 10 tests du vérificateur, 28 paires, 64 fichiers Markdown et 282 liens relatifs. GitHub a testé la prévisualisation temporaire de fusion `de3b954943728538e5bcfbb0d0b3351a0ea8db87` ; la PR n’était pas fusionnée. La copie téléchargée a réussi les mêmes contrôles localement.
 
 Ce run réussi signalait que ses actions v4 figées ciblaient un runtime Node déprécié. Ce complément fige les commits officiels vérifiés utilisant Node 24 (checkout v7.0.1 et upload-artifact v7.0.2), sans augmenter les permissions du dépôt. Son résultat CI propre doit être vérifié sur la nouvelle tête de PR, pas déduit du run précédent.
+
+## Vérification supplémentaire R1 : aucun SRC-03 réel re-testé
+
+**Commande locale** : `python3 -m unittest discover -s tests/source_intake -p 'test_*.py' -v`. **Résultat mesuré** : 16 tests sur 16 PASS, sur Linux/Python stdlib, avec archives fictives. Tests de refus : SHA incorrect, archive absente, chemins absolus/Windows/traversée, symlinks, doublons, compte/taille/ratio, secrets reconnaissables. **L'archive source v0.7 n'était pas disponible** ; aucun Go/PHP, PostgreSQL, VM ni processus de restauration du produit n'a été exécuté ici. Les résultats CI sur le commit précis de la PR sont vérifiés séparément. [Outil](../12-development/source-archive-intake.md).

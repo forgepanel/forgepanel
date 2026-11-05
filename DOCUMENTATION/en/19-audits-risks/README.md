@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19 revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-19 revision=6 status=documented -->
 # Audit, contradictions and risks
 
 [Français](../../fr/19-audits-risks/README.md) · [Index](../README.md)
@@ -54,3 +54,10 @@ These protections do not replace source code or publisher-signature review. [FR/
 ## R3 observation: false-qualification risk
 
 - **RISK-019** — A `/dev/kvm` node or VMX/SVM CPU flags cannot prove device access, safe QEMU/KVM boot, isolation, quotas, snapshots or recovery. Standalone [KVM Host Probe](../14-devops-releases/kvm-host-probe.md) therefore only emits `qualification=NOT_EXECUTED`, explicit `false` gates and `INCONCLUSIVE`/deny states. CI success on a runner without KVM certifies no Debian, Ubuntu or other OS. Real R3 drivers and Q152/Q162 signed reports remain pending.
+
+## R3 local image admission risks
+
+- **RISK-020** — An **unsigned** local policy and matching SHA-256 establish neither publisher trust nor execution permission; status remains `REVIEW_REQUIRED` with `qualification=NOT_EXECUTED`. Define identity/authorization, provenance, signature, immutability and independent review before executing guests.
+- **RISK-021** — A QCOW2 header does not prove full format **structural** integrity; same-UID processes may modify an image after admission. A future runner must validate format, pin the exact launched bytes, enforce actual quotas/isolation and test recovery. Synthetic tests do not close RISK-019.
+
+[Preparatory contract](../14-devops-releases/kvm-image-admission.md).

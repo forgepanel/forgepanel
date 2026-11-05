@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=13 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=15 status=documented -->
 # Tests, quality and definition of done
 
 [Français](../../fr/13-tests-quality/README.md) · [Index](../README.md)
@@ -80,3 +80,9 @@ Added `tests/source_intake/test_audit_staged_archive.py` and regression cases in
 ## Go KVM observation tests — preparatory R3 lot
 
 Standalone [KVM Host Probe](../14-devops-releases/kvm-host-probe.md) has **14 synthetic Go unit tests**: character/missing/fake/symlink KVM device, exact VMX/SVM flags, other architectures, read failures, sanitized OS values and **no false VM qualification**. Its separate CI workflow runs `go test ./...`, `go test -race ./...`, `go vet ./...` and checks the real host JSON still has `qualification=NOT_EXECUTED`. **The GitHub runner is not a certified KVM system; real VMs, snapshots, failure injections, quotas, backups and restores remain PLANNED.**
+
+## R3 — QCOW2 admission tests without real VM runs
+
+Synthetic Go tests under `tools/kvm-host-probe/admission` and its CLI cover SHA-256, filename, private file permissions, symlink/hardlink/wrong format refusal, explicit resource ceilings, denial of network/host shares/privileges, and parity of three JSON Schemas. Existing Go CI runs **`go test ./...`, `go test -race ./...`, `go vet ./...` and `gofmt`**; check exact PR SHA results. Fixtures are not bootable Linux systems, and no real KVM run, enforced quotas, snapshot, signed report or restore has been shown. [Contract](../14-devops-releases/kvm-image-admission.md).
+
+**PR #41 CI evidence**: [Go, race, vet, gofmt and three-schema checks](https://github.com/yyogas/forgepanel/actions/runs/42116200478) and [documentation checks](https://github.com/yyogas/forgepanel/actions/runs/42116200493) passed at commit `4a71d2fb8e0258879bcf5c621dfc29677f5e5380`. **41 Go test functions** in the module overall (14 host-probe and 27 new image/CLI/contract cases). QCOW2 fixtures are synthetic, not booted VMs or signed/isolation evidence.

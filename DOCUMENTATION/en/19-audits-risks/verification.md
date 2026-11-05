@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19-VERIFICATION revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-19-VERIFICATION revision=6 status=documented -->
 # Verification record
 
 [Français](../../fr/19-audits-risks/verification.md) · [Audit index](README.md)
@@ -43,3 +43,9 @@ The successful run warned that its pinned v4 actions targeted a deprecated Node 
 `tests/source_intake` now also covers the independent `audit_staged_archive.py` utility: positive/negative synthetic ZIP/receipt/disk consistency, link/mode/content/inventory denial, and replacement-race cleanup checks. **Read results on the exact PR-head and post-merge commits**, without reusing earlier CI outcomes. No actual Foundation archive, running Core or certified OS is claimed. [Contract](../12-development/source-staging-audit.md).
 
 **R1 extension (PR #39):** 60 synthetic preflight/staging/audit unit tests succeeded. Denial cases include same-size and different-size content drift, directory replacement during cleanup, links, executable modes and forged receipts. No Foundation runtime, PostgreSQL, VM or actual backup was tested. [Verification CI](https://github.com/yyogas/forgepanel/actions/runs/42108723238).
+
+## R3 verification: pinned QCOW2 image admission
+
+**PR #41 CI evidence**: [Go, race, vet, gofmt and three-schema checks](https://github.com/yyogas/forgepanel/actions/runs/42116200478) and [documentation checks](https://github.com/yyogas/forgepanel/actions/runs/42116200493) passed at commit `4a71d2fb8e0258879bcf5c621dfc29677f5e5380`. **41 Go test functions** in the module overall (14 host-probe and 27 new image/CLI/contract cases). QCOW2 fixtures are synthetic, not booted VMs or signed/isolation evidence.
+
+This pass validates no QEMU runner, isolated VM, enforced quotas or imported Foundation Core.

@@ -16,3 +16,15 @@ The executable only reads fixed Linux metadata: `/etc/os-release`, `/proc/cpuinf
 [French specification](../../DOCUMENTATION/fr/14-devops-releases/kvm-host-probe.md) · [English specification](../../DOCUMENTATION/en/14-devops-releases/kvm-host-probe.md)
 
 The historical Foundation v0.7 source ZIP remains unavailable; no original application source has been imported. No coupling to private ForgePanel-Hub.
+
+## Pinned QCOW2 image admission (pre-execution)
+
+A second standalone command is available: `go run ./cmd/forgepanel-kvm-image-admit /private/absolute/policy.json /private/absolute/request.json`. The JSON documents must be private (0600), owned by a nonroot local lab user, strictly conform to the [policy](schemas/policy.v1.schema.json), [request](schemas/request.v1.schema.json) and [result](schemas/result.v1.schema.json) contracts. The disk image must be a private regular, non-executable, non-symlinked `.qcow2` file in a private owned directory; its full SHA-256 must match the request.
+
+No default vCPU, memory, time or disk limits are set. The local lab's **explicit** policy numbers are only admission bounds; they do **not enforce** real VM quotas. Guest network, host shares and privilege requests are always refused. Output is `BLOCKED` or `REVIEW_REQUIRED` and always `qualification=NOT_EXECUTED`; no QEMU guest is booted and no signed evidence is produced. The QCOW2 header check is **not** full format validation and a future launcher must revalidate/pin exact bytes at run time.
+
+[FR specification](../../DOCUMENTATION/fr/14-devops-releases/kvm-image-admission.md) · [EN specification](../../DOCUMENTATION/en/14-devops-releases/kvm-image-admission.md). The historical Foundation Core archive remains absent and the private Hub is not involved.
+
+### Verification before accepting a lab image
+
+From the module root, run `GOTOOLCHAIN=local GOPROXY=off GOSUMDB=off go test ./...`, `go test -race ./...` and `go vet ./...`. These tests exercise **synthetic** QCOW2-like files only. The three versioned JSON schemas are checked for parity with Go wire fields. Any positive admission is for **manual review only**, and must be followed by independent policy/provenance authorization and re-verification at the eventual execution boundary; no VM can be started from this tool.

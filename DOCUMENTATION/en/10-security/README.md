@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=16 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=17 status=documented -->
 # Security model and disclosure
 
 [Français](../../fr/10-security/README.md) · [Index](../README.md)
@@ -94,3 +94,7 @@ Staged sources can be independently checked against **original ZIP + receipt + o
 ## Q161 — KVM host pre-inspection security
 
 [`tools/kvm-host-probe`](../14-devops-releases/kvm-host-probe.md) is an **unprivileged** Go tool: no arbitrary Linux command API, `ioctl`, opening `/dev/kvm`, VM execution, file creation, network, hostname/IP collection. It only inspects four **fixed** Linux paths with bounded reads and denies device symlink spoofing. A positive device observation never bypasses Q132 critical security vetoes, Q156 restore requirements or Q152/Q162 signed evidence. This tool is separate from the privileged daemon and Hub.
+
+## Q161 — Admission never authorizes VM execution
+
+The [R3 tool](../14-devops-releases/kvm-image-admission.md) is **read-only, nonroot and QEMU-free**: policy/request files must be private bounded regular files; QCOW2 must be owned with no symlink/hardlink, and all bytes are SHA-256 checked through file descriptors. No generic command/argument field exists; network/host shares/privilege requests are denied. `REVIEW_REQUIRED` grants **no privilege or Q132 PASS**, and declared resource ceilings are not enforcement. A future executor must revalidate bytes and isolate potentially malicious guests. No Hub signing keys or secrets are collected.

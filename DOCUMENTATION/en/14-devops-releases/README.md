@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=13 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=14 status=documented -->
 # Installation, Git promotion and releases
 
 [Français](../../fr/14-devops-releases/README.md) · [Index](../README.md)
@@ -72,3 +72,7 @@ The new `scripts/verify_source_archive.py` preflight reads genuine SRC-03 **with
 ## R3 — Read-only local QEMU/KVM preparation
 
 A **standalone Go module outside historical Core** provides a [KVM candidate host observation](kvm-host-probe.md) (Q151 A, Q161 C). It reads fixed Linux metadata and prints JSON without booting any VM, root commands or collecting host identity. **It runs no isolation, snapshot, quotas, evidence signature or OS installation test.** The ephemeral QEMU/KVM runner and immutable reports remain future R3 work; R1 Foundation source import remains blocked by the missing original archive.
+
+## R3 — Pinned local QEMU/KVM image admission
+
+The standalone Go [R3 Image Admission](kvm-image-admission.md) tool read-only verifies a local QCOW2 image using a full SHA-256 and a private nonroot-owned directory. CPU/RAM/duration must have explicitly versioned local policy ceilings; guest network, host shares and privilege flags are refused. Its positive state is **`REVIEW_REQUIRED`**, not proof of any QEMU boot or enforced quota. Q151 A/Q161 C only prepare ephemeral KVM runners; Q152/Q162 signed immutable evidence remains unimplemented.

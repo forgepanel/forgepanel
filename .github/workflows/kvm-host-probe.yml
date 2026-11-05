@@ -37,6 +37,23 @@ jobs:
         run: |
           changes=$(gofmt -l .)
           if [ -n "$changes" ]; then echo "$changes"; exit 1; fi
+      - name: Validate JSON schema files with Python standard library
+        run: |
+          for schema in schemas/*.schema.json; do
+            python3 -m json.tool "$schema" > /dev/null
+          done
+      - name: Assert image admission fails closed without any policy
+        env:
+          GOTOOLCHAIN: local
+          GOPROXY: 'off'
+          GOSUMDB: 'off'
+        run: |
+          set +e
+          report=$(go run ./cmd/forgepanel-kvm-image-admit 2>/dev/null)
+          status=$?
+          set -e
+          [ "$status" -ne 0 ]
+          printf '%s' "$report" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d["status"] == "BLOCKED"; assert d["qualification"] == "NOT_EXECUTED"; assert d["vm_executed"] is False; print("PASS: no policy means no execution authority")'
       - name: Test standalone Go probe offline
         env:
           GOTOOLCHAIN: local

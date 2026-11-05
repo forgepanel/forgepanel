@@ -4,6 +4,11 @@ One chronology, both languages. / Une chronologie, deux langues.
 
 ## Unreleased / Non publié
 
+### Added / Ajouts — R3 pinned QEMU/KVM image admission contracts
+
+- **Preparatory Go code / Code Go préparatoire** — Added nonroot read-only QCOW2 image admission under `tools/kvm-host-probe`: exact SHA-256, canonical private image directory, explicit versioned CPU/memory/duration/image-size policy and fail-closed refusal of network, host shares and privilege requests. Three strict JSON Schemas, Go tests, FR/EN implementation, security, QA and risk contracts (RISK-020/021). Positive result stays **REVIEW_REQUIRED / NOT_EXECUTED**; **no QEMU boot, actually enforced quotas, signed evidence, restored backup, release or imported historical Core**. / Ajout du contrôle d'admission QCOW2 non-root et en lecture seule : SHA-256 intégral, dossier privé, politique explicite versionnée CPU/RAM/durée/taille et refus réseau/partage/privilèges. Trois schémas JSON, tests Go, contrats FR/EN, sécurité/QA/risques RISK-020/021. Statut positif **REVIEW_REQUIRED / NOT_EXECUTED** ; **aucune VM exécutée, quota réellement imposé, preuve signée, restauration, release ou import du Core historique**.
+
+
 ### Added / Ajouts — R3 read-only QEMU/KVM observation tool
 
 - **Preparatory Go code / Code Go préparatoire** — New **standalone** `tools/kvm-host-probe/` module with read-only fixed-path Linux observation, sanitized OS/arch and CPU/KVM metadata, 14 synthetic Go tests, offline/race/vet CI and JSON fields explicitly proving **no VM executed or certified**. FR/EN contracts, roadmap, QA, security and audit risk RISK-019 updated. Original Foundation v0.7 ZIP still absent; **no Core application source import, actual QEMU/KVM run, signed report or release**. / Nouveau module Go **autonome et sans privilèges** : observation locale limitée du host KVM, 14 tests synthétiques, CI offline/race/vet et JSON indiquant explicitement **aucune VM exécutée ni certifiée**. Documentation FR/EN, roadmap, QA, sécurité et risque RISK-019 mis à jour. Archive Foundation originale toujours absente : **aucun import du Core, test VM réel, rapport signé ni release**.

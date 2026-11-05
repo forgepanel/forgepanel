@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=13 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=14 status=documented -->
 # Installation, promotion Git et releases
 
 [English](../../en/14-devops-releases/README.md) · [Index](../README.md)
@@ -72,3 +72,7 @@ Le nouveau préflight `scripts/verify_source_archive.py` lit le ZIP original SRC
 ## R3 — Préparation locale QEMU/KVM en lecture seule
 
 Un **module Go autonome hors Core historique** propose [l'inspection du candidat hôte KVM](kvm-host-probe.md) (Q151 A, Q161 C). Il lit un ensemble fixe de métadonnées Linux et rend un JSON sans démarrer de VM, sans commandes root ni collecte d'identité du serveur. **Il ne réalise aucun test d'isolement, snapshot, quotas, signature de preuve ni installation d'OS.** Le pilote QEMU/KVM éphémère et les rapports immuables restent des jalons R3 futurs ; R1 source Foundation demeure bloqué par l'archive originale manquante.
+
+## R3 — Admission préalable des images QEMU/KVM épinglées
+
+Le module Go autonome [R3 Image Admission](kvm-image-admission.md) vérifie en lecture seule une image locale QCOW2 par SHA-256 complet, dans un dossier privé appartenant à l'utilisateur non privilégié. Les ressources CPU/RAM/durée doivent être explicitement bornées par une politique locale versionnée ; réseau, partages hôtes et privilèges sont refusés. L'état positif est **`REVIEW_REQUIRED`**, jamais une preuve que QEMU a démarré ou qu'un quota est appliqué. Q151 A/Q161 C préparent seulement le runner KVM éphémère ; rapports signés/stockage immuable Q152/Q162 restent à implémenter.

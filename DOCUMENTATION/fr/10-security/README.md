@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=16 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=17 status=documented -->
 # Modèle de sécurité et signalement
 
 [English](../../en/10-security/README.md) · [Index](../README.md)
@@ -94,3 +94,7 @@ Les fichiers de staging peuvent être contrôlés indépendamment contre **ZIP o
 ## Q161 — Sécurité de la préinspection KVM
 
 [`tools/kvm-host-probe`](../14-devops-releases/kvm-host-probe.md) est un outil Go **sans privilèges** : aucune API Linux de commande arbitraire, `ioctl`, accès `/dev/kvm`, exécution de VM, création de fichiers, réseau ou collecte de hostname/IP. Seuls quatre chemins Linux **fixes** sont lus ou inspectés, avec tailles bornées et refus des liens symboliques pour le périphérique KVM. Une détection positive ne permet pas de contourner les gates de sécurité Q132, de restauration Q156 ni les exigences de rapports signés Q152/Q162. L'outil est distinct du daemon privilégié et du Hub.
+
+## Q161 — Refus de toute exécution depuis une admission d'image
+
+L'[outil R3](../14-devops-releases/kvm-image-admission.md) travaille en **lecture seule, non-root et sans QEMU** : les fichiers policy/manifest privés doivent être réguliers et limités, l'image QCOW2 appartient au compte, est sans symlink/hardlink et voit son SHA-256 entier contrôlé via descripteur. Aucun champ JSON ne permet une commande ou argument arbitraire ; réseau/partages/privilèges sont refusés. Un `REVIEW_REQUIRED` ne confère **aucun privilège ni PASS Q132**, et les plafonds de ressource déclarés ne sont pas des limites d'exécution. La future exécution devra revérifier les octets et isoler les guests malveillants. Aucun secret ni clé de signature Hub collecté.

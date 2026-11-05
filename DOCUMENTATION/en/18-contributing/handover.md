@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-18-HANDOVER revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-18-HANDOVER revision=6 status=documented -->
 # Handover to the next contributor
 
 [Français](../../fr/18-contributing/handover.md) · [Contribution guide](README.md)
@@ -36,3 +36,7 @@ Source intake now includes `verify_source_archive.py` and `stage_source_archive.
 ## Next R1 gate — independent receipt verification
 
 Before a PHP/Go source import PR, recover the exact SRC-03 ZIP, perform preflight and private staging, then run the [read-only integrity audit](../12-development/source-staging-audit.md) against the **same genuine archive** and review every file/license/secret. Auditing never authorizes automatic import; re-hash bytes during eventual Git import. V3 design is not an approved baseline. The owner must not be required to code or use root for this workflow.
+
+## R3 handover — actual VM runner still open
+
+New [QCOW2 admission](../14-devops-releases/kvm-image-admission.md) is **preparation-only** Go tooling, separate from historical Core and Hub. Never convert `REVIEW_REQUIRED` to VM certification PASS or root authorization. Next QEMU/KVM runner needs typed contracts, immutable launched byte snapshot, real isolation/quotas, bounded timeout/cleanup, Q152/Q162 signatures/storage and authorized-host VM tests. Genuine Foundation v0.7 import (issue #2) remains open; neither historical Core source nor visual Design System V3 is automatically validated.

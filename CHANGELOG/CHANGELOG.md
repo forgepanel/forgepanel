@@ -4,6 +4,11 @@ One chronology, both languages. / Une chronologie, deux langues.
 
 ## Unreleased / Non publié
 
+### Added / Ajouts — R3 read-only QEMU/KVM observation tool
+
+- **Preparatory Go code / Code Go préparatoire** — New **standalone** `tools/kvm-host-probe/` module with read-only fixed-path Linux observation, sanitized OS/arch and CPU/KVM metadata, 14 synthetic Go tests, offline/race/vet CI and JSON fields explicitly proving **no VM executed or certified**. FR/EN contracts, roadmap, QA, security and audit risk RISK-019 updated. Original Foundation v0.7 ZIP still absent; **no Core application source import, actual QEMU/KVM run, signed report or release**. / Nouveau module Go **autonome et sans privilèges** : observation locale limitée du host KVM, 14 tests synthétiques, CI offline/race/vet et JSON indiquant explicitement **aucune VM exécutée ni certifiée**. Documentation FR/EN, roadmap, QA, sécurité et risque RISK-019 mis à jour. Archive Foundation originale toujours absente : **aucun import du Core, test VM réel, rapport signé ni release**.
+
+
 ### Added / Ajouts — R1 staged integrity verification and quarantine hardening
 
 - **R1 developer tooling / Outillage R1** — Added read-only staged-source verification against the genuine pinned ZIP, staging receipt and on-disk contents, with strict inventory, private-mode and symbolic/hardlink checks. Hardened staging against swapped-directory cleanup races, noncanonical source IDs, relative destinations and shared subdirectories. Added synthetic regression tests and paired FR/EN contracts, risk findings RISK-017/018, roadmap, security and QA updates. **No actual Foundation ZIP, product source import, installer, VM qualification or production release.** / Ajout du contrôle indépendant ZIP original/reçu/contenu disque, refus inventaire altéré et permissions dangereuses ; nettoyage renforcé contre changement d'identité du répertoire, refus chemins relatifs/dossiers partagés. Tests synthétiques, documents FR/EN, risques RISK-017/018 et mises à jour roadmap/sécurité/QA. **Aucun ZIP Foundation réel, import applicatif, installateur ou release livré.**

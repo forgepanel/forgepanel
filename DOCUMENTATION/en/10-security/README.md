@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=17 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=18 status=documented -->
 # Security model and disclosure
 
 [Français](../../fr/10-security/README.md) · [Index](../README.md)
@@ -98,3 +98,7 @@ Staged sources can be independently checked against **original ZIP + receipt + o
 ## Q161 — Admission never authorizes VM execution
 
 The [R3 tool](../14-devops-releases/kvm-image-admission.md) is **read-only, nonroot and QEMU-free**: policy/request files must be private bounded regular files; QCOW2 must be owned with no symlink/hardlink, and all bytes are SHA-256 checked through file descriptors. No generic command/argument field exists; network/host shares/privilege requests are denied. `REVIEW_REQUIRED` grants **no privilege or Q132 PASS**, and declared resource ceilings are not enforcement. A future executor must revalidate bytes and isolate potentially malicious guests. No Hub signing keys or secrets are collected.
+
+## R3 — Private staging security and immutability limit
+
+[QCOW2 staging](../14-devops-releases/kvm-image-staging.md) has **no arbitrary shell/root API, QEMU or network access**. It requires separated canonical paths, nonroot account, 0700 directories, private source, `openat`/`O_NOFOLLOW`, non-executable copied files, full SHA-256 and receipt without secrets/private paths. A positive state proves **neither publisher identity, actual immutable storage, nor sandbox/real quota enforcement**: the same UID can alter even a 0400 file. Partial directories stay private for review and never count as qualification. Future launch requires another hash check; Q132 vetoes remain.

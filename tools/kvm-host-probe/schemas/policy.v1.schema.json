@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:forgepanel:r3:kvm-image-admission:policy:v1",
+  "title": "ForgePanel R3 explicit local lab policy (not product quotas)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "policy_id",
+    "revision",
+    "image_directory",
+    "max_vcpus",
+    "max_memory_mib",
+    "max_duration_seconds",
+    "max_image_bytes"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1"
+    },
+    "policy_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+    },
+    "revision": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+    },
+    "image_directory": {
+      "type": "string",
+      "pattern": "^/",
+      "description": "Must be canonical, owned, private, and not symlinked"
+    },
+    "max_vcpus": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "max_memory_mib": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "max_duration_seconds": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "max_image_bytes": {
+      "type": "integer",
+      "minimum": 8
+    }
+  }
+}

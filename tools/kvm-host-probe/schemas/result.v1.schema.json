@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:forgepanel:r3:kvm-image-admission:result:v1",
+  "title": "ForgePanel R3 pinned image admission result, not VM qualification",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "tool",
+    "status",
+    "qualification",
+    "artifact_verified",
+    "vm_executed",
+    "runner_isolated",
+    "resource_quotas_enforced",
+    "image_format_fully_validated",
+    "report_signed",
+    "q132_security_gates_passed",
+    "blockers"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1"
+    },
+    "tool": {
+      "const": "forgepanel-kvm-image-admission"
+    },
+    "status": {
+      "enum": [
+        "BLOCKED",
+        "REVIEW_REQUIRED"
+      ]
+    },
+    "qualification": {
+      "const": "NOT_EXECUTED"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+    },
+    "policy_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+    },
+    "policy_revision": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+    },
+    "image_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "image_bytes": {
+      "type": "integer",
+      "minimum": 8
+    },
+    "artifact_verified": {
+      "type": "boolean"
+    },
+    "vm_executed": {
+      "const": false
+    },
+    "runner_isolated": {
+      "const": false
+    },
+    "resource_quotas_enforced": {
+      "const": false
+    },
+    "image_format_fully_validated": {
+      "const": false
+    },
+    "report_signed": {
+      "const": false
+    },
+    "q132_security_gates_passed": {
+      "const": false
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "REVIEW_REQUIRED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "artifact_verified": {
+            "const": true
+          },
+          "blockers": {
+            "maxItems": 0
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "BLOCKED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "artifact_verified": {
+            "const": false
+          },
+          "blockers": {
+            "minItems": 1
+          }
+        }
+      }
+    }
+  ]
+}

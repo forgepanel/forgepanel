@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=20 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=21 status=documented -->
 # Status and dependency-ordered roadmap
 
 [Français](../../fr/00-project-control/status.md) · [Project control](README.md)
@@ -87,3 +87,7 @@ A separate Go source module, `tools/kvm-host-probe/`, is an **IMPLEMENTATION CAN
 ## R3 — Implementation candidate: lab image admission
 
 Feature branch `features/r3-kvm-pinned-image-admission` adds independent Go verification of pinned QCOW2, explicit CPU/RAM/duration policies and versioned JSON manifests. **Synthetic Go tests and CI succeeded on PR #41's exact commit; check GitHub for merge state**. `REVIEW_REQUIRED` still means `qualification=NOT_EXECUTED` with all unverified VM capabilities false. **No QEMU execution driver, restored backup or imported Foundation Core**. [Contract](../14-devops-releases/kvm-image-admission.md).
+
+## R3 — Private pinned image staging (candidate lot)
+
+Standalone Go `staging` and its CLI on `features/r3-private-pinned-image-staging` prepare a SHA-256-verified, private-permission QCOW2 copy plus provenance receipt **without booting QEMU**. Status is **IMPLEMENTATION CANDIDATE** until exact-SHA GitHub CI and merge. Synthetic file tests certify no OS or hosting product; genuine Foundation Core source is absent, Q1–Q170 unchanged, private Hub separate and V3 Design System unapproved. [FR/EN contract](../14-devops-releases/kvm-image-staging.md).

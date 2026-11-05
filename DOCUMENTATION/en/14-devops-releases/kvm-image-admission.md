@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14-KVM-IMAGE-ADMISSION revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-14-KVM-IMAGE-ADMISSION revision=2 status=specified -->
 # R3 — QEMU/KVM image admission before execution
 
 [Français](../../fr/14-devops-releases/kvm-image-admission.md) · [KVM host probe](kvm-host-probe.md) · [Roadmap](../00-project-control/implementation-roadmap.md) · [Tests](../13-tests-quality/README.md)
@@ -30,3 +30,7 @@ The CLI denies root, shared/symlinked config files, unknown/oversized/multiple J
 A QCOW2 header is **not full structural validation**. SHA-256 matches bytes to a supplied manifest, **not publisher authenticity, distribution rights or safety of guest content**. Resource bounds are **checked but never enforced by a VM scheduler**. A same-UID process can change files after scanning: a future executor must use an immutable validated object/FD or re-hash bytes at launch. Without a disposable isolated host, disabled network, enforced CPU/RAM/I/O quotas, snapshots, cleanup, fault checks, Q152 signed reports and Q162 immutable private storage, **R3 remains unqualified**. Synthetic QCOW2-like test fixtures are not bootable Linux images and do not select a default first OS.
 
 No generic privileged shell, no Hub connection and no override of Q132 critical failure gates. [Decisions Q161–Q170](../00-project-control/decisions-q161-q170.md).
+
+## Next step: verified private staging
+
+The separate [Image Staging](kvm-image-staging.md) component reopens bytes after admission, copies them into a fresh nonroot directory and verifies the digest. A `STAGED_FOR_MANUAL_REVIEW` receipt may be produced, **never** QEMU launch authorization or proof of immutable storage. Real quotas, snapshots, OS drivers and signing remain future work.

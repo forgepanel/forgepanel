@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=14 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=15 status=documented -->
 # Installation, Git promotion and releases
 
 [Français](../../fr/14-devops-releases/README.md) · [Index](../README.md)
@@ -76,3 +76,7 @@ A **standalone Go module outside historical Core** provides a [KVM candidate hos
 ## R3 — Pinned local QEMU/KVM image admission
 
 The standalone Go [R3 Image Admission](kvm-image-admission.md) tool read-only verifies a local QCOW2 image using a full SHA-256 and a private nonroot-owned directory. CPU/RAM/duration must have explicitly versioned local policy ceilings; guest network, host shares and privilege flags are refused. Its positive state is **`REVIEW_REQUIRED`**, not proof of any QEMU boot or enforced quota. Q151 A/Q161 C only prepare ephemeral KVM runners; Q152/Q162 signed immutable evidence remains unimplemented.
+
+## R3 — Preparatory private QCOW2 staging
+
+After [KVM host observation](kvm-host-probe.md) and [SHA-256 admission](kvm-image-admission.md), [verified private staging](kvm-image-staging.md) copies pinned image bytes into a **fresh per-run 0700 directory** as nonroot. The 0400 copy/receipt are re-hashed and bind versioned policy/request digests, but no guest is booted, durable immutability or real quotas enforced, or report signed. Failed partial directories require controlled manual cleanup. R3, Q152/Q162, R1 and R2 gates remain unqualified.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=14 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=15 status=documented -->
 # Installation, promotion Git et releases
 
 [English](../../en/14-devops-releases/README.md) · [Index](../README.md)
@@ -76,3 +76,7 @@ Un **module Go autonome hors Core historique** propose [l'inspection du candidat
 ## R3 — Admission préalable des images QEMU/KVM épinglées
 
 Le module Go autonome [R3 Image Admission](kvm-image-admission.md) vérifie en lecture seule une image locale QCOW2 par SHA-256 complet, dans un dossier privé appartenant à l'utilisateur non privilégié. Les ressources CPU/RAM/durée doivent être explicitement bornées par une politique locale versionnée ; réseau, partages hôtes et privilèges sont refusés. L'état positif est **`REVIEW_REQUIRED`**, jamais une preuve que QEMU a démarré ou qu'un quota est appliqué. Q151 A/Q161 C préparent seulement le runner KVM éphémère ; rapports signés/stockage immuable Q152/Q162 restent à implémenter.
+
+## R3 — Copie privée d’image QCOW2 préparatoire
+
+Après la [sonde KVM](kvm-host-probe.md) et [l’admission SHA-256](kvm-image-admission.md), le nouveau [staging privé vérifié](kvm-image-staging.md) copie une image épinglée dans un **nouveau répertoire 0700 par essai**, sous utilisateur non-root. La copie et son reçu 0400 sont re-hashés et portent la politique et la demande versionnées ; aucune VM n’est lancée, aucune immutabilité durable ni quota système imposé, aucun rapport signé. Les dossiers partiels en échec exigent nettoyage manuel contrôlé. R3, Q152/Q162, R1 et R2 restent non qualifiés.

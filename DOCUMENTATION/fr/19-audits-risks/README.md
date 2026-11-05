@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19 revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-19 revision=6 status=documented -->
 # Audit, contradictions et risques
 
 [English](../../en/19-audits-risks/README.md) · [Index](../README.md)
@@ -54,3 +54,10 @@ Ces mesures ne remplacent pas l'audit de code source ou la preuve de signature �
 ## Observation R3 : risque de qualification abusive
 
 - **RISK-019** — La présence de `/dev/kvm` ou des drapeaux VMX/SVM ne prouve ni l'accès effectif au device, ni le lancement sécurisé de QEMU/KVM, ni isolation/quotas/snapshot/récupération. L'outil séparé [KVM Host Probe](../14-devops-releases/kvm-host-probe.md) expose donc exclusivement `qualification=NOT_EXECUTED`, plusieurs indicateurs `false` et des états `INCONCLUSIVE`/refus. Aucun résultat de CI sur runner sans KVM ne vaut certification Debian, Ubuntu ou autre OS. Le vrai pilote R3 et les rapports signés Q152/Q162 restent à implémenter.
+
+## Risques identifiés — admission locale d'image R3
+
+- **RISK-020** — Une politique locale **non signée** et une correspondance SHA-256 ne prouvent ni la confiance de l'éditeur ni le droit de lancer une VM ; le statut reste `REVIEW_REQUIRED`, avec `qualification=NOT_EXECUTED`. Établir identité/autorisation, provenance, signature, immutabilité et revue indépendante avant exécution.
+- **RISK-021** — L'en-tête QCOW2 vérifié ne prouve pas l'intégrité **structurelle** du format ; après admission, même UID peut encore modifier l'image. Un futur runner doit valider format, verrouiller/capturer les octets et imposer les vrais quotas/isolements, en testant la reprise. Les tests synthétiques ne ferment pas RISK-019.
+
+[Contrat préparatoire](../14-devops-releases/kvm-image-admission.md).

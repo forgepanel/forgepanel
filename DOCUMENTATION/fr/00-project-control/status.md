@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=18 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=19 status=documented -->
 # État et roadmap ordonnée par dépendances
 
 [English](../../en/00-project-control/status.md) · [Pilotage](README.md)
@@ -83,3 +83,7 @@ La branche de travail ajoute l'outil **en lecture seule** `audit_staged_archive.
 ## R3 — Utilitaire autonome de préinspection KVM (préparatoire)
 
 Un module Go en code source séparé, `tools/kvm-host-probe/`, est **IMPLEMENTATION CANDIDATE** sur une branche `features/*` avec tests unitaires et CI spécifiques. Il peut observer des signes de compatibilité KVM et écrire un rapport JSON `qualification=NOT_EXECUTED`. Ce statut **n'est ni une qualification réelle R3, ni une implémentation du Core Symfony/Go historique, ni une release**. R1 source Foundation v0.7 (issue #2) reste ouvert, la V3 du Design System non validée, Hub différé après ABI. [Spécification FR/EN](../14-devops-releases/kvm-host-probe.md).
+
+## R3 — Candidat d'implémentation : admission des images de laboratoire
+
+La branche `features/r3-kvm-pinned-image-admission` ajoute une vérification Go autonome des QCOW2 épinglés, de politiques CPU/RAM/durée explicites et de manifests JSON versionnés. **Tests locaux synthétiques exécutés ; CI et fusion en cours**. Le résultat `REVIEW_REQUIRED` reste `qualification=NOT_EXECUTED`, avec toutes les capacités VM non vérifiées à `false`. **Aucun pilote d'exécution QEMU, aucune sauvegarde restaurée et aucun Core Foundation importé.** [Contrat](../14-devops-releases/kvm-image-admission.md).

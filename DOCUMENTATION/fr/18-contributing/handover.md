@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-18-HANDOVER revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-18-HANDOVER revision=6 status=documented -->
 # Passage de relais
 
 [English](../../en/18-contributing/handover.md) · [Guide de contribution](README.md)
@@ -36,3 +36,7 @@ La chaîne de préparation source comprend désormais `verify_source_archive.py`
 ## Prochain contrôle R1 — reçu indépendant
 
 Avant toute PR d'import de sources PHP/Go, obtenir l'archive SRC-03 exacte ; exécuter préflight et staging privé ; puis lancer [l'audit en lecture seule](../12-development/source-staging-audit.md) avec la **même archive originale**, et examiner chaque fichier/licence/secret. L'audit ne rend pas l'import automatiquement autorisé et doit être revalidé lors de la copie finale dans Git. Le design V3 n'est pas une baseline approuvée. L'utilisateur ne doit pas coder ni manipuler root pour ce flux.
+
+## Relais R3 — pilote de VM toujours ouvert
+
+Le nouveau vérificateur d'[admission QCOW2](../14-devops-releases/kvm-image-admission.md) est un module Go de **préparation** séparé du Core historique et du Hub. Ne jamais convertir son verdict `REVIEW_REQUIRED` en PASS de certification ou autorisation root. Le prochain pilote QEMU/KVM devra avoir contrats typés, snapshot immuable des octets utilisés, isolation réelle, quotas et timeout/cleanup testés, signatures/stockage Q152/Q162 et tests VM sur hôte autorisé. La priorité officielle d'import Foundation v0.7 (issue #2) reste ouverte ; ni code historique ni Design System V3 n'est automatiquement validé.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-EXECUTION revision=11 status=specified -->
+<!-- forgepanel-doc id=FP-00-EXECUTION revision=12 status=specified -->
 # Roadmap technique de réalisation — décision Q120 D et MVP Q119 B
 
 [English](../../en/00-project-control/implementation-roadmap.md) · [État officiel](status.md) · [Décisions Q111–Q120](decisions-q111-q120.md)
@@ -85,3 +85,7 @@ L'issue #2 (import du vrai code Foundation) exige désormais la séquence explic
 ## Préparation parallèle R3 — inspection KVM distincte du pilote de VM
 
 Sans modifier l'ordre approuvé **R1 → R2 → R3 → R4 → R5 → R6**, l'utilitaire Go isolé [`tools/kvm-host-probe`](../14-devops-releases/kvm-host-probe.md) prépare **uniquement une observation non privilégiée** de l'hôte local (Q151 A/Q161 C). Il ne devient pas le pilote QEMU/KVM, ne choisit pas d'OS, ne produit ni images épinglées/quotas/snapshots ni rapport signé et ne remplace aucune preuve d'installation ou de restauration. Ses tests unitaires sont indépendants de l'import Foundation original encore bloqué en R1.
+
+## Préparation parallèle R3 — admission d'image, pas exécution VM
+
+Après la sonde hôte, [admission QCOW2](../14-devops-releases/kvm-image-admission.md) vérifie le manifest, l'empreinte du fichier et les limites **expressément fournies**, sans valeur par défaut, opération système ou QEMU. Les futures étapes restent : provenance d'image signée/autorisation → copie immuable et attestation de l'image utilisée → VM éphémère KVM isolée/quotas effectifs → snapshots, échec/reprise → rapports signés Q152 et stockage immuable privé Q162 → qualification R3 avec veto Q132. **R1 → R2 → R3 → R4 → R5 → R6 inchangé** ; les sources Foundation restent manquantes.

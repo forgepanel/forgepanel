@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=13 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=14 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
@@ -80,3 +80,7 @@ Nouvelle suite `tests/source_intake/test_audit_staged_archive.py` et cas complé
 ## Tests Go de l'observation KVM — lot préparatoire R3
 
 Le module séparé [KVM Host Probe](../14-devops-releases/kvm-host-probe.md) possède **14 tests Go synthétiques** : périphérique KVM caractère/absent/faux/symlink, drapeaux VMX/SVM exacts, autres architectures, erreurs de lecture, données OS filtrées et **interdiction de fausse qualification**. Son workflow dédié exécute `go test ./...`, `go test -race ./...`, `go vet ./...` et vérifie que le JSON réel conserve `qualification=NOT_EXECUTED`. **Le runner GitHub n'est pas un hôte KVM certifié ; les VMs, snapshots, pannes, quotas, sauvegardes et restaurations réelles restent PLANNED.**
+
+## R3 — Tests d'admission d'images QCOW2 sans VM réelle
+
+Les tests Go synthétiques de `tools/kvm-host-probe/admission` et du CLI valident l'empreinte SHA-256, le nom du fichier, les permissions privées, le refus symlink/hardlink/format erroné, les plafonds explicites, l'interdiction réseau/partage/privilèges et la parité des trois JSON Schema. Le workflow Go existant exécute **`go test ./...`, `go test -race ./...`, `go vet ./...` et `gofmt`** ; le verdict de la PR doit être lu au SHA exact. Les fixtures ne sont pas des Linux démarrables, et aucun essai KVM, quota imposé, snapshot, rapport signé ou restauration n'est démontré. [Contrat](../14-devops-releases/kvm-image-admission.md).

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-EXECUTION revision=11 status=specified -->
+<!-- forgepanel-doc id=FP-00-EXECUTION revision=12 status=specified -->
 # Technical implementation roadmap — Q120 D and Q119 B MVP
 
 [Français](../../fr/00-project-control/implementation-roadmap.md) · [Project status](status.md) · [Q111–Q120 decisions](decisions-q111-q120.md)
@@ -85,3 +85,7 @@ Issue #2 (genuine Foundation source import) now explicitly requires: original SR
 ## Parallel R3 preparation — KVM observation is not a VM runner
 
 Without changing the approved **R1 → R2 → R3 → R4 → R5 → R6** order, standalone [`tools/kvm-host-probe`](../14-devops-releases/kvm-host-probe.md) prepares **only a nonprivileged local host observation** (Q151 A/Q161 C). It is not the QEMU/KVM runner, selects no OS, produces no pinned images/quotas/snapshots or signed evidence, and cannot replace real installer/recovery test results. Its unit tests are independent of the still-blocked R1 original Foundation source import.
+
+## Parallel R3 preparation — image admission is not VM execution
+
+After the host probe, [QCOW2 admission](../14-devops-releases/kvm-image-admission.md) checks a manifest, image bytes and **explicitly supplied** ceilings without defaults, privileged system actions or QEMU execution. Remaining steps: signed image provenance/authorization → immutable launch-time pinned bytes → ephemeral isolated KVM runner with real quotas → snapshots/failure/recovery → signed Q152 reports and private immutable Q162 storage → R3 qualification with Q132 vetoes. **R1 → R2 → R3 → R4 → R5 → R6 unchanged**; original Foundation sources still missing.

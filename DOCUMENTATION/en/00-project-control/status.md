@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=18 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=19 status=documented -->
 # Status and dependency-ordered roadmap
 
 [Français](../../fr/00-project-control/status.md) · [Project control](README.md)
@@ -83,3 +83,7 @@ The feature branch adds **read-only** `audit_staged_archive.py` and hardens stag
 ## R3 — Standalone KVM host pre-inspection (preparatory)
 
 A separate Go source module, `tools/kvm-host-probe/`, is an **IMPLEMENTATION CANDIDATE** on a `features/*` branch with unit tests and its own CI. It observes static KVM host indicators and emits `qualification=NOT_EXECUTED` JSON. This **does not mean R3 VM qualification, imported Symfony/Go Core or a released product**. R1 Foundation v0.7 source import (issue #2) remains open, V3 Design System unapproved, Hub deferred until neutral ABI. [FR/EN contract](../14-devops-releases/kvm-host-probe.md).
+
+## R3 — Implementation candidate: lab image admission
+
+Feature branch `features/r3-kvm-pinned-image-admission` adds independent Go verification of pinned QCOW2, explicit CPU/RAM/duration policies and versioned JSON manifests. **Synthetic local tests executed; PR CI/merge pending**. `REVIEW_REQUIRED` still means `qualification=NOT_EXECUTED` with all unverified VM capabilities false. **No QEMU execution driver, restored backup or imported Foundation Core**. [Contract](../14-devops-releases/kvm-image-admission.md).

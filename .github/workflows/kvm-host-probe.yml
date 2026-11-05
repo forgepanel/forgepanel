@@ -1,0 +1,56 @@
+name: KVM host probe (nonprivileged preparation only)
+
+on:
+  pull_request:
+    branches: [develop, stable, main, production]
+    paths:
+      - 'tools/kvm-host-probe/**'
+      - '.github/workflows/kvm-host-probe.yml'
+  push:
+    branches: [develop, stable, main, production]
+    paths:
+      - 'tools/kvm-host-probe/**'
+      - '.github/workflows/kvm-host-probe.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kvm-host-probe-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  host-observation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: tools/kvm-host-probe
+    steps:
+      - name: Checkout exact reviewed source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Inspect available Go compiler
+        run: go version
+      - name: Enforce Go source formatting
+        run: |
+          changes=$(gofmt -l .)
+          if [ -n "$changes" ]; then echo "$changes"; exit 1; fi
+      - name: Test standalone Go probe offline
+        env:
+          GOTOOLCHAIN: local
+          GOPROXY: 'off'
+          GOSUMDB: 'off'
+        run: |
+          go test ./...
+          go test -race ./...
+          go vet ./...
+      - name: Check observation never claims certification
+        env:
+          GOTOOLCHAIN: local
+          GOPROXY: 'off'
+          GOSUMDB: 'off'
+        run: |
+          set -o pipefail
+          go run ./cmd/forgepanel-kvm-probe | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d["schema_version"] == "1"; assert d["qualification"] == "NOT_EXECUTED"; assert all(not d[k] for k in ("vm_executed","vm_image_pinned","snapshot_tested","resource_quotas_verified","failure_recovery_tested","report_signed")); print("PASS: read-only host observation, no VM qualification")'

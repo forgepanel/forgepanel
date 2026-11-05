@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-MVP-QUAL revision=3 status=specified -->
+<!-- forgepanel-doc id=FP-00-MVP-QUAL revision=4 status=specified -->
 # Qualification du premier ForgePanel PHP/HTTPS — Q121–Q127
 
 [English](../../en/00-project-control/mvp-qualification.md) · [Roadmap](implementation-roadmap.md) · [Décisions Q121–Q130](decisions-q121-q130.md)
@@ -35,6 +35,22 @@ L'assistant vérifie la résolution **A et AAAA** des noms du site, les écarts 
 - **Q134 C** : mises à jour OS avec prévisualisation des paquets/impact, autorisation par rôle, créneau de maintenance, **sauvegarde récupérable**, état de tâche/éventuel reboot, vérification des services et **procédure de récupération**. Refuser commandes root libres.
 - **Q135 B** : sauvegardes **locales chiffrées**, avec **destination distante facultative** si un pilote est qualifié ; inclure configuration du panneau et **fichiers PHP du site**, tests de restauration réels et clés accessibles en secours. Prévoir reprise cohérente de PostgreSQL du panneau si nécessaire. Ne pas prétendre que la copie locale résiste à la perte du disque ; la cible distante/3-2-1 reste extensible.
 - **Q136 C** : rôle **gestionnaire de site** limité à ses sites : lecture d'état, PHP/domaines/TLS/fichiers, **SFTP et sauvegarde/restauration** sous quotas, droits et politiques admin. Tester **un SFTP réel autorisé sur le bon site et refusé sur un site tiers**, puis les refus de changement de quotas, paquets OS et actions root ; appliquer Q47 pour TLS/restauration.
+
+## Compléments de qualification Q141–Q146
+
+**Q141 D** : le pilote de qualification fournit des adaptateurs VM **locales et cloud**, les runners CI réellement compatibles et un **rapport commun versionné** par OS/arch/WebStack/commit, snapshots, simulations de pannes et restauration. Un test ignoré `SKIP` n'est pas une certification. Ne pas déclarer une VM système testée en se fondant seulement sur des conteneurs.
+
+**Q142 D** : définir des **budgets de performance configurables par classe d'application**, faire des mesures reproductibles de débit/latence/erreurs/CPU/RAM et suivre les **régressions entre versions**, avec baseline et environnement identifiés. Les critères éliminatoires de sécurité Q132 (fuite tenant, `.htaccess`, collision de port ou absence de reprise) passent avant toute performance. Aucun seuil chiffré n'est fixé.
+
+**Q143 C** : assistant proposant **les enregistrements DNS externes attendus**, diagnostic A/AAAA (dont IPv6), port **80**, HTTP-01, port **443** et validité du certificat, puis **revérification** après correction. **Ne pas modifier automatiquement le DNS** : la décision C retient aide et retest, non l'option D d'intégration fournisseur.
+
+**Q144 D** : règles de mises à jour OS **par serveur** : inventaire, origine des paquets, créneau, plan d'impact, autorisation, sauvegarde récupérable, application, reboot si nécessaire, santé et récupération. **Multi-serveurs progressif plus tard**, selon Q67/Q77, sans bloquer le MVP.
+
+**Q145 D** : sauvegarde **locale chiffrée** Q135 avec coffre de secrets, copie de récupération protégée **hors domaine de panne**, restauration sur VM distincte, **KMS externe facultatif** et plusieurs gardiens/autorités lorsque politique autorise. Tester absence/perte de clé : une sauvegarde chiffrée irrécupérable est un échec ; pas de dépendance obligatoire au Hub.
+
+**Q146 C** : SFTP **sans shell par défaut**, compte/chemin site isolé, accès expirables/révocables, quotas appliqués et audit, tests de traversée/symlink et refus inter-tenants. Ces contrôles doivent être exécutés sur le serveur réel, pas uniquement simulés dans l'UI.
+
+[Décisions Q141–Q150](decisions-q141-q150.md) · [Contrats techniques](../02-architecture/certification-backup-security.md). **Aucune preuve d'exécution VM n'est créée par ce document.**
 
 ## Bêta privée Q127 B — passage après tests internes
 

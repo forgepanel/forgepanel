@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-07 revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-07 revision=5 status=documented -->
 # Portails, identités et autorisations
 
 [English](../../en/07-interfaces-roles/README.md) · [Index](../README.md)
@@ -22,6 +22,10 @@ L'administration des opérations sensibles exige réauthentification, avec **app
 ## Rôle gestionnaire de site Q136 C
 
 Sur un site qu'il possède ou administre légitimement, le **gestionnaire de site** pourra voir l'état et modifier **PHP, domaine, TLS et fichiers**, utiliser **SFTP** et demander **sauvegarde/restauration** dans les limites de son plan, des quotas et des permissions Q47. Le rôle ne peut ni modifier paquets/mises à jour OS, paramètres globaux et sécurité du panneau, ni accéder aux sites d'une autre organisation ou élever ses droits. Les actions sensibles (TLS/restore) sont prévisualisées, auditées et approuvées selon politique ; MFA administrateur demeure facultatif. [Q131–Q140](../00-project-control/decisions-q131-q140.md). **Le rôle n'est pas implémenté.**
+
+## Q146 C — accès SFTP restreint
+
+Le gestionnaire de site (Q136) dispose uniquement du SFTP de ses propres sites/ressources autorisés, sous **identité OS cantonnée, chemins et symlinks sécurisés, clés d'accès, quotas effectifs et journaux d'audit**. Par défaut, SFTP **ne confère aucun shell**. Expiration ou révocation du droit interdit toute nouvelle connexion mais ne supprime pas les fichiers du compte. Test requis : accès au site possédé, refus d'un autre tenant, chemin parent, symlink et quota ; aucune option ne donne un terminal root. [Décisions Q141–Q150](../00-project-control/decisions-q141-q150.md).
 
 ## Tests exigés avant extension
 

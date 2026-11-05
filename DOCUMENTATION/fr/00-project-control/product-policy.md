@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-POLICY revision=10 status=documented -->
+<!-- forgepanel-doc id=FP-00-POLICY revision=11 status=documented -->
 # Décisions produit du 5 novembre 2026 — gratuit, commercial et configurable
 
 [English](../../en/00-project-control/product-policy.md) · [Registre ADR](decisions.md) · [Configuration Engine](../02-architecture/configuration-engine.md)
@@ -76,6 +76,10 @@ La **première version fonctionnelle Q119 B** comprend installateur vérifié, C
 ## Q131–Q140 — qualification et gouvernance validées
 
 Q131 **D** formalise VM locales/CI, snapshots/pannes et rapports OS ; Q132 **D** WebStacks soumises à compatibilité/sécurité, charge, maintenance et récupération avec critères éliminatoires ; Q133 **C** vérifie DNS A/AAAA, port 80, HTTP-01 et HTTPS. Q134 **C** impose plan/sauvegarde/santé/reprise pour les mises à jour OS ; Q135 **B** choisit backup initial **chiffré local**, remote facultatif, toujours avec restauration testée Q126 ; Q136 **C** ajoute PHP, domaines, TLS, fichiers, SFTP et sauvegardes/restaurations au rôle gestionnaire **dans les quotas/RBAC**. Q137 **D** prévoit invitations, bêta privée par vagues, suspension et récupération. Q138 **D** transferts de licences à preuve cryptographique et validation supplémentaire selon risque ; Q139 **C** alertes/escalade/retrait partenaires ; Q140 **C** triage/correctifs/avis sécurité coordonnés. Ces derniers mécanismes commerciaux restent après ABI Hub. [Décisions](decisions-q131-q140.md).
+
+## Q141–Q150 confirmées — vérification et récupération
+
+Les tests du MVP suivront des VM **locales/cloud** avec rapports identiques (Q141 D), des budgets et régressions de performance **par application** sans dépasser les veto de sécurité (Q142 D), et un assistant proposant les enregistrements DNS avant revérification manuelle DNS/HTTP-01/HTTPS (Q143 C). Les mises à jour OS relèvent d'une politique **par serveur** puis, ultérieurement, d'une orchestration multi-serveurs (Q144 D). Les backups **locaux chiffrés** devront conserver des clés de récupération sous coffre, avec KMS externe et récupération multi-gardiens **facultatifs** (Q145 D). Le SFTP est borné, sans shell, expirable/révocable et audité (Q146 C). La bêta privée peut être **suspendue sur seuils de santé** et récupérée sans effacer des données (Q147 C). Le Hub après R5 gérera l'identité/challenge de transfert, la validation manuelle de serveur perdu (Q148 C, approbation additionnelle Q138 selon risque), les délais contractuels par gravité (Q149 C) et les avis de sécurité signés avec divulgation coordonnée selon risque (Q150 D). [Détails](decisions-q141-q150.md).
 
 ## Questions encore ouvertes — ne pas présumer
 

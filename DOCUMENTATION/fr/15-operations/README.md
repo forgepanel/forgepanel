@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-15 revision=9 status=documented -->
+<!-- forgepanel-doc id=FP-15 revision=10 status=documented -->
 # Exploitation, diagnostic et récupération
 
 [English](../../en/15-operations/README.md) · [Index](../README.md)
@@ -48,6 +48,10 @@ La première version devra observer services, métriques et logs en lecture seul
 ## Opérations Q133–Q135 — diagnostic, mises à jour et sauvegarde initiale
 
 Le pilote de site doit vérifier **DNS A/AAAA, port 80, route HTTP-01 et HTTPS**, et exposer les erreurs sans révéler les secrets ACME. Les mises à jour OS utilisent **créneau de maintenance → plan d'impact → sauvegarde et autorisation → application bornée → santé du panneau/site → récupération**, sans permettre des commandes shell arbitraires. La sauvegarde du MVP est **locale chiffrée**, avec **destination distante facultative**, couvrant configuration du panneau et fichiers PHP, test de restauration et méthode cohérente pour récupérer l'état PostgreSQL nécessaire. La cible avancée 3-2-1/immutable reste intacte sans être une condition MVP. [Matrice](../00-project-control/mvp-qualification.md).
+
+## Exploitation Q141–Q147 : VM, mises à jour, clés et bêta
+
+Rassembler les preuves de qualification **VM locales/cloud** sous un format de rapport commun (Q141), comparer les **budgets de performance par application/version** et signaler les régressions (Q142), afficher les corrections DNS nécessaires et **revérifier** après intervention (Q143) sans changer automatiquement les zones. Politique de mises à jour **par serveur** : fenêtre, source autorisée, plan d'impact, backup, santé et récupération, puis multi-serveurs par phases (Q144). Backup MVP **chiffré local**, remote facultatif, mais la clé doit survivre à la perte de serveur via un coffre/copie de secours, avec KMS/multi-gardiens optionnels (Q145). SFTP sans shell, expirations/révocations/quotas/audit (Q146). Bêta privée : seuils de santé **configurables**, pause de vagues et restauration (Q147). Ces contrôles nécessitent systèmes et preuves réels. [Q141–Q150](../00-project-control/decisions-q141-q150.md).
 
 ## Sauvegarde et restauration requises
 

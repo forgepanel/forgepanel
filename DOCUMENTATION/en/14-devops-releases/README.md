@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=7 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=8 status=documented -->
 # Installation, Git promotion and releases
 
 [Français](../../fr/14-devops-releases/README.md) · [Index](../README.md)
@@ -42,6 +42,10 @@ Q71 adds protected KMS/HSM or signing service, anti-rollback metadata and key ro
 ## Q131–Q137 VMs, OS updates and beta gates
 
 Full system **local/CI VMs**, snapshots, fault injection and OS/WebStack reports distinguish `SKIP` from PASS. First stack selection requires compatibility, security, measured load, maintenance, recovery and hard rejection. MVP verifies DNS **A/AAAA**, **port 80/HTTP-01**, **HTTPS**, actionable diagnostics and site-manager rights (including **real SFTP allowed on owned site and cross-tenant denial**), planned OS updates with backup/health/recovery, and restored **encrypted local** backup (optional remote). Private beta proceeds by waves only after legal/security prerequisites and pause/recovery capability. [Decisions](../00-project-control/decisions-q131-q140.md).
+
+## Q141–Q147 — first-release qualification and controls
+
+**Local/cloud VM drivers** with compatible CI and common snapshot/failure reports (Q141); **per-application performance budgets** and cross-version regressions (Q142) subject to Q132 security veto. Initial assistant **suggests external DNS records** and rechecks A/AAAA/80/HTTP-01/HTTPS **without automatic DNS writes** (Q143). OS updates use **per-server policies** with impact, backup, health and recovery (Q144); mandatory multi-server orchestration is not an MVP gate. Encrypted local backups need **off-failure-domain recoverable keys**, vault and optional external KMS/multi-custodian policy (Q145). Test shell-disabled expiring/revocable/quota-audited SFTP (Q146). Private beta waves pause on configurable health/critical incident gates with recovery, not data erasure (Q147). [Requirements](../00-project-control/decisions-q141-q150.md).
 
 ## Release evidence
 

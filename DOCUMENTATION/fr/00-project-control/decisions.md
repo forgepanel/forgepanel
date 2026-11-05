@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DECISIONS revision=10 status=documented -->
+<!-- forgepanel-doc id=FP-00-DECISIONS revision=11 status=documented -->
 # Registre de décisions
 
 [English](../../en/00-project-control/decisions.md) · [Pilotage](README.md)
@@ -127,6 +127,17 @@ Les identifiants sources renvoient à l'[état initial](../19-audits-risks/basel
 | ADR-107 | Transferts premium avec preuve crypto et seconde validation selon risque (Q138 D) | Antifraude, audit, serveur perdu en secours, Hub après ABI |
 | ADR-108 | Partenaires : gravité, alertes auto, escalade et retrait (Q139 C) | Obligations contractuelles et revue manuelle par version Q114/Q129 |
 | ADR-109 | Vulnérabilités : triage, correctifs, avis/communication coordonnés (Q140 C) | Responsable + suppléant et canaux privés réels Q118/Q130 |
+
+| ADR-110 | Pilotes VM locales/cloud et CI avec rapports communs (Q141 D) | VM système réelles, snapshots, pannes, preuves OS, SKIP ≠ PASS |
+| ADR-111 | Budgets de performance par application et régressions de versions (Q142 D) | Benchmarks comparables, seuils configurables ; veto sécurité/récupération Q132 |
+| ADR-112 | Assistant DNS : proposer enregistrements et revérifier (Q143 C) | A/AAAA, 80/HTTP-01 et 443/TLS, **pas** d'édition automatique chez le fournisseur |
+| ADR-113 | Mise à jour OS par serveur, orchestration multi-serveurs future (Q144 D) | Plan d'impact, backup, vérification santé/reprise, autorisation et audit |
+| ADR-114 | Coffre et récupération de clés backup, KMS externe/autorités multiples facultatifs (Q145 D) | Backup chiffré local/restaurable, copie de clé protégée hors panne commune, autonomie Core |
+| ADR-115 | SFTP sans shell, expiration/révocation, quotas et audit (Q146 C) | Par site/compte, chemins canoniques, accès inter-tenants interdits |
+| ADR-116 | Bêta par vagues avec seuils de santé et pause/récupération (Q147 C) | Pas de données effacées, télémétrie Q6 consentie ; Core fonctionnel hors Hub |
+| ADR-117 | Identité serveur premium clés/challenge, anti-rejeu/org et secours manuel (Q148 C) | Transfert Hub après ABI, seconde approbation selon risque Q138 conservée |
+| ADR-118 | Partenaires : gravité, délais contractuels, escalade/alertes/retrait (Q149 C) | Revue humaine de chaque version, aucun SLA numérique inventé |
+| ADR-119 | Avis sécurité signés/historisés, notification et divulgation coordonnée selon risque (Q150 D) | Responsable/suppléant, canaux vérifiés, pas de publication automatique d'exploits |
 
 ## Propositions remplacées ou non résolues
 

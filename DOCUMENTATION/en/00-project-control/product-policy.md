@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-POLICY revision=10 status=documented -->
+<!-- forgepanel-doc id=FP-00-POLICY revision=11 status=documented -->
 # Product decisions of 5 November 2026 — free Core, commercial model and configuration
 
 [Français](../../fr/00-project-control/product-policy.md) · [ADR register](decisions.md) · [Configuration Engine](../02-architecture/configuration-engine.md)
@@ -76,6 +76,10 @@ Exact AGPL variant follows **legal review** (Q111 C); electronic CLA and verific
 ## Q131–Q140 — confirmed qualification and governance
 
 Q131 **D** selects local/CI VM snapshots/faults and OS reports; Q132 **D** tests WebStacks for security/compatibility, measured load, maintenance/recovery and disqualifying conditions; Q133 **C** verifies DNS A/AAAA, port 80, HTTP-01 and HTTPS. Q134 **C** requires impact/backup/health/recovery for OS updates; Q135 **B** uses **encrypted local** initial backup, optional remote, with Q126 real restore; Q136 **C** scopes site manager to PHP/domains/TLS/files/SFTP/backups/restores under quotas/RBAC. Q137 **D** brings invited private beta by waves/suspension/recovery. Q138 **D** adds cryptographic transfer proof and risk-based extra approval; Q139 **C** partner alerts/escalation/withdrawal; Q140 **C** coordinated vulnerability triage/patch notices. Commercial controls remain Hub-after-ABI. [Decisions](decisions-q131-q140.md).
+
+## Confirmed Q141–Q150 — validation and recovery
+
+MVP qualification will use **local/cloud** VM drivers with shared reports (Q141 D), **application-class** performance budgets/regression checks without overriding security vetoes (Q142 D), and a DNS advisor suggesting records before manual change and DNS/HTTP-01/HTTPS recheck (Q143 C). OS update policies apply **per server**, with later multi-server coordination (Q144 D). **Encrypted local** backups need vault-protected and recoverable keys, with **optional** external KMS and multiple recovery custodians (Q145 D). SFTP is scoped, shell-disabled, expiring/revocable and audited (Q146 C). Private beta can be **paused at configurable health thresholds** with recovery and no data erasure (Q147 C). Hub after R5 will handle cryptographic transfer proof/org/manual lost-host checks (Q148 C, retaining Q138 risk-based extra approval), severity/contract-driven partner deadlines (Q149 C) and signed coordinated risk-based advisories (Q150 D). [Details](decisions-q141-q150.md).
 
 ## Open follow-ups — no default assumed
 

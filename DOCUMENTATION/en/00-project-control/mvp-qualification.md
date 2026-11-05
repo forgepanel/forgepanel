@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-MVP-QUAL revision=3 status=specified -->
+<!-- forgepanel-doc id=FP-00-MVP-QUAL revision=4 status=specified -->
 # First PHP/HTTPS ForgePanel qualification — Q121–Q127
 
 [Français](../../fr/00-project-control/mvp-qualification.md) · [Roadmap](implementation-roadmap.md) · [Q121–Q130 decisions](decisions-q121-q130.md)
@@ -35,6 +35,22 @@ Verify domain **A and AAAA** resolution, conflicting IPv4/IPv6 targets, publicly
 - **Q134 C**: planned OS updates with package/impact preview, role approval, maintenance window, **recoverable backup**, durable job/reboot warning, health checks and **recovery procedure**; never expose arbitrary root commands.
 - **Q135 B**: **encrypted local backups** with **optional remote destination** only if a driver is qualified, covering panel config and **PHP website files**, real restore drills and accessible recovery keys. Recover panel PostgreSQL consistently if needed. Local copies do not survive every whole-disk failure; remote/3-2-1 targets remain planned.
 - **Q136 C**: **website-manager** limited to owned websites: status, PHP/domains/TLS/files, **SFTP and backup/restore** under admin policies/quotas. Test **real SFTP allowed on the owned site and denied across tenants**, plus quota increases, OS packages and root actions; apply Q47 to TLS/restores.
+
+## Q141–Q146 qualification additions
+
+**Q141 D:** support **local and cloud VM** adapters, compatible CI runners and a **common versioned** OS/arch/WebStack/commit report, including snapshots, fault injection and restore. `SKIP` cannot count as certification; container-only coverage is not a full Linux VM test.
+
+**Q142 D:** define **configurable budgets per application class** and reproducible throughput/latency/errors/CPU/RAM benchmarks, with pinned baselines and **cross-release regression checks**. Q132 tenant-security/`.htaccess`/listener/recovery vetoes override favorable performance; no numeric threshold is assumed.
+
+**Q143 C:** suggest **required external DNS records** and diagnose A/AAAA (including IPv6), **port 80**, HTTP-01, **port 443** and TLS certificate, then **recheck** after operator correction. **Do not auto-edit provider DNS**: chosen C does not include option D's provider mutations.
+
+**Q144 D:** **per-server** OS update policy covers packages, trusted sources, windows, impact preview, approval, recoverable backup, apply/reboot, health and restore. **Progressive multi-server** updates follow Q67/Q77 later; not a single-host MVP prerequisite.
+
+**Q145 D:** encrypted **local** backup Q135 with protected secret vault, **off-failure-domain recovery copy** and restore on a separate VM; **optional external KMS** and multiple recovery custodians if policy chooses. Test inaccessible/lost keys: unrecoverable encrypted archives are failures. Free Core cannot require Hub to restore.
+
+**Q146 C:** SFTP **without shell by default**, scoped site account/root, expiring/revocable grants, enforced quotas and audit; test symlink/path traversal and cross-tenant denial on actual host, not only UI.
+
+[Q141–Q150 decisions](decisions-q141-q150.md) · [Technical contracts](../02-architecture/certification-backup-security.md). **This text does not constitute VM execution evidence.**
 
 ## Q127 B private beta gate
 

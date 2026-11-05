@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-07 revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-07 revision=5 status=documented -->
 # Portals, identities and authorization
 
 [Français](../../fr/07-interfaces-roles/README.md) · [Index](../README.md)
@@ -22,6 +22,10 @@ Sensitive operations require recent authentication, with **configurable extra ap
 ## Website-manager role Q136 C
 
 For sites owned or explicitly delegated, the **website manager** may view state and manage **PHP, domain, TLS, files**, use **SFTP** and request **backup/restore** within plan, quotas and Q47 permissions. It cannot upgrade OS packages, change global security/panel settings, access another organization's websites or elevate privileges. Sensitive TLS/restore operations require preview, audit and policy-specific approval; administrator MFA stays optional. [Q131–Q140](../00-project-control/decisions-q131-q140.md). **This role is not implemented.**
+
+## Q146 C — restricted SFTP
+
+Q136 website manager gets SFTP only for owned/permitted sites, with **confined Unix identity, secure canonical paths/symlinks, keys, enforced quotas and access audit**. SFTP grants **no shell by default**. Expired/revoked grant denies new sessions without deleting tenant files. Test owned-site success and denied other tenant, parent paths, symlinks and quotas; never provide a root terminal. [Q141–Q150 decisions](../00-project-control/decisions-q141-q150.md).
 
 ## Required tests before expansion
 

@@ -21,7 +21,7 @@ class R2DocumentationTests(unittest.TestCase):
                 with self.subTest(path=path, lang=lang):
                     value = self.read(lang, path)
                     self.assertIn(f"id={document_id} revision=1 status=specified", value)
-                    self.assertIn("R1", value)
+                    self.assertIn("SRC-03", value)
                     self.assertIn("PostgreSQL", value)
                     self.assertIn("SPECIFIED" if "tests-quality" not in path else "PLANNED", value)
 

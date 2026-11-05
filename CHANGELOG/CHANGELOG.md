@@ -4,6 +4,9 @@ One chronology, both languages. / Une chronologie, deux langues.
 
 ## Unreleased / Non publié
 
+### Changed / Modifications — Q161–Q170
+- **Owner choices / Arbitrages propriétaire** — Q161 C, Q162 B, Q163 C, Q164 B, Q165 C, Q166 C, Q167 C, Q168 C, Q169 C, Q170 B. Scoped ephemeral KVM/immutable private evidence, approved performance-only waivers, dual local/external DNS checks, bounded nondestructive recovery, each-backup isolated restore and severity-based drills, public-key SFTP policy, consented privacy cohorts, versioned premium transfer risk and signed JSON Schema FR/EN advisories. Paired FR/EN specs, ADR-130–139 and planned negative/positive test matrix. **No functional release or VM qualification.** / KVM éphémère/preuves privées immuables, dérogations performance approuvées, DNS local + sonde externe, reprise OS limitée, restauration isolée de chaque backup et exercices, clés SFTP publiques, cohortes consenties, règles antifraude versionnées et avis JSON signés FR/EN. Spécifications FR/EN, ADR-130–139, tests positifs/négatifs planifiés. **Aucune release ni certification VM.**
+
 ### Quality / Qualité — Q151–Q160 MVP matrix
 - **Planned tests / Tests planifiés** — Added bilingual ten-case positive/negative MVP qualification matrix, evidence gates R3/R4/post-R4/R6, static decision parity regression tests and CI step; linked Core roadmap/QA. No actual VM, signed report, SFTP or isolated restore was executed. / Matrice bilingue de dix cas positifs/négatifs avec portes R3/R4/post-R4/R6, contrôle statique des décisions et CI, liens roadmap/QA. Aucune VM, preuve signée, connexion SFTP ni restauration isolée réelle n'a été exécutée.
 

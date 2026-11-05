@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=7 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=8 status=documented -->
 # Tests, quality and definition of done
 
 [Français](../../fr/13-tests-quality/README.md) · [Index](../README.md)
@@ -58,3 +58,7 @@ A separate security review is needed before sensitive production functionality. 
 ## Q151–Q160 qualification traceability
 
 The [positive/negative MVP test matrix](mvp-gates-q151-q160.md) defines **MVP-Q151-01 through MVP-Q160-01**, each initially **PLANNED**, with R3/R4/beta/Hub gates and evidence requirements. Priorities: genuine KVM VM, signed internal report, performance-only waiver with Q132 vetoes, HTTP-01 checks for published IP families, per-server reboot, isolated restore with key-access validation, public-key SFTP, separate consents, premium transfer risk, and signed bilingual/machine-structured advisories. The new Python test checks **case and language consistency only**, not running services.
+
+## Q161–Q170 QA matrix
+
+[The ten MVP-Q161-01 through MVP-Q170-01 cases](mvp-gates-q161-q170.md) remain **PLANNED**, with positive/negative behavior, R3/R4/beta/Hub phase and required evidence. Veto cases include leaked runner secret, tampered signed report, Q132 critical waiver, probe SSRF, unbounded OS recovery, backup without isolated restore, disallowed SFTP algorithm, reidentifiable cohort, suspect premium transfer and inconsistent JSON/FR/EN advisory. Static Python checks decisions/ADR/bilingual coverage; **no real hardware, Linux or restore test**.

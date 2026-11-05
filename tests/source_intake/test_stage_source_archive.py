@@ -128,5 +128,69 @@ class StageArchiveTests(unittest.TestCase):
         self.assertFalse(self.destination.exists())
 
 
+
+    def test_relative_destination_rejected(self):
+        self.destination = Path("relative-quarantine")
+        result = self.stage_nonroot()
+        self.assertIn("destination_must_be_absolute", result["blockers"])
+
+    def test_source_id_other_than_canonical_is_blocked_for_cli_stage(self):
+        import io
+        from contextlib import redirect_stdout
+        buf = io.StringIO()
+        with redirect_stdout(buf):
+            code = module.main(["--archive", str(self.archive),
+                                "--destination", str(self.destination),
+                                "--source-id", "SRC-04", "--stage"])
+        self.assertEqual(code, 2)
+        self.assertIn("noncanonical_source_id_for_staging", buf.getvalue())
+        self.assertFalse(self.destination.exists())
+
+    def test_replaced_quarantine_is_not_deleted_during_cleanup(self):
+        def swap_then_fail(*args, **kwargs):
+            self.destination.rename(self.private / "original-moved")
+            self.destination.mkdir(mode=0o700)
+            (self.destination / "keep.txt").write_text("do not delete")
+            raise module.StageError("injected_staging_failure")
+
+        with patch.object(module, "_copy_entry", side_effect=swap_then_fail):
+            result = self.stage_nonroot()
+        self.assertEqual(result["status"], "BLOCKED")
+        self.assertIn("cleanup_skipped_due_to_identity_change", result["blockers"])
+        self.assertEqual((self.destination / "keep.txt").read_text(), "do not delete")
+        self.assertTrue((self.private / "original-moved").exists())
+
+    def test_quarantine_replaced_before_success_is_blocked(self):
+        real_sha256 = module.sha256_file
+
+        def swap_at_final_hash(path):
+            original = real_sha256(path)
+            self.destination.rename(self.private / "original-moved")
+            self.destination.mkdir(mode=0o700)
+            (self.destination / "keep.txt").write_text("do not delete")
+            return original
+
+        with patch.object(module, "sha256_file", side_effect=swap_at_final_hash):
+            result = self.stage_nonroot()
+        self.assertEqual(result["status"], "BLOCKED")
+        self.assertIn("quarantine_identity_changed", result["blockers"])
+        self.assertEqual((self.destination / "keep.txt").read_text(), "do not delete")
+
+    def test_shared_intermediate_directory_is_denied(self):
+        original_mkdir = module.os.mkdir
+
+        def create_shared(name, mode=0o777, *args, **kwargs):
+            if name == "src":
+                return original_mkdir(name, 0o755, *args, **kwargs)
+            return original_mkdir(name, mode, *args, **kwargs)
+
+        with patch.object(module.os, "mkdir", side_effect=create_shared):
+            result = self.stage_nonroot()
+        self.assertEqual(result["status"], "BLOCKED")
+        self.assertIn("staging_subdirectory_not_private_or_owned", result["blockers"])
+        self.assertFalse(self.destination.exists())
+
+
+
 if __name__ == "__main__":
     unittest.main()

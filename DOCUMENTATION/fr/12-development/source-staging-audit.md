@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-12-SOURCE-AUDIT revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-12-SOURCE-AUDIT revision=2 status=documented -->
 # Vérification indépendante de la quarantaine R1
 
 [English](../../en/12-development/source-staging-audit.md) · [Préflight](source-archive-intake.md) · [Préparation privée](source-staging.md) · [Audit et risques](../19-audits-risks/README.md)
@@ -41,3 +41,5 @@ Le programme de quarantaine refuse dorénavant les **destinations relatives**, d
 Les tests de la branche s'appuient sur des archives **synthétiques** : aucun test d'intégration ne démontre le comportement de SRC-03, Symfony/PostgreSQL ou d'une installation Linux. Ce vérificateur n'est pas un antivirus, ne garantit pas l'absence de secrets cachés, ne vérifie pas les droits de licence et **n'empêche pas un acteur malveillant disposant du même UID de modifier les fichiers après la vérification**. Une future PR d'import devra relire et vérifier ces octets au moment de son propre import et conserver une piste de provenance versionnée ; elle ne pourra pas se contenter de ce seul rapport.
 
 **Séquence obligatoire :** ZIP original → préflight signé au niveau du rapport/provenance disponible → copie privée → audit indépendant des octets → revue humaine sécurité/licence → PR d'import Core avec tests Go/PHP réels → intégration R2. Aucun `shell.exec`, aucune élévation Linux, aucune dépendance Hub.
+
+**Validation synthétique observée :** campagne R1 complète de **60 tests**, exécutée avec succès sur la branche de PR #39. Ce nombre reflète les scénarios de code fictifs, pas des essais d'installation sur le véritable ZIP. Le vérificateur refuse également toute quarantaine située dans le dépôt source.

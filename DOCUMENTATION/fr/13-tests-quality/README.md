@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=11 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=12 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
@@ -74,3 +74,5 @@ La [quarantaine de provenance](../12-development/source-staging.md) et le préfl
 ## Contrôles négatifs d'intégrité après staging — R1
 
 Nouvelle suite `tests/source_intake/test_audit_staged_archive.py` et cas complémentaires dans `test_stage_source_archive.py`. Elle teste **sans archive réelle** la cohérence ZIP/reçu/fichiers, les liens symboliques et physiques, les dossiers ou fichiers ajoutés/manquants, les permissions excessives, les reçus invalides et les substitutions concurrentes de dossier pendant un échec de staging. [Spécification](../12-development/source-staging-audit.md). La CI doit exécuter tous les tests du répertoire `tests/source_intake` sur le SHA final. Un succès ne garantit ni R1 importé, ni SQL/HTTP, ni VM ou restauration.
+
+**Campagne sur la branche PR #39 : 60 tests R1 synthétiques réussis**. Le rapport CI exact du commit de PR reste l'autorité ; l'archive historique de l'issue #2 n'a pas été accessible ni contrôlée. Aucune affirmation de conformité production.

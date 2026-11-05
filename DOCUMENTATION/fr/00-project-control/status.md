@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=16 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=17 status=documented -->
 # État et roadmap ordonnée par dépendances
 
 [English](../../en/00-project-control/status.md) · [Pilotage](README.md)
@@ -78,4 +78,4 @@ Le Core contient maintenant les outils autonomes `verify_source_archive.py` et `
 
 ## R1 — Vérification d'intégrité de quarantaine
 
-La branche de travail ajoute l'outil **en lecture seule** `audit_staged_archive.py` et renforce le nettoyage du staging contre la substitution d'un dossier en cours d'opération. État : **IMPLEMENTATION CANDIDATE** jusqu'à CI/PR fusionnée ; les tests ne concernent que des ZIP synthétiques. [Règles et limitations](../12-development/source-staging-audit.md). L'archive Foundation v0.7 authentique reste indisponible dans ce lot, l'issue #2 d'import applicatif demeure OPEN et R2–R6 ne sont pas démontrés. Aucun changement de Design System V3 ni de Hub.
+La branche de travail ajoute l'outil **en lecture seule** `audit_staged_archive.py` et renforce le nettoyage du staging contre la substitution d'un dossier en cours d'opération. État : **outil implémenté et 60 tests synthétiques réussis en CI sur la branche de travail**, sans validation de SRC-03 réel ni revue sécurité indépendante. Son intégration dans develop relève de la PR #39. [Règles et limitations](../12-development/source-staging-audit.md). L'archive Foundation v0.7 authentique reste indisponible dans ce lot, l'issue #2 d'import applicatif demeure OPEN et R2–R6 ne sont pas démontrés. Aucun changement de Design System V3 ni de Hub.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=11 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=12 status=documented -->
 # Tests, quality and definition of done
 
 [Français](../../fr/13-tests-quality/README.md) · [Index](../README.md)
@@ -74,3 +74,5 @@ The [positive/negative MVP test matrix](mvp-gates-q151-q160.md) defines **MVP-Q1
 ## Post-staging integrity negative tests — R1
 
 Added `tests/source_intake/test_audit_staged_archive.py` and regression cases in `test_stage_source_archive.py`. Using **only synthetic archives**, they cover ZIP/receipt/file consistency, symlinks/hardlinks, missing/unexpected files/directories, excessive permissions, forged receipts and concurrent directory substitution during staging failure. [Specification](../12-development/source-staging-audit.md). CI must run all `tests/source_intake` cases on the final SHA. Passing them does not establish a completed R1 import, HTTP/SQL, VM or real restore.
+
+**PR #39 branch result: 60 synthetic R1 tests succeeded.** The exact commit's GitHub Actions run is authoritative; the original archive tracked by issue #2 has not been accessible or scanned. No production certification claim.

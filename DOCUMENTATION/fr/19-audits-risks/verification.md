@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19-VERIFICATION revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-19-VERIFICATION revision=5 status=documented -->
 # Rapport de vérification
 
 [English](../../en/19-audits-risks/verification.md) · [Index d'audit](README.md)
@@ -41,3 +41,5 @@ Ce run réussi signalait que ses actions v4 figées ciblaient un runtime Node d�
 ## Campagne supplémentaire — audit de fichiers en quarantaine
 
 La campagne `tests/source_intake` couvre également l'outil indépendant `audit_staged_archive.py` : cas synthétiques positifs/négatifs de cohérence ZIP/reçu/disque, refus des liens, permissions, modifications, inventaire additionnel/supprimé et courses de nettoyage. **État de validation à lire sur l'exact commit de la PR et sur le commit post-fusion**, sans inférer de résultats de CI antérieurs. Aucune vraie archive Foundation, aucun Core exécuté ni OS certifié. [Contrat](../12-development/source-staging-audit.md).
+
+**Extension R1 (PR #39) :** 60 tests unitaires synthétiques exécutés avec succès sur les outils préflight/quarantaine/audit. Les contrôles négatifs couvrent notamment la modification de contenu de taille identique et différente, la substitution de dossier pendant nettoyage, les liens, les modes exécutables et les reçus falsifiés. Aucun runtime Foundation, Postgres, VM ou sauvegarde réelle n'a été testé. [CI de vérification](https://github.com/yyogas/forgepanel/actions/runs/42108723238).

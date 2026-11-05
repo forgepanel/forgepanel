@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-12-SOURCE-AUDIT revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-12-SOURCE-AUDIT revision=2 status=documented -->
 # Independent R1 quarantine verification
 
 [Français](../../fr/12-development/source-staging-audit.md) · [Preflight](source-archive-intake.md) · [Private staging](source-staging.md) · [Audit and risks](../19-audits-risks/README.md)
@@ -41,3 +41,5 @@ The quarantine tool now rejects **relative destinations**, shared intermediate d
 All branch tests use **synthetic archives**; there is no real SRC-03, Symfony/PostgreSQL or Linux installer verification. This is not an antivirus, exhaustive secret scan or license audit; it **cannot prevent a malicious process under the same user identity from modifying files after the check**. A later import PR must re-open and re-hash files during its own import transaction and retain versioned evidence; the audit status is not an authorization token.
 
 **Required sequence:** exact source ZIP → pinned archive preflight → private staging → independent byte audit → human security/license review → Core source import PR with actual Go/PHP checks → R2 integration. No generic `shell.exec`, no elevated Linux privileges and no Hub dependency.
+
+**Observed synthetic validation:** full R1 **60-test** suite passed on PR #39's feature branch. This represents mock fixture scenarios, not installation tests against the genuine ZIP. The verifier also rejects quarantines inside the source repository.

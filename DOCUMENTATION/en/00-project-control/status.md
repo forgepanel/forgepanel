@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=16 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=17 status=documented -->
 # Status and dependency-ordered roadmap
 
 [Français](../../fr/00-project-control/status.md) · [Project control](README.md)
@@ -78,4 +78,4 @@ Core now contains standalone `verify_source_archive.py` and `stage_source_archiv
 
 ## R1 — Staged source integrity verification
 
-The feature branch adds **read-only** `audit_staged_archive.py` and hardens staging cleanup against concurrent directory replacement. State: **IMPLEMENTATION CANDIDATE** until CI and PR merge; tests cover synthetic ZIPs only. [Contract and limits](../12-development/source-staging-audit.md). Genuine Foundation v0.7 remains unavailable in this lot, source-import issue #2 is OPEN and R2–R6 are unverified. No V3 Design System or Hub change.
+The feature branch adds **read-only** `audit_staged_archive.py` and hardens staging cleanup against concurrent directory replacement. State: **tool implemented with 60 synthetic CI tests passing on the feature branch**, not genuine SRC-03 validation or independent security review. Integration into develop follows PR #39. [Contract and limits](../12-development/source-staging-audit.md). Genuine Foundation v0.7 remains unavailable in this lot, source-import issue #2 is OPEN and R2–R6 are unverified. No V3 Design System or Hub change.

@@ -34,6 +34,8 @@ class StageError(Exception):
 def _open_owned_parent(destination: Path) -> tuple[int, str]:
     if os.geteuid() == 0:
         raise StageError("root_execution_forbidden")
+    if not destination.is_absolute():
+        raise StageError("destination_must_be_absolute")
     if destination.name in ("", ".", ".."):
         raise StageError("invalid_destination")
     parent = destination.parent.resolve(strict=True)
@@ -56,7 +58,12 @@ def _enter_dir(fd: int, name: str) -> int:
         os.mkdir(name, mode=0o700, dir_fd=fd)
     except FileExistsError:
         pass
-    return os.open(name, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW, dir_fd=fd)
+    child_fd = os.open(name, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW, dir_fd=fd)
+    metadata = os.fstat(child_fd)
+    if metadata.st_uid != os.geteuid() or metadata.st_mode & 0o077:
+        os.close(child_fd)
+        raise StageError("staging_subdirectory_not_private_or_owned")
+    return child_fd
 
 
 def _copy_entry(root_fd: int, zf: zipfile.ZipFile, entry: dict) -> None:
@@ -124,6 +131,7 @@ def stage(archive: Path, destination: Path, evidence: Path = DEFAULT_EVIDENCE,
         output["blockers"].append(str(exc))
         return output
     created = False
+    root_identity: tuple[int, int] | None = None
     try:
         try:
             os.mkdir(leaf, 0o700, dir_fd=parent_fd)
@@ -132,6 +140,10 @@ def stage(archive: Path, destination: Path, evidence: Path = DEFAULT_EVIDENCE,
             raise StageError("destination_already_exists") from exc
         root_fd = os.open(leaf, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW, dir_fd=parent_fd)
         try:
+            root_stat = os.fstat(root_fd)
+            root_identity = (root_stat.st_dev, root_stat.st_ino)
+            if root_stat.st_uid != os.geteuid() or root_stat.st_mode & 0o077:
+                raise StageError("quarantine_root_not_private_or_owned")
             with zipfile.ZipFile(archive, "r") as zf:
                 for entry in report.entries:
                     _copy_entry(root_fd, zf, entry)
@@ -155,6 +167,9 @@ def stage(archive: Path, destination: Path, evidence: Path = DEFAULT_EVIDENCE,
                 handle.flush()
                 os.fsync(handle.fileno())
             os.fsync(root_fd)
+            current_root = os.stat(leaf, dir_fd=parent_fd, follow_symlinks=False)
+            if (current_root.st_dev, current_root.st_ino) != root_identity:
+                raise StageError("quarantine_identity_changed")
         finally:
             os.close(root_fd)
         os.fsync(parent_fd)
@@ -166,7 +181,17 @@ def stage(archive: Path, destination: Path, evidence: Path = DEFAULT_EVIDENCE,
         output["status"] = "BLOCKED"
         output["blockers"].append(str(exc) if isinstance(exc, StageError) else "staging_io_failure")
         if created:
-            shutil.rmtree(destination)
+            try:
+                observed = os.stat(leaf, dir_fd=parent_fd, follow_symlinks=False)
+                if root_identity is None or (observed.st_dev, observed.st_ino) != root_identity:
+                    output["blockers"].append("cleanup_skipped_due_to_identity_change")
+                else:
+                    # Anchored to the verified private parent, never a mutable path.
+                    shutil.rmtree(leaf, dir_fd=parent_fd)
+            except FileNotFoundError:
+                output["blockers"].append("quarantine_missing_during_cleanup")
+            except OSError:
+                output["blockers"].append("cleanup_failed_manual_review_required")
         return output
     finally:
         os.close(parent_fd)
@@ -180,6 +205,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--source-id", default="SRC-03")
     parser.add_argument("--stage", action="store_true", help="Explicitly create private staging directory (default: inspect only)")
     args = parser.parse_args(argv)
+    if args.stage and args.source_id != "SRC-03":
+        print(json.dumps({"status": "BLOCKED", "blockers": ["noncanonical_source_id_for_staging"], "staged": False}))
+        return 2
     if args.stage and args.evidence.resolve() != DEFAULT_EVIDENCE.resolve():
         print(json.dumps({"status": "BLOCKED", "blockers": ["custom_evidence_staging_forbidden"], "staged": False}))
         return 2

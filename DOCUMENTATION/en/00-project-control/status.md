@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=22 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=23 status=documented -->
 # Status and dependency-ordered roadmap
 
 [Français](../../fr/00-project-control/status.md) · [Project control](README.md)
@@ -70,7 +70,7 @@ No date or version commitment is implied by these priorities. Product-owner deci
 
 ## R1 — Verifiable progress while application source remains absent
 
-A read-only SRC-03 provenance preflight is **implemented** and tested on 16 synthetic ZIPs; see [R1 preflight](../12-development/source-archive-intake.md). It rejects changed archives, unsafe paths, links, collisions, excessive expansion and selected secret patterns, with **no import or system side effects**. The original v0.7 source required by [issue #2](https://github.com/yyogas/forgepanel/issues/2) is still unavailable here: **R1 source import = BLOCKED**, R2 Symfony/PG and R3–R6 remain unimplemented. V3 HTML UI is a separate visual proposal, not an adopted Core baseline.
+A read-only SRC-03 provenance preflight is **implemented** and tested on 16 synthetic ZIPs; see [R1 preflight](../12-development/source-archive-intake.md). It rejects changed archives, unsafe paths, links, collisions, excessive expansion and selected secret patterns, with **no import or system side effects**. The original v0.7 source required by [issue #2](https://github.com/yyogas/forgepanel/issues/2) is still unavailable here: **R1 source import = BLOCKED**, R2 Symfony/PG and the real R3 VM runner, R4–R6 remain unimplemented (R3 preparatory tools do exist). V3 HTML UI is a separate visual proposal, not an adopted Core baseline.
 
 ## R1 tooling status: provenance quarantine
 

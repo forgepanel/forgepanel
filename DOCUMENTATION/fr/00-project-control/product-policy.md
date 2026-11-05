@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-POLICY revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-00-POLICY revision=6 status=documented -->
 # Décisions produit du 5 novembre 2026 — gratuit, commercial et configurable
 
 [English](../../en/00-project-control/product-policy.md) · [Registre ADR](decisions.md) · [Configuration Engine](../02-architecture/configuration-engine.md)
@@ -54,6 +54,10 @@ Les nouveaux arbitrages précisent le choix d'une infrastructure de clés sécur
 ## Décisions Q81–Q90 confirmées
 
 ForgePanel proposera, **pour chaque site**, une WebStack expliquée selon application, PHP, OS, sécurité, isolation et listeners, avec changement ultérieur contrôlé : maintenance, notifications et test temporaire/bascule progressive **seulement si la topologie le permet**. Les autres choix couvrent PHP-FPM et extensions par site, ACME/DNS-01/wildcards, Git Deploy/staging, bases MariaDB/MySQL et PostgreSQL avec Redis/Valkey facultatifs, gestionnaire de fichiers/SFTP avec SSH limité, webmail/quarantaine, quotas hérités et clonage/restauration sécurisée. La règle Q55 d'une seule marque par organisation et le MFA administrateur facultatif restent inchangés. [Spécification Q81–Q90](decisions-q81-q90.md).
+
+## Décisions Q91–Q100 confirmées
+
+Le propriétaire a validé PHP maintenu avec alertes EOL et migrations par site (Q91), confinement PHP-FPM renforcé (Q92), Git Deploy manuel ou webhook validé (Q93), staging avec anonymisation/secrets/rétention/audit (Q94), ACME multi-autorités et pilotes DNS-01 (Q95), plusieurs moteurs SQL/cache par compte (Q96), SSH limité/expirable/audité selon plan (Q97), Webmail au choix selon fournisseur et domaine (Q98), grâce et rallonges de quotas autorisées (Q99), et migration/restauration inter-serveurs avec contrôle des données et reprise (Q100). Ces exigences **ne créent pas de nouveau service opérationnel**, ni de dépendance au Hub. [Décisions Q91–Q100](decisions-q91-q100.md).
 
 ## Questions encore ouvertes — ne pas présumer
 

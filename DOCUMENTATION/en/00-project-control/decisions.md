@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DECISIONS revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-00-DECISIONS revision=6 status=documented -->
 # Decision register
 
 [Français](../../fr/00-project-control/decisions.md) · [Project control](README.md)
@@ -72,6 +72,17 @@ Source IDs refer to the [baseline](../19-audits-risks/baseline.md). A decision a
 | ADR-057 | Protected email, webmail, quarantine, per-domain rules/reports (Q88 C) | SPF/DKIM/DMARC/TLS, antispam/AV and mailbox/domain authorization |
 | ADR-058 | Inherited hosting plans/quotas with alerts/usage (Q89 C) | Disk, domain, mailbox, DB, CPU/RAM/PHP/process constraints enforced |
 | ADR-059 | Selective restore, staging clone, controlled cross-environment recovery (Q90 D) | Scope, target backup, isolated URLs/secrets and real recovery tests |
+
+| ADR-060 | Maintained PHP, EOL notices and planned migrations (Q91 C) | Per-site PHP/extension inventory and alerts, separate panel PHP, nondestructive transition |
+| ADR-061 | Per-site PHP-FPM with stronger Linux confinement (Q92 D) | Separate pools/identities/quotas and verified SELinux/AppArmor/cgroups; pool alone insufficient |
+| ADR-062 | Manual or validated webhook Git Deploy per-site policy (Q93 C) | Webhook/ref checks, idempotency, RBAC and redacted logs |
+| ADR-063 | Private site-scoped staging, masking/secrets/retention/audit (Q94 D) | Suppress live email/webhooks, authorize copying and controlled expiry/purge |
+| ADR-064 | Multiple ACME CAs, DNS-01 and controlled renewal (Q95 C) | DNS adapters, domain ownership, wildcard, protected credentials and alerts |
+| ADR-065 | Multiple tenant data engines with separate rights/quotas (Q96 D) | MariaDB/MySQL, PostgreSQL and optional Redis/Valkey; separate Core SQL |
+| ADR-066 | Restricted SSH with keys, plan policy, expiry/revocation/audit (Q97 C) | Scoped Linux identities/paths, no implicit web terminal |
+| ADR-067 | Swappable Webmail per server/provider and domain policies (Q98 C) | Qualified engines, mailbox isolation, compatible Webmail/quarantine |
+| ADR-068 | Soft/hard quotas, grace and admin-approved extension (Q99 D) | Explicit permission, real hard limits, audit/expiry |
+| ADR-069 | Audited secure cross-server migration/restore (Q100 D) | OS/WebStack/PHP/DB preflight, encrypted transfer, staging, rotated secrets, recovery |
 
 ## Replaced or unresolved proposals
 

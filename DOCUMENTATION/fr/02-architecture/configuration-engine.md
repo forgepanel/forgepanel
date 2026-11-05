@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-CONFIG revision=5 status=specified -->
+<!-- forgepanel-doc id=FP-02-CONFIG revision=6 status=specified -->
 # Configuration Engine — spécification des réglages administrables
 
 [English](../../en/02-architecture/configuration-engine.md) · [Architecture](README.md) · [Politique produit](../00-project-control/product-policy.md)
@@ -61,6 +61,12 @@ Le registre de configuration devra afficher l'autorité du prestataire de clés 
 Proposer des clés typées/allowlistées : `site.webstack.profile`, `site.webstack.recommendation_revision`, `site.php.version`, `site.php.extensions`, `site.php.fpm_limits`, `site.tls.mode`, `site.tls.acme_challenge`, `site.deploy.git_ref`, `site.staging.policy`, `account.database.drivers`, `account.cache.drivers`, `account.ssh.access`, `mail.domain.filters`, `plan.quota.*` et `site.restore.scope`. Aucune valeur non autorisée ne peut contourner le plan/serveur. Les champs sont des exemples de contrat, non une API implémentée.
 
 Q82 exige pour un changement de WebStack : `PLAN → PREFLIGHT → SNAPSHOT → STAGE → TEMP_ROUTE_TEST (si disponible) → CUTOVER (progressif si sûr) → VERIFY → FINALIZE/RECOVER`. Les fenêtres de maintenance, notifications, interruptions possibles et limites de rollback sont affichées. Q90 exige le même contrôle avant restauration/clonage vers staging. [Cycle d'hébergement](website-lifecycle.md) et [Q81–Q90](../00-project-control/decisions-q81-q90.md).
+
+## Configurations Q91–Q100 et mécanismes sensibles
+
+Ajouter des schémas candidats : `site.php.support_policy` (versions maintenues, avis EOL, fenêtre de migration), `site.php.isolation_profile` (capacité Linux certifiée), `site.deploy.trigger_policy` (manuel/webhook signé, branches autorisées), `site.staging.data_policy` (redaction, SMTP/webhooks, secrets, rétention), `site.tls.issuer` et `site.tls.dns01_provider`, `account.data_services` (droits/quotas par moteur), `account.ssh.policy` (clés/révocation/expiration), `mail.domain.webmail_driver`, `plan.quota.grace_policy` (seuils et rallonge administrateur) et `site.migration.plan` (compatibilité source/cible). Toutes les données sensibles sont des références à des secrets protégés. Les overrides enfants ne lèvent pas de limites du serveur.
+
+Les opérations de migration inter-serveurs et de création de staging sont soumises à idempotence, verrous et plan/backup/test/commit ou compensation. **Q99 ne permet pas de contourner les limites physiques**. [Q91–Q100](../00-project-control/decisions-q91-q100.md) · [Cycle des sites](website-lifecycle.md).
 
 ## API cible et critères de validation
 

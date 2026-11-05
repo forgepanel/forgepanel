@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02 revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-02 revision=5 status=documented -->
 # Architecture du système
 
 [English](../../en/02-architecture/README.md) · [Index](../README.md)
@@ -44,5 +44,7 @@ Les nouvelles décisions Q63–Q69 sont détaillées dans [services et HA](servi
 Conformément à Q79, un [conseiller de WebStack par site](site-webstack-advisor.md) proposera des profils compatibles à la création et un changement ultérieur avec plan de transition, contrôle de `.htaccess`, des listeners et récupération. Q72 permettra l'adoption contrôlée de services préexistants sans écraser leur configuration ; Q77 prévoit l'extension progressive multi-serveurs vers HA. [Décisions Q71–Q80](../00-project-control/decisions-q71-q80.md).
 
 Le nouveau [cycle de vie des sites](website-lifecycle.md) précise Q81–Q90 : WebStack conseillée en tenant compte de l'isolation, des ressources et des listeners ; transition avec fenêtre de maintenance et route temporaire/bascule progressive **si faisable** ; PHP-FPM/extensions, TLS ACME, Git staging, moteurs SQL/cache, fichiers/SSH, webmail, quotas et clonage/restauration. Il reste spécifié et non opérationnel.
+
+Les choix Q91–Q100 ajoutent des [politiques PHP, staging, ACME, accès et quotas](php-staging-and-access-policy.md), ainsi qu'une [migration entre serveurs avec préflight et récupération](cross-server-migration.md). Ils complètent le [cycle de vie des sites](website-lifecycle.md), sans rendre les composants disponibles à l'exécution. Les administrateurs pourront choisir les versions PHP et le mode Git par site dans les limites des politiques et de l'isolation réellement vérifiée.
 
 [Décisions](../00-project-control/decisions.md) · [Contrats](../08-api-contracts/README.md) · [Sécurité](../10-security/README.md)

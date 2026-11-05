@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-09 revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-09 revision=3 status=documented -->
 # Base de données, transactions et migrations
 
 [English](../../en/09-database/README.md) · [Index](../README.md)
@@ -18,6 +18,10 @@ Un index unique partiel autorise un seul `initial_admin=true`. `PdoSetupReposito
 ## Services de données Q86/Q90 — cibles
 
 Les **bases clients MariaDB/MySQL et PostgreSQL** utiliseront des pilotes distincts et identités/quotas dédiés ; **Redis/Valkey** restent facultatifs pour le cache/queues. Ces ressources ne figurent pas dans le schéma actuel, limité au setup. Le clonage staging et la restauration sélective nécessitent snapshots cohérents, protection des secrets, autorisations tenant et contrôle avant écrasement. Le PostgreSQL du panneau reste séparé des DB clientes. [Cycle du site](../02-architecture/website-lifecycle.md).
+
+## Moteurs clients et migrations inter-serveurs (Q96, Q100)
+
+Un même compte d'hébergement pourra posséder des ressources **MariaDB/MySQL et PostgreSQL** distinctes, et des Redis/Valkey cache/queue facultatifs selon capacité, avec quota/permission/secret par moteur (Q96). Le PostgreSQL interne du panneau n'est **pas** mutualisé avec les bases clientes. Migration inter-serveurs Q100 : préflight versions et schémas, snapshot cohérent, transfert authentifié/chiffré, mapping de comptes SQL, secrets régénérés et restauration auditée. Aucun pilote DB client ou migrateur inter-serveurs n'existe dans le schéma prototype de setup. [Détails](../02-architecture/cross-server-migration.md).
 
 ## Migrations et responsabilités
 

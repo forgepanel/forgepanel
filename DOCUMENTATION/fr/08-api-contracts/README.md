@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08 revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-08 revision=5 status=documented -->
 # API et contrats
 
 [English](../../en/08-api-contracts/README.md) · [Index](../README.md)
@@ -32,6 +32,10 @@ Le contrat candidat `webstack.recommend(site_draft,server_facts,policy_revision)
 ## Contrats candidats d'hébergement Q81–Q90
 
 `site.webstack.recommend`, `site.webstack.planSwitch`, `site.php.planConfig`, `site.tls.issueOrImport`, `site.deploy.planGit`, `site.staging.clone`, `tenant.database.allocate`, `tenant.cache.provision`, `tenant.files.list/write`, `tenant.ssh.configure`, `mail.domain.rules`, `hosting.plan.effectiveQuotas`, `site.restore.plan`. Tous exigent identité, tenant/organisation, plan, capacités réelles, révision, idempotence et audit, sans root arbitraire. Aucun n'est opérationnel. [Cycle du site](../02-architecture/website-lifecycle.md).
+
+## Nouveaux contrats proposés Q91–Q100
+
+`php.catalog.supportedVersions`, `site.php.planMigration`, `site.isolation.capabilities`, `site.git.deployManual`, `site.git.acceptWebhook`, `site.staging.privacyPolicy`, `site.tls.listIssuers`, `site.tls.dns01Driver`, `tenant.data.engineQuota`, `tenant.ssh.rotateOrRevoke`, `mail.webmail.capabilities`, `hosting.quota.graceGrant` et `site.migration.planTransfer`. Identité, organisation, ressource, politique, version, idempotence et audit obligatoires ; signaux Git et commandes distantes ne sont pas des instructions shell. Les contrats sont des **candidats non implémentés**. [Q91–Q100](../00-project-control/decisions-q91-q100.md).
 
 ## Exigences du futur protocole
 

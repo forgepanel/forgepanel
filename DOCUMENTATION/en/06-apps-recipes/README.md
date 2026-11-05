@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-06 revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-06 revision=3 status=documented -->
 # Applications and installation recipes
 
 [Français](../../fr/06-apps-recipes/README.md) · [Index](../README.md)
@@ -18,6 +18,10 @@ Plan prerequisites and quota impact; stage immutable input; validate configurati
 ## Deployment and staging (Q83–Q85, Q90)
 
 Recipes must describe PHP/extensions, WebStack/TLS, files/SFTP/Git deployment, staging, code rollback **distinct from DB migrations**, selective clone/restore. Tenant identity, credentials, data and staging URLs stay isolated. Q85 C selects Git Deploy, preview, backup and controlled recovery, not automatically blue-green/canary pipelines. [Website lifecycle](../02-architecture/website-lifecycle.md).
+
+## Git triggers and private staging (Q91–Q94)
+
+A recipe declares maintained PHP versions/extensions and safe migration (Q91), per-site FPM constraints (Q92) and **manual, authenticated webhook or both** Git trigger according to site policy (Q93). Staging must constrain copied data, mask where required, use independent secrets, block live mail/webhooks and respect audit/retention (Q94). A webhook cannot run arbitrary root shell, and code rollback cannot undo arbitrary SQL migrations. [Policy](../02-architecture/php-staging-and-access-policy.md).
 
 ## Acceptance and observability
 

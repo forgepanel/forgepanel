@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-04 revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-04 revision=5 status=documented -->
 # Catalogue des modules natifs
 
 [English](../../en/04-modules/README.md) · [Index](../README.md)
@@ -28,6 +28,10 @@ L'installateur peut détecter/adopter des services présents après inventaire, 
 ## Nouveaux modules et capacités Q81–Q90
 
 Le périmètre d'hébergement prévoit : conseiller WebStack et changement sécurisé, PHP-FPM version/extensions/quotas **par site**, ACME et certificats importés, Git Deploy avec staging, pilotes MariaDB/MySQL et PostgreSQL, cache Redis/Valkey facultatif, gestionnaire de fichiers/SFTP/SSH limité, webmail et quarantaine par domaine, plans/quotas hérités, restauration sélective et clonage vers staging. Les capacités restent facultatives selon le serveur et le plan ; la souscription commerciale Hub n'est pas requise pour la sécurité de base. Les services actuels ne sont **pas implémentés**. [Architecture](../02-architecture/website-lifecycle.md).
+
+## Modules retenus dans Q91–Q100
+
+La gestion de sites visera : **catalogue PHP maintenu avec alertes EOL et migration** (Q91), **pools PHP-FPM isolés par site et profils Linux renforcés** (Q92), **Git Deploy manuel et webhook validé** (Q93), staging avec contrôle des données/secret/rétention (Q94), **ACME multi-CA/DNS-01** (Q95), moteurs SQL/cache multiples séparés par compte (Q96), SSH limité par plan avec révocation/expiration (Q97), webmail sélectionnable selon fournisseur (Q98), quotas avec alertes/grâce et rallonge autorisée (Q99), et migration entre serveurs avec staging/sauvegarde/récupération (Q100). Le Core n'inclut pas de terminal web par implicite et ne stocke pas les données de site dans Hub. [Décisions](../00-project-control/decisions-q91-q100.md).
 
 ## Contrat de cycle de vie
 

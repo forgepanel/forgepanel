@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08 revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-08 revision=5 status=documented -->
 # APIs and contracts
 
 [Français](../../fr/08-api-contracts/README.md) · [Index](../README.md)
@@ -32,6 +32,10 @@ Candidate `webstack.recommend(site_draft,server_facts,policy_revision)` returns 
 ## Candidate Q81–Q90 hosting contracts
 
 `site.webstack.recommend`, `site.webstack.planSwitch`, `site.php.planConfig`, `site.tls.issueOrImport`, `site.deploy.planGit`, `site.staging.clone`, `tenant.database.allocate`, `tenant.cache.provision`, `tenant.files.list/write`, `tenant.ssh.configure`, `mail.domain.rules`, `hosting.plan.effectiveQuotas`, `site.restore.plan`. All require identity, tenant/org, hosting plan, real capabilities, revision, idempotency and audit, no generic root shell. None is operational. [Website lifecycle](../02-architecture/website-lifecycle.md).
+
+## Proposed Q91–Q100 contracts
+
+`php.catalog.supportedVersions`, `site.php.planMigration`, `site.isolation.capabilities`, `site.git.deployManual`, `site.git.acceptWebhook`, `site.staging.privacyPolicy`, `site.tls.listIssuers`, `site.tls.dns01Driver`, `tenant.data.engineQuota`, `tenant.ssh.rotateOrRevoke`, `mail.webmail.capabilities`, `hosting.quota.graceGrant` and `site.migration.planTransfer`. Require identity, tenant, resource, policy, revision, idempotency and audit; Git notifications and remote operations never mean generic shell commands. These are **candidate interfaces only**. [Q91–Q100](../00-project-control/decisions-q91-q100.md).
 
 ## Future protocol requirements
 

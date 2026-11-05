@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=6 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=7 status=documented -->
 # Tests, quality and definition of done
 
 [Français](../../fr/13-tests-quality/README.md) · [Index](../README.md)
@@ -54,3 +54,7 @@ First test driver is **local QEMU/KVM** (Q151 A). A runner unable to launch a fu
 Acceptance criteria pass at the appropriate layer; denied operations and failure recovery are tested; data/API compatibility and rollback impacts are recorded; both documentation languages and changelog are updated; evidence is attached to the exact change; risks and missing checks are visible. Product publication additionally requires release gates and authorized promotion.
 
 A separate security review is needed before sensitive production functionality. This documentation task has an author self-review, not a second independent agent or external audit. Automated metadata equality cannot prove the translations say the same thing; manual semantic checking remains part of review.
+
+## Q151–Q160 qualification traceability
+
+The [positive/negative MVP test matrix](mvp-gates-q151-q160.md) defines **MVP-Q151-01 through MVP-Q160-01**, each initially **PLANNED**, with R3/R4/beta/Hub gates and evidence requirements. Priorities: genuine KVM VM, signed internal report, performance-only waiver with Q132 vetoes, HTTP-01 checks for published IP families, per-server reboot, isolated restore with key-access validation, public-key SFTP, separate consents, premium transfer risk, and signed bilingual/machine-structured advisories. The new Python test checks **case and language consistency only**, not running services.

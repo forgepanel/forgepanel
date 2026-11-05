@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-EXECUTION revision=6 status=specified -->
+<!-- forgepanel-doc id=FP-00-EXECUTION revision=7 status=specified -->
 # Technical implementation roadmap — Q120 D and Q119 B MVP
 
 [Français](../../fr/00-project-control/implementation-roadmap.md) · [Project status](status.md) · [Q111–Q120 decisions](decisions-q111-q120.md)
@@ -65,3 +65,7 @@ For every change: scoped `features/*` PR into `develop`, explicit acceptance and
 ## Current evidence
 
 Core source remains **unimported** from the separate v0.7 archive; optional-MFA v0.7.1 is also separate. Symfony/PG integration, live installer and hosting tests are not demonstrated by current repository documentation CI. This plan contains **no release date or actual deployment**.
+
+## Additional Q151–Q160 exit-test evidence
+
+[Per-gate R3/R4/R5/R6 MVP matrix](../13-tests-quality/mvp-gates-q151-q160.md) requires both positive **and negative** cases. KVM/signed internal report/performance-only Q153 gates at R3; published-IP DNS, per-server reboot, **accessible keys and actual isolated restoration**, site-scoped public-key SFTP at R4; consented cohort beta afterwards; Hub fraud review and signed human+machine advisory after R5 neutral ABI. **PLANNED: document checks do not execute VM or backups.**

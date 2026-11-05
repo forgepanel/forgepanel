@@ -4,6 +4,9 @@ One chronology, both languages. / Une chronologie, deux langues.
 
 ## Unreleased / Non publié
 
+### Quality / Qualité — Q151–Q160 MVP matrix
+- **Planned tests / Tests planifiés** — Added bilingual ten-case positive/negative MVP qualification matrix, evidence gates R3/R4/post-R4/R6, static decision parity regression tests and CI step; linked Core roadmap/QA. No actual VM, signed report, SFTP or isolated restore was executed. / Matrice bilingue de dix cas positifs/négatifs avec portes R3/R4/post-R4/R6, contrôle statique des décisions et CI, liens roadmap/QA. Aucune VM, preuve signée, connexion SFTP ni restauration isolée réelle n'a été exécutée.
+
 ### Added / Ajouts
 
 - **Project control / Pilotage** — Initialized the previously empty repository and the requested permanent branch references from README-only commit `26b7c773a0831c20e7f14bb86ef8c2697a19d523`; no deployment. / Initialisation du dépôt auparavant vide et des branches permanentes depuis le commit README seul `26b7c773a0831c20e7f14bb86ef8c2697a19d523` ; aucun déploiement.

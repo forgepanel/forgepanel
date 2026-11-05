@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=6 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=7 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
@@ -54,3 +54,7 @@ Le premier pilote d'essai est **QEMU/KVM local** (Q151 A). Un runner qui ne peut
 Les critères passent au bon niveau ; refus et récupération sont testés ; compatibilité données/API et rollback sont consignés ; les deux langues et le changelog sont actualisés ; les preuves correspondent exactement au changement ; risques et vérifications manquantes sont visibles. La publication ajoute ses propres critères et une promotion autorisée.
 
 Une revue de sécurité distincte est nécessaire avant les fonctions sensibles de production. Ce lot documentaire comporte une auto-revue de l'auteur, pas un second agent indépendant ni un audit externe. L'égalité des métadonnées ne prouve pas celle du sens ; la lecture sémantique bilingue reste nécessaire.
+
+## Traçabilité de qualification Q151–Q160
+
+La [matrice des tests positifs et négatifs](mvp-gates-q151-q160.md) définit les cas **MVP-Q151-01 à MVP-Q160-01**, avec statut initial **PLANNED**, jalon R3/R4/bêta/Hub et preuves exigées. Priorités : VM KVM réelle, rapport interne signé, exceptions performance sans contournement Q132, vérification HTTP-01 par familles IP publiées, reboot par serveur, restauration isolée avec contrôle des clés, SFTP à clés publiques, consentements distincts, risque premium et avis signés bilingues/structurés. Le nouveau test Python vérifie l'existence et la parité des cas, **pas l'exécution des services**.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00 revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-00 revision=2 status=documented -->
 # Pilotage du projet
 
 [English](../../en/00-project-control/README.md) · [Index](../README.md)
@@ -26,4 +26,4 @@ Il s'agit de responsabilités, pas de l'affirmation que des agents ou services d
 
 Chaque tâche identifie son périmètre et ses composants, fixe les critères d'acceptation, réalise un changement borné, le vérifie, actualise les deux langues et le changelog, puis indique branche/commit/PR et limites. Un test unitaire réussi n'est ni une release ni un déploiement.
 
-[État et roadmap](status.md) · [Arbitrages commerciaux et personnalisation](product-policy.md) · [Double licence et protection commerciale](license-commerce.md) · [Registre de décisions](decisions.md) · [Matrice de couverture](coverage.md) · [Audit](../19-audits-risks/README.md)
+[Décisions Q56–Q60](commerce-identity-release-policy.md) · [État et roadmap](status.md) · [Arbitrages commerciaux et personnalisation](product-policy.md) · [Double licence et protection commerciale](license-commerce.md) · [Registre de décisions](decisions.md) · [Matrice de couverture](coverage.md) · [Audit](../19-audits-risks/README.md)

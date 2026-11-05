@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DECISIONS revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-00-DECISIONS revision=2 status=documented -->
 # Decision register
 
 [Français](../../fr/00-project-control/decisions.md) · [Project control](README.md)
@@ -33,6 +33,12 @@ Source IDs refer to the [baseline](../19-audits-risks/baseline.md). A decision a
 
 | ADR-023 | Contributor policy (Q49 A) | **CLA** permitting dual licensing, with verified acceptance/evidence; legal text, entity and signing still open |
 | ADR-024 | Commercial protection of modules and subscriptions (owner clarification) | Access controls for independently licensable paid packages/services, no restriction of AGPL Core freedoms; Hub/plugin coupling requires legal review |
+
+| ADR-025 | Multiple independent payment providers (Q56 C) | Hub provider adapters; no vendor or credentials selected; authenticated/idempotent payment callbacks |
+| ADR-026 | Stable, Beta, Dev channels (Q57 C) | Progressive rollout, signatures, compatibility checks and recovery; automatic update policy still open |
+| ADR-027 | Local accounts plus optional SSO/OIDC (Q58 C) | Retain local authentication/recovery; external identity scoped and permissioned, MFA still optional |
+| ADR-028 | Per-category configurable retention (Q59 C) | Durations configurable within legal/security bounds; no exact periods yet |
+| ADR-029 | Perpetual purchases, subscriptions, trials/coupons/bundles/add-ons (Q60 C) | Hub commercial model; server-verified events grant rights, not browser redirects |
 
 ## Replaced or unresolved proposals
 

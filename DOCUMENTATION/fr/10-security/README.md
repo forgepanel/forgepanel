@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=2 status=documented -->
 # Modèle de sécurité et signalement
 
 [English](../../en/10-security/README.md) · [Index](../README.md)
@@ -24,6 +24,10 @@ Le MFA administrateur est **facultatif**, pas une condition de création du prem
 ## Hub, communication et licences commerciales
 
 Conformément à Q6, l'enregistrement Hub est volontaire, les vérifications premium, la recherche de versions, les diagnostics/support et les communications marketing ont des consentements ou bases de traitement distincts. Aucune collecte par défaut de fichiers, emails, bases ou secrets. Selon Q7, la durée hors ligne commerciale est de **60 jours** pour les droits premium éligibles déjà vérifiés, sous réserve des dates contractuelles ; un refus ou une révocation doit être explicite et non destructif pour l'hébergement de base. Voir la [politique produit](../00-project-control/product-policy.md).
+
+## Identité, paiements et conservation (Q56, Q58, Q59)
+
+Les prestataires de paiement sont des pilotes Hub indépendants : webhooks authentifiés et dédoublonnés, jamais de droit accordé par la seule redirection navigateur. L'authentification SSO/OIDC est **facultative**, avec récupération locale sécurisée ; MFA administrateur facultatif. Les rétentions par catégorie restent contraintes par la loi, les audits et les sauvegardes. Ces composants ne sont pas opérationnels.
 
 ## Critères minimaux de livraison
 

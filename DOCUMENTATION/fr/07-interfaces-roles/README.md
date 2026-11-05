@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-07 revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-07 revision=2 status=documented -->
 # Portails, identités et autorisations
 
 [English](../../en/07-interfaces-roles/README.md) · [Index](../README.md)
@@ -20,5 +20,7 @@ Le cookie de setup est configuré `__Host-FORGE_ADMIN`, Secure, HttpOnly, SameSi
 Vérifier refus client-vers-admin, accès inter-comptes, périmètre revendeur, API directe sans UI, autorisations périmées/révoquées, rotation de session, déconnexion, CSRF, limites d'essais et rejeu des codes de secours. Auditer acteur et périmètre effectif sans identifiants secrets. Les guides revendeur/client restent futurs tant que ces parcours n'existent pas.
 
 Le white-label Q5 ajoute une identité visuelle, des thèmes, des domaines HTTPS et des emails/templates par organisation ou revendeur. Les permissions de personnalisation ne donnent jamais accès aux fichiers/clients d'autrui, et l'héritage est défini dans le [Configuration Engine](../02-architecture/configuration-engine.md). Non disponible aujourd'hui.
+
+Q58 C conserve les **comptes locaux** et propose un **SSO/OIDC facultatif**. Les identités, groupes et claims ne deviennent pas automatiquement des rôles administrateur. Liaison d'identité, validation des jetons, isolation par organisation et récupération locale exigent des tests. MFA administrateur **facultatif**. Voir [Q56–Q60](../00-project-control/commerce-identity-release-policy.md).
 
 [Sécurité](../10-security/README.md) · [Core du setup](../03-core/README.md) · [Design system](../11-design-system/README.md)

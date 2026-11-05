@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=2 status=documented -->
 # Installation, Git promotion and releases
 
 [Français](../../fr/14-devops-releases/README.md) · [Index](../README.md)
@@ -18,6 +18,10 @@ Signature verification in the prototype does not establish a production trust ro
 ## Sensitive configuration apply (Q47)
 
 The installer and service controllers must show impact plans, validate prerequisites and signatures, preserve relevant state, apply under locks, verify health and document recovery/compensation. Preserve a safe admin path when changing ports or firewall. Irreversible operations require explicit disclosure before confirmation. See [Configuration Engine](../02-architecture/configuration-engine.md).
+
+## Channels and progressive rollouts (Q57)
+
+The target provides **Stable, Beta, Dev**, pilot cohorts, progressive rollout, verified artifacts and controlled recovery. Hub may publish metadata; local Core authorizes updates. Code rollback alone cannot undo an irreversible database migration. Automation defaults remain open; no real update engine is implemented. See [Q56–Q60](../00-project-control/commerce-identity-release-policy.md).
 
 ## Release evidence
 

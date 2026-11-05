@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-07 revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-07 revision=2 status=documented -->
 # Portals, identities and authorization
 
 [Français](../../fr/07-interfaces-roles/README.md) · [Index](../README.md)
@@ -20,5 +20,7 @@ The setup cookie is configured as `__Host-FORGE_ADMIN`, Secure, HttpOnly, SameSi
 Verify customer-to-admin denial, cross-account object access, reseller scope, direct API access without UI, stale/revoked authorization, session rotation, logout, CSRF, rate limits and recovery-code replay. Record actor and effective scope in audit without logging credentials. Reseller/user guides must remain marked future until these flows exist.
 
 Q5 adds organization/reseller white-label themes, HTTPS domains, logos and email templates. Branding permissions never grant cross-tenant file or customer access. The [Configuration Engine](../02-architecture/configuration-engine.md) defines inheritance; no runtime exists yet.
+
+Q58 C retains **local accounts** with **optional SSO/OIDC**. Identity-provider groups and claims cannot automatically grant administrator roles. Test token validation, account linking, organization scope and local recovery. Administrator MFA stays **optional**. See [Q56–Q60](../00-project-control/commerce-identity-release-policy.md).
 
 [Security](../10-security/README.md) · [Setup core](../03-core/README.md) · [Design system](../11-design-system/README.md)

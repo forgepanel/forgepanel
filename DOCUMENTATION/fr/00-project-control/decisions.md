@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DECISIONS revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-00-DECISIONS revision=2 status=documented -->
 # Registre de décisions
 
 [English](../../en/00-project-control/decisions.md) · [Pilotage](README.md)
@@ -33,6 +33,12 @@ Les identifiants sources renvoient à l'[état initial](../19-audits-risks/basel
 
 | ADR-023 | Accord de contribution (Q49 A) | **CLA** autorisant la double licence, avec vérification et conservation des preuves ; texte juridique/entité/signature encore à décider |
 | ADR-024 | Protection commerciale des modules et abonnements (précision propriétaire) | Droits et contrôles de paiement sur services/modules premium indépendants, jamais restriction additionnelle des libertés du Core AGPL ; revue juridique du couplage Hub/plugins |
+
+| ADR-025 | Paiement multi-prestataires (Q56 C) | Pilotes indépendants côté Hub ; aucun prestataire ni secret choisi ; achats validés par callbacks authentifiés et dédoublonnés |
+| ADR-026 | Canaux Stable, Beta, Dev (Q57 C) | Déploiements progressifs, signature, contrôles de compatibilité et récupération ; politique d'auto-update encore ouverte |
+| ADR-027 | Comptes locaux et SSO/OIDC facultatif (Q58 C) | Authentification locale et récupération conservées ; identités externes permissionnées, MFA toujours facultatif |
+| ADR-028 | Rétentions par catégorie (Q59 C) | Durées configurables dans les limites de sécurité et légales ; périodes exactes à définir |
+| ADR-029 | Achat définitif + abonnements + essais/coupons/packs/options (Q60 C) | Modèle commercial Hub ; droits issus d'événements de paiement vérifiés, pas d'une redirection navigateur |
 
 ## Propositions remplacées ou non résolues
 

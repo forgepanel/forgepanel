@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-CONFIG revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-02-CONFIG revision=2 status=specified -->
 # Configuration Engine — spécification des réglages administrables
 
 [English](../../en/02-architecture/configuration-engine.md) · [Architecture](README.md) · [Politique produit](../00-project-control/product-policy.md)
@@ -43,6 +43,10 @@ Les réglages de performance ne doivent pas exposer des variables arbitraires pe
 8. `RECOVER` — si échec, restaurer ce qui est réversible et proposer une compensation explicite pour les effets non réversibles.
 
 Les changements purement visuels peuvent s'appliquer immédiatement. Une modification de ports, firewall, WebStack, droits ou de storage exige au minimum PLAN/PREFLIGHT/SNAPSHOT/APPLY/VERIFY. Préserver un accès d'administration de secours lors des modifications réseau ; aucune garantie de rollback global d'une suppression de base/installation de paquet.
+
+## Nouveaux réglages Q56–Q60
+
+Le Core propose une politique de canaux **Stable/Beta/Dev**, avec contrôle d'accès et compatibilité (Q57) ; comptes locaux et SSO/OIDC facultatif avec MFA administrateur optionnel (Q58) ; conservation par catégorie et plafonds légaux/de sécurité (Q59). Prestataires de paiement et offres achat définitif/abonnements/essais/coupons/packs/options relèvent du **Hub**, pas du Core (Q56/Q60). Tous ces réglages restent à implémenter. [Spécification](../00-project-control/commerce-identity-release-policy.md).
 
 ## API cible et critères de validation
 

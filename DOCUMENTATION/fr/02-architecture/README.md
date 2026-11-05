@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02 revision=6 status=documented -->
+<!-- forgepanel-doc id=FP-02 revision=7 status=documented -->
 # Architecture du système
 
 [English](../../en/02-architecture/README.md) · [Index](../README.md)
@@ -48,5 +48,7 @@ Le nouveau [cycle de vie des sites](website-lifecycle.md) précise Q81–Q90 : W
 Les choix Q91–Q100 ajoutent des [politiques PHP, staging, ACME, accès et quotas](php-staging-and-access-policy.md), ainsi qu'une [migration entre serveurs avec préflight et récupération](cross-server-migration.md). Ils complètent le [cycle de vie des sites](website-lifecycle.md), sans rendre les composants disponibles à l'exécution. Les administrateurs pourront choisir les versions PHP et le mode Git par site dans les limites des politiques et de l'isolation réellement vérifiée.
 
 Les nouveaux [contrats de continuité Q101–Q110](runtime-exceptions-and-data-continuity.md) détaillent exceptions PHP temporaires, confinement Linux qualifié, politiques Git par environnement, staging sensible, ACME multi-CA, bases mutualisées/dédiées avec réplication facultative, SSH temporaire, Webmail recommandé, grâce de quotas et pré-synchronisation/bascule conditionnelle. La cible est **spécifiée seulement**, les disponibilités restent à prouver sur chaque OS et profil. [Registre](../00-project-control/decisions-q101-q110.md).
+
+La cible Q141–Q147 est détaillée dans [pilotes VM, budgets de performance, sécurité des backups et SFTP](certification-backup-security.md). Les preuves par OS/WebStack ne peuvent pas être remplacées par des tests conteneur. L'assistant de DNS externe suggère/revérifie, sans correction automatique. Les mises à jour OS restent **par serveur** au MVP, le KMS de backup est facultatif, et les seuils de suspension bêta sont configurables. [Q141–Q150](../00-project-control/decisions-q141-q150.md). Il s'agit de spécifications, non de composants en service.
 
 [Décisions](../00-project-control/decisions.md) · [Contrats](../08-api-contracts/README.md) · [Sécurité](../10-security/README.md)

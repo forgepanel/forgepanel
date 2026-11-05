@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-EXECUTION revision=4 status=specified -->
+<!-- forgepanel-doc id=FP-00-EXECUTION revision=5 status=specified -->
 # Technical implementation roadmap — Q120 D and Q119 B MVP
 
 [Français](../../fr/00-project-control/implementation-roadmap.md) · [Project status](status.md) · [Q111–Q120 decisions](decisions-q111-q120.md)
@@ -34,6 +34,15 @@ This order **rules out commercial Hub or marketplace being a prerequisite for a 
 - **After R5/Hub, Q138 D**: premium transfers with cryptographic proof, fraud controls and **configurable independent approval** for high-risk lost-host recovery. **Q139 C**: partner severity, alerts, escalation and withdrawal under Q129 contracts. **Q140 C**: Q130 lead/deputy coordinate fixes/security notices and customer communications; verify Q118 reporting.
 
 Q131–Q140 do not preselect OS/stack, authorize beta launch or permit data deletion on beta access suspension. [Updated MVP matrix](mvp-qualification.md) · [Decisions](decisions-q131-q140.md). **Implementation and real testing remain pending.**
+
+## Q141–Q150 — evidence and responsibility refinements
+
+- **R3, Q141 D:** **local/cloud full VM** adapters, qualified CI runners, snapshots/fault injection and shared OS/stack/commit reports; fixtures and `SKIP` never establish certification. **Q142 D:** application-class configurable performance budgets and cross-version regressions, with Q132 security disqualifiers ahead of speed.
+- **R4, Q143 C:** suggest **external DNS records** and recheck A/AAAA/80/HTTP-01/443/TLS **without automatic DNS edits**. **Q144 D:** **per-server** planned/backup/health/recovery OS update policy; later multi-server orchestration. **Q145 D:** encrypted local backups with usable off-host recovery keys, vault/protected copy, **optional** external KMS and multi-authority custodians. **Q146 C:** real shell-disabled SFTP with expiry/revocation, quotas, audit and cross-tenant/path-traversal denials.
+- **After R4, Q147 C:** private beta Q137 cohorts with **configurable health/stop gates**, pause new waves on critical issues, notification and recovery; never mandatory Core telemetry or destructive access suspension.
+- **Hub R6 after R5, Q148 C:** installation identity keys, signed fresh challenge, key rotation/anti-replay, organization binding and manual lost-host route, preserving **risk-based extra approval Q138**. **Q149 C:** partner severity/contract deadlines, alert/escalation/withdrawal. **Q150 D:** signed historical advisories, configurable notices, partner-coordinated **risk-based disclosure windows**, no invented SLA/timing.
+
+**First OS/WebStack awaits Q121/Q122 evidence; none of these services is operational.** [Q141–Q150 decisions](decisions-q141-q150.md) · [MVP matrix](mvp-qualification.md).
 
 ## Cross-cutting release gates
 

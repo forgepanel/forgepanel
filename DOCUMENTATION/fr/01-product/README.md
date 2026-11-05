@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-01 revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-01 revision=5 status=documented -->
 # Périmètre produit et parcours
 
 [English](../../en/01-product/README.md) · [Index](../README.md)
@@ -31,6 +31,10 @@ La cible prévoit un site personnalisable : **WebStack recommandée par site, mo
 ## Premier site PHP/HTTPS et bêta privée — Q121–Q127
 
 La première expérience fonctionnelle cible **un site PHP avec domaine sous DNS externe et HTTPS ACME HTTP-01**, sans exiger de DNS natif. Les premiers OS et profil WebStack seront **choisis après comparaison des tests VM**, pas définis par défaut. Elle inclut administration locale + rôle gestionnaire de site, diagnostic VPS et mises à jour OS **contrôlées**, sauvegarde du panneau et des fichiers du site **avec restauration testée**. Une bêta privée ne suit qu'après tests internes et vérification des conditions de distribution et du signalement de sécurité. Tous ces parcours sont **à construire**. [MVP](../00-project-control/mvp-qualification.md).
+
+## Qualification et protection du MVP Q141–Q147
+
+Le premier site PHP/HTTPS sera qualifié par **VM locales/cloud et rapports CI communs**, avec charge/performance par classe d'application, sécurité et régressions de versions (Q141/Q142). Le parcours de domaine à **DNS externe** propose les enregistrements attendus puis revérifie A/AAAA/80/HTTP-01/HTTPS sans modification automatique (Q143). Mises à jour OS contrôlées **par serveur** (Q144), backup **chiffré local avec clé récupérable** et destination distante facultative, KMS externe/multi-autorités seulement en option (Q145), SFTP sans shell/expiration/quotas/audit (Q146). Après tests internes, bêta privée avec critères de santé configurables, suspension des vagues et récupération (Q147). Les fonctions commerciales Q148–Q150 restent après ABI Hub. [Décisions Q141–Q150](../00-project-control/decisions-q141-q150.md). **Non livré aujourd'hui.**
 
 ## Maîtrise du périmètre
 

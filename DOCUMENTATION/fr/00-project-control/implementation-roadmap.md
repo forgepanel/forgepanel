@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-EXECUTION revision=4 status=specified -->
+<!-- forgepanel-doc id=FP-00-EXECUTION revision=5 status=specified -->
 # Roadmap technique de réalisation — décision Q120 D et MVP Q119 B
 
 [English](../../en/00-project-control/implementation-roadmap.md) · [État officiel](status.md) · [Décisions Q111–Q120](decisions-q111-q120.md)
@@ -34,6 +34,15 @@ Cette séquence **remplace les priorités implicites** qui laisseraient les modu
 - **Après R5/Hub, Q138 D** : transferts commerciaux avec preuve cryptographique, anti-abus, **deuxième validation configurable** lors de la récupération risquée d'un serveur perdu. **Q139 C** : partenaires sous contrats Q129 avec gravité, alertes, escalade et retrait. **Q140 C** : responsable + suppléant Q130 et communication coordonnée des correctifs/avis ; canaux Q118 vérifiés.
 
 Les choix Q131–Q140 n'autorisent ni défaut d'OS/WebStack, ni bêta ouverte, ni suppression des données lors de la suspension d'un accès. [Matrice de qualification mise à jour](mvp-qualification.md) · [Décisions](decisions-q131-q140.md). **Tout est encore à réaliser et à vérifier.**
+
+## Précisions Q141–Q150 — preuves et frontières
+
+- **R3, Q141 D** : pilotes VM **local/cloud**, runners CI compatibles, snapshots/injection de pannes et rapports de certification OS/stack/commit structurés identiquement ; ne pas qualifier les VM avec des fixtures ou des jobs `SKIP`. **Q142 D** : classer les applications et définir budgets de performance configurables, comparer les régressions entre versions et appliquer les veto de sécurité Q132 avant tout score.
+- **R4, Q143 C** : proposer **les enregistrements DNS externes** du site et permettre revérification A/AAAA/80/HTTP-01/443/TLS **sans correction automatique DNS**. **Q144 D** : politiques de mise à jour OS **par serveur** avec plan/backup/santé/reprise, orchestration multi-serveurs ultérieure. **Q145 D** : backups chiffrés locaux + clés de récupération accessibles après perte du serveur, coffre, copie de secours protégée, KMS externe et récupération multi-autorité **facultatifs**. **Q146 C** : SFTP réel sans shell, expiration/révocation, quotas et audit, refus de traversée et d'accès inter-tenants.
+- **Après R4, Q147 C** : cohortes de bêta Q137, **contrôles de santé et seuils configurables**, arrêt des nouvelles vagues sur incident grave, notification et récupération, sans télémétrie obligatoire du Core gratuit ni destruction de données/droits.
+- **R6 Hub après R5, Q148 C** : clés d'identité installation, challenge signé, rotation/anti-rejeu, contrôle organisation et secours manuel serveur perdu, avec approbation additionnelle **selon risque Q138**. **Q149 C** : sévérité et délais **contractuels** partenaires, alertes/escalade/retrait. **Q150 D** : avis signés et historisés, notifications configurables, coordination partenaire et **calendrier de divulgation selon le risque**, sans SLA ni délai inventés.
+
+**Le premier OS/WebStack reste à choisir par preuves Q121/Q122 ; aucun composant de cette liste n'est déclaré opérationnel.** [Décisions Q141–Q150](decisions-q141-q150.md) · [Matrice MVP](mvp-qualification.md).
 
 ## Contrôles transversaux et diffusion publique
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=10 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=11 status=documented -->
 # Modèle de sécurité et signalement
 
 [English](../../en/10-security/README.md) · [Index](../README.md)
@@ -66,6 +66,10 @@ Q130 C exige un **responsable sécurité identifié et un suppléant**, autoris�
 ## Bêta privée et communication des vulnérabilités — Q137/Q140
 
 La bêta Q137 D utilisera **invitations et conditions acceptées, diffusion par vagues, canal de bugs/versions privé, suspension des accès et récupération documentée**. Suspendre une invitation ou un canal de mises à jour n'autorise ni suppression de données ni retrait automatique des libertés de copies AGPL déjà remises. Q140 C exige, avant une bêta externe, **un responsable et son suppléant effectivement désignés**, triage par gravité, correctifs suivis, avis de sécurité et notifications clients coordonnées, avec les **deux canaux Q118 (GitHub privé + email dédié) testés**. Ces conditions sont spécifiées, **pas installées/configurées**. [Q131–Q140](../00-project-control/decisions-q131-q140.md).
+
+## Protection des accès et avis — Q145–Q150
+
+**Q145 D** : séparer clés/archives de sauvegarde et garder copie de récupération protégée **hors panne commune** ; coffre sécurisé, plusieurs gardiens de récupération selon politique et **KMS externe facultatif**. La perte de toutes les clés doit apparaître comme un risque irréversible, non dissimulé. **Q146 C** : SFTP limité aux sites, sans shell, quotas appliqués et expiration/révocation auditée ; tester symlink et traversée de chemins. **Q147 C** : si une bêta présente un incident critique ou dépasse les seuils de santé configurés, **suspendre les nouvelles vagues** et proposer récupération sans supprimer les données clients ou les droits déjà acquis. **Q148 C** : futur transfert premium par challenge signé, rotation/anti-rejeu et vérification d'organisation, avec secours manuel et approbation conditionnelle Q138. **Q149 C/Q150 D** : obligations partenaires et délais par gravité/contrat, avis de sécurité **signés** et divulgation **coordonnée selon le risque** ; responsable/suppléant et canaux Q118 doivent réellement être assignés/vérifiés. [Décisions](../00-project-control/decisions-q141-q150.md).
 
 ## Signalement et revue
 

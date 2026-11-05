@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-01 revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-01 revision=5 status=documented -->
 # Product scope and journeys
 
 [Français](../../fr/01-product/README.md) · [Index](../README.md)
@@ -31,6 +31,10 @@ The target site can have a **per-site recommended WebStack and later controlled 
 ## First PHP/HTTPS website and private beta — Q121–Q127
 
 The first functional experience targets **one PHP site with an externally managed DNS domain and ACME HTTP-01 HTTPS**, without requiring native DNS. First OS and WebStack are **chosen after comparative VM testing**, never assumed defaults. Include local admin and website-manager roles, VPS diagnostics with **controlled OS updates**, backed-up panel/site files and **tested restores**. Private beta follows only after isolated internal tests and verified distribution/security reporting prerequisites. None of these journeys is **implemented**. [MVP](../00-project-control/mvp-qualification.md).
+
+## Q141–Q147 MVP qualification and safeguards
+
+The first PHP/HTTPS site will require **local/cloud VMs with common CI reports**, app-class performance/security tests and cross-release regression checks (Q141/Q142). With **external DNS**, the advisor suggests records and rechecks A/AAAA/80/HTTP-01/HTTPS without automatic provider edits (Q143). Planned **per-server** OS updates (Q144), **encrypted local** backup with recoverable keys and optional remote destination plus optional external KMS/multiple recovery custodians (Q145), shell-disabled SFTP with expiry/quota/audit (Q146). After internal tests, private beta may pause waves on configurable health gates and recover (Q147). Hub commerce Q148–Q150 follows neutral ABI. [Q141–Q150](../00-project-control/decisions-q141-q150.md). **Not shipped.**
 
 ## Scope discipline
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DECISIONS revision=10 status=documented -->
+<!-- forgepanel-doc id=FP-00-DECISIONS revision=11 status=documented -->
 # Decision register
 
 [Français](../../fr/00-project-control/decisions.md) · [Project control](README.md)
@@ -127,6 +127,17 @@ Source IDs refer to the [baseline](../19-audits-risks/baseline.md). A decision a
 | ADR-107 | Premium transfer with crypto evidence and risk-based second approval (Q138 D) | Fraud controls, audit, lost-host recovery, Hub after ABI |
 | ADR-108 | Partner severity, automated alerts, escalation and withdrawal (Q139 C) | Q114/Q129 per-release manual review and contracts |
 | ADR-109 | Vulnerability triage, fixes, advisories/coordinated customer notices (Q140 C) | Real lead/deputy and verified private channels Q118/Q130 |
+
+| ADR-110 | Local/cloud VM adapters and CI common reports (Q141 D) | Full VMs, snapshots, failures, OS evidence, SKIP ≠ PASS |
+| ADR-111 | Per-app performance budgets and cross-version regressions (Q142 D) | Comparable measurements, configurable limits; Q132 safety/recovery veto |
+| ADR-112 | DNS wizard proposes records and rechecks (Q143 C) | A/AAAA, 80/HTTP-01 and 443/TLS, **no automatic provider edits** |
+| ADR-113 | Per-server OS update policy, multi-server orchestration later (Q144 D) | Impact plan, backup, health/recovery, permissions and audit |
+| ADR-114 | Backup vault/recovery keys, optional external KMS/multiple custodians (Q145 D) | Encrypted recoverable local backup, protected off-failure key copy, autonomous Core |
+| ADR-115 | Shell-disabled SFTP with expiry/revocation, quotas and audit (Q146 C) | Scoped site/account roots and denied cross-tenant paths |
+| ADR-116 | Beta waves with health thresholds and pause/recovery (Q147 C) | No data deletion, Q6 consented telemetry; Core independent of Hub |
+| ADR-117 | Premium server identity keys/challenge, anti-replay/org/lost-host route (Q148 C) | Hub after ABI; Q138 risk-based second approval remains |
+| ADR-118 | Partner severity, contractual deadlines, alerts/escalation/withdrawal (Q149 C) | Human per-version review; no invented numeric SLA |
+| ADR-119 | Signed historical security notices, coordinated risk-based disclosure (Q150 D) | Verified lead/deputy and channels; no automatic exploit publishing |
 
 ## Replaced or unresolved proposals
 

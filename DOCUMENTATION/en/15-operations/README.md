@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-15 revision=9 status=documented -->
+<!-- forgepanel-doc id=FP-15 revision=10 status=documented -->
 # Operations, diagnosis and recovery
 
 [Français](../../fr/15-operations/README.md) · [Index](../README.md)
@@ -48,6 +48,10 @@ First release observes services, metrics and logs read-only, then offers **contr
 ## Q133–Q135 operations — diagnostics, OS updates and first backup
 
 The website pilot checks **DNS A/AAAA, port 80, HTTP-01 routing and HTTPS**, reporting actionable failures without ACME secrets. OS upgrades follow **maintenance window → impact plan → backup and authorization → bounded apply → panel/site health → recovery**, never arbitrary shell input. MVP backup is **encrypted local**, with an **optional remote destination**, covering panel config/PHP files and restore tests, plus coherent recovery of necessary panel PostgreSQL state. Advanced 3-2-1/immutability remains planned but is not an MVP gate. [Matrix](../00-project-control/mvp-qualification.md).
+
+## Q141–Q147 operations: VM, updates, keys and beta
+
+Gather **local/cloud VM** qualification through a common report (Q141), compare **per-app/release performance budgets** and regressions (Q142), suggest external DNS corrections and **recheck** after operator action (Q143) without automatic zone changes. **Per-server** OS update policies cover windows, trusted sources, impact, backup, health and recovery, with multi-server rollout later (Q144). MVP backup remains **encrypted local**, remote optional, but keys must survive a server loss through protected vault/recovery copy with optional KMS/multiple custodians (Q145). Shell-disabled SFTP with expiry/revocation, quotas and audit (Q146). Private beta uses **configurable health gates**, wave pause and recovery (Q147). Actual systems/evidence are still required. [Q141–Q150](../00-project-control/decisions-q141-q150.md).
 
 ## Backup and restoration requirements
 

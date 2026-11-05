@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=10 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=11 status=documented -->
 # Security model and disclosure
 
 [Français](../../fr/10-security/README.md) · [Index](../README.md)
@@ -66,6 +66,10 @@ Q130 C requires an **appointed security lead and deputy** with authorized vulner
 ## Private beta and vulnerability communication — Q137/Q140
 
 Q137 D requires **invited testers, accepted terms, staged waves, a private bugs/releases channel, access suspension and documented recovery**. Pausing beta invites/updates cannot automatically delete users' data or extinguish AGPL rights already granted to recipients. Q140 C requires an **actually appointed security lead/deputy**, severity triage, tracked fixes, advisories and coordinated customer notices, with **both Q118 reporting routes (GitHub private + verified dedicated email) tested** before external beta. These gates are **specified, not configured or operational**. [Q131–Q140](../00-project-control/decisions-q131-q140.md).
+
+## Access, recovery keys and advisories — Q145–Q150
+
+**Q145 D**: separate backup keys/archive and keep an **off-failure-domain protected recovery copy**, vault and policy-scoped multiple custodians, with **optional external KMS**. Loss of all keys is a material irreversible risk, not a recoverable promise. **Q146 C**: site-scoped shell-disabled SFTP, enforced quotas, audited expiry/revocation; test symlinks/traversal. **Q147 C**: critical beta incidents/configured health thresholds **pause new waves** and trigger recovery, not hosted data erasure or revocation of previously granted software rights. **Q148 C**: future signed challenge with key rotation/anti-replay, org verification and manual lost-host recovery, preserving Q138 conditional approval. **Q149 C/Q150 D**: severity/contract partner duties and **signed** advisories with **risk-coordinated** disclosure, requiring actually appointed lead/deputy and verified Q118 contacts. [Decisions](../00-project-control/decisions-q141-q150.md).
 
 ## Reporting and review
 

@@ -12,6 +12,8 @@ Do not disclose secrets, customer data or actionable exploit details in a public
 
 For non-sensitive reports, give the affected commit/component, expected behavior, sanitized reproduction and impact. Avoid real credentials and production endpoints. Coordinate remediation privately before publishing a security advisory. The Q130 policy also calls for an **appointed security lead and deputy**, permissioned triage, escalation and coordinated notices. **Neither person nor the two private reporting channels is verified as operational today.** For Q127 private beta, review rights/conditions for every external recipient and verify the security routes **before** granting tester access. See [Q121–Q130](DOCUMENTATION/en/00-project-control/decisions-q121-q130.md).
 
+Q150 further selects **signed, versioned security advisories with configurable notification**, coordinated with verified partners and a **risk-based disclosure timeline**. Publication authority remains an **actually appointed security lead and deputy** under Q130/Q140, with verified private GitHub reporting and a dedicated mailbox under Q118. **No advisory signing service, security contact, notification service, disclosure timetable or production response process is operational yet**; do not silently invent dates or expose private exploit payloads. [Q141–Q150 decisions](DOCUMENTATION/en/00-project-control/decisions-q141-q150.md).
+
 No response SLA is promised before a maintained release and reporting process exist.
 
 Keep deployment secrets, private signing keys, billing/license credentials and customer information outside the public project. Access to this private repository is not authorization to publish it or deploy its contents.

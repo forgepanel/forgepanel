@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=10 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=11 status=documented -->
 # Status and dependency-ordered roadmap
 
 [Français](../../fr/00-project-control/status.md) · [Project control](README.md)
@@ -57,5 +57,7 @@ The owner has confirmed **Q71–Q80**: protected key rotation, controlled servic
 **Q121–Q130 confirmed (2026-11-05)**: first OS/WebStack **after comparative VM/security testing** (neither selected), external DNS with ACME **HTTP-01**, local administrator and site-manager roles, VPS observation plus controlled OS package upgrades, actual panel-config/PHP-file backup/restore, internal tests then **authorized private beta** after prerequisites, premium self-service transfers with manual lost-server recovery, contractual partner maintenance/alerts/withdrawal and security lead+deputy/triage. [Q121–Q130 decisions](decisions-q121-q130.md) · [MVP qualification](mvp-qualification.md). **Specified only; no running VM/product delivered.**
 
 **Q131–Q140 confirmed (2026-11-05)**: local/CI VM qualification with snapshots, failures and per-OS reports; WebStack load, maintenance, recovery and disqualifying criteria; A/AAAA/80/HTTP-01/HTTPS checks; planned OS upgrades with impact/backup/health/recovery; encrypted local MVP backup with optional remote; site-manager scoped PHP/domains/TLS/files/SFTP/backup; private beta by waves/suspension/recovery; high-risk premium transfer dual approval; automated partner alerts/escalation/withdrawal; coordinated security notices. [Decisions](decisions-q131-q140.md) · [MVP qualification](mvp-qualification.md). **Everything remains to be implemented and tested.**
+
+**Q141–Q150 confirmed (2026-11-05)**: **local/cloud** full VM drivers, compatible CI and common reports; **per-app-class** performance budgets and version regression tests; wizard suggesting external DNS records then rechecking A/AAAA/80/HTTP-01/HTTPS (**no auto-edit**); per-server OS update policy with later multi-server coordination; vault/off-failure backup recovery with optional external KMS/multiple custodians; shell-disabled, expiring/revocable/quota-audited SFTP; private beta health-based pause/recovery; later Hub cryptographic possession/org proof, severity/contract-driven partner action and signed coordinated risk-based security advisories. [Q141–Q150](decisions-q141-q150.md). **No shipped runtime or OS certification.**
 
 No date or version commitment is implied by these priorities. Product-owner decisions still needed: software/contribution license and authorized private security contact. Package/runtime choices require an evidence-based technical proposal, not a new architecture by assumption.

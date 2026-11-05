@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=5 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
@@ -34,6 +34,16 @@ Automatiser les matrices de **VM système** locales et CI, conserver snapshots, 
 ## Tests MVP de DNS, OS, sauvegarde et rôles Q133–Q136
 
 Tester A/AAAA (IPv4/IPv6), port 80, routage HTTP-01, domaine externe et HTTPS 443 ; mises à jour OS avec plan d'impact/backup/health/recovery, y compris coupure et reboot ; copies **locales chiffrées** panneau+PHP avec restauration réelle, clé de déchiffrement disponible et destination distante **optionnelle** ; refus RBAC du gestionnaire de site sur les paquets OS, autres sites, dépassement de quota et sauvegardes tierces. [Matrice détaillée](../00-project-control/mvp-qualification.md). **Aucun test de ce type n'est exécuté par cette PR documentaire.**
+
+## Tests comparables Q141–Q143 et SFTP Q146
+
+**Q141 D** : les pilotes VM locales/cloud et les runners CI fournissent un rapport **commun** (OS/version/architecture/commit/WebStack, résultats par scénario, snapshots, simulations d'échec et preuve de restauration). Ne jamais marquer `SKIP` comme `PASS` ni présenter un conteneur comme VM Linux complète.
+
+**Q142 D** : définir un **budget par type d'application** et une référence de version, contrôler débit, erreurs, latences, CPU/mémoire et régressions sur infrastructure comparable. Les **critères éliminatoires** Q132 (sécurité `.htaccess`, isolation, TLS, ports, récupération) priment sur toute performance. Pas de chiffres supposés.
+
+**Q143 C** : vérifier suggestions d'enregistrements DNS puis recontrôler A/AAAA/IPv6, 80/HTTP-01, 443/HTTPS et certificat **après correction manuelle**, sans requérir des droits d'édition DNS fournisseur.
+
+**Q145 D/Q146 C** : déchiffrer une sauvegarde en VM différente avec clés de secours réellement disponibles ; simuler perte du coffre/serveur et panne de KMS facultatif. Vérifier SFTP sans shell, chemin cantonné, expiration/révocation, quotas, refus inter-tenants et audit réel. [Matrice Q141–Q150](../00-project-control/decisions-q141-q150.md). **Aucun résultat de VM n'est ajouté par le seul changement documentaire.**
 
 ## Définition de terminé
 

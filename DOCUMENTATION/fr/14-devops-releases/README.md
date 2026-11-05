@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=7 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=8 status=documented -->
 # Installation, promotion Git et releases
 
 [English](../../en/14-devops-releases/README.md) · [Index](../README.md)
@@ -42,6 +42,10 @@ La stratégie Q71 précise l'utilisation d'un KMS/HSM ou service de clés proté
 ## Qualification VM, mises à jour et bêta — Q131–Q137
 
 Tests sur VM système **locales et CI**, snapshots, simulations de pannes, rapports par OS et WebStack ; `SKIP` n'est pas une preuve de réussite. La sélection du premier profil exige compatibilité, sécurité, charge mesurée, maintenance, récupération et critères éliminatoires. Le MVP vérifie DNS **A/AAAA**, **port 80/HTTP-01**, **HTTPS**, diagnostics actionnables, gestionnaire de site (y compris **SFTP réel autorisé et refus inter-tenant**), mise à jour OS contrôlée avec plan/backup/santé/récupération et backup **local chiffré** restauré (distant facultatif). La bêta privée par vagues n'est accessible qu'après prérequis juridiques/sécurité et possibilité de suspension/récupération. [Décisions](../00-project-control/decisions-q131-q140.md).
+
+## Q141–Q147 — qualifications et contrôles de la première diffusion
+
+**VM locales/cloud par pilotes** (Q141) + runners CI compatibles et rapports communs, snapshots/pannes ; **budgets de performance par application** et régression version à version (Q142), avec veto sécurité Q132. L'assistant initial fournit des **propositions d'enregistrements DNS** et revérifie A/AAAA/80/HTTP-01/HTTPS **sans mise à jour DNS automatique** (Q143). L'OS est mis à jour selon **une politique par serveur**, avec plan, sauvegarde, santé/reprise (Q144), et non une orchestration multi-serveurs imposée au MVP. Le chiffrement du backup local doit s'accompagner d'une **clé récupérable hors panne commune**, coffre et KMS externe/multi-gardiens facultatifs (Q145). Les tests incluent SFTP sans shell/expiration/révocation/quotas/audit (Q146). Les vagues de bêta privée sont suspendues selon seuils de santé/incident configurables, avec récupération (Q147), jamais au détriment des données. [Exigences](../00-project-control/decisions-q141-q150.md).
 
 ## Preuves de livraison
 

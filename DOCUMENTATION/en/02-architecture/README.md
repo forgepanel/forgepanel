@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02 revision=6 status=documented -->
+<!-- forgepanel-doc id=FP-02 revision=7 status=documented -->
 # System architecture
 
 [Français](../../fr/02-architecture/README.md) · [Index](../README.md)
@@ -48,5 +48,7 @@ The new [website lifecycle](website-lifecycle.md) covers Q81–Q90: WebStack adv
 Q91–Q100 add [PHP, staging, ACME, access and quota policies](php-staging-and-access-policy.md), plus [cross-server migration with preflight and recovery](cross-server-migration.md). These extend the [website lifecycle](website-lifecycle.md) without delivering running services. Operators will be able to select tenant PHP and per-site Git modes within verified security and capability constraints.
 
 New [Q101–Q110 continuity contracts](runtime-exceptions-and-data-continuity.md) define bounded PHP exceptions, qualified Linux confinement, per-environment Git policies, sensitive staging, multi-CA ACME, shared/dedicated DB with optional replication, temporary SSH, recommended Webmail, quota grace and conditional pre-sync/failover. They are **specified only**; real OS/profile availability needs evidence. [Register](../00-project-control/decisions-q101-q110.md).
+
+Q141–Q147 are detailed in [VM drivers, performance budgets, backup recovery security and SFTP](certification-backup-security.md). Container-only tests do not qualify an OS/WebStack. The external DNS assistant suggests/rechecks without automatic writes. MVP OS update policy is **per server**, backup KMS is optional and beta pause health gates are configurable. [Q141–Q150](../00-project-control/decisions-q141-q150.md). These are specifications, not live services.
 
 [Decisions](../00-project-control/decisions.md) · [Contracts](../08-api-contracts/README.md) · [Security](../10-security/README.md)

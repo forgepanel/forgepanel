@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=8 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=9 status=documented -->
 # Installation, promotion Git et releases
 
 [English](../../en/14-devops-releases/README.md) · [Index](../README.md)
@@ -46,6 +46,10 @@ Tests sur VM système **locales et CI**, snapshots, simulations de pannes, rappo
 ## Q141–Q147 — qualifications et contrôles de la première diffusion
 
 **VM locales/cloud par pilotes** (Q141) + runners CI compatibles et rapports communs, snapshots/pannes ; **budgets de performance par application** et régression version à version (Q142), avec veto sécurité Q132. L'assistant initial fournit des **propositions d'enregistrements DNS** et revérifie A/AAAA/80/HTTP-01/HTTPS **sans mise à jour DNS automatique** (Q143). L'OS est mis à jour selon **une politique par serveur**, avec plan, sauvegarde, santé/reprise (Q144), et non une orchestration multi-serveurs imposée au MVP. Le chiffrement du backup local doit s'accompagner d'une **clé récupérable hors panne commune**, coffre et KMS externe/multi-gardiens facultatifs (Q145). Les tests incluent SFTP sans shell/expiration/révocation/quotas/audit (Q146). Les vagues de bêta privée sont suspendues selon seuils de santé/incident configurables, avec récupération (Q147), jamais au détriment des données. [Exigences](../00-project-control/decisions-q141-q150.md).
+
+## Publications et qualification Q151–Q158
+
+Le premier pilote de test est **QEMU/KVM local** ; conserver l'abstraction Q141 pour d'autres VM cloud. Conserver **rapports signés**, provenances, snapshots, historiques et `SKIP` explicites (Q152), sans publication publique de matrice exigée. Les régressions dépassant les budgets applicatifs bloquent selon gravité, sauf **exception performance auditée** ; les veto sécurité ne sont pas levés (Q153). Le domaine DNS externe se valide sur les **familles A/AAAA publiées** (Q154). L'upgrade/reboot OS est **par serveur** avec approbation/backup/santé/récupération (Q155), et les archives chiffrées ne sont récupérables qu'après **accès à la clé vérifié et restauration isolée réelle** (Q156). Les clés SFTP publiques expirables et auditées (Q157) doivent être testées réellement. Pour les vagues de bêta, Q158 accepte **santé locale + signalements manuels + diagnostics minimisés aux consentements séparés**, seuils par cohorte, sans collecte forcée. [Q151–Q160](../00-project-control/decisions-q151-q160.md).
 
 ## Preuves de livraison
 

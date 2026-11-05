@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-POLICY revision=11 status=documented -->
+<!-- forgepanel-doc id=FP-00-POLICY revision=12 status=documented -->
 # Product decisions of 5 November 2026 — free Core, commercial model and configuration
 
 [Français](../../fr/00-project-control/product-policy.md) · [ADR register](decisions.md) · [Configuration Engine](../02-architecture/configuration-engine.md)
@@ -80,6 +80,10 @@ Q131 **D** selects local/CI VM snapshots/faults and OS reports; Q132 **D** tests
 ## Confirmed Q141–Q150 — validation and recovery
 
 MVP qualification will use **local/cloud** VM drivers with shared reports (Q141 D), **application-class** performance budgets/regression checks without overriding security vetoes (Q142 D), and a DNS advisor suggesting records before manual change and DNS/HTTP-01/HTTPS recheck (Q143 C). OS update policies apply **per server**, with later multi-server coordination (Q144 D). **Encrypted local** backups need vault-protected and recoverable keys, with **optional** external KMS and multiple recovery custodians (Q145 D). SFTP is scoped, shell-disabled, expiring/revocable and audited (Q146 C). Private beta can be **paused at configurable health thresholds** with recovery and no data erasure (Q147 C). Hub after R5 will handle cryptographic transfer proof/org/manual lost-host checks (Q148 C, retaining Q138 risk-based extra approval), severity/contract-driven partner deadlines (Q149 C) and signed coordinated risk-based advisories (Q150 D). [Details](decisions-q141-q150.md).
+
+## Confirmed Q151–Q160
+
+**Q151 A** chooses **local QEMU/KVM first**, preserving later Q141 cloud drivers. **Q152 C** retains **signed, historical internal** reports with provenance/snapshots, not mandatory public listing. **Q153 C** blocks performance regressions by severity/budget with approved exceptions, never waiving Q132 security. **Q154 C** checks **only published A/AAAA families**, each valid for HTTP-01, no nonexistent IPv6 requirement. **Q155 C** requires per-server approved reboot/backup/health/recovery. **Q156 C** requires periodic protected key-access checks and **isolated restore** before recoverable status; Q145 external KMS/multiple custodians optional. **Q157 C** allows site manager scoped **public SFTP keys** with expiry/audit/sensitive-action validation. **Q158 C** adds local health/manual reports and separately opted-in minimal beta diagnostics per cohort. **Q159 C** defines premium transfer risk triggers for Q138 approval (lost host, repetition, org mismatch, compromise). **Q160 C** selects signed FR/EN human and machine-structured advisories with configurable notices/sensitive protection. [Decisions](decisions-q151-q160.md).
 
 ## Open follow-ups — no default assumed
 

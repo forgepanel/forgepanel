@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-EXECUTION revision=5 status=specified -->
+<!-- forgepanel-doc id=FP-00-EXECUTION revision=6 status=specified -->
 # Technical implementation roadmap — Q120 D and Q119 B MVP
 
 [Français](../../fr/00-project-control/implementation-roadmap.md) · [Project status](status.md) · [Q111–Q120 decisions](decisions-q111-q120.md)
@@ -43,6 +43,16 @@ Q131–Q140 do not preselect OS/stack, authorize beta launch or permit data dele
 - **Hub R6 after R5, Q148 C:** installation identity keys, signed fresh challenge, key rotation/anti-replay, organization binding and manual lost-host route, preserving **risk-based extra approval Q138**. **Q149 C:** partner severity/contract deadlines, alert/escalation/withdrawal. **Q150 D:** signed historical advisories, configurable notices, partner-coordinated **risk-based disclosure windows**, no invented SLA/timing.
 
 **First OS/WebStack awaits Q121/Q122 evidence; none of these services is operational.** [Q141–Q150 decisions](decisions-q141-q150.md) · [MVP matrix](mvp-qualification.md).
+
+## Q151–Q160 — driver order and verifiable gates
+
+**R3 (qualification):** start with **local QEMU/KVM (Q151 A)** and keep common cloud driver ABI for later. Every qualification needs an **internal matrix**, **signed historical** report with provenance, snapshots and scenario **PASS/FAIL/SKIP (Q152 C)**. App-type performance budgets block by severity; **approved audited** exceptions may waive certain performance regressions but **never Q132 security/recovery disqualifiers** (Q153 C).
+
+**R4 (initial site):** external DNS **only published A/AAAA families**, each advertised route compatible with HTTP-01/HTTPS (Q154 C), Q143 advisor proposes then **rechecks without DNS edits**. **Per-server** approved OS update/reboot after impact/backup/health/recovery (Q155 C). Encrypted local backup is **not recoverable by claim** until its protected recovery-key accessibility is checked periodically and a **real isolated restoration** succeeds (Q156 C); optional Q145 KMS/multiple custodians. SFTP **without shell**, site-policy-scoped **public-key management**, expiry/revocation, quotas/audit and sensitive action validation (Q157 C).
+
+**After R4 (private beta):** **local health**, manual reports and minimized **separately opted-in** diagnostics per cohort (Q158 C). Q147 halt/recovery rules work without mandatory telemetry. **Hub R6 after neutral R5 ABI:** Q159 C fraud flags from lost/repeated transfer, inconsistent organization or compromise retain Q138 risk-based second approval; Q160 C includes signed **human FR/EN plus machine-structured** advisories with configurable notice and Q150 coordinated disclosure.
+
+Q120 D stays **source → Symfony/PG → installer → initial site/VPS → neutral ABI → Hub**, with no date or implementation implied. [Q151–Q160 decisions](decisions-q151-q160.md).
 
 ## Cross-cutting release gates
 

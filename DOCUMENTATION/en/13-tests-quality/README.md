@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=6 status=documented -->
 # Tests, quality and definition of done
 
 [Français](../../fr/13-tests-quality/README.md) · [Index](../README.md)
@@ -44,6 +44,10 @@ Test A/AAAA including IPv4/IPv6, port 80, HTTP-01 routing, external domain and H
 **Q143 C**: test suggested external DNS records and recheck A/AAAA/IPv6, 80/HTTP-01, 443/HTTPS and certificate **after manual changes**, without granting automatic provider DNS writes.
 
 **Q145 D/Q146 C**: restore an encrypted archive on a separate VM using genuinely accessible recovery keys; simulate lost host/vault and optional KMS outage. Verify shell-disabled SFTP roots, expiry/revocation, quotas, cross-tenant denial and real access audit. [Q141–Q150 matrix](../00-project-control/decisions-q141-q150.md). **Docs changes do not create VM evidence.**
+
+## Q151–Q156 qualification — denials and evidence
+
+First test driver is **local QEMU/KVM** (Q151 A). A runner unable to launch a full VM reports `SKIP`/`BLOCKED`, not certification. Reports have **signature/integrity, OS/image/commit provenance, snapshots and scenario history** (Q152 C); internal matrix is not automatically published. Exercise **per-app performance budgets and version regressions** (Q153 C); approved, bounded, audited performance exceptions never waive Q132 safety vetoes. For HTTP-01 verify **only actually published A/AAAA families**, **all** present paths, without a fake missing-IPv6 failure (Q154 C). Reboot follows per-server approval, backup, health and recovery (Q155). Mark an encrypted backup « recoverable » **only after protected key export, periodic accessibility checks and a passed isolated restoration** (Q156 C); simulate unavailable vault/host. [Decisions](../00-project-control/decisions-q151-q160.md).
 
 ## Definition of done
 

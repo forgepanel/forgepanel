@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=8 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=9 status=documented -->
 # Installation, Git promotion and releases
 
 [Français](../../fr/14-devops-releases/README.md) · [Index](../README.md)
@@ -46,6 +46,10 @@ Full system **local/CI VMs**, snapshots, fault injection and OS/WebStack reports
 ## Q141–Q147 — first-release qualification and controls
 
 **Local/cloud VM drivers** with compatible CI and common snapshot/failure reports (Q141); **per-application performance budgets** and cross-version regressions (Q142) subject to Q132 security veto. Initial assistant **suggests external DNS records** and rechecks A/AAAA/80/HTTP-01/HTTPS **without automatic DNS writes** (Q143). OS updates use **per-server policies** with impact, backup, health and recovery (Q144); mandatory multi-server orchestration is not an MVP gate. Encrypted local backups need **off-failure-domain recoverable keys**, vault and optional external KMS/multi-custodian policy (Q145). Test shell-disabled expiring/revocable/quota-audited SFTP (Q146). Private beta waves pause on configurable health/critical incident gates with recovery, not data erasure (Q147). [Requirements](../00-project-control/decisions-q141-q150.md).
+
+## Q151–Q158 release qualification
+
+First test driver is **local QEMU/KVM**, preserving Q141 abstraction for later cloud VMs. Keep **signed provenance**, snapshots/history and explicit `SKIP` (Q152), without assuming public compatibility publication. Per-app regressions block according to severity/budget unless an **audited performance-only exception** is authorized; security vetoes cannot be waived (Q153). External DNS HTTP-01 validates **published A/AAAA families** only (Q154). OS upgrade/reboot is **per server** with approval/backup/health/recovery (Q155); encrypted archives are recoverable only with **checked key availability and actual isolated restore** (Q156). Test expiring/audited public SFTP keys on real host (Q157). Beta waves under Q158 use **local health + manual reports + separately opted-in minimal diagnostics** and cohort thresholds without forced collection. [Q151–Q160](../00-project-control/decisions-q151-q160.md).
 
 ## Release evidence
 

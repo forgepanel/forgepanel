@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-07 revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-07 revision=6 status=documented -->
 # Portals, identities and authorization
 
 [Français](../../fr/07-interfaces-roles/README.md) · [Index](../README.md)
@@ -26,6 +26,10 @@ For sites owned or explicitly delegated, the **website manager** may view state 
 ## Q146 C — restricted SFTP
 
 Q136 website manager gets SFTP only for owned/permitted sites, with **confined Unix identity, secure canonical paths/symlinks, keys, enforced quotas and access audit**. SFTP grants **no shell by default**. Expired/revoked grant denies new sessions without deleting tenant files. Test owned-site success and denied other tenant, parent paths, symlinks and quotas; never provide a root terminal. [Q141–Q150 decisions](../00-project-control/decisions-q141-q150.md).
+
+## Per-site SFTP public-key management (Q157 C)
+
+Authorized website managers may **register/revoke public keys** for owned sites under account/plan policy, with path limits, expiry, quotas and access audit. Sensitive operations (e.g. powerful new key/identity changes) may require recent authentication/targeted approval Q66/Q76; **no private-key upload, root shell or access to other sites**. Expiry/revocation must not delete hosted files. Actual Unix/SFTP services enforce scope, not a UI toggle alone. [Contracts](../02-architecture/qualification-and-security-contracts.md).
 
 ## Required tests before expansion
 

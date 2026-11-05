@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=11 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=12 status=documented -->
 # Security model and disclosure
 
 [Français](../../fr/10-security/README.md) · [Index](../README.md)
@@ -70,6 +70,10 @@ Q137 D requires **invited testers, accepted terms, staged waves, a private bugs/
 ## Access, recovery keys and advisories — Q145–Q150
 
 **Q145 D**: separate backup keys/archive and keep an **off-failure-domain protected recovery copy**, vault and policy-scoped multiple custodians, with **optional external KMS**. Loss of all keys is a material irreversible risk, not a recoverable promise. **Q146 C**: site-scoped shell-disabled SFTP, enforced quotas, audited expiry/revocation; test symlinks/traversal. **Q147 C**: critical beta incidents/configured health thresholds **pause new waves** and trigger recovery, not hosted data erasure or revocation of previously granted software rights. **Q148 C**: future signed challenge with key rotation/anti-replay, org verification and manual lost-host recovery, preserving Q138 conditional approval. **Q149 C/Q150 D**: severity/contract partner duties and **signed** advisories with **risk-coordinated** disclosure, requiring actually appointed lead/deputy and verified Q118 contacts. [Decisions](../00-project-control/decisions-q141-q150.md).
+
+## Q151–Q160 safeguards — reports, backup, access and advisories
+
+**Q152 C** requires signed provenance/snapshot/history certification reports, not mandatory public compatibility publication. **Q153 C** permits scoped authorized audited *performance* exceptions, **never** Q132 tenant/access/recovery safety exceptions. **Q154 C** tests all **actually published** A/AAAA families without requiring absent IPv6. **Q155 C/Q156 C** require approved per-server reboot, usable backup/health/recovery and protected exported/checked recovery key before an **isolated restore**. **Q157 C** scopes SFTP **public-key** management by site/policy, quota/expiry/audit and sensitive step-up; never collect customer private keys. **Q158 C** minimizes beta diagnostics with **separate Q6 consents** and per-cohort gates, no forced collection. **Q159 C** retains Q138 extra approval for lost/repeated/mismatched/compromised transfers; **Q160 C** requires signed **human FR/EN and structured machine** advisories, optional notifications and protected sensitive data, without mandatory advanced formats or unverified reporting routes. [Decisions](../00-project-control/decisions-q151-q160.md).
 
 ## Reporting and review
 

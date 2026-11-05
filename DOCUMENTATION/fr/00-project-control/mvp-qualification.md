@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-MVP-QUAL revision=4 status=specified -->
+<!-- forgepanel-doc id=FP-00-MVP-QUAL revision=5 status=specified -->
 # Qualification du premier ForgePanel PHP/HTTPS — Q121–Q127
 
 [English](../../en/00-project-control/mvp-qualification.md) · [Roadmap](implementation-roadmap.md) · [Décisions Q121–Q130](decisions-q121-q130.md)
@@ -51,6 +51,22 @@ L'assistant vérifie la résolution **A et AAAA** des noms du site, les écarts 
 **Q146 C** : SFTP **sans shell par défaut**, compte/chemin site isolé, accès expirables/révocables, quotas appliqués et audit, tests de traversée/symlink et refus inter-tenants. Ces contrôles doivent être exécutés sur le serveur réel, pas uniquement simulés dans l'UI.
 
 [Décisions Q141–Q150](decisions-q141-q150.md) · [Contrats techniques](../02-architecture/certification-backup-security.md). **Aucune preuve d'exécution VM n'est créée par ce document.**
+
+## Choix Q151–Q158 — preuve de fonctionnement du MVP
+
+**Q151 A** : démarrer avec **QEMU/KVM local** pour obtenir une vraie VM système et des snapshots ; la couche pilote Q141 gardera les VM cloud pour plus tard. Ne pas marquer le job CI `PASS` si le runner ne dispose pas de KVM. **Q152 C** : exiger rapport **signé**, provenance de l'image/build, snapshots et **historique de résultats** (matrice interne). Une signature ne suffit pas à prouver la sécurité.
+
+**Q153 C** : définir budgets de latence/erreurs/ressources **par catégorie d'application** ; bloquer une régression selon criticité et seuils, avec exception de **performance uniquement** validée, bornée et auditée. Une fuite inter-tenants, un défaut `.htaccess`, un conflit de listener ou un échec de restauration Q132 restent **inacceptables**, sans dérogation de score.
+
+**Q154 C** : pour ACME **HTTP-01**, contrôler **uniquement les familles IP A/AAAA réellement publiées**. A seul : tester IPv4 et ne pas exiger AAAA ; AAAA seul : tester IPv6 ; A+AAAA : vérifier les deux sur port 80 et HTTP-01 avant le HTTPS 443. L'assistant propose les corrections puis revérifie **sans écriture DNS automatique**.
+
+**Q155 C** : politiques de **reboot par serveur** avec approbation autorisée, plan d'impact, sauvegarde utilisable, health-check après redémarrage et procédure de récupération. L'orchestration multi-serveurs est ultérieure. **Q156 C** : sauvegarde locale chiffrée Q135 et **clé de récupération exportée de manière sûre**, accès vérifié périodiquement et **restauration déchiffrée en VM isolée** avant le statut « récupérable ». KMS externe/multi-gardiens demeurent facultatifs.
+
+**Q157 C** : sur le site autorisé, gestionnaire capable de **déposer/révoquer ses clés publiques SFTP** dans les limites du compte, expiration, droits par site, quota et audit ; action sensible revalidée, aucun shell ni clé privée collectée. Tester accès à son site et refus inter-tenants **réellement**.
+
+**Q158 C** : après validation interne, la bêta privée Q137/Q147 repose sur rapports manuels, **santé locale** et diagnostics **minimisés avec consentements distincts Q6**, seuils par cohorte et plan de suspension/récupération. La bêta continue de fournir des fonctions Core sans exiger le partage de données diagnostics.
+
+[Décisions](decisions-q151-q160.md) · [Contrats d'implémentation](../02-architecture/qualification-and-security-contracts.md). **Aucun benchmark, VM ou restore réel n'est déjà exécuté par cette documentation.**
 
 ## Bêta privée Q127 B — passage après tests internes
 

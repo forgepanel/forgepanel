@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-Q141-150 revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-02-Q141-150 revision=2 status=specified -->
 # Certification VM, budgets, sauvegarde, accès et mises à jour — Q141–Q147
 
 [English](../../en/02-architecture/certification-backup-security.md) · [Décisions Q141–Q150](../00-project-control/decisions-q141-q150.md) · [Qualification MVP](../00-project-control/mvp-qualification.md)
@@ -34,6 +34,10 @@ Chaque identité SFTP a des sites/répertoires autorisés, méthode d'accès par
 ## Bêta et arrêt de vagues (Q147 C)
 
 Une `BetaRolloutPolicy` enregistre cohortes invitées, canal/version signé, critères de santé **configurables** et seuils de suspension, bug/incident grave, autorité de pause/reprise et procédure de récupération. Une pause empêche les **nouvelles installations et mises à jour de la vague**, sans effacer les données ni détruire les droits de copies légalement obtenues. Les diagnostics sont **volontaires ou contractuellement minimaux** (Q6) et correctement expurgés, non requis pour faire fonctionner le Core. Le responsable sécurité et son suppléant Q130 coordonnent les avis si nécessaires.
+
+## Ordre de réalisation Q151–Q158
+
+**Q151 A** précise que le premier `QualificationDriver` est **QEMU/KVM local**, et que les pilotes cloud Q141 viennent ensuite ; l'interface reste commune. **Q152 C** requiert rapports signés et historisés avec provenance/snapshots, sans publication officielle exigée. **Q153 C** fixe une politique de budget applicatif/gravité et dérogation de performance approuvée/auditée **sans toucher aux critères sécurité éliminatoires**. **Q154 C** ne teste que les familles A/AAAA publiées, toutes celles présentes ; **Q155 C** reboot par serveur approuvé avec backup/santé/récupération ; **Q156 C** exige export de clé de récupération, vérification périodique et restauration isolée avant statut récupérable ; **Q157 C** gestion des clés publiques SFTP expirable/auditée et validation des actions sensibles ; **Q158 C** diagnostics bêta minimisés, consentements séparés et seuils par cohorte. [Contrats détaillés](qualification-and-security-contracts.md).
 
 ## Critères de livraison
 

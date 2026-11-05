@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-15 revision=10 status=documented -->
+<!-- forgepanel-doc id=FP-15 revision=11 status=documented -->
 # Exploitation, diagnostic et récupération
 
 [English](../../en/15-operations/README.md) · [Index](../README.md)
@@ -52,6 +52,10 @@ Le pilote de site doit vérifier **DNS A/AAAA, port 80, route HTTP-01 et HTTPS**
 ## Exploitation Q141–Q147 : VM, mises à jour, clés et bêta
 
 Rassembler les preuves de qualification **VM locales/cloud** sous un format de rapport commun (Q141), comparer les **budgets de performance par application/version** et signaler les régressions (Q142), afficher les corrections DNS nécessaires et **revérifier** après intervention (Q143) sans changer automatiquement les zones. Politique de mises à jour **par serveur** : fenêtre, source autorisée, plan d'impact, backup, santé et récupération, puis multi-serveurs par phases (Q144). Backup MVP **chiffré local**, remote facultatif, mais la clé doit survivre à la perte de serveur via un coffre/copie de secours, avec KMS/multi-gardiens optionnels (Q145). SFTP sans shell, expirations/révocations/quotas/audit (Q146). Bêta privée : seuils de santé **configurables**, pause de vagues et restauration (Q147). Ces contrôles nécessitent systèmes et preuves réels. [Q141–Q150](../00-project-control/decisions-q141-q150.md).
+
+## Exploitation Q151–Q158 : KVM, mises à jour, restauration et consentements
+
+**Q151 A :** premier pilote de qualification **QEMU/KVM local**, cloud et CI capables de VM réelles ultérieurs (Q141). **Q152 C :** conserver les rapports signés, historiques/snapshots et provenance. **Q153 C :** budgets et exceptions de performances par application et criticité, avec veto sécurité non négociable. **Q154 C :** diagnostic HTTP-01 sur **les seules familles A/AAAA publiées**, avec recontrôle du port 80/challenge/HTTPS. **Q155 C :** maintenance et redémarrage par serveur **soumis à approbation**, backup, santé et récupération ; les multi-serveurs attendent Q67/Q77. **Q156 C :** coffre/export de clé de secours protégé, vérification périodique puis restauration isolée avant d'attester un backup récupérable, avec KMS externe facultatif Q145. **Q157 C :** expiration/révocation/audit des clés SFTP du site. **Q158 C :** bêta avec santé locale et opt-ins diagnostic **séparés** et seuils par cohorte ; fonctionnement local même si consentement refusé. [Contrats](../02-architecture/qualification-and-security-contracts.md).
 
 ## Sauvegarde et restauration requises
 

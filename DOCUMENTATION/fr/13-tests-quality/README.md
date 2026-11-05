@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=6 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
@@ -44,6 +44,10 @@ Tester A/AAAA (IPv4/IPv6), port 80, routage HTTP-01, domaine externe et HTTPS 44
 **Q143 C** : vérifier suggestions d'enregistrements DNS puis recontrôler A/AAAA/IPv6, 80/HTTP-01, 443/HTTPS et certificat **après correction manuelle**, sans requérir des droits d'édition DNS fournisseur.
 
 **Q145 D/Q146 C** : déchiffrer une sauvegarde en VM différente avec clés de secours réellement disponibles ; simuler perte du coffre/serveur et panne de KMS facultatif. Vérifier SFTP sans shell, chemin cantonné, expiration/révocation, quotas, refus inter-tenants et audit réel. [Matrice Q141–Q150](../00-project-control/decisions-q141-q150.md). **Aucun résultat de VM n'est ajouté par le seul changement documentaire.**
+
+## Qualification Q151–Q156 — refus et preuves
+
+Le premier pilote d'essai est **QEMU/KVM local** (Q151 A). Un runner qui ne peut pas démarrer une vraie VM retourne `SKIP`/`BLOCKED` et non une certification. Les rapports ont **signature/intégrité, provenance OS/image/commit, snapshots et historique de scénarios** (Q152 C) ; la matrice demeure interne tant que sa publication n'est pas autorisée. Tester les **budgets par application** et les régressions de versions (Q153 C) : une dérogation de performance est **approuvée, bornée et auditée**, jamais un contournement des veto de sécurité Q132. Pour HTTP-01, vérifier **seulement les familles A/AAAA effectivement publiées**, **toutes** celles présentes, sans échec fictif d'une IPv6 non configurée (Q154 C). Reboot OS par politique serveur et sauvegarde/santé/récupération Q155. Déclarer un backup chiffré « récupérable » **uniquement après export protégé de la clé, vérification périodique d'accès et restauration isolée réussie** (Q156 C) ; tester coffre/serveur indisponible. [Décisions](../00-project-control/decisions-q151-q160.md).
 
 ## Définition de terminé
 

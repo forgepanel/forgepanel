@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02 revision=7 status=documented -->
+<!-- forgepanel-doc id=FP-02 revision=8 status=documented -->
 # Architecture du système
 
 [English](../../en/02-architecture/README.md) · [Index](../README.md)
@@ -50,5 +50,7 @@ Les choix Q91–Q100 ajoutent des [politiques PHP, staging, ACME, accès et quot
 Les nouveaux [contrats de continuité Q101–Q110](runtime-exceptions-and-data-continuity.md) détaillent exceptions PHP temporaires, confinement Linux qualifié, politiques Git par environnement, staging sensible, ACME multi-CA, bases mutualisées/dédiées avec réplication facultative, SSH temporaire, Webmail recommandé, grâce de quotas et pré-synchronisation/bascule conditionnelle. La cible est **spécifiée seulement**, les disponibilités restent à prouver sur chaque OS et profil. [Registre](../00-project-control/decisions-q101-q110.md).
 
 La cible Q141–Q147 est détaillée dans [pilotes VM, budgets de performance, sécurité des backups et SFTP](certification-backup-security.md). Les preuves par OS/WebStack ne peuvent pas être remplacées par des tests conteneur. L'assistant de DNS externe suggère/revérifie, sans correction automatique. Les mises à jour OS restent **par serveur** au MVP, le KMS de backup est facultatif, et les seuils de suspension bêta sont configurables. [Q141–Q150](../00-project-control/decisions-q141-q150.md). Il s'agit de spécifications, non de composants en service.
+
+La cible Q151–Q160 précise le [premier pilote QEMU/KVM, les preuves de qualification signées, les budgets, la restauration isolée, les clés SFTP et la bêta sous consentement](qualification-and-security-contracts.md). Aucune famille IPv4/IPv6 absente n'est imposée ; toute famille A/AAAA publiée doit fonctionner sur HTTP-01. Les dérogations performance ne couvrent **jamais** la sécurité. L'analyse de risque des transferts et les avis structurés FR/EN sont réservés au Hub après ABI. [Décisions Q151–Q160](../00-project-control/decisions-q151-q160.md).
 
 [Décisions](../00-project-control/decisions.md) · [Contrats](../08-api-contracts/README.md) · [Sécurité](../10-security/README.md)

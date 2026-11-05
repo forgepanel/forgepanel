@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-EXECUTION revision=5 status=specified -->
+<!-- forgepanel-doc id=FP-00-EXECUTION revision=6 status=specified -->
 # Roadmap technique de réalisation — décision Q120 D et MVP Q119 B
 
 [English](../../en/00-project-control/implementation-roadmap.md) · [État officiel](status.md) · [Décisions Q111–Q120](decisions-q111-q120.md)
@@ -43,6 +43,16 @@ Les choix Q131–Q140 n'autorisent ni défaut d'OS/WebStack, ni bêta ouverte, n
 - **R6 Hub après R5, Q148 C** : clés d'identité installation, challenge signé, rotation/anti-rejeu, contrôle organisation et secours manuel serveur perdu, avec approbation additionnelle **selon risque Q138**. **Q149 C** : sévérité et délais **contractuels** partenaires, alertes/escalade/retrait. **Q150 D** : avis signés et historisés, notifications configurables, coordination partenaire et **calendrier de divulgation selon le risque**, sans SLA ni délai inventés.
 
 **Le premier OS/WebStack reste à choisir par preuves Q121/Q122 ; aucun composant de cette liste n'est déclaré opérationnel.** [Décisions Q141–Q150](decisions-q141-q150.md) · [Matrice MVP](mvp-qualification.md).
+
+## Q151–Q160 — ordre des pilotes et preuves de validation
+
+**R3 (qualification)** : commencer **QEMU/KVM local (Q151 A)**, conserver l'interface multi-pilotes pour le cloud plus tard. Attacher à chaque qualification une **matrice interne**, un rapport **signé et historisé** avec provenance, snapshots et résultats individuels **PASS/FAIL/SKIP (Q152 C)**. Les budgets de performance par type d'application bloquent selon gravité ; une exception **approuvée et auditée** peut concerner une régression de performances, **jamais les critères éliminatoires de sécurité/récupération Q132** (Q153 C).
+
+**R4 (premier site)** : DNS externe **A/AAAA vérifié seulement s'il est publié**, chaque famille présente devant rendre HTTP-01/HTTPS possible (Q154 C), assistant Q143 propose les valeurs et **revérifie sans modifier les DNS**. Mises à jour/reboot OS **par serveur**, après approbation/backup/health/récupération (Q155 C). Backup chiffré local **non déclaré récupérable** tant que l'accès à une clé de secours n'a pas été vérifié périodiquement et qu'une **restauration isolée réelle** n'a pas réussi (Q156 C) ; KMS externe et gardiens multiples facultatifs Q145. Accès SFTP **sans shell**, clés publiques **gérées sous politique site**, expirables/révocables, quotas/audit et validation sensible (Q157 C).
+
+**Après R4 (bêta privée)** : santé **locale**, remontées manuelles et diagnostics minimisés **avec opt-ins distincts** par cohorte (Q158 C). Les seuils d'arrêt et la récupération Q147 s'appliquent sans télémétrie imposée. **Hub R6 après ABI R5** : Q159 C déclenche l'analyse antifraude des transferts serveur perdu/répété/org incohérente/compromission en conservant la seconde approbation selon risque Q138 ; Q160 C prévoit avis signés **FR/EN et structurés pour machine** avec notification configurable et divulgation coordonnée Q150.
+
+La stratégie Q120 D reste **sources → Symfony/PG → installateur → premier site/VPS → ABI neutre → Hub**, sans calendrier ni statut d'implémentation présumé. [Décisions Q151–Q160](decisions-q151-q160.md).
 
 ## Contrôles transversaux et diffusion publique
 

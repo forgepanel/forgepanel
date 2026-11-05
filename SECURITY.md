@@ -14,6 +14,8 @@ For non-sensitive reports, give the affected commit/component, expected behavior
 
 Q150 further selects **signed, versioned security advisories with configurable notification**, coordinated with verified partners and a **risk-based disclosure timeline**. Publication authority remains an **actually appointed security lead and deputy** under Q130/Q140, with verified private GitHub reporting and a dedicated mailbox under Q118. **No advisory signing service, security contact, notification service, disclosure timetable or production response process is operational yet**; do not silently invent dates or expose private exploit payloads. [Q141–Q150 decisions](DOCUMENTATION/en/00-project-control/decisions-q141-q150.md).
 
+Q151–Q160 refine security without activating reporting: app-performance exceptions **may not waive tenant, .htaccess or recovery safety** (Q153), certificate validation checks every **published** A/AAAA path but not unadvertised IPv6 (Q154), sensitive SFTP **public-key** changes require scoped audit/step-up (Q157), and beta diagnostic uploads are minimized under **separate opt-ins** (Q158). Future security advisories are **signed, human-readable in FR/EN plus structured machine-readable**, with configurable notices and protected exploit details (Q160); no publishing endpoint/verified mailbox is running. [Q151–Q160](DOCUMENTATION/en/00-project-control/decisions-q151-q160.md).
+
 No response SLA is promised before a maintained release and reporting process exist.
 
 Keep deployment secrets, private signing keys, billing/license credentials and customer information outside the public project. Access to this private repository is not authorization to publish it or deploy its contents.

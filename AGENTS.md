@@ -38,4 +38,6 @@ R3 preflight separation: `tools/kvm-host-probe` is a standalone, nonprivileged, 
 
 R3 image admission is a **read-only review gate**, not QEMU execution authority. `tools/kvm-host-probe/admission` accepts only pinned private QCOW2 files under explicit versioned test limits, never root or guest network/shares/privileges. `REVIEW_REQUIRED` and `artifact_verified=true` never mean VM/isolation/recovery certification or Q132 PASS. Future runner must preserve immutable verified bytes and enforce quotas independently. See `DOCUMENTATION/en/14-devops-releases/kvm-image-admission.md`.
 
+R3 private image staging: `tools/kvm-host-probe/staging` copies admitted QCOW2 bytes into a new per-run 0700 directory with read-only 0400 files and SHA-256-bound review receipt. This is **not immutable storage or QEMU execution permission**: same-UID mutation remains possible after checking; future runner must pin and rehash exact bytes at launch. A partial stage requires manual controlled cleanup, never automatic recursive deletion. See `DOCUMENTATION/en/14-devops-releases/kvm-image-staging.md`.
+
 Leave a factual handover: completed work, remaining work, evidence, unresolved decisions, branch/commit/PR and checks not run. Never ask the owner to patch code.

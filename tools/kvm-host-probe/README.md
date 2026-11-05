@@ -28,3 +28,14 @@ No default vCPU, memory, time or disk limits are set. The local lab's **explicit
 ### Verification before accepting a lab image
 
 From the module root, run `GOTOOLCHAIN=local GOPROXY=off GOSUMDB=off go test ./...`, `go test -race ./...` and `go vet ./...`. These tests exercise **synthetic** QCOW2-like files only. The three versioned JSON schemas are checked for parity with Go wire fields. Any positive admission is for **manual review only**, and must be followed by independent policy/provenance authorization and re-verification at the eventual execution boundary; no VM can be started from this tool.
+
+## Verified per-run private image staging
+
+Run the separate **nonroot** CLI from this module:
+```sh
+GOTOOLCHAIN=local GOPROXY=off GOSUMDB=off go run ./cmd/forgepanel-kvm-image-stage \
+  /private/policy.json /private/request.json /private/staging-root
+```
+The third directory is an already existing canonical private (0700) lab directory, **separate** from the source image directory. Policy/request JSON files are private (0600); source image must match the request's pinned SHA-256 and explicit policy ceilings. A new `staging-root/<run_id>` directory (0700) holds `image.qcow2` and `stage-receipt.json` (0400). The source is re-read and re-hashed while copied; the copy is re-opened and re-hashed, and receipt binds image, policy and request hashes. This is **not immutable** storage or a signed qualification report.
+
+Successful staging returns `STAGED_FOR_MANUAL_REVIEW` with `qualification=NOT_EXECUTED`; it does not authorize QEMU execution, enforce CPU/RAM quotas, prove VM isolation or pass Q132 security gates. A partially failed new run remains private for manual cleanup; existing run directories are never overwritten. See [FR](../../DOCUMENTATION/fr/14-devops-releases/kvm-image-staging.md) / [EN](../../DOCUMENTATION/en/14-devops-releases/kvm-image-staging.md) specifications and [versioned receipt schema](schemas/stage-result.v1.schema.json).

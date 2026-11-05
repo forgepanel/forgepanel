@@ -32,4 +32,6 @@ R1 source preparation: `scripts/verify_source_archive.py` is read-only; `python3
 
 R1 quarantine: `scripts/stage_source_archive.py` is preview-only by default; `--stage` is allowed only for nonroot/private/off-repo targets after canonical preflight, and never constitutes a source import. Do not treat synthetic tests or the receipt as runtime certification. See `DOCUMENTATION/en/12-development/source-staging.md`.
 
+R1 post-staging verification: `python3 scripts/audit_staged_archive.py --archive <original.zip> --directory <private-quarantine>` verifies genuine pinned source ZIP, receipt and files read-only; it is not an import authorization. Quarantine failure cleanup is device/inode-anchored, with an explicit blocker on replacement; final importer must re-hash bytes. See `DOCUMENTATION/en/12-development/source-staging-audit.md`. Never treat synthetic fixture success as genuine source verification.
+
 Leave a factual handover: completed work, remaining work, evidence, unresolved decisions, branch/commit/PR and checks not run. Never ask the owner to patch code.

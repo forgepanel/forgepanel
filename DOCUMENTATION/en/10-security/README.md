@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=14 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=15 status=documented -->
 # Security model and disclosure
 
 [Français](../../fr/10-security/README.md) · [Index](../README.md)
@@ -86,3 +86,7 @@ Ephemeral KVM runners are isolated and cleaned of secrets; signed Q162 evidence 
 ## R1 source intake security boundary
 
 Source import requires exact SRC-03 bytes matched to canonical evidence. New `stage_source_archive.py` offers **unprivileged quarantine** after preflight, with no network, execution, Core overwrite or system deployment. Defenses include rejection of deceptive Unicode paths/Git metadata/setuid modes, separated validate/copy steps, private directory, 0600 regular files and provenance receipt. These controls are not a sandbox for running untrusted code: staged sources must not be executed/deployed. Neither Hub nor a plugin may authorize or bypass R1 source intake. [Contract](../12-development/source-staging.md).
+
+## R1 security review — staged integrity and safe cleanup
+
+Staged sources can be independently checked against **original ZIP + receipt + on-disk content**. [Audit contract](../12-development/source-staging-audit.md). Reject forged receipts, symlinks, hardlinks, nonprivate/executable modes, extra/missing files and altered originals. Failure cleanup uses a **private parent directory descriptor** and `dev/inode` identity to avoid removing an unrelated renamed directory. A same-UID attacker can still change staged data **after** auditing; final source importer must recheck bytes. Never root, generic shell, automatic import or Hub privilege.

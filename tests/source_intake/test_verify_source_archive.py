@@ -88,10 +88,13 @@ class ArchiveIntakeTests(unittest.TestCase):
         self.assertTrue(any("uncompressed_size_limit_exceeded" in b for b in r.blockers))
 
     def test_private_key_redacted_and_blocked(self):
-        private = b"prefix -----BEGIN PRIVATE KEY----- foo abc"
+        secret_marker = "SENSITIVE_FIXTURE_74f8a55e_do_not_log_content"
+        private = b"prefix -----BEGIN PRIVATE KEY----- foo " + secret_marker.encode()
         r = self.scan([("config/secret.txt", private)])
         self.assertTrue(any("sensitive_material_private_key" in b for b in r.blockers))
-        self.assertNotIn("abc", json.dumps(r.as_dict()))
+        serialized_report = json.dumps(r.as_dict())
+        self.assertNotIn(secret_marker, serialized_report)
+        self.assertNotIn("-----BEGIN PRIVATE KEY-----", serialized_report)
 
     def test_env_file_blocked_but_example_allowed(self):
         r = self.scan([(".env", b"APP_ENV=prod")])

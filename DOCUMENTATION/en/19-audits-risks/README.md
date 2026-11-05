@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19 revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-19 revision=4 status=documented -->
 # Audit, contradictions and risks
 
 [Français](../../fr/19-audits-risks/README.md) · [Index](../README.md)
@@ -43,3 +43,10 @@ This audit examined repository metadata, supplied archive structure, key code/co
 - **RISK-016** — Spoofed archive names and overridden evidence: preflight rejects noncanonical/bidi Unicode, embedded `.git`, live environment files and setuid/setgid modes; CLI `--stage` refuses a custom `--evidence` override. Heuristic controls cannot guarantee no secrets.
 
 The 33 synthetic checks test tooling guardrails, **not genuine source or Core integration**. [Specification](../12-development/source-staging.md).
+
+## Targeted R1 review — independent quarantine integrity
+
+- **RISK-017** — Staging receipt can change after creation: require read-only comparison to **genuine pinned source ZIP**, strict receipt/member matching and denial of executable modes, links and unexpected/missing entries.
+- **RISK-018** — Directory-substitution risk during failure cleanup: anchor cleanup to private parent descriptor and verify created inode/device; skip and report cleanup if target identity changes. An attacker under the **same UID** may still alter quarantine **after verification**; final importer must revalidate bytes.
+
+These protections do not replace source code or publisher-signature review. [FR/EN contract](../12-development/source-staging-audit.md).

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-12 revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-12 revision=4 status=documented -->
 # Environnement et conventions de développement
 
 [English](../../en/12-development/README.md) · [Index](../README.md)
@@ -28,3 +28,7 @@ L'utilitaire `scripts/verify_source_archive.py` vérifie en **lecture seule** l'
 ## R1 — Copie en quarantaine uniquement après préflight
 
 [Procédure de mise en quarantaine](source-staging.md) : un outil Python non privilégié peut préparer les octets vérifiés dans un répertoire privé neuf **sans les importer ni les exécuter**. Le mode par défaut ne modifie rien ; `--stage` exige preuves officielles, destination contrôlée et refus d'écrasement. La CI contient **33 tests synthétiques** pour le préflight et la quarantaine.
+
+## Vérifier la quarantaine après copie — R1
+
+[Contrôle indépendant des sources mises en quarantaine](source-staging-audit.md) : `scripts/audit_staged_archive.py` compare l'archive d'origine, son reçu et chaque fichier sur disque **en lecture seule**. Il bloque les modifications, liens, fichiers ajoutés/manquants, permissions d'exécution et inventaires falsifiés. L'audit ne remplace ni les licences, ni les tests PHP/Go, ni la validation de provenance éditeur, et n'importe pas automatiquement le code Core.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=15 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=17 status=documented -->
 # Status and dependency-ordered roadmap
 
 [Français](../../fr/00-project-control/status.md) · [Project control](README.md)
@@ -75,3 +75,7 @@ A read-only SRC-03 provenance preflight is **implemented** and tested on 16 synt
 ## R1 tooling status: provenance quarantine
 
 Core now contains standalone `verify_source_archive.py` and `stage_source_archive.py`, which can verify and **prepare nonprivileged off-repository** source copies. **33 synthetic local unit tests passed**; exact-commit PR CI must be checked separately. Quarantine receipt `STAGED_FOR_MANUAL_REVIEW` is not an import; **no Symfony/Go application or installer has been imported or deployed**. Foundation v0.7 original ZIP remains missing and issue #2 stays open. [Procedure](../12-development/source-staging.md).
+
+## R1 — Staged source integrity verification
+
+The feature branch adds **read-only** `audit_staged_archive.py` and hardens staging cleanup against concurrent directory replacement. State: **tool implemented with 60 synthetic CI tests passing on the feature branch**, not genuine SRC-03 validation or independent security review. Integration into develop follows PR #39. [Contract and limits](../12-development/source-staging-audit.md). Genuine Foundation v0.7 remains unavailable in this lot, source-import issue #2 is OPEN and R2–R6 are unverified. No V3 Design System or Hub change.

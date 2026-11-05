@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-12 revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-12 revision=4 status=documented -->
 # Development environment and conventions
 
 [Français](../../fr/12-development/README.md) · [Index](../README.md)
@@ -28,3 +28,7 @@ A new agent must inspect the current working tree and remote heads, reuse releva
 ## R1 — Quarantine copy only after preflight
 
 [Quarantine staging procedure](source-staging.md): a nonprivileged Python tool can copy verified bytes to a fresh private directory **without importing or executing them**. Default is read-only; `--stage` requires canonical evidence, a controlled destination and no overwrite. CI covers **33 synthetic tests** for preflight and staging.
+
+## Verify the quarantine after copying — R1
+
+[Independent post-stage integrity audit](source-staging-audit.md): `scripts/audit_staged_archive.py` compares original ZIP, provenance receipt and every staged file **read-only**. It denies changes, links, extra/missing files, executable modes and forged inventories. This audit is not a license, PHP/Go test or publisher-trust approval, and never imports Core code automatically.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=4 status=documented -->
 # Installation, Git promotion and releases
 
 [Français](../../fr/14-devops-releases/README.md) · [Index](../README.md)
@@ -26,6 +26,10 @@ The target provides **Stable, Beta, Dev**, pilot cohorts, progressive rollout, v
 ## Secure installation and release (Q61, Q62)
 
 Target: simple verified bootstrap and signed **DEB/RPM** repositories for all six OS targets, CI/CD builds with signed artifacts/metadata, anti-rollback and approval gates. Package signatures alone do not prove compatibility. Keep publisher private signing keys out of the installer. Test interrupted installs, idempotent retry and recovery. See [Q61–Q70](../00-project-control/infrastructure-decisions.md). No operational release has occurred.
+
+## Controlled adoption and trust chain (Q71, Q72)
+
+Q71 adds protected KMS/HSM or signing service, anti-rollback metadata and key rotation, without selecting a provider. Q72 supports servers already running services via **read-only discovery → takeover plan → backup → confirmation → validation/recovery**, alongside clean install. Installer must refuse to overwrite unmanaged files/services without explicitly verified ownership. Both paths require real conflict/VM testing before declared supported. [Specification](../00-project-control/decisions-q71-q80.md).
 
 ## Release evidence
 

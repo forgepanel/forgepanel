@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=4 status=documented -->
 # Installation, promotion Git et releases
 
 [English](../../en/14-devops-releases/README.md) · [Index](../README.md)
@@ -26,6 +26,10 @@ La cible propose **Stable, Beta, Dev** avec groupes pilotes, déploiement progre
 ## Installation et publication sécurisées (Q61, Q62)
 
 Cible : commandes d'installation simples avec vérification de provenance et **DEB/RPM signés** pour les six OS visés ; builds CI/CD, artefacts et métadonnées signés, anti-retour arrière et barrières d'approbation. Une signature de paquet n'est pas une preuve de test de compatibilité. Les clés privées d'éditeur ne doivent pas être embarquées dans l'installateur. Tester l'installation interrompue, la relance idempotente et la récupération. Voir [Q61–Q70](../00-project-control/infrastructure-decisions.md). Aucune publication opérationnelle n'a été réalisée.
+
+## Adoption et chaîne de confiance (Q71, Q72)
+
+La stratégie Q71 précise l'utilisation d'un KMS/HSM ou service de clés protégé, métadonnées anti-rétrogradation et rotation contrôlée, sans choisir un prestataire. Q72 élargit l'installation à un serveur contenant des services existants : **détection en lecture seule → plan d'adoption → sauvegarde → confirmation → validation et reprise**, en plus du cas serveur vierge. L'installateur doit refuser de remplacer des fichiers/service tiers sans propriété explicite. Ces modes ne seront supportés qu'après tests sur VM avec conflits réels. [Spécification](../00-project-control/decisions-q71-q80.md).
 
 ## Preuves de livraison
 

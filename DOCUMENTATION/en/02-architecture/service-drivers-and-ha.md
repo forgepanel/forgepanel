@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-02-SERVICES revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-02-SERVICES revision=2 status=specified -->
 # Local/external service drivers, backups and multi-server orchestration
 
 [Français](../../fr/02-architecture/service-drivers-and-ha.md) · [Architecture](README.md) · [Q61–Q70 decisions](../00-project-control/infrastructure-decisions.md)
+
+## Specific Q73–Q75 and Q77–Q79 choices
+
+DNS remains **multi-driver**, with a local recommendation chosen **after OS/capability testing** (Q73 D), rather than silently naming PowerDNS/BIND/Knot as a universal default. The first native mail driver is **Postfix + Dovecot** with configurable external provider/relay (Q74 C). Backups target **3-2-1**, scheduled restore drills and configurable replication (Q75 C) alongside Q65 immutability. Multi-server agents precede HA/external orchestrator modules (Q77 D). Prometheus/OpenTelemetry are separate monitoring adapters (Q78 C). See [Q71–Q80](../00-project-control/decisions-q71-q80.md).
 
 ## DNS and mail adapters (Q63 C, Q64 C)
 

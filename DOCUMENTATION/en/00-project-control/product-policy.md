@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-POLICY revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-00-POLICY revision=4 status=documented -->
 # Product decisions of 5 November 2026 — free Core, commercial model and configuration
 
 [Français](../../fr/00-project-control/product-policy.md) · [ADR register](decisions.md) · [Configuration Engine](../02-architecture/configuration-engine.md)
@@ -46,6 +46,10 @@ Core remains free and complete. Hub owns payments/offers; Core owns local update
 ## Confirmed Q61–Q70
 
 The owner approved Q61 C, Q62 C, Q63 C, Q64 C, Q65 D, Q66 C, Q67 D, Q68 C, Q69 D and Q70 D: signed publishing and universal installer, modular local/external DNS/mail, replicated/immutable backups, sensitive action approvals, phased multi-server/HA, external monitoring, multiple web ingresses and visual customization. **One brand per organization** (Q55) and **optional admin MFA** remain unchanged. HA and advanced functions are phased, not mandatory for the first release. [Q61–Q70 requirements](infrastructure-decisions.md).
+
+## Confirmed Q71–Q80
+
+New choices specify protected key infrastructure with rotation/anti-rollback (Q71), reversible adoption of existing Linux services (Q72), a local DNS engine recommended after qualification (Q73), Postfix/Dovecot with external providers (Q74), 3-2-1 backups and recovery testing (Q75), per-action extra approval (Q76), phased HA/orchestration (Q77), Prometheus/OpenTelemetry (Q78), **per-site WebStack recommendation with later switching** (Q79), and controlled declarative widgets (Q80). None is implemented. [Q71–Q80 specification](decisions-q71-q80.md).
 
 ## Open follow-ups — no default assumed
 

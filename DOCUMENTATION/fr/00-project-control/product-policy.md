@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-POLICY revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-00-POLICY revision=4 status=documented -->
 # Décisions produit du 5 novembre 2026 — gratuit, commercial et configurable
 
 [English](../../en/00-project-control/product-policy.md) · [Registre ADR](decisions.md) · [Configuration Engine](../02-architecture/configuration-engine.md)
@@ -46,6 +46,10 @@ Le Core demeure complet et gratuit. Les paiements/offres appartiennent au Hub, t
 ## Décisions Q61–Q70 confirmées
 
 L'éditeur a validé les dix choix Q61 C, Q62 C, Q63 C, Q64 C, Q65 D, Q66 C, Q67 D, Q68 C, Q69 D, Q70 D. Ils prévoient publication signée et installateur universel, services DNS/mail modulaires, sauvegardes avec réplication/immutabilité, approbations sensibles, orchestration et HA, monitoring externe, frontaux multiples et édition visuelle. La marque demeure **unique par organisation** (Q55) et le MFA administrateur reste **facultatif**. La haute disponibilité et les fonctions avancées se déploient par phases, sans contraindre la première version. [Exigences Q61–Q70](infrastructure-decisions.md).
+
+## Décisions Q71–Q80 confirmées
+
+Les nouveaux arbitrages précisent le choix d'une infrastructure de clés sécurisée avec rotation/anti-rétrogradation (Q71), l'adoption réversible de services Linux existants (Q72), un moteur DNS local conseillé après qualification (Q73), Postfix/Dovecot avec services externes (Q74), sauvegardes 3-2-1 avec tests de récupération (Q75), approbation supplémentaire selon l'action (Q76), HA/orchestrateurs progressifs (Q77), Prometheus/OpenTelemetry (Q78), **recommandation de WebStack pour chaque site avec possibilité de changement ultérieur** (Q79) et widgets déclaratifs contrôlés (Q80). Aucun de ces systèmes n'est implémenté. [Spécification Q71–Q80](decisions-q71-q80.md).
 
 ## Questions encore ouvertes — ne pas présumer
 

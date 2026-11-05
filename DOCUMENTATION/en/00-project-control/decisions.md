@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DECISIONS revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-00-DECISIONS revision=4 status=documented -->
 # Decision register
 
 [Français](../../fr/00-project-control/decisions.md) · [Project control](README.md)
@@ -48,8 +48,19 @@ Source IDs refer to the [baseline](../19-audits-risks/baseline.md). A decision a
 | ADR-035 | Sensitive reauthentication and optional extra approval (Q66 C) | Admin MFA remains optional; approval policy, audit and emergency recovery |
 | ADR-036 | Multi-server and HA/clustering/DR (Q67 D) | Phased target; no certified cluster or Hub runtime dependency |
 | ADR-037 | Local monitoring, email/webhooks and external integrations (Q68 C) | Configurable rules and controlled external data |
-| ADR-038 | Per-site WebStacks and ingress by IP/port (Q69 D) | Exclusive listeners, TLS and `.htaccess` protection, planned changes |
+| ADR-038 | Per-site WebStacks and ingress by IP/port (Q69 D) | Exclusive listeners, TLS, `.htaccess` and planned changes; Q79 specifies **per-site** recommendation and later switching |
 | ADR-039 | Visual widget/navigation editor with one brand (Q70 D, Q55 A) | Approved components, theme/history, scoped rights and no arbitrary code |
+
+| ADR-040 | Protected keys, anti-rollback and rotation (Q71 C) | CI signing with KMS/HSM or protected key service, trusted metadata, rotation/recovery; vendor open |
+| ADR-041 | Clean install plus controlled existing-service adoption (Q72 C) | Read-only inventory, plan, conflicts, approval and backup/restore; no silent takeover |
+| ADR-042 | Multi-driver DNS with local recommendation after tests (Q73 D) | No mandatory local DNS engine; certify capability before recommending |
+| ADR-043 | Postfix + Dovecot first native mail driver plus external (Q74 C) | Initial local backend, provider/relay adapters and tested security |
+| ADR-044 | 3-2-1 backups, tested restores and configurable replication (Q75 C) | Target backup profile, cadence/destinations by capabilities, Q65 immutability preserved |
+| ADR-045 | Per-action approvals and audited recovery (Q76 C) | Reauthentication, separation of duties and safe break-glass; MFA still optional |
+| ADR-046 | Multi-server first, phased HA/external orchestrators as optional modules (Q77 D) | Later phase, no cluster needed for initial hosting |
+| ADR-047 | Prometheus + OpenTelemetry adapters (Q78 C) | Configurable exporters, data filtering and outbound consent |
+| ADR-048 | **Per-site** recommended WebStack, changeable after creation (Q79 D, owner clarification) | Explicit initial choice; future switch uses PLAN/VALIDATE/STAGE/HEALTH/RECOVER; preserve `.htaccess` and listeners |
+| ADR-049 | Official/partner widgets plus declarative custom widgets (Q80 C) | Authorized data sources, manifests, RBAC, safe rendering, one brand per org, no arbitrary code |
 
 ## Replaced or unresolved proposals
 

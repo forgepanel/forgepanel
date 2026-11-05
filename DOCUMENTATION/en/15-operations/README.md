@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-15 revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-15 revision=4 status=documented -->
 # Operations, diagnosis and recovery
 
 [Français](../../fr/15-operations/README.md) · [Index](../README.md)
@@ -24,6 +24,10 @@ Privileged audit records, system logs, jobs, metrics, diagnostics, sessions, bac
 ## Advanced operation and monitoring (Q65, Q67, Q68)
 
 Encrypted multi-destination backups with replication/immutability, local monitoring and email/webhook/external alert integrations, and a phased multi-server/HA/DR target. All adapters expose quotas, consent, retention and recovery; real availability needs restore/failure tests. Clustering follows the foundation milestone. [Architecture](../02-architecture/service-drivers-and-ha.md).
+
+## 3-2-1, observability and recovery (Q75, Q77, Q78)
+
+The target backup profile is **3-2-1**, with scheduled restore tests, replication and an offsite copy according to actual capabilities and budgets; Q65 immutability still requires a supporting destination. Q78 monitoring uses configurable Prometheus/OpenTelemetry adapters with permissioned exports. Q77 phases remote agents before optional HA/external orchestrator modules: redundancy, quorum and recovery require tests rather than a UI checkbox. [Reference](../00-project-control/decisions-q71-q80.md).
 
 ## Backup and restoration requirements
 

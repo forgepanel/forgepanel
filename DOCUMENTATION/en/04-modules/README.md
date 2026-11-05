@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-04 revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-04 revision=3 status=documented -->
 # Native module catalog
 
 [Français](../../fr/04-modules/README.md) · [Index](../README.md)
@@ -20,6 +20,10 @@ A native module belongs to the reviewed product and uses core contracts. It may 
 ## Q63–Q68 native module responsibilities
 
 The design includes local/external DNS (Q63), native/external mail (Q64), encrypted replicated/immutable backup and restore (Q65), integrations and alerting (Q68), and multi-server/HA agents (Q67). Modules expose capabilities, authorization and observed state; no optional service is implicitly installed. HA is a phased target, not necessarily part of the first hosting milestone. [Architecture](../02-architecture/service-drivers-and-ha.md).
+
+## Module selection and adaptation (Q72–Q79)
+
+The installer may detect/adopt existing services following inventory, permission and recovery planning (Q72), never silently take ownership of foreign files. DNS local engine is recommended after driver testing (Q73); Postfix/Dovecot first mail driver with external providers/relays (Q74); 3-2-1 backup and restore drills (Q75); Prometheus/OpenTelemetry adapters (Q78). For every website Core recommends a WebStack without imposing it and later allows a **controlled switch** (Q79). [Details](../00-project-control/decisions-q71-q80.md).
 
 ## Lifecycle contract
 

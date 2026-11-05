@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=17 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=18 status=documented -->
 # État et roadmap ordonnée par dépendances
 
 [English](../../en/00-project-control/status.md) · [Pilotage](README.md)
@@ -79,3 +79,7 @@ Le Core contient maintenant les outils autonomes `verify_source_archive.py` et `
 ## R1 — Vérification d'intégrité de quarantaine
 
 La branche de travail ajoute l'outil **en lecture seule** `audit_staged_archive.py` et renforce le nettoyage du staging contre la substitution d'un dossier en cours d'opération. État : **outil implémenté et 60 tests synthétiques réussis en CI sur la branche de travail**, sans validation de SRC-03 réel ni revue sécurité indépendante. Son intégration dans develop relève de la PR #39. [Règles et limitations](../12-development/source-staging-audit.md). L'archive Foundation v0.7 authentique reste indisponible dans ce lot, l'issue #2 d'import applicatif demeure OPEN et R2–R6 ne sont pas démontrés. Aucun changement de Design System V3 ni de Hub.
+
+## R3 — Utilitaire autonome de préinspection KVM (préparatoire)
+
+Un module Go en code source séparé, `tools/kvm-host-probe/`, est **IMPLEMENTATION CANDIDATE** sur une branche `features/*` avec tests unitaires et CI spécifiques. Il peut observer des signes de compatibilité KVM et écrire un rapport JSON `qualification=NOT_EXECUTED`. Ce statut **n'est ni une qualification réelle R3, ni une implémentation du Core Symfony/Go historique, ni une release**. R1 source Foundation v0.7 (issue #2) reste ouvert, la V3 du Design System non validée, Hub différé après ABI. [Spécification FR/EN](../14-devops-releases/kvm-host-probe.md).

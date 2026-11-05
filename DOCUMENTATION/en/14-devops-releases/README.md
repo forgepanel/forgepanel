@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=12 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=13 status=documented -->
 # Installation, Git promotion and releases
 
 [Français](../../fr/14-devops-releases/README.md) · [Index](../README.md)
@@ -68,3 +68,7 @@ The new `scripts/verify_source_archive.py` preflight reads genuine SRC-03 **with
 ## R1 — integrity receipt is neither a release nor import approval
 
 `audit_staged_archive.py` can **read-only** confirm the quarantine still matches pinned SRC-03 source ZIP. Even `CONSISTENT_FOR_MANUAL_REVIEW` never authorizes `install apply`, compilation, deployment or automated Git import: manual license/secret review and re-hashing at final source import remain necessary. [Procedure](../12-development/source-staging-audit.md).
+
+## R3 — Read-only local QEMU/KVM preparation
+
+A **standalone Go module outside historical Core** provides a [KVM candidate host observation](kvm-host-probe.md) (Q151 A, Q161 C). It reads fixed Linux metadata and prints JSON without booting any VM, root commands or collecting host identity. **It runs no isolation, snapshot, quotas, evidence signature or OS installation test.** The ephemeral QEMU/KVM runner and immutable reports remain future R3 work; R1 Foundation source import remains blocked by the missing original archive.

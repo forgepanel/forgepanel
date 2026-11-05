@@ -142,6 +142,11 @@ class QuarantineAuditTests(unittest.TestCase):
         result = auditor.verify(self.archive, alias, self.evidence)
         self.assertEqual(result["status"], "BLOCKED")
 
+    def test_quarantine_under_repository_is_rejected(self):
+        result = auditor.verify(self.archive, ROOT, self.evidence)
+        self.assertEqual(result["status"], "BLOCKED")
+        self.assertIn("staged_directory_inside_repository_forbidden", result["blockers"])
+
     def test_receipt_marked_import_approved_is_rejected(self):
         receipt = self.destination / RECEIPT
         data = json.loads(receipt.read_text())

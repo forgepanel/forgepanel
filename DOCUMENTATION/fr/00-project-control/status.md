@@ -34,6 +34,8 @@ Les six OS et cinq profils sont des entrées de planification. Trente combinaiso
 | P6 | Modules d'hébergement et autres stacks | Isolation, limites, sauvegardes/restaurations et preuves VM par profil |
 | P7 | Écosystème tiers | Modèle de confiance, contrats, isolation et maintenance validés avant exécution |
 
+Décisions complémentaires Q48–Q55 du 2026-11-05 : **AGPL-3.0 + licence commerciale**, contributions sous **CLA**, premium plugins/cloud/managé/partenaires/support, **Docker et Podman**, après 60 jours hors ligne blocage des nouvelles opérations premium et conservation de l'existant, **partenaires sur candidature et vérification manuelle**, priorité hébergement + VPS, **une marque par organisation**. [Licences et protection](license-commerce.md) · [Pilotes conteneurs](../02-architecture/container-drivers.md). Aucune de ces options n'est une implémentation disponible.
+
 Nouvelles décisions produit Q1–Q8 et Q47 du 2026-11-05 : **double licence (textes non choisis)**, Core gratuit complet + premium/support facultatifs, toutes cibles par phases, runtimes clients PHP/Node.js/Python/conteneurs, white-label par organisation, Hub avec consentements séparés, grâce commerciale hors ligne **60 jours**, catalogue officiel/partenaires vérifiés, changements sensibles contrôlés. [Politique détaillée](product-policy.md). Elles ne constituent pas des fonctionnalités implémentées.
 
 Ces priorités n'engagent aucune date ni version. Arbitrages produit nécessaires : licence du logiciel/des contributions et canal privé de sécurité autorisé. Les choix paquets/runtimes nécessitent une proposition technique étayée, pas une nouvelle architecture implicite.

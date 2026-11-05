@@ -19,6 +19,6 @@ Planifier prérequis et quotas ; préparer des entrées immuables ; valider ; sa
 
 Tester installation vierge, requête dupliquée, téléchargement interrompu, signature/empreinte invalide, runtime incorrect, migration SQL échouée, restauration et suppression dans un client isolé. Observer identifiants de job/corrélation, artefact, durée et erreurs expurgées. Chaque future entrée de catalogue référence ces tests et la combinaison OS/profil/runtime qualifiée. Aucune recette exécutable n'est annoncée sans ces preuves.
 
-La décision Q4 ajoute **PHP, Node.js, Python et applications conteneurisées** aux runtimes clients visés, chacun isolé, quota contrôlé, versionnable et configurable. Le moteur Docker/Podman, les images signées, le réseau et les volumes nécessitent un arbitrage ; cette capacité n'est pas encore livrée.
+La décision Q4 ajoute **PHP, Node.js, Python et applications conteneurisées** aux runtimes clients visés, chacun isolé, quota contrôlé, versionnable et configurable. **Docker + Podman sont retenus via deux pilotes indépendants (Q51 C)**. Les images signées, le réseau et les volumes nécessitent encore spécifications et tests ; cette capacité n'est pas encore livrée.
 
 [Modules](../04-modules/README.md) · [Contrats](../08-api-contracts/README.md) · [Exploitation](../15-operations/README.md)

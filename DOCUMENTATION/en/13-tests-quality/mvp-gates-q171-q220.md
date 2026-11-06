@@ -3,7 +3,7 @@
 
 [Français](../../fr/13-tests-quality/mvp-gates-q171-q220.md) · [QA index](README.md) · [Decisions](../00-project-control/decisions-q171-q220.md)
 
-**PLANNED — NOT EXECUTED.** Fifty owner-approved product directions generate fifty planned acceptance cases. These rows are test requirements, not passing tests, and must not be confused with documentation CI or 32 previous App Center VM tests. [Machine-readable acceptance register](../../evidence/acceptance-q171-q220-v1.json).
+**PLANNED — NOT EXECUTED.** Fifty owner-approved product directions generate fifty planned acceptance cases. These rows are test requirements, not passing tests, and must not be confused with documentation CI or 32 previous App Center VM tests. [Machine-readable acceptance register](../../../evidence/acceptance-q171-q220-v1.json).
 
 | Case | Choice | Acceptance target | Status |
 |---|---|---|---|

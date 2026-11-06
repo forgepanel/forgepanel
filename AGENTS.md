@@ -42,4 +42,6 @@ R3 private image staging: `tools/kvm-host-probe/staging` copies admitted QCOW2 b
 
 R2 documentation candidate contracts live at `DOCUMENTATION/en/03-core/bootstrap-identity-r2.md`, `DOCUMENTATION/en/09-database/setup-transaction-r2.md` and `DOCUMENTATION/en/13-tests-quality/r2-integration-gates.md` (mirrored in FR). All 20 HTTP/SQL tests are PLANNED, not PASS; database schema, migration, API routes, recovery proof, TTL and limits remain subject to specialized review after original SRC-03 import. Admin MFA remains explicitly optional. Documentation CI proves parity only.
 
+R3 contract candidates: `DOCUMENTATION/en/08-api-contracts/symfony-go-ipc-r3.md` and `DOCUMENTATION/en/14-devops-releases/installer-lifecycle-r3.md` (FR mirrored), with documentary-only `DOCUMENTATION/evidence/typed-agent-operations-v1.json` and strict IPC request/response JSON Schemas. **No executable agent or installer was created; ACT-FP-0005/0007 are BLOCKED_UNTIL_QUALIFIED**, no shell.exec or raw command args. All 24 R3 QA scenarios remain PLANNED; DOC-GAP-005/006 remain OPEN. Do not adopt candidate values as owner decisions, or authorize Q47 APPLY before R1/R2 and specialized security/VM reviews.
+
 Leave a factual handover: completed work, remaining work, evidence, unresolved decisions, branch/commit/PR and checks not run. Never ask the owner to patch code.

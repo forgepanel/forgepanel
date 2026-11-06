@@ -4,6 +4,11 @@ One chronology, both languages. / Une chronologie, deux langues.
 
 ## Unreleased / Non publié
 
+### Added / Ajouts — R3 typed Symfony↔Go IPC and secure installer candidate contracts
+
+- **Documentation contracts only / Contrats documentaires uniquement** — Added **12 typed IPC requirements** `IPC-FP-0001..0012`, **12 trusted installer requirements** `INST-FP-0001..0012`, **seven closed, typed candidate operations** `ACT-FP-0001..0007` with **two privileged actions BLOCKED_UNTIL_QUALIFIED**, strict candidate request/response JSON Schemas, and **24 planned positive/negative R3 tests**. Linked FR/EN API, DevOps, QA, security, database, architecture, module records, gap register and traceability. Documented unresolved RISK-026/027, Q47 lifecycle, trust/signatures/anti-rollback, idempotency, durable job/recovery and Hub-free Core. **No live IPC, daemon, installer, package, PostgreSQL migration or authorized root operation; DOC-GAP-005/006 remain OPEN.** / Ajout de **12 exigences IPC**, **12 exigences installateur**, **7 opérations typées candidates dont 2 privilégiées bloquées**, schémas JSON stricts et **24 scénarios R3 planifiés**. Liens FR/EN, risques RISK-026/027 et traçabilité actualisés. **Aucun IPC/daemon/installateur/paquet/migration ni action root opérationnels ; les lacunes DOC-GAP-005/006 restent ouvertes.**
+
+
 ### Added / Ajouts — R2 bootstrap, optional MFA and PostgreSQL candidate contracts
 
 - **Bilingual R2 specification / Spécification R2 bilingue** — Added 12 identity/session/bootstrap requirements (`R2-ID-001..012`), 12 PostgreSQL setup/atomicity/concurrency/recovery requirements (`R2-DB-001..012`) and 20 `PLANNED` positive/negative HTTP/MFA/SQL integration cases (`R2-AUTH-001..010`, `R2-DB-TEST-001..010`). Updated FR/EN Core/Database/QA indexes and documentation CI assertions. **No historical source import, actual Symfony boot, PostgreSQL migration, runtime functional test or owner decision Q171+**. / Ajout des fiches FR/EN R2 : 12 exigences identité/bootstrap/sessions/MFA facultative, 12 exigences PostgreSQL transactions/concurrence/reprise et 20 scénarios d'intégration positifs/négatifs au statut `PLANNED`. Index Core/Database/QA et contrôles documentaires mis à jour. **Aucun import des sources d'origine, démarrage Symfony, migration PG, test fonctionnel réel ni nouvelle décision produit**.

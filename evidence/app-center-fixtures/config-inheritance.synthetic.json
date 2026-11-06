@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "status": "SYNTHETIC_UNVERIFIED",
+  "policy_contract": "APP_CENTER_INHERITANCE_CANDIDATE_V1",
+  "numeric_values_are": "FICTIONAL_QA_EXAMPLES_NOT_PRODUCT_DEFAULTS",
+  "subject": {
+    "server_id": "fixture-server",
+    "organization_id": "fixture-organization",
+    "plan_id": "fixture-plan",
+    "site_id": "fixture-site"
+  },
+  "layers": [
+    {
+      "scope": "global",
+      "changes": {
+        "app.native.allowed": true,
+        "app.container.allowed": true,
+        "app.catalog.verified_partner_allowed": true,
+        "app.container.max_cpu_millicores": 4000,
+        "app.container.max_memory_mib": 8192,
+        "app.container.max_pids": 256
+      }
+    },
+    {
+      "scope": "server",
+      "changes": {
+        "app.container.max_cpu_millicores": 2400,
+        "app.container.max_memory_mib": 4096
+      }
+    },
+    {
+      "scope": "organization",
+      "changes": {
+        "app.container.max_cpu_millicores": 1800
+      }
+    },
+    {
+      "scope": "plan",
+      "changes": {
+        "app.container.max_cpu_millicores": 1000,
+        "app.container.allowed": false
+      }
+    },
+    {
+      "scope": "site",
+      "changes": {
+        "app.container.max_cpu_millicores": 500,
+        "app.container.max_memory_mib": 2048
+      }
+    }
+  ]
+}

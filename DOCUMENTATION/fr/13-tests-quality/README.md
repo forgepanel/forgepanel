@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=26 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=27 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
@@ -6,6 +6,10 @@
 ## Q171–Q220 : qualification prévue, aucun PASS fonctionnel
 
 Les [50 orientations approuvées](../00-project-control/decisions-q171-q220.md) sont liées à [50 scénarios d'acceptation PLANNED](mvp-gates-q171-q220.md), avec parité FR/EN et choix C Q174/Q194/Q200. Les contrôles JSON/documentaires restent **statiques** : aucun antivirus, WAF, API, installateur, récupération VM ou Hub intégré n'a été testé sur runtime. Q1–Q170 restent valides et Q221+ ouverts.
+
+## Q180/Q220 — tests d'héritage du Configuration Center
+
+Le [résolveur candidat](../../../scripts/preview_app_center_inheritance.py) et ses [26 tests statiques](../../../tests/documentation/test_app_center_inheritance.py) illustrent les règles de restriction par niveau et les invariants de sécurité sur des données fictives. Les [16 tests d'intégration/VM](app-center-configuration-gates.md) restent PLANNED ; une CI réussie ne prouve ni RBAC Symfony, ni limites Linux réelles, ni application/récupération des politiques.
 
 ## App Center : tests de séparation des origines fictives
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08-APP-RECIPE revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-08-APP-RECIPE revision=2 status=specified -->
 # App Center — discriminated recipe contracts and admission boundaries
 
 [Français](../../fr/08-api-contracts/app-center-recipe-contracts.md) · [API index](README.md) · [Two-engine policy](../06-apps-recipes/app-center-engines.md)
@@ -19,6 +19,8 @@ The `app_id` may be shared by both kinds, but `variant_id` and `recipe_kind` ide
 The files [native fixture](../../../evidence/app-center-fixtures/native-cms.v1.json) and [container fixture](../../../evidence/app-center-fixtures/container-worker.v1.json) contain **invented fixture identities and non-resolving example.invalid origins**. Their digests are syntactic test values, not real checked downloads. **Never use them to install applications, grant permissions or publish packages.**
 
 The [offline admission validator](../../../scripts/validate_app_center_recipe.py) checks only these candidate shapes and some essential fail-closed invariants. It does **not** execute commands, inspect Docker/Podman, access SQL, download anything, validate artifact signatures, evaluate real host capacities or authorize installation. It must never be used as the sole production security control.
+
+**Fixture limitation, not a product restriction:** the current offline candidate validator recognizes only `PHP_FPM` for synthetic native examples. This does **not** remove Q4 targets for Node.js, Python or other qualified native runtimes. Each additional native runtime requires a separate reviewed handler, security model, compatible WebStack, quotas and dedicated VM tests before inclusion. The requested **free ONE-CLICK INSTALL engine** remains the product boundary; this particular fixture is not the complete application catalog.
 
 ## Planned request and lifecycle boundary
 

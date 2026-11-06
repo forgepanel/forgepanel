@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-13 revision=22 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=23 status=documented -->
 # Tests, quality and definition of done
 
 [Français](../../fr/13-tests-quality/README.md) · [Index](../README.md)
+
+## App Center: candidate manifest checks versus runtime tests
+
+The [offline recipe checks](../../../tests/documentation/test_app_center_recipe_contracts.py) validate only synthetic candidate JSON and reject a selection of unsafe manifest fields, **without any installation**. The [32 app runtime/VM scenarios](app-center-engine-gates.md) remain PLANNED. No app/OS/Docker/Podman certification follows from static CI.
 
 ## App Center: native and container gates
 

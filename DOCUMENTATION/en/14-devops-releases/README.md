@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=17 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=18 status=documented -->
 # Installation, Git promotion and releases
 
 [Français](../../fr/14-devops-releases/README.md) · [Index](../README.md)
@@ -8,6 +8,10 @@
 `features/*` → `develop` → `stable` → `main` → `production` is the owner's required promotion sequence. Temporary feature branches include docs and fixes. Reuse a relevant branch, open a scoped PR, respect checks/reviews and preserve history. Delete obsolete temporary branches only after integration and according to repository rules. No force push or bypass is part of this workflow.
 
 Because the repository was empty, commit `26b7c773a0831c20e7f14bb86ef8c2697a19d523` initialized `main` with a README. The other permanent branches and `features/documentation-foundation` start from that commit. This narrowly scoped bootstrap exception is documented; it is not a precedent for committing implementation directly to `main`. Protection/ruleset reads were denied, so their requirements are not assumed absent.
+
+## Installer portal access surfaces
+
+Confirmed target: **FORGE `https://<server-ip>:8447/forge`** (admin) and **PANEL `https://<server-ip>:8446/panel`** (customer); separate configurable HTTPS 443 hosts after DNS/TLS verification. Installer must avoid listener/host collision, validate TLS origin and preserve emergency admin access when changing firewall policy. This does not alter historical `/setup` routes or certify any running listeners. [FR/EN contract](../07-interfaces-roles/portal-access-routing.md) · [Tests](../13-tests-quality/portal-access-gates.md).
 
 ## Installation gates
 

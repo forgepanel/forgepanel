@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-08 revision=10 status=documented -->
+<!-- forgepanel-doc id=FP-08 revision=11 status=documented -->
 # API et contrats
 
 [English](../../en/08-api-contracts/README.md) · [Index](../README.md)
+
+## Contrat candidat FORGE / PANEL
+
+Le [contrat de routage, d'hôtes et de sessions](portal-route-boundary.md) formalise les surfaces **FORGE `/forge` sur 8447** et **PANEL `/panel` sur 8446**, avec des hôtes HTTPS 443 configurables. Le [registre de référence non opérationnel](../../../evidence/portal-access-registry-v1.json), son [validateur statique](../../../scripts/validate_portal_access_registry.py) et les [tests de contrat](../../../tests/documentation/test_portal_access_contract.py) ne remplacent pas des essais Symfony/HTTPS. Aucune API/route active n'en découle.
 
 ## Contrats observés dans SRC-03
 

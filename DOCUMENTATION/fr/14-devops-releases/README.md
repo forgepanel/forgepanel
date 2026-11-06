@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-14 revision=17 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=18 status=documented -->
 # Installation, promotion Git et releases
 
 [English](../../en/14-devops-releases/README.md) · [Index](../README.md)
+
+## Observation des adresses de la machine — préflight autonome
+
+Un nouvel [outil Go autonome non privilégié](host-address-observation.md) relève les **IPv4/IPv6 attribuées et un éventuel FQDN candidat valide** en vue des accès FORGE /forge:8447 et PANEL /panel:8446. Il n'exécute **aucune vérification DNS/TLS ni listener**, ne publie aucune URL vérifiée et **ne demande pas de domaine de portail personnalisable**. Il n'intègre pas le Core Foundation manquant ni ne certifie un OS. L'intégration reste conditionnée par l'issue #51 et les prérequis R1/R2.
 
 ## Workflow Git
 

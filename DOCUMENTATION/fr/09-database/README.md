@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-09 revision=9 status=documented -->
+<!-- forgepanel-doc id=FP-09 revision=10 status=documented -->
 # Base de données, transactions et migrations
 
 [English](../../en/09-database/README.md) · [Index](../README.md)
+
+## Modèle candidat App Center : propriété et ressources
+
+Le [modèle conceptuel](app-center-resource-ownership.md) distingue applications, variantes de recettes natives/conteneurs, installations par moteur, quotas, réservations, sauvegardes et audit. Le document n'autorise aucune table physique, migration DDL, exécuteur de jobs ou durée de rétention. [Contrat des manifestes](../08-api-contracts/app-center-recipe-contracts.md).
 
 ## Schéma réel du prototype
 

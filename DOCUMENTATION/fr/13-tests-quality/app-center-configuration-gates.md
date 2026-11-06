@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13-APP-CONFIG revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-13-APP-CONFIG revision=2 status=specified -->
 # App Center Configuration Center — critères de tests réels
 
 [English](../../en/13-tests-quality/app-center-configuration-gates.md) · [QA](README.md) · [Spécification d'héritage](../02-architecture/app-center-config-inheritance.md) · [Q180/Q220](../00-project-control/decisions-q171-q220.md)

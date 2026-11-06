@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14-APP-HOST-HINTS revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-14-APP-HOST-HINTS revision=2 status=specified -->
 # App Center — observation Linux Go en lecture seule, sans capacité certifiée
 
 [English](../../en/14-devops-releases/app-center-host-observation.md) · [DevOps](README.md) · [Sources](../../../tools/app-center-host-probe/README.md)
@@ -18,9 +18,15 @@ Les lectures sont limitées ; aucune entrée ne permet de choisir un chemin ou u
 
 Tout rapport contient `driver_qualification=NOT_EXECUTED`, `qualified_container_drivers=[]` et **false** pour l'identité vérifiée, l'autorisation de l'acteur, le budget exploitable, le confinement cgroups, les tests runtime, la signature, les privilèges Linux et la possibilité d'installer. Un lien symbolique vers Docker reste `SYMLINK_UNVERIFIED`.
 
+### Tokens cgroups v2 supplémentaires au montage visible (non fiables)
+
+La sonde lit maintenant également **quatre fichiers fixes à la racine du montage cgroup visible** : `cpu.max`, `memory.max`, `memory.current` et `pids.max`. Elle analyse les tokens quota/période CPU et `max`/nombres mémoire/PIDs selon le noyau Linux, avec lectures bornées à 128 octets, syntaxe décimale contrôlée et erreurs expurgées. <https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v2.html>
+
+L'objet `visible_cgroup_root` ne contient que des **indices bruts** (`cpu_quota_state=NUMERIC_TOKEN_UNVERIFIED`, `memory_max_state=MAX_TOKEN_UNVERIFIED` par exemple), jamais un quota effectif d'un client ou conteneur. Les fichiers de la racine *visible* peuvent manquer ou ne pas représenter le cgroup du processus/client, notamment avec espaces de noms et limites hiérarchiques. **Interdiction de déduire des CPU/RAM/PIDs réservable**, de traiter `max` comme une ressource garantie ou d'autoriser une installation à partir de ces données. `cgroup_limits_enforced` reste **false** même en présence d'un token numérique. Les cgroups v1 et la délégation réelle aux tenants ne sont **pas qualifiés**.
+
 ## Sources et tests
 
-[Module et mode d'emploi](../../../tools/app-center-host-probe/README.md) · [20 tests unitaires Go](../../../tools/app-center-host-probe/probe/probe_test.go) · [CI dédiée](../../../.github/workflows/app-center-host-probe.yml).
+[Module et mode d'emploi](../../../tools/app-center-host-probe/README.md) · [35 tests unitaires Go](../../../tools/app-center-host-probe/probe/probe_test.go) · [CI dédiée](../../../.github/workflows/app-center-host-probe.yml).
 
 Les tests injectent des lecteurs de fichiers fictifs et couvrent mémoire corrompue/trop grande, overflow entier, cgroups, binaire/symlink, erreurs d'accès, installations absentes, refus de fuite de secrets, chemins bornés et absence d'autorisation. La CI contrôle également `go test -race`, `go vet`, `gofmt`, le refus d'arguments et les constantes d'interdiction sur un runner Linux **qui n'est pas un serveur ForgePanel client certifié**.
 

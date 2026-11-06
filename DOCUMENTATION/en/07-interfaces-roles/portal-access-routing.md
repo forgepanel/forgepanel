@@ -1,50 +1,56 @@
-<!-- forgepanel-doc id=FP-07-PORTALS revision=2 status=specified -->
-# FORGE / PANEL access contract — paths, domains and ports
+<!-- forgepanel-doc id=FP-07-PORTALS revision=3 status=specified -->
+# FORGE / PANEL access — fixed ports, autodetected IP and domain
 
-[Français](../../fr/07-interfaces-roles/portal-access-routing.md) · [Portals and roles](README.md) · [Tests](../13-tests-quality/portal-access-gates.md)
+[Français](../../fr/07-interfaces-roles/portal-access-routing.md) · [Roles](README.md) · [Tests](../13-tests-quality/portal-access-gates.md)
 
-> **SPECIFIED — not implemented or certified.** Product convention reiterated by the owner on 6 November 2026. The SRC-03 prototype does not provide two working portals. Hostnames below are configurable examples, not deployed domains.
+> **SPECIFIED / not implemented.** Owner correction on 6 November 2026: **no customizable domain input**. ForgePanel must discover the machine's IP address automatically and also detect a usable existing domain name, if any. Approved paths and ports remain unchanged. SRC-03 does not yet ship these two portals.
 
-## Confirmed access convention
+## Expected access without a domain-entry field
 
-| Surface | Direct HTTPS access by IP | Configured HTTPS host on 443 | Canonical path prefix | Audience |
-|---|---|---|---|---|
-| **FORGE** (server administration) | `https://<server-ip>:8447/forge` | `https://forge.ip-server.com/forge` | `/forge` | Super administrator / authorized server administrators |
-| **PANEL** (customer hosting) | `https://<server-ip>:8446/panel` | `https://panel.up-server.com/panel` | `/panel` | Customers, website managers, resellers and scoped collaborators |
+| Surface | Autodetected machine IP | If machine FQDN is discovered and verified | Prefix and port |
+|---|---|---|---|
+| FORGE, server administration | `https://<detected-IP>:8447/forge` | `https://<verified-FQDN>:8447/forge` | `/forge`, 8447 |
+| PANEL, customer hosting | `https://<detected-IP>:8446/panel` | `https://<verified-FQDN>:8446/panel` | `/panel`, 8446 |
 
-Example hosts are replaceable by administrators within an explicit allowed-host policy. `<server-ip>` is illustrative: IPv4/IPv6 reachability and a valid certificate covering the IP must be verified. Secure HTTPS access must never require disabling TLS verification. Both 443 virtual hosts require SNI/Host routing **and** explicit host allowlisting. Direct ports must remain separate from tenant website listeners.
+IPv6 literals require brackets, e.g. `https://[2001:db8::10]:8447/forge` (documentation-only illustrative address). **The same existing FQDN may serve both surfaces: the port and path define the portal.** Never assume `forge.domain`, `panel.domain` or automatically generated subdomains.
 
-**Proposed refinement, subject to qualification:** requests to `/` on the configured FORGE host may redirect to `/forge` and `/` on the configured PANEL host to `/panel`, only once installation and routing are validated. Do not create cross-portal redirects or claim `/` on a shared unrelated hostname.
+**Port 443 is not an automatically provisioned access path**: a pre-existing HTTPS reverse proxy/virtual host may be considered separately only after explicit qualification. The installer does not create domains, DNS entries or aliases for either portal. Root `/` redirects remain undecided.
 
-The [detailed API/ingress contract](../08-api-contracts/portal-route-boundary.md) and [candidate JSON registry](../../../evidence/portal-access-registry-v1.json) specify host/port/path rejection. Hostnames illustrate a dedicated-host access alternative; exact behavior for their root path `/` remains to be qualified.
+## Automatic discovery and checks without false confidence
+
+1. Inspect OS network interfaces and routing tables read-only to list assigned IPv4 and IPv6 addresses. Reject loopback and unusable/interface-incompatible candidates. A private IP may be reachable on a LAN but must not be described as public.
+2. Determine which detected addresses can actually serve the respective 8447/8446 listener. NAT, proxies, external IPs and firewalls mean an interface IP does not necessarily equal the public address. Never invent a public IP or contact an external discovery service without an approved policy.
+3. Obtain system hostname/FQDN as a **candidate**, not proof from `/etc/hosts`, reverse DNS alone or request `Host`. Check DNS A/AAAA records, actually published address families and verified network routing to this server (including separately verified NAT where applicable).
+4. Check TLS certificates, relevant SNI, listeners and reachability. A direct HTTPS-by-IP URL cannot be advertised as **trusted and working** without a valid certificate covering that IP. Never instruct users to bypass TLS warnings.
+5. Present results as `VERIFIED`, `UNVERIFIED` or `UNAVAILABLE` with provenance and failure reasons. If no domain is found, show **no domain-based link**. Preserve and verify a secure local administrative fallback.
+
+Certificate provider, NAT discovery and actual bind addresses are open technical choices, **not assumed defaults**.
 
 ## Routing and security requirements
 
 | ID | Requirement | Expected verification |
 |---|---|---|
-| PORTAL-FP-0001 | `/forge` and port 8447 belong to the FORGE Admin surface. | Admin HTTPS route and service verified; no implicit Linux root privilege. |
-| PORTAL-FP-0002 | `/panel` and port 8446 belong to the PANEL User surface. | User routes under server-side authorization; tenants isolated. |
-| PORTAL-FP-0003 | Both HTTPS 443 virtual hosts are independently configurable and validated. | SNI, `Host`, reverse proxy and certificate checked; unauthorized hosts denied. |
-| PORTAL-FP-0004 | Authorization is enforced across HTTP **and** API/services/Go agent. | Customer cannot reach admin operations through direct URL, API, alias, method or job. |
-| PORTAL-FP-0005 | Admin/user sessions and cookies are distinct, host-side and server-side; MFA remains optional. | Host-only Secure/HttpOnly cookies, separate session contexts, rotation/CSRF and independent logout. |
-| PORTAL-FP-0006 | IP:port separation does not isolate cookies. | Distinct cookie names and server checks: browsers share cookies across ports on the same host. |
-| PORTAL-FP-0007 | Admin initial setup/recovery routes remain FORGE bootstrap-only. | Prototype `/setup` is explicitly migrated/wrapped after import and testing; never exposed in PANEL. |
-| PORTAL-FP-0008 | `Forwarded`/`X-Forwarded-*` are trusted only from approved reverse proxies. | Deny Host spoofing, injected prefixes, forged scheme and open redirects. |
-| PORTAL-FP-0009 | Twig/UX/Tailwind assets and styles are isolated by portal. | Separate bundles/CSS roots, shared components only by contract, no theme or privilege bleed. |
-| PORTAL-FP-0010 | Changes to host, port, TLS or firewall are sensitive Q47 operations. | Preflight, impact preview, fallback admin access, validation, audit and recovery on failure. |
-| PORTAL-FP-0011 | The publisher Hub remains a separate optional private extension/service. | No publisher route or Hub secrets in the standard Core. |
-| PORTAL-FP-0012 | Links, emails and callback URLs use their surface's approved origin and prefix. | Never build absolute URLs from unchecked Host; no cross-portal token leakage. |
+| PORTAL-FP-0001 | FORGE retains `/forge` and HTTPS **8447**. | Admin listener/authorization, no automatic Linux root privilege. |
+| PORTAL-FP-0002 | PANEL retains `/panel` and HTTPS **8446**. | Customer listener and cross-tenant RBAC isolation. |
+| PORTAL-FP-0003 | OS-detected IP; existing FQDN discovered and **verified**, never freely configured. | No customizable-domain field or automatic subdomain generation. |
+| PORTAL-FP-0004 | Authorization applies across HTTP, API, services and Go agent. | PANEL account cannot execute FORGE admin actions. |
+| PORTAL-FP-0005 | Independent admin/customer sessions and cookies; MFA stays optional. | Separate login, CSRF, rotation and logout. |
+| PORTAL-FP-0006 | Different ports on one IP do not isolate cookies. | Distinct cookie names, independent session contexts and server guards. |
+| PORTAL-FP-0007 | Historical `/setup` reserved for FORGE bootstrap after reviewed migration. | No setup path reachable from PANEL. |
+| PORTAL-FP-0008 | Reject untrusted hosts and proxy headers. | Prevent Host spoofing, forged `Forwarded` and open redirects. |
+| PORTAL-FP-0009 | Per-portal Twig/UX/JS/CSS bundles and themes. | No asset collision or widget privilege bypass. |
+| PORTAL-FP-0010 | Changes to listeners, DNS/TLS, firewall or fallback follow Q47. | Plan, backup, health, audit and recovery. |
+| PORTAL-FP-0011 | The private Hub is neither a dependency nor a route of standard Core. | No publisher secrets or privileges in either portal. |
+| PORTAL-FP-0012 | Generated URLs use only **verified discovered** access origins. | No invented URLs or origins derived from unchecked `Host`. |
 
-## Proposed implementation boundaries
+## Target implementation and limits
 
-- **Symfony**: distinct `/forge/**` and `/panel/**` route spaces, firewalls, sessions, RBAC and independent authorization services. The Core enforces each operation; menus are not a security boundary.
-- **HTTPS gateway**: dedicated 8447/8446 listeners; configurable FORGE/PANEL hosts on 443 once DNS/TLS are ready. Reject unauthorized host/port/prefix combinations even through a reverse proxy. Keep the control plane reachable independently of customer WebStack configurations.
-- **Frontend**: versioned independent FORGE/PANEL bundles, e.g. `forge-admin` and `forge-user` (candidate names, not shipped assets). Controlled shared branding, distinct CSS roots, independently customizable header/sidebar and RBAC-bound widgets.
-- **Installer**: wizard presents host choices and verifies IP:port conflicts, firewall, certificates, SNI and fallback access; it must not silently take over third-party listeners. Idempotent recovery on failure.
-- **Prototype migration**: SRC-03's existing `/setup` routes and `__Host-FORGE_ADMIN` bootstrap cookie need explicit compatibility review. Do not imply those routes already work under `/forge`. Permanent cookie names and alias/redirect policy still need qualification.
+- **Symfony**: `/forge/**` and `/panel/**` routes, distinct firewalls, sessions and authorization. Go agent independently validates typed Linux operations; no generic `shell.exec` API.
+- **Discovery**: read-only inventory of host IP/FQDN with status/provenance; no automatic DNS changes. Failed verification yields diagnosis, not a fabricated working link.
+- **Installer**: discover access, select bind interfaces only after technical qualification, check TLS/firewall; **no customizable domain input**. Preserve fallback admin access throughout changes.
+- **UI**: isolated headers/sidebars, branding and CSS per portal; permissions never depend on theme.
+- **Migration**: prototype `/setup` and `__Host-FORGE_ADMIN` must be reviewed, not claimed active at `/forge`.
 
-## Exit gates and evidence
+[API/ingress contract](../08-api-contracts/portal-route-boundary.md) · [Candidate registry](../../../evidence/portal-access-registry-v1.json) · [Planned QA](../13-tests-quality/portal-access-gates.md).
 
-The [QA scenarios](../13-tests-quality/portal-access-gates.md) must run against real Symfony + PostgreSQL and a VM with HTTPS. Static/documentation tests are not evidence of session isolation or active listeners. **R1/R2/R3/R4 remain gated by existing requirements; this record does not add running routes.**
-
-Related: [Design system](../11-design-system/README.md) · [Installer](../14-devops-releases/README.md) · [API contracts](../08-api-contracts/README.md) · [Security](../10-security/README.md).
+**Status:** JSON/documentation validation is static only; no real IP discovery, DNS/TLS probe, Symfony login, VM or installation has been qualified here.

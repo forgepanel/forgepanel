@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-06-APP-CENTER-ENGINES revision=3 status=specified -->
+<!-- forgepanel-doc id=FP-06-APP-CENTER-ENGINES revision=4 status=specified -->
 # ForgePanel App Center — séparation des moteurs natif et conteneurs
 
 [English](../../en/06-apps-recipes/app-center-engines.md) · [Catalogue Apps/Recipes](README.md) · [Tests](../13-tests-quality/app-center-engine-gates.md)
@@ -67,6 +67,10 @@ Le Core ne doit pas interpréter une même recette polymorphe comme des **comman
 ### Gestion des états et reprise
 
 Pour les deux moteurs : `DRAFT → PREFLIGHT → APPROVAL_REQUIRED (si nécessaire) → STAGED → APPLYING → VERIFYING → SUCCEEDED/FAILED/RECOVERY_REQUIRED`. Chaque étape écrit un job durable corrélé et un état observé ; un acquittement de requête ou un conteneur simplement lancé ne suffit pas à déclarer une application saine. Pour les migrations SQL ou volumes, une restauration complète n'est pas automatiquement garantie : documenter les opérations irréversibles, préserver les données et tester une vraie reprise. Suppression de l'app **≠** suppression des données ou sauvegardes.
+
+## Aperçu d'installation sans exécution
+
+Un [préflight synthétique candidat](../08-api-contracts/app-center-preview-contract.md) illustre désormais les contrôles **séparés** du natif PHP et des budgets conteneurs CPU/RAM/PIDs, ainsi que le refus des ports réservés 8447/8446. Ce prototype ne dispose d'aucune autorité hôte réelle, ne lance aucune installation et ne dépend pas d'un entitlement Hub. Il ne modifie ni la décision des deux moteurs ni l'ordre R1–R4.
 
 ## Modèle d'accès et interfaces candidates
 

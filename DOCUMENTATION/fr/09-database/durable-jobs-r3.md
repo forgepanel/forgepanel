@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-09-R3-DURABLE-JOBS revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-09-R3-DURABLE-JOBS revision=2 status=specified -->
 # R3 — Jobs durables, concurrence, idempotence et verrous : contrat candidat
 
 [English](../../en/09-database/durable-jobs-r3.md) · [Database](README.md) · [IPC typé](../08-api-contracts/symfony-go-ipc-r3.md) · [Confiance du pair](../08-api-contracts/local-peer-trust-r3.md) · [Tests R3](../13-tests-quality/r3-jobs-peer-gates.md)
@@ -42,7 +42,7 @@
 | `DispatchOutbox/Inbox` | message canonique, destination, ack et déduplication | Au moins une livraison, effet métier idempotent |
 | `RecoveryCheckpoint` | plan, digest, action compensable, état, retention policy | Aucune garantie de rollback SQL/Linux atomique |
 
-**Aucun nom ci-dessus n'est approuvé comme table `fp_*`**. Le [schéma de job candidat](../../evidence/candidate-job-record-v1.schema.json) donne la forme documentaire du **résultat d'admission** ; le [registre de transitions](../../evidence/candidate-job-transitions-v1.json) décrit les chemins autorisés, pas une machine d'état en production. Des clés étrangères, index et migrations réels ne seront proposés qu'après revue de SRC-03 et validation Database.
+**Aucun nom ci-dessus n'est approuvé comme table `fp_*`**. Le [schéma de job candidat](../../evidence/candidate-job-record-v1.schema.json) donne la forme documentaire **du job admis après commit**, et non des demandes refusées (réponse IPC/audit sans job) ; le [registre de transitions](../../evidence/candidate-job-transitions-v1.json) décrit les chemins autorisés, pas une machine d'état en production. Des clés étrangères, index et migrations réels ne seront proposés qu'après revue de SRC-03 et validation Database.
 
 ## Races à tester
 
@@ -56,3 +56,7 @@
 ## Dépendances et éléments ouverts
 
 L'autorité **Database** doit proposer puis faire approuver la topologie de tables/contraintes, niveau d'isolation, stratégie SQL/outbox, FK, TTL/retry et rétention. **API/IPC** définit le protocole et l'ordre des ACK ; **Security** autorise le pair, les frontières tenant, secrets, leases et tokens ; **DevOps** formalise les effets observables et les compensations. Les [12 cas `R3-JOB-TEST-001..012`](../13-tests-quality/r3-jobs-peer-gates.md) sont tous **PLANNED**. Aucune DB réelle, agent ou installation n'a été testé dans ce lot. L'absence du Hub ne doit jamais bloquer un job Core indispensable.
+
+## Invariant de schéma : attente sans lease
+
+La fiche de job persisté ne décrit **que les admissions réellement commitées** (`admission=ACCEPTED`, `admitted_after_commit=true`) : un refus ne doit pas créer un faux `job_ref`. Le job `QUEUED` reste **sans bail** (`lease=null`) et sans preuve d'effet ; un job `RUNNING` doit posséder un **bail structuré avec génération de fencing** avant son effet. Il s'agit de contraintes du schéma candidat, pas d'une migration ni d'un verrou fonctionnel PostgreSQL. Révision documentaire uniquement.

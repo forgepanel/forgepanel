@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-09-R3-DURABLE-JOBS revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-09-R3-DURABLE-JOBS revision=2 status=specified -->
 # R3 — Durable jobs, concurrency, idempotency and leases: candidate contract
 
 [Français](../../fr/09-database/durable-jobs-r3.md) · [Database](README.md) · [Typed IPC](../08-api-contracts/symfony-go-ipc-r3.md) · [Peer trust](../08-api-contracts/local-peer-trust-r3.md) · [R3 tests](../13-tests-quality/r3-jobs-peer-gates.md)
@@ -42,7 +42,7 @@
 | `DispatchOutbox/Inbox` | canonical message, destination, delivery ACK, dedup | At-least-once transport, idempotent effect |
 | `RecoveryCheckpoint` | plan, digest, reversible action, state, retention | No false cross-SQL/Linux atomic rollback |
 
-**None of these names is approved as actual `fp_*` tables.** [Candidate job record schema](../../evidence/candidate-job-record-v1.schema.json) describes the **admission result**, and [candidate transition registry](../../evidence/candidate-job-transitions-v1.json) describes allowed steps; neither runs in production. Actual FKs, indexes, physical tables and migrations require SRC-03 review and Database ratification.
+**None of these names is approved as actual `fp_*` tables.** [Candidate job record schema](../../evidence/candidate-job-record-v1.schema.json) describes **an already committed admitted job**, not rejected admission requests (which require separate IPC response/audit and no job), and [candidate transition registry](../../evidence/candidate-job-transitions-v1.json) describes allowed steps; neither runs in production. Actual FKs, indexes, physical tables and migrations require SRC-03 review and Database ratification.
 
 ## Mandatory failure/race scenarios
 
@@ -56,3 +56,7 @@
 ## Ownership and open implementation decisions
 
 **Database** must propose/approve table topology, constraints, isolation level, SQL/outbox mechanics, FK, TTL/retries and retention. **API/IPC** owns wire and acknowledgement semantics; **Security** owns peer/tenant/secret/lease trust; **DevOps** owns observable effects and compensations. All [12 `R3-JOB-TEST-001..012`](../13-tests-quality/r3-jobs-peer-gates.md) are **PLANNED**. No real DB, agent or installer executed in this lot. Free Core jobs must continue without Hub.
+
+## Schema invariant: queued jobs have no lease
+
+The persistent job record models **only actually committed admissions** (`admission=ACCEPTED`, `admitted_after_commit=true`): a denied request must not invent a `job_ref`. `QUEUED` has **no lease** (`lease=null`) and no effect evidence, while `RUNNING` requires a **structured fencing lease** before any external effect. These are candidate schema constraints, not a deployed PostgreSQL migration or actual distributed lock. Documentation revision only.

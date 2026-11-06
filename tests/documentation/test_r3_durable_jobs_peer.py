@@ -29,7 +29,8 @@ class R3JobsPeerDocumentationTests(unittest.TestCase):
             for lang in ("fr", "en"):
                 with self.subTest(name=name, lang=lang):
                     raw = (DOC / lang / name).read_text(encoding="utf-8")
-                    self.assertIn(f"id={doc_id} revision=1 status=specified", raw)
+                    revision = 2 if name.startswith("09-database/") else 1
+                    self.assertIn(f"id={doc_id} revision={revision} status=specified", raw)
                     self.assertIn("R3", raw)
                     self.assertIn("Q171+", raw)
                     self.assertIn("PLANNED" if name.startswith("13-") else "CANDIDATE", raw)
@@ -63,6 +64,15 @@ class R3JobsPeerDocumentationTests(unittest.TestCase):
         self.assertIs(schema["additionalProperties"], False)
         self.assertEqual(set(schema["required"]), set(schema["properties"]))
         self.assertEqual(set(schema["properties"]["state"]["enum"]), STATES)
+        self.assertEqual(schema["properties"]["admission"]["const"], "ACCEPTED")
+        self.assertIs(schema["properties"]["admitted_after_commit"]["const"], True)
+        conditions = {
+            part["if"]["properties"]["state"]["const"]: part["then"]["properties"]
+            for part in schema["allOf"] if "state" in part["if"].get("properties", {})
+        }
+        self.assertEqual(conditions["QUEUED"]["lease"]["type"], "null")
+        self.assertEqual(conditions["RUNNING"]["lease"]["type"], "object")
+        self.assertEqual(conditions["QUEUED"]["observed_effect_status"]["const"], "UNVERIFIED")
         ops = load("typed-agent-operations-v1.json")["operations"]
         self.assertEqual(set(schema["properties"]["operation_id"]["enum"]), {o["name"] for o in ops})
         self.assertFalse(FORBIDDEN & set(schema["properties"]))

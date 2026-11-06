@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14-R3-INSTALLER revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-14-R3-INSTALLER revision=2 status=specified -->
 # R3 — Candidate trusted installation, approval and recovery lifecycle
 
 [Français](../../fr/14-devops-releases/installer-lifecycle-r3.md) · [DevOps](README.md) · [Typed IPC](../08-api-contracts/symfony-go-ipc-r3.md) · [R3 QA](../13-tests-quality/r3-ipc-installer-gates.md)
@@ -65,3 +65,7 @@
 - **QA / DevOps:** [`R3-INSTALL-TEST-001..012`](../13-tests-quality/r3-ipc-installer-gates.md) must run on authorized disposable VMs with exact OS/commit and failure/recovery evidence.
 
 **DOC-GAP-005 remains OPEN.** This document enables no installation. Genuine Foundation Core source, functioning R2 Symfony/PostgreSQL and an authorized Linux executor are not integrated.
+
+## Dependency on durable state and local channel trust
+
+Future APPLY requires [durable intent/lock/job state](../09-database/durable-jobs-r3.md) and [independently verified peer trust](../08-api-contracts/local-peer-trust-r3.md). Worker lease expiry never permits a second blind apply; lost IPC ACK is not proof of no external effect. On uncertainty preserve COMPENSATION_REQUIRED and emergency admin access. **These contracts remain candidates**: no installer, actual SQL job tables, remote mTLS or running Unix socket. [QA](../13-tests-quality/r3-jobs-peer-gates.md).

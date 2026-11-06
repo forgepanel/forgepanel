@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-TRACEABILITY revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-00-TRACEABILITY revision=3 status=documented -->
 # Matrice de traçabilité exigences → contrats → tests
 
 [English](../../en/00-project-control/requirements-traceability.md) · [Pilotage](README.md) · [Statut](status.md)
@@ -52,3 +52,7 @@ La complétude **de structure** (64 paires Core, 27 paires Hub dans le snapshot 
 ## Ciblage documentaire R3 des contrats candidats
 
 `FP-TRACE-005` renvoie désormais vers [le cycle d'installateur](../14-devops-releases/installer-lifecycle-r3.md) et `FP-TRACE-006` vers [l'IPC typé Symfony↔Go](../08-api-contracts/symfony-go-ipc-r3.md), avec [24 scénarios R3 PLANNED](../13-tests-quality/r3-ipc-installer-gates.md). Le [registre d'opérations](../../evidence/typed-agent-operations-v1.json) est candidat et non exécutable ; les contrats `DOC-GAP-005` et `DOC-GAP-006` restent **OPEN** après ce lot. Aucun numéro Q171+ n'est décidé.
+
+## Traçabilité R3 : transactions ↔ IPC ↔ tests négatifs
+
+La ligne **FP-TRACE-004 / DOC-GAP-004** conserve son périmètre PostgreSQL complet, avec désormais la [fiche jobs/leases R3](../09-database/durable-jobs-r3.md) comme contrat additionnel. La ligne **FP-TRACE-006 / DOC-GAP-006** ajoute la [confiance du pair](../08-api-contracts/local-peer-trust-r3.md) et [24 tests PLANNED](../13-tests-quality/r3-jobs-peer-gates.md). Ces compléments ne remplacent **aucun** contrat d'identité R2, SQL/host modèles futurs, preuve KVM ou revue Security. La [machine de transitions candidate](../../evidence/candidate-job-transitions-v1.json) ne produit pas d'état de production. Les deux lignes conservent leur statut **OPEN**.

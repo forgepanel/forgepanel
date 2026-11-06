@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08 revision=7 status=documented -->
+<!-- forgepanel-doc id=FP-08 revision=8 status=documented -->
 # API et contrats
 
 [English](../../en/08-api-contracts/README.md) · [Index](../README.md)
@@ -52,3 +52,7 @@ Compatibilité et tests de migration précèdent toute nouvelle API publique. Le
 ## R3 — Contrat candidat d'IPC typé Symfony ↔ Go
 
 Le [contrat R3 IPC](symfony-go-ipc-r3.md) décrit `IPC-FP-0001..0012` : authentification du pair, double autorisation RBAC/tenant, opérations allowlistées, demandes/réponses strictement typées, erreurs, idempotence, journaux durables, locks, Q47 et récupération. Les [7 opérations candidates](../../evidence/typed-agent-operations-v1.json) et leurs [schémas JSON de requête](../../evidence/candidate-ipc-request-v1.schema.json)/[réponse](../../evidence/candidate-ipc-response-v1.schema.json) sont **documentaires et non activés**. Deux opérations privilégiées restent **`BLOCKED_UNTIL_QUALIFIED`** ; aucune API `shell.exec` ou route publique nouvelle. [Tests R3](../13-tests-quality/r3-ipc-installer-gates.md).
+
+## R3 — Frontière de confiance du pair local
+
+La [fiche d'identité du pair](local-peer-trust-r3.md) ajoute PEER-FP-0001..0012 : canal Unix privé **candidat**, identité du pair issue du noyau à vérifier, comptes séparés, ressources/permissions revérifiées par Go, lutte anti-rejeu et mode dégradé après rupture. Le [modèle d'attestation candidat](../../evidence/candidate-peer-binding-v1.schema.json) **n'est ni une preuve signée ni une API disponible**. Il ne faut pas faire confiance à un actor_claim, UID/PID JSON ou simple permission de socket pour autoriser Linux. [Jobs durables](../09-database/durable-jobs-r3.md) et [tests R3](../13-tests-quality/r3-jobs-peer-gates.md).

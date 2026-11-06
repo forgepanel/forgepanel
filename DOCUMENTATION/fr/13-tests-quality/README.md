@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=18 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=19 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
@@ -98,3 +98,7 @@ La [matrice R2](r2-integration-gates.md) ajoute **20 scénarios planifiés** : `
 ## R3 — Matrice IPC et installateur : 24 tests non exécutés
 
 La [matrice R3](r3-ipc-installer-gates.md) ajoute `R3-IPC-TEST-001..012` et `R3-INSTALL-TEST-001..012`, **24 scénarios positifs/négatifs au statut `PLANNED`**. Une validation Python statique contrôlera les IDs, la parité FR/EN, les deux JSON Schema candidats et le [registre fermé](../../evidence/typed-agent-operations-v1.json). **Aucun test réel Symfony↔Go, système Linux, installateur, PostgreSQL ou VM n'est exécuté par cette matrice.**
+
+## R3 — 24 cas jobs durables / pair IPC à réaliser
+
+La [matrice R3](r3-jobs-peer-gates.md) ajoute **R3-JOB-TEST-001..012** et **R3-PEER-TEST-001..012**, tous PLANNED. Scénarios : commit avant ACK, clé identique/digest différent, fencing périmé, worker crash/reprise et état Linux incertain ; usurpation d'UID/PID, socket remplacé, séparation du compte bridge, contrôle tenant/role indépendant, saturation et version incompatible. Les schémas JSON et tests Python vérifient uniquement la **cohérence documentaire** ; aucune DB de production, socket réel, VM ou autorisation système exécutée.

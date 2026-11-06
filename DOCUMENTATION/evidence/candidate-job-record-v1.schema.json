@@ -1,0 +1,302 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:forgepanel:documentation:candidate-job-record:v1",
+  "title": "Candidate durable job state document, NOT a SQL schema",
+  "x-contract-status": "CANDIDATE_NOT_IMPLEMENTED",
+  "x-warning": "Design-time schema; not an existing PostgreSQL table, SQL migration, live job or permission to execute Linux changes.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "job_ref",
+    "request_id",
+    "correlation_id",
+    "scope",
+    "actor_ref",
+    "operation_id",
+    "idempotency_key",
+    "canonical_payload_sha256",
+    "expected_revision",
+    "policy_revision",
+    "state",
+    "admission",
+    "admitted_after_commit",
+    "stage_number",
+    "attempt_number",
+    "lease",
+    "observed_effect_status",
+    "recovery_required",
+    "audit_correlation_ref"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "candidate-1"
+    },
+    "job_ref": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "request_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "correlation_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "organization_ref",
+        "resource_kind",
+        "resource_ref"
+      ],
+      "properties": {
+        "organization_ref": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+        },
+        "resource_kind": {
+          "type": "string",
+          "enum": [
+            "host",
+            "artifact",
+            "installation"
+          ]
+        },
+        "resource_ref": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+        }
+      }
+    },
+    "actor_ref": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "operation_id": {
+      "type": "string",
+      "enum": [
+        "host.capabilities.observe",
+        "artifact.signature.verify",
+        "installer.plan.compile",
+        "installer.stage_verified_packages",
+        "installer.activate_signed_generation",
+        "installer.health.check",
+        "installer.compensate_generation"
+      ]
+    },
+    "idempotency_key": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "canonical_payload_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "expected_revision": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "policy_revision": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "QUEUED",
+        "RUNNING",
+        "VERIFYING",
+        "SUCCEEDED",
+        "FAILED",
+        "COMPENSATION_REQUIRED",
+        "BLOCKED"
+      ]
+    },
+    "admission": {
+      "const": "ACCEPTED",
+      "description": "This record only models a job admitted after successful durable commit; rejected admission has no job and uses separate IPC response/audit."
+    },
+    "admitted_after_commit": {
+      "const": true,
+      "description": "Commit must actually precede job acknowledgement; schema alone is not a commit receipt."
+    },
+    "stage_number": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "attempt_number": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "lease": {
+      "description": "Null until job has a verified owned resource lease; no lease for QUEUED intent.",
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "owner_ref",
+            "fencing_generation",
+            "lease_expires_at",
+            "resource_revision"
+          ],
+          "properties": {
+            "owner_ref": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+            },
+            "fencing_generation": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "lease_expires_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "resource_revision": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+            }
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "observed_effect_status": {
+      "enum": [
+        "UNVERIFIED",
+        "VERIFIED",
+        "PROVEN_NO_EFFECT",
+        "UNCERTAIN"
+      ]
+    },
+    "recovery_required": {
+      "type": "boolean"
+    },
+    "audit_correlation_ref": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "const": "SUCCEEDED"
+          }
+        },
+        "required": [
+          "state"
+        ]
+      },
+      "then": {
+        "properties": {
+          "observed_effect_status": {
+            "const": "VERIFIED"
+          },
+          "recovery_required": {
+            "const": false
+          },
+          "admission": {
+            "const": "ACCEPTED"
+          },
+          "admitted_after_commit": {
+            "const": true
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "const": "COMPENSATION_REQUIRED"
+          }
+        },
+        "required": [
+          "state"
+        ]
+      },
+      "then": {
+        "properties": {
+          "recovery_required": {
+            "const": true
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "const": "QUEUED"
+          }
+        },
+        "required": [
+          "state"
+        ]
+      },
+      "then": {
+        "properties": {
+          "lease": {
+            "type": "null"
+          },
+          "observed_effect_status": {
+            "const": "UNVERIFIED"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "const": "RUNNING"
+          }
+        },
+        "required": [
+          "state"
+        ]
+      },
+      "then": {
+        "properties": {
+          "lease": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "owner_ref",
+              "fencing_generation",
+              "lease_expires_at",
+              "resource_revision"
+            ],
+            "properties": {
+              "owner_ref": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+              },
+              "fencing_generation": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "lease_expires_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "resource_revision": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "description": "Documentary shape of an already admitted persistent job; denials are separate API responses/audit events, QUEUED has no lease, RUNNING requires a fencing lease. Not implementation."
+}

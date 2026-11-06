@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-18-HANDOVER revision=7 status=documented -->
+<!-- forgepanel-doc id=FP-18-HANDOVER revision=8 status=documented -->
 # Passage de relais
 
 [English](../../en/18-contributing/handover.md) · [Guide de contribution](README.md)
@@ -44,3 +44,7 @@ Le nouveau vérificateur d'[admission QCOW2](../14-devops-releases/kvm-image-adm
 ## Relais R3 : copie d'image épinglée, suite du runner
 
 Le module [Image Staging](../14-devops-releases/kvm-image-staging.md) réalise une copie privée non exécutable et re-hashée, avec reçu documentant la politique et l’état `NOT_EXECUTED`. Prochain développement : valider la provenance/signature de l'image, épingler les **octets réellement utilisés au lancement**, implémenter un pilote QEMU avec liste blanche et isolation, quotas cgroups effectivement contrôlés, durée/cleanup et tests sur hôte autorisé, puis signer les preuves Q152 et les archiver selon Q162. Aucun droit privilégié générique ; ne pas réintroduire une source Foundation v0.7 inventée. L’issue #2 d'import Core reste ouverte.
+
+## Relais ciblé : modèle de jobs et authentification de pair
+
+Les [jobs durables R3](../09-database/durable-jobs-r3.md), la [frontière IPC](../08-api-contracts/local-peer-trust-r3.md) et [24 tests PLANNED](../13-tests-quality/r3-jobs-peer-gates.md) sont des **candidats à revue spécialisée**. Prochaines décisions techniques : structure SQL/unique keys, isolation/lock/fencing, TTL/retry/rétention, identité Unix/processus, bridge PHP-FPM, mandat vérifiable, rotation/permissions socket et transport distant éventuel. Ne pas transformer les JSON schemas en migrations ou autorisations runtime. Le code Foundation v0.7 reste absent ; pas de Hub comme dépendance.

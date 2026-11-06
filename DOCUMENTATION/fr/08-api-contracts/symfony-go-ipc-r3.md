@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08-R3-IPC revision=2 status=specified -->
+<!-- forgepanel-doc id=FP-08-R3-IPC revision=3 status=specified -->
 # R3 — Contrats candidats Symfony ↔ agent Go : IPC, autorisation et opérations typées
 
 [English](../../en/08-api-contracts/symfony-go-ipc-r3.md) · [API](README.md) · [Installateur R3](../14-devops-releases/installer-lifecycle-r3.md) · [QA R3](../13-tests-quality/r3-ipc-installer-gates.md)
@@ -67,3 +67,7 @@ Le registre décrit des *actions métier typées*, **pas** une API Go, une migra
 - **QA** : [`R3-IPC-TEST-001..012`](../13-tests-quality/r3-ipc-installer-gates.md) **PLANNED** ; tests de refus cross-tenant, replay, crash, mutation concurrente, perte de réponse, compatibilité et sécurité.
 
 **La clôture de `DOC-GAP-006` n'est pas acquise.** Ratifier contrats, schémas réels et périmètres, implémenter en PHP/Go après R1/R2, puis prouver les refus sur une VM autorisée ; ce document est une spécification candidate, sans revue indépendante encore obtenue.
+
+## Précisions documentaires : pair authentifié et job durable
+
+La [fiche de confiance du pair](local-peer-trust-r3.md) distingue la preuve du canal Unix/Linux, l'identité de processus et le mandat d'un acteur Symfony : le champ actor_claim d'une [requête candidate](../../evidence/candidate-ipc-request-v1.schema.json) n'est **pas** un credential. Le [contrat de persistance](../09-database/durable-jobs-r3.md) précise commit avant ACK, clé d'idempotence/payload digest, fencing monotone, outbox et correction d'effet incertain après crash. [24 nouveaux scénarios PLANNED](../13-tests-quality/r3-jobs-peer-gates.md) couvrent les refus. **Aucun endpoint n'est activé et ACT-FP-0005/0007 restent bloquées.**

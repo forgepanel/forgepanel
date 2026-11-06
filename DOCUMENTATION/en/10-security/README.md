@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=19 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=20 status=documented -->
 # Security model and disclosure
 
 [Français](../../fr/10-security/README.md) · [Index](../README.md)
@@ -106,3 +106,7 @@ The [R3 tool](../14-devops-releases/kvm-image-admission.md) is **read-only, nonr
 ## R3 — Future IPC and installer trust boundary
 
 [Typed IPC contract](../08-api-contracts/symfony-go-ipc-r3.md) requires independent transport-peer **and** actor/tenant/resource authorization by Symfony and Go, a [closed operation register](../../evidence/typed-agent-operations-v1.json) and redacted events. Both privileged activation/compensation actions remain **not authorized**, even if their payload passes JSON Schema. [Installer lifecycle](../14-devops-releases/installer-lifecycle-r3.md) requires signatures, anti-rollback, backup, emergency admin access and health evidence before success. **No generic shell API, running privileged daemon or browser-to-root endpoint; Q132 vetoes remain absolute.** Transport/privilege specifics require independent Security review.
+
+## R3 — Peer authentication is not business authorization
+
+[Local Symfony ↔ Go trust contract](../08-api-contracts/local-peer-trust-r3.md) separates kernel-observed peer process identity from an actor mandate derived from a verified authorized Symfony session. A shared Linux UID, group-mode socket or JSON actor_claim does not authenticate an end user. Recheck tenant, role, resource, plan/revision and the [closed operations registry](../../evidence/typed-agent-operations-v1.json). A [candidate peer-binding record](../../evidence/candidate-peer-binding-v1.schema.json) is not signed attestation. Privileged operations stay blocked. **RISK-028/029 unresolved**, no generic root API.

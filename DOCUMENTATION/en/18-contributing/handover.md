@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-18-HANDOVER revision=7 status=documented -->
+<!-- forgepanel-doc id=FP-18-HANDOVER revision=8 status=documented -->
 # Handover to the next contributor
 
 [Français](../../fr/18-contributing/handover.md) · [Contribution guide](README.md)
@@ -44,3 +44,7 @@ New [QCOW2 admission](../14-devops-releases/kvm-image-admission.md) is **prepara
 ## R3 handover: pinned image copying and actual runner work
 
 [Image Staging](../14-devops-releases/kvm-image-staging.md) prepares a private non-executable SHA-256-rechecked copy and policy-bound `NOT_EXECUTED` receipt. Next: image publisher provenance/signature, pin **exact bytes used at guest launch**, implement allowlisted QEMU runner with real sandbox and enforceable cgroups quotas, timeout/cleanup and authorized-host E2E, then sign Q152 evidence and store it under Q162. No generic privileged API; never invent historical Foundation v0.7 source. Core import issue #2 remains open.
+
+## Targeted handover: job model and peer authentication
+
+[R3 durable jobs](../09-database/durable-jobs-r3.md), [IPC trust boundary](../08-api-contracts/local-peer-trust-r3.md) and [24 PLANNED cases](../13-tests-quality/r3-jobs-peer-gates.md) are **specialized-review candidates**. Next technical decisions: SQL uniqueness/isolation/lease fencing, retry/TTL/retention, kernel/process identity, separate PHP-FPM bridge, authentic actor mandate, socket ownership/rotation and possible future remote transport. Do not turn JSON Schemas into migrations or runtime permission. Genuine Foundation v0.7 code absent; no Hub dependency.

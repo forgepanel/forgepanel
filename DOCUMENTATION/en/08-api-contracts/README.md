@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08 revision=7 status=documented -->
+<!-- forgepanel-doc id=FP-08 revision=8 status=documented -->
 # APIs and contracts
 
 [Français](../../fr/08-api-contracts/README.md) · [Index](../README.md)
@@ -52,3 +52,7 @@ Version compatibility and migration tests precede any new public API. Proposed e
 ## R3 — Candidate typed Symfony ↔ Go IPC contract
 
 [R3 IPC contract](symfony-go-ipc-r3.md) defines `IPC-FP-0001..0012`: peer authentication, independent RBAC/tenant enforcement, allowlisted actions, typed request/response, errors, idempotency, durable jobs, locks, Q47 lifecycle and recovery. The [seven candidate operations](../../evidence/typed-agent-operations-v1.json), [request](../../evidence/candidate-ipc-request-v1.schema.json) and [response](../../evidence/candidate-ipc-response-v1.schema.json) JSON Schemas are **documentation only, not active**. Two privileged operations remain **`BLOCKED_UNTIL_QUALIFIED`**; no `shell.exec` or new public endpoint. [R3 tests](../13-tests-quality/r3-ipc-installer-gates.md).
+
+## R3 — Local peer trust boundary
+
+[Candidate peer trust](local-peer-trust-r3.md) adds PEER-FP-0001..0012 for a **proposed** private Unix socket, kernel-observed peer identity, separated service users, Go-side reauthorization, anti-replay and fail-closed reconnection. The [candidate peer-binding schema](../../evidence/candidate-peer-binding-v1.schema.json) is **neither a signed attestation nor a running API**. JSON actor_claim, supplied UID/PID or socket file permissions alone cannot grant Linux operations. [Durable jobs](../09-database/durable-jobs-r3.md) and [R3 QA](../13-tests-quality/r3-jobs-peer-gates.md).

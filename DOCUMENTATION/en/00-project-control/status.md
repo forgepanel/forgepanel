@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=24 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=25 status=documented -->
 # Status and dependency-ordered roadmap
 
 [Français](../../fr/00-project-control/status.md) · [Project control](README.md)
@@ -94,3 +94,7 @@ Core now contains standalone `verify_source_archive.py` and `stage_source_archiv
 ## R3 — Candidate typed IPC and installer contracts, not executable
 
 [12 Symfony↔Go IPC requirements](../08-api-contracts/symfony-go-ipc-r3.md) and [12 installer requirements](../14-devops-releases/installer-lifecycle-r3.md) now have a [closed seven-action candidate registry](../../evidence/typed-agent-operations-v1.json) with **two explicitly blocked privileged actions** and [24 planned QA cases](../13-tests-quality/r3-ipc-installer-gates.md). **SPECIFIED only**: no working authenticated IPC socket, privileged Go agent, final wire protocol, SQL job model, package, installer or running VM. `DOC-GAP-005/006` stay OPEN. This does not unblock R1/R2 or couple Core to Hub.
+
+## R3 — Candidate durable jobs and local IPC peer trust
+
+[Durable job contract](../09-database/durable-jobs-r3.md) DB-FP-0001..0012 and [peer trust contract](../08-api-contracts/local-peer-trust-r3.md) PEER-FP-0001..0012 are published as **candidate documentation**, with [three candidate schemas/state records](../../evidence/candidate-job-transitions-v1.json) and [24 PLANNED tests](../13-tests-quality/r3-jobs-peer-gates.md). These select no final Linux service accounts, running socket, PostgreSQL migration, Go worker, TTL/retry or privileged system action. **DOC-GAP-004 and DOC-GAP-006 remain OPEN**; original R1 ZIP still unavailable and no VM/production qualification.

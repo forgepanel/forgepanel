@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-EXECUTION revision=14 status=specified -->
+<!-- forgepanel-doc id=FP-00-EXECUTION revision=15 status=specified -->
 # Roadmap technique de réalisation — décision Q120 D et MVP Q119 B
 
 [English](../../en/00-project-control/implementation-roadmap.md) · [État officiel](status.md) · [Décisions Q111–Q120](decisions-q111-q120.md)
@@ -97,3 +97,7 @@ La [copie privée vérifiée](../14-devops-releases/kvm-image-staging.md) compl�
 ## Lot documentaire R3 — prérequis IPC et installateur avant toute implémentation
 
 [R3 IPC typé](../08-api-contracts/symfony-go-ipc-r3.md), [plan d'installation/reprise](../14-devops-releases/installer-lifecycle-r3.md) et [QA planifiée](../13-tests-quality/r3-ipc-installer-gates.md) normalisent l'ordre de validation, sans passer outre R1 → R2. Après import SRC-03 et Symfony/PostgreSQL testés : valider contrats/permissions/IPC, modèle durable des jobs et migrations, sécurité du daemon/OS, source et signature des artefacts ; ensuite seulement implanter l'installateur et exécuter les VM jetables. Les choix de transport, seuils, fournisseurs et OS pilote sont encore ouverts. **`DOC-GAP-005` et `DOC-GAP-006` ne sont pas fermés**.
+
+## Ordre de validation documentaire R2/R3 : état durable et identité du pair
+
+Avant toute opération système, ratifier le [modèle job/idempotence/fencing](../09-database/durable-jobs-r3.md) via Database et le [protocole de confiance du pair](../08-api-contracts/local-peer-trust-r3.md) via Security/API. R1 source importée et R2 Symfony/PG démontrés restent des dépendances strictes de R3. Développer ensuite jobs/bridge **sans commande shell privilégiée générique**, vérifier séparément authz, perte d'ACK, vieux worker, failover et impact SQL/Linux sur VM ; promouvoir seulement après QA/révision. [24 cas prévus](../13-tests-quality/r3-jobs-peer-gates.md), aucun exécuté.

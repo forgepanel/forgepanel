@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=18 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=19 status=documented -->
 # Tests, quality and definition of done
 
 [Français](../../fr/13-tests-quality/README.md) · [Index](../README.md)
@@ -98,3 +98,7 @@ New Go tests for [image staging](../14-devops-releases/kvm-image-staging.md) ver
 ## R3 — IPC and installer matrix: 24 unexecuted cases
 
 [R3 planned test matrix](r3-ipc-installer-gates.md) adds `R3-IPC-TEST-001..012` and `R3-INSTALL-TEST-001..012`, **24 positive/negative cases all `PLANNED`**. Python static checks validate IDs, FR/EN parity, two candidate JSON Schemas and the [closed operation registry](../../evidence/typed-agent-operations-v1.json). **No real Symfony↔Go, Linux installer, PostgreSQL or VM integration test runs as part of this matrix.**
+
+## R3 — 24 planned durable-job and IPC-peer scenarios
+
+[R3 matrix](r3-jobs-peer-gates.md) adds **R3-JOB-TEST-001..012** and **R3-PEER-TEST-001..012**, all PLANNED. Cases cover commit-before-ACK, same-key/different-digest, expired fencing, worker crash/recovery and uncertain Linux effect; UID/PID spoofing, socket replacement, isolated bridge, independent tenant/role authorization, saturation and version incompatibility. Candidate JSON and Python static checks prove only **document consistency**; no running PostgreSQL integration, real socket, VM or privileged effect is exercised.

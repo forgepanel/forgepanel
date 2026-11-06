@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-03 revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-03 revision=4 status=documented -->
 # Core et bootstrap
 
 [English](../../en/03-core/README.md) · [Index](../README.md)
@@ -30,3 +30,7 @@ Les futurs jobs exigent identifiants de corrélation/idempotence, verrous par re
 ## R2 — Contrat détaillé d'identité et de bootstrap (candidat)
 
 La [fiche R2 identité/sessions/MFA facultative](bootstrap-identity-r2.md) distingue les phases du prototype SRC-03, l'administrateur permanent, les sessions/bootstrap grants, les preuves et la récupération. Elle porte `R2-ID-001` à `R2-ID-012` ; les routes exactes, valeurs de durée et règles de reprise nécessitent ratification Security/API/Database puis tests réels. **Aucun runtime Symfony ni correctif MFA historique importé** par cette fiche.
+
+## Core — Intention durable et séparation du pont IPC (candidat)
+
+Les futures mutations Core nécessiteront un [journal durable PostgreSQL](../09-database/durable-jobs-r3.md) et un [canal Symfony ↔ Go au pair authentifié](../08-api-contracts/local-peer-trust-r3.md). L'interface Symfony n'accorde pas root ; le bridge doit isoler le code tenant/plugin et Go revalider scopes/permissions. Le succès HTTP/ACK ne prouve jamais une mutation Linux ; les anciens workers ne doivent pas passer un fencing expiré. [Tests PLANNED](../13-tests-quality/r3-jobs-peer-gates.md). Aucun agent, socket ou modèle physique SQL n'est livré par ces documents.

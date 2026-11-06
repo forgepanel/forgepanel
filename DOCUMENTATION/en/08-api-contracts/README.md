@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-08 revision=11 status=documented -->
+<!-- forgepanel-doc id=FP-08 revision=12 status=documented -->
 # APIs and contracts
 
 [Français](../../fr/08-api-contracts/README.md) · [Index](../README.md)
+
+## Candidate App Center installation preview
+
+The [synthetic native/container preview](app-center-preview-contract.md) lists engine-specific **hypothetical** resource checks and protects FORGE 8447 / PANEL 8446 from requested host-port reuse. It always returns `execution_allowed=false`, has no trusted host/tenant evidence and cannot apply anything. [Offline tests](../../../tests/documentation/test_app_center_preview.py).
 
 ## Candidate App Center manifest contracts
 

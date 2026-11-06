@@ -46,7 +46,9 @@ def check(data: dict) -> None:
     flags=data.get("security_invariants")
     if not isinstance(flags,dict) or set(flags) != set(REQUIRED_FLAGS) or any(flags[k] is not True for k in REQUIRED_FLAGS):
         raise ValueError("Security/commercial boundary weakened")
-    if not isinstance(data.get("not_shipped"),list) or len(data["not_shipped"]) != 4:
+    if not isinstance(data.get("not_shipped"),list) or set(data["not_shipped"]) != {
+        "native_script_installer","container_stack_executor","docker_driver","podman_driver","app_catalog_runtime"
+    }:
         raise ValueError("No working app installer can be claimed")
     if not isinstance(data.get("open_technical_choices"),list) or not data["open_technical_choices"]:
         raise ValueError("Open choices must remain recorded")
@@ -61,7 +63,7 @@ class AppCenterContractTests(unittest.TestCase):
 
     def test_no_runtime_claim(self):
         self.assertEqual(self.data["status"],"SPECIFIED_NOT_IMPLEMENTED")
-        self.assertEqual(len(self.data["not_shipped"]),4)
+        self.assertEqual(len(self.data["not_shipped"]),5)
 
     def test_two_sections_and_runtime_discriminator(self):
         n,c=self.data["ui"]["sections"]

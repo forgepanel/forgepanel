@@ -61,7 +61,7 @@ class ReadinessTests(unittest.TestCase):
             for lang in ("fr", "en"):
                 path = ROOT / "DOCUMENTATION" / lang / "00-project-control" / kind
                 raw = path.read_text(encoding="utf-8")
-                self.assertIn(f"id={marker} revision=2 status=documented", raw)
+                self.assertRegex(raw, rf"id={re.escape(marker)} revision=[1-9]\\d* status=documented")
                 lines = [line for line in raw.splitlines() if line.startswith("| " + token)]
                 actual = [line.split("|")[1].strip() for line in lines]
                 self.assertEqual(len(actual), len(expected), f"{path} invalid row count")

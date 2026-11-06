@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-02 revision=8 status=documented -->
+<!-- forgepanel-doc id=FP-02 revision=9 status=documented -->
 # System architecture
 
 [Français](../../fr/02-architecture/README.md) · [Index](../README.md)
+
+## App Center Configuration Center — Q180/Q220
+
+The [candidate inherited settings contract](app-center-config-inheritance.md) demonstrates global→server→organization→plan→site narrowing for the free native One-Click and independently qualified container engines. No child policy can weaken immutable security, re-enable a parent's disabled engine or exceed its ceiling; the [16 real/VM test gates](../13-tests-quality/app-center-configuration-gates.md) remain PLANNED. The offline example neither reads host facts nor authorizes/apply changes.
 
 ## Design baseline versus implementation
 

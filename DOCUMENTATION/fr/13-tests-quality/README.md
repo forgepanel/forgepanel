@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-13 revision=21 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=22 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
+
+## App Center : tests natifs et conteneurs distincts
+
+La [matrice APP-NAT / APP-CTR / APP-X](app-center-engine-gates.md) prévoit **32 tests** : moteur natif gratuit, séparation Docker/Podman, ressources/quota/backup propres, refus des recettes inter-moteurs, isolation tenant, Hub absent et sécurité des artefacts. Tous sont **PLANNED**, aucun test d'installation applicative réelle n'a été exécuté. [Règles produit](../06-apps-recipes/app-center-engines.md).
 
 ## Une preuve précise son périmètre
 

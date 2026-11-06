@@ -38,8 +38,8 @@ func TestCgroupRootCPUQuotaRejectsMalformed(t *testing.T) {
 func TestCgroupRootLimitAndMaxTokens(t *testing.T) {
 	for _, record := range []struct {
 		payload string
-		status string
-		value uint64
+		status  string
+		value   uint64
 	}{
 		{"max\n", "MAX_TOKEN_UNVERIFIED", 0},
 		{"2048\n", "NUMERIC_TOKEN_UNVERIFIED", 2048},
@@ -75,7 +75,7 @@ func TestCgroupRootMemoryCurrentDoesNotAcceptMax(t *testing.T) {
 
 func TestCgroupRootLimitMalformedAndOverflowRejected(t *testing.T) {
 	for _, s := range []string{
-		"", "-1", "+5", "max 1024", "1234 ignored", "1\n3", 
+		"", "-1", "+5", "max 1024", "1234 ignored", "1\n3",
 		"18446744073709551616", "5/7", "0.5", "CPU",
 	} {
 		state, value := parseLimitToken([]byte(s), false)

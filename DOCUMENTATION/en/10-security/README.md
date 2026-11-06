@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-10 revision=21 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=22 status=documented -->
 # Security model and disclosure
 
 [Français](../../fr/10-security/README.md) · [Index](../README.md)
+
+## FORGE / PANEL isolation — contract awaiting implementation
+
+Admin access **`/forge`: 8447** and customer access **`/panel`: 8446** require trusted HTTPS origins, separate sessions and cookie names, exact trusted hosts/proxies and independently enforced RBAC. Changing port on the same IP **does not** separate cookies. Reject host/path/port swaps; PANEL permissions never authorize FORGE routes. [Routing and threats](../08-api-contracts/portal-route-boundary.md) · [Planned tests](../13-tests-quality/portal-access-gates.md).
 
 ## Assets, actors and boundaries
 

@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-13 revision=21 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=22 status=documented -->
 # Tests, quality and definition of done
 
 [Français](../../fr/13-tests-quality/README.md) · [Index](../README.md)
+
+## App Center: native and container gates
+
+The [APP-NAT / APP-CTR / APP-X matrix](app-center-engine-gates.md) defines **32 planned scenarios** for free native installs, Docker/Podman separation, engine-specific resources/quotas/backups, cross-engine rejection, tenant isolation, offline Hub and artifact trust. All remain **PLANNED**; no real app installation testing has been run. [Product boundaries](../06-apps-recipes/app-center-engines.md).
 
 ## Evidence must name its scope
 

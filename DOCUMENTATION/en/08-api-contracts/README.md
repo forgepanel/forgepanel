@@ -1,11 +1,11 @@
-<!-- forgepanel-doc id=FP-08 revision=11 status=documented -->
+<!-- forgepanel-doc id=FP-08 revision=12 status=documented -->
 # APIs and contracts
 
 [Français](../../fr/08-api-contracts/README.md) · [Index](../README.md)
 
 ## Candidate FORGE / PANEL contract
 
-The [routing, host and session boundary](portal-route-boundary.md) specifies **FORGE `/forge` on 8447** and **PANEL `/panel` on 8446**, with configurable HTTPS 443 virtual hosts. The [non-runtime registry](../../../evidence/portal-access-registry-v1.json), its [offline validator](../../../scripts/validate_portal_access_registry.py) and [contract tests](../../../tests/documentation/test_portal_access_contract.py) do not replace real Symfony/HTTPS tests. No active API or route is implied.
+The [routing, host and session boundary](portal-route-boundary.md) specifies **FORGE `/forge` on 8447** and **PANEL `/panel` on 8446**, with OS-detected IP addresses and a verified existing FQDN if present, without domain customization or automatic port-443 virtual hosts. The [non-runtime registry](../../../evidence/portal-access-registry-v1.json), its [offline validator](../../../scripts/validate_portal_access_registry.py) and [contract tests](../../../tests/documentation/test_portal_access_contract.py) do not replace real Symfony/HTTPS tests. No active API or route is implied.
 
 ## Contracts observed in SRC-03
 

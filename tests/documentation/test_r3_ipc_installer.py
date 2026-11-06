@@ -32,7 +32,10 @@ class R3CandidateContractsTests(unittest.TestCase):
                     value = (DOC / lang / relative).read_text(encoding="utf-8")
                     expected_revision = 2 if relative.startswith("08-api-contracts/") else 1
                     self.assertIn(f"id={identity} revision={expected_revision} status=specified", value)
-                    self.assertIn("R1", value)
+                    if relative.startswith("14-devops-releases/"):
+                        self.assertIn("Foundation", value)
+                    else:
+                        self.assertIn("R1", value)
                     self.assertIn("R2", value)
                     self.assertIn("R3", value)
                     self.assertIn("Q171+", value)

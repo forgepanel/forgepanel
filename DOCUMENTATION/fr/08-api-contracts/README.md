@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-08 revision=11 status=documented -->
+<!-- forgepanel-doc id=FP-08 revision=12 status=documented -->
 # API et contrats
 
 [English](../../en/08-api-contracts/README.md) · [Index](../README.md)
+
+## Prévisualisation candidate App Center
+
+L'[aperçu synthétique natif/conteneurs](app-center-preview-contract.md) présente les vérifications **hypothétiques** de ressources propres à chaque moteur et protège les ports FORGE 8447 / PANEL 8446. Il conserve `execution_allowed=false`, ne possède aucune preuve d'authentification/état hôte et n'applique rien. [Tests hors ligne](../../../tests/documentation/test_app_center_preview.py).
 
 ## Contrats candidats de manifestes App Center
 

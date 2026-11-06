@@ -24,10 +24,16 @@ REQUIRED_SECURITY = (
     "no_generic_root_shell_endpoint",
     "core_operates_without_hub",
 )
-HOST_RE = re.compile(
-    r"(?=.{1,253}$)(?=.{1,63}(?:\\.|$))(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)+"
-    r"[a-z](?:[a-z0-9-]{0,61}[a-z0-9])?$"
-)
+HOST_LABEL_RE = re.compile(r"[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?")
+
+def is_valid_example_hostname(host: str) -> bool:
+    labels = host.lower().split(".")
+    return (
+        len(host) <= 253
+        and len(labels) >= 2
+        and all(HOST_LABEL_RE.fullmatch(label) for label in labels)
+        and any(c.isalpha() for c in labels[-1])
+    )
 
 
 def validate_registry(data: Any) -> None:
@@ -61,7 +67,7 @@ def validate_registry(data: Any) -> None:
         if spec.get("example_only") is not True:
             raise ValueError(f"{role} hostname example is NOT a production default")
         host = spec.get("example_hostname")
-        if not isinstance(host, str) or not HOST_RE.fullmatch(host.lower()):
+        if not isinstance(host, str) or not is_valid_example_hostname(host):
             raise ValueError(f"Invalid example hostname for {role}")
         if host.lower() in seen_hosts:
             raise ValueError("FORGE/PANEL example hosts must be distinct")

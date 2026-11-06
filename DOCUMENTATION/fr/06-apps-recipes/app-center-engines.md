@@ -1,9 +1,9 @@
-<!-- forgepanel-doc id=FP-06-APP-CENTER-ENGINES revision=4 status=specified -->
+<!-- forgepanel-doc id=FP-06-APP-CENTER-ENGINES revision=5 status=specified -->
 # ForgePanel App Center — séparation des moteurs natif et conteneurs
 
 [English](../../en/06-apps-recipes/app-center-engines.md) · [Catalogue Apps/Recipes](README.md) · [Tests](../13-tests-quality/app-center-engine-gates.md)
 
-**Statut : SPECIFIED / DRAFT TECHNIQUE.** Le propriétaire confirme le **6 novembre 2026** deux familles distinctes sous App Center et la gratuité totale du moteur **ONE-CLICK INSTALL**. Cette orientation complète Q2/Q50 (Core gratuit), Q4 (runtimes clients), Q8/Q53 (catalogue officiel et partenaires vérifiés), Q47 (plan/validation/récupération), Q51 (pilotes Docker et Podman séparés) et Q81–Q110 (PHP, bases, staging, quotas). Elle ne vaut **ni installation fonctionnelle ni validation de toutes les caractéristiques candidates ci-dessous**. Q171+ restent non approuvés.
+**Statut : SPECIFIED / DRAFT TECHNIQUE.** Le propriétaire confirme le **6 novembre 2026** deux familles distinctes sous App Center et la gratuité totale du moteur **ONE-CLICK INSTALL**. Cette orientation complète Q2/Q50 (Core gratuit), Q4 (runtimes clients), Q8/Q53 (catalogue officiel et partenaires vérifiés), Q47 (plan/validation/récupération), Q51 (pilotes Docker et Podman séparés) et Q81–Q110 (PHP, bases, staging, quotas). Elle ne vaut **ni installation fonctionnelle ni validation de toutes les caractéristiques candidates ci-dessous**. Q171–Q220 sont désormais approuvées comme orientations produit ; Q221+ restent ouverts. [Registre approuvé](../00-project-control/decisions-q171-q220.md). Les limites techniques exactes nécessitent des validations indépendantes.
 
 ## Règles produit confirmées
 

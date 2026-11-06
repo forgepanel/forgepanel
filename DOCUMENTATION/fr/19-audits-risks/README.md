@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19 revision=8 status=documented -->
+<!-- forgepanel-doc id=FP-19 revision=9 status=documented -->
 # Audit, contradictions et risques
 
 [English](../../en/19-audits-risks/README.md) · [Index](../README.md)
@@ -72,3 +72,10 @@ Ces mesures ne remplacent pas l'audit de code source ou la preuve de signature �
 ## AUDIT-DOC-001 — Incohérence documentaire et preuve de complétude
 
 **Constat :** certaines pages de statut présentaient encore R1/R3 comme des branches `features/*` candidates alors que les PR #37–#43 étaient fusionnées dans `develop` ; la [matrice de couverture](../00-project-control/coverage.md) n'exposait pas le décalage entre structure bilingue et spécifications applicables. **Gravité documentaire : moyenne ; état : correction proposée dans cette PR**. Les [22 lacunes versionnées](../00-project-control/documentation-readiness.md), le [tableau de traçabilité](../00-project-control/requirements-traceability.md) et le [statut réconcilié](../00-project-control/status.md) remédient à la confusion d'état, sans lever les blocages réels SRC-03/HTTP/SQL/VM/ABI. **Contrôle requis :** parité ID FR/EN, graphe de dépendances sans cycle, références de PR/CI exactes et vérifications ciblées du sens par revue indépendante lorsque disponible ; la CI ne certifie pas le produit.
+
+## Risques R3 supplémentaires — fausse autorisation et reprise
+
+- **RISK-026 — Confusion schéma ↔ autorisation :** une requête qui respecte le [JSON Schema IPC](../../evidence/candidate-ipc-request-v1.schema.json) ne prouve ni le pair, ni l'acteur, ni la portée, ni une permission Linux. Bloquer toutes les opérations privilégiées tant que double contrôle Symfony/Go, politique, plan, transport sécurisé et tests réels ne sont pas approuvés. Aucun `shell.exec` générique.
+- **RISK-027 — Fausse reprise et confiance éditeur :** signature de manifest seule ≠ vérification des octets ; échec entre SQL et Linux ≠ rollback automatique. L'[installateur candidat](../14-devops-releases/installer-lifecycle-r3.md) impose source de confiance indépendante, signature, anti-rollback, état durable et compensation uniquement des actions réversibles. L'absence de backup/clé ou une migration irréversible exige `RECOVERY_REQUIRED` et signalement.
+
+Ces risques restent **OPEN**. Les [24 tests R3](../13-tests-quality/r3-ipc-installer-gates.md) sont `PLANNED`, pas des preuves de correction. R1/2 et les veto Q132 conditionnent toujours le développement.

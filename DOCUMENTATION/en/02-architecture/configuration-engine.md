@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-CONFIG revision=7 status=specified -->
+<!-- forgepanel-doc id=FP-02-CONFIG revision=8 status=specified -->
 # Configuration Engine — administrable settings specification
 
 [Français](../../fr/02-architecture/configuration-engine.md) · [Architecture](README.md) · [Product policy](../00-project-control/product-policy.md)
@@ -81,3 +81,7 @@ Candidate operations: `config.readEffective(scope)`, `config.plan(changes,expect
 Tests: prevent tenant scope escalation; deny unauthorized CLI/API; reject stale revision; invalid configuration never activated; detect port collision; prove new admin endpoint before dropping old; failure after snapshot; explicit partial compensation; detect drift without overwriting foreign-owned files; show effective values and permission reasoning without exposing secrets.
 
 **Status: specified only. There is no functioning Configuration Engine in the current repository.**
+
+## Q47 → R3: future agent operation boundary
+
+[Candidate Symfony ↔ Go IPC](../08-api-contracts/symfony-go-ipc-r3.md) describes plan/revision/idempotency/audit envelopes, while the [installer lifecycle](../14-devops-releases/installer-lifecycle-r3.md) maps Q47 phases to separated observation, staging and privileged steps. The [ACT-FP registry](../../evidence/typed-agent-operations-v1.json) is **documentary**: no setting key becomes a system command, no UI expert mode bypasses isolation, and two privileged actions remain blocked. Database job records, actual Linux checks, timeouts and retries require owner reviews before implementation.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19-VERIFICATION revision=6 status=documented -->
+<!-- forgepanel-doc id=FP-19-VERIFICATION revision=7 status=documented -->
 # Rapport de vérification
 
 [English](../../en/19-audits-risks/verification.md) · [Index d'audit](README.md)
@@ -49,3 +49,7 @@ La campagne `tests/source_intake` couvre également l'outil indépendant `audit_
 **Preuve CI de la PR #41** : [Go + Go race + vet + gofmt + contrôle des trois schémas](https://github.com/yyogas/forgepanel/actions/runs/42116200478) et [contrôles documentaires](https://github.com/yyogas/forgepanel/actions/runs/42116200493), réussis sur le commit `4a71d2fb8e0258879bcf5c621dfc29677f5e5380`. **41 fonctions de tests Go** dans le module au total (14 sonde hôte et 27 nouveaux contrôles image/CLI/contrats) ; fixtures QCOW2 synthétiques, pas de VM réellement démarrée, ni de preuve de signature/isolement.
 
 Ce succès ne valide aucun pilote QEMU/KVM, aucune VM isolée, quotas effectifs ou Core Foundation importé.
+
+## Registre de preuves R3 — contrats candidats uniquement
+
+La [matrice R3](../13-tests-quality/r3-ipc-installer-gates.md) et les [schémas IPC candidats](../08-api-contracts/symfony-go-ipc-r3.md) font l'objet de vérifications **statiques** Python (parité FR/EN, identifiants, aucune action shell libre, deux opérations privilégiées bloquées). Résultat réel de la CI : à associer au SHA précis après exécution. **Aucun** `R3-IPC-TEST-001..012` ou `R3-INSTALL-TEST-001..012` n'a été réalisé sur un agent, socket, installateur ou VM. Les preuves des anciennes PR R1/R3 ne certifient pas ce nouveau protocole. Aucune revue de sécurité indépendante n'est déclarée.

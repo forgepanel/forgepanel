@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19 revision=8 status=documented -->
+<!-- forgepanel-doc id=FP-19 revision=9 status=documented -->
 # Audit, contradictions and risks
 
 [Français](../../fr/19-audits-risks/README.md) · [Index](../README.md)
@@ -72,3 +72,10 @@ These protections do not replace source code or publisher-signature review. [FR/
 ## AUDIT-DOC-001 — Stale documentation status and false-completeness risk
 
 **Finding:** some status pages still showed R1/R3 as candidate `features/*` branches after PRs #37–#43 had merged into `develop`; the [coverage matrix](../00-project-control/coverage.md) did not separately track bilingual structure and executable specifications. **Documentation severity: medium; state: proposed fix in this PR.** The [versioned 22-gap register](../00-project-control/documentation-readiness.md), [traceability](../00-project-control/requirements-traceability.md) and [reconciled status](../00-project-control/status.md) correct the status narrative without clearing real SRC-03/HTTP/SQL/VM/ABI blockers. **Required checks:** FR/EN ID parity, acyclic dependency graph, exact PR/CI references and targeted independent bilingual semantic review where available; CI is not product certification.
+
+## Additional R3 risks — false authorization and false recovery
+
+- **RISK-026 — Schema-as-permission confusion:** a request matching the [IPC JSON Schema](../../evidence/candidate-ipc-request-v1.schema.json) proves neither transport peer, actor, tenant scope nor Linux privilege. Block all privileged operations until reviewed Symfony/Go authorization, approved policy/plan, authenticated transport and actual negative tests exist. No generic `shell.exec`.
+- **RISK-027 — False recovery/publisher trust:** a signed manifest is not verification of the exact artifact bytes; failure between SQL and Linux is not an atomic rollback. [Candidate installer lifecycle](../14-devops-releases/installer-lifecycle-r3.md) requires independent trust, signed artifacts, anti-rollback, durable steps and compensation of known reversible effects only. Missing recovery key or irreversible migration requires `RECOVERY_REQUIRED` and disclosure.
+
+Both risks remain **OPEN**. The [24 R3 test cases](../13-tests-quality/r3-ipc-installer-gates.md) are `PLANNED`, not mitigation evidence. R1/R2 dependencies and Q132 vetoes stay in effect.

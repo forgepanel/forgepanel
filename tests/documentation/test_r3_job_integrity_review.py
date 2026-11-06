@@ -14,7 +14,7 @@ RISKS = {f"RISK-{i:03d}" for i in range(33, 37)}
 FINDINGS = {f"AUDIT-FP-{i:04d}" for i in range(33, 37)}
 TESTS = {f"R3-AUDIT-TEST-{i:03d}" for i in range(1, 9)}
 NEEDED = {
-    "denied_admission_produces_redacted_audit_without_creating_job",
+    "rejected_admission_produces_redacted_audit_without_creating_job",
     "accepted_job_audit_has_real_job_reference",
     "fencing_generation_must_not_reset_on_lease_row_delete",
     "database_restore_invalidates_pre_restore_effect_authority",
@@ -166,7 +166,7 @@ class R3IntegrityAuditDocumentTests(unittest.TestCase):
     def test_contract_mutation_does_not_silently_remove_safety_guards(self):
         mutations = [
             ("denied audit", lambda d, t, e: d["required_invariants_before_migration"].update(
-                denied_admission_produces_redacted_audit_without_creating_job=False)),
+                rejected_admission_produces_redacted_audit_without_creating_job=False)),
             ("restored fencing", lambda d, t, e: d["required_invariants_before_migration"].update(
                 database_restore_invalidates_pre_restore_effect_authority=False)),
             ("double effect", lambda d, t, e: t["requirements"].update(

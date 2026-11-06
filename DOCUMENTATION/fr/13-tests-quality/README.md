@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-13 revision=27 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=28 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
+
+## App Center — liaison des preuves hôte/RBAC/politique/demande
+
+Le [contrôleur candidat de preuves](../../../scripts/check_app_center_candidate_evidence.py) et ses [tests négatifs hors ligne](../../../tests/documentation/test_app_center_evidence_binding.py) refusent les snapshots fictifs expirés, des tenants/acteurs étrangers et les ports protégés. Les [12 scénarios réels hôte/Symfony/Go](app-center-evidence-gates.md) restent **PLANNED**, jamais PASS ; les exemples ne sont ni des attestations signées ni une autorisation réelle.
 
 ## Q171–Q220 : qualification prévue, aucun PASS fonctionnel
 

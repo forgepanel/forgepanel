@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-13 revision=25 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=26 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
+
+## Q171–Q220 : qualification prévue, aucun PASS fonctionnel
+
+Les [50 orientations approuvées](../00-project-control/decisions-q171-q220.md) sont liées à [50 scénarios d'acceptation PLANNED](mvp-gates-q171-q220.md), avec parité FR/EN et choix C Q174/Q194/Q200. Les contrôles JSON/documentaires restent **statiques** : aucun antivirus, WAF, API, installateur, récupération VM ou Hub intégré n'a été testé sur runtime. Q1–Q170 restent valides et Q221+ ouverts.
 
 ## App Center : tests de séparation des origines fictives
 

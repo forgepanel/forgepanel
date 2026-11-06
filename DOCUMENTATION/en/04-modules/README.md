@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-04 revision=6 status=documented -->
+<!-- forgepanel-doc id=FP-04 revision=7 status=documented -->
 # Native module catalog
 
 [Français](../../fr/04-modules/README.md) · [Index](../README.md)
+
+## App Center — independent application engines
+
+The owner-confirmed App Center navigation contains **ONE-CLICK INSTALL** (free native scripts without containers) and **CONTAINER APPS** (separate Docker/Podman-powered deployment). Permissions, resources, quotas and restoration contracts remain distinct. Neither mode may require publisher Hub or generic root shell access. [Architecture and third-party reference audit](../06-apps-recipes/app-center-engines.md) · [Planned tests](../13-tests-quality/app-center-engine-gates.md). No app installer is currently implemented.
 
 ## Meaning of native
 

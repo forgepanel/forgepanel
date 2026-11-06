@@ -160,7 +160,6 @@ Source IDs refer to the [baseline](../19-audits-risks/baseline.md). A decision a
 | ADR-137 | Separate consents, per-data/cohort thresholds, aggregation, redaction and anti-reidentification (Q168 C) | Q158/Q6: telemetry never forced. Configurable data/cohort minimums and protection against differencing; local health/manual reports work without Hub. |
 | ADR-138 | Versioned risk policy with low-risk automated premium transfer, additional approval and safe recovery (Q169 C) | Q159/Q138/Q148: verify org/rights/fresh nonce before automation; suspicious repetition, lost source, mismatch or compromise triggers manual review and target-transfer hold only. No arbitrary per-product Q159 D engine. |
 | ADR-139 | Signed validated versioned JSON Schema for advisory with synchronized FR/EN and history (Q170 B) | Q160/Q150: single canonical source for structured and human versions, authorized recipients, configurable notices and protected sensitive fields; no mandatory advanced interchange option C. |
-
 | ADR-140 | Owner-approved Q171–Q220 product direction batch (47 D; Q174, Q194, Q200 C) | [Canonical 50 decisions](decisions-q171-q220.md) and [conditional reconciliation](reconciliation-q171-q220.md). Q1–Q170 retained; Q221+ open; no code, VM tests, defaults, supplier choices, production API, Hub authority or release approved by this ADR. |
 
 ## Replaced or unresolved proposals

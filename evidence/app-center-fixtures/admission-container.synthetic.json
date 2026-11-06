@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "fixture_status": "SYNTHETIC_UNVERIFIED",
+  "synthetic_clock_utc": "2026-11-06T10:00:30Z",
+  "host_observation": {
+    "source": "UNVERIFIED_OS_PROBE_FIXTURE",
+    "host_id": "fixture-host",
+    "snapshot_revision": 5,
+    "observed_at_utc": "2026-11-06T10:00:00Z",
+    "expires_at_utc": "2026-11-06T10:01:00Z",
+    "engines_present": [
+      "NATIVE_SITE",
+      "DOCKER"
+    ],
+    "free_cpu_millicores": 800,
+    "free_memory_mib": 1024,
+    "protected_host_tcp_ports": [
+      8446,
+      8447
+    ]
+  },
+  "core_authorization": {
+    "source": "UNVERIFIED_SYMFONY_FIXTURE",
+    "host_id": "fixture-host",
+    "tenant_id": "fixture-tenant",
+    "actor_id": "fixture-actor",
+    "authorized_site_ids": [
+      "fixture-site"
+    ],
+    "allowed_plan_scopes": [
+      "app.native.plan",
+      "app.container.plan"
+    ],
+    "context_revision": 7,
+    "observed_at_utc": "2026-11-06T10:00:00Z",
+    "expires_at_utc": "2026-11-06T10:01:00Z"
+  },
+  "core_policy": {
+    "source": "UNVERIFIED_CONFIG_FIXTURE",
+    "host_id": "fixture-host",
+    "policy_revision": 11,
+    "native_enabled": true,
+    "container_enabled": true,
+    "qualified_container_drivers": [
+      "DOCKER"
+    ],
+    "observed_at_utc": "2026-11-06T10:00:00Z",
+    "expires_at_utc": "2026-11-06T10:01:00Z"
+  },
+  "user_intent": {
+    "source": "UNTRUSTED_CLIENT_FIXTURE",
+    "host_id": "fixture-host",
+    "tenant_id": "fixture-tenant",
+    "actor_id": "fixture-actor",
+    "site_id": "fixture-site",
+    "recipe_kind": "container_stack",
+    "expected_host_snapshot_revision": 5,
+    "expected_authorization_revision": 7,
+    "expected_policy_revision": 11,
+    "requested_driver": "DOCKER",
+    "requested_cpu_millicores": 250,
+    "requested_memory_mib": 128,
+    "requested_host_tcp_ports": [],
+    "idempotency_key": "fixture-request-002"
+  }
+}

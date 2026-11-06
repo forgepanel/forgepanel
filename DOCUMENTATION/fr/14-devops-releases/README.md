@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=16 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=17 status=documented -->
 # Installation, promotion Git et releases
 
 [English](../../en/14-devops-releases/README.md) · [Index](../README.md)
@@ -84,3 +84,7 @@ Après la [sonde KVM](kvm-host-probe.md) et [l’admission SHA-256](kvm-image-ad
 ## R3 — Contrat de cycle d'installation sécurisé (candidat)
 
 Le [cycle d'installation R3](installer-lifecycle-r3.md) détaille `INST-FP-0001..0012`, la provenance des artefacts, signatures/révocation/anti-rollback, la vérification OS par VM, `DRAFT → PLAN → PREFLIGHT → SNAPSHOT → STAGE → APPLY → VERIFY → COMMIT` ou `RECOVER` et les veto de sécurité Q132. Les opérations [ACT-FP-0005/0007](../../evidence/typed-agent-operations-v1.json) demeurent **bloquées** : aucun `install apply` fonctionnel, URL de bootstrap, package signé ou exécuteur root n'est fourni. [24 cas R3 planifiés](../13-tests-quality/r3-ipc-installer-gates.md).
+
+## R3 — Matrice des identités Linux et privilèges candidats
+
+La [fiche des identités de services](linux-service-identities-r3.md) définit `LINUX-FP-0001..0012` pour **8 responsabilités logiques** : Symfony HTTP, pont IPC, Go non-root, handler privilégié bloqué, migrateur, runtime SQL, site hébergé et observateur. Le [registre candidat](../../evidence/candidate-r3-linux-service-boundaries-v1.json) n'installe **aucun UID, groupe, socket ou unité systemd**. `DynamicUser`, chemin socket, comptes, profils AppArmor/SELinux et droits DB restent à qualifier en VM. [12 tests Linux prévus](../13-tests-quality/r3-physical-execution-gates.md).

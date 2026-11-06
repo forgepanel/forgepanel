@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-13 revision=21 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=22 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
+
+## Accès admin/client FORGE et PANEL
+
+Les chemins `/forge` (HTTPS 8447) et `/panel` (HTTPS 8446), leurs hôtes dédiés sur 443, l'isolation des sessions, l'autorisation et les fallbacks TLS disposent de [18 tests identifiés mais non exécutés](portal-access-gates.md). Aucun PASS de routage, sécurité HTTP ou VM n'est impliqué. [Contrat source](../07-interfaces-roles/portal-access-routing.md).
 
 ## Une preuve précise son périmètre
 

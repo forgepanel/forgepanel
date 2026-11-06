@@ -1,0 +1,314 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/forgepanel/candidates/app-center-admission.synthetic-v1.schema.json",
+  "title": "ForgePanel App Center synthetic-only admission evidence candidate (NOT a production wire contract)",
+  "description": "All sources and times are fiction. Schema validation never authenticates host, actor, policy, signed artifact, or an APPLY operation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "fixture_status",
+    "synthetic_clock_utc",
+    "host_observation",
+    "core_authorization",
+    "core_policy",
+    "user_intent"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "fixture_status": {
+      "const": "SYNTHETIC_UNVERIFIED"
+    },
+    "synthetic_clock_utc": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+    },
+    "host_observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "host_id",
+        "snapshot_revision",
+        "observed_at_utc",
+        "expires_at_utc",
+        "engines_present",
+        "free_cpu_millicores",
+        "free_memory_mib",
+        "protected_host_tcp_ports"
+      ],
+      "properties": {
+        "source": {
+          "const": "UNVERIFIED_OS_PROBE_FIXTURE"
+        },
+        "host_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{2,63}$"
+        },
+        "snapshot_revision": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        },
+        "observed_at_utc": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+        },
+        "expires_at_utc": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+        },
+        "engines_present": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "NATIVE_SITE",
+              "DOCKER",
+              "PODMAN"
+            ]
+          },
+          "maxItems": 16,
+          "uniqueItems": true
+        },
+        "free_cpu_millicores": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2147483647
+        },
+        "free_memory_mib": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2147483647
+        },
+        "protected_host_tcp_ports": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 65535
+          },
+          "maxItems": 32,
+          "uniqueItems": true
+        }
+      }
+    },
+    "core_authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "host_id",
+        "tenant_id",
+        "actor_id",
+        "authorized_site_ids",
+        "allowed_plan_scopes",
+        "context_revision",
+        "observed_at_utc",
+        "expires_at_utc"
+      ],
+      "properties": {
+        "source": {
+          "const": "UNVERIFIED_SYMFONY_FIXTURE"
+        },
+        "host_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{2,63}$"
+        },
+        "tenant_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{2,63}$"
+        },
+        "actor_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{2,63}$"
+        },
+        "authorized_site_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{2,63}$"
+          },
+          "maxItems": 32,
+          "uniqueItems": true
+        },
+        "allowed_plan_scopes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "app.native.plan",
+              "app.container.plan"
+            ]
+          },
+          "maxItems": 16,
+          "uniqueItems": true
+        },
+        "context_revision": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        },
+        "observed_at_utc": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+        },
+        "expires_at_utc": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+        }
+      }
+    },
+    "core_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "host_id",
+        "policy_revision",
+        "native_enabled",
+        "container_enabled",
+        "qualified_container_drivers",
+        "observed_at_utc",
+        "expires_at_utc"
+      ],
+      "properties": {
+        "source": {
+          "const": "UNVERIFIED_CONFIG_FIXTURE"
+        },
+        "host_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{2,63}$"
+        },
+        "policy_revision": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        },
+        "native_enabled": {
+          "type": "boolean"
+        },
+        "container_enabled": {
+          "type": "boolean"
+        },
+        "qualified_container_drivers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "DOCKER",
+              "PODMAN"
+            ]
+          },
+          "maxItems": 8,
+          "uniqueItems": true
+        },
+        "observed_at_utc": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+        },
+        "expires_at_utc": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+        }
+      }
+    },
+    "user_intent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "host_id",
+        "tenant_id",
+        "actor_id",
+        "site_id",
+        "recipe_kind",
+        "expected_host_snapshot_revision",
+        "expected_authorization_revision",
+        "expected_policy_revision",
+        "requested_driver",
+        "requested_cpu_millicores",
+        "requested_memory_mib",
+        "requested_host_tcp_ports",
+        "idempotency_key"
+      ],
+      "properties": {
+        "source": {
+          "const": "UNTRUSTED_CLIENT_FIXTURE"
+        },
+        "host_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{2,63}$"
+        },
+        "tenant_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{2,63}$"
+        },
+        "actor_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{2,63}$"
+        },
+        "site_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{2,63}$"
+        },
+        "recipe_kind": {
+          "type": "string",
+          "enum": [
+            "native_script",
+            "container_stack"
+          ]
+        },
+        "expected_host_snapshot_revision": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        },
+        "expected_authorization_revision": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        },
+        "expected_policy_revision": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        },
+        "requested_driver": {
+          "type": "string",
+          "enum": [
+            "NONE",
+            "DOCKER",
+            "PODMAN"
+          ]
+        },
+        "requested_cpu_millicores": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2147483647
+        },
+        "requested_memory_mib": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2147483647
+        },
+        "requested_host_tcp_ports": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 65535
+          },
+          "maxItems": 32,
+          "uniqueItems": true
+        },
+        "idempotency_key": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{2,63}$"
+        }
+      }
+    }
+  }
+}

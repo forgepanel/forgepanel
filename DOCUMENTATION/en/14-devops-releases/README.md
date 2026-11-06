@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-14 revision=17 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=18 status=documented -->
 # Installation, Git promotion and releases
 
 [Français](../../fr/14-devops-releases/README.md) · [Index](../README.md)
+
+## Read-only App Center Linux host facts (standalone Go)
+
+The [nonprivileged Go hint observer](app-center-host-observation.md) performs bounded Linux `/proc/meminfo`, cgroup-v2 controller and fixed Docker/Podman binary-path reads. It returns real but **UNVERIFIED OS hints**, never a trusted host capacity, qualified container driver or authorization to install. [Isolated Go code and tests](../../../tools/app-center-host-probe/README.md), [CI](../../../.github/workflows/app-center-host-probe.yml). The original Foundation code remains unimported and actual Symfony/Go authenticated binding is still open.
 
 ## Git workflow
 

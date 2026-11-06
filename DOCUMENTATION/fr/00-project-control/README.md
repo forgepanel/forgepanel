@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00 revision=14 status=documented -->
+<!-- forgepanel-doc id=FP-00 revision=16 status=documented -->
 # Pilotage du projet
 
 [English](../../en/00-project-control/README.md) · [Index](../README.md)
@@ -28,13 +28,17 @@ Chaque tâche identifie son périmètre et ses composants, fixe les critères d'
 
 [Décisions Q56–Q60](commerce-identity-release-policy.md) · [Décisions Q151–Q160](decisions-q151-q160.md) · [Contrats de qualification](../02-architecture/qualification-and-security-contracts.md) · [Décisions Q141–Q150](decisions-q141-q150.md) · [Contrats de certification et sauvegarde](../02-architecture/certification-backup-security.md) · [Décisions Q131–Q140](decisions-q131-q140.md) · [Décisions Q121–Q130](decisions-q121-q130.md) · [Qualification MVP](mvp-qualification.md) · [Décisions Q111–Q120](decisions-q111-q120.md) · [Roadmap technique](implementation-roadmap.md) · [Décisions Q101–Q110](decisions-q101-q110.md) · [Décisions Q91–Q100](decisions-q91-q100.md) · [Décisions Q81–Q90](decisions-q81-q90.md) · [Décisions Q71–Q80](decisions-q71-q80.md) · [WebStack par site](../02-architecture/site-webstack-advisor.md) · [État et roadmap](status.md) · [Arbitrages commerciaux et personnalisation](product-policy.md) · [Double licence et protection commerciale](license-commerce.md) · [Registre de décisions](decisions.md) · [Matrice de couverture](coverage.md) · [Audit](../19-audits-risks/README.md)
 
+## Orientations produit approuvées Q171–Q220
+
+[Les 50 décisions](decisions-q171-q220.md) · [Réconciliation et handoffs](reconciliation-q171-q220.md) · [50 tests d'acceptation PLANNED](../13-tests-quality/mvp-gates-q171-q220.md). Le propriétaire a approuvé 47 D et 3 C (Q174/Q194/Q200) le 6 novembre 2026, pas l'implémentation ni la certification VM. Q1–Q170 restent applicables. One-Click natif gratuit et moteur conteneurs distinct restent indépendants du Hub ; tarifs, fournisseurs, seuils et contrats techniques ne sont pas fixés.
+
 ## Nouveaux arbitrages Q161–Q170
 
-[Décisions Q161–Q170](decisions-q161-q170.md) · [Contrats de qualification et reprise](../02-architecture/evidence-and-recovery-q161-q170.md) · [Tests MVP planifiés](../13-tests-quality/mvp-gates-q161-q170.md). **Q1–Q160 restent en vigueur ; Q171+ sont ouverts**, aucun code ou OS certifié par ces documents.
+[Décisions Q161–Q170](decisions-q161-q170.md) · [Contrats de qualification et reprise](../02-architecture/evidence-and-recovery-q161-q170.md) · [Tests MVP planifiés](../13-tests-quality/mvp-gates-q161-q170.md). **Q1–Q170 restent en vigueur ; Q171–Q220 sont approuvées comme orientations produit ; Q221+ restent ouvertes**, aucun code ou OS certifié par ces documents.
 
 ## Audit de complétude et traçabilité
 
-[Registre des lacunes et priorités documentaires](documentation-readiness.md) · [Matrice de traçabilité des 22 exigences de clôture](requirements-traceability.md) · [Manifest JSON versionné](../../evidence/documentation-readiness-v1.json) · [Statut réconcilié R1/R3](status.md). Les statuts `OPEN`/`BLOCKED` concernent la **documentation et ses preuves manquantes**, pas de nouveaux arbitrages Q171+. Aucune étape R2/R3/R4 n'est déclarée certifiée par ces tableaux.
+[Registre des lacunes et priorités documentaires](documentation-readiness.md) · [Matrice de traçabilité des 22 exigences de clôture](requirements-traceability.md) · [Manifest JSON versionné](../../evidence/documentation-readiness-v1.json) · [Statut réconcilié R1/R3](status.md). Les statuts `OPEN`/`BLOCKED` concernent la **documentation et ses preuves manquantes**, pas de nouveaux arbitrages Q221+. Aucune étape R2/R3/R4 n'est déclarée certifiée par ces tableaux.
 
 ## Contrats documentaires R3 — IPC, installateur et refus privilégiés
 

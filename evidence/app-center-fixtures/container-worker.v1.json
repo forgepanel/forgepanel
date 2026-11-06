@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "contract_status": "CANDIDATE_ONLY",
+  "execution_allowed": false,
+  "app_id": "example-worker",
+  "variant_id": "container-demo",
+  "app_version": "0.0.0-fixture",
+  "publisher_id": "forgepanel.fixtures",
+  "recipe_kind": "container_stack",
+  "artifact": {
+    "source_url": "https://example.invalid/fixture/example-worker-metadata.json",
+    "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "license_id": "LicenseRef-TestOnly",
+    "provenance_state": "DECLARED_UNVERIFIED"
+  },
+  "container": {
+    "driver": "DOCKER",
+    "images": [
+      {
+        "repository": "registry.example.invalid/fixture/example-worker",
+        "digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      }
+    ],
+    "cpu_millicores": 250,
+    "memory_mib": 128,
+    "pids_limit": 32,
+    "volumes": [
+      "app_data"
+    ],
+    "network_mode": "ISOLATED",
+    "privileged": false,
+    "host_mounts": false,
+    "engine_socket_mount": false,
+    "ports": [
+      {
+        "container_port": 8080,
+        "protocol": "TCP",
+        "exposure": "INTERNAL"
+      }
+    ]
+  }
+}

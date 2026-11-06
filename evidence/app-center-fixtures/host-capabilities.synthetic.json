@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "fixture_status": "SYNTHETIC_UNVERIFIED",
+  "host_id": "fixture-host",
+  "php_fpm_available": true,
+  "native_db_engines": [
+    "MARIADB"
+  ],
+  "available_container_drivers": [
+    "DOCKER"
+  ],
+  "free_cpu_millicores": 800,
+  "free_memory_mib": 1024,
+  "free_pids": 96,
+  "reserved_host_tcp_ports": [
+    8446,
+    8447
+  ],
+  "observed_bound_host_tcp_ports": [
+    80,
+    443
+  ]
+}

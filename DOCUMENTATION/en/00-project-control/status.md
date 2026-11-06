@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=26 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=27 status=documented -->
 # Status and dependency-ordered roadmap
 
 [Français](../../fr/00-project-control/status.md) · [Project control](README.md)
@@ -20,6 +20,10 @@
 | Release and production | None evidenced; license unresolved |
 
 All six OS targets and five profiles are planning inputs. Thirty fixture combinations are not thirty installations. The `production` branch initially points to a README-only bootstrap commit and deploys nothing.
+
+## New owner-approved Q171–Q220 directions (2026-11-06)
+
+The [50 product decisions](decisions-q171-q220.md) (47 D, 3 C: Q174/Q194/Q200) are **SPECIFIED**, with a [conditional consistency review](reconciliation-q171-q220.md) and [50 PLANNED acceptance cases](../13-tests-quality/mvp-gates-q171-q220.md). Q1–Q170 are retained; Q221+ unanswered. This does **not** import Foundation, implement One-Click/container apps, WAF/malware scanners, public provisioning/billing API, Config Center or Hub, or certify any test/OS. R1→R4 hosting-first, R5 neutral ABI before private R6 Hub stays mandatory.
 
 ## Roadmap — Q120 D order, Q119 B MVP
 

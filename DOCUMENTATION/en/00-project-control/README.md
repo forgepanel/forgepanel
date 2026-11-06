@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00 revision=14 status=documented -->
+<!-- forgepanel-doc id=FP-00 revision=16 status=documented -->
 # Project control
 
 [Français](../../fr/00-project-control/README.md) · [Index](../README.md)
@@ -28,13 +28,17 @@ A task identifies scope and affected components, specifies acceptance criteria, 
 
 [Q56–Q60 decisions](commerce-identity-release-policy.md) · [Q151–Q160 decisions](decisions-q151-q160.md) · [Qualification contracts](../02-architecture/qualification-and-security-contracts.md) · [Q141–Q150 decisions](decisions-q141-q150.md) · [Qualification and backup contracts](../02-architecture/certification-backup-security.md) · [Q131–Q140 decisions](decisions-q131-q140.md) · [Q121–Q130 decisions](decisions-q121-q130.md) · [MVP qualification](mvp-qualification.md) · [Q111–Q120 decisions](decisions-q111-q120.md) · [Technical roadmap](implementation-roadmap.md) · [Q101–Q110 decisions](decisions-q101-q110.md) · [Q91–Q100 decisions](decisions-q91-q100.md) · [Q81–Q90 decisions](decisions-q81-q90.md) · [Q71–Q80 decisions](decisions-q71-q80.md) · [Per-site WebStack](../02-architecture/site-webstack-advisor.md) · [Status and roadmap](status.md) · [Commercial/customization decisions](product-policy.md) · [Dual licensing and commercial protection](license-commerce.md) · [Decision register](decisions.md) · [Coverage matrix](coverage.md) · [Audit](../19-audits-risks/README.md)
 
+## Approved Q171–Q220 product directions
+
+[All 50 decisions](decisions-q171-q220.md) · [Reconciliation/technical handoffs](reconciliation-q171-q220.md) · [50 PLANNED acceptance gates](../13-tests-quality/mvp-gates-q171-q220.md). The owner approved 47 D and 3 C (Q174/Q194/Q200) on 6 November 2026, not runtime implementation or VM certification. Existing Q1–Q170 remain in force. The free native One-Click installer and separate container execution are planned independently of Hub; pricing, vendor, default thresholds and technology contracts remain open.
+
 ## New Q161–Q170 decisions
 
-[Q161–Q170 decisions](decisions-q161-q170.md) · [Qualification and recovery contracts](../02-architecture/evidence-and-recovery-q161-q170.md) · [Planned MVP tests](../13-tests-quality/mvp-gates-q161-q170.md). **Q1–Q160 remain effective; Q171+ are open**, no application code or certified OS is implied.
+[Q161–Q170 decisions](decisions-q161-q170.md) · [Qualification and recovery contracts](../02-architecture/evidence-and-recovery-q161-q170.md) · [Planned MVP tests](../13-tests-quality/mvp-gates-q161-q170.md). **Q1–Q170 remain effective; Q171–Q220 are owner-approved directions; Q221+ remain open**, no application code or certified OS is implied.
 
 ## Documentation readiness and traceability
 
-[Gap and editorial priority register](documentation-readiness.md) · [Traceability for 22 closure records](requirements-traceability.md) · [Versioned JSON data](../../evidence/documentation-readiness-v1.json) · [Reconciled R1/R3 status](status.md). `OPEN`/`BLOCKED` describe **documentation and missing evidence**, not new Q171+ owner decisions. No R2/R3/R4 release gate is certified by these tables.
+[Gap and editorial priority register](documentation-readiness.md) · [Traceability for 22 closure records](requirements-traceability.md) · [Versioned JSON data](../../evidence/documentation-readiness-v1.json) · [Reconciled R1/R3 status](status.md). `OPEN`/`BLOCKED` describe **documentation and missing evidence**, not new Q221+ owner decisions. No R2/R3/R4 release gate is certified by these tables.
 
 ## R3 documentary IPC and installer contracts
 

@@ -42,6 +42,32 @@ jobs:
         run: python3 tests/documentation/test_r3_job_integrity_review.py -v
       - name: Test source intake and private staging with synthetic fixtures
         run: python3 -m unittest discover -s tests/source_intake -p 'test_*.py' -v
+      - name: Validate App Center free native versus container separation contracts
+        run: python3 tests/documentation/test_app_center_separation.py -v
+      - name: Validate candidate-only native and container recipe envelopes
+        run: |
+          python3 tests/documentation/test_app_center_recipe_contracts.py -v
+          python3 scripts/validate_app_center_recipe.py --fixture native
+          python3 scripts/validate_app_center_recipe.py --fixture container
+      - name: Validate dry-run App Center candidate preview isolation
+        run: |
+          python3 tests/documentation/test_app_center_preview.py -v
+          python3 scripts/preview_app_center_install.py --fixture native > /tmp/native-preview.json
+          python3 scripts/preview_app_center_install.py --fixture container > /tmp/container-preview.json
+          python3 -c 'import json; a,b=[json.load(open(p)) for p in ("/tmp/native-preview.json","/tmp/container-preview.json")]; assert a["recipe_kind"]=="native_script" and b["recipe_kind"]=="container_stack"; assert all(p["execution_allowed"] is False and p["apply_available"] is False and p["resource_reservations_created"] is False for p in (a,b)); print("PASS: previews are metadata-only and cannot apply")'
+      - name: Validate owner-approved Q171-Q220 choices, FR/EN parity and PLANNED gates
+        run: python3 tests/documentation/test_q171_q220.py -v
+      - name: Validate Q180/Q220 synthetic inherited App Center policy
+        run: |
+          python3 tests/documentation/test_app_center_inheritance.py -v
+          python3 scripts/preview_app_center_inheritance.py --fixture app-center > /tmp/forgepanel-policy-preview.json
+          python3 -c 'import json; p=json.load(open("/tmp/forgepanel-policy-preview.json")); assert p["policy_status"]=="SYNTHETIC_CANDIDATE_ONLY"; assert p["execution_allowed"] is False and p["apply_available"] is False and p["authorization_verified"] is False; assert p["immutable_invariants"]["app.native.premium_required"] is False; assert p["immutable_invariants"]["app.core.hub_required"] is False; assert p["immutable_invariants"]["app.system.reserved_tcp_ports"]==[8446,8447]; print("PASS: synthetic inheritance candidate is never an authority")'
+      - name: Validate App Center candidate host/authz/policy evidence freshness and revision
+        run: |
+          python3 tests/documentation/test_app_center_evidence_binding.py -v
+          python3 scripts/check_app_center_candidate_evidence.py --fixture native > /tmp/app-evidence-native.json
+          python3 scripts/check_app_center_candidate_evidence.py --fixture container > /tmp/app-evidence-container.json
+          python3 -c 'import json; a,b=[json.load(open(p)) for p in ("/tmp/app-evidence-native.json","/tmp/app-evidence-container.json")]; assert a["recipe_kind"]=="native_script" and b["recipe_kind"]=="container_stack"; assert all(x["review_status"]=="MATCHES_SYNTHETIC_CONTEXT_ONLY" and x["execution_allowed"] is False and x["apply_available"] is False and x["actor_authenticated"] is False and x["host_identity_verified"] is False for x in (a,b)); print("PASS: fictional evidence cannot authorize execution")'
       - name: Validate documentation
         run: python3 scripts/check_documentation.py
       - name: Package the documentation snapshot

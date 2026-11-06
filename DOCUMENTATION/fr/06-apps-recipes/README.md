@@ -1,9 +1,13 @@
-<!-- forgepanel-doc id=FP-06 revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-06 revision=5 status=documented -->
 # Applications et recettes d'installation
 
 [English](../../en/06-apps-recipes/README.md) · [Index](../README.md)
 
 Le prototype fourni ne contient ni catalogue applicatif, ni exécuteur de recettes, ni installation automatique de CMS. Les mentions WordPress, Symfony ou Laravel de la conversation décrivent des usages visés, pas une compatibilité testée ou des logiciels embarqués.
+
+## App Center : deux moteurs d'installation distincts
+
+Orientation du propriétaire du 6 novembre 2026 : **ONE-CLICK INSTALL** est un installateur natif **entièrement gratuit**, pour les scripts compatibles avec l'hébergement classique, et ne dépend ni de Docker/Podman ni du Hub. **CONTAINER APPS** constitue une famille différente, utilisant des pilotes Docker/Podman et des images, réseaux, volumes, isolations et quotas propres. Le même logiciel peut avoir deux recettes indépendantes ; elles ne sont pas interchangeables. [Étude FR/EN](app-center-engines.md) · [32 scénarios de tests](../13-tests-quality/app-center-engine-gates.md). **Spécifié, non implémenté** ; Q171+ demeurent ouverts et la licence éventuelle de l'application tierce reste indépendante.
 
 ## Fiche de recette obligatoire
 

@@ -1,7 +1,13 @@
-<!-- forgepanel-doc id=FP-02-CONFIG revision=9 status=specified -->
+<!-- forgepanel-doc id=FP-02-CONFIG revision=10 status=specified -->
 # Configuration Engine — administrable settings specification
 
 [Français](../../fr/02-architecture/configuration-engine.md) · [Architecture](README.md) · [Product policy](../00-project-control/product-policy.md)
+
+## Approved Q180/Q220 refinements (2026-11-06)
+
+The owner confirmed [Q180 D and Q220 D](../00-project-control/decisions-q171-q220.md): hierarchical, versioned, simulable and permissioned configuration rules. The [App Center inheritance candidate](app-center-config-inheritance.md) provides a **non-executable example** with provenance, no-widening ceilings and immutable security limits; [16 real Configuration Center tests](../13-tests-quality/app-center-configuration-gates.md) remain PLANNED. Product defaults, OS budgets, retention, vendors, syntax for a final rules language, signatures, schema and physical DB tables are still undecided.
+
+The standard **system portal** URLs use automatically detected host IP and an existing verified FQDN if available, with **fixed FORGE `/forge:8447` and PANEL `/panel:8446`**. This is **not** a customizable system-portal hostname option and no `forge.`/`panel.` DNS names are automatically created. **Tenant website domains** and Q5/Q55 one-brand-per-organization white label remain separate configurable functions, with their own DNS/TLS and permissions. The legacy general configuration table's "ports/network/hostnames" family is an architectural catalog, not permission to override these user-confirmed system portal constants.
 
 ## Goal and scopes
 

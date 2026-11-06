@@ -1,7 +1,15 @@
-<!-- forgepanel-doc id=FP-10 revision=21 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=23 status=documented -->
 # Modèle de sécurité et signalement
 
 [English](../../en/10-security/README.md) · [Index](../README.md)
+
+## App Center — fraîcheur des preuves, identité hôte et droits
+
+Le [contrat candidat de liaison des preuves](../08-api-contracts/app-center-admission-evidence.md) sépare observation hôte par agent, RBAC Core, politique versionnée et intention client **non fiable**. Les horodatages, révisions et capacités fictifs **ne sont pas authentifiés** et ne permettent jamais APPLY ; identité du pair, signatures, anti-rejeu, TOCTOU et quotas physiques attendent les revues spécialisées. [12 tests futurs sécurité/VM](../13-tests-quality/app-center-evidence-gates.md) restent PLANNED.
+
+## Provenance du préflight App Center — revue candidate
+
+La [frontière de sécurité candidate](app-center-admission-trust-boundary.md) distingue **capacités du serveur Linux**, **autorisation Core Symfony** et **intention non fiable du client** avant toute future action native ou Docker/Podman. Une sonde Linux ne déclare plus les sites possédés ; l'aperçu hors ligne rejette les références hôte/tenant discordantes, sans authentifier qui que ce soit. L'exécution reste bloquée ; identité, fraîcheur des ressources, artefacts et protection TOCTOU nécessitent une intégration Core auditée.
 
 ## Actifs, acteurs et frontières
 

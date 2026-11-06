@@ -1,7 +1,13 @@
-<!-- forgepanel-doc id=FP-02-CONFIG revision=9 status=specified -->
+<!-- forgepanel-doc id=FP-02-CONFIG revision=10 status=specified -->
 # Configuration Engine — spécification des réglages administrables
 
 [English](../../en/02-architecture/configuration-engine.md) · [Architecture](README.md) · [Politique produit](../00-project-control/product-policy.md)
+
+## Compléments Q180/Q220 approuvés (2026-11-06)
+
+Le propriétaire a confirmé [Q180 D et Q220 D](../00-project-control/decisions-q171-q220.md) : règles de configuration héritées, versionnées, simulables et soumises aux droits. L'[exemple candidat App Center](app-center-config-inheritance.md) simule **sans exécuter** l'origine des valeurs, des plafonds restrictifs et les garde-fous immuables ; [16 tests réels](../13-tests-quality/app-center-configuration-gates.md) restent PLANNED. Valeurs par défaut, ressources OS, rétention, fournisseurs, langage final de règles, signatures, schéma et tables physiques ne sont pas décidés.
+
+Pour les **portails système**, l'IP de la machine et un éventuel FQDN existant vérifié sont détectés automatiquement, avec **FORGE `/forge:8447` et PANEL `/panel:8446` fixes**. Aucun nom de domaine système personnalisable ni création automatique des sous-domaines `forge.`/`panel.`. Les **domaines des sites hébergés** et la **marque unique par organisation Q5/Q55** restent des fonctions configurables distinctes, sous DNS/TLS et permissions. Le tableau historique « ports/réseau/hôtes » n'autorise pas à modifier ces constantes système explicitement confirmées.
 
 ## Objectif et périmètres
 

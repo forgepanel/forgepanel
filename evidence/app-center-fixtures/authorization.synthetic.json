@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "fixture_status": "SYNTHETIC_UNVERIFIED",
+  "host_id": "fixture-host",
+  "tenant_id": "fixture-tenant",
+  "actor_id": "fixture-actor",
+  "authorized_site_ids": [
+    "owned-site"
+  ],
+  "container_permission_claimed": true
+}

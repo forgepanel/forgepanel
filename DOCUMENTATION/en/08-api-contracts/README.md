@@ -1,7 +1,19 @@
-<!-- forgepanel-doc id=FP-08 revision=10 status=documented -->
+<!-- forgepanel-doc id=FP-08 revision=13 status=documented -->
 # APIs and contracts
 
 [Français](../../fr/08-api-contracts/README.md) · [Index](../README.md)
+
+## App Center — four-source evidence binding and stale revision gates
+
+The [candidate host/AuthZ/policy/request admission envelope](app-center-admission-evidence.md) models how a future authenticated Go host probe and Symfony RBAC must be **independently bound** to Core configuration revisions and untrusted install intent. Its [offline evidence checks](../../../tests/documentation/test_app_center_evidence_binding.py) never verify an actor or grant APPLY. [12 real integration gates](../13-tests-quality/app-center-evidence-gates.md) remain **PLANNED / NOT EXECUTED**.
+
+## Candidate App Center installation preview
+
+The [synthetic native/container preview](app-center-preview-contract.md) lists engine-specific **hypothetical** resource checks and protects FORGE 8447 / PANEL 8446 from requested host-port reuse. It always returns `execution_allowed=false`, has no trusted host/tenant evidence and cannot apply anything. [Offline tests](../../../tests/documentation/test_app_center_preview.py).
+
+## Candidate App Center manifest contracts
+
+The [native/container candidate recipe contract](app-center-recipe-contracts.md) and its [offline fail-closed validator](../../../scripts/validate_app_center_recipe.py) reject cross-engine recipes, unpinned artifacts and dangerous execution fields **without running installers**. These are provisional metadata checks, not operating Core API endpoints. [Data ownership model](../09-database/app-center-resource-ownership.md).
 
 ## Contracts observed in SRC-03
 

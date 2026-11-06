@@ -1,7 +1,35 @@
-<!-- forgepanel-doc id=FP-13 revision=21 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=28 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
+
+## App Center — liaison des preuves hôte/RBAC/politique/demande
+
+Le [contrôleur candidat de preuves](../../../scripts/check_app_center_candidate_evidence.py) et ses [tests négatifs hors ligne](../../../tests/documentation/test_app_center_evidence_binding.py) refusent les snapshots fictifs expirés, des tenants/acteurs étrangers et les ports protégés. Les [12 scénarios réels hôte/Symfony/Go](app-center-evidence-gates.md) restent **PLANNED**, jamais PASS ; les exemples ne sont ni des attestations signées ni une autorisation réelle.
+
+## Q171–Q220 : qualification prévue, aucun PASS fonctionnel
+
+Les [50 orientations approuvées](../00-project-control/decisions-q171-q220.md) sont liées à [50 scénarios d'acceptation PLANNED](mvp-gates-q171-q220.md), avec parité FR/EN et choix C Q174/Q194/Q200. Les contrôles JSON/documentaires restent **statiques** : aucun antivirus, WAF, API, installateur, récupération VM ou Hub intégré n'a été testé sur runtime. Q1–Q170 restent valides et Q221+ ouverts.
+
+## Q180/Q220 — tests d'héritage du Configuration Center
+
+Le [résolveur candidat](../../../scripts/preview_app_center_inheritance.py) et ses [26 tests statiques](../../../tests/documentation/test_app_center_inheritance.py) illustrent les règles de restriction par niveau et les invariants de sécurité sur des données fictives. Les [16 tests d'intégration/VM](app-center-configuration-gates.md) restent PLANNED ; une CI réussie ne prouve ni RBAC Symfony, ni limites Linux réelles, ni application/récupération des politiques.
+
+## App Center : tests de séparation des origines fictives
+
+La [frontière de confiance du préflight](../10-security/app-center-admission-trust-boundary.md) distingue désormais **trois jeux de données de test** (ressources Linux, droits Core, intention du client). Les [39 tests d'aperçu hors ligne](../../../tests/documentation/test_app_center_preview.py) couvrent champs non autorisés, références hôte/tenant falsifiées, faux statuts VERIFIED, gratuité native sans Docker/Hub et ports réservés. Aucun contrôle RBAC réel, attestation hôte ou installation n'est testé.
+
+## App Center : contrôles de prévisualisation synthétique
+
+Le [prototype d'aperçu non exécutable](../08-api-contracts/app-center-preview-contract.md) et les [tests négatifs hors ligne](../../../tests/documentation/test_app_center_preview.py) contrôlent la séparation des moteurs, les budgets fictifs CPU/RAM/PIDs, les sites non autorisés et les ports réservés 8447/8446. Aucun listener, hôte, droit réel ni installation n'est testé ; les 32 tests HTTP/VM restent PLANNED.
+
+## App Center : manifestes candidats versus tests réels
+
+Les [tests hors ligne des recettes](../../../tests/documentation/test_app_center_recipe_contracts.py) vérifient seulement des JSON synthétiques et refusent certains champs dangereux, **sans installer de logiciel**. Les [32 tests applicatifs/VM](app-center-engine-gates.md) restent PLANNED ; aucun OS ou moteur Docker/Podman n'est certifié par la CI statique.
+
+## App Center : tests natifs et conteneurs distincts
+
+La [matrice APP-NAT / APP-CTR / APP-X](app-center-engine-gates.md) prévoit **32 tests** : moteur natif gratuit, séparation Docker/Podman, ressources/quota/backup propres, refus des recettes inter-moteurs, isolation tenant, Hub absent et sécurité des artefacts. Tous sont **PLANNED**, aucun test d'installation applicative réelle n'a été exécuté. [Règles produit](../06-apps-recipes/app-center-engines.md).
 
 ## Une preuve précise son périmètre
 

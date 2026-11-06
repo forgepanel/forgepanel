@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DECISIONS revision=13 status=documented -->
+<!-- forgepanel-doc id=FP-00-DECISIONS revision=15 status=documented -->
 # Decision register
 
 [Français](../../fr/00-project-control/decisions.md) · [Project control](README.md)
@@ -14,7 +14,7 @@ Source IDs refer to the [baseline](../19-audits-risks/baseline.md). A decision a
 | ADR-005 | One-command installation followed by web setup and CLI recovery (owner, SRC-02) | Required outcome; not delivered by `install plan` |
 | ADR-006 | Bootstrap token instead of Linux password in browser (SRC-02/03) | Retained security baseline; application super-admin is not Linux root |
 | ADR-007 | PostgreSQL owns web bootstrap transaction (SRC-03) | Archive implementation supersedes v0.6 file-token integration; SQL integration unverified |
-| ADR-008 | Direct ports 8447/8446 and distinct portal hosts (SRC-02/03) | Prototype defaults; 446/447 suggestion not retained; USER remains closed; port changes do not isolate cookies |
+| ADR-008 | Prototype direct ports 8447/8446 and distinct portal hosts (historical SRC-02/03) | **Owner amendment 2026-11-06:** fixed system URLs use FORGE `/forge:8447` and PANEL `/panel:8446` on OS-detected machine IP and optional verified existing FQDN; **no customizable system-portal hostname**, auto-created subdomain or implicit 443 vhost. Prototype distinct-host text is history, not the new installer default. Preserve separate sessions and trustworthy TLS (IP-SAN when accessing HTTPS by IP); ports do **not** isolate cookies. Site website domains and Q5/Q55 one-brand organization settings are separate. USER runtime not yet integrated. [Q175 reconciliation](reconciliation-q171-q220.md). |
 | ADR-009 | Bilingual documentation, one changelog, four permanent branches (explicit owner, SRC-01) | Governs this change; no release/deployment is authorized merely by branch creation |
 | ADR-010 | Application runtime policy | Open: archive accepts PHP >=8.2; earlier PHP 8.4 preference is not a certified six-OS package policy |
 | ADR-011 | Licensing and contributions | **AGPL-3.0 + commercial (Q48)**; only/or-later variant and commercial terms require approval; audit third-party rights before publishing LICENSE |
@@ -160,6 +160,7 @@ Source IDs refer to the [baseline](../19-audits-risks/baseline.md). A decision a
 | ADR-137 | Separate consents, per-data/cohort thresholds, aggregation, redaction and anti-reidentification (Q168 C) | Q158/Q6: telemetry never forced. Configurable data/cohort minimums and protection against differencing; local health/manual reports work without Hub. |
 | ADR-138 | Versioned risk policy with low-risk automated premium transfer, additional approval and safe recovery (Q169 C) | Q159/Q138/Q148: verify org/rights/fresh nonce before automation; suspicious repetition, lost source, mismatch or compromise triggers manual review and target-transfer hold only. No arbitrary per-product Q159 D engine. |
 | ADR-139 | Signed validated versioned JSON Schema for advisory with synchronized FR/EN and history (Q170 B) | Q160/Q150: single canonical source for structured and human versions, authorized recipients, configurable notices and protected sensitive fields; no mandatory advanced interchange option C. |
+| ADR-140 | Owner-approved Q171–Q220 product direction batch (47 D; Q174, Q194, Q200 C) | [Canonical 50 decisions](decisions-q171-q220.md) and [conditional reconciliation](reconciliation-q171-q220.md). Q1–Q170 retained; Q221+ open; no code, VM tests, defaults, supplier choices, production API, Hub authority or release approved by this ADR. |
 
 ## Replaced or unresolved proposals
 

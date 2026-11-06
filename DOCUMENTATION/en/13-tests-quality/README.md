@@ -1,7 +1,35 @@
-<!-- forgepanel-doc id=FP-13 revision=21 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=28 status=documented -->
 # Tests, quality and definition of done
 
 [Français](../../fr/13-tests-quality/README.md) · [Index](../README.md)
+
+## App Center — host/RBAC/policy/request evidence binding
+
+The [candidate-only evidence checker](../../../scripts/check_app_center_candidate_evidence.py) and its [negative offline tests](../../../tests/documentation/test_app_center_evidence_binding.py) demonstrate denial of stale/mismatched fictional snapshots, foreign tenant/actor and protected ports. The [12 live host/Symfony/Go evidence qualification cases](app-center-evidence-gates.md) are **PLANNED**, not PASS; fixtures are not host attestations, signed policies or verified authorization.
+
+## Q171–Q220 owner decisions: planned qualification, not PASS
+
+The [50 owner-approved directions](../00-project-control/decisions-q171-q220.md) now map to [50 PLANNED acceptance scenarios](mvp-gates-q171-q220.md), with exact bilingual option parity and C choices Q174/Q194/Q200. The accompanying JSON/documentation validation is **static only**; no real malware scanner, WAF, API, app installer, VM recovery or Hub integration test was executed. Q1–Q170 remain authoritative and Q221+ open.
+
+## Q180/Q220 — Configuration Center inheritance tests
+
+The [candidate inheritance resolver](../../../scripts/preview_app_center_inheritance.py) and [26 static tests](../../../tests/documentation/test_app_center_inheritance.py) demonstrate no-widening scope rules and non-bypassable security keys using synthetic fixture values. The [16 real integration/VM cases](app-center-configuration-gates.md) remain PLANNED; a passing CI never proves Symfony authorization, physical host caps or policy APPLY/recovery.
+
+## App Center: mock trust-origin separation tests
+
+The [preflight trust boundary](../10-security/app-center-admission-trust-boundary.md) now has **three distinct synthetic input fixtures** (host facts, Core authorization claims and client intent). [39 offline preview tests](../../../tests/documentation/test_app_center_preview.py) cover unauthorized fields, spoofed host/tenant references, fake VERIFIED claims, free native installs without Docker/Hub and reserved control-plane ports. No real RBAC, host attestation or app installation is tested.
+
+## App Center: synthetic installation preview checks
+
+The [read-only preview prototype](../08-api-contracts/app-center-preview-contract.md) and [offline negative tests](../../../tests/documentation/test_app_center_preview.py) check runtime/driver separation, fictional CPU/RAM/PID budgets, denied site claims and hard-reserved ports 8447/8446. No real listener, OS capability, authorization or installation has been validated. The 32 HTTP/VM tests remain PLANNED.
+
+## App Center: candidate manifest checks versus runtime tests
+
+The [offline recipe checks](../../../tests/documentation/test_app_center_recipe_contracts.py) validate only synthetic candidate JSON and reject a selection of unsafe manifest fields, **without any installation**. The [32 app runtime/VM scenarios](app-center-engine-gates.md) remain PLANNED. No app/OS/Docker/Podman certification follows from static CI.
+
+## App Center: native and container gates
+
+The [APP-NAT / APP-CTR / APP-X matrix](app-center-engine-gates.md) defines **32 planned scenarios** for free native installs, Docker/Podman separation, engine-specific resources/quotas/backups, cross-engine rejection, tenant isolation, offline Hub and artifact trust. All remain **PLANNED**; no real app installation testing has been run. [Product boundaries](../06-apps-recipes/app-center-engines.md).
 
 ## Evidence must name its scope
 

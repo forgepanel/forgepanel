@@ -1,0 +1,507 @@
+{
+  "schema_version": 1,
+  "status": "PLANNED_NOT_EXECUTED",
+  "source_registry": "evidence/decisions-q171-q220-v1.json",
+  "cases": [
+    {
+      "id": "ACCEPT-Q171-01",
+      "decision_id": "Q171",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Seules les recettes natives approuvées et compatibles entrent progressivement au catalogue",
+      "scenario_en": "Only approved qualified native recipes enter staged categories; incompatible versions remain unavailable",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q172-01",
+      "decision_id": "Q172",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Création/suspension/réessai API sous scopes typés, idempotence, audit et refus inter-tenant",
+      "scenario_en": "Provisioning create/suspend/retry enforces typed scopes, idempotency, audit and denied unrelated tenants",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q173-01",
+      "decision_id": "Q173",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Scanner multiengine borné, quarantaine/réintégration, faux positifs, aucune suppression arbitraire",
+      "scenario_en": "Bound multiscanner jobs, quarantine/release and false-positive handling without destructive effects",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q174-01",
+      "decision_id": "Q174",
+      "choice": "C",
+      "status": "PLANNED",
+      "scenario_fr": "WAF candidat en détection avant tests de blocage et récupération qualifiée",
+      "scenario_en": "WAF candidate stays in detect mode until qualified blocking test and controlled recovery",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q175-01",
+      "decision_id": "Q175",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Refus inter-portails routes/cookies/sessions/API et isolation des thèmes/droits",
+      "scenario_en": "Cross-portal route, cookie/session, API and theme separation; no privilege leakage",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q176-01",
+      "decision_id": "Q176",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "R4 PHP/HTTPS vérifié avant natif, puis conteneurs par jalons qualifiés distincts",
+      "scenario_en": "Core PHP/HTTPS R4 verified before staged native then independent container rollout",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q177-01",
+      "decision_id": "Q177",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Catégories administrables sans publier de recette incompatible/non revue",
+      "scenario_en": "Admin categories adapt without accepting an incompatible or unreviewed recipe",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q178-01",
+      "decision_id": "Q178",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Import local signé et partenaire refusé sans revue manuelle par version",
+      "scenario_en": "Signed local import and partner versions fail closed until manual approval",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q179-01",
+      "decision_id": "Q179",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Assistant simple/avancé soumis à droits, backup et préflight avant application",
+      "scenario_en": "Simple/advanced wizard preview cannot bypass permissions, backup or preflight",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q180-01",
+      "decision_id": "Q180",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Override inférieur incapable de dépasser les plafonds de sécurité ni d'effacer historique",
+      "scenario_en": "Lower-scope config override cannot exceed global/server safety constraints or lose revision history",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q181-01",
+      "decision_id": "Q181",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Moteur SQL incompatible refusé, comptes et autorisations par tenant",
+      "scenario_en": "Unsupported SQL engine for selected app is rejected, with tenant-scoped DB grants",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q182-01",
+      "decision_id": "Q182",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Version épinglée, EOL et migration par site ; refus de version non prise en charge",
+      "scenario_en": "Version pinning, EOL warning and per-site upgrade policy cannot force unsupported releases",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q183-01",
+      "decision_id": "Q183",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Fenêtres, staging et approbations respectés ; pas d'update auto non approuvé",
+      "scenario_en": "Per-app maintenance window, staging and approvals respected; no unapproved auto-update",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q184-01",
+      "decision_id": "Q184",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Fichiers+SQL restaurables et migration irréversible explicitement annoncée",
+      "scenario_en": "Consistent files/SQL restore checked and irreversible migration warning shown",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q185-01",
+      "decision_id": "Q185",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Désinstallation avec conservation explicite ; refus de purge fichiers/DB/backups non autorisée",
+      "scenario_en": "Uninstall prompts explicit retention; unauthorized file/SQL/backup purge refused",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q186-01",
+      "decision_id": "Q186",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Détection en lecture seule avant adoption explicitement autorisée",
+      "scenario_en": "Existing app detected read-only; no adoption or takeover before authorization",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q187-01",
+      "decision_id": "Q187",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Installations groupées sous limites de concurrence, quotas, annulation et reprise",
+      "scenario_en": "Bulk installation respects concurrency, quotas, cancellation and crash recovery",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q188-01",
+      "decision_id": "Q188",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Staging masqué, emails/webhooks réels bloqués, secrets indépendants",
+      "scenario_en": "Staging data masked; live mail/webhook blocked; independent credentials verified",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q189-01",
+      "decision_id": "Q189",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Coffre par site/acteur avec rotation et journalisation sans fuite de secret",
+      "scenario_en": "Secrets access by site/actor limited and audited; rotation never leaks credentials",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q190-01",
+      "decision_id": "Q190",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Délégation incapable d'agir sur site/organisation/plan tiers",
+      "scenario_en": "Delegated operator cannot install outside owned site/organization/plan",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q191-01",
+      "decision_id": "Q191",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Hôte non qualifié ou plan insuffisant incapable d'activer des conteneurs",
+      "scenario_en": "Unqualified host or plan cannot activate container engine by bypass",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q192-01",
+      "decision_id": "Q192",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Recette Docker non substituable à Podman ni inversement sans qualification",
+      "scenario_en": "Docker-only recipe cannot silently run under Podman or vice versa",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q193-01",
+      "decision_id": "Q193",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Rootless privilégié ; exception rootful refusée sans approbation bornée et audit",
+      "scenario_en": "Rootless preferred; rootful exception denied without scoped qualified approval and audit",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q194-01",
+      "decision_id": "Q194",
+      "choice": "C",
+      "status": "PLANNED",
+      "scenario_fr": "Compose arbitraire et fournisseur inconnu refusés malgré demande du client",
+      "scenario_en": "Raw arbitrary Compose/unknown provider disallowed even if user requests it",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q195-01",
+      "decision_id": "Q195",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Digest/signature invalide, version révoquée ou registre non approuvé refusés",
+      "scenario_en": "Digest/signature mismatch, revoked version or unapproved registry blocks image use",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q196-01",
+      "decision_id": "Q196",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Privilèges, socket moteur et montages sensibles bloqués par défaut",
+      "scenario_en": "Privileged container/socket/sensitive host mounts denied by default",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q197-01",
+      "decision_id": "Q197",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Réseaux segmentés ; ingress/egress inter-tenants refusés hors politique",
+      "scenario_en": "Cross-tenant network traffic/egress/ingress denied outside approved network policy",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q198-01",
+      "decision_id": "Q198",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Quotas volumes, backup chiffré, rétention et restauration réelle vérifiés",
+      "scenario_en": "Volume quotas, encrypted backup, retention and real restore verified",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q199-01",
+      "decision_id": "Q199",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Plafonds physiques prioritaires face aux quotas tenant CPU/RAM/PIDs/I/O/stockage",
+      "scenario_en": "Physical host caps defeat higher tenant quotas for CPU/RAM/PIDs/I/O/storage",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q200-01",
+      "decision_id": "Q200",
+      "choice": "C",
+      "status": "PLANNED",
+      "scenario_fr": "Export/import assisté avec backup et confirmation ; conversion automatique aveugle refusée",
+      "scenario_en": "Assistant export/import requires approved backup and confirmation; blind auto-conversion denied",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q201-01",
+      "decision_id": "Q201",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Catalogue altéré, rejoué ou rétrogradé refusé selon clés et versions",
+      "scenario_en": "Tampered, replayed or downgraded catalog rejected through trust-root and version policy",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q202-01",
+      "decision_id": "Q202",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Éditeur ou version partenaire non approuvés interdits de publication",
+      "scenario_en": "Unapproved publisher or single partner release cannot self-publish",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q203-01",
+      "decision_id": "Q203",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Vulnérabilité version installée : alerte et correction approuvée, sans auto-fix dangereux",
+      "scenario_en": "Installed-version vulnerability risk prompts scoped alert/remediation approval, no unsafe auto-fix",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q204-01",
+      "decision_id": "Q204",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Retrait des nouvelles installations sans effacer les données des installations existantes",
+      "scenario_en": "High-risk recipe withdrawn for new installs without deleting existing tenant data",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q205-01",
+      "decision_id": "Q205",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Élément infecté en quarantaine : examen et restauration après procédure autorisée",
+      "scenario_en": "Quarantined malware item can be reviewed/restored after authorized false-positive procedure",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q206-01",
+      "decision_id": "Q206",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Règles WAF héritées simulées, exceptions limitées et retour au dernier état sain",
+      "scenario_en": "Inherited WAF detect/block policies simulate, contain exception scope and recover last-known-good",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q207-01",
+      "decision_id": "Q207",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Journaux secrets expurgés, RBAC, rétention et export soumis aux droits",
+      "scenario_en": "Sensitive logs are redacted, scoped, retained and export-controlled",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q208-01",
+      "decision_id": "Q208",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Opération sensible avec step-up/approbation selon risque ; MFA facultative",
+      "scenario_en": "Sensitive action respects effective risk-based step-up/approval; MFA still optional",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q209-01",
+      "decision_id": "Q209",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Plans concurrents ne doublent pas ressources/ports, revalidation anti-TOCTOU à l'effet",
+      "scenario_en": "Concurrent plans cannot double-reserve ports/resources; apply-time checks prevent TOCTOU",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q210-01",
+      "decision_id": "Q210",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Téléchargement refuse SSRF/redirections dangereuses/cache corrompu/reprise non validée",
+      "scenario_en": "Artifact download rejects SSRF, unsafe redirects, cache corruption and unverified resumes",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q211-01",
+      "decision_id": "Q211",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Espaces natif/conteneurs distincts, recherche commune uniquement en lecture",
+      "scenario_en": "Native and Container spaces separate, with shared *read-only* compatible catalog search",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q212-01",
+      "decision_id": "Q212",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Moteur natif gratuit clairement distingué des licences tiers, ressources et offres",
+      "scenario_en": "Free native engine distinguished from third-party app license, resource cost and optional offers",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q213-01",
+      "decision_id": "Q213",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Hub absent : catalogue natif sûr accessible hors ligne, pas de cache non signé",
+      "scenario_en": "Hub outage permits trusted offline free native catalog, without unsigned stale takeover",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q214-01",
+      "decision_id": "Q214",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Revendeur cantonné à serveur/tenant/plan/catégorie/moteur ; phases respectées",
+      "scenario_en": "Reseller account confined by server/tenant/plan/category/engine policy; phase gates respected",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q215-01",
+      "decision_id": "Q215",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Sponsor visible et séparé du classement organique sécurité/compatibilité",
+      "scenario_en": "Paid placements labeled and separated from security/compatibility-first organic results",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q216-01",
+      "decision_id": "Q216",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Connecteurs facturation vérifient événements tiers sans accorder de droit Linux",
+      "scenario_en": "Billing adapters validate independent provider events without granting Core Linux rights",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q217-01",
+      "decision_id": "Q217",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Webhook signé, anti-rejeu, filtres et destinations approuvées",
+      "scenario_en": "Signed webhook verifies issuer, anti-replay, per-destination filters and safe destinations",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q218-01",
+      "decision_id": "Q218",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "API publique refuse appels arbitraires ou hors scope, rate-limit et audit",
+      "scenario_en": "Public API rejects untyped/unauthorized calls with rate limits and audited scopes",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q219-01",
+      "decision_id": "Q219",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Métriques locales sans télémétrie Hub forcée ; diagnostics sur consentement",
+      "scenario_en": "Local per-engine metrics/alerts work without forced Hub telemetry; diagnostics require consent",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    },
+    {
+      "id": "ACCEPT-Q220-01",
+      "decision_id": "Q220",
+      "choice": "D",
+      "status": "PLANNED",
+      "scenario_fr": "Règles versionnées héritées et simulées ; retour arrière sans désactiver invariants",
+      "scenario_en": "Versioned inherited rule simulation and rollback cannot disable immutable safety invariants",
+      "required_evidence": "EXACT_COMMIT_REAL_HTTP_VM_AND_SECURITY_REVIEW",
+      "result": "NOT_EXECUTED"
+    }
+  ]
+}

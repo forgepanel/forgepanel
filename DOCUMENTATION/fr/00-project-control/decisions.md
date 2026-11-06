@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DECISIONS revision=13 status=documented -->
+<!-- forgepanel-doc id=FP-00-DECISIONS revision=15 status=documented -->
 # Registre de décisions
 
 [English](../../en/00-project-control/decisions.md) · [Pilotage](README.md)
@@ -14,7 +14,7 @@ Les identifiants sources renvoient à l'[état initial](../19-audits-risks/basel
 | ADR-005 | Installation en une commande, puis wizard et récupération CLI (propriétaire, SRC-02) | Résultat obligatoire ; non livré par `install plan` |
 | ADR-006 | Jeton bootstrap plutôt que mot de passe Linux dans le navigateur (SRC-02/03) | Référence de sécurité conservée ; le super-admin applicatif n'est pas root Linux |
 | ADR-007 | PostgreSQL porte la transaction du bootstrap web (SRC-03) | Implémentation d'archive remplaçant l'intégration du jeton fichier v0.6 ; SQL non vérifié |
-| ADR-008 | Ports directs 8447/8446 et hôtes de portails distincts (SRC-02/03) | Valeurs du prototype ; suggestion 446/447 non retenue ; USER fermé ; les ports n'isolent pas les cookies |
+| ADR-008 | Ports directs 8447/8446 et anciens hôtes de portails distincts (historique SRC-02/03) | **Précision du propriétaire le 06/11/2026 :** accès système FORGE `/forge:8447` et PANEL `/panel:8446` sur IP machine automatiquement détectée et éventuel FQDN existant vérifié ; **aucun domaine système personnalisable**, sous-domaine automatique ou vhost 443 implicite. Les anciens hôtes distincts restent historiques, pas la valeur par défaut du futur installateur. Sessions séparées, HTTPS valide (IP-SAN si adresse IP) ; les ports n'isolent **pas** les cookies. Domaines des sites et marque unique Q5/Q55 distincts. Runtime USER non encore intégré. [Réconciliation Q175](reconciliation-q171-q220.md). |
 | ADR-009 | Documentation bilingue, changelog unique, quatre branches permanentes (propriétaire, SRC-01) | Régit ce lot ; créer une branche n'autorise ni release ni déploiement |
 | ADR-010 | Politique du runtime applicatif | Ouverte : l'archive accepte PHP >=8.2 ; la préférence PHP 8.4 ne certifie pas une politique de paquets sur six OS |
 | ADR-011 | Licence et contributions | **AGPL-3.0 + licence commerciale (Q48)** ; variante only/or-later et texte commercial à approuver ; provenance et droits tiers à vérifier avant LICENSE |
@@ -160,6 +160,7 @@ Les identifiants sources renvoient à l'[état initial](../19-audits-risks/basel
 | ADR-137 | Consentements séparés, seuils par catégorie/cohorte, agrégation, expurgation et protection anti-réidentification (Q168 C) | Q158/Q6 : pas de télémétrie forcée. Seuils configurables par donnée/cohorte, minimisation et protection contre recoupements ; santé locale et rapports manuels préservés sans Hub. |
 | ADR-138 | Transferts premium simples automatisés sous règles de risque versionnées, seconde approbation et secours sécurisé (Q169 C) | Q159/Q138/Q148 : identité, droits, org et challenge nonce vérifiés ; revue humaine et gel du transfert premium en cas de répétition, source perdue, incohérence ou compromission. Pas de moteur arbitraire par produit (Q159 D). |
 | ADR-139 | Avis sous JSON Schema versionné, signé, validé, avec rendus FR/EN synchronisés et historique (Q170 B) | Q160/Q150 : source canonique commune aux formes structurée et humaine, destinataires autorisés, notifications configurables et données sensibles protégées ; interopérabilité avancée option C non imposée. |
+| ADR-140 | Orientations produit Q171–Q220 explicitement approuvées (47 D ; Q174, Q194, Q200 C) | [Registre canonique des 50 décisions](decisions-q171-q220.md) et [réconciliation conditionnelle](reconciliation-q171-q220.md). Q1–Q170 conservées ; Q221+ ouvertes ; aucun code, test VM, valeur par défaut, fournisseur, API active, pouvoir Hub ou release approuvé par cette ADR. |
 
 ## Propositions remplacées ou non résolues
 

@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "status": "SPECIFIED_NOT_IMPLEMENTED",
+  "owner_confirmation_date": "2026-11-06",
+  "prior_decisions_preserved": "Q1-Q170",
+  "ui": {
+    "umbrella": "APP_CENTER",
+    "sections": [
+      {
+        "key": "ONE_CLICK_INSTALL",
+        "recipe_kind": "native_script",
+        "engine": "NATIVE_SITE",
+        "free_core": true,
+        "hub_required": false,
+        "container_runtime_required": false
+      },
+      {
+        "key": "CONTAINER_APPS",
+        "recipe_kind": "container_stack",
+        "engine": "CONTAINER_STACK",
+        "free_core_base": true,
+        "hub_required": false,
+        "drivers": [
+          "DOCKER",
+          "PODMAN"
+        ]
+      }
+    ]
+  },
+  "security_invariants": {
+    "no_generic_shell_exec": true,
+    "no_cross_engine_fallback": true,
+    "independent_execution_contracts": true,
+    "independent_resource_accounting": true,
+    "independent_backup_restore": true,
+    "local_rbac_and_agent_authorization": true,
+    "native_no_commercial_entitlement": true,
+    "native_no_docker_podman_dependency": true,
+    "reject_unreviewed_manifests": true,
+    "container_no_privileged_or_host_root_mount_by_default": true,
+    "no_automatic_conversion_between_install_kinds": true,
+    "core_runs_without_publisher_hub": true
+  },
+  "shared_potential_services": [
+    "catalog_search",
+    "artifact_validation",
+    "audit_metadata",
+    "durable_job_correlation"
+  ],
+  "not_shipped": [
+    "native_script_installer",
+    "container_stack_executor",
+    "docker_driver",
+    "podman_driver",
+    "app_catalog_runtime"
+  ],
+  "open_technical_choices": [
+    "manifest_schemas",
+    "database_layout",
+    "qualified_native_recipe_list",
+    "qualified_container_recipes",
+    "docker_podman_rootless_profiles",
+    "container_driver_compatibility",
+    "application_license_review",
+    "resource_quota_defaults",
+    "hosting_plan_roles",
+    "paid_optional_extensions",
+    "approved_release_gates"
+  ]
+}

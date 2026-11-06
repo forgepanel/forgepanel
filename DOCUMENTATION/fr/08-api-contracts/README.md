@@ -1,7 +1,19 @@
-<!-- forgepanel-doc id=FP-08 revision=10 status=documented -->
+<!-- forgepanel-doc id=FP-08 revision=13 status=documented -->
 # API et contrats
 
 [English](../../en/08-api-contracts/README.md) · [Index](../README.md)
+
+## App Center — liaison des preuves hôte/droits/politique et révisions
+
+Le [contrat candidat des quatre origines de preuves](app-center-admission-evidence.md) décrit comment un futur agent Go authentifié et le RBAC Symfony seront liés à la politique Core versionnée et à l'intention utilisateur non fiable. Les [tests de preuves hors ligne](../../../tests/documentation/test_app_center_evidence_binding.py) n'authentifient rien et n'autorisent jamais APPLY. [12 tests réels](../13-tests-quality/app-center-evidence-gates.md) restent **PLANNED / NON EXÉCUTÉS**.
+
+## Prévisualisation candidate App Center
+
+L'[aperçu synthétique natif/conteneurs](app-center-preview-contract.md) présente les vérifications **hypothétiques** de ressources propres à chaque moteur et protège les ports FORGE 8447 / PANEL 8446. Il conserve `execution_allowed=false`, ne possède aucune preuve d'authentification/état hôte et n'applique rien. [Tests hors ligne](../../../tests/documentation/test_app_center_preview.py).
+
+## Contrats candidats de manifestes App Center
+
+Le [contrat des recettes natives/conteneurs](app-center-recipe-contracts.md) et son [validateur hors ligne](../../../scripts/validate_app_center_recipe.py) refusent le mélange des moteurs, les artefacts non épinglés et les champs dangereux **sans lancer d'installateur**. Ces contrôles de métadonnées restent provisoires ; aucune API Core active. [Modèle de propriété](../09-database/app-center-resource-ownership.md).
 
 ## Contrats observés dans SRC-03
 

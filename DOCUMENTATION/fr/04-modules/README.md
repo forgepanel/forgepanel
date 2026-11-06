@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-04 revision=6 status=documented -->
+<!-- forgepanel-doc id=FP-04 revision=7 status=documented -->
 # Catalogue des modules natifs
 
 [English](../../en/04-modules/README.md) · [Index](../README.md)
+
+## App Center — moteurs natifs et conteneurs indépendants
+
+Deux sections sont confirmées sous App Center : **ONE-CLICK INSTALL**, gratuit et destiné aux scripts d'hébergement web classiques, et **CONTAINER APPS**, utilisant les pilotes Docker/Podman avec ressources, quotas, autorisations et restauration propres. Aucun moteur ne peut exécuter la recette de l'autre ; aucun Hub ni shell privilégié arbitraire requis. [Spécification et étude comparative](../06-apps-recipes/app-center-engines.md) · [Tests planifiés](../13-tests-quality/app-center-engine-gates.md). Aucun moteur d'installation applicatif opérationnel dans le Core actuel.
 
 ## Sens de « natif »
 

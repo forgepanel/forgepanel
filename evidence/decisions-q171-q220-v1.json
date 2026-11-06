@@ -1,0 +1,423 @@
+{
+  "schema_version": 1,
+  "register_status": "OWNER_APPROVED_PRODUCT_DIRECTIONS",
+  "owner_confirmed_date": "2026-11-06",
+  "supersedes_earlier_decisions": false,
+  "prior_decisions_retained": "Q1-Q170",
+  "approval_scope": "PRODUCT_DIRECTION_ONLY",
+  "implementation_status": "NOT_APPROVED_BY_THIS_DECISION",
+  "runtime_qa_status": "NOT_EXECUTED_BY_THIS_DECISION",
+  "questions": [
+    {
+      "id": "Q171",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE_HUB",
+      "decision_fr": "Catalogue natif extensible par catégories, démarrage progressif des recettes qualifiées",
+      "decision_en": "Extensible categorized native catalog, staged rollout of qualified recipes"
+    },
+    {
+      "id": "Q172",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE_HUB",
+      "decision_fr": "API de provisioning versionnée, opérations prédéfinies, RBAC et audit, connecteurs indépendants",
+      "decision_en": "Versioned provisioning API with predefined operations, RBAC, audit and independent connectors"
+    },
+    {
+      "id": "Q173",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE",
+      "decision_fr": "Architecture antivirus multiscanner, jobs bornés, quarantaine réversible, politique et audit",
+      "decision_en": "Multiscanner malware architecture with bounded jobs, reversible quarantine, policies and audit"
+    },
+    {
+      "id": "Q174",
+      "choice": "C",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE",
+      "decision_fr": "Pilote WAF candidat Coraza + OWASP CRS, mode détection puis blocage après qualification",
+      "decision_en": "Candidate Coraza + OWASP CRS WAF driver, detection first and blocking only after qualification"
+    },
+    {
+      "id": "Q175",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE",
+      "decision_fr": "FORGE/PANEL strictement séparés : sessions, routes, API, thèmes, menus et permissions ; Hub isolé",
+      "decision_en": "Strictly separated FORGE/PANEL sessions, routes, APIs, themes, menus and permissions; isolated Hub"
+    },
+    {
+      "id": "Q176",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE",
+      "decision_fr": "Après socle hébergement R4, One-Click natif puis conteneurs par jalons de qualification indépendants",
+      "decision_en": "After R4 hosting foundation, native One-Click first, containers in independently qualified milestones"
+    },
+    {
+      "id": "Q177",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE_HUB",
+      "decision_fr": "Catégories applicatives administrables avec compatibilités et éligibilité vérifiées",
+      "decision_en": "Administrable application categories with verified compatibility and eligibility"
+    },
+    {
+      "id": "Q178",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE_HUB",
+      "decision_fr": "Recettes officielles, partenaires approuvés et import local signé soumis à revue préalable",
+      "decision_en": "Official recipes, approved partners and signed local imports subject to prior review"
+    },
+    {
+      "id": "Q179",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE",
+      "decision_fr": "Modes simple/avancé, préflight, estimation, backup, aperçu et modèles administrables",
+      "decision_en": "Simple/advanced modes, preflight, estimates, backup, preview and administrable templates"
+    },
+    {
+      "id": "Q180",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE_HUB",
+      "decision_fr": "Configuration héritée global → serveur → organisation → plan → site, limitée et historisée",
+      "decision_en": "Constrained versioned configuration inheritance global → server → organization → plan → site"
+    },
+    {
+      "id": "Q181",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE",
+      "decision_fr": "Moteur SQL recommandé selon compatibilité de chaque application ; choix, droits et quotas contrôlés",
+      "decision_en": "App-compatible SQL engine recommendation, controlled choice, privileges and quotas"
+    },
+    {
+      "id": "Q182",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE_HUB",
+      "decision_fr": "Versions applicatives certifiées, gel, EOL, politiques et migrations par application/site",
+      "decision_en": "Certified app versions, pinning, EOL, policy and migrations per app/site"
+    },
+    {
+      "id": "Q183",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE_HUB",
+      "decision_fr": "Mises à jour configurables par app/site avec fenêtre, staging, sauvegarde et approbation",
+      "decision_en": "Configurable app/site updates with maintenance windows, staging, backup and approvals"
+    },
+    {
+      "id": "Q184",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE",
+      "decision_fr": "Sauvegarde fichiers et SQL cohérente, contrôle de restauration et avertissements sur irréversibilité",
+      "decision_en": "Consistent files/SQL backup, restore checks and disclosure of irreversible migrations"
+    },
+    {
+      "id": "Q185",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE",
+      "decision_fr": "Désinstallation avec choix de conservation selon tenant/site, confirmation et audit",
+      "decision_en": "Uninstall with per-tenant/site retention choices, confirmation and audit"
+    },
+    {
+      "id": "Q186",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE",
+      "decision_fr": "Détection et adoption d'apps existantes en lecture seule d'abord, puis revue/autorisation",
+      "decision_en": "Detect and adopt existing apps read-only first, then reviewed explicit authorization"
+    },
+    {
+      "id": "Q187",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE",
+      "decision_fr": "Installations en masse gouvernées par concurrence, quotas, annulation et reprise",
+      "decision_en": "Bulk installs governed by concurrency, quotas, cancellation and recovery"
+    },
+    {
+      "id": "Q188",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE",
+      "decision_fr": "Staging isolé, données masquées, secrets distincts, mail/webhooks externes désactivés par défaut",
+      "decision_en": "Isolated staging, masked data, separate secrets and live mail/webhooks disabled by default"
+    },
+    {
+      "id": "Q189",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE",
+      "decision_fr": "Secrets applicatifs gérés par pilotes, périmètre site, rotation, accès bornés et audit",
+      "decision_en": "Driver-based application secrets with site scopes, rotation, bounded access and audit"
+    },
+    {
+      "id": "Q190",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE",
+      "decision_fr": "RBAC délégable par opération, site, organisation et plan, sous politique serveur",
+      "decision_en": "Delegable RBAC by operation, site, organization and plan, bounded by server policy"
+    },
+    {
+      "id": "Q191",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE",
+      "decision_fr": "Activation conteneurs seulement sur serveur qualifié et selon droits du plan/organisation",
+      "decision_en": "Container activation only on qualified hosts and scoped plan/organization rights"
+    },
+    {
+      "id": "Q192",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE_HUB",
+      "decision_fr": "Pilotes Docker/Podman indépendants, sélection après compatibilité certifiée app/hôte",
+      "decision_en": "Independent Docker/Podman drivers, selected by certified app/host compatibility"
+    },
+    {
+      "id": "Q193",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE",
+      "decision_fr": "Rootless préféré, exceptions approuvées, profils d'isolation et audits par classe",
+      "decision_en": "Rootless preferred, approved exceptions, class-based isolation profiles and audit"
+    },
+    {
+      "id": "Q194",
+      "choice": "C",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE_HUB",
+      "decision_fr": "Compose uniquement via recettes et fournisseurs précisément qualifiés, aucun fichier arbitraire",
+      "decision_en": "Compose only through specifically qualified recipes/providers, no arbitrary files"
+    },
+    {
+      "id": "Q195",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE_HUB",
+      "decision_fr": "Images par digest/signature et registres autorisés, retraits et versions compatibles",
+      "decision_en": "Digest/signature-pinned images, allowed registries, withdrawal and version compatibility"
+    },
+    {
+      "id": "Q196",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE",
+      "decision_fr": "Capabilities minimales, rejet par défaut privileged, sockets moteurs et montages sensibles",
+      "decision_en": "Least capabilities; deny privileged, engine sockets and sensitive mounts by default"
+    },
+    {
+      "id": "Q197",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE",
+      "decision_fr": "Réseaux conteneurs segmentés, politiques entrantes/sortantes, ports et exposition configurés",
+      "decision_en": "Segmented container networks, governed ingress/egress, ports and exposure"
+    },
+    {
+      "id": "Q198",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE",
+      "decision_fr": "Volumes persistants sous quotas, sauvegardes, rétention, chiffrement et vraie restauration",
+      "decision_en": "Quota-bounded persistent volumes, backup, retention, encryption and actual restore"
+    },
+    {
+      "id": "Q199",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE",
+      "decision_fr": "Budget CPU/RAM/PIDs/I/O/stockage par hôte, plan, tenant et app, plafonné physiquement",
+      "decision_en": "CPU/RAM/PIDs/I/O/storage budget by host, plan, tenant and app, physically bounded"
+    },
+    {
+      "id": "Q200",
+      "choice": "C",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE_HUB",
+      "decision_fr": "Migration native↔conteneurs via assistant explicite export/import, sauvegarde et validation",
+      "decision_en": "Native↔container migration through explicit export/import wizard, backup and validation"
+    },
+    {
+      "id": "Q201",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE_HUB",
+      "decision_fr": "Catalogues signés, cache, clés rotatives, anti-rollback, provenance et retrait",
+      "decision_en": "Signed catalogs, cache, key rotation, anti-rollback, provenance and withdrawal"
+    },
+    {
+      "id": "Q202",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE_HUB",
+      "decision_fr": "Éditeurs et versions partenaires vérifiés : sécurité, maintenance, licences, retrait",
+      "decision_en": "Verified publishers and releases: security, maintenance, licensing and withdrawal"
+    },
+    {
+      "id": "Q203",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE_HUB",
+      "decision_fr": "Suivi des vulnérabilités des versions installées, politiques de risque et remédiations approuvées",
+      "decision_en": "Track installed-version vulnerabilities with risk policies and approved remediation"
+    },
+    {
+      "id": "Q204",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE_HUB",
+      "decision_fr": "Réponse graduée aux recettes dangereuses : empêcher nouvelles poses, alerter, préserver données",
+      "decision_en": "Risk-based unsafe-recipe response: block new installs, notify, preserve existing data"
+    },
+    {
+      "id": "Q205",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE",
+      "decision_fr": "Quarantaine malware réversible, contrôles de faux positifs et règles/approbations par site",
+      "decision_en": "Reversible malware quarantine, false-positive review and site-scoped risk/approval policy"
+    },
+    {
+      "id": "Q206",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE",
+      "decision_fr": "WAF à politiques héritées, simulation, détection puis blocage qualifié et rollback",
+      "decision_en": "Inherited WAF policies, simulation, detection-first, qualified blocking and rollback"
+    },
+    {
+      "id": "Q207",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE_HUB",
+      "decision_fr": "Journaux structurés et expurgés, corrélation, RBAC, filtres, rétention et export",
+      "decision_en": "Structured redacted logs, correlation, RBAC, filters, retention and authorized export"
+    },
+    {
+      "id": "Q208",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE_HUB",
+      "decision_fr": "Réauthentification/approbation selon risque, opération, ressource et devoir de séparation",
+      "decision_en": "Risk/operation/resource-based step-up, approvals and separation of duties"
+    },
+    {
+      "id": "Q209",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE",
+      "decision_fr": "Préflight, réservation atomique, revalidation à l'effet, idempotence et reprise",
+      "decision_en": "Preflight, atomic reservations, apply-time revalidation, idempotency and recovery"
+    },
+    {
+      "id": "Q210",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE_HUB",
+      "decision_fr": "Sources d'artefacts contrôlées, cache signé, validation SSRF et reprise vérifiée",
+      "decision_en": "Approved artifact sources, signed cache, SSRF protections and verified resume"
+    },
+    {
+      "id": "Q211",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE_HUB",
+      "decision_fr": "Deux espaces App Center distincts avec recherche commune en lecture seule et compatibilité",
+      "decision_en": "Two distinct App Center sections with common read-only search and compatibility filters"
+    },
+    {
+      "id": "Q212",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE_HUB",
+      "decision_fr": "Distinguer moteur natif gratuit, licence/coût tiers, ressources et offres optionnelles",
+      "decision_en": "Distinguish free native engine, third-party licenses/costs, resources and optional offers"
+    },
+    {
+      "id": "Q213",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE_HUB",
+      "decision_fr": "Catalogue local sûr/versionné hors ligne, synchronisations signées facultatives, Hub non requis",
+      "decision_en": "Safe versioned offline local catalog, optional signed synchronization, Hub not required"
+    },
+    {
+      "id": "Q214",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE",
+      "decision_fr": "Droits revendeur par tenant/plan/catégorie/moteur bornés par politique serveur",
+      "decision_en": "Reseller rights by tenant/plan/category/engine bounded by server policy"
+    },
+    {
+      "id": "Q215",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE_HUB",
+      "decision_fr": "Classement d'abord compatibilité/sécurité puis filtres/stats ; sponsor identifié si activé",
+      "decision_en": "Compatibility/security-first ranking with filters/stats; distinct labeled sponsorship if enabled"
+    },
+    {
+      "id": "Q216",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE_HUB",
+      "decision_fr": "Intégrations de facturation par API stable et connecteurs indépendants qualifiés",
+      "decision_en": "Billing integrations via stable API and qualified independent connectors"
+    },
+    {
+      "id": "Q217",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE_HUB",
+      "decision_fr": "Webhooks/événements versionnés et signés, idempotents, filtrés, destinations approuvées",
+      "decision_en": "Versioned signed events/webhooks, idempotency, filtering and approved destinations"
+    },
+    {
+      "id": "Q218",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE",
+      "decision_fr": "API publique progressive d'opérations prédéfinies, scopes, RBAC, limitation de débit et audit",
+      "decision_en": "Progressive public API of predefined operations, scopes, RBAC, rate limits and audit"
+    },
+    {
+      "id": "Q219",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE_HUB",
+      "decision_fr": "Observabilité par moteur : logs, métriques, santé, événements, quotas, seuils et diagnostics",
+      "decision_en": "Per-engine observability: logs, metrics, health, events, quotas, alerts and diagnostics"
+    },
+    {
+      "id": "Q220",
+      "choice": "D",
+      "status": "OWNER_APPROVED",
+      "scope": "CORE_HUB",
+      "decision_fr": "Configuration Center versionné, héritage, règles, simulation, RBAC, historique et récupération",
+      "decision_en": "Versioned Configuration Center with inheritance, rules, simulation, RBAC, history and recovery"
+    }
+  ],
+  "still_open": [
+    "Concrete initial app list and certified versions",
+    "Vendor/providers and license clearance",
+    "Actual defaults/thresholds/quotas/intervals",
+    "Exact API/IPC schemas and permissions",
+    "Physical PostgreSQL tables/migrations",
+    "Rootless/container/Compose certification per OS",
+    "WAF/AV compatibility and false-positive/rollback policy",
+    "Billing/payment connectors and commercial terms",
+    "Security review, VM tests, release readiness"
+  ]
+}

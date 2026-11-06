@@ -4,6 +4,13 @@ One chronology, both languages. / Une chronologie, deux langues.
 
 ## Unreleased / Non publié
 
+### Cgroup-v2 visible mount-root token observation — **non-authoritative**
+
+- **Further Go source / Complément Go** — Extended the standalone [App Center host probe](../tools/app-center-host-probe/README.md) with bounded fixed-path reads of `cpu.max`, `memory.max`, `memory.current` and `pids.max` from the **visible cgroup-v2 mount root**, strict numeric/`max` parsing, invalid/missing/untrusted token statuses and redacted warnings. Includes **15 additional Go test functions (34 total: 19 original + 15 new)**, injectable read errors and schema-safe `visible_cgroup_root` output. Paired [EN](../DOCUMENTATION/en/14-devops-releases/app-center-host-observation.md) / [FR](../DOCUMENTATION/fr/14-devops-releases/app-center-host-observation.md) scope/limits clarified.
+- **Security truthfulness / Vérité des preuves** — Visible root files can be absent or not represent any tenant/process-effective inherited control group. Numeric values and `max` are **observations only**: **not allocatable CPU/RAM/PID quotas, not cgroup enforcement, not Docker/Podman qualification, not signed host identity**. All original trust/execution flags remain false; no root, Docker socket, shell, network or filesystem write. No tenant resources, R1 application sources, PostgreSQL, authenticated IPC or production system modified.
+- **FR** — Observation cgroups bornée et non privilégiée, 15 tests Go supplémentaires ; les valeurs lues au montage visible ne peuvent jamais autoriser la création ni l'installation d'une application.
+
+
 ### Added / Ajout — real read-only Go App Center host hints (nonprivileged)
 
 - **Standalone Linux source / Source Linux autonome** — New [Go stdlib module](../tools/app-center-host-probe/README.md) collects bounded, read-only **OS facts**: process-visible logical CPU count, exact `/proc/meminfo` memory hints, cgroup-v2 controller-name hints and fixed Docker/Podman executable-path observations via `lstat`. Includes **19 Go test functions in the first standalone revision**, `go test -race`, `go vet` and a new nonprivileged [GitHub Actions workflow](../.github/workflows/app-center-host-probe.yml). Paired [EN](../DOCUMENTATION/en/14-devops-releases/app-center-host-observation.md)/[FR](../DOCUMENTATION/fr/14-devops-releases/app-center-host-observation.md) engineering docs and updated evidence binding cross-references.

@@ -116,15 +116,12 @@
       ]
     },
     "admission": {
-      "enum": [
-        "ACCEPTED",
-        "DENIED",
-        "REJECTED"
-      ]
+      "const": "ACCEPTED",
+      "description": "This record only models a job admitted after successful durable commit; rejected admission has no job and uses separate IPC response/audit."
     },
     "admitted_after_commit": {
-      "type": "boolean",
-      "description": "Must only be set by DB logic after actual successful commit, never based on untrusted input."
+      "const": true,
+      "description": "Commit must actually precede job acknowledgement; schema alone is not a commit receipt."
     },
     "stage_number": {
       "type": "integer",
@@ -135,32 +132,40 @@
       "minimum": 0
     },
     "lease": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "owner_ref",
-        "fencing_generation",
-        "lease_expires_at",
-        "resource_revision"
-      ],
-      "properties": {
-        "owner_ref": {
-          "type": "string",
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+      "description": "Null until job has a verified owned resource lease; no lease for QUEUED intent.",
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "owner_ref",
+            "fencing_generation",
+            "lease_expires_at",
+            "resource_revision"
+          ],
+          "properties": {
+            "owner_ref": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+            },
+            "fencing_generation": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "lease_expires_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "resource_revision": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+            }
+          }
         },
-        "fencing_generation": {
-          "type": "integer",
-          "minimum": 0
-        },
-        "lease_expires_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "resource_revision": {
-          "type": "string",
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+        {
+          "type": "null"
         }
-      }
+      ]
     },
     "observed_effect_status": {
       "enum": [
@@ -229,27 +234,69 @@
     {
       "if": {
         "properties": {
-          "admission": {
-            "enum": [
-              "DENIED",
-              "REJECTED"
-            ]
+          "state": {
+            "const": "QUEUED"
           }
         },
         "required": [
-          "admission"
+          "state"
         ]
       },
       "then": {
         "properties": {
-          "state": {
-            "const": "BLOCKED"
+          "lease": {
+            "type": "null"
           },
-          "admitted_after_commit": {
-            "const": false
+          "observed_effect_status": {
+            "const": "UNVERIFIED"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "const": "RUNNING"
+          }
+        },
+        "required": [
+          "state"
+        ]
+      },
+      "then": {
+        "properties": {
+          "lease": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "owner_ref",
+              "fencing_generation",
+              "lease_expires_at",
+              "resource_revision"
+            ],
+            "properties": {
+              "owner_ref": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+              },
+              "fencing_generation": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "lease_expires_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "resource_revision": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+              }
+            }
           }
         }
       }
     }
-  ]
+  ],
+  "description": "Documentary shape of an already admitted persistent job; denials are separate API responses/audit events, QUEUED has no lease, RUNNING requires a fencing lease. Not implementation."
 }

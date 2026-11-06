@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14-APP-HOST-HINTS revision=2 status=specified -->
+<!-- forgepanel-doc id=FP-14-APP-HOST-HINTS revision=3 status=specified -->
 # App Center — read-only Go host facts, not trusted capacity
 
 [Français](../../fr/14-devops-releases/app-center-host-observation.md) · [DevOps](README.md) · [Source](../../../tools/app-center-host-probe/README.md)
@@ -28,7 +28,7 @@ The nested `visible_cgroup_root` object reports raw **hints**, such as `cpu_quot
 
 [Go source and README](../../../tools/app-center-host-probe/README.md) · [Go unit test source](../../../tools/app-center-host-probe/probe/probe_test.go) · [Dedicated CI](../../../.github/workflows/app-center-host-probe.yml).
 
-The module uses injectable filesystem readers and fixed paths; 35 offline Go tests cover malformed/oversized meminfo, integer overflow, cgroup parsing, symlink/executable/failed binary inspection, missing Linux facilities, no secret leakage, strict paths and no privilege claims. The CI additionally runs `go test -race`, `go vet`, `gofmt` checking, no-argument refusal and an actual runner's JSON **invariant check only**. A GitHub Actions runner is **not** an authorized ForgePanel customer server, OS certification or Docker/Podman qualification.
+The module uses injectable filesystem readers and fixed paths; 34 offline Go test functions cover malformed/oversized meminfo, integer overflow, cgroup parsing, symlink/executable/failed binary inspection, missing Linux facilities, no secret leakage, strict paths and no privilege claims. The CI additionally runs `go test -race`, `go vet`, `gofmt` checking, no-argument refusal and an actual runner's JSON **invariant check only**. A GitHub Actions runner is **not** an authorized ForgePanel customer server, OS certification or Docker/Podman qualification.
 
 ## Blocking integration decisions
 

@@ -22,7 +22,9 @@ The command accepts **no arguments**. It makes bounded reads of `/proc/meminfo`,
 - The result is **unsigned and unauthenticated** and must not be used as direct Core host/RBAC evidence. No actor, tenant, site, trusted host identity or policy revision is claimed.
 - `host_identity_verified`, `actor_authorization_verified`, `host_capacity_budget_verified`, `cgroup_limits_enforced`, `container_runtime_tested`, `report_signed`, `linux_execution_authorized` and `install_apply_available` are always `false`.
 
-The module includes **35 offline Go unit tests**, including 15 additional cgroup-token parser and error-injection cases. CI checks Go formatting, race safety, vetted CLI arguments and false-claim invariants.\n\nReports may contain infrastructure characteristics; keep them local or share through an authorized/redacted channel. This code requires independent Security/API/IPC/Database/QA review before any authenticated Core integration.
+The module includes **34 offline Go unit-test functions**, including 15 additional cgroup-token parser and error-injection cases. CI checks Go formatting, race safety, vetted CLI arguments and false-claim invariants.
+
+Reports may contain infrastructure characteristics; keep them local or share through an authorized/redacted channel. This code requires independent Security/API/IPC/Database/QA review before any authenticated Core integration.
 
 The free native **ONE-CLICK INSTALL** remains independent of Docker, Podman and publisher Hub. **CONTAINER APPS** requires separately verified driver, resources and tenant rights. FORGE HTTPS **8447** and PANEL HTTPS **8446** remain protected.
 

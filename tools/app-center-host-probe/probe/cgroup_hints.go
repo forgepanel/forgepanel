@@ -8,31 +8,31 @@ import (
 )
 
 const (
-	visibleCPUQuotaPath = "/sys/fs/cgroup/cpu.max"
-	visibleMemoryMaxPath = "/sys/fs/cgroup/memory.max"
-	visibleMemoryCurrentPath = "/sys/fs/cgroup/memory.current"
-	visiblePidsMaxPath = "/sys/fs/cgroup/pids.max"
-	maxCgroupTokenBytes int64 = 128
+	visibleCPUQuotaPath            = "/sys/fs/cgroup/cpu.max"
+	visibleMemoryMaxPath           = "/sys/fs/cgroup/memory.max"
+	visibleMemoryCurrentPath       = "/sys/fs/cgroup/memory.current"
+	visiblePidsMaxPath             = "/sys/fs/cgroup/pids.max"
+	maxCgroupTokenBytes      int64 = 128
 )
 
 type VisibleCgroupRootHints struct {
-	ObservationScope string `json:"observation_scope"`
-	CPUQuotaState string `json:"cpu_quota_state"`
-	CPUQuotaMicrosecondsHint uint64 `json:"cpu_quota_microseconds_hint"`
+	ObservationScope          string `json:"observation_scope"`
+	CPUQuotaState             string `json:"cpu_quota_state"`
+	CPUQuotaMicrosecondsHint  uint64 `json:"cpu_quota_microseconds_hint"`
 	CPUPeriodMicrosecondsHint uint64 `json:"cpu_period_microseconds_hint"`
-	MemoryMaxState string `json:"memory_max_state"`
-	MemoryLimitBytesHint uint64 `json:"memory_limit_bytes_hint"`
-	MemoryCurrentState string `json:"memory_current_state"`
-	MemoryUsageBytesHint uint64 `json:"memory_usage_bytes_hint"`
-	PIDsMaxState string `json:"pids_max_state"`
-	PIDsLimitHint uint64 `json:"pids_limit_hint"`
+	MemoryMaxState            string `json:"memory_max_state"`
+	MemoryLimitBytesHint      uint64 `json:"memory_limit_bytes_hint"`
+	MemoryCurrentState        string `json:"memory_current_state"`
+	MemoryUsageBytesHint      uint64 `json:"memory_usage_bytes_hint"`
+	PIDsMaxState              string `json:"pids_max_state"`
+	PIDsLimitHint             uint64 `json:"pids_limit_hint"`
 }
 
 func newVisibleHints() VisibleCgroupRootHints {
 	return VisibleCgroupRootHints{
-		ObservationScope:"VISIBLE_MOUNT_ROOT_ONLY_UNVERIFIED",
-		CPUQuotaState:"NOT_OBSERVED", MemoryMaxState:"NOT_OBSERVED",
-		MemoryCurrentState:"NOT_OBSERVED", PIDsMaxState:"NOT_OBSERVED",
+		ObservationScope: "VISIBLE_MOUNT_ROOT_ONLY_UNVERIFIED",
+		CPUQuotaState:    "NOT_OBSERVED", MemoryMaxState: "NOT_OBSERVED",
+		MemoryCurrentState: "NOT_OBSERVED", PIDsMaxState: "NOT_OBSERVED",
 	}
 }
 
@@ -96,9 +96,9 @@ func parseCPUQuota(data []byte) (string, uint64, uint64) {
 // restrictions or any hosting tenant. Never use them for admission.
 func observeVisibleCgroupRootHints(source Source, warnings *[]string) VisibleCgroupRootHints {
 	r := newVisibleHints()
-	paths := []struct{
-		path string
-		state *string
+	paths := []struct {
+		path    string
+		state   *string
 		warning string
 	}{
 		{visibleCPUQuotaPath, &r.CPUQuotaState, "cgroup_cpu_max_unavailable"},

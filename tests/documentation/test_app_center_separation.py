@@ -78,7 +78,8 @@ class AppCenterContractTests(unittest.TestCase):
             self.assertIn("CONTAINER APPS",txt)
             self.assertIn("native_script",txt)
             self.assertIn("container_stack",txt)
-            self.assertIn("Q171+",txt)
+            self.assertIn("decisions-q171-q220.md",txt)
+            self.assertIn("Q221+",txt)
 
     def test_quality_matrices_match_all_identifiers(self):
         required={f"TEST-APP-NAT-{i:04d}" for i in range(1,13)}

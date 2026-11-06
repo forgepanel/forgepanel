@@ -57,12 +57,12 @@ func (f *fakeSource) Lstat(path string) (fs.FileInfo, error) {
 func ready() *fakeSource {
 	return &fakeSource{
 		files: map[string][]byte{
-			meminfoPath:           []byte("MemTotal: 8388608 kB\nMemFree: 123 kB\nMemAvailable: 4194304 kB\n"),
-			cgroupControllersPath: []byte("memory io cpu pids cpu"),
-			visibleCPUQuotaPath: []byte("250000 100000\n"),
-			visibleMemoryMaxPath: []byte("4096\n"),
+			meminfoPath:              []byte("MemTotal: 8388608 kB\nMemFree: 123 kB\nMemAvailable: 4194304 kB\n"),
+			cgroupControllersPath:    []byte("memory io cpu pids cpu"),
+			visibleCPUQuotaPath:      []byte("250000 100000\n"),
+			visibleMemoryMaxPath:     []byte("4096\n"),
 			visibleMemoryCurrentPath: []byte("512\n"),
-			visiblePidsMaxPath: []byte("max\n"),
+			visiblePidsMaxPath:       []byte("max\n"),
 		},
 		stats: map[string]fs.FileInfo{
 			dockerPaths[0]: fakeInfo{mode: 0755},

@@ -3,7 +3,7 @@
 
 [English](../../en/13-tests-quality/mvp-gates-q171-q220.md) · [Index QA](README.md) · [Décisions](../00-project-control/decisions-q171-q220.md)
 
-**PLANNED — NON EXÉCUTÉS.** Les cinquante orientations produit approuvées génèrent cinquante critères d'acceptation. Ce sont des tests à réaliser, pas des PASS ; ils ne remplacent ni la CI documentaire ni les 32 tests VM App Center prévus. [Registre des cas](../../evidence/acceptance-q171-q220-v1.json).
+**PLANNED — NON EXÉCUTÉS.** Les cinquante orientations produit approuvées génèrent cinquante critères d'acceptation. Ce sont des tests à réaliser, pas des PASS ; ils ne remplacent ni la CI documentaire ni les 32 tests VM App Center prévus. [Registre des cas](../../../evidence/acceptance-q171-q220-v1.json).
 
 | Cas | Choix | Objectif de validation | Statut |
 |---|---|---|---|

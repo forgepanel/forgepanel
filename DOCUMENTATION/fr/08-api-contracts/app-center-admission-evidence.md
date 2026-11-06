@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08-APP-EVIDENCE revision=2 status=specified -->
+<!-- forgepanel-doc id=FP-08-APP-EVIDENCE revision=3 status=specified -->
 # App Center — liaison des preuves, révisions et fraîcheur avant installation
 
 [English](../../en/08-api-contracts/app-center-admission-evidence.md) · [Contrats API](README.md) · [Configuration Q180/Q220](../02-architecture/app-center-config-inheritance.md) · [Frontière sécurité](../10-security/app-center-admission-trust-boundary.md)
@@ -48,6 +48,10 @@ python3 tests/documentation/test_app_center_evidence_binding.py -v
 Le validateur pur refuse structures/types inattendus, horodatages synthétiques périmés, discordances hôte/tenant/acteur/site, révisions différentes, scopes de planification manquants, mélanges de moteurs et ports réservés. Il produit uniquement `MATCHES_SYNTHETIC_CONTEXT_ONLY` ou `BLOCKED_SYNTHETIC`, avec `actor_authenticated=false`, `host_identity_verified=false`, `policy_signature_verified=false`, `authorization_approved=false`, `resource_reservations_created=false`, `execution_allowed=false`, `apply_available=false`. Un résultat cohérent **n'est jamais une autorisation**. Aucun réseau, probe OS, écriture, SQL, Docker, Podman, TLS ou action privilégiée.
 
 Les cas de fausses provenances, preuves expirées, révisions rejouées, autres tenants, champs inconnus, commandes privilégiées et ports en conflit ne sont que des **tests unitaires hors ligne**. La [matrice d'intégration](../13-tests-quality/app-center-evidence-gates.md) reste **PLANNED / NON EXÉCUTÉS**.
+
+## Indices OS réels ≠ preuve d'identité ou de capacité vérifiée
+
+Une [sonde Linux autonome non privilégiée](../14-devops-releases/app-center-host-observation.md) est préparée en Go : elle peut lire CPU visible par processus, mémoire noyau, contrôleurs cgroups v2 et candidats d'exécutables Docker/Podman, sans lancer ces moteurs. **Ce n'est pas une preuve serveur de confiance** : identité, signature, fraîcheur, quotas cgroups, CPU/RAM utilisables par tenant et qualification des pilotes restent non vérifiés. Elle ne satisfait ni `EVID-FP-0001` ni `EVID-FP-0007` sans pair authentifié et contrôles Core indépendants. Ne jamais convertir `MemAvailable` directement en capacité allouable.
 
 ## Handoffs et décisions techniques ouvertes
 

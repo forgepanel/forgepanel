@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=26 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=27 status=documented -->
 # Tests, quality and definition of done
 
 [Français](../../fr/13-tests-quality/README.md) · [Index](../README.md)
@@ -6,6 +6,10 @@
 ## Q171–Q220 owner decisions: planned qualification, not PASS
 
 The [50 owner-approved directions](../00-project-control/decisions-q171-q220.md) now map to [50 PLANNED acceptance scenarios](mvp-gates-q171-q220.md), with exact bilingual option parity and C choices Q174/Q194/Q200. The accompanying JSON/documentation validation is **static only**; no real malware scanner, WAF, API, app installer, VM recovery or Hub integration test was executed. Q1–Q170 remain authoritative and Q221+ open.
+
+## Q180/Q220 — Configuration Center inheritance tests
+
+The [candidate inheritance resolver](../../../scripts/preview_app_center_inheritance.py) and [26 static tests](../../../tests/documentation/test_app_center_inheritance.py) demonstrate no-widening scope rules and non-bypassable security keys using synthetic fixture values. The [16 real integration/VM cases](app-center-configuration-gates.md) remain PLANNED; a passing CI never proves Symfony authorization, physical host caps or policy APPLY/recovery.
 
 ## App Center: mock trust-origin separation tests
 

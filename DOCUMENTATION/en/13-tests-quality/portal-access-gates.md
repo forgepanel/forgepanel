@@ -1,41 +1,43 @@
-<!-- forgepanel-doc id=FP-13-PORTAL-ACCESS revision=2 status=specified -->
-# Test matrix — FORGE / PANEL access
+<!-- forgepanel-doc id=FP-13-PORTAL-ACCESS revision=3 status=specified -->
+# FORGE / PANEL tests — autodetected IP and FQDN
 
-[Français](../../fr/13-tests-quality/portal-access-gates.md) · [QA](README.md) · [Portal contract](../07-interfaces-roles/portal-access-routing.md)
+[Français](../../fr/13-tests-quality/portal-access-gates.md) · [QA](README.md) · [Access](../07-interfaces-roles/portal-access-routing.md)
 
-**Status: PLANNED.** No case below has been run. The current repository contains neither an integrated Symfony runtime, a qualified HTTPS gateway nor a working customer Panel. IDs describe measurable test targets, not `PASS` results.
+**Status: PLANNED, not executed.** IP/domain discovery and Symfony routes are not operational. A static documentation check is neither real TLS testing nor hosting qualification.
 
-## Static-only contract verification
+## Existing static validation
 
-The [candidate JSON registry](../../../evidence/portal-access-registry-v1.json), [offline validator](../../../scripts/validate_portal_access_registry.py) and [negative mutation/traceability tests](../../../tests/documentation/test_portal_access_contract.py) run in documentation CI. **They do not execute any TEST-PORTAL-0001..0018 scenario**, which remains `PLANNED` pending a real application, TLS gateway and qualified VM.
+The [candidate registry](../../../evidence/portal-access-registry-v1.json), [offline validator](../../../scripts/validate_portal_access_registry.py) and [documentation contract tests](../../../tests/documentation/test_portal_access_contract.py) detect, among other inconsistencies, a reintroduced custom-domain field or an automatic HTTPS 443 virtual host. They execute **none** of the following HTTP/VM scenarios.
 
-## Required environment and evidence
+## Integration and VM test matrix
 
-Every record must name Core version/commit SHA, qualified OS/VM, listener configuration, certificates, DNS origins, authentication profile, test command/navigation, observed result, redacted logs and correlation ID. Start with real HTTP/SQL/HTTPS integration, then a full VM; a unit test does not prove Internet-facing safety.
+Each test must name commit SHA, OS/VM, assigned IPs, OS hostname, DNS results, TLS certs, routing/NAT, port, method, actor, actual outcome, redacted logs and PASS/FAIL/SKIP. SKIP cannot imply PASS.
 
-| ID | Scenario | Expected result |
+| ID | Scenario | Expected outcome |
 |---|---|---|
-| TEST-PORTAL-0001 | `https://<server-ip>:8447/forge` with valid IP TLS. | FORGE only for authorized administrator; otherwise login/denial without privileged content. |
-| TEST-PORTAL-0002 | `https://<server-ip>:8446/panel` with valid IP TLS. | PANEL for authorized customer roles only, no FORGE privileges. |
-| TEST-PORTAL-0003 | Distinct hosts on 443 with correct SNI and certificates. | FORGE host → `/forge`; PANEL host → `/panel`; no portal swap. |
-| TEST-PORTAL-0004 | Unknown host, forged Host, missing SNI or wrong certificate. | Safe rejection; no other portal or tenant data exposed. |
-| TEST-PORTAL-0005 | Authenticated customer calls `/forge` directly, via API or modified request. | Denied across layers; no privileged job or system effect. |
-| TEST-PORTAL-0006 | FORGE session reused via same IP but PANEL port (and vice versa). | No cross-authentication although a browser shares cookies across ports on the same host. |
-| TEST-PORTAL-0007 | Admin/User cookies and sessions, logout, rotation, CSRF, SameSite. | Distinct contexts; no session token reuse. |
-| TEST-PORTAL-0008 | `Forwarded`, `X-Forwarded-Host/Proto/Prefix` spoofed by untrusted source. | Values ignored/denied; URLs and redirects cannot be attacker-controlled. |
-| TEST-PORTAL-0009 | Encoded paths, `//`, `..\`, capitalization and route aliases. | Safe canonicalization and identical permissions on resolved routes; no bypass. |
-| TEST-PORTAL-0010 | Existing `/setup` and future `/forge` bootstrap after import. | FORGE bootstrap only, one-use token, no setup exposed through PANEL. |
-| TEST-PORTAL-0011 | FORGE and PANEL assets/menus/widgets on desktop/mobile. | Isolated bundles/styles; hidden menu does not enable unauthorized API. |
-| TEST-PORTAL-0012 | Admin changes DNS, Panel host, TLS, port or firewall. | Impact plan, authorization, tests, fallback access, audit and recovery on failure. |
-| TEST-PORTAL-0013 | Tenant-site host or ambiguous frontend route. | Site and portals cannot impersonate each other; no listener collision. |
-| TEST-PORTAL-0014 | Callback URLs, email links, absolute URLs, login redirects. | Approved configured origin and prefix; no arbitrary `Host` or cross-portal token. |
-| TEST-PORTAL-0015 | Standard Core installation without Hub/publisher plugin. | No private publisher routes or Hub secrets; hosting and administration work offline. |
-| TEST-PORTAL-0016 | Optional MFA enrolled/skipped; sensitive reauthentication. | Both flows valid under Q66/Q76; authorization and audit still mandatory. |
-| TEST-PORTAL-0017 | Missing DNS/certificate for IP path and fallback access. | Explicit report, never advise bypassing TLS; qualified secure local alternative. |
-| TEST-PORTAL-0018 | Root path redirect on dedicated domain, if approved. | Redirect only to the same portal's prefix; never to foreign/adjacent host. |
+| TEST-PORTAL-0001 | System-detected IP on HTTPS 8447 with `/forge` and valid IP certificate. | FORGE surface for authenticated administrators only. |
+| TEST-PORTAL-0002 | System-detected IP on HTTPS 8446 with `/panel` and valid IP certificate. | Authorized PANEL surface, no admin privilege. |
+| TEST-PORTAL-0003 | One existing verified FQDN for both direct ports. | `FQDN:8447/forge` and `FQDN:8446/panel`, no forced separate subdomains. |
+| TEST-PORTAL-0004 | Unknown FQDN, spoofed Host, invalid SNI/certificate. | Safe rejection without leaking another surface. |
+| TEST-PORTAL-0005 | PANEL customer invokes `/forge` via direct URL or API. | Denied in ingress and services/agent, no privileged job. |
+| TEST-PORTAL-0006 | FORGE session on the same IP reused through the other port. | No cross-login; distinct cookies/server contexts, never by port alone. |
+| TEST-PORTAL-0007 | Login, logout, CSRF, SameSite, session rotation for both portals. | Independently isolated and enforced. |
+| TEST-PORTAL-0008 | Untrusted `Forwarded` and `X-Forwarded-*` values. | Cannot control redirects, origins or permission. |
+| TEST-PORTAL-0009 | `//`, encoded paths, traversal, casing changes and aliases. | Safe canonicalization without authorization bypass. |
+| TEST-PORTAL-0010 | Historic bootstrap `/setup` migrated to FORGE. | Never exposed via PANEL, one-use grant and setup restrictions. |
+| TEST-PORTAL-0011 | FORGE/PANEL bundles and widgets. | No CSS/JS collision, RBAC independent of UI visibility. |
+| TEST-PORTAL-0012 | Administrator changes listener, TLS or firewall. | Plan, verification, fallback access, audit/recovery; no custom-domain form. |
+| TEST-PORTAL-0013 | Customer website hostname or listener collision. | No site/portal takeover. |
+| TEST-PORTAL-0014 | Callbacks, email links, absolute URLs and login redirects. | Generated only from autodetected verified origins, never raw Host. |
+| TEST-PORTAL-0015 | Standard Core without publisher Hub. | No Hub routes/secrets, Core remains autonomous. |
+| TEST-PORTAL-0016 | Optional MFA enrolled/skipped and sensitive action. | Optional MFA, mandatory authorization/audit and policy-specific reauthentication. |
+| TEST-PORTAL-0017 | IP URL without a valid IP-SAN certificate. | No claim that HTTPS link is trusted; diagnostics and secure fallback. |
+| TEST-PORTAL-0018 | Root `/` request or unconfigured 443 gateway. | No implicit redirect or auto-provisioned 443 vhost. |
+| TEST-PORTAL-0019 | No configured FQDN or valid DNS for host. | IP-only candidates, no domain link and no domain-entry field. |
+| TEST-PORTAL-0020 | Multiple interfaces: private/public IP, loopback and NAT. | Provenance inventory, no assumed public IP; verified/unverified states. |
+| TEST-PORTAL-0021 | IPv6-only or mixed IPv4/IPv6 configuration. | Use detected suitable IPs only; bracket IPv6 literals in URL. |
+| TEST-PORTAL-0022 | FQDN resolves externally to A/AAAA without verified interface/routing/NAT match. | `UNVERIFIED`, no claim of accessible domain. |
 
-## Acceptance
+## Exit gates
 
-Bilingual documentation, API contracts, identity model, proxy configuration and Design System must follow this same access convention. Changing a critical host/port/path requires regression tests. A mockup, static check or green PR does not qualify an active route; only real tests on the named revision can earn `VERIFIED`.
-
-Dependencies: [R2 identity](../03-core/bootstrap-identity-r2.md) · [R3 installer](../14-devops-releases/installer-lifecycle-r3.md) · [Security](../10-security/README.md).
+R1: genuine source; R2: running Symfony and PostgreSQL; R3: HTTPS gateway, TLS and network check; R4: tenant and customer journeys. These cases require real named environments, exact commits and security review. Python/documentation checks remain distinct.

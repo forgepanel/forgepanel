@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13-APP-CENTER revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-13-APP-CENTER revision=2 status=specified -->
 # App Center — native versus container qualification matrix
 
 [Français](../../fr/13-tests-quality/app-center-engine-gates.md) · [QA](README.md) · [App Center contract](../06-apps-recipes/app-center-engines.md)
@@ -30,7 +30,7 @@
 | TEST-APP-CTR-0002 | Qualified Docker and compatible manifest | Deploy only with verified policy/resources |
 | TEST-APP-CTR-0003 | Qualified Podman, Docker Compose not qualified | Reject; do not assume feature parity |
 | TEST-APP-CTR-0004 | Unknown/mutable image or required digest/signature absent | Reject according to artifact trust policy |
-| TEST-APP-CTR-0005 | Host-root/Docker socket mount, privileged or host network | Denied by default, including Compose imports |
+| TEST-APP-CTR-0005 | Host-root/Docker socket mount, privileged/host network, unsafe `provider`, `include` or unauthorized secret file references | Denied by default, including Compose imports |
 | TEST-APP-CTR-0006 | Host port collision with FORGE 8447, PANEL 8446 or website | Reject without changing listeners |
 | TEST-APP-CTR-0007 | CPU/RAM/PID/image/volume quotas exceeded | Reject before apply or tested compensation |
 | TEST-APP-CTR-0008 | Multi-service app with DB/volumes/network | Verify dependencies, secrets, startup order and health |

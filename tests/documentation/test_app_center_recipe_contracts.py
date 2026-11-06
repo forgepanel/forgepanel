@@ -202,7 +202,8 @@ class RecipeDiscriminatorTests(unittest.TestCase):
             self.assertIn("CANDIDATE_ONLY", content)
             self.assertIn("native_script", content)
             self.assertIn("container_stack", content)
-            self.assertIn("Q171+", content)
+            self.assertIn("decisions-q171-q220.md", content)
+            self.assertIn("Q221+", content)
 
 
 if __name__ == "__main__":

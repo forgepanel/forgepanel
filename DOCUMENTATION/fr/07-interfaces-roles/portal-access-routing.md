@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-07-PORTALS revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-07-PORTALS revision=2 status=specified -->
 # Contrat d'accès FORGE / PANEL — chemins, domaines et ports
 
 [English](../../en/07-interfaces-roles/portal-access-routing.md) · [Portails et rôles](README.md) · [Tests](../13-tests-quality/portal-access-gates.md)
@@ -15,6 +15,8 @@
 Les hôtes d'exemple sont remplaçables par l'administrateur dans les limites d'une politique d'hôtes autorisés. L'adresse `<server-ip>` est illustrative : la disponibilité d'IPv4/IPv6 et d'un certificat valide avec cette IP doit être vérifiée. Aucun accès HTTPS sûr ne doit nécessiter de désactiver la validation TLS. Les deux sites sur 443 doivent être routés par SNI/Host **et** par politique d'hôte explicite. Les ports directs demeurent séparés des listeners des sites clients.
 
 **Évolution proposée, à qualifier :** une requête `/` sur l'hôte FORGE configuré pourrait rediriger vers `/forge`, et `/` sur l'hôte PANEL vers `/panel`, uniquement après installation et validation du routage. Ne pas créer de redirection inter-portail ni forcer la propriété du chemin `/` sur des hôtes non dédiés.
+
+Le [contrat API/ingress détaillé](../08-api-contracts/portal-route-boundary.md) et le [registre candidat JSON](../../../evidence/portal-access-registry-v1.json) précisent les refus par combinaison hôte/port/préfixe. Les hôtes illustrent une alternative d'accès dédié ; la réponse exacte de leur chemin racine `/` reste à qualifier.
 
 ## Exigences de routage et de sécurité
 

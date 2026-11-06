@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=17 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=19 status=documented -->
 # Installation, Git promotion and releases
 
 [Français](../../fr/14-devops-releases/README.md) · [Index](../README.md)
@@ -8,6 +8,10 @@
 `features/*` → `develop` → `stable` → `main` → `production` is the owner's required promotion sequence. Temporary feature branches include docs and fixes. Reuse a relevant branch, open a scoped PR, respect checks/reviews and preserve history. Delete obsolete temporary branches only after integration and according to repository rules. No force push or bypass is part of this workflow.
 
 Because the repository was empty, commit `26b7c773a0831c20e7f14bb86ef8c2697a19d523` initialized `main` with a README. The other permanent branches and `features/documentation-foundation` start from that commit. This narrowly scoped bootstrap exception is documented; it is not a precedent for committing implementation directly to `main`. Protection/ruleset reads were denied, so their requirements are not assumed absent.
+
+## Installer portal access surfaces
+
+Confirmed target: **FORGE `/forge`: 8447** and **PANEL `/panel`: 8446** over HTTPS. Installer reads OS network interfaces/routes for the machine IPs, then finds an optional existing FQDN and verifies A/AAAA, network reachability and certificates. **No customizable domain input**, automatic subdomains/DNS or 443 virtual hosts. An IP URL requires a certificate covering that IP before it can be claimed secure. Preserve admin fallback, prevent listener conflicts and avoid adopting third-party services silently. Historical `/setup` has not been migrated or certified. [Contract](../07-interfaces-roles/portal-access-routing.md) · [Tests](../13-tests-quality/portal-access-gates.md).
 
 ## Installation gates
 

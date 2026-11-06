@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-13 revision=21 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=23 status=documented -->
 # Tests, quality and definition of done
 
 [Français](../../fr/13-tests-quality/README.md) · [Index](../README.md)
+
+## FORGE and PANEL admin/customer access
+
+The `/forge` (HTTPS 8447) and `/panel` (HTTPS 8446) routes, **OS IP/FQDN detection without domain customization**, session isolation, authorization and TLS fallback have [22 planned but unexecuted HTTP/VM scenarios](portal-access-gates.md). No routing, HTTP-security or VM PASS is implied. [Source contract](../07-interfaces-roles/portal-access-routing.md).
 
 ## Evidence must name its scope
 

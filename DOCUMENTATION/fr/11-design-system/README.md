@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-11 revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-11 revision=5 status=documented -->
 # Design system et internationalisation
 
 [English](../../en/11-design-system/README.md) · [Index](../README.md)
@@ -8,6 +8,10 @@
 Produit : **ForgePanel — The Modern Linux Server Control Panel**. Signature : **Modern • Secure • Modular • Scalable**. Aucun logo validé, palette, licence de police ou bibliothèque visuelle complète n'est établi. Les anciennes maquettes illustratives ne sont pas des interfaces livrées.
 
 La référence frontend est Twig avec Symfony UX/Stimulus et Turbo/Live Components de manière sélective. SRC-03 contient les templates Twig du setup et `public/assets/setup.css`, pas un design system Tailwind/UX déployé. Préserver cette distinction pour les dépendances et la compilation des assets.
+
+## Isolation des interfaces FORGE et PANEL
+
+La cible conserve deux surfaces avec préfixes, ports, sessions et assets séparés : **FORGE `/forge` : 8447** et **PANEL `/panel` : 8446**, avec IP détectée et éventuel FQDN vérifié (aucune saisie de domaine personnalisé ni vhost 443 automatique). Chaque espace dispose de son header, de sa sidebar et de ses variables de thème propres ; des composants réutilisables restent soumis à leurs contrats et aux permissions. Les bundles CSS/JS sont isolés pour éviter collisions et chargements non autorisés. Les maquettes n'apportent ni route active, ni isolation RBAC. [Contrat d'accès](../07-interfaces-roles/portal-access-routing.md) · [Tests planifiés](../13-tests-quality/portal-access-gates.md).
 
 ## États d'interaction requis
 

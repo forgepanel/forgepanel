@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "draft_revision": 2,
+  "status": "SPECIFIED_NOT_IMPLEMENTED",
+  "scope": "ForgePanel Core portal access candidate; no deployed listener, certificate or host detector",
+  "owner_reference": "2026-11-06 correction: fixed /forge:8447 and /panel:8446; discover machine IP and existing domain automatically, no customizable domain input",
+  "surfaces": {
+    "FORGE": {
+      "route_prefix": "/forge",
+      "direct_https_port": 8447,
+      "address_source": "SYSTEM_DETECTED",
+      "domain_policy": "DISCOVER_EXISTING_FQDN_IF_VERIFIED",
+      "purpose": "server-administration"
+    },
+    "PANEL": {
+      "route_prefix": "/panel",
+      "direct_https_port": 8446,
+      "address_source": "SYSTEM_DETECTED",
+      "domain_policy": "DISCOVER_EXISTING_FQDN_IF_VERIFIED",
+      "purpose": "customer-hosting"
+    }
+  },
+  "discovery": {
+    "address_enumeration": "OS_INTERFACES_AND_ROUTING",
+    "include_ipv4": true,
+    "include_ipv6": true,
+    "exclude_loopback": true,
+    "verify_address_is_host_assigned_or_explicitly_reachable": true,
+    "do_not_assume_public_ip_from_private_interface": true,
+    "fqdn_candidate_source": "OS_HOSTNAME_AND_RESOLVER",
+    "fqdn_optional": true,
+    "fqdn_requires_forward_dns_validation": true,
+    "require_dns_ip_consistency": true,
+    "ipv6_url_uses_square_brackets": true,
+    "no_manually_entered_custom_domain": true,
+    "no_automatic_subdomain_creation": true,
+    "no_automatic_port_443_virtual_host": true,
+    "url_advertisement_requires_valid_tls": true,
+    "discovery_result_states": [
+      "VERIFIED",
+      "UNVERIFIED",
+      "UNAVAILABLE"
+    ]
+  },
+  "required_security": {
+    "tls_validation": true,
+    "exact_trusted_host_allowlist": true,
+    "distinct_sessions_and_cookie_names": true,
+    "independent_server_side_authorization": true,
+    "do_not_use_ports_as_cookie_boundary": true,
+    "trust_forwarded_headers_from_allowlisted_proxies_only": true,
+    "preserve_admin_recovery_during_listener_changes": true,
+    "no_generic_root_shell_endpoint": true,
+    "core_operates_without_hub": true
+  },
+  "deployment_decisions_not_set": [
+    "Rules for detecting a NAT/public edge IP not present on the host",
+    "Certificate provider or valid IP-SAN certificate for HTTPS access by IP",
+    "Permanent cookie names and exact trusted proxy CIDR values",
+    "Optional support for a pre-existing verified TLS gateway on port 443",
+    "Listener bind addresses and firewall exposure policy",
+    "Any production exposure, OS qualification or release date"
+  ],
+  "requirements": [
+    "PORTAL-FP-0001",
+    "PORTAL-FP-0002",
+    "PORTAL-FP-0003",
+    "PORTAL-FP-0004",
+    "PORTAL-FP-0005",
+    "PORTAL-FP-0006",
+    "PORTAL-FP-0007",
+    "PORTAL-FP-0008",
+    "PORTAL-FP-0009",
+    "PORTAL-FP-0010",
+    "PORTAL-FP-0011",
+    "PORTAL-FP-0012"
+  ]
+}

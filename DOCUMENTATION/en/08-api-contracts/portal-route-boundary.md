@@ -1,49 +1,46 @@
-<!-- forgepanel-doc id=FP-08-PORTAL-ROUTING revision=1 status=specified -->
-# Candidate contract — FORGE / PANEL surface resolution
+<!-- forgepanel-doc id=FP-08-PORTAL-ROUTING revision=2 status=specified -->
+# Candidate contract — access discovery and FORGE / PANEL surface resolution
 
 [Français](../../fr/08-api-contracts/portal-route-boundary.md) · [API index](README.md) · [Access convention](../07-interfaces-roles/portal-access-routing.md)
 
-**Status: SPECIFIED / NOT IMPLEMENTED.** This record extends `PORTAL-FP-0001..0012`; it creates no public API, Symfony route, HTTPS listener or operating security certification. Foundation v0.7 source import and real Symfony/PostgreSQL R2 integration remain prerequisites.
+**SPECIFIED, not implemented.** Owner correction: **no customizable domain input**, automatic discovery of the host's IPs and an existing, verified domain if present. The `/forge`, `/panel` route prefixes and `8447`, `8446` ports remain fixed. This document does not implement any live URL or network action.
 
-## Surface resolution before authentication
+## Discover IP and FQDN independently of client requests
 
-A trusted ingress resolves a portal from the **combination** of local listener, allowed HTTPS hostname, applicable certificate and canonical path prefix. Surface is a security context, not a role grant or browser-supplied bearer token. `forge.ip-server.com` and `panel.up-server.com` are configurable examples, not hardcoded production defaults.
+1. **Read-only host inventory**: inspect network interfaces, routes, assigned IPv4/IPv6 addresses and bind targets; keep interface, address family, scope and verification status. Exclude loopback/unusable addresses. A private IP may be valid on a LAN but does not imply public reachability.
+2. **Existing FQDN**: ask the OS hostname/resolver for a candidate and verify published A/AAAA and actual authorized reachable routing. Reverse DNS alone, `/etc/hosts` alone or request `Host` are not proof. If NAT is involved, verify the reachable path using an expressly approved method; otherwise mark `UNVERIFIED`.
+3. **TLS**: the certificate must cover the chosen access address (IP-SAN for an IP URL, DNS name for an FQDN URL). Never bypass certificate validation. Listener, certificate and network probe evidence are needed before reporting `VERIFIED`.
+4. **Display**: only present working links for verified address/port/prefix combinations. With no FQDN, show **no domain link** and do not request manual domain entry. Certificate/NAT details and a secure local fallback remain subject to qualification.
+5. **443**: do not generate a virtual host, DNS record or redirect automatically. Support for an already deployed 443 HTTPS gateway is a separate qualified integration, not the standard access mode.
 
-| Origin and path (examples) | Target resolution | Condition |
-|---|---|---|
-| `https://<IP>:8447/forge` | FORGE | Valid IP TLS, admin listener, authorized admin actor |
-| `https://<IP>:8446/panel` | PANEL | Valid IP TLS, customer listener, authorized actor |
-| `https://<IP>:8447/panel` | DENY | Never fall back to PANEL on admin listener |
-| `https://<IP>:8446/forge` | DENY | Never fall back to FORGE on customer listener |
-| `https://<configured-forge-host>:443/forge` | FORGE | Exact host, SNI/certificate, trusted proxy, admin authorization |
-| `https://<configured-panel-host>:443/panel` | PANEL | Exact host, SNI/certificate, trusted proxy, customer authorization |
-| `https://<configured-forge-host>:443/panel` | DENY | No cross-portal route |
-| `https://<configured-panel-host>:443/forge` | DENY | No cross-portal route |
-| `https://<unknown-host>:443/forge` | DENY | Exact allowed-host policy; no permissive default virtual host |
-| `http://<host>:80/forge` | DENY/safe redirect only after policy | Never send admin session or secret over unencrypted HTTP |
-| Historic SRC-03 `/setup` | NOT MIGRATED | Separate bootstrap review before exposure |
+## Surface resolution matrix (illustrative origins)
 
-**Note:** an absent valid IP-address certificate does not justify bypassing TLS verification. Qualify an alternative secure local recovery path before opening access. Optional `/` redirect to `/forge` or `/panel` remains **proposed, not yet approved**.
+| Request | Surface decision |
+|---|---|
+| `https://<detected-IP>:8447/forge` | FORGE if listener, certificate and authorization are valid |
+| `https://<detected-IP>:8446/panel` | PANEL if listener, certificate and authorization are valid |
+| `https://<detected-IP>:8447/panel` | DENY |
+| `https://<detected-IP>:8446/forge` | DENY |
+| `https://<verified-FQDN>:8447/forge` | FORGE if DNS, routing, TLS and authorization are verified |
+| `https://<verified-FQDN>:8446/panel` | PANEL if DNS, routing, TLS and authorization are verified |
+| `https://<verified-FQDN>:8447/panel` and `...:8446/forge` | DENY |
+| FQDN missing, unresolvable or inconsistent with reachable route | No domain link advertised |
+| IP found only on a private LAN | LAN candidate, never claimed publicly reachable |
+| Forged Host/proxy headers or unknown domain | DENY; no authorization/redirect from untrusted values |
+| `https://<host>:443/forge` or `/panel` | Not automatically provided; separate qualified integration |
+| Historical `/setup` | NOT MIGRATED; review required |
 
-## Symfony boundary and responsibility
+IPv6 literals must be enclosed in `[brackets]` in URLs. The same IP or FQDN may serve both interfaces: ports and prefixes combined with authorization select the surface. Browsers share cookies across ports on one host; **never** assume that changing ports isolates sessions.
 
-- **Routes**: separate logical `FORGE` and `PANEL` route spaces; never trust client-supplied surface identity. Encoded paths, duplicate separators, aliases or normalization must not bypass guards.
-- **Sessions**: independent login contexts and cookie names, independent server session storage, `Secure`, `HttpOnly`, `SameSite`, CSRF and rotation. A cookie scoped to a shared IP can reach **both ports 8446 and 8447**; ports do not separate cookies. The prototype's temporary `__Host-FORGE_ADMIN` cookie is not a final permanent-session decision.
-- **Authentication**: local identity plus optional SSO under Q58; administrator MFA remains **optional**. Q66/Q76 sensitive operations may require reauthentication and approval. A PANEL role never becomes FORGE authority by changing a URL.
-- **Authorization**: Core enforces role + organization + resource ownership + delegation + state + policy, and API/services/Go agent recheck scope before Linux effects. No generic `shell.exec` or user-provided command execution.
-- **Proxy headers**: enumerate trusted proxy sources exactly; ignore/reject untrusted `Forwarded` and `X-Forwarded-*`. Build callback and absolute URLs from configured origins, not raw `Host`.
-- **UI**: independent FORGE/PANEL entry bundles, CSS roots and themes; shared components only under verified contracts. JavaScript and widgets do not grant privilege. Private Hub stays detached, with no public publisher routes in Core.
+## Security boundaries and failures
 
-## Implementation prerequisites
+- **Ingress**: listener + canonical path + trusted Host (when applicable) + valid TLS. A discovered FQDN candidate does not grant route permissions; ignore browser-supplied surface identity.
+- **Symfony**: two route spaces, distinct host-only `Secure`, `HttpOnly`, `SameSite` cookies, independent server sessions/CSRF/rotation, resource-level RBAC in APIs and services. MFA optional; sensitive reauthentication/approvals follow Q66/Q76.
+- **Go**: no Linux privilege from a path, port or UI role alone. Revalidate identity, resource scope and allowlisted typed operation; no arbitrary `shell.exec`.
+- **Proxies**: only explicitly trusted proxies may supply authoritative `Forwarded`/`X-Forwarded-*`. Generate callback URLs from approved verified origins, never raw Host.
+- **UI/Hub**: independent FORGE/PANEL bundles and themes; private Hub detached, no publisher routes, secrets or privilege in public Core.
+- **Installer**: no custom hostname entry form. Preserve admin fallback and never overwrite third-party network config during discovery.
 
-1. **R1**: obtain and import the genuine Foundation v0.7 archive with hashes/provenance, without fabricating missing source.
-2. **R2**: boot real Symfony/PostgreSQL with routes, firewalls, sessions, permanent identity and optional-MFA bootstrap.
-3. **R3**: qualify installer and HTTPS gateway; plan and verify port, IP, hosts, DNS/TLS and firewall as `validate → apply → health → recover`, preserving fallback access.
-4. **R4**: test isolation with hosted sites/listeners before exposing customer portal.
-5. **R5/R6**: neutral extension ABI and only then private publisher Hub; FORGE/PANEL must not depend on it.
+## Gates and evidence
 
-## Static registry and tests
-
-The [candidate JSON registry](../../../evidence/portal-access-registry-v1.json) is a **non-executable** description of paths/ports/invariants, checked by an [offline validator](../../../scripts/validate_portal_access_registry.py) and [contract unit tests](../../../tests/documentation/test_portal_access_contract.py). They detect contradictory documentation, **not** working Symfony routing or live server vulnerabilities. The [18 HTTP/VM tests](../13-tests-quality/portal-access-gates.md) remain `PLANNED`.
-
-Unresolved choices: actual hostnames, IP certificates, trusted proxy policy, final cookie names and `/` redirects — **no unapproved value is invented**.
+The [static candidate registry](../../../evidence/portal-access-registry-v1.json) and [contract tests](../../../tests/documentation/test_portal_access_contract.py) check consistency only, without probing real interfaces or certifying URLs. The [22 planned HTTP/VM tests](../13-tests-quality/portal-access-gates.md) must run after genuine source import R1, Symfony/PostgreSQL R2, and TLS gateway/installer R3. **This document certifies no IP, domain, certificate, listener or running route.**

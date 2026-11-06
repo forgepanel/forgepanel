@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=18 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=19 status=documented -->
 # Installation, promotion Git et releases
 
 [English](../../en/14-devops-releases/README.md) · [Index](../README.md)
@@ -11,7 +11,7 @@ Le dépôt étant vide, le commit `26b7c773a0831c20e7f14bb86ef8c2697a19d523` ini
 
 ## Surfaces d'accès de l'installation
 
-Convention cible confirmée : **FORGE `https://<server-ip>:8447/forge`** (admin) et **PANEL `https://<server-ip>:8446/panel`** (client) ; hôtes HTTPS 443 distincts et configurables après vérification DNS/TLS. L'installateur doit éviter toute collision de port/hôte, vérifier l'origine TLS et conserver un accès admin de secours lors de la reconfiguration du pare-feu. Ce contrat ne modifie pas les routes `/setup` historiques ni ne certifie les listeners. [Spécification FR/EN](../07-interfaces-roles/portal-access-routing.md) · [Tests](../13-tests-quality/portal-access-gates.md).
+Convention cible confirmée : **FORGE `/forge`: 8447** et **PANEL `/panel`: 8446** en HTTPS. Le wizard inspecte les interfaces/routages pour détecter les IP de la machine, puis recherche son éventuel FQDN existant et vérifie A/AAAA, accès réseau et certificats. **Aucun domaine personnalisable**, aucune création automatique de sous-domaine/DNS ou de vhost 443. Une URL IP nécessite un certificat couvrant cette IP avant de pouvoir être présentée comme sûre. Préserver le secours administrateur, éviter les collisions de listeners et la prise de contrôle de services tiers. Le prototype `/setup` n'est ni migré ni certifié ici. [Contrat](../07-interfaces-roles/portal-access-routing.md) · [Tests](../13-tests-quality/portal-access-gates.md).
 
 ## Critères d'installation
 

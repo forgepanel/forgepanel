@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-13 revision=23 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=24 status=documented -->
 # Tests, quality and definition of done
 
 [Français](../../fr/13-tests-quality/README.md) · [Index](../README.md)
+
+## App Center: synthetic installation preview checks
+
+The [read-only preview prototype](../08-api-contracts/app-center-preview-contract.md) and [offline negative tests](../../../tests/documentation/test_app_center_preview.py) check runtime/driver separation, fictional CPU/RAM/PID budgets, denied site claims and hard-reserved ports 8447/8446. No real listener, OS capability, authorization or installation has been validated. The 32 HTTP/VM tests remain PLANNED.
 
 ## App Center: candidate manifest checks versus runtime tests
 

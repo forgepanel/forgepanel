@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-13 revision=23 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=24 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
+
+## App Center : contrôles de prévisualisation synthétique
+
+Le [prototype d'aperçu non exécutable](../08-api-contracts/app-center-preview-contract.md) et les [tests négatifs hors ligne](../../../tests/documentation/test_app_center_preview.py) contrôlent la séparation des moteurs, les budgets fictifs CPU/RAM/PIDs, les sites non autorisés et les ports réservés 8447/8446. Aucun listener, hôte, droit réel ni installation n'est testé ; les 32 tests HTTP/VM restent PLANNED.
 
 ## App Center : manifestes candidats versus tests réels
 

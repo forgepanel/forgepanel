@@ -60,6 +60,7 @@ type Report struct {
 	MemoryObservation          string   `json:"memory_observation"`
 	CgroupV2Controllers        []string `json:"cgroup_v2_controllers"`
 	CgroupObservation          string   `json:"cgroup_observation"`
+	VisibleCgroupRoot          VisibleCgroupRootHints `json:"visible_cgroup_root"`
 	DockerBinaryCandidate      string   `json:"docker_binary_candidate"`
 	PodmanBinaryCandidate      string   `json:"podman_binary_candidate"`
 	ObservationStatus          string   `json:"observation_status"`
@@ -172,6 +173,7 @@ func Inspect(source Source, goos, goarch string, logicalCPUs int) Report {
 		DriverQualification: "NOT_EXECUTED", QualifiedContainerDrivers: []string{},
 	}
 	if goos != "linux" {
+		r.VisibleCgroupRoot = newVisibleHints()
 		r.ObservationStatus = "NOT_APPLICABLE"
 		r.Warnings = append(r.Warnings, "linux_required")
 		return r
@@ -202,6 +204,7 @@ func Inspect(source Source, goos, goarch string, logicalCPUs int) Report {
 	} else {
 		r.Warnings = append(r.Warnings, "cgroup_v2_unavailable")
 	}
+	r.VisibleCgroupRoot = observeVisibleCgroupRootHints(source, &r.Warnings)
 	var failed bool
 	r.DockerBinaryCandidate, failed = inspectExecutable(source, dockerPaths[:])
 	if failed {

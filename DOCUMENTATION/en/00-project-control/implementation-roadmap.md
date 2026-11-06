@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-EXECUTION revision=15 status=specified -->
+<!-- forgepanel-doc id=FP-00-EXECUTION revision=16 status=specified -->
 # Technical implementation roadmap — Q120 D and Q119 B MVP
 
 [Français](../../fr/00-project-control/implementation-roadmap.md) · [Project status](status.md) · [Q111–Q120 decisions](decisions-q111-q120.md)
@@ -101,3 +101,7 @@ After the host probe, [QCOW2 admission](../14-devops-releases/kvm-image-admissio
 ## R2/R3 documentary sequencing: durable state and peer identity
 
 Before any Linux effect, Database must ratify [job/idempotency/fencing](../09-database/durable-jobs-r3.md) and Security/API must ratify [peer trust protocol](../08-api-contracts/local-peer-trust-r3.md). Imported R1 source and actual R2 Symfony/PG remain hard prerequisites for operational R3. Implement jobs/bridge **without generic privileged shell commands**, then separately test scope authorization, lost ACK, stale workers, failover and SQL/Linux outcomes in authorized VMs. [24 cases planned](../13-tests-quality/r3-jobs-peer-gates.md), none executed.
+
+## Next R3 gate — ratification before migrations or Unix accounts
+
+[Candidate physical DB](../09-database/physical-jobs-model-r3.md), [Linux identity](../14-devops-releases/linux-service-identities-r3.md) and [typed execution](../08-api-contracts/typed-execution-recovery-r3.md) contracts **authorize no deployment**. Recommended sequence: recover SRC-03 → prove R2 Symfony/PG → Database review tables/transactions/RLS → Security/DevOps review UID/socket/systemd/LSM → API/IPC review handlers/fencing/recovery → separate migration/handler PRs → actual SQL/VM tests with exact SHA → evidence-based first OS/stack under Q132 vetoes. R1→R2→R3→R4→R5→R6 order remains intact; 36 cases PLANNED.

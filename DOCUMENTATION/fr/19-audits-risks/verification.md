@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19-VERIFICATION revision=8 status=documented -->
+<!-- forgepanel-doc id=FP-19-VERIFICATION revision=9 status=documented -->
 # Rapport de vérification
 
 [English](../../en/19-audits-risks/verification.md) · [Index d'audit](README.md)
@@ -57,3 +57,7 @@ La [matrice R3](../13-tests-quality/r3-ipc-installer-gates.md) et les [schémas 
 ## Audit de cohérence documentaire R3 : jobs et pair local
 
 Les nouveaux tests Python de cette branche contrôlent uniquement : 24 IDs `R3-JOB-TEST-001..012` et `R3-PEER-TEST-001..012` au statut PLANNED, 12 exigences DB/12 exigences PEER en FR/EN, machine d'états sans succès non vérifié, idempotence/concurrence/fencing et JSON candidat de pair avec privilèges `false`. **Aucun test PostgreSQL réel, credentials du noyau, connexion Unix, daemon Go ni effet Linux** n'a été exécuté. RISK-028/029 restent OPEN. Un SHA de CI verte prouve seulement la cohérence statique.
+
+## Nouvelle campagne documentaire R3 — contrat physique / Linux / effets
+
+Les tests Python `tests/documentation/test_r3_physical_boundaries.py` examinent les identifiants des 12 exigences DB, 12 Linux, 12 d'exécution, les **36 cas QA PLANNED**, 8 tables proposées, 8 identités proposées et 7 opérations du registre. Ils vérifient que les deux opérations privilégiées sont bloquées, que les comptes/tableaux ne sont pas activés et que le fencing/rejet des replays est inscrit. La CI GitHub doit être liée à un SHA exact. **Aucun `CREATE TABLE`, sudo, socket, port, QEMU, site PHP/HTTPS ni restore réel** n'est testé dans ce lot.

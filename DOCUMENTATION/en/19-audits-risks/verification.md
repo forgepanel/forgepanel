@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19-VERIFICATION revision=8 status=documented -->
+<!-- forgepanel-doc id=FP-19-VERIFICATION revision=9 status=documented -->
 # Verification record
 
 [Français](../../fr/19-audits-risks/verification.md) · [Audit index](README.md)
@@ -57,3 +57,7 @@ This pass validates no QEMU runner, isolated VM, enforced quotas or imported Fou
 ## R3 documentation consistency: durable jobs and local peer
 
 New Python tests in this branch check only: 24 PLANNED IDs `R3-JOB-TEST-001..012` and `R3-PEER-TEST-001..012`, 12 DB and 12 PEER requirements mirrored FR/EN, transitions without unverified success, idempotency/concurrency/fencing invariants and a candidate peer JSON record with privileges set `false`. **No actual PostgreSQL, kernel credentials, Unix connection, Go daemon or Linux effect** was executed. RISK-028/029 stay OPEN. Green CI proves static consistency only.
+
+## New static R3 campaign — physical DB / Linux / effects
+
+Python `tests/documentation/test_r3_physical_boundaries.py` checks IDs for 12 DB, 12 Linux and 12 execution requirements, **36 PLANNED cases**, eight candidate tables, eight proposed service identities and seven typed operations. It asserts both privileged operations stay blocked, no accounts/tables are activated, and fencing/replay refusal are specified. GitHub CI must be cited with an exact SHA. **No `CREATE TABLE`, sudo, socket, port, QEMU, PHP/HTTPS site or actual restore** is tested by this lot.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-EXECUTION revision=15 status=specified -->
+<!-- forgepanel-doc id=FP-00-EXECUTION revision=16 status=specified -->
 # Roadmap technique de réalisation — décision Q120 D et MVP Q119 B
 
 [English](../../en/00-project-control/implementation-roadmap.md) · [État officiel](status.md) · [Décisions Q111–Q120](decisions-q111-q120.md)
@@ -101,3 +101,7 @@ La [copie privée vérifiée](../14-devops-releases/kvm-image-staging.md) compl�
 ## Ordre de validation documentaire R2/R3 : état durable et identité du pair
 
 Avant toute opération système, ratifier le [modèle job/idempotence/fencing](../09-database/durable-jobs-r3.md) via Database et le [protocole de confiance du pair](../08-api-contracts/local-peer-trust-r3.md) via Security/API. R1 source importée et R2 Symfony/PG démontrés restent des dépendances strictes de R3. Développer ensuite jobs/bridge **sans commande shell privilégiée générique**, vérifier séparément authz, perte d'ACK, vieux worker, failover et impact SQL/Linux sur VM ; promouvoir seulement après QA/révision. [24 cas prévus](../13-tests-quality/r3-jobs-peer-gates.md), aucun exécuté.
+
+## Prochain gate R3 — ratification avant migrations et comptes Linux
+
+Les trois [contrats physiques DB](../09-database/physical-jobs-model-r3.md), [comptes Linux](../14-devops-releases/linux-service-identities-r3.md) et [effets par action](../08-api-contracts/typed-execution-recovery-r3.md) **n'autorisent pas** leur application. Ordre recommandé : récupérer SRC-03 → prouver Symfony/PG R2 → revue Database des tables/transactions/RLS → revue Security/DevOps des UID/socket/systemd/LSM → revue API/IPC des handlers/fencing/recovery → écrire migrations/handlers sur PR distinctes → campagnes SQL/VM réelles avec preuves par commit → envisager le premier OS/stack après veto Q132. R1→R2→R3→R4→R5→R6 demeure inchangé ; 36 tests de référence PLANNED.

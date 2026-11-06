@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19 revision=10 status=documented -->
+<!-- forgepanel-doc id=FP-19 revision=11 status=documented -->
 # Audit, contradictions et risques
 
 [English](../../en/19-audits-risks/README.md) · [Index](../README.md)
@@ -86,3 +86,11 @@ Ces risques restent **OPEN**. Les [24 tests R3](../13-tests-quality/r3-ipc-insta
 - **RISK-029 — Confusion identité socket ↔ autorisation utilisateur :** une permission de fichier ou UID de pair valide ne prouve pas le mandat de l'acteur ni sa portée tenant. Le [contrat de confiance](../08-api-contracts/local-peer-trust-r3.md) impose double vérification et protection anti-rejeu avant toute opération. **OPEN**, aucun transport ni processus authentifié mis en service.
 
 Une validation statique JSON/Markdown, même verte, ne permet ni clôture de ces risques ni promotion d'une action privilégiée. [Matrice de refus](../13-tests-quality/r3-jobs-peer-gates.md).
+
+## R3 — Lacunes de modèle physique, privilèges et récupération
+
+- **RISK-030 — Intention/idempotence mal isolées :** une unicité SQL sur une clé sans scope tenant/ressource, une FK ambiguë ou un `scope_ref` NULL peut mélanger des jobs. [Modèle DB candidat](../09-database/physical-jobs-model-r3.md) exige périmètre explicite, contraintes vérifiées et fencing effectif. **OPEN**, pas de SQL validé.
+- **RISK-031 — Pont IPC partagé avec les tenants :** un UID/groupe trop large ou des permissions socket incorrectes donneraient accès aux opérations de contrôle. [Identités Linux candidates](../14-devops-releases/linux-service-identities-r3.md) séparent bridge/panel/agent/sites et prévoient des essais SELinux/AppArmor par OS. **OPEN**, aucun compte créé.
+- **RISK-032 — Succès fictif et compensation destructrice :** ACK ou code retour zéro ne prouvent pas l'effet réel ; rollback du binaire ne restaure pas SQL irréversible. [Contrats d'exécution candidats](../08-api-contracts/typed-execution-recovery-r3.md) exigent observation, `VERIFYING`, compensation sûre et refus de replay. **OPEN**, aucune opération réelle.
+
+La CI ne vérifie que la cohérence FR/EN et JSON. Les [36 tests positifs/négatifs](../13-tests-quality/r3-physical-execution-gates.md) restent PLANNED et ne ferment aucun risque. Q132 conserve ses veto critiques.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DOC-READINESS revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-00-DOC-READINESS revision=4 status=documented -->
 # Documentation gap register and completion gates — ForgePanel
 
 [Français](../../fr/00-project-control/documentation-readiness.md) · [Project control](README.md) · [Traceability](requirements-traceability.md) · [Coverage](coverage.md)
@@ -51,3 +51,7 @@
 ## Candidate R3 detail for DOC-GAP-004 and DOC-GAP-006
 
 The [12 durable job requirements](../09-database/durable-jobs-r3.md), [12 peer trust requirements](../08-api-contracts/local-peer-trust-r3.md), [24 planned QA cases](../13-tests-quality/r3-jobs-peer-gates.md) and [candidate schemas](../../evidence/candidate-job-record-v1.schema.json) make the gaps more concrete. **Both remain OPEN** because actual PostgreSQL tables/migrations, authenticated Go IPC/daemon and concurrency/OS tests are not reviewed/verified. Timings, retries, protocol, service users and quotas remain open technical choices. Q1–Q170 preserved, Q171+ unanswered.
+
+## Further candidates for DOC-GAP-004/005/006 — no gap closure
+
+[Physical DB proposal](../09-database/physical-jobs-model-r3.md), [service identities](../14-devops-releases/linux-service-identities-r3.md) and [typed execution](../08-api-contracts/typed-execution-recovery-r3.md) add implementation-specific choices and [36 candidate tests](../13-tests-quality/r3-physical-execution-gates.md). Machine-readable JSON is **not approved**; **DOC-GAP-004, DOC-GAP-005 and DOC-GAP-006 remain OPEN** pending actual PostgreSQL, Linux and VM evidence. The original total of 22 readiness gaps is unchanged.

@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "contract_status": "CANDIDATE_ONLY",
+  "execution_allowed": false,
+  "app_id": "example-cms",
+  "variant_id": "native-demo",
+  "app_version": "0.0.0-fixture",
+  "publisher_id": "forgepanel.fixtures",
+  "recipe_kind": "native_script",
+  "artifact": {
+    "source_url": "https://example.invalid/fixture/example-cms.zip",
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "license_id": "LicenseRef-TestOnly",
+    "provenance_state": "DECLARED_UNVERIFIED"
+  },
+  "native": {
+    "site_scope": "OWNED_SITE",
+    "runtime": "PHP_FPM",
+    "database_engine": "MARIADB",
+    "required_extensions": [
+      "pdo_mysql"
+    ],
+    "requires_container_runtime": false
+  }
+}

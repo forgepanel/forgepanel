@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-10 revision=21 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=22 status=documented -->
 # Security model and disclosure
 
 [Français](../../fr/10-security/README.md) · [Index](../README.md)
+
+## App Center preflight provenance — draft review
+
+The [candidate security boundary](app-center-admission-trust-boundary.md) separates **OS host capabilities**, **Symfony Core authorization** and **untrusted client install intent** before any future native or Docker/Podman action. Site ownership is **not** provided by an OS inventory probe; the offline preview rejects mismatched host/tenant identifiers but authenticates neither. It never enables execution; actual identity, capability-freshness, artifacts and TOCTOU revalidation await audited Core integration.
 
 ## Assets, actors and boundaries
 

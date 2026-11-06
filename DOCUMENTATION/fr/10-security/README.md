@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-10 revision=21 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=22 status=documented -->
 # Modèle de sécurité et signalement
 
 [English](../../en/10-security/README.md) · [Index](../README.md)
+
+## Provenance du préflight App Center — revue candidate
+
+La [frontière de sécurité candidate](app-center-admission-trust-boundary.md) distingue **capacités du serveur Linux**, **autorisation Core Symfony** et **intention non fiable du client** avant toute future action native ou Docker/Podman. Une sonde Linux ne déclare plus les sites possédés ; l'aperçu hors ligne rejette les références hôte/tenant discordantes, sans authentifier qui que ce soit. L'exécution reste bloquée ; identité, fraîcheur des ressources, artefacts et protection TOCTOU nécessitent une intégration Core auditée.
 
 ## Actifs, acteurs et frontières
 

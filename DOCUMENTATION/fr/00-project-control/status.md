@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=26 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=27 status=documented -->
 # État et roadmap ordonnée par dépendances
 
 [English](../../en/00-project-control/status.md) · [Pilotage](README.md)
@@ -20,6 +20,10 @@
 | Release et production | Aucune preuve ; licence non décidée |
 
 Les six OS et cinq profils sont des entrées de planification. Trente combinaisons de fixtures ne sont pas trente installations. La branche `production` pointe initialement vers un commit d'amorçage contenant uniquement un README et ne déploie rien.
+
+## Nouvelles orientations approuvées Q171–Q220 (2026-11-06)
+
+Les [50 décisions produit](decisions-q171-q220.md) (47 D, 3 C : Q174/Q194/Q200) sont **SPECIFIED**, avec [réconciliation conditionnelle](reconciliation-q171-q220.md) et [50 cas d'acceptation PLANNED](../13-tests-quality/mvp-gates-q171-q220.md). Q1–Q170 conservées ; Q221+ non répondues. Aucun import Foundation, installateur natif/conteneurs, WAF, antivirus, API provisioning/facturation, Configuration Center ou Hub n'est implémenté/certifié par ce vote. R1→R4 hébergement d'abord, puis ABI neutre R5 avant Hub privé R6.
 
 ## Roadmap — décision Q120 D, objectif Q119 B
 

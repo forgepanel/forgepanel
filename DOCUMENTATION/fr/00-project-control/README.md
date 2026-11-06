@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00 revision=13 status=documented -->
+<!-- forgepanel-doc id=FP-00 revision=14 status=documented -->
 # Pilotage du projet
 
 [English](../../en/00-project-control/README.md) · [Index](../README.md)
@@ -35,3 +35,7 @@ Chaque tâche identifie son périmètre et ses composants, fixe les critères d'
 ## Audit de complétude et traçabilité
 
 [Registre des lacunes et priorités documentaires](documentation-readiness.md) · [Matrice de traçabilité des 22 exigences de clôture](requirements-traceability.md) · [Manifest JSON versionné](../../evidence/documentation-readiness-v1.json) · [Statut réconcilié R1/R3](status.md). Les statuts `OPEN`/`BLOCKED` concernent la **documentation et ses preuves manquantes**, pas de nouveaux arbitrages Q171+. Aucune étape R2/R3/R4 n'est déclarée certifiée par ces tableaux.
+
+## Contrats documentaires R3 — IPC, installateur et refus privilégiés
+
+Les [contrats IPC typés](../08-api-contracts/symfony-go-ipc-r3.md), le [cycle d'installation sécurisé](../14-devops-releases/installer-lifecycle-r3.md) et les [24 tests planifiés](../13-tests-quality/r3-ipc-installer-gates.md) précisent `DOC-GAP-005/006` sans fermer leurs dépendances. Le [registre des 7 opérations candidates](../../evidence/typed-agent-operations-v1.json) interdit toute action root arbitraire et maintient **2 opérations privilégiées bloquées**. Les schémas JSON sont des contrats candidats, pas des endpoints.

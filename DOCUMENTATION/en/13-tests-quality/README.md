@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=17 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=18 status=documented -->
 # Tests, quality and definition of done
 
 [Français](../../fr/13-tests-quality/README.md) · [Index](../README.md)
@@ -94,3 +94,7 @@ New Go tests for [image staging](../14-devops-releases/kvm-image-staging.md) ver
 ## R2 — HTTP, optional MFA and PostgreSQL test matrix
 
 [R2 integration matrix](r2-integration-gates.md) adds **20 planned scenarios**: `R2-AUTH-001..010` and `R2-DB-TEST-001..010`, each with positive and negative/denial path. [Identity](../03-core/bootstrap-identity-r2.md) and [SQL transaction](../09-database/setup-transaction-r2.md) documents remain candidates. **None of these 20 functional tests ran** on Symfony/PostgreSQL in this lot; Python documentation checks validate only FR/EN coverage/parity.
+
+## R3 — IPC and installer matrix: 24 unexecuted cases
+
+[R3 planned test matrix](r3-ipc-installer-gates.md) adds `R3-IPC-TEST-001..012` and `R3-INSTALL-TEST-001..012`, **24 positive/negative cases all `PLANNED`**. Python static checks validate IDs, FR/EN parity, two candidate JSON Schemas and the [closed operation registry](../../evidence/typed-agent-operations-v1.json). **No real Symfony↔Go, Linux installer, PostgreSQL or VM integration test runs as part of this matrix.**

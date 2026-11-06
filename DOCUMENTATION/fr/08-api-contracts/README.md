@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08 revision=6 status=documented -->
+<!-- forgepanel-doc id=FP-08 revision=7 status=documented -->
 # API et contrats
 
 [English](../../en/08-api-contracts/README.md) · [Index](../README.md)
@@ -48,3 +48,7 @@ Définir une enveloppe avec version, ID d'opération, acteur/périmètre, ressou
 Compatibilité et tests de migration précèdent toute nouvelle API publique. Les endpoints proposés dans les échanges antérieurs restent des exemples, pas des contrats publiés.
 
 [Core](../03-core/README.md) · [Base](../09-database/README.md)
+
+## R3 — Contrat candidat d'IPC typé Symfony ↔ Go
+
+Le [contrat R3 IPC](symfony-go-ipc-r3.md) décrit `IPC-FP-0001..0012` : authentification du pair, double autorisation RBAC/tenant, opérations allowlistées, demandes/réponses strictement typées, erreurs, idempotence, journaux durables, locks, Q47 et récupération. Les [7 opérations candidates](../../evidence/typed-agent-operations-v1.json) et leurs [schémas JSON de requête](../../evidence/candidate-ipc-request-v1.schema.json)/[réponse](../../evidence/candidate-ipc-response-v1.schema.json) sont **documentaires et non activés**. Deux opérations privilégiées restent **`BLOCKED_UNTIL_QUALIFIED`** ; aucune API `shell.exec` ou route publique nouvelle. [Tests R3](../13-tests-quality/r3-ipc-installer-gates.md).

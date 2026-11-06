@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=18 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=19 status=documented -->
 # Modèle de sécurité et signalement
 
 [English](../../en/10-security/README.md) · [Index](../README.md)
@@ -102,3 +102,7 @@ L'[outil R3](../14-devops-releases/kvm-image-admission.md) travaille en **lectur
 ## R3 — Sécurité de la copie privée et limite d'immutabilité
 
 Le [staging QCOW2](../14-devops-releases/kvm-image-staging.md) n’a **aucune API shell/root, aucun accès QEMU ni réseau**. Il exige des chemins canoniques séparés, comptes non-root, répertoires 0700, fichiers source privés, `openat`/`O_NOFOLLOW`, sortie sans bit d’exécution, SHA-256 de chaque copie et reçu sans secret/chemin interne. Le statut positif ne confirme **ni identité de l’éditeur, ni copie réellement immuable, ni sandbox/quotas** : un même UID peut encore modifier une image 0400. Les copies partielles sont laissées dans le dossier privé pour inspection, jamais utilisées comme preuve de qualification. Re-hash obligatoire au futur lancement, veto Q132 maintenus.
+
+## R3 — Frontière de sécurité du futur IPC et de l'installateur
+
+Le [contrat IPC typé](../08-api-contracts/symfony-go-ipc-r3.md) exige vérification indépendante du pair **et** du rôle/tenant/ressource par Symfony et Go, un [registre fermé d'opérations](../../evidence/typed-agent-operations-v1.json) et des événements expurgés. Deux opérations privilégiées d'activation/compensation ne sont **pas autorisées**, même si leur payload passe le JSON Schema. Le [cycle d'installation](../14-devops-releases/installer-lifecycle-r3.md) impose signatures, anti-rollback, backup, accès administrateur de secours et vérification de santé avant succès. **Aucune API shell générique, aucun daemon privilégié ou root accessible au navigateur ; Q132 reste un veto absolu.** Tous les paramètres de privilèges/transport sont candidats à un audit Security indépendant.

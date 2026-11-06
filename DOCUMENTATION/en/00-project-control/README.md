@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00 revision=13 status=documented -->
+<!-- forgepanel-doc id=FP-00 revision=14 status=documented -->
 # Project control
 
 [Français](../../fr/00-project-control/README.md) · [Index](../README.md)
@@ -35,3 +35,7 @@ A task identifies scope and affected components, specifies acceptance criteria, 
 ## Documentation readiness and traceability
 
 [Gap and editorial priority register](documentation-readiness.md) · [Traceability for 22 closure records](requirements-traceability.md) · [Versioned JSON data](../../evidence/documentation-readiness-v1.json) · [Reconciled R1/R3 status](status.md). `OPEN`/`BLOCKED` describe **documentation and missing evidence**, not new Q171+ owner decisions. No R2/R3/R4 release gate is certified by these tables.
+
+## R3 documentary IPC and installer contracts
+
+[Typed IPC](../08-api-contracts/symfony-go-ipc-r3.md), [secure installer lifecycle](../14-devops-releases/installer-lifecycle-r3.md) and [24 planned tests](../13-tests-quality/r3-ipc-installer-gates.md) further detail `DOC-GAP-005/006` without closing their upstream prerequisites. The [seven candidate typed operations](../../evidence/typed-agent-operations-v1.json) prohibit generic root commands and keep **two privileged actions blocked**. JSON schemas describe candidates, not endpoints.

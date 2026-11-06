@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19-VERIFICATION revision=6 status=documented -->
+<!-- forgepanel-doc id=FP-19-VERIFICATION revision=7 status=documented -->
 # Verification record
 
 [Français](../../fr/19-audits-risks/verification.md) · [Audit index](README.md)
@@ -49,3 +49,7 @@ The successful run warned that its pinned v4 actions targeted a deprecated Node 
 **PR #41 CI evidence**: [Go, race, vet, gofmt and three-schema checks](https://github.com/yyogas/forgepanel/actions/runs/42116200478) and [documentation checks](https://github.com/yyogas/forgepanel/actions/runs/42116200493) passed at commit `4a71d2fb8e0258879bcf5c621dfc29677f5e5380`. **41 Go test functions** in the module overall (14 host-probe and 27 new image/CLI/contract cases). QCOW2 fixtures are synthetic, not booted VMs or signed/isolation evidence.
 
 This pass validates no QEMU runner, isolated VM, enforced quotas or imported Foundation Core.
+
+## R3 evidence ledger — candidate contracts only
+
+[R3 matrix](../13-tests-quality/r3-ipc-installer-gates.md) and [candidate IPC schemas](../08-api-contracts/symfony-go-ipc-r3.md) get **static** Python checks for FR/EN parity, required IDs, absence of generic shell fields and blocked privileged actions. Real CI results must be linked to the exact executed SHA. **None** of `R3-IPC-TEST-001..012` or `R3-INSTALL-TEST-001..012` has run on a real agent, socket, installer or VM. Earlier R1/R3 preparatory-tool PRs do not certify this protocol. No independent security review is claimed.

@@ -1,0 +1,366 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:forgepanel:documentation:candidate-ipc-request:v1",
+  "title": "Candidate ForgePanel Core typed IPC request; NOT a deployed endpoint",
+  "x-contract-status": "CANDIDATE_NOT_IMPLEMENTED",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "request_id",
+    "correlation_id",
+    "idempotency_key",
+    "operation_id",
+    "actor_claim",
+    "target",
+    "expected_revision",
+    "policy_revision",
+    "deadline",
+    "parameters"
+  ],
+  "properties": {
+    "contract_version": {
+      "const": "candidate-1"
+    },
+    "request_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "correlation_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "idempotency_key": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "operation_id": {
+      "type": "string",
+      "enum": [
+        "host.capabilities.observe",
+        "artifact.signature.verify",
+        "installer.plan.compile",
+        "installer.stage_verified_packages",
+        "installer.activate_signed_generation",
+        "installer.health.check",
+        "installer.compensate_generation"
+      ]
+    },
+    "actor_claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "actor_ref",
+        "organization_ref",
+        "permission_ref"
+      ],
+      "properties": {
+        "actor_ref": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+        },
+        "organization_ref": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+        },
+        "permission_ref": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+        }
+      }
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "resource_kind",
+        "resource_ref"
+      ],
+      "properties": {
+        "resource_kind": {
+          "type": "string",
+          "enum": [
+            "host",
+            "artifact",
+            "installation"
+          ]
+        },
+        "resource_ref": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+        }
+      }
+    },
+    "expected_revision": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "policy_revision": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "deadline": {
+      "type": "string",
+      "format": "date-time",
+      "description": "An operational executor must enforce this deadline; schema format alone is not authorization."
+    },
+    "parameters": {
+      "type": "object"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "operation_id": {
+            "const": "host.capabilities.observe"
+          }
+        },
+        "required": [
+          "operation_id"
+        ]
+      },
+      "then": {
+        "properties": {
+          "parameters": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "capability_group"
+            ],
+            "properties": {
+              "capability_group": {
+                "type": "string",
+                "enum": [
+                  "os",
+                  "packages",
+                  "listeners",
+                  "services"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "operation_id": {
+            "const": "artifact.signature.verify"
+          }
+        },
+        "required": [
+          "operation_id"
+        ]
+      },
+      "then": {
+        "properties": {
+          "parameters": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "artifact_ref",
+              "trust_metadata_ref"
+            ],
+            "properties": {
+              "artifact_ref": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+              },
+              "trust_metadata_ref": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "operation_id": {
+            "const": "installer.plan.compile"
+          }
+        },
+        "required": [
+          "operation_id"
+        ]
+      },
+      "then": {
+        "properties": {
+          "parameters": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "intent_ref",
+              "expected_configuration_revision"
+            ],
+            "properties": {
+              "intent_ref": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+              },
+              "expected_configuration_revision": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "operation_id": {
+            "const": "installer.stage_verified_packages"
+          }
+        },
+        "required": [
+          "operation_id"
+        ]
+      },
+      "then": {
+        "properties": {
+          "parameters": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "approved_plan_ref",
+              "approved_plan_sha256"
+            ],
+            "properties": {
+              "approved_plan_ref": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+              },
+              "approved_plan_sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "operation_id": {
+            "const": "installer.activate_signed_generation"
+          }
+        },
+        "required": [
+          "operation_id"
+        ]
+      },
+      "then": {
+        "properties": {
+          "parameters": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "approved_plan_ref",
+              "approved_plan_sha256",
+              "checkpoint_ref",
+              "approval_ref"
+            ],
+            "properties": {
+              "approved_plan_ref": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+              },
+              "approved_plan_sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "checkpoint_ref": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+              },
+              "approval_ref": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "operation_id": {
+            "const": "installer.health.check"
+          }
+        },
+        "required": [
+          "operation_id"
+        ]
+      },
+      "then": {
+        "properties": {
+          "parameters": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "generation_ref",
+              "health_profile_ref"
+            ],
+            "properties": {
+              "generation_ref": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+              },
+              "health_profile_ref": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "operation_id": {
+            "const": "installer.compensate_generation"
+          }
+        },
+        "required": [
+          "operation_id"
+        ]
+      },
+      "then": {
+        "properties": {
+          "parameters": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "generation_ref",
+              "recovery_checkpoint_ref",
+              "approval_ref"
+            ],
+            "properties": {
+              "generation_ref": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+              },
+              "recovery_checkpoint_ref": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+              },
+              "approval_ref": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

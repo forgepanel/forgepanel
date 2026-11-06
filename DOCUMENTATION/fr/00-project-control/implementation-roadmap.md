@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-EXECUTION revision=13 status=specified -->
+<!-- forgepanel-doc id=FP-00-EXECUTION revision=14 status=specified -->
 # Roadmap technique de réalisation — décision Q120 D et MVP Q119 B
 
 [English](../../en/00-project-control/implementation-roadmap.md) · [État officiel](status.md) · [Décisions Q111–Q120](decisions-q111-q120.md)
@@ -93,3 +93,7 @@ Après la sonde hôte, [admission QCOW2](../14-devops-releases/kvm-image-admissi
 ## Préparation R3 — fixation provisoire des octets d’image
 
 La [copie privée vérifiée](../14-devops-releases/kvm-image-staging.md) complète la sonde et l’admission R3 sans changer **R1 → R2 → R3 → R4 → R5 → R6**. Elle génère `image.qcow2` et un reçu de provenance non signé dans un dossier de laboratoire privé ; le futur runner devra **revérifier au moment du lancement** les octets, prouver l'isolement, appliquer les quotas et nettoyer automatiquement ses ressources, avant toute preuve Q152/Q162. R1 Foundation v0.7 demeure bloqué par le ZIP historique manquant.
+
+## Lot documentaire R3 — prérequis IPC et installateur avant toute implémentation
+
+[R3 IPC typé](../08-api-contracts/symfony-go-ipc-r3.md), [plan d'installation/reprise](../14-devops-releases/installer-lifecycle-r3.md) et [QA planifiée](../13-tests-quality/r3-ipc-installer-gates.md) normalisent l'ordre de validation, sans passer outre R1 → R2. Après import SRC-03 et Symfony/PostgreSQL testés : valider contrats/permissions/IPC, modèle durable des jobs et migrations, sécurité du daemon/OS, source et signature des artefacts ; ensuite seulement implanter l'installateur et exécuter les VM jetables. Les choix de transport, seuils, fournisseurs et OS pilote sont encore ouverts. **`DOC-GAP-005` et `DOC-GAP-006` ne sont pas fermés**.

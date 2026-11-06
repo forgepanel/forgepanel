@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=23 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=24 status=documented -->
 # État et roadmap ordonnée par dépendances
 
 [English](../../en/00-project-control/status.md) · [Pilotage](README.md)
@@ -90,3 +90,7 @@ Le Core contient maintenant les outils autonomes `verify_source_archive.py` et `
 | R4 site PHP + ACME + restore ; R5 ABI ; R6 Hub | **NOT INTEGRATED** | [MVP #29](https://github.com/yyogas/forgepanel/issues/29), [ABI #7](https://github.com/yyogas/forgepanel/issues/7), [Hub](https://github.com/yyogas/forgepanel-hub) ; aucune installation complète de production |
 
 **Conséquence pour la documentation :** ne plus traiter les anciennes phrases « branche candidate / fusion à vérifier » comme état courant. Les PR restent dans le changelog et les documents spécialisés ; ce tableau est la **réconciliation du snapshot Git observé**. Pour la véritable complétude, suivre [les 22 lacunes](documentation-readiness.md), la [traçabilité](requirements-traceability.md), les [issues ouvertes](https://github.com/yyogas/forgepanel/issues) et les conditions de qualification. **Pas de promotion vers stable/main/production.**
+
+## R3 — Contrats IPC et installateur candidats, non exécutables
+
+Les [12 exigences IPC Symfony↔Go](../08-api-contracts/symfony-go-ipc-r3.md) et les [12 exigences d'installation](../14-devops-releases/installer-lifecycle-r3.md) disposent désormais d'un [registre fermé de 7 opérations candidates](../../evidence/typed-agent-operations-v1.json), dont **2 privilégiées explicitement bloquées**, et de [24 cas QA prévus](../13-tests-quality/r3-ipc-installer-gates.md). **SPECIFIED seulement** : aucun socket authentifié, agent Go privilégié, protocole final, modèle SQL de jobs, paquet, installateur ou VM opérationnels. `DOC-GAP-005/006` restent OPEN. Cette documentation n'affecte pas la fermeture de R1, l'absence du runtime R2 ni la séparation du Hub.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-TRACEABILITY revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-00-TRACEABILITY revision=2 status=documented -->
 # Matrice de traçabilité exigences → contrats → tests
 
 [English](../../en/00-project-control/requirements-traceability.md) · [Pilotage](README.md) · [Statut](status.md)
@@ -13,8 +13,8 @@ Les **22 lignes** sont dérivées du [registre bilingue de lacunes](documentatio
 | FP-TRACE-002 | DOC-GAP-002 | R2 | Q124 Q130 | Core / Security | [Contrat](../03-core/README.md) | [QA](../13-tests-quality/README.md) | **OPEN** |
 | FP-TRACE-003 | DOC-GAP-003 | R2 | Q119 Q120 | Engineering / Core | [Contrat](../03-core/README.md) | [QA](../13-tests-quality/README.md) | **OPEN** |
 | FP-TRACE-004 | DOC-GAP-004 | R2 | Q126 | Database / Core | [Contrat](../09-database/README.md) | [QA](../13-tests-quality/README.md) | **OPEN** |
-| FP-TRACE-005 | DOC-GAP-005 | R3 | Q61 Q62 Q119 | DevOps / Security | [Contrat](../14-devops-releases/README.md) | [QA](../13-tests-quality/README.md) | **OPEN** |
-| FP-TRACE-006 | DOC-GAP-006 | R3 | Q47 Q120 | API/IPC / Security | [Contrat](../08-api-contracts/README.md) | [QA](../13-tests-quality/README.md) | **OPEN** |
+| FP-TRACE-005 | DOC-GAP-005 | R3 | Q61 Q62 Q119 | DevOps / Security | [Contrat](../14-devops-releases/installer-lifecycle-r3.md) | [QA](../13-tests-quality/r3-ipc-installer-gates.md) | **OPEN** |
+| FP-TRACE-006 | DOC-GAP-006 | R3 | Q47 Q120 | API/IPC / Security | [Contrat](../08-api-contracts/symfony-go-ipc-r3.md) | [QA](../13-tests-quality/r3-ipc-installer-gates.md) | **OPEN** |
 | FP-TRACE-007 | DOC-GAP-007 | R4 | Q83 Q91 Q119 | Modules / Hosting | [Contrat](../02-architecture/website-lifecycle.md) | [QA](../13-tests-quality/README.md) | **OPEN** |
 | FP-TRACE-008 | DOC-GAP-008 | R4 | Q123 Q164 | Services / Security | [Contrat](../02-architecture/qualification-and-security-contracts.md) | [QA](../13-tests-quality/mvp-gates-q161-q170.md) | **OPEN** |
 | FP-TRACE-009 | DOC-GAP-009 | R4 | Q136 Q167 | Security / Modules | [Contrat](../02-architecture/php-staging-and-access-policy.md) | [QA](../13-tests-quality/mvp-gates-q161-q170.md) | **OPEN** |
@@ -48,3 +48,7 @@ Chaque propriétaire documentera **ID/version**, objectif et scénario utilisate
 ## Écarts à fermer avant de déclarer la documentation complète
 
 La complétude **de structure** (64 paires Core, 27 paires Hub dans le snapshot contrôlé) ne prouve pas la complétude métier. Priorité : exact SRC-03 → contrats R2 de démarrage/PG/identité → agent typé/installateur sûr → MVP PHP/ACME/permissions/restore → ABI neutre puis Hub. En parallèle, arbitrer formellement la maquette V3, la licence exécutoire/CLA, l'alerte privée, les valeurs encore ouvertes et les preuves QA. [Matrice de couverture](coverage.md).
+
+## Ciblage documentaire R3 des contrats candidats
+
+`FP-TRACE-005` renvoie désormais vers [le cycle d'installateur](../14-devops-releases/installer-lifecycle-r3.md) et `FP-TRACE-006` vers [l'IPC typé Symfony↔Go](../08-api-contracts/symfony-go-ipc-r3.md), avec [24 scénarios R3 PLANNED](../13-tests-quality/r3-ipc-installer-gates.md). Le [registre d'opérations](../../evidence/typed-agent-operations-v1.json) est candidat et non exécutable ; les contrats `DOC-GAP-005` et `DOC-GAP-006` restent **OPEN** après ce lot. Aucun numéro Q171+ n'est décidé.

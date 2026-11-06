@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DOC-READINESS revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-00-DOC-READINESS revision=2 status=documented -->
 # Documentation gap register and completion gates — ForgePanel
 
 [Français](../../fr/00-project-control/documentation-readiness.md) · [Project control](README.md) · [Traceability](requirements-traceability.md) · [Coverage](coverage.md)
@@ -43,3 +43,7 @@
 ## Evidence limits
 
 **Material blockers:** original SRC-03 missing; no operational Symfony/PostgreSQL Core, installer or verified PHP HTTPS site; no working neutral extension ABI; Hub candidate only. R1 ZIP safety and R3 KVM observation/admission/staging tools do exist on `develop` (PR #37–#43), but synthetic tests do not certify any OS. [Status](status.md) · [Roadmap](implementation-roadmap.md) · [QA](../13-tests-quality/README.md).
+
+## Targeted documentary progress for DOC-GAP-005 and DOC-GAP-006
+
+[Candidate R3 IPC contract](../08-api-contracts/symfony-go-ipc-r3.md), [installer state machine](../14-devops-releases/installer-lifecycle-r3.md), [closed operations registry](../../evidence/typed-agent-operations-v1.json) and [24 planned tests](../13-tests-quality/r3-ipc-installer-gates.md) improve traceability. **Both states remain OPEN / OPEN**: no actual Symfony↔Go IPC, installer, SQL job model or real VM test has been approved or executed. No gap is closed and no retry/timeout/quota values are invented.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-09 revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-09 revision=6 status=documented -->
 # Base de données, transactions et migrations
 
 [English](../../en/09-database/README.md) · [Index](../README.md)
@@ -42,3 +42,7 @@ Exécuter le test PostgreSQL fourni uniquement sur une base `_test` dédiée et 
 ## R2 — Contrat transactionnel candidat, sans migration
 
 Le [contrat R2 PostgreSQL/transactions](setup-transaction-r2.md) trace `R2-DB-001` à `R2-DB-012` : singleton, unicité administrateur initial, verrous/révisions, retries après réponse perdue, rollback/audit et récupération des clés. **Aucune nouvelle table, colonne, migration, niveau d'isolation ou TTL n'est arrêté** par ce document. Revue Database indispensable après import SRC-03, puis tests PostgreSQL réels [R2](../13-tests-quality/r2-integration-gates.md).
+
+## R3 — HANDOFF : jobs, idempotence et verrous IPC (non modélisés)
+
+La future API [Symfony ↔ Go](../08-api-contracts/symfony-go-ipc-r3.md) exige intent/approbation/job/audit durables, révisions, idempotence et locks, tandis que le [cycle installateur](../14-devops-releases/installer-lifecycle-r3.md) doit reprendre après crash sans rejouer une étape Linux. **Aucune table/colonne/migration PostgreSQL n'est créée dans ce lot**. L'autorité Database doit définir et tester : schémas transactionnels, index uniques `(scope,operation,idempotency_key)` ou équivalent validé, cohérence digest, bail, audit/outbox, concurrence, reprise et rétention, en coordination avec Security et API/IPC. Les noms ci-dessus sont des exemples candidats, pas du DDL approuvé.

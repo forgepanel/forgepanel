@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=17 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=18 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
@@ -94,3 +94,7 @@ La nouvelle suite de tests Go de [staging d’images](../14-devops-releases/kvm-
 ## R2 — Matrice HTTP, MFA facultative et PostgreSQL
 
 La [matrice R2](r2-integration-gates.md) ajoute **20 scénarios planifiés** : `R2-AUTH-001..010` et `R2-DB-TEST-001..010`, chacun avec parcours positif et refus/récupération négatif. Les fiches [identité](../03-core/bootstrap-identity-r2.md) et [transaction SQL](../09-database/setup-transaction-r2.md) restent candidates ; **aucun de ces 20 tests n'a été exécuté** sur Symfony/PostgreSQL par ce lot. Les contrôles Python de documentation vérifient seulement couverture et parité FR/EN.
+
+## R3 — Matrice IPC et installateur : 24 tests non exécutés
+
+La [matrice R3](r3-ipc-installer-gates.md) ajoute `R3-IPC-TEST-001..012` et `R3-INSTALL-TEST-001..012`, **24 scénarios positifs/négatifs au statut `PLANNED`**. Une validation Python statique contrôlera les IDs, la parité FR/EN, les deux JSON Schema candidats et le [registre fermé](../../evidence/typed-agent-operations-v1.json). **Aucun test réel Symfony↔Go, système Linux, installateur, PostgreSQL ou VM n'est exécuté par cette matrice.**

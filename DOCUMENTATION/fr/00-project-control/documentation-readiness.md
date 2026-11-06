@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DOC-READINESS revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-00-DOC-READINESS revision=2 status=documented -->
 # Registre des lacunes et conditions de complétude — ForgePanel
 
 [English](../../en/00-project-control/documentation-readiness.md) · [Pilotage](README.md) · [Matrice](requirements-traceability.md) · [Couverture](coverage.md)
@@ -43,3 +43,7 @@
 ## Limites de preuve
 
 **Blocages matériels :** SRC-03 original absent ; aucun Core Symfony/PostgreSQL opérationnel, installateur ou site PHP HTTPS vérifié ; pas d'ABI détachée utilisable ; Hub candidat uniquement. Les outils R1 de ZIP et R3 d'inspection/admission/staging KVM existent dans `develop` (PR #37–#43), mais leurs tests sont synthétiques et ne certifient aucun OS. [État](status.md) · [Roadmap](implementation-roadmap.md) · [QA](../13-tests-quality/README.md).
+
+## Progression documentaire ciblée sur DOC-GAP-005 et DOC-GAP-006
+
+[Le contrat IPC candidat R3](../08-api-contracts/symfony-go-ipc-r3.md), [la machine d'états d'installation](../14-devops-releases/installer-lifecycle-r3.md), [les schémas/registre fermés](../../evidence/typed-agent-operations-v1.json) et [24 tests planifiés](../13-tests-quality/r3-ipc-installer-gates.md) rendent les lacunes plus traçables. **États conservés : OPEN / OPEN**, car aucun IPC Symfony↔Go, installateur, modèle SQL de jobs ou test VM réel n'a été approuvé/exécuté. Ce lot ne ferme aucun gap et ne fixe aucun nombre de retries, timeout ou quota.

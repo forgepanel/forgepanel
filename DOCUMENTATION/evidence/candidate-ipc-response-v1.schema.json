@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:forgepanel:documentation:candidate-ipc-response:v1",
+  "title": "Candidate ForgePanel Core typed IPC response; no success evidence without real observation",
+  "x-contract-status": "CANDIDATE_NOT_IMPLEMENTED",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "request_id",
+    "correlation_id",
+    "operation_id",
+    "admission",
+    "job_state",
+    "job_ref",
+    "observed_revision",
+    "error_code",
+    "outcome_ref",
+    "irreversible_effects_disclosed"
+  ],
+  "properties": {
+    "contract_version": {
+      "const": "candidate-1"
+    },
+    "request_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "correlation_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "operation_id": {
+      "type": "string",
+      "enum": [
+        "host.capabilities.observe",
+        "artifact.signature.verify",
+        "installer.plan.compile",
+        "installer.stage_verified_packages",
+        "installer.activate_signed_generation",
+        "installer.health.check",
+        "installer.compensate_generation"
+      ]
+    },
+    "admission": {
+      "type": "string",
+      "enum": [
+        "ACCEPTED",
+        "DENIED",
+        "REJECTED"
+      ]
+    },
+    "job_state": {
+      "type": "string",
+      "enum": [
+        "QUEUED",
+        "RUNNING",
+        "VERIFYING",
+        "SUCCEEDED",
+        "FAILED",
+        "COMPENSATION_REQUIRED",
+        "BLOCKED"
+      ]
+    },
+    "job_ref": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "observed_revision": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "error_code": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "UNAUTHENTICATED",
+        "FORBIDDEN",
+        "SCOPE_DENIED",
+        "INVALID_INPUT",
+        "STALE_REVISION",
+        "IDEMPOTENCY_CONFLICT",
+        "RESOURCE_LOCKED",
+        "CAPABILITY_UNAVAILABLE",
+        "TRUST_FAILURE",
+        "TIMEOUT",
+        "DEPENDENCY_UNAVAILABLE",
+        "PARTIAL_FAILURE",
+        "RECOVERY_REQUIRED"
+      ]
+    },
+    "outcome_ref": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "irreversible_effects_disclosed": {
+      "type": "boolean"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "admission": {
+            "const": "ACCEPTED"
+          }
+        },
+        "required": [
+          "admission"
+        ]
+      },
+      "then": {
+        "properties": {
+          "error_code": {
+            "const": "NONE"
+          },
+          "job_ref": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "admission": {
+            "enum": [
+              "DENIED",
+              "REJECTED"
+            ]
+          }
+        },
+        "required": [
+          "admission"
+        ]
+      },
+      "then": {
+        "properties": {
+          "job_state": {
+            "const": "BLOCKED"
+          },
+          "job_ref": {
+            "type": "null"
+          },
+          "error_code": {
+            "not": {
+              "const": "NONE"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-09 revision=5 status=documented -->
+<!-- forgepanel-doc id=FP-09 revision=6 status=documented -->
 # Database, transactions and migrations
 
 [Français](../../fr/09-database/README.md) · [Index](../README.md)
@@ -42,3 +42,7 @@ Run the supplied PostgreSQL test only against an explicitly authorized dedicated
 ## R2 — Candidate transaction contract, no migrations
 
 [Candidate R2 PostgreSQL/transaction contract](setup-transaction-r2.md) traces `R2-DB-001`–`R2-DB-012`: setup singleton, initial admin uniqueness, locks/revisions, retries after lost response, rollback/audit and key recovery. **No new table, column, migration, isolation level or grant TTL is decided**. Database must review against imported SRC-03 before real PostgreSQL [R2 tests](../13-tests-quality/r2-integration-gates.md).
+
+## R3 — Handoff: durable IPC jobs, idempotency and locks (unmodeled)
+
+Future [Symfony ↔ Go IPC](../08-api-contracts/symfony-go-ipc-r3.md) needs durable intent/approval/job/audit, revisions, idempotency and scoped leases, while the [installer lifecycle](../14-devops-releases/installer-lifecycle-r3.md) must recover from crashes without replaying Linux changes. **This lot creates no PostgreSQL table/column/migration**. Database owns actual schemas, approved unique `(scope,operation,idempotency_key)` or equivalent, digest reconciliation, leases, audit/outbox, concurrency, recovery and retention tests, coordinated with Security and API/IPC. Names are examples, not authorized DDL.

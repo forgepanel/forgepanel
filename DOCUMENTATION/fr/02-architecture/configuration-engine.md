@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-CONFIG revision=7 status=specified -->
+<!-- forgepanel-doc id=FP-02-CONFIG revision=8 status=specified -->
 # Configuration Engine — spécification des réglages administrables
 
 [English](../../en/02-architecture/configuration-engine.md) · [Architecture](README.md) · [Politique produit](../00-project-control/product-policy.md)
@@ -81,3 +81,7 @@ Opérations envisagées : `config.readEffective(scope)`, `config.plan(changes,ex
 Tests : aucune escalade via scope enfant ; permission refusée sur CLI et API ; rejeter révision obsolète ; config invalide non activée ; conflit port détecté ; nouveau port testé avant ancien retiré ; panne après snapshot ; compensation partielle explicite ; drift détecté sans écraser les fichiers externes ; permissions/valeurs visibles sans divulgation de secrets.
 
 **Statut : entièrement spécifié, aucun Configuration Engine exécutable dans le dépôt actuel.**
+
+## Q47 → R3 : articulation avec les opérations du futur agent
+
+Le [contrat candidat Symfony ↔ Go](../08-api-contracts/symfony-go-ipc-r3.md) expose les enveloppes plan/révision/idempotence/audit, et le [contrat d'installateur](../14-devops-releases/installer-lifecycle-r3.md) applique les phases Q47 avec séparation des actions de lecture, staging et opérations privilégiées. Le [registre ACT-FP](../../evidence/typed-agent-operations-v1.json) est une **proposition documentaire** : aucune clé de configuration ne devient une commande système, aucun formulaire ne désactive les contrôles d'isolation et les deux opérations privilégiées restent bloquées. La persistance du job, les vérifications Linux, les TTL et les retries doivent être définis par les autorités avant code.

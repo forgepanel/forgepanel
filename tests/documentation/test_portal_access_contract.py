@@ -42,13 +42,13 @@ class PortalAccessContractTests(unittest.TestCase):
         for lang in ("en", "fr"):
             path = ROOT / "DOCUMENTATION" / lang / "07-interfaces-roles" / "portal-access-routing.md"
             content = path.read_text(encoding="utf-8")
-            self.assertEqual(set(re.findall(r"PORTAL-FP-\\d{4}", content)), IDS)
+            self.assertEqual(set(re.findall(r"PORTAL-FP-\d{4}", content)), IDS)
 
     def test_planned_end_to_end_matrix_is_bilingual(self) -> None:
         for lang in ("en", "fr"):
             path = ROOT / "DOCUMENTATION" / lang / "13-tests-quality" / "portal-access-gates.md"
             content = path.read_text(encoding="utf-8")
-            self.assertEqual(set(re.findall(r"TEST-PORTAL-\\d{4}", content)), TEST_IDS)
+            self.assertEqual(set(re.findall(r"TEST-PORTAL-\d{4}", content)), TEST_IDS)
             self.assertIn("PLANNED", content)
 
     def test_reject_changed_admin_port(self) -> None:

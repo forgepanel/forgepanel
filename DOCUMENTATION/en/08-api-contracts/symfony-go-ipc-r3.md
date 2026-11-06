@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08-R3-IPC revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-08-R3-IPC revision=2 status=specified -->
 # R3 — Candidate Symfony ↔ Go agent IPC, authorization and typed operations
 
 [Français](../../fr/08-api-contracts/symfony-go-ipc-r3.md) · [API](README.md) · [R3 installer](../14-devops-releases/installer-lifecycle-r3.md) · [R3 QA](../13-tests-quality/r3-ipc-installer-gates.md)
@@ -26,6 +26,8 @@ Private Hub ─ optional limited outward client ─> future Core public contract
 **IPC-FP-0004 — Closed operation registry.** Operations exist only when present in the [candidate registry](../../evidence/typed-agent-operations-v1.json) with strict schema, permissions and negative tests. **Strictly forbidden**: `shell.exec`, `exec arbitrary command`, `run arbitrary command`, user-provided shell/scripts or raw QEMU arguments, arbitrary PHP/JS executed as root. An operation identifier can never be interpreted as an OS command.
 
 ## Candidate envelopes — require ratification
+
+Two **candidate JSON Schema Draft 2020-12 contracts** describe a [typed request](../../evidence/candidate-ipc-request-v1.schema.json) and [admission/job response](../../evidence/candidate-ipc-response-v1.schema.json). Both reject unknown wire fields and require operation-specific typed payloads. **Schema validation never authenticates a peer or authorizes a Linux action**, and these files are not wired to any endpoint. Privileged operations remain blocked in the registry even when their JSON representation is syntactically valid.
 
 **IPC-FP-0005 — Request.** A candidate request carries `contract_version`, registry-bound `operation_id`, `request_id`, `correlation_id`, `idempotency_key`, independently checkable actor/tenant/target, `expected_revision`, `policy_revision`, `deadline`, and **per-operation typed payload**. No raw password or secret data; protected reference identifiers only. Field names and types are **candidates**, not available endpoints.
 

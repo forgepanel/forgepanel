@@ -32,7 +32,10 @@ class R3JobsPeerDocumentationTests(unittest.TestCase):
                     revision = 2 if name.startswith("09-database/") else 1
                     self.assertIn(f"id={doc_id} revision={revision} status=specified", raw)
                     self.assertIn("R3", raw)
-                    self.assertIn("Q171+", raw)
+                    if name.startswith("08-api-contracts/"):
+                        self.assertIn("Q1–Q170", raw)
+                    else:
+                        self.assertIn("Q171+", raw)
                     self.assertIn("PLANNED" if name.startswith("13-") else "CANDIDATE", raw)
 
     def test_requirement_ids_in_both_languages(self):

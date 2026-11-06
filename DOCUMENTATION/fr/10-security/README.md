@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=19 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=20 status=documented -->
 # Modèle de sécurité et signalement
 
 [English](../../en/10-security/README.md) · [Index](../README.md)
@@ -106,3 +106,7 @@ Le [staging QCOW2](../14-devops-releases/kvm-image-staging.md) n’a **aucune AP
 ## R3 — Frontière de sécurité du futur IPC et de l'installateur
 
 Le [contrat IPC typé](../08-api-contracts/symfony-go-ipc-r3.md) exige vérification indépendante du pair **et** du rôle/tenant/ressource par Symfony et Go, un [registre fermé d'opérations](../../evidence/typed-agent-operations-v1.json) et des événements expurgés. Deux opérations privilégiées d'activation/compensation ne sont **pas autorisées**, même si leur payload passe le JSON Schema. Le [cycle d'installation](../14-devops-releases/installer-lifecycle-r3.md) impose signatures, anti-rollback, backup, accès administrateur de secours et vérification de santé avant succès. **Aucune API shell générique, aucun daemon privilégié ou root accessible au navigateur ; Q132 reste un veto absolu.** Tous les paramètres de privilèges/transport sont candidats à un audit Security indépendant.
+
+## R3 — Authentification de pair ≠ autorisation métier
+
+Le [contrat local Symfony ↔ Go](../08-api-contracts/local-peer-trust-r3.md) exige de distinguer identité réelle du pair (credentials noyau à examiner) et mandat de l'acteur issu d'une session Symfony déjà autorisée. Un UID Linux partagé, un socket mode groupe ou un payload actor_claim n'authentifient pas l'utilisateur. Vérifier aussi le tenant, le rôle, la ressource, le plan, sa révision et le [registre fermé](../../evidence/typed-agent-operations-v1.json). La présence d'un [reçu d'identité candidat](../../evidence/candidate-peer-binding-v1.schema.json) ne constitue pas une preuve de signature. Les opérations privilégiées restent bloquées. **RISK-028/029 non résolus**, aucune API générique root.

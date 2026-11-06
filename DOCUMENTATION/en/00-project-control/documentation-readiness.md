@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DOC-READINESS revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-00-DOC-READINESS revision=3 status=documented -->
 # Documentation gap register and completion gates — ForgePanel
 
 [Français](../../fr/00-project-control/documentation-readiness.md) · [Project control](README.md) · [Traceability](requirements-traceability.md) · [Coverage](coverage.md)
@@ -47,3 +47,7 @@
 ## Targeted documentary progress for DOC-GAP-005 and DOC-GAP-006
 
 [Candidate R3 IPC contract](../08-api-contracts/symfony-go-ipc-r3.md), [installer state machine](../14-devops-releases/installer-lifecycle-r3.md), [closed operations registry](../../evidence/typed-agent-operations-v1.json) and [24 planned tests](../13-tests-quality/r3-ipc-installer-gates.md) improve traceability. **Both states remain OPEN / OPEN**: no actual Symfony↔Go IPC, installer, SQL job model or real VM test has been approved or executed. No gap is closed and no retry/timeout/quota values are invented.
+
+## Candidate R3 detail for DOC-GAP-004 and DOC-GAP-006
+
+The [12 durable job requirements](../09-database/durable-jobs-r3.md), [12 peer trust requirements](../08-api-contracts/local-peer-trust-r3.md), [24 planned QA cases](../13-tests-quality/r3-jobs-peer-gates.md) and [candidate schemas](../../evidence/candidate-job-record-v1.schema.json) make the gaps more concrete. **Both remain OPEN** because actual PostgreSQL tables/migrations, authenticated Go IPC/daemon and concurrency/OS tests are not reviewed/verified. Timings, retries, protocol, service users and quotas remain open technical choices. Q1–Q170 preserved, Q171+ unanswered.

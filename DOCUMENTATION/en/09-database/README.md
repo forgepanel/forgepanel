@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-09 revision=6 status=documented -->
+<!-- forgepanel-doc id=FP-09 revision=7 status=documented -->
 # Database, transactions and migrations
 
 [Français](../../fr/09-database/README.md) · [Index](../README.md)
@@ -46,3 +46,7 @@ Run the supplied PostgreSQL test only against an explicitly authorized dedicated
 ## R3 — Handoff: durable IPC jobs, idempotency and locks (unmodeled)
 
 Future [Symfony ↔ Go IPC](../08-api-contracts/symfony-go-ipc-r3.md) needs durable intent/approval/job/audit, revisions, idempotency and scoped leases, while the [installer lifecycle](../14-devops-releases/installer-lifecycle-r3.md) must recover from crashes without replaying Linux changes. **This lot creates no PostgreSQL table/column/migration**. Database owns actual schemas, approved unique `(scope,operation,idempotency_key)` or equivalent, digest reconciliation, leases, audit/outbox, concurrency, recovery and retention tests, coordinated with Security and API/IPC. Names are examples, not authorized DDL.
+
+## R3 — Candidate durable job and lease model
+
+[R3 PostgreSQL job contract](durable-jobs-r3.md) documents 12 requirements DB-FP-0001..0012 for durable intent, scoped idempotency, leases/fencing, state transitions, outbox/inbox, lost ACK, concurrency, redacted audit and recovery. [Candidate transition registry](../../evidence/candidate-job-transitions-v1.json) and [job record schema](../../evidence/candidate-job-record-v1.schema.json) are **not DDL or installed tables**. No lease duration, SQL isolation, migration or retry setting is approved absent Database/API/Security review. [QA plan](../13-tests-quality/r3-jobs-peer-gates.md).

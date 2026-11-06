@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19 revision=9 status=documented -->
+<!-- forgepanel-doc id=FP-19 revision=10 status=documented -->
 # Audit, contradictions et risques
 
 [English](../../en/19-audits-risks/README.md) · [Index](../README.md)
@@ -79,3 +79,10 @@ Ces mesures ne remplacent pas l'audit de code source ou la preuve de signature �
 - **RISK-027 — Fausse reprise et confiance éditeur :** signature de manifest seule ≠ vérification des octets ; échec entre SQL et Linux ≠ rollback automatique. L'[installateur candidat](../14-devops-releases/installer-lifecycle-r3.md) impose source de confiance indépendante, signature, anti-rollback, état durable et compensation uniquement des actions réversibles. L'absence de backup/clé ou une migration irréversible exige `RECOVERY_REQUIRED` et signalement.
 
 Ces risques restent **OPEN**. Les [24 tests R3](../13-tests-quality/r3-ipc-installer-gates.md) sont `PLANNED`, pas des preuves de correction. R1/2 et les veto Q132 conditionnent toujours le développement.
+
+## R3 — Nouveaux constats sur fencing et usurpation IPC
+
+- **RISK-028 — Worker ancien après expiration de bail :** le processus peut reprendre et produire un effet même si le nouveau propriétaire a pris le verrou. Le [contrat de job](../09-database/durable-jobs-r3.md) exige une génération de fencing monotone vérifiée au point d'effet, réconciliation et refus de retry aveugle. **OPEN**, aucune protection Linux opérationnelle démontrée.
+- **RISK-029 — Confusion identité socket ↔ autorisation utilisateur :** une permission de fichier ou UID de pair valide ne prouve pas le mandat de l'acteur ni sa portée tenant. Le [contrat de confiance](../08-api-contracts/local-peer-trust-r3.md) impose double vérification et protection anti-rejeu avant toute opération. **OPEN**, aucun transport ni processus authentifié mis en service.
+
+Une validation statique JSON/Markdown, même verte, ne permet ni clôture de ces risques ni promotion d'une action privilégiée. [Matrice de refus](../13-tests-quality/r3-jobs-peer-gates.md).

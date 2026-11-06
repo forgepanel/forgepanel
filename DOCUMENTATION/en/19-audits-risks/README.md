@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19 revision=9 status=documented -->
+<!-- forgepanel-doc id=FP-19 revision=10 status=documented -->
 # Audit, contradictions and risks
 
 [Français](../../fr/19-audits-risks/README.md) · [Index](../README.md)
@@ -79,3 +79,10 @@ These protections do not replace source code or publisher-signature review. [FR/
 - **RISK-027 — False recovery/publisher trust:** a signed manifest is not verification of the exact artifact bytes; failure between SQL and Linux is not an atomic rollback. [Candidate installer lifecycle](../14-devops-releases/installer-lifecycle-r3.md) requires independent trust, signed artifacts, anti-rollback, durable steps and compensation of known reversible effects only. Missing recovery key or irreversible migration requires `RECOVERY_REQUIRED` and disclosure.
 
 Both risks remain **OPEN**. The [24 R3 test cases](../13-tests-quality/r3-ipc-installer-gates.md) are `PLANNED`, not mitigation evidence. R1/R2 dependencies and Q132 vetoes stay in effect.
+
+## R3 — New findings: stale fencing and IPC identity confusion
+
+- **RISK-028 — Stale worker after lease expiry:** an old worker may resume and mutate Linux despite a newer lease owner. [Durable job contract](../09-database/durable-jobs-r3.md) requires monotonically fenced generations checked at the effect boundary, reconciliation and denial of blind retries. **OPEN**, no verified Linux protection exists.
+- **RISK-029 — Socket peer vs actor authorization confusion:** a file permission or valid peer UID alone proves neither user mandate nor tenant scope. [Peer trust contract](../08-api-contracts/local-peer-trust-r3.md) requires independently checked authorization and replay resistance. **OPEN**, no authenticated service/transport is operational.
+
+Green static JSON/Markdown checks cannot close these risks or authorize a privileged operation. [Negative QA matrix](../13-tests-quality/r3-jobs-peer-gates.md).

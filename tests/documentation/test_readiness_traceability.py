@@ -61,7 +61,7 @@ class ReadinessTests(unittest.TestCase):
             for lang in ("fr", "en"):
                 path = ROOT / "DOCUMENTATION" / lang / "00-project-control" / kind
                 raw = path.read_text(encoding="utf-8")
-                self.assertIn(f"id={marker} revision=1 status=documented", raw)
+                self.assertIn(f"id={marker} revision=2 status=documented", raw)
                 lines = [line for line in raw.splitlines() if line.startswith("| " + token)]
                 actual = [line.split("|")[1].strip() for line in lines]
                 self.assertEqual(len(actual), len(expected), f"{path} invalid row count")
@@ -81,6 +81,18 @@ class ReadinessTests(unittest.TestCase):
             self.assertIn("documentation-readiness.md", text)
             self.assertIn("requirements-traceability.md", text)
             self.assertNotIn("IMPLEMENTATION CANDIDATE", text)
+
+    def test_r3_candidate_links_do_not_close_open_gaps(self):
+        for lang in ("fr", "en"):
+            matrix = (ROOT / "DOCUMENTATION" / lang / "00-project-control/requirements-traceability.md").read_text()
+            registry = (ROOT / "DOCUMENTATION" / lang / "00-project-control/documentation-readiness.md").read_text()
+            for link in ("../14-devops-releases/installer-lifecycle-r3.md",
+                         "../08-api-contracts/symfony-go-ipc-r3.md",
+                         "../13-tests-quality/r3-ipc-installer-gates.md"):
+                self.assertIn(link, matrix)
+            for gap_id in ("DOC-GAP-005", "DOC-GAP-006"):
+                self.assertIn(gap_id, registry)
+            self.assertIn("OPEN", registry)
 
     def test_evidence_and_authority_boundaries(self):
         for lang in ("fr", "en"):

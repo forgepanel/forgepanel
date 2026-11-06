@@ -1,9 +1,13 @@
-<!-- forgepanel-doc id=FP-13-PORTAL-ACCESS revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-13-PORTAL-ACCESS revision=2 status=specified -->
 # Test matrix — FORGE / PANEL access
 
 [Français](../../fr/13-tests-quality/portal-access-gates.md) · [QA](README.md) · [Portal contract](../07-interfaces-roles/portal-access-routing.md)
 
 **Status: PLANNED.** No case below has been run. The current repository contains neither an integrated Symfony runtime, a qualified HTTPS gateway nor a working customer Panel. IDs describe measurable test targets, not `PASS` results.
+
+## Static-only contract verification
+
+The [candidate JSON registry](../../../evidence/portal-access-registry-v1.json), [offline validator](../../../scripts/validate_portal_access_registry.py) and [negative mutation/traceability tests](../../../tests/documentation/test_portal_access_contract.py) run in documentation CI. **They do not execute any TEST-PORTAL-0001..0018 scenario**, which remains `PLANNED` pending a real application, TLS gateway and qualified VM.
 
 ## Required environment and evidence
 

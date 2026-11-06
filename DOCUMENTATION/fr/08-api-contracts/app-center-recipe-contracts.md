@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08-APP-RECIPE revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-08-APP-RECIPE revision=2 status=specified -->
 # App Center — contrats de recettes distincts et contrôles d'admission
 
 [English](../../en/08-api-contracts/app-center-recipe-contracts.md) · [Index API](README.md) · [Deux moteurs](../06-apps-recipes/app-center-engines.md)
@@ -19,6 +19,8 @@ Un `app_id` peut être commun aux deux, mais `variant_id` et `recipe_kind` dési
 Les fichiers [recette native fictive](../../../evidence/app-center-fixtures/native-cms.v1.json) et [recette conteneur fictive](../../../evidence/app-center-fixtures/container-worker.v1.json) utilisent **des identités inventées, des URL example.invalid sans résolution et des empreintes de forme seulement**. Ils ne constituent pas de véritables téléchargements approuvés. **Ne jamais installer, publier ni accorder de droits depuis ces exemples.**
 
 Le [validateur hors ligne](../../../scripts/validate_app_center_recipe.py) contrôle seulement la forme candidate et quelques invariants de refus. Il n'exécute aucune commande, n'utilise ni Docker/Podman ni SQL, ne télécharge rien, ne vérifie aucune signature et ne valide ni les quotas du serveur ni un droit d'installation. Il ne pourra **jamais** être la seule protection d'un système de production.
+
+**Limitation de l'exemple, pas du produit :** le validateur candidat hors ligne ne reconnaît actuellement que `PHP_FPM` pour les recettes natives synthétiques. Il n'annule **pas** les runtimes Node.js, Python ou autres envisagés par Q4. Chacun exige un handler approuvé, une isolation, un WebStack et des quotas compatibles ainsi que des tests VM avant activation. Le moteur **ONE-CLICK INSTALL entièrement gratuit** reste la cible ; cet exemple n'est pas un catalogue complet.
 
 ## Frontières futures des contrats et du cycle de vie
 

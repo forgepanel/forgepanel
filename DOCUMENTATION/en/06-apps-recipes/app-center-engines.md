@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-06-APP-CENTER-ENGINES revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-06-APP-CENTER-ENGINES revision=2 status=specified -->
 # ForgePanel App Center — separate native and container installation engines
 
 [Français](../../fr/06-apps-recipes/app-center-engines.md) · [Apps/Recipes index](README.md) · [Tests](../13-tests-quality/app-center-engine-gates.md)
@@ -62,7 +62,7 @@ The Core must not interpret recipes as **arbitrary shell commands**. Distinct ma
 
 ### Container manifest — proposed fields
 
-\`recipe_kind=container_stack\`, ID/app/version, qualified driver (\`docker\`/\`podman\`), OS/architecture compatibility, pinned image digests with trust policy, service topology, listener/port ownership, ingress/network, CPU/RAM/PIDs/I/O, image storage and volumes, UID/GID mapping, secret handling, capabilities, prohibited dangerous mounts, dependency startup order, health checks, upgrade/recovery and data-retention policy. A 1Panel \`docker-compose.yml\` is **research input**, not an executable ForgePanel manifest. Arbitrary Compose with host-root bind mounts or Docker socket access is denied by default.
+\`recipe_kind=container_stack\`, ID/app/version, qualified driver (\`docker\`/\`podman\`), OS/architecture compatibility, pinned image digests with trust policy, service topology, listener/port ownership, ingress/network, CPU/RAM/PIDs/I/O, image storage and volumes, UID/GID mapping, secret handling, capabilities, prohibited dangerous mounts, dependency startup order, health checks, upgrade/recovery and data-retention policy. A 1Panel \`docker-compose.yml\` is **research input**, not an executable ForgePanel manifest. Arbitrary Compose with host-root bind mounts or Docker socket access is denied by default. **Treat Compose YAML as untrusted executable policy**: `provider` may execute a host-side binary; `include`/`extends`, `env_file`, `secrets`/`configs` and relative paths may expose other files. Deny unsupported fields by default, validate/canonicalize path references and never execute unreviewed raw third-party Compose. [Docker Compose trust model](https://docs.docker.com/compose/trust-model/). **Podman Compose relies on an external Compose provider**; each actual engine/provider combination requires separate qualification. [Podman docs](https://docs.podman.io/en/latest/markdown/podman-compose.1.html).
 
 ### Jobs and recovery
 

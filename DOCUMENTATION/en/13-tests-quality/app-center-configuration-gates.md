@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13-APP-CONFIG revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-13-APP-CONFIG revision=2 status=specified -->
 # App Center Configuration Center — real-runtime acceptance gates
 
 [Français](../../fr/13-tests-quality/app-center-configuration-gates.md) · [QA](README.md) · [Inheritance specification](../02-architecture/app-center-config-inheritance.md) · [Q180/Q220](../00-project-control/decisions-q171-q220.md)
@@ -18,7 +18,7 @@
 | TEST-CONFIG-FP-0009 | Trusted host capability provenance | Host facts come from authenticated bounded agent with freshness/host binding, never client request | PLANNED |
 | TEST-CONFIG-FP-0010 | Plan vs apply isolation | Read-only simulation never allocates ports, runs jobs, mutates SQL/files or launches container | PLANNED |
 | TEST-CONFIG-FP-0011 | Q47 guarded apply | Plan validates dependencies, snapshot, actor approval, health and recover/compensate state | PLANNED |
-| TEST-CONFIG-FP-0012 | Port collision and recovery | 8446 FORGE/PANEL owners remain correct and 8447 protected; changes preserve fallback access | PLANNED |
+| TEST-CONFIG-FP-0012 | Port collision and recovery | FORGE port 8447 and PANEL port 8446 stay reserved; listener changes preserve fallback access | PLANNED |
 | TEST-CONFIG-FP-0013 | Signature and catalog policy | Unknown/signed-but-unreviewed recipe cannot bypass native/container policy or partner review | PLANNED |
 | TEST-CONFIG-FP-0014 | Optional consent/telemetry | Hub communication opt-ins separate and withdrawal does not block free native Core | PLANNED |
 | TEST-CONFIG-FP-0015 | Scope extension contract | Optional account/user presentation overrides cannot weaken server/plan safety or cross tenant boundaries | PLANNED |

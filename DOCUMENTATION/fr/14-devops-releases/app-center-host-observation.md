@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14-APP-HOST-HINTS revision=2 status=specified -->
+<!-- forgepanel-doc id=FP-14-APP-HOST-HINTS revision=3 status=specified -->
 # App Center — observation Linux Go en lecture seule, sans capacité certifiée
 
 [English](../../en/14-devops-releases/app-center-host-observation.md) · [DevOps](README.md) · [Sources](../../../tools/app-center-host-probe/README.md)
@@ -26,7 +26,7 @@ L'objet `visible_cgroup_root` ne contient que des **indices bruts** (`cpu_quota_
 
 ## Sources et tests
 
-[Module et mode d'emploi](../../../tools/app-center-host-probe/README.md) · [35 tests unitaires Go](../../../tools/app-center-host-probe/probe/probe_test.go) · [CI dédiée](../../../.github/workflows/app-center-host-probe.yml).
+[Module et mode d'emploi](../../../tools/app-center-host-probe/README.md) · [34 fonctions de test Go](../../../tools/app-center-host-probe/README.md) · [CI dédiée](../../../.github/workflows/app-center-host-probe.yml).
 
 Les tests injectent des lecteurs de fichiers fictifs et couvrent mémoire corrompue/trop grande, overflow entier, cgroups, binaire/symlink, erreurs d'accès, installations absentes, refus de fuite de secrets, chemins bornés et absence d'autorisation. La CI contrôle également `go test -race`, `go vet`, `gofmt`, le refus d'arguments et les constantes d'interdiction sur un runner Linux **qui n'est pas un serveur ForgePanel client certifié**.
 

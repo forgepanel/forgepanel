@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-11 revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-11 revision=5 status=documented -->
 # Design system and internationalization
 
 [Français](../../fr/11-design-system/README.md) · [Index](../README.md)
@@ -11,7 +11,7 @@ The frontend baseline is Twig with Symfony UX/Stimulus and selectively Turbo/Liv
 
 ## FORGE and PANEL interface isolation
 
-The target keeps distinct portal surfaces with separate paths, ports, sessions and assets: **FORGE `/forge`: 8447** and **PANEL `/panel`: 8446**, plus configurable HTTPS 443 virtual hosts. Each portal has independent header, sidebar and theme variables; reusable components remain contract- and permission-bound. CSS/JS bundles are isolated to avoid collisions and unauthorized loading. A mockup does not implement routing or RBAC. [Access contract](../07-interfaces-roles/portal-access-routing.md) · [Planned tests](../13-tests-quality/portal-access-gates.md).
+The target keeps distinct portal surfaces with separate paths, ports, sessions and assets: **FORGE `/forge`: 8447** and **PANEL `/panel`: 8446**, using the detected host IP and existing verified FQDN if any (no customizable domain or automatic 443 vhost). Each portal has independent header, sidebar and theme variables; reusable components remain contract- and permission-bound. CSS/JS bundles are isolated to avoid collisions and unauthorized loading. A mockup does not implement routing or RBAC. [Access contract](../07-interfaces-roles/portal-access-routing.md) · [Planned tests](../13-tests-quality/portal-access-gates.md).
 
 ## Required interaction states
 

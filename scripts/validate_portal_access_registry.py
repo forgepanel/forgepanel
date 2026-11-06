@@ -1,17 +1,38 @@
 #!/usr/bin/env python3
-"""Validate the proposed ForgePanel portal access registry (NOT live routing)."""
+"""Validate candidate ForgePanel portal discovery/access registry; no network or runtime effects."""
 from __future__ import annotations
 
 import json
-import re
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "evidence" / "portal-access-registry-v1.json"
+
 EXPECTED = {
     "FORGE": ("/forge", 8447, "server-administration"),
     "PANEL": ("/panel", 8446, "customer-hosting"),
+}
+SURFACE_FIELDS = frozenset({
+    "route_prefix", "direct_https_port", "address_source", "domain_policy", "purpose",
+})
+REQUIRED_DISCOVERY = {
+    "address_enumeration": "OS_INTERFACES_AND_ROUTING",
+    "include_ipv4": True,
+    "include_ipv6": True,
+    "exclude_loopback": True,
+    "verify_address_is_host_assigned_or_explicitly_reachable": True,
+    "do_not_assume_public_ip_from_private_interface": True,
+    "fqdn_candidate_source": "OS_HOSTNAME_AND_RESOLVER",
+    "fqdn_optional": True,
+    "fqdn_requires_forward_dns_validation": True,
+    "require_dns_ip_consistency": True,
+    "ipv6_url_uses_square_brackets": True,
+    "no_manually_entered_custom_domain": True,
+    "no_automatic_subdomain_creation": True,
+    "no_automatic_port_443_virtual_host": True,
+    "url_advertisement_requires_valid_tls": True,
+    "discovery_result_states": ["VERIFIED", "UNVERIFIED", "UNAVAILABLE"],
 }
 REQUIRED_SECURITY = (
     "tls_validation",
@@ -24,82 +45,63 @@ REQUIRED_SECURITY = (
     "no_generic_root_shell_endpoint",
     "core_operates_without_hub",
 )
-HOST_LABEL_RE = re.compile(r"[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?")
-
-def is_valid_example_hostname(host: str) -> bool:
-    labels = host.lower().split(".")
-    return (
-        len(host) <= 253
-        and len(labels) >= 2
-        and all(HOST_LABEL_RE.fullmatch(label) for label in labels)
-        and any(c.isalpha() for c in labels[-1])
-    )
 
 
 def validate_registry(data: Any) -> None:
-    """Reject contradictions in a documentation-only candidate; no system access."""
+    """Fail closed on changed policies or invented deployable defaults."""
     if not isinstance(data, dict):
         raise ValueError("Registry must be a JSON object")
-    if data.get("schema_version") != 1 or type(data.get("schema_version")) is not int:
+    if type(data.get("schema_version")) is not int or data["schema_version"] != 1:
         raise ValueError("Expected integer schema_version 1")
+    if type(data.get("draft_revision")) is not int or data["draft_revision"] != 2:
+        raise ValueError("Expected corrected candidate draft revision 2")
     if data.get("status") != "SPECIFIED_NOT_IMPLEMENTED":
-        raise ValueError("Only an unimplemented specification is described")
+        raise ValueError("Registry cannot claim a running panel")
 
     surfaces = data.get("surfaces")
     if not isinstance(surfaces, dict) or set(surfaces) != set(EXPECTED):
-        raise ValueError("Exactly FORGE and PANEL surfaces are required")
+        raise ValueError("Exactly FORGE and PANEL are required")
     seen_ports: set[int] = set()
-    seen_hosts: set[str] = set()
     for role, (prefix, port, purpose) in EXPECTED.items():
         spec = surfaces[role]
-        if not isinstance(spec, dict):
-            raise ValueError(f"{role} surface must be an object")
-        if spec.get("route_prefix") != prefix:
-            raise ValueError(f"Incorrect route prefix for {role}")
-        direct_port = spec.get("direct_https_port")
-        if type(direct_port) is not int or direct_port != port or direct_port in seen_ports:
-            raise ValueError(f"Incorrect or overlapping HTTPS port for {role}")
-        seen_ports.add(direct_port)
-        if type(spec.get("virtual_host_https_port")) is not int or spec["virtual_host_https_port"] != 443:
-            raise ValueError(f"Invalid virtual-host HTTPS port for {role}")
-        if spec.get("hostname_policy") != "CONFIGURABLE_PER_INSTALLATION":
-            raise ValueError(f"{role} hostname must remain configurable")
-        if spec.get("example_only") is not True:
-            raise ValueError(f"{role} hostname example is NOT a production default")
-        host = spec.get("example_hostname")
-        if not isinstance(host, str) or not is_valid_example_hostname(host):
-            raise ValueError(f"Invalid example hostname for {role}")
-        if host.lower() in seen_hosts:
-            raise ValueError("FORGE/PANEL example hosts must be distinct")
-        seen_hosts.add(host.lower())
-        if spec.get("purpose") != purpose:
-            raise ValueError(f"Incorrect audience scope for {role}")
+        if not isinstance(spec, dict) or set(spec) != SURFACE_FIELDS:
+            raise ValueError(f"{role} has missing/extra fields, including forbidden custom-domain settings")
+        if spec["route_prefix"] != prefix or spec["purpose"] != purpose:
+            raise ValueError(f"Wrong path/purpose for {role}")
+        current_port = spec["direct_https_port"]
+        if type(current_port) is not int or current_port != port or current_port in seen_ports:
+            raise ValueError(f"Wrong/duplicate port for {role}")
+        seen_ports.add(current_port)
+        if spec["address_source"] != "SYSTEM_DETECTED":
+            raise ValueError(f"{role} IP must be autodetected")
+        if spec["domain_policy"] != "DISCOVER_EXISTING_FQDN_IF_VERIFIED":
+            raise ValueError(f"{role} domain must be discovered, not user-customized")
 
+    discovery = data.get("discovery")
+    if not isinstance(discovery, dict) or discovery != REQUIRED_DISCOVERY:
+        raise ValueError("Discovery contract altered: no custom domains, guessing, or automatic 443")
     security = data.get("required_security")
-    if not isinstance(security, dict):
-        raise ValueError("Missing required security invariants")
-    if set(security) != set(REQUIRED_SECURITY):
+    if not isinstance(security, dict) or set(security) != set(REQUIRED_SECURITY):
         raise ValueError("Required security policy keys differ")
-    if any(security[name] is not True for name in REQUIRED_SECURITY):
+    if any(security[key] is not True for key in REQUIRED_SECURITY):
         raise ValueError("Cannot weaken security prerequisites")
-    expected_requirements = [f"PORTAL-FP-{i:04d}" for i in range(1, 13)]
-    if data.get("requirements") != expected_requirements:
-        raise ValueError("The twelve documented portal requirements must remain linked")
+    expected = [f"PORTAL-FP-{i:04d}" for i in range(1, 13)]
+    if data.get("requirements") != expected:
+        raise ValueError("The twelve portal requirements must remain traceable")
     unresolved = data.get("deployment_decisions_not_set")
-    if not isinstance(unresolved, list) or not all(isinstance(x, str) and x.strip() for x in unresolved):
+    if not isinstance(unresolved, list) or not unresolved:
         raise ValueError("Unresolved deployment details must remain visible")
-    if not unresolved:
-        raise ValueError("No production defaults have been decided")
+    if any(not isinstance(value, str) or not value.strip() for value in unresolved):
+        raise ValueError("Unresolved details must be non-empty strings")
 
 
 def main() -> int:
     try:
-        data = json.loads(REGISTRY.read_text(encoding="utf-8"))
-        validate_registry(data)
-    except (OSError, json.JSONDecodeError, ValueError) as exc:
-        print(f"FAIL: candidate portal registry: {exc}")
+        validate_registry(json.loads(REGISTRY.read_text(encoding="utf-8")))
+    except (OSError, ValueError, json.JSONDecodeError) as exc:
+        print(f"FAIL: offline portal discovery/access registry: {exc}")
         return 1
-    print("PASS: offline registry checks only; no Symfony route, TLS listener or security certification.")
+    print("PASS: candidate discovery/access contract only; no real IP/DNS/TLS probe or runtime qualification.")
     return 0
 
 

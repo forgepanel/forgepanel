@@ -40,7 +40,7 @@ class CandidatePhysicalBoundaries(unittest.TestCase):
                 self.assertIsNotNone(match, f"{lang}/{relative}")
                 versions.append(match.group(1))
                 self.assertIn("PLANNED" if prefix is None else "CANDIDATE", raw)
-                self.assertIn("R1", raw)
+                self.assertIn("SRC-03" if relative.startswith("09-database/") else "R1", raw)
                 self.assertIn("R2", raw)
                 if prefix:
                     actual = set(re.findall(rf"\b{re.escape(prefix)}\d{{4}}\b", raw))

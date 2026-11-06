@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DECISIONS revision=13 status=documented -->
+<!-- forgepanel-doc id=FP-00-DECISIONS revision=14 status=documented -->
 # Registre de décisions
 
 [English](../../en/00-project-control/decisions.md) · [Pilotage](README.md)
@@ -160,6 +160,8 @@ Les identifiants sources renvoient à l'[état initial](../19-audits-risks/basel
 | ADR-137 | Consentements séparés, seuils par catégorie/cohorte, agrégation, expurgation et protection anti-réidentification (Q168 C) | Q158/Q6 : pas de télémétrie forcée. Seuils configurables par donnée/cohorte, minimisation et protection contre recoupements ; santé locale et rapports manuels préservés sans Hub. |
 | ADR-138 | Transferts premium simples automatisés sous règles de risque versionnées, seconde approbation et secours sécurisé (Q169 C) | Q159/Q138/Q148 : identité, droits, org et challenge nonce vérifiés ; revue humaine et gel du transfert premium en cas de répétition, source perdue, incohérence ou compromission. Pas de moteur arbitraire par produit (Q159 D). |
 | ADR-139 | Avis sous JSON Schema versionné, signé, validé, avec rendus FR/EN synchronisés et historique (Q170 B) | Q160/Q150 : source canonique commune aux formes structurée et humaine, destinataires autorisés, notifications configurables et données sensibles protégées ; interopérabilité avancée option C non imposée. |
+
+| ADR-140 | Orientations produit Q171–Q220 explicitement approuvées (47 D ; Q174, Q194, Q200 C) | [Registre canonique des 50 décisions](decisions-q171-q220.md) et [réconciliation conditionnelle](reconciliation-q171-q220.md). Q1–Q170 conservées ; Q221+ ouvertes ; aucun code, test VM, valeur par défaut, fournisseur, API active, pouvoir Hub ou release approuvé par cette ADR. |
 
 ## Propositions remplacées ou non résolues
 

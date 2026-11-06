@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "status": "SPECIFIED_NOT_IMPLEMENTED",
+  "scope": "ForgePanel Core portal access; not a deployed listener or runtime configuration",
+  "owner_reference": "Owner-reiterated FORGE/PANEL route and port convention; 2026-11-06",
+  "surfaces": {
+    "FORGE": {
+      "route_prefix": "/forge",
+      "direct_https_port": 8447,
+      "virtual_host_https_port": 443,
+      "hostname_policy": "CONFIGURABLE_PER_INSTALLATION",
+      "example_hostname": "forge.ip-server.com",
+      "example_only": true,
+      "purpose": "server-administration"
+    },
+    "PANEL": {
+      "route_prefix": "/panel",
+      "direct_https_port": 8446,
+      "virtual_host_https_port": 443,
+      "hostname_policy": "CONFIGURABLE_PER_INSTALLATION",
+      "example_hostname": "panel.up-server.com",
+      "example_only": true,
+      "purpose": "customer-hosting"
+    }
+  },
+  "required_security": {
+    "tls_validation": true,
+    "exact_trusted_host_allowlist": true,
+    "distinct_sessions_and_cookie_names": true,
+    "independent_server_side_authorization": true,
+    "do_not_use_ports_as_cookie_boundary": true,
+    "trust_forwarded_headers_from_allowlisted_proxies_only": true,
+    "preserve_admin_recovery_during_listener_changes": true,
+    "no_generic_root_shell_endpoint": true,
+    "core_operates_without_hub": true
+  },
+  "deployment_decisions_not_set": [
+    "Concrete FQDNs and DNS zones for each installation",
+    "Certificate provider or verified IP-SAN certificate for direct IP HTTPS",
+    "Permanent session cookie names and trusted proxy CIDR values",
+    "Optional host root-path redirect policy",
+    "Listener implementation and dual-stack bind addresses",
+    "Any production exposure, OS qualification or release date"
+  ],
+  "requirements": [
+    "PORTAL-FP-0001",
+    "PORTAL-FP-0002",
+    "PORTAL-FP-0003",
+    "PORTAL-FP-0004",
+    "PORTAL-FP-0005",
+    "PORTAL-FP-0006",
+    "PORTAL-FP-0007",
+    "PORTAL-FP-0008",
+    "PORTAL-FP-0009",
+    "PORTAL-FP-0010",
+    "PORTAL-FP-0011",
+    "PORTAL-FP-0012"
+  ]
+}

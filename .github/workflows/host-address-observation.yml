@@ -42,6 +42,14 @@ jobs:
         run: |
           set -o pipefail
           go run ./cmd/forgepanel-host-observe | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d["schema_version"]==1; assert d["verified_access_urls"] == []; assert d["dns_verification"]=="NOT_EXECUTED"; assert d["tls_verification"]=="NOT_EXECUTED"; assert d["listener_verification"]=="NOT_EXECUTED"; assert d["public_reachability"]=="NOT_EXECUTED"; assert [(p["name"],p["path"],p["https_port"]) for p in d["portals"]]==[("FORGE","/forge",8447),("PANEL","/panel",8446)]; print("PASS: read-only observation, no certified endpoints")'
+      - name: Refuse accidental DNS lookups unless operator explicitly opts in
+        run: |
+          set +e
+          output=$(go run ./cmd/forgepanel-dns-observe 2>&1)
+          code=$?
+          set -e
+          [ "$code" -ne 0 ]
+          printf '%s' "$output" | grep -q 'usage: forgepanel-dns-observe --observe'
       - name: Refuse untrusted CLI arguments
         run: |
           set +e

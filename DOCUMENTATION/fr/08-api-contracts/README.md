@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-08 revision=12 status=documented -->
+<!-- forgepanel-doc id=FP-08 revision=13 status=documented -->
 # API et contrats
 
 [English](../../en/08-api-contracts/README.md) · [Index](../README.md)
+
+## App Center — liaison des preuves hôte/droits/politique et révisions
+
+Le [contrat candidat des quatre origines de preuves](app-center-admission-evidence.md) décrit comment un futur agent Go authentifié et le RBAC Symfony seront liés à la politique Core versionnée et à l'intention utilisateur non fiable. Les [tests de preuves hors ligne](../../../tests/documentation/test_app_center_evidence_binding.py) n'authentifient rien et n'autorisent jamais APPLY. [12 tests réels](../13-tests-quality/app-center-evidence-gates.md) restent **PLANNED / NON EXÉCUTÉS**.
 
 ## Prévisualisation candidate App Center
 

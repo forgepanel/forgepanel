@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-07-PORTALS revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-07-PORTALS revision=2 status=specified -->
 # FORGE / PANEL access contract — paths, domains and ports
 
 [Français](../../fr/07-interfaces-roles/portal-access-routing.md) · [Portals and roles](README.md) · [Tests](../13-tests-quality/portal-access-gates.md)
@@ -15,6 +15,8 @@
 Example hosts are replaceable by administrators within an explicit allowed-host policy. `<server-ip>` is illustrative: IPv4/IPv6 reachability and a valid certificate covering the IP must be verified. Secure HTTPS access must never require disabling TLS verification. Both 443 virtual hosts require SNI/Host routing **and** explicit host allowlisting. Direct ports must remain separate from tenant website listeners.
 
 **Proposed refinement, subject to qualification:** requests to `/` on the configured FORGE host may redirect to `/forge` and `/` on the configured PANEL host to `/panel`, only once installation and routing are validated. Do not create cross-portal redirects or claim `/` on a shared unrelated hostname.
+
+The [detailed API/ingress contract](../08-api-contracts/portal-route-boundary.md) and [candidate JSON registry](../../../evidence/portal-access-registry-v1.json) specify host/port/path rejection. Hostnames illustrate a dedicated-host access alternative; exact behavior for their root path `/` remains to be qualified.
 
 ## Routing and security requirements
 

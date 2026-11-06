@@ -38,6 +38,8 @@ jobs:
         run: python3 tests/documentation/test_r3_durable_jobs_peer.py -v
       - name: Validate R3 candidate physical DB, Linux identities and execution guards
         run: python3 tests/documentation/test_r3_physical_boundaries.py -v
+      - name: Check R3 job admission, restore fencing, inbox and tenant scope audit
+        run: python3 tests/documentation/test_r3_job_integrity_review.py -v
       - name: Test source intake and private staging with synthetic fixtures
         run: python3 -m unittest discover -s tests/source_intake -p 'test_*.py' -v
       - name: Validate documentation

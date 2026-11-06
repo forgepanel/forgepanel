@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import copy
 import json
+import re
 import sys
 import unittest
 from pathlib import Path
@@ -307,6 +308,20 @@ class AppCenterCandidateEvidenceTests(unittest.TestCase):
             self.assertIn("Q220", text)
             self.assertIn("SYNTHETIC_UNVERIFIED", text)
             self.assertIn("NOT EXECUTED" if lang == "en" else "NON EXÉCUTÉ", text)
+
+    def test_planned_real_evidence_gates_have_exact_bilingual_parity(self):
+        expected = {f"TEST-EVID-FP-{n:04d}" for n in range(1, 13)}
+        for lang in ("fr", "en"):
+            doc = (ROOT / "DOCUMENTATION" / lang /
+                   "13-tests-quality/app-center-evidence-gates.md").read_text(encoding="utf-8")
+            self.assertTrue(doc.startswith(
+                "<!-- forgepanel-doc id=FP-13-APP-EVIDENCE revision=1 status=specified -->"
+            ))
+            ids = re.findall(r"^\\| (TEST-EVID-FP-\\d{4}) \\|", doc, re.M)
+            self.assertEqual(set(ids), expected)
+            self.assertEqual(len(ids), 12)
+            self.assertIn("PLANNED", doc)
+            self.assertNotIn("| PASS |", doc)
 
 
 if __name__ == "__main__":

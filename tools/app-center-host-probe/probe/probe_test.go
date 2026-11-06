@@ -59,6 +59,10 @@ func ready() *fakeSource {
 		files: map[string][]byte{
 			meminfoPath:           []byte("MemTotal: 8388608 kB\nMemFree: 123 kB\nMemAvailable: 4194304 kB\n"),
 			cgroupControllersPath: []byte("memory io cpu pids cpu"),
+			visibleCPUQuotaPath: []byte("250000 100000\n"),
+			visibleMemoryMaxPath: []byte("4096\n"),
+			visibleMemoryCurrentPath: []byte("512\n"),
+			visiblePidsMaxPath: []byte("max\n"),
 		},
 		stats: map[string]fs.FileInfo{
 			dockerPaths[0]: fakeInfo{mode: 0755},
@@ -85,11 +89,22 @@ func TestReadOnlyRealisticObservation(t *testing.T) {
 	if r.DockerBinaryCandidate != "EXECUTABLE_FILE_UNVERIFIED" || r.PodmanBinaryCandidate != "SYMLINK_UNVERIFIED" {
 		t.Fatal(r)
 	}
-	want := []string{meminfoPath, cgroupControllersPath, dockerPaths[0], podmanPaths[0]}
+	if r.VisibleCgroupRoot.ObservationScope != "VISIBLE_MOUNT_ROOT_ONLY_UNVERIFIED" ||
+		r.VisibleCgroupRoot.CPUQuotaState != "NUMERIC_TOKEN_UNVERIFIED" ||
+		r.VisibleCgroupRoot.CPUQuotaMicrosecondsHint != 250000 ||
+		r.VisibleCgroupRoot.CPUPeriodMicrosecondsHint != 100000 ||
+		r.VisibleCgroupRoot.MemoryMaxState != "NUMERIC_TOKEN_UNVERIFIED" ||
+		r.VisibleCgroupRoot.MemoryLimitBytesHint != 4096 ||
+		r.VisibleCgroupRoot.MemoryCurrentState != "NUMERIC_TOKEN_UNVERIFIED" ||
+		r.VisibleCgroupRoot.MemoryUsageBytesHint != 512 ||
+		r.VisibleCgroupRoot.PIDsMaxState != "MAX_TOKEN_UNVERIFIED" {
+		t.Fatal("cgroup root hints must remain unverified", r.VisibleCgroupRoot)
+	}
+	want := []string{meminfoPath, cgroupControllersPath, visibleCPUQuotaPath, visibleMemoryMaxPath, visibleMemoryCurrentPath, visiblePidsMaxPath, dockerPaths[0], podmanPaths[0]}
 	if !reflect.DeepEqual(src.reads, want) {
 		t.Fatalf("unapproved reads %v", src.reads)
 	}
-	if src.bounds[meminfoPath] != maxMeminfoBytes || src.bounds[cgroupControllersPath] != maxCgroupBytes {
+	if src.bounds[meminfoPath] != maxMeminfoBytes || src.bounds[cgroupControllersPath] != maxCgroupBytes || src.bounds[visibleCPUQuotaPath] != maxCgroupTokenBytes || src.bounds[visibleMemoryMaxPath] != maxCgroupTokenBytes {
 		t.Fatal(src.bounds)
 	}
 	assertNoClaims(t, r)

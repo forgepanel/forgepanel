@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08-APP-PREVIEW revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-08-APP-PREVIEW revision=2 status=specified -->
 # App Center — offline installation plan preview, two engines
 
 [Français](../../fr/08-api-contracts/app-center-preview-contract.md) · [Recipe contracts](app-center-recipe-contracts.md) · [App Center](../06-apps-recipes/app-center-engines.md)
@@ -7,11 +7,17 @@
 
 ## Typed preview sequence
 
-The existing [candidate recipe validator](../../../scripts/validate_app_center_recipe.py) first rejects unknown or mixed `recipe_kind` fields and unreviewed execution syntax. The preview validates the **entire synthetic input structure**: fake host ID, list of candidate owned-site IDs, available PHP-FPM/database engines, available container drivers and hypothetical CPU/RAM/PID budgets. The candidate request carries a target site, requested host TCP ports and an informational `hub_available` flag; it **never grants authorization** and contains no credentials or custom scripts.
+The existing [candidate recipe validator](../../../scripts/validate_app_center_recipe.py) first rejects unknown or mixed `recipe_kind` fields and unreviewed execution syntax. The preview now validates **three independent synthetic inputs**: (1) server capabilities (host ID, PHP/SQL/driver availability and hypothetical CPU/RAM/PID/port state), (2) a separate fake **Core authorization context** (actor, tenant, host scope, owned-site claims and container-action claim), and (3) a **client request** (host/tenant/site references, requested ports and informational `hub_available`). None is real authenticated evidence. The Core, not the Linux host capability agent or the client, must determine actual tenant permissions. See the [security trust-boundary review](../10-security/app-center-admission-trust-boundary.md).
 
 - **ONE-CLICK INSTALL, `native_script`:** simulate checking owned-site scope, PHP-FPM availability and native database compatibility; show proposed file/quota and backup/restore check steps. No Docker/Podman presence and no Hub entitlement is needed. This fixture covers PHP-FPM only; it does **not** cancel the previously approved Node.js/Python native-runtime targets.
 - **CONTAINER APPS, `container_stack`:** check the exact declared Docker **or** Podman driver and **separate synthetic** CPU, RAM and PID budgets; list image digest, network/volume and recovery preview steps. A Docker-only fixture does not silently switch to Podman. No image is pulled and no stack launched.
 - **Both:** if the target site is absent from the synthetic list, report a scope blocker **without claiming real ownership verification**. Requested host-port publication is never automatically approved: ports 8447 (FORGE) and 8446 (PANEL) are hard-reserved even if omitted from host facts; other reserved/claimed ports are blocked, and unclaimed ports remain subject to an unapproved exposure policy.
+
+## Distinct host, authorization and request identity checks
+
+The [separate mock Core authorization fixture](../../../evidence/app-center-fixtures/authorization.synthetic.json) now holds `actor_id`, `tenant_id`, `host_id`, `authorized_site_ids` and `container_permission_claimed`. The [host fixture](../../../evidence/app-center-fixtures/host-capabilities.synthetic.json) no longer carries permissions. The [request fixture](../../../evidence/app-center-fixtures/install-request.synthetic.json) carries only client intent and host/tenant/site references.
+
+A host or tenant reference mismatch produces `HOST_SCOPE_MISMATCH` or `TENANT_SCOPE_MISMATCH`; a site not present in the mock authorization data yields `SITE_OWNERSHIP_UNVERIFIED`. Those are **synthetic consistency blockers only**. The output's `input_trust` explicitly reads `SYNTHETIC_UNVERIFIED` for host and authorization, `UNTRUSTED_CANDIDATE` for the request; real authorization flags remain false. [Security trust-boundary specification](../10-security/app-center-admission-trust-boundary.md).
 
 ## Output interpretation
 

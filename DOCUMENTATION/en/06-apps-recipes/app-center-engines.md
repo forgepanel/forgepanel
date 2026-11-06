@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-06-APP-CENTER-ENGINES revision=3 status=specified -->
+<!-- forgepanel-doc id=FP-06-APP-CENTER-ENGINES revision=4 status=specified -->
 # ForgePanel App Center — separate native and container installation engines
 
 [Français](../../fr/06-apps-recipes/app-center-engines.md) · [Apps/Recipes index](README.md) · [Tests](../13-tests-quality/app-center-engine-gates.md)
@@ -67,6 +67,10 @@ The Core must not interpret recipes as **arbitrary shell commands**. Distinct ma
 ### Jobs and recovery
 
 Each engine independently applies `DRAFT → PREFLIGHT → APPROVAL_REQUIRED (when applicable) → STAGED → APPLYING → VERIFYING → SUCCEEDED/FAILED/RECOVERY_REQUIRED`. A durable correlated job and observed state are needed: HTTP acknowledgement or running containers alone is not successful application health. SQL/volume migrations can be irreversible: disclose risks, preserve customer data and test recovery. **Uninstall app is not permission to delete retained data/backups.**
+
+## Non-executable installer preview
+
+A [candidate-only synthetic preflight preview](../08-api-contracts/app-center-preview-contract.md) now demonstrates **separate** native/PHP and container/CPU/RAM/PID compatibility checks, including fail-closed protection of ports 8447/8446. This prototype accepts neither real host authority nor a production install action, and never confers Hub entitlements. It does not change the two-engine decision or the R1–R4 delivery sequence.
 
 ## Candidate access boundaries
 

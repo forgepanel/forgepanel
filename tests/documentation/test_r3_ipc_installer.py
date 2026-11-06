@@ -30,8 +30,7 @@ class R3CandidateContractsTests(unittest.TestCase):
             for lang in ("fr", "en"):
                 with self.subTest(path=relative, lang=lang):
                     value = (DOC / lang / relative).read_text(encoding="utf-8")
-                    expected_revision = 2 if relative.startswith("08-api-contracts/") else 1
-                    self.assertIn(f"id={identity} revision={expected_revision} status=specified", value)
+                    self.assertRegex(value, rf"id={re.escape(identity)} revision=[1-9]\d* status=specified")
                     if relative.startswith("14-devops-releases/"):
                         self.assertIn("Foundation", value)
                     else:

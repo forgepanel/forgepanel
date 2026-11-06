@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-11 revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-11 revision=5 status=documented -->
 # Design system et internationalisation
 
 [English](../../en/11-design-system/README.md) · [Index](../README.md)
@@ -11,7 +11,7 @@ La référence frontend est Twig avec Symfony UX/Stimulus et Turbo/Live Componen
 
 ## Isolation des interfaces FORGE et PANEL
 
-La cible conserve deux surfaces avec préfixes, ports, sessions et assets séparés : **FORGE `/forge` : 8447** et **PANEL `/panel` : 8446**, avec hôtes HTTPS 443 configurables. Chaque espace dispose de son header, de sa sidebar et de ses variables de thème propres ; des composants réutilisables restent soumis à leurs contrats et aux permissions. Les bundles CSS/JS sont isolés pour éviter collisions et chargements non autorisés. Les maquettes n'apportent ni route active, ni isolation RBAC. [Contrat d'accès](../07-interfaces-roles/portal-access-routing.md) · [Tests planifiés](../13-tests-quality/portal-access-gates.md).
+La cible conserve deux surfaces avec préfixes, ports, sessions et assets séparés : **FORGE `/forge` : 8447** et **PANEL `/panel` : 8446**, avec IP détectée et éventuel FQDN vérifié (aucune saisie de domaine personnalisé ni vhost 443 automatique). Chaque espace dispose de son header, de sa sidebar et de ses variables de thème propres ; des composants réutilisables restent soumis à leurs contrats et aux permissions. Les bundles CSS/JS sont isolés pour éviter collisions et chargements non autorisés. Les maquettes n'apportent ni route active, ni isolation RBAC. [Contrat d'accès](../07-interfaces-roles/portal-access-routing.md) · [Tests planifiés](../13-tests-quality/portal-access-gates.md).
 
 ## États d'interaction requis
 

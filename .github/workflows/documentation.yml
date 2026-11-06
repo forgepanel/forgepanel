@@ -44,6 +44,11 @@ jobs:
         run: python3 -m unittest discover -s tests/source_intake -p 'test_*.py' -v
       - name: Validate App Center free native versus container separation contracts
         run: python3 tests/documentation/test_app_center_separation.py -v
+      - name: Validate candidate-only native and container recipe envelopes
+        run: |
+          python3 tests/documentation/test_app_center_recipe_contracts.py -v
+          python3 scripts/validate_app_center_recipe.py --fixture native
+          python3 scripts/validate_app_center_recipe.py --fixture container
       - name: Validate documentation
         run: python3 scripts/check_documentation.py
       - name: Package the documentation snapshot

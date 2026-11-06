@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=15 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=16 status=documented -->
 # Installation, Git promotion and releases
 
 [Français](../../fr/14-devops-releases/README.md) · [Index](../README.md)
@@ -80,3 +80,7 @@ The standalone Go [R3 Image Admission](kvm-image-admission.md) tool read-only ve
 ## R3 — Preparatory private QCOW2 staging
 
 After [KVM host observation](kvm-host-probe.md) and [SHA-256 admission](kvm-image-admission.md), [verified private staging](kvm-image-staging.md) copies pinned image bytes into a **fresh per-run 0700 directory** as nonroot. The 0400 copy/receipt are re-hashed and bind versioned policy/request digests, but no guest is booted, durable immutability or real quotas enforced, or report signed. Failed partial directories require controlled manual cleanup. R3, Q152/Q162, R1 and R2 gates remain unqualified.
+
+## R3 — Secure installer lifecycle candidate contract
+
+[R3 installer lifecycle](installer-lifecycle-r3.md) specifies `INST-FP-0001..0012`, publisher trust/signatures/revocation/anti-rollback, per-OS VM qualification and `DRAFT → PLAN → PREFLIGHT → SNAPSHOT → STAGE → APPLY → VERIFY → COMMIT` or `RECOVER`, subject to Q132 critical vetoes. Candidate [ACT-FP-0005/0007](../../evidence/typed-agent-operations-v1.json) remain **blocked**: no working `install apply`, installation URL, signed package or privileged executor is supplied. [24 planned R3 scenarios](../13-tests-quality/r3-ipc-installer-gates.md).

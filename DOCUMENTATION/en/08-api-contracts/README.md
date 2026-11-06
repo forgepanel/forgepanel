@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08 revision=6 status=documented -->
+<!-- forgepanel-doc id=FP-08 revision=7 status=documented -->
 # APIs and contracts
 
 [Français](../../fr/08-api-contracts/README.md) · [Index](../README.md)
@@ -48,3 +48,7 @@ Specify an operation envelope with version, operation ID, actor/scope, target re
 Version compatibility and migration tests precede any new public API. Proposed endpoints from earlier conversations are examples, not published contracts.
 
 [Core](../03-core/README.md) · [Database](../09-database/README.md)
+
+## R3 — Candidate typed Symfony ↔ Go IPC contract
+
+[R3 IPC contract](symfony-go-ipc-r3.md) defines `IPC-FP-0001..0012`: peer authentication, independent RBAC/tenant enforcement, allowlisted actions, typed request/response, errors, idempotency, durable jobs, locks, Q47 lifecycle and recovery. The [seven candidate operations](../../evidence/typed-agent-operations-v1.json), [request](../../evidence/candidate-ipc-request-v1.schema.json) and [response](../../evidence/candidate-ipc-response-v1.schema.json) JSON Schemas are **documentation only, not active**. Two privileged operations remain **`BLOCKED_UNTIL_QUALIFIED`**; no `shell.exec` or new public endpoint. [R3 tests](../13-tests-quality/r3-ipc-installer-gates.md).

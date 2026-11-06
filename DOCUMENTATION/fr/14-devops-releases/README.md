@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=15 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=16 status=documented -->
 # Installation, promotion Git et releases
 
 [English](../../en/14-devops-releases/README.md) · [Index](../README.md)
@@ -80,3 +80,7 @@ Le module Go autonome [R3 Image Admission](kvm-image-admission.md) vérifie en l
 ## R3 — Copie privée d’image QCOW2 préparatoire
 
 Après la [sonde KVM](kvm-host-probe.md) et [l’admission SHA-256](kvm-image-admission.md), le nouveau [staging privé vérifié](kvm-image-staging.md) copie une image épinglée dans un **nouveau répertoire 0700 par essai**, sous utilisateur non-root. La copie et son reçu 0400 sont re-hashés et portent la politique et la demande versionnées ; aucune VM n’est lancée, aucune immutabilité durable ni quota système imposé, aucun rapport signé. Les dossiers partiels en échec exigent nettoyage manuel contrôlé. R3, Q152/Q162, R1 et R2 restent non qualifiés.
+
+## R3 — Contrat de cycle d'installation sécurisé (candidat)
+
+Le [cycle d'installation R3](installer-lifecycle-r3.md) détaille `INST-FP-0001..0012`, la provenance des artefacts, signatures/révocation/anti-rollback, la vérification OS par VM, `DRAFT → PLAN → PREFLIGHT → SNAPSHOT → STAGE → APPLY → VERIFY → COMMIT` ou `RECOVER` et les veto de sécurité Q132. Les opérations [ACT-FP-0005/0007](../../evidence/typed-agent-operations-v1.json) demeurent **bloquées** : aucun `install apply` fonctionnel, URL de bootstrap, package signé ou exécuteur root n'est fourni. [24 cas R3 planifiés](../13-tests-quality/r3-ipc-installer-gates.md).

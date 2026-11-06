@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-13 revision=27 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=28 status=documented -->
 # Tests, quality and definition of done
 
 [Français](../../fr/13-tests-quality/README.md) · [Index](../README.md)
+
+## App Center — host/RBAC/policy/request evidence binding
+
+The [candidate-only evidence checker](../../../scripts/check_app_center_candidate_evidence.py) and its [negative offline tests](../../../tests/documentation/test_app_center_evidence_binding.py) demonstrate denial of stale/mismatched fictional snapshots, foreign tenant/actor and protected ports. The [12 live host/Symfony/Go evidence qualification cases](app-center-evidence-gates.md) are **PLANNED**, not PASS; fixtures are not host attestations, signed policies or verified authorization.
 
 ## Q171–Q220 owner decisions: planned qualification, not PASS
 

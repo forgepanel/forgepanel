@@ -1,9 +1,9 @@
-<!-- forgepanel-doc id=FP-06-APP-CENTER-ENGINES revision=4 status=specified -->
+<!-- forgepanel-doc id=FP-06-APP-CENTER-ENGINES revision=5 status=specified -->
 # ForgePanel App Center — separate native and container installation engines
 
 [Français](../../fr/06-apps-recipes/app-center-engines.md) · [Apps/Recipes index](README.md) · [Tests](../13-tests-quality/app-center-engine-gates.md)
 
-**Status: SPECIFIED / TECHNICAL DRAFT.** On **6 November 2026** the owner confirmed **two independent App Center families** and an entirely free **ONE-CLICK INSTALL** engine. This direction complements Q2/Q50 (free Core), Q4 (customer runtimes), Q8/Q53 (official and reviewed partner catalog), Q47 (plan/validate/recover), Q51 (independent Docker and Podman drivers) and Q81–Q110 (PHP, databases, staging and quotas). It does **not** approve every technical candidate below or imply a working installer. Q171+ remain unanswered.
+**Status: SPECIFIED / TECHNICAL DRAFT.** On **6 November 2026** the owner confirmed **two independent App Center families** and an entirely free **ONE-CLICK INSTALL** engine. This direction complements Q2/Q50 (free Core), Q4 (customer runtimes), Q8/Q53 (official and reviewed partner catalog), Q47 (plan/validate/recover), Q51 (independent Docker and Podman drivers) and Q81–Q110 (PHP, databases, staging and quotas). It does **not** approve every technical candidate below or imply a working installer. Q171–Q220 are now owner-approved product choices; Q221+ remain open. [Confirmed register](../00-project-control/decisions-q171-q220.md). Exact technical thresholds and qualification remain separately open.
 
 ## Confirmed product rules
 

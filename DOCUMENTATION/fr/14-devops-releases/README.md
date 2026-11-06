@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-14 revision=17 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=18 status=documented -->
 # Installation, promotion Git et releases
 
 [English](../../en/14-devops-releases/README.md) · [Index](../README.md)
+
+## Indices Linux App Center en lecture seule (Go autonome)
+
+La [sonde Go non privilégiée](app-center-host-observation.md) lit de façon bornée `/proc/meminfo`, les contrôleurs cgroups v2 et la présence d'exécutables Docker/Podman à chemins fixes. Elle relève des **indices OS réels mais NON VÉRIFIÉS**, jamais des ressources client réservable, un pilote certifié ou une permission d'installation. [Code et tests Go](../../../tools/app-center-host-probe/README.md), [CI](../../../.github/workflows/app-center-host-probe.yml). Les sources Foundation sont absentes du Core et le véritable lien authentifié Symfony/Go reste à réaliser.
 
 ## Workflow Git
 

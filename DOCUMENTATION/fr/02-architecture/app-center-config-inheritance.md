@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-APP-CONFIG revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-02-APP-CONFIG revision=2 status=specified -->
 # App Center — Q180/Q220, héritage Configuration Center et règles immuables
 
 [English](../../en/02-architecture/app-center-config-inheritance.md) · [Moteur de configuration](configuration-engine.md) · [QA](../13-tests-quality/app-center-configuration-gates.md) · [Q171–Q220 approuvées](../00-project-control/decisions-q171-q220.md)
@@ -50,6 +50,10 @@ L'outil Python ne lit qu'une fiche embarquée ; aucun réseau, SQL, secret de pr
 Les futures familles comprennent : versions et qualification des scripts natifs, catalogue local/cache/signatures, Docker vs Podman par hôte, CPU/RAM/PIDs/volumes, exposition réseau, WAF détection/blocage, antivirus/quarantaine, mises à jour progressives, rétention, secrets/émetteurs, notifications et placements sponsorisés facultatifs. **Aucun prix, fournisseur, seuil, durée de rétention ni activation par défaut n'est fixé ici.** La gratuité du moteur natif ne rend pas toutes les applications tierces gratuites.
 
 Les changements affectant Linux/données suivent Q47 **DRAFT → PLAN/DIFF → PREFLIGHT → SNAPSHOT → APPLY → VERIFY → COMMIT/RECOVER**, avec contrôle acteur/scope, audit et version. Une simulation UI ne doit jamais lancer APPLY. Les effets privilégiés passent par des opérations Go typées limitées, sans `shell.exec`. Concurrence, révisions périmées, verrous et jobs durables nécessitent des contrats API/IPC et DB validés séparément.
+
+## Preuves requises à la future frontière APPLY
+
+Le [contrat candidat de liaison des preuves](../08-api-contracts/app-center-admission-evidence.md) distingue **quatre sources** : observation Linux authentifiée par agent, droits acteur/tenant/site Symfony, révision de politique effective Core et demande client non fiable. Le [contrôleur hors ligne](../../../scripts/check_app_center_candidate_evidence.py) compare des **horodatages et révisions fictifs**, sans établir la provenance ni autoriser une action. Ni les métadonnées Hub ni l'aperçu UI ne peuvent remplacer ces preuves ; les [12 tests réels hôte/RBAC/politique](../13-tests-quality/app-center-evidence-gates.md) restent PLANNED.
 
 ## Revue et preuves
 

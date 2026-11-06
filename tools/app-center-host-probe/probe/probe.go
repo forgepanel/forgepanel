@@ -50,31 +50,31 @@ func (OSSource) ReadLimited(path string, maxBytes int64) ([]byte, error) {
 func (OSSource) Lstat(path string) (fs.FileInfo, error) { return os.Lstat(path) }
 
 type Report struct {
-	SchemaVersion              int      `json:"schema_version"`
-	ProbeName                  string   `json:"probe_name"`
-	RuntimeOS                  string   `json:"runtime_os"`
-	RuntimeArch                string   `json:"runtime_arch"`
-	LogicalCPUCountHint        int      `json:"logical_cpu_count_hint"`
-	MemoryTotalBytesHint       uint64   `json:"memory_total_bytes_hint"`
-	MemoryAvailableBytesHint   uint64   `json:"memory_available_bytes_hint"`
-	MemoryObservation          string   `json:"memory_observation"`
-	CgroupV2Controllers        []string `json:"cgroup_v2_controllers"`
-	CgroupObservation          string   `json:"cgroup_observation"`
+	SchemaVersion              int                    `json:"schema_version"`
+	ProbeName                  string                 `json:"probe_name"`
+	RuntimeOS                  string                 `json:"runtime_os"`
+	RuntimeArch                string                 `json:"runtime_arch"`
+	LogicalCPUCountHint        int                    `json:"logical_cpu_count_hint"`
+	MemoryTotalBytesHint       uint64                 `json:"memory_total_bytes_hint"`
+	MemoryAvailableBytesHint   uint64                 `json:"memory_available_bytes_hint"`
+	MemoryObservation          string                 `json:"memory_observation"`
+	CgroupV2Controllers        []string               `json:"cgroup_v2_controllers"`
+	CgroupObservation          string                 `json:"cgroup_observation"`
 	VisibleCgroupRoot          VisibleCgroupRootHints `json:"visible_cgroup_root"`
-	DockerBinaryCandidate      string   `json:"docker_binary_candidate"`
-	PodmanBinaryCandidate      string   `json:"podman_binary_candidate"`
-	ObservationStatus          string   `json:"observation_status"`
-	Warnings                   []string `json:"warnings"`
-	DriverQualification        string   `json:"driver_qualification"`
-	QualifiedContainerDrivers  []string `json:"qualified_container_drivers"`
-	HostIdentityVerified       bool     `json:"host_identity_verified"`
-	ActorAuthorizationVerified bool     `json:"actor_authorization_verified"`
-	HostCapacityBudgetVerified bool     `json:"host_capacity_budget_verified"`
-	CgroupLimitsEnforced       bool     `json:"cgroup_limits_enforced"`
-	ContainerRuntimeTested     bool     `json:"container_runtime_tested"`
-	ReportSigned               bool     `json:"report_signed"`
-	LinuxExecutionAuthorized   bool     `json:"linux_execution_authorized"`
-	InstallApplyAvailable      bool     `json:"install_apply_available"`
+	DockerBinaryCandidate      string                 `json:"docker_binary_candidate"`
+	PodmanBinaryCandidate      string                 `json:"podman_binary_candidate"`
+	ObservationStatus          string                 `json:"observation_status"`
+	Warnings                   []string               `json:"warnings"`
+	DriverQualification        string                 `json:"driver_qualification"`
+	QualifiedContainerDrivers  []string               `json:"qualified_container_drivers"`
+	HostIdentityVerified       bool                   `json:"host_identity_verified"`
+	ActorAuthorizationVerified bool                   `json:"actor_authorization_verified"`
+	HostCapacityBudgetVerified bool                   `json:"host_capacity_budget_verified"`
+	CgroupLimitsEnforced       bool                   `json:"cgroup_limits_enforced"`
+	ContainerRuntimeTested     bool                   `json:"container_runtime_tested"`
+	ReportSigned               bool                   `json:"report_signed"`
+	LinuxExecutionAuthorized   bool                   `json:"linux_execution_authorized"`
+	InstallApplyAvailable      bool                   `json:"install_apply_available"`
 }
 
 // parseMeminfo accepts exact MemTotal/MemAvailable kB lines, rejecting

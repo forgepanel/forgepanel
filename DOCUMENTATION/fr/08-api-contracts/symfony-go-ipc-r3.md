@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08-R3-IPC revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-08-R3-IPC revision=2 status=specified -->
 # R3 — Contrats candidats Symfony ↔ agent Go : IPC, autorisation et opérations typées
 
 [English](../../en/08-api-contracts/symfony-go-ipc-r3.md) · [API](README.md) · [Installateur R3](../14-devops-releases/installer-lifecycle-r3.md) · [QA R3](../13-tests-quality/r3-ipc-installer-gates.md)
@@ -27,6 +27,8 @@ Hub privé ── client externe facultatif et limité ──> contrats Core pub
 
 ## Enveloppes candidates — schémas à ratifier
 
+Deux **JSON Schema Draft 2020-12 candidats** précisent l'enveloppe d'une [requête typée](../../evidence/candidate-ipc-request-v1.schema.json) et d'une [réponse/admission/job](../../evidence/candidate-ipc-response-v1.schema.json). Ils refusent les champs inconnus et imposent un payload typé par nom d'opération ; **la validation de schéma ne remplace ni l'authentification du pair ni une autorisation Linux**, et ces fichiers ne sont pas intégrés à un endpoint. Les opérations privilégiées demeurent bloquées dans le registre même si leur forme JSON est valide.
+
 **IPC-FP-0005 — Requête.** Toute demande porte au minimum : `contract_version`, `operation_id` **dans le registre**, `request_id`, `correlation_id`, `idempotency_key`, acteur/tenant/cible vérifiables, `expected_revision`, `policy_revision`, `deadline`, et **payload typé propre à l'opération**. Le canal ne transmet pas de mots de passe ni de secrets bruts ; seuls identifiants de références protégées sont permis. Les noms et types ci-dessus sont **candidats**, pas un endpoint disponible.
 
 **IPC-FP-0006 — Réponse et erreurs.** Réponse typée `ACCEPTED`, `DENIED` ou `REJECTED` pour l'admission, et statut durable du job indépendant : `QUEUED`, `RUNNING`, `VERIFYING`, `SUCCEEDED`, `FAILED`, `COMPENSATION_REQUIRED`, `BLOCKED`. Aucune réponse `ACCEPTED` ne signifie que Linux a été modifié ou que `VERIFY` est passé. Nomenclature candidate des erreurs : `UNAUTHENTICATED`, `FORBIDDEN`, `SCOPE_DENIED`, `INVALID_INPUT`, `STALE_REVISION`, `IDEMPOTENCY_CONFLICT`, `RESOURCE_LOCKED`, `CAPABILITY_UNAVAILABLE`, `TRUST_FAILURE`, `TIMEOUT`, `DEPENDENCY_UNAVAILABLE`, `PARTIAL_FAILURE`, `RECOVERY_REQUIRED`. Ne jamais rendre une stack trace/chaîne SQL ou un secret au client.
@@ -51,9 +53,9 @@ Hub privé ── client externe facultatif et limité ──> contrats Core pub
 | ACT-FP-0002 | `artifact.signature.verify` | Lecture seule | clé de confiance indépendante, contenu signé + SHA | CANDIDATE |
 | ACT-FP-0003 | `installer.plan.compile` | Lecture seule | schéma/politique/OS/compatibilité vérifiés | CANDIDATE |
 | ACT-FP-0004 | `installer.stage_verified_packages` | Staging borné | manifeste vérifié, répertoire privé et quotas | CANDIDATE |
-| ACT-FP-0005 | `installer.activate_signed_generation` | Priviliégié borné, futur | plan signé/autorisé, backup, verrou, approbations, environnement qualifié | **NON AUTORISÉ** |
+| ACT-FP-0005 | `installer.activate_signed_generation` | Privilégié borné, futur | plan signé/autorisé, backup, verrou, approbations, environnement qualifié | **NON AUTORISÉ** |
 | ACT-FP-0006 | `installer.health.check` | Lecture seule | identité/service/plan explicités, pas de données tenant | CANDIDATE |
-| ACT-FP-0007 | `installer.compensate_generation` | Priviliégié borné, futur | checkpoint sûr, autorité explicite, audit, refus d'opérations irréversibles | **NON AUTORISÉ** |
+| ACT-FP-0007 | `installer.compensate_generation` | Privilégié borné, futur | checkpoint sûr, autorité explicite, audit, refus d'opérations irréversibles | **NON AUTORISÉ** |
 
 Le registre décrit des *actions métier typées*, **pas** une API Go, une migration, une CLI ou un exécuteur opérationnel. Les deux actions privilégiées sont purement conceptuelles et bloquées jusqu'à autorisation architecturale/sécurité, implémentation dédiée et qualification VM. Aucun argument `command`, `argv`, `script_path` ou `shell` dans le contrat.
 

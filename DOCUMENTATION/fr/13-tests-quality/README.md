@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-13 revision=24 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=25 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
+
+## App Center : tests de séparation des origines fictives
+
+La [frontière de confiance du préflight](../10-security/app-center-admission-trust-boundary.md) distingue désormais **trois jeux de données de test** (ressources Linux, droits Core, intention du client). Les [39 tests d'aperçu hors ligne](../../../tests/documentation/test_app_center_preview.py) couvrent champs non autorisés, références hôte/tenant falsifiées, faux statuts VERIFIED, gratuité native sans Docker/Hub et ports réservés. Aucun contrôle RBAC réel, attestation hôte ou installation n'est testé.
 
 ## App Center : contrôles de prévisualisation synthétique
 

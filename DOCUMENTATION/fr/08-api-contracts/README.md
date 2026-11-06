@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08 revision=12 status=documented -->
+<!-- forgepanel-doc id=FP-08 revision=13 status=documented -->
 # API et contrats
 
 [English](../../en/08-api-contracts/README.md) · [Index](../README.md)
@@ -6,6 +6,8 @@
 ## Contrat candidat FORGE / PANEL
 
 Le [contrat de routage, d'hôtes et de sessions](portal-route-boundary.md) formalise les surfaces **FORGE `/forge` sur 8447** et **PANEL `/panel` sur 8446**, avec IP système détectées et FQDN existant seulement si vérifié, sans domaine personnalisable ni vhost 443 automatique. Le [registre de référence non opérationnel](../../../evidence/portal-access-registry-v1.json), son [validateur statique](../../../scripts/validate_portal_access_registry.py) et les [tests de contrat](../../../tests/documentation/test_portal_access_contract.py) ne remplacent pas des essais Symfony/HTTPS. Aucune API/route active n'en découle.
+
+**Clarification sur l'héritage SRC-03 :** le prototype contient encore `admin_host` et `user_host` dans son schéma d'intention. Ces champs sont **historiques**, pas une décision de demander un domaine personnalisé dans le futur installateur. L'adoption du nouveau contrat nécessite migration, revue de compatibilité et tests ; l'IP doit être détectée depuis l'OS et le FQDN existant vérifié. Les domaines des sites hébergés et le branding Q5 sont des fonctions distinctes.
 
 ## Contrats observés dans SRC-03
 

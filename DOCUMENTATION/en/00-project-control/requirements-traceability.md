@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-TRACEABILITY revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-00-TRACEABILITY revision=5 status=documented -->
 # Requirements → contracts → tests traceability matrix
 
 [Français](../../fr/00-project-control/requirements-traceability.md) · [Project control](README.md) · [Status](status.md)
@@ -60,3 +60,7 @@ Every owner must document **ID/version**, purpose and user flow, actor/permissio
 ## R3 physical trace supplements
 
 `FP-TRACE-004` now references the [candidate physical DB model](../09-database/physical-jobs-model-r3.md) and `R3-PHYS-TEST`; `FP-TRACE-005` links [Linux identity separation](../14-devops-releases/linux-service-identities-r3.md) and `R3-LINUX-TEST`; `FP-TRACE-006` adds [typed execution guards](../08-api-contracts/typed-execution-recovery-r3.md) and `R3-EXEC-TEST`. See [36 scenarios](../13-tests-quality/r3-physical-execution-gates.md). **All traces stay OPEN**; proposed DDL and Unix identities are not approved technical decisions.
+
+## R3 audit — traceability of post-PR48 job integrity findings
+
+[Targeted review](../19-audits-risks/r3-job-integrity-audit.md) maps **RISK-033..036** to `FP-TRACE-004` (DB), `FP-TRACE-005` (installer recovery), and `FP-TRACE-006` (IPC/authorization), with eight new **PLANNED** negative cases `R3-AUDIT-TEST-001..008`. [Machine-readable review record](../../evidence/r3-job-integrity-review-v1.json) keeps all four findings **OPEN**. Trace rows remain **OPEN**, with the same 22 IDs and no approved DDL/root authorization.

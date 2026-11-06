@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-TRACEABILITY revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-00-TRACEABILITY revision=5 status=documented -->
 # Matrice de traçabilité exigences → contrats → tests
 
 [English](../../en/00-project-control/requirements-traceability.md) · [Pilotage](README.md) · [Statut](status.md)
@@ -60,3 +60,7 @@ La ligne **FP-TRACE-004 / DOC-GAP-004** conserve son périmètre PostgreSQL comp
 ## Détail des traces physiques R3
 
 `FP-TRACE-004` possède désormais comme supplément le [modèle DB physique candidat](../09-database/physical-jobs-model-r3.md) et ses tests `R3-PHYS-TEST`. `FP-TRACE-005` se relie à la [séparation Linux](../14-devops-releases/linux-service-identities-r3.md) et aux tests `R3-LINUX-TEST`, et `FP-TRACE-006` aux [garde-fous des opérations typées](../08-api-contracts/typed-execution-recovery-r3.md) et `R3-EXEC-TEST`. Voir [36 scénarios](../13-tests-quality/r3-physical-execution-gates.md). **Chaque trace reste OPEN** ; les propositions de DDL et UID ne sont pas des décisions techniques approuvées.
+
+## Audit R3 — traçabilité des risques de jobs après PR #48
+
+La [revue ciblée](../19-audits-risks/r3-job-integrity-audit.md) relie **RISK-033..036** aux lignes `FP-TRACE-004` (modèle DB), `FP-TRACE-005` (récupération installateur) et `FP-TRACE-006` (IPC et autorisation), avec huit nouveaux tests négatifs `R3-AUDIT-TEST-001..008` **PLANNED**. L'[evidence machine-readable](../../evidence/r3-job-integrity-review-v1.json) conserve les quatre constats **OPEN**. Les lignes de la matrice restent **OPEN**, sans changement de leurs 22 ID ni validation de DDL ou root.

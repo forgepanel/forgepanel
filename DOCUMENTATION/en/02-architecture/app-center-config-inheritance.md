@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-APP-CONFIG revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-02-APP-CONFIG revision=2 status=specified -->
 # App Center — Q180/Q220 Configuration Center inheritance and immutable policy
 
 [Français](../../fr/02-architecture/app-center-config-inheritance.md) · [General Configuration Engine](configuration-engine.md) · [QA](../13-tests-quality/app-center-configuration-gates.md) · [Approved Q171–Q220](../00-project-control/decisions-q171-q220.md)
@@ -50,6 +50,10 @@ The Python tool reads one bundled fixture only, runs no SQL or network, cannot c
 Configuration dimensions requiring eventual specialist catalogs include native installer versions/certification, local catalog source/cache/signatures, Docker vs Podman per host, CPU/RAM/PIDs/image and volume quotas, network exposure, WAF detect/block policies, AV scanners/quarantine, staged upgrades, retention, issuer/secret references, notification destinations and optional sponsored catalog placement. **No arbitrary prices, vendors, thresholds, retention days or default enabled-state are set by this candidate.** A free native installer is not a promise every third-party commercial app is free.
 
 Changes that affect Linux or customer data follow Q47 **DRAFT → PLAN/DIFF → PREFLIGHT → SNAPSHOT → APPLY → VERIFY → COMMIT/RECOVER**, with actor/scope checks and auditable revisions. A UI simulation must never call APPLY. Privileged effects require narrowly typed Go operations; no `shell.exec`/arbitrary command. Concurrency, stale revisions, locking and durable jobs belong to independently approved API/IPC and DB contracts.
+
+## Evidence at a future APPLY boundary
+
+A [separate candidate evidence binding contract](../08-api-contracts/app-center-admission-evidence.md) defines **four sources** that a real planner must independently verify: OS host snapshot from a trusted agent, Symfony actor/tenant/site authorization, effective Core policy revision and an untrusted client request. The [offline reviewer](../../../scripts/check_app_center_candidate_evidence.py) compares **fictional** expiry timestamps and expected revisions, but neither establishes real provenance nor grants execution. These inputs cannot be replaced by Hub publisher metadata or a plan preview, and the [12 actual host/AuthZ/policy tests](../13-tests-quality/app-center-evidence-gates.md) remain PLANNED.
 
 ## Review / evidence status
 

@@ -49,7 +49,7 @@ jobs:
       - name: Confirm actual OS hints never grant qualification or install
         run: |
           set -o pipefail
-          go run ./cmd/forgepanel-app-center-observe | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d["schema_version"]==1; assert d["probe_name"]=="forgepanel-app-center-host-observe"; assert d["driver_qualification"]=="NOT_EXECUTED"; assert d["qualified_container_drivers"]==[]; assert all(d[k] is False for k in ("host_identity_verified","actor_authorization_verified","host_capacity_budget_verified","cgroup_limits_enforced","container_runtime_tested","report_signed","linux_execution_authorized","install_apply_available")); print("PASS: OS hints never imply trusted capacity, driver qualification or privileged execution")'
+          go run ./cmd/forgepanel-app-center-observe | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d["schema_version"]==1; assert d["probe_name"]=="forgepanel-app-center-host-observe"; assert d["driver_qualification"]=="NOT_EXECUTED"; assert d["qualified_container_drivers"]==[]; assert d["visible_cgroup_root"]["observation_scope"]=="VISIBLE_MOUNT_ROOT_ONLY_UNVERIFIED"; assert all(d[k] is False for k in ("host_identity_verified","actor_authorization_verified","host_capacity_budget_verified","cgroup_limits_enforced","container_runtime_tested","report_signed","linux_execution_authorized","install_apply_available")); print("PASS: OS hints never imply trusted capacity, driver qualification or privileged execution")'
       - name: Reject arguments and any requested action
         run: |
           set +e

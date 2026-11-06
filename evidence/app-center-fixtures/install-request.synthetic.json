@@ -1,6 +1,8 @@
 {
   "schema_version": 1,
   "request_status": "SYNTHETIC_UNVERIFIED",
+  "host_id": "fixture-host",
+  "tenant_id": "fixture-tenant",
   "target_site_id": "owned-site",
   "host_tcp_ports": [],
   "hub_available": false

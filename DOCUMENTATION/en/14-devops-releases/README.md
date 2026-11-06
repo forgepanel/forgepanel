@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-14 revision=17 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=19 status=documented -->
 # Installation, Git promotion and releases
 
 [Français](../../fr/14-devops-releases/README.md) · [Index](../README.md)
+
+## Host address observation — standalone preflight
+
+The [standalone, unprivileged Go preflight](host-address-observation.md) now exposes **two distinct commands** for future FORGE `/forge:8447` and PANEL `/panel:8446`: OS-assigned IPv4/IPv6 and syntactically valid FQDN candidate observation **without networking**, and a separate **explicitly opted-in**, bounded **OS-resolver A/AAAA lookup** for that detected name. Resolver matching is **not public/authoritative DNS proof** (it may use `/etc/hosts` or split DNS). Neither command verifies TLS, listeners, NAT/public reachability or emits verified URLs; neither accepts a customizable portal domain, imports Foundation Core or qualifies any OS. Actual integration still depends on issue #51 and R1/R2/R3 prerequisites.
 
 ## Git workflow
 

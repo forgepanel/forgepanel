@@ -36,6 +36,18 @@ func newVisibleHints() VisibleCgroupRootHints {
 	}
 }
 
+func digitsOnly(raw string) bool {
+	if raw == "" {
+		return false
+	}
+	for _, digit := range raw {
+		if digit < '0' || digit > '9' {
+			return false
+		}
+	}
+	return true
+}
+
 func parseLimitToken(data []byte, allowZero bool) (string, uint64) {
 	fields := strings.Fields(string(data))
 	if len(fields) != 1 {
@@ -43,6 +55,9 @@ func parseLimitToken(data []byte, allowZero bool) (string, uint64) {
 	}
 	if fields[0] == "max" && !allowZero {
 		return "MAX_TOKEN_UNVERIFIED", 0
+	}
+	if !digitsOnly(fields[0]) {
+		return "INVALID_TOKEN", 0
 	}
 	v, err := strconv.ParseUint(fields[0], 10, 64)
 	if err != nil || (!allowZero && v == 0) {
@@ -56,12 +71,18 @@ func parseCPUQuota(data []byte) (string, uint64, uint64) {
 	if len(fields) != 2 {
 		return "INVALID_TOKEN", 0, 0
 	}
+	if !digitsOnly(fields[1]) {
+		return "INVALID_TOKEN", 0, 0
+	}
 	period, err := strconv.ParseUint(fields[1], 10, 64)
 	if err != nil || period == 0 {
 		return "INVALID_TOKEN", 0, 0
 	}
 	if fields[0] == "max" {
 		return "MAX_TOKEN_UNVERIFIED", 0, period
+	}
+	if !digitsOnly(fields[0]) {
+		return "INVALID_TOKEN", 0, 0
 	}
 	quota, err := strconv.ParseUint(fields[0], 10, 64)
 	if err != nil || quota == 0 {

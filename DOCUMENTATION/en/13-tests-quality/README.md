@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-13 revision=25 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=26 status=documented -->
 # Tests, quality and definition of done
 
 [Français](../../fr/13-tests-quality/README.md) · [Index](../README.md)
+
+## Q171–Q220 owner decisions: planned qualification, not PASS
+
+The [50 owner-approved directions](../00-project-control/decisions-q171-q220.md) now map to [50 PLANNED acceptance scenarios](mvp-gates-q171-q220.md), with exact bilingual option parity and C choices Q174/Q194/Q200. The accompanying JSON/documentation validation is **static only**; no real malware scanner, WAF, API, app installer, VM recovery or Hub integration test was executed. Q1–Q170 remain authoritative and Q221+ open.
 
 ## App Center: mock trust-origin separation tests
 

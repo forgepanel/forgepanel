@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:forgepanel:documentation:candidate-peer-binding:v1",
+  "title": "Candidate kernel-observed local peer binding record; not a credential",
+  "x-contract-status": "CANDIDATE_NOT_IMPLEMENTED",
+  "x-warning": "Design-time schema; not an existing PostgreSQL table, SQL migration, live job or permission to execute Linux changes.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_origin",
+    "transport_kind",
+    "peer_identity_source",
+    "peer_uid",
+    "peer_gid",
+    "process_instance_ref",
+    "socket_owner_ref",
+    "socket_instance_ref",
+    "request_id",
+    "contract_version",
+    "actor_authorization_ref",
+    "organization_ref",
+    "resource_ref",
+    "policy_revision",
+    "authorization_status",
+    "privileged_executor_implemented",
+    "privileged_action_authorized",
+    "hub_can_authorize_core_linux"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "candidate-1"
+    },
+    "record_origin": {
+      "const": "SERVER_SIDE_KERNEL_OBSERVATION_ONLY"
+    },
+    "transport_kind": {
+      "const": "FILESYSTEM_UNIX_SOCKET_CANDIDATE"
+    },
+    "peer_identity_source": {
+      "const": "KERNEL_REPORTED_PEER_CREDENTIALS_CANDIDATE"
+    },
+    "peer_uid": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "peer_gid": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "process_instance_ref": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "socket_owner_ref": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "socket_instance_ref": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "request_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "contract_version": {
+      "const": "candidate-1"
+    },
+    "actor_authorization_ref": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "organization_ref": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "resource_ref": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "policy_revision": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+    },
+    "authorization_status": {
+      "enum": [
+        "UNVERIFIED",
+        "DENIED",
+        "SCOPED_VERIFICATION_CANDIDATE"
+      ]
+    },
+    "privileged_executor_implemented": {
+      "const": false
+    },
+    "privileged_action_authorized": {
+      "const": false
+    },
+    "hub_can_authorize_core_linux": {
+      "const": false
+    }
+  },
+  "description": "Only the future trusted receiving process could populate this from a verified kernel-observed peer and validated actor mandate; a caller must never submit this structure as proof of its own identity."
+}

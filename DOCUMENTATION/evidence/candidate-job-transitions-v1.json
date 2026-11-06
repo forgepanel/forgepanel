@@ -1,0 +1,114 @@
+{
+  "schema_version": "candidate-1",
+  "status": "SPECIFIED_NOT_IMPLEMENTED",
+  "contract_id": "FP-R3-JOB-TRANSITIONS",
+  "title_en": "Candidate durable job transitions; runtime not implemented",
+  "title_fr": "Transitions candidates des jobs durables ; runtime absent",
+  "source": "DOCUMENTATION/en/09-database/durable-jobs-r3.md",
+  "readiness": "PLANNED_ONLY",
+  "states": [
+    "QUEUED",
+    "RUNNING",
+    "VERIFYING",
+    "SUCCEEDED",
+    "FAILED",
+    "COMPENSATION_REQUIRED",
+    "BLOCKED"
+  ],
+  "admission_states": [
+    "ACCEPTED",
+    "DENIED",
+    "REJECTED"
+  ],
+  "transitions": [
+    {
+      "from": "QUEUED",
+      "to": "RUNNING",
+      "guard": "authorized_peer_and_scope_plus_owned_resource_lease_current_fence_and_plan_revision"
+    },
+    {
+      "from": "QUEUED",
+      "to": "BLOCKED",
+      "guard": "revoked_or_unavailable_authorization_before_external_effect"
+    },
+    {
+      "from": "RUNNING",
+      "to": "VERIFYING",
+      "guard": "candidate_external_effect_observed_with_current_fence_and_plan"
+    },
+    {
+      "from": "RUNNING",
+      "to": "FAILED",
+      "guard": "proven_no_external_effect_and_durable_failure_audit"
+    },
+    {
+      "from": "RUNNING",
+      "to": "COMPENSATION_REQUIRED",
+      "guard": "external_effect_uncertain_or_partially_applied"
+    },
+    {
+      "from": "VERIFYING",
+      "to": "SUCCEEDED",
+      "guard": "effect_verified_and_health_checks_passed_with_durable_audit"
+    },
+    {
+      "from": "VERIFYING",
+      "to": "COMPENSATION_REQUIRED",
+      "guard": "verification_failed_or_observed_effect_unrecoverable"
+    },
+    {
+      "from": "VERIFYING",
+      "to": "FAILED",
+      "guard": "verified_no_external_effect_and_no_compensation_needed"
+    }
+  ],
+  "excluded_transitions": [
+    {
+      "from": "QUEUED",
+      "to": "SUCCEEDED",
+      "reason": "cannot_skip_observation"
+    },
+    {
+      "from": "RUNNING",
+      "to": "SUCCEEDED",
+      "reason": "must_pass_VERIFYING"
+    },
+    {
+      "from": "COMPENSATION_REQUIRED",
+      "to": "SUCCEEDED",
+      "reason": "requires_separate_recovery_or_human_review"
+    },
+    {
+      "from": "BLOCKED",
+      "to": "RUNNING",
+      "reason": "authorization_denial_is_terminal_for_request"
+    },
+    {
+      "from": "FAILED",
+      "to": "RUNNING",
+      "reason": "recovery_is_new_explicit_authorized_intent"
+    }
+  ],
+  "requirements": {
+    "durable_commit_before_ack": true,
+    "exactly_once_linux_side_effect_claimed": false,
+    "lease_expiry_authorizes_reexecution": false,
+    "old_fencing_generation_is_valid": false,
+    "blind_replay_after_uncertain_effect": false,
+    "same_idempotency_key_different_digest": "IDEMPOTENCY_CONFLICT",
+    "success_requires_observed_effect": true,
+    "cancellation_may_undo_applied_linux_state": false,
+    "no_generic_shell": true
+  },
+  "unratified_settings": [
+    "lease_duration",
+    "timeouts",
+    "retries",
+    "backoff",
+    "retention",
+    "isolation_level",
+    "table_names",
+    "outbox_delivery_policy",
+    "sql_migration_ids"
+  ]
+}

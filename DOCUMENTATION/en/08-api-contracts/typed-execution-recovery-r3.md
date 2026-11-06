@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08-R3-TYPED-EXECUTION revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-08-R3-TYPED-EXECUTION revision=2 status=specified -->
 # R3 — Typed execution, observed effects and safe recovery contract
 
 [Français](../../fr/08-api-contracts/typed-execution-recovery-r3.md) · [API/IPC](README.md) · [Action registry](../../evidence/typed-agent-operations-v1.json) · [PostgreSQL jobs](../09-database/physical-jobs-model-r3.md) · [Linux identities](../14-devops-releases/linux-service-identities-r3.md) · [QA](../13-tests-quality/r3-physical-execution-gates.md)
@@ -73,3 +73,7 @@ Every transition retains redacted, durable request/job/step/correlation IDs, pol
 | Irreversible DDL or unavailable backup key | `RECOVERY_REQUIRED` | Controlled manual recovery, no fake rollback |
 
 All [12 `R3-EXEC-TEST-001..012`](../13-tests-quality/r3-physical-execution-gates.md) remain **PLANNED**. API/IPC owns protocol/error ratification; Database owns durable jobs; Security owns trust/fencing/privilege; DevOps owns handlers/OS, QA owns authorized-VM effects. R1/R2 remain prerequisites; this documentation executes no system command.
+
+## R3 review — restored leases have no approved fencing guarantee
+
+[Targeted job review](../19-audits-risks/r3-job-integrity-audit.md) identifies **RISK-033..036**, including a reusable stale fence after PostgreSQL restore, inbox receipt ambiguity and unauthenticated tenant scope. [Candidate guards](../../evidence/candidate-typed-execution-guards-v1.json) explicitly state `post_restore_privileged_apply_authorized=false` and `effect_boundary_fence_epoch_reconciliation_approved=false`. **These are documentation flags, not actual effect-boundary protections.** Keep `ACT-FP-0005/0007` blocked until independent recovery epoch design and real tests exist. [Eight new negative cases](../19-audits-risks/r3-job-integrity-audit.md) remain PLANNED.

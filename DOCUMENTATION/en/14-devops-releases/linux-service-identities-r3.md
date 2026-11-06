@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14-R3-LINUX-IDENTITY revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-14-R3-LINUX-IDENTITY revision=2 status=specified -->
 # R3 — Candidate Linux accounts, services and privilege separation
 
 [Français](../../fr/14-devops-releases/linux-service-identities-r3.md) · [DevOps](README.md) · [Peer trust](../08-api-contracts/local-peer-trust-r3.md) · [Typed execution](../08-api-contracts/typed-execution-recovery-r3.md) · [QA](../13-tests-quality/r3-physical-execution-gates.md)
@@ -58,3 +58,7 @@ All names above are **logical labels**, not reserved Unix users. `panel_privileg
 ## Evidence and handoffs
 
 All [12 `R3-LINUX-TEST-001..012`](../13-tests-quality/r3-physical-execution-gates.md) remain **PLANNED**. Container permission tests/Markdown cannot establish real SELinux/AppArmor/tenant isolation. Security reviews identities/LSM, DevOps packages/systemd/OS, API/IPC kernel peer, Database DDL/runtime grants and QA true OS VMs. **No root action is implemented here.**
+
+## R3 — Lease epochs after restore and service restart
+
+[Job integrity review](../19-audits-risks/r3-job-integrity-audit.md) requires Linux services to **never** accept stale mutation capabilities after PostgreSQL restore, lease deletion, Go restart or socket replacement. Future privileged handlers must validate generation/epoch **at the effect boundary**, with trust state that cannot silently roll back with the database. This mechanism is **unimplemented and must be designed/tested**; a `fencing_epoch_ref` field is not a solution. Until then, `ACT-FP-0005/0007` remain blocked and no automatic privileged replay is allowed.

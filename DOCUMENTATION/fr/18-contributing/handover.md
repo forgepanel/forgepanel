@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-18-HANDOVER revision=9 status=documented -->
+<!-- forgepanel-doc id=FP-18-HANDOVER revision=10 status=documented -->
 # Passage de relais
 
 [English](../../en/18-contributing/handover.md) · [Guide de contribution](README.md)
@@ -52,3 +52,7 @@ Les [jobs durables R3](../09-database/durable-jobs-r3.md), la [frontière IPC](.
 ## Relais R3 : propositions physiques et séparation de privilèges
 
 Les fiches [PostgreSQL physique](../09-database/physical-jobs-model-r3.md), [identités de services Linux](../14-devops-releases/linux-service-identities-r3.md), [exécution/récupération typée](../08-api-contracts/typed-execution-recovery-r3.md), les [registres candidats](../../evidence/candidate-r3-physical-data-model-v1.json) et [36 tests PLANNED](../13-tests-quality/r3-physical-execution-gates.md) sont prêts à être **examinés**, non à être installés. HANDOFF **Database** pour clés/index/FK/RLS/migrations et tests PostgreSQL ; **Security** pour tenant/UID/LSM/fencing/autorisation ; **API/IPC** pour contrats et preuves au point d'effet ; **DevOps** pour systemd/paquets/récupération ; **QA** pour VMs et refus. Ne jamais générer du DDL, un compte Linux ou un handler root depuis un seul fichier candidat. Les sources Foundation R1 demeurent absentes, Hub sans privilèges Core.
+
+## Relais d'audit : DB refus, fencing post-restore, inbox et scope tenant
+
+Le [rapport R3](../19-audits-risks/r3-job-integrity-audit.md) relève quatre constats **AUDIT-FP-0033..0036 / RISK-033..036** toujours OPEN, et huit tests `R3-AUDIT-TEST-001..008` PLANNED. **HANDOFF Database/Security/API/DevOps/QA** : décider la forme de l'audit sans job, le high-water mark de fencing et une époque anti-restore indépendante, les phases inbox/effect verification et les FK/scopes liés à un acteur authentifié. Après ratification, produire une PR distincte de migration et tests PostgreSQL/VM ; ne jamais transformer les registres candidats en code root sans autre revue. SRC-03 absent, Hub indépendant, MFA admin facultative.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08 revision=9 status=documented -->
+<!-- forgepanel-doc id=FP-08 revision=10 status=documented -->
 # API et contrats
 
 [English](../../en/08-api-contracts/README.md) · [Index](../README.md)
@@ -60,3 +60,7 @@ La [fiche d'identité du pair](local-peer-trust-r3.md) ajoute PEER-FP-0001..0012
 ## R3 — Contrats d'effet système et compensation ciblée
 
 Les [12 règles `EXEC-FP-0001..0012`](typed-execution-recovery-r3.md) détaillent les vérifications par opération (mandat, plan signé/révision, fencing au point d'effet, effets observés, VERIFY et récupération), sans créer de processus privilégié. Le [registre de garde-fous](../../evidence/candidate-typed-execution-guards-v1.json) reprend les **7 actions ACT-FP** ; `ACT-FP-0005/0007` restent **`BLOCKED_UNTIL_QUALIFIED`**. Les payloads arbitraires et shell.exec sont interdits ; un schéma JSON valide n'authentifie ni acteur ni pair. [12 tests de refus R3](../13-tests-quality/r3-physical-execution-gates.md).
+
+## R3 — Admission, déduplication et preuve d'effet : revue critique
+
+La [revue ciblée](../19-audits-risks/r3-job-integrity-audit.md) documente que l'audit d'une admission `DENIED` ne doit pas créer de job, que l'ACK inbox n'est pas preuve d'effet Linux et qu'un ancien token de fencing doit être refusé y compris **après restore PostgreSQL**. Un `actor_claim` et un `scope_ref` seuls ne prouvent jamais le tenant. **RISK-033..036 OPEN**, deux opérations privilégiées bloquées, [8 tests PLANNED](../19-audits-risks/r3-job-integrity-audit.md).

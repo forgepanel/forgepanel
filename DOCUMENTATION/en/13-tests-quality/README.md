@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=20 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=21 status=documented -->
 # Tests, quality and definition of done
 
 [Français](../../fr/13-tests-quality/README.md) · [Index](../README.md)
@@ -106,3 +106,7 @@ New Go tests for [image staging](../14-devops-releases/kvm-image-staging.md) ver
 ## R3 — New physical, service identity and execution QA remains planned
 
 [R3 physical QA matrix](r3-physical-execution-gates.md) specifies **36 PLANNED cases** `R3-PHYS-TEST-001..012`, `R3-LINUX-TEST-001..012` and `R3-EXEC-TEST-001..012`. Python documentation tests validate eight proposed physical DB objects, eight logical Linux identities, seven closed typed operations, both blocked privileged handlers and FR/EN parity. **No live PostgreSQL, Linux isolation or systemd effect is exercised**; real VM/HTTP/DB evidence remains a separate gate.
+
+## R3 — Eight additional negative tests from integrity review
+
+[R3 job integrity review](../19-audits-risks/r3-job-integrity-audit.md) adds `R3-AUDIT-TEST-001..008` **PLANNED** for denied admissions without fake jobs, fencing after deletion/restore, inbox crash before/after effect and tenant/RLS spoofing. `tests/documentation/test_r3_job_integrity_review.py` checks **only documentary guards**, including in-memory mutation regression fixtures. **Zero real PostgreSQL/Linux tests**; no automatic resolution of RISK-033..036.

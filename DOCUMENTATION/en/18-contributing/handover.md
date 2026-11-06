@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-18-HANDOVER revision=9 status=documented -->
+<!-- forgepanel-doc id=FP-18-HANDOVER revision=10 status=documented -->
 # Handover to the next contributor
 
 [Français](../../fr/18-contributing/handover.md) · [Contribution guide](README.md)
@@ -52,3 +52,7 @@ New [QCOW2 admission](../14-devops-releases/kvm-image-admission.md) is **prepara
 ## R3 handoff: physical proposals and privilege boundaries
 
 [Proposed PostgreSQL physical model](../09-database/physical-jobs-model-r3.md), [Linux service identities](../14-devops-releases/linux-service-identities-r3.md), [typed effects/recovery](../08-api-contracts/typed-execution-recovery-r3.md), [candidate registers](../../evidence/candidate-r3-physical-data-model-v1.json) and [36 PLANNED cases](../13-tests-quality/r3-physical-execution-gates.md) are ready for **specialized review, not installation**. HANDOFF to **Database** for FK/index/RLS/migrations and SQL tests; **Security** for tenant/UID/LSM/fencing/trust; **API/IPC** for effect-boundary contracts and actor authority; **DevOps** for systemd/packages/recovery; **QA** for VM negative cases. Never generate DDL, Unix accounts or root handlers from candidate JSON alone. Historical R1 source remains unavailable and Hub has no Core privilege.
+
+## Audit handoff: denied jobs, post-restore fences, inbox and tenant scope
+
+[R3 report](../19-audits-risks/r3-job-integrity-audit.md) records four still-OPEN **AUDIT-FP-0033..0036 / RISK-033..036** and eight PLANNED `R3-AUDIT-TEST-001..008` cases. **Handoff to Database/Security/API/DevOps/QA**: approve denied-admission audit without job, monotonic fence high-water plus independent post-restore epoch, inbox/effect verification states and trusted actor-scoped FKs/SQL context. After ratification, open separate SQL migration and real PostgreSQL/VM test PR. Never turn candidate JSON directly into root code. SRC-03 missing, Hub separate, admin MFA optional.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DOC-READINESS revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-00-DOC-READINESS revision=5 status=documented -->
 # Documentation gap register and completion gates — ForgePanel
 
 [Français](../../fr/00-project-control/documentation-readiness.md) · [Project control](README.md) · [Traceability](requirements-traceability.md) · [Coverage](coverage.md)
@@ -55,3 +55,7 @@ The [12 durable job requirements](../09-database/durable-jobs-r3.md), [12 peer t
 ## Further candidates for DOC-GAP-004/005/006 — no gap closure
 
 [Physical DB proposal](../09-database/physical-jobs-model-r3.md), [service identities](../14-devops-releases/linux-service-identities-r3.md) and [typed execution](../08-api-contracts/typed-execution-recovery-r3.md) add implementation-specific choices and [36 candidate tests](../13-tests-quality/r3-physical-execution-gates.md). Machine-readable JSON is **not approved**; **DOC-GAP-004, DOC-GAP-005 and DOC-GAP-006 remain OPEN** pending actual PostgreSQL, Linux and VM evidence. The original total of 22 readiness gaps is unchanged.
+
+## Four additional R3 audit findings — no gap closure
+
+[Targeted job model integrity review](../19-audits-risks/r3-job-integrity-audit.md) identifies concrete design gaps: denied admissions without an accepted job, fence reset on lease deletion/restore, inbox receipt versus external effect, and unverified tenant scope. [RISK-033..036 register](../../evidence/r3-job-integrity-review-v1.json) and eight future negative tests remain **OPEN/PLANNED**; they create no new product decisions and do not change the **22 existing gap IDs**. **DOC-GAP-004/005/006 still OPEN**, genuine SRC-03 unavailable.

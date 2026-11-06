@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08-R3-TYPED-EXECUTION revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-08-R3-TYPED-EXECUTION revision=2 status=specified -->
 # R3 — Exécution typée, observation d'effets et contrat de récupération
 
 [English](../../en/08-api-contracts/typed-execution-recovery-r3.md) · [API / IPC](README.md) · [Registre d'actions](../../evidence/typed-agent-operations-v1.json) · [Jobs PostgreSQL](../09-database/physical-jobs-model-r3.md) · [Comptes Linux](../14-devops-releases/linux-service-identities-r3.md) · [QA](../13-tests-quality/r3-physical-execution-gates.md)
@@ -73,3 +73,7 @@ Une transition doit garder `request_id`, `job_ref`, `step_ref`, `correlation_id`
 | DDL irréversible ou clé de sauvegarde manquante | `RECOVERY_REQUIRED` | Intervention humaine, pas de faux rollback |
 
 [Les 12 tests `R3-EXEC-TEST-001..012`](../13-tests-quality/r3-physical-execution-gates.md) restent **PLANNED**. API/IPC doit ratifier format/auth/erreurs, Database les jobs durables, Security les droits/fencing/root, DevOps les handlers et compatibilité OS, QA les effets réels en VMs. R1/R2 préalables, aucune commande système lancée par cette documentation.
+
+## Revue R3 — aucun fencing garanti après restauration
+
+La [revue ciblée des jobs](../19-audits-risks/r3-job-integrity-audit.md) identifie **RISK-033..036**, notamment une génération de fencing susceptible d'être réutilisée après restauration PostgreSQL, une inbox pouvant cacher un effet Linux incertain et un scope tenant non authentifié. Les [garde-fous candidats](../../evidence/candidate-typed-execution-guards-v1.json) indiquent explicitement `post_restore_privileged_apply_authorized=false` et `effect_boundary_fence_epoch_reconciliation_approved=false`. **Il s'agit de flags documentaires, pas d'une protection du handler**. Maintenir les opérations `ACT-FP-0005/0007` bloquées jusqu'à un design de l'époque indépendante et des tests d'effets réels. Les [8 nouveaux tests négatifs](../19-audits-risks/r3-job-integrity-audit.md) restent PLANNED.

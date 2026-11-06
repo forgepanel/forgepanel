@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-09-R3-PHYSICAL-JOBS revision=2 status=specified -->
+<!-- forgepanel-doc id=FP-09-R3-PHYSICAL-JOBS revision=3 status=specified -->
 # R3 — Modèle physique PostgreSQL candidat pour les jobs du Core
 
 [English](../../en/09-database/physical-jobs-model-r3.md) · [Database](README.md) · [Jobs logiques](durable-jobs-r3.md) · [IPC/exécution](../08-api-contracts/typed-execution-recovery-r3.md) · [QA](../13-tests-quality/r3-physical-execution-gates.md)
@@ -37,12 +37,12 @@
 |---|---|---|
 | `fp_operation_intents` | `intent_id uuid PK`, `scope_kind text`, `scope_ref uuid`, `resource_kind text`, `resource_ref uuid`, `operation_id text`, `actor_ref uuid`, `idempotency_fingerprint bytea`, `payload_sha256 bytea`, `contract_version text`, `policy_revision text`, `expected_revision text`, `created_at timestamptz` | UNIQUE sur scope+ressource+opération+clé; valeurs non nulles ; opération dans registre approuvé, **jamais comme commande** |
 | `fp_job_executions` | `job_id uuid PK`, `intent_id uuid FK`, `state text`, `state_revision bigint`, `attempt_count integer`, `observed_effect text`, `updated_at timestamptz` | UNIQUE(`intent_id`), CHECK état et compteur; transition contrôlée; FK |
-| `fp_resource_leases` | `scope_kind text`, `scope_ref uuid`, `resource_kind text`, `resource_ref uuid`, `owner_job_id uuid FK`, `fencing_generation bigint`, `expires_at timestamptz`, `resource_revision text` | UNIQUE(scope_kind,scope_ref,resource_kind,resource_ref), fencing monotone; compare-and-swap |
+| `fp_resource_leases` | `scope_kind text`, `scope_ref uuid`, `resource_kind text`, `resource_ref uuid`, `owner_job_id uuid FK`, `fencing_generation bigint`, `fencing_epoch_ref text` (**non ratifié**), `expires_at timestamptz`, `resource_revision text` | UNIQUE(scope_kind,scope_ref,resource_kind,resource_ref), fencing monotone; compare-and-swap |
 | `fp_job_step_events` | `event_id bigint PK`, `job_id uuid FK`, `step_seq bigint`, `step_ref text`, `transition text`, `effect_verdict text`, `plan_sha256 bytea`, `audit_ref text`, `created_at timestamptz` | UNIQUE(job_id,step_seq) ; append-only logique ; payload secret interdit |
 | `fp_agent_outbox` | `message_id uuid PK`, `job_id uuid FK`, `channel text`, `payload_digest bytea`, `delivery_status text`, `attempts integer`, `next_attempt_at timestamptz` | indexes de reprise, déduplication et statut distinct du résultat Linux |
-| `fp_agent_inbox` | `consumer_ref text`, `message_id uuid`, `observed_job_id uuid FK`, `receipt_at timestamptz` | UNIQUE(consumer_ref,message_id), résultat du consommateur conservé |
+| `fp_agent_inbox` | `consumer_ref text`, `message_id uuid`, `observed_job_id uuid FK`, `receipt_at timestamptz`, `processing_state text`, `effect_verdict_ref text`, `fencing_generation bigint` | UNIQUE(consumer_ref,message_id), résultat du consommateur conservé |
 | `fp_recovery_checkpoints` | `checkpoint_id uuid PK`, `job_id uuid FK`, `artifact_digest bytea`, `recovery_class text`, `storage_ref text`, `verified_at timestamptz` | ne stocke aucun secret de restauration brut ; erreur si clés introuvables |
-| `fp_job_audit_events` | `audit_id bigint PK`, `job_id uuid FK`, `actor_ref uuid`, `correlation_ref text`, `outcome text`, `created_at timestamptz` | append-only logique ; expurgation + droit de lecture limité |
+| `fp_job_audit_events` | `audit_id bigint PK`, `job_id uuid FK` (nullable pour un refus uniquement), `request_ref text`, `subject_kind text`, `decision_code text`, `actor_ref uuid`, `correlation_ref text`, `outcome text`, `created_at timestamptz` | append-only logique ; expurgation + droit de lecture limité |
 
 **Les noms, colonnes, types, FK et index ci-dessus sont UNIQUEMENT candidats.** Aucun `CREATE TABLE`, `ALTER TABLE`, seed, migration `MIG-*`, privilège DB ni API n'est ajouté. Les `uuid` indiqués supposent une future décision cohérente avec le modèle des ressources ; aucune relation inter-table n'est validée sans son schéma propriétaire.
 
@@ -67,3 +67,15 @@ La requête est un **pseudo-algorithme**, pas une transaction SQL prête à exé
 ## Cas de panne, revue et HANDOFF
 
 Requérir des essais PostgreSQL réels sur DB jetable autorisée : deux premiers clients concurrents, requête identique rejouée, payload différent, rollback forcé, perte ACK post-commit, ancien worker après bail, outbox double, partition agent, restore d'une sauvegarde et perte de clé. **Tous les 12 cas `R3-PHYS-TEST-001..012` sont PLANNED**, voir [QA](../13-tests-quality/r3-physical-execution-gates.md). Security doit examiner le fencing à l'effet et RLS/tenants ; API/IPC le protocole de remise ; DevOps les pannes/cleanup ; Database doit valider DDL/permissions, puis produire des migrations **dans une PR séparée** après import SRC-03 et intégration R2. Le modèle PostgreSQL ne constitue jamais une preuve de sécurité Linux.
+
+## Revue de cohérence R3 — risques ouverts RISK-033 à RISK-036
+
+La [revue ciblée](../19-audits-risks/r3-job-integrity-audit.md) corrige la **description candidate**, sans créer de tables ni ratifier les types/permissions ci-dessus. Ces corrections ne sont pas des protections déployées :
+
+- **RISK-033 / AUDIT-FP-0033 — Refus d'admission :** proposer `subject_kind`, `request_ref`, `decision_code` et `job_id` conditionnellement nul pour journaliser `DENIED/REJECTED` **sans créer de job admis**. Un événement `ACCEPTED_JOB_EVENT` doit avoir un job valide ; contraintes SQL à valider et tester.
+- **RISK-034 / AUDIT-FP-0034 — Fencing anti-rollback :** ne jamais remettre la génération monotone à zéro lors d'une suppression/recréation de bail. Après une restauration SQL, invalider tous les jetons antérieurs via une **époque de récupération indépendante**, vérifiée au point d'effet Linux. `fencing_epoch_ref` est une **hypothèse de champ**, pas une solution. **Aucun APPLY privilégié** avant validation réelle du mécanisme.
+- **RISK-035 / AUDIT-FP-0035 — Inbox :** distinguer réception `RECEIVED`, tentative `IN_PROGRESS`, résultat `EFFECT_UNCERTAIN`, preuve `EFFECT_VERIFIED` et absence prouvée `PROVEN_NO_EFFECT`. Une ligne inbox ou un ACK ne certifie jamais un effet Linux ; un crash doit déclencher réconciliation, pas rejeu automatique.
+- **RISK-036 / AUDIT-FP-0036 — Scope :** interdire `scope_kind`/`scope_ref` absents ou NULL et toute valeur tenant forgée par le client ou une variable SQL de session non authentifiée. Les FK composites et l'autorité serveur spécifique restent à décider après modèle d'hébergement approuvé. RLS seul n'est pas une identité.
+
+**Huit scénarios `R3-AUDIT-TEST-001..008` sont PLANNED**, pas réalisés. Les registres JSON de preuve restent `SPECIFIED_NOT_APPROVED`. R1 SRC-03, R2 Symfony/PG, revues Database/Security/API et tests autorisés restent préalables. **DOC-GAP-004/005/006 restent OPEN.**
+

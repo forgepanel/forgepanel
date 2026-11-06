@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14-R3-LINUX-IDENTITY revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-14-R3-LINUX-IDENTITY revision=2 status=specified -->
 # R3 — Comptes et services Linux : séparation des responsabilités candidate
 
 [English](../../en/14-devops-releases/linux-service-identities-r3.md) · [DevOps](README.md) · [Confiance IPC](../08-api-contracts/local-peer-trust-r3.md) · [Exécution typée](../08-api-contracts/typed-execution-recovery-r3.md) · [QA](../13-tests-quality/r3-physical-execution-gates.md)
@@ -58,3 +58,7 @@ Les étiquettes sont des **alias logiques** sans réservation de comptes systèm
 ## Preuves nécessaires et HANDOFF
 
 [Les 12 scénarios `R3-LINUX-TEST-001..012`](../13-tests-quality/r3-physical-execution-gates.md) sont tous **PLANNED**. Un test de permission dans un conteneur ou un fichier Markdown ne certifie ni confinement SELinux/AppArmor ni séparation tenant. Security doit signer la revue d'UID/canal/LSM ; DevOps les packages/systemd/OS; API/IPC l'identité observée; Database la séparation DDL/runtime; QA les VMs et tests de régression. **Aucune action root n'est produite ici.**
+
+## R3 — Gestion des générations après restore et reprise de services
+
+La [revue d'intégrité des jobs](../19-audits-risks/r3-job-integrity-audit.md) exige qu'un service Linux ne réaccepte **jamais** une ancienne capacité de mutation après restauration PostgreSQL, suppression d'un bail, redémarrage de l'agent ou remplacement de son socket. Le futur handler devra vérifier l'époque/génération **au point d'effet**, dans un domaine de confiance ne pouvant être rétrogradé silencieusement avec la DB. Le mécanisme est **à concevoir et tester**, pas fourni par `fencing_epoch_ref`. En attendant : `ACT-FP-0005/0007` bloquées et aucune reprise privilégiée automatique.

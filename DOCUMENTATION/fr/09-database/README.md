@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-09 revision=8 status=documented -->
+<!-- forgepanel-doc id=FP-09 revision=9 status=documented -->
 # Base de données, transactions et migrations
 
 [English](../../en/09-database/README.md) · [Index](../README.md)
@@ -54,3 +54,7 @@ La [fiche R3 sur les jobs PostgreSQL](durable-jobs-r3.md) établit 12 exigences 
 ## R3 — Proposition physique des jobs PostgreSQL, sans DDL
 
 La [fiche de modèle PostgreSQL proposé](physical-jobs-model-r3.md) détaille `DBPH-FP-0001..0012`, **8 objets de tables candidats**, contraintes d'unicité, relations, isolation tenant, idempotence, outbox/inbox, verrous avec fencing et récupération. Le [registre de structure candidat](../../evidence/candidate-r3-physical-data-model-v1.json) **n'est pas une migration** et ne modifie aucune des 3 tables historiques observées de SRC-03. Tous les types/FK/index, rôles SQL et seuils doivent être ratifiés par Database/Security après récupération des sources. [36 tests R3 prévus](../13-tests-quality/r3-physical-execution-gates.md).
+
+## R3 — Revue des admissions refusées, inbox et reprise des fences
+
+La [revue ciblée](../19-audits-risks/r3-job-integrity-audit.md) ouvre **RISK-033/034/035/036** contre le [modèle physique candidat](physical-jobs-model-r3.md) : journaux de refus sans création de job fictif, génération de fencing non réinitialisable après suppression/restauration, reçu inbox distinct de l'effet Linux, scope authentifié même avec RLS. [Huit tests futurs](../19-audits-risks/r3-job-integrity-audit.md) restent `PLANNED`. **Aucune table/contrainte/fencing réelle n'a été corrigée** : la revue Database et les migrations restent ouvertes.

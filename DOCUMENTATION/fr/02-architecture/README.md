@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-02 revision=8 status=documented -->
+<!-- forgepanel-doc id=FP-02 revision=9 status=documented -->
 # Architecture du système
 
 [English](../../en/02-architecture/README.md) · [Index](../README.md)
+
+## Configuration Center App Center — Q180/Q220
+
+Le [contrat candidat d'héritage](app-center-config-inheritance.md) illustre les restrictions global→serveur→organisation→plan→site pour le One-Click natif gratuit et les conteneurs séparés. Aucun niveau ne diminue la sécurité, ne réactive un moteur interdit par son parent ou ne relève un plafond. Les [16 tests réels/VM](../13-tests-quality/app-center-configuration-gates.md) restent PLANNED. L'exemple hors ligne ne lit pas Linux et n'applique aucune modification.
 
 ## Référence de conception et implémentation
 

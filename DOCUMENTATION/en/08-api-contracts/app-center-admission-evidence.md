@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08-APP-EVIDENCE revision=2 status=specified -->
+<!-- forgepanel-doc id=FP-08-APP-EVIDENCE revision=3 status=specified -->
 # App Center — evidence binding, revision and freshness before installation
 
 [Français](../../fr/08-api-contracts/app-center-admission-evidence.md) · [API contracts](README.md) · [Q180/Q220 configuration rules](../02-architecture/app-center-config-inheritance.md) · [Security boundary](../10-security/app-center-admission-trust-boundary.md)
@@ -48,6 +48,10 @@ python3 tests/documentation/test_app_center_evidence_binding.py -v
 The pure reviewer verifies strict field/types, illustrative timestamp windows, same host/tenant/actor/site references, expected revisions, candidate plan scopes, native/container capacity separation and reserved ports. It emits only `MATCHES_SYNTHETIC_CONTEXT_ONLY` or `BLOCKED_SYNTHETIC`. Every result retains `actor_authenticated=false`, `host_identity_verified=false`, `policy_signature_verified=false`, `authorization_approved=false`, `resource_reservations_created=false`, `execution_allowed=false`, `apply_available=false`. A matching result **is not an authorization**. No network, OS probe, disk write, SQL, Docker, Podman, TLS or privileged action occurs.
 
 Tests of forged sources, outdated snapshots, replayed revisions, other-tenant targets, unknown fields, privileged commands and port collisions are **offline unit checks only**. The separate [real-runtime qualification matrix](../13-tests-quality/app-center-evidence-gates.md) remains **PLANNED / NOT EXECUTED**.
+
+## Real OS hints: not an authenticated host-evidence source
+
+A [standalone read-only Linux observer](../14-devops-releases/app-center-host-observation.md) has been prepared in Go: it can read bounded process-visible CPU, kernel memory hints, cgroup-v2 controller names and Docker/Podman executable candidates without running either runtime. **It is not a trusted host report**: identity, signatures, staleness, cgroup quotas, usable tenant CPU/RAM and driver qualification remain unverified. It cannot satisfy `EVID-FP-0001` or `EVID-FP-0007` without authenticated peer binding and independent Core enforcement. Never translate raw `MemAvailable` into admission capacity.
 
 ## Hand-off and unresolved technical decisions
 

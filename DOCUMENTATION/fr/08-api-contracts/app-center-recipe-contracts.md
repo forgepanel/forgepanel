@@ -1,9 +1,9 @@
-<!-- forgepanel-doc id=FP-08-APP-RECIPE revision=2 status=specified -->
+<!-- forgepanel-doc id=FP-08-APP-RECIPE revision=3 status=specified -->
 # App Center — contrats de recettes distincts et contrôles d'admission
 
 [English](../../en/08-api-contracts/app-center-recipe-contracts.md) · [Index API](README.md) · [Deux moteurs](../06-apps-recipes/app-center-engines.md)
 
-**Statut : SPÉCIFICATION DRAFT / CANDIDATE-ONLY.** Aucun parseur de manifestes de production, installateur, exécuteur Docker/Podman, endpoint Symfony ni catalogue actif n'est implémenté. Les choix produit confirmés sont le **One-Click natif gratuit**, les **Container Apps séparées** et l'absence de mélange entre moteurs. Les schémas et limites ci-dessous sont des propositions techniques soumises aux revues spécialisées. Q171+ restent ouverts.
+**Statut : SPÉCIFICATION DRAFT / CANDIDATE-ONLY.** Aucun parseur de manifestes de production, installateur, exécuteur Docker/Podman, endpoint Symfony ni catalogue actif n'est implémenté. Les choix produit confirmés sont le **One-Click natif gratuit**, les **Container Apps séparées** et l'absence de mélange entre moteurs. Les schémas et limites ci-dessous sont des propositions techniques soumises aux revues spécialisées. Q171–Q220 sont approuvées comme orientations produit ; contrats d'implémentation et QA demandent encore revue. [Registre des arbitrages](../00-project-control/decisions-q171-q220.md). Q221+ restent sans réponse.
 
 ## Enveloppe commune — version candidate 1
 

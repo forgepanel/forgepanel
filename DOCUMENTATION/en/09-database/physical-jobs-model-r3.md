@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-09-R3-PHYSICAL-JOBS revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-09-R3-PHYSICAL-JOBS revision=2 status=specified -->
 # R3 — Candidate physical PostgreSQL model for Core jobs
 
 [Français](../../fr/09-database/physical-jobs-model-r3.md) · [Database](README.md) · [Logical jobs](durable-jobs-r3.md) · [Typed execution](../08-api-contracts/typed-execution-recovery-r3.md) · [QA](../13-tests-quality/r3-physical-execution-gates.md)
@@ -37,7 +37,7 @@
 |---|---|---|
 | `fp_operation_intents` | `intent_id uuid PK`, `scope_kind text`, `scope_ref uuid`, `resource_kind text`, `resource_ref uuid`, `operation_id text`, `actor_ref uuid`, `idempotency_fingerprint bytea`, `payload_sha256 bytea`, `contract_version text`, `policy_revision text`, `expected_revision text`, `created_at timestamptz` | UNIQUE(scope/resource/operation/key), not-null verified scope; operation registry is never a dynamic command |
 | `fp_job_executions` | `job_id uuid PK`, `intent_id uuid FK`, `state text`, `state_revision bigint`, `attempt_count integer`, `observed_effect text`, `updated_at timestamptz` | UNIQUE(intent_id); allowed states and attempt CHECK; versioned transitions |
-| `fp_resource_leases` | `resource_kind text`, `resource_ref uuid`, `owner_job_id uuid FK`, `fencing_generation bigint`, `expires_at timestamptz`, `resource_revision text` | UNIQUE(resource_kind,resource_ref), monotonic fencing, compare-and-swap |
+| `fp_resource_leases` | `scope_kind text`, `scope_ref uuid`, `resource_kind text`, `resource_ref uuid`, `owner_job_id uuid FK`, `fencing_generation bigint`, `expires_at timestamptz`, `resource_revision text` | UNIQUE(scope_kind,scope_ref,resource_kind,resource_ref), monotonic fencing, compare-and-swap |
 | `fp_job_step_events` | `event_id bigint PK`, `job_id uuid FK`, `step_seq bigint`, `step_ref text`, `transition text`, `effect_verdict text`, `plan_sha256 bytea`, `audit_ref text`, `created_at timestamptz` | UNIQUE(job_id,step_seq), append-only logical event journal |
 | `fp_agent_outbox` | `message_id uuid PK`, `job_id uuid FK`, `channel text`, `payload_digest bytea`, `delivery_status text`, `attempts integer`, `next_attempt_at timestamptz` | retry/sweep indexes, delivery separated from Linux result |
 | `fp_agent_inbox` | `consumer_ref text`, `message_id uuid`, `observed_job_id uuid FK`, `receipt_at timestamptz` | UNIQUE(consumer_ref,message_id), durable consumer dedup |

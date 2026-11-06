@@ -1,11 +1,11 @@
-<!-- forgepanel-doc id=FP-10 revision=22 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=23 status=documented -->
 # Modèle de sécurité et signalement
 
 [English](../../en/10-security/README.md) · [Index](../README.md)
 
 ## Isolation FORGE / PANEL — contrat à implémenter
 
-Les accès d'administration **`/forge` : 8447** et clients **`/panel` : 8446** doivent utiliser des origines HTTPS fiables, sessions et noms de cookies séparés, listes d'hôtes/proxys autorisés et contrôles RBAC indépendants. Un changement de port ne crée **aucune** frontière de cookies sur une même IP. Refuser l'interversion hôte/préfixe/port ; ne jamais autoriser une route FORGE à partir des droits PANEL. [Routage et menaces](../08-api-contracts/portal-route-boundary.md) · [Tests à exécuter](../13-tests-quality/portal-access-gates.md).
+Les accès d'administration **`/forge` : 8447** et clients **`/panel` : 8446**, sur IP détectée ou FQDN existant vérifié sans champ domaine personnalisé, doivent utiliser des origines HTTPS fiables, sessions et noms de cookies séparés, listes d'hôtes/proxys autorisés et contrôles RBAC indépendants. Un changement de port ne crée **aucune** frontière de cookies sur une même IP. Refuser l'interversion hôte/préfixe/port ; ne jamais autoriser une route FORGE à partir des droits PANEL. [Routage et menaces](../08-api-contracts/portal-route-boundary.md) · [Tests à exécuter](../13-tests-quality/portal-access-gates.md).
 
 ## Actifs, acteurs et frontières
 

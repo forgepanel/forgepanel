@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13-APP-CENTER revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-13-APP-CENTER revision=2 status=specified -->
 # App Center — matrice de qualification native vs conteneurs
 
 [English](../../en/13-tests-quality/app-center-engine-gates.md) · [QA](README.md) · [Contrat App Center](../06-apps-recipes/app-center-engines.md)
@@ -30,7 +30,7 @@
 | TEST-APP-CTR-0002 | Pilote Docker disponible et manifest compatible | Déploiement seulement sous politique et ressources vérifiées |
 | TEST-APP-CTR-0003 | Pilote Podman disponible mais Compose Docker non qualifié | Refus, aucune présomption de compatibilité |
 | TEST-APP-CTR-0004 | Image inconnue, mutable ou signature/pin requis manquant | Refus de publication/de déploiement selon politique |
-| TEST-APP-CTR-0005 | Montage \`/\` ou socket Docker, mode privileged, host network | Bloqué par défaut ; pas de contournement via Compose |
+| TEST-APP-CTR-0005 | Montage `/` ou socket Docker, mode privileged, host network, provider, include ou références externes non autorisées | Bloqué par défaut ; pas de contournement via Compose |
 | TEST-APP-CTR-0006 | Collision port avec FORGE 8447, PANEL 8446 ou site existant | Refus sans modifier les listeners |
 | TEST-APP-CTR-0007 | Quotas CPU/RAM/PIDs/stockage/volumes insuffisants | Refus avant téléchargement/lancement ou compensation testée |
 | TEST-APP-CTR-0008 | App multi-services : base, volumes et réseau | Dépendances, secrets, ordre et health checks réellement vérifiés |
@@ -44,7 +44,7 @@
 | Test ID | Cas | Attendu |
 |---|---|---|
 | TEST-APP-X-0001 | Même logiciel avec recettes native et conteneur | Fiches, prérequis, identités d'installation et upgrades distincts |
-| TEST-APP-X-0002 | Requête native portant un manifest \`container_stack\`, ou inversement | Rejet de type avant allocation de ressources |
+| TEST-APP-X-0002 | Requête native portant un manifest `container_stack`, ou inversement | Rejet de type avant allocation de ressources |
 | TEST-APP-X-0003 | Installation, suppression ou accès local quand Hub absent | Core libre et données clients fonctionnels, sans entitlement |
 | TEST-APP-X-0004 | Catalogue officiel/partenaire non approuvé, signature invalide | Rien d'exécutable, même si fiche affichable en brouillon |
 | TEST-APP-X-0005 | Ressource passée de site natif à app conteneur automatiquement | Refus sans workflow de migration dédiée |
@@ -54,6 +54,6 @@
 
 ## Preuves de validation
 
-Pour déclarer \`VERIFIED\`, lier chaque test au commit exact, OS/version, WebStack/PHP ou version Docker/Podman, manifeste et digest, tenant/permissions, ressources mesurées, résultat et reprise après échec. Tests positifs **et** négatifs sur VM réelle, notamment isolation multi-tenant. Les tests documentaires ne valent pas certification ni validation d'un moteur.
+Pour déclarer `VERIFIED`, lier chaque test au commit exact, OS/version, WebStack/PHP ou version Docker/Podman, manifeste et digest, tenant/permissions, ressources mesurées, résultat et reprise après échec. Tests positifs **et** négatifs sur VM réelle, notamment isolation multi-tenant. Les tests documentaires ne valent pas certification ni validation d'un moteur.
 
 Les choix Q1–Q170 restent actifs. Les nouveaux mécanismes et la priorisation précise sont soumis aux revues spécialisées, sans attribuer des PASS fictifs.

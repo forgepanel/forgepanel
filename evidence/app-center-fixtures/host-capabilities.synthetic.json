@@ -2,9 +2,6 @@
   "schema_version": 1,
   "fixture_status": "SYNTHETIC_UNVERIFIED",
   "host_id": "fixture-host",
-  "site_ids": [
-    "owned-site"
-  ],
   "php_fpm_available": true,
   "native_db_engines": [
     "MARIADB"
@@ -22,6 +19,5 @@
   "observed_bound_host_tcp_ports": [
     80,
     443
-  ],
-  "container_scope_claimed": true
+  ]
 }

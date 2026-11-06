@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-07 revision=7 status=documented -->
+<!-- forgepanel-doc id=FP-07 revision=8 status=documented -->
 # Portails, identités et autorisations
 
 [English](../../en/07-interfaces-roles/README.md) · [Index](../README.md)
@@ -11,7 +11,7 @@ La décision d'autorisation cible combine permission, propriété client/ressour
 
 ## Portails et sessions
 
-La convention de portails confirmée est **FORGE** `/forge` sur HTTPS **8447** pour les administrateurs et **PANEL** `/panel` sur HTTPS **8446** pour les clients ; les hôtes HTTPS 443 dédiés sont configurables (exemples `forge.ip-server.com` et `panel.up-server.com`). Les accès IP complets sont `https://<server-ip>:8447/forge` et `https://<server-ip>:8446/panel`, seulement avec TLS valide. Voir le [contrat d'accès et de sécurité détaillé](portal-access-routing.md) et les [18 scénarios QA planifiés](../13-tests-quality/portal-access-gates.md). Le prototype accepte des ports non privilégiés distincts ; le portail client reste désactivé. Une même IP sur deux ports ne constitue **pas** une isolation des cookies. Hôtes, cookies/sessions et autorisation serveur doivent être séparés avant ouverture des deux portails.
+La convention des portails est **FORGE** `/forge` sur HTTPS **8447** et **PANEL** `/panel` sur HTTPS **8446**. L'installateur **détecte les IP de la machine** et son éventuel FQDN existant, puis vérifie DNS/routage/TLS ; il **ne demande pas de domaine personnalisable** et ne crée ni sous-domaine ni virtual host 443 automatiquement. Les URL IP et FQDN gardent les **mêmes ports**. Voir le [contrat détaillé](portal-access-routing.md) et les [22 scénarios QA planifiés](../13-tests-quality/portal-access-gates.md). Le prototype accepte des ports non privilégiés distincts ; le portail client reste désactivé. Une IP commune sur deux ports **ne suffit pas à isoler les cookies** : sessions, noms de cookies et permissions serveur restent distincts.
 
 Le cookie de setup est configuré `__Host-FORGE_ADMIN`, Secure, HttpOnly, SameSite Strict, chemin `/`. Les tests HTTP réels restent à exécuter. `PUBLIC_ACCESS` des routes de setup ne supprime pas les contrôles jeton/autorisation de SetupService ; il ne crée pas non plus une session administrateur permanente.
 

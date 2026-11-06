@@ -12,6 +12,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "scripts"))
 from check_app_center_candidate_evidence import (  # noqa: E402
+    AUTHZ_KEYS, HOST_KEYS, INTENT_KEYS, POLICY_KEYS, TOP_KEYS,
     ContextRejected, FIXTURES, review_candidate_context, load_synthetic,
 )
 
@@ -308,6 +309,28 @@ class AppCenterCandidateEvidenceTests(unittest.TestCase):
             self.assertIn("Q220", text)
             self.assertIn("SYNTHETIC_UNVERIFIED", text)
             self.assertIn("NOT EXECUTED" if lang == "en" else "NON EXÉCUTÉ", text)
+
+    def test_candidate_json_schema_covers_the_four_distinct_sources(self):
+        path = ROOT / "evidence/app-center-admission.synthetic-v1.schema.json"
+        schema = json.loads(path.read_text(encoding="utf-8"))
+        self.assertEqual(schema["$schema"], "https://json-schema.org/draft/2020-12/schema")
+        self.assertIn("synthetic", schema["$id"])
+        self.assertEqual(set(schema["required"]), TOP_KEYS)
+        self.assertIs(schema["additionalProperties"], False)
+        self.assertEqual(schema["properties"]["fixture_status"]["const"],
+                         "SYNTHETIC_UNVERIFIED")
+        for name, expected, source in (
+            ("host_observation", HOST_KEYS, "UNVERIFIED_OS_PROBE_FIXTURE"),
+            ("core_authorization", AUTHZ_KEYS, "UNVERIFIED_SYMFONY_FIXTURE"),
+            ("core_policy", POLICY_KEYS, "UNVERIFIED_CONFIG_FIXTURE"),
+            ("user_intent", INTENT_KEYS, "UNTRUSTED_CLIENT_FIXTURE"),
+        ):
+            field = schema["properties"][name]
+            self.assertEqual(set(field["required"]), expected)
+            self.assertIs(field["additionalProperties"], False)
+            self.assertEqual(field["properties"]["source"]["const"], source)
+        self.assertNotIn("shell.exec", schema["properties"]["user_intent"]["properties"])
+        self.assertNotIn("apply", schema["properties"])
 
     def test_planned_real_evidence_gates_have_exact_bilingual_parity(self):
         expected = {f"TEST-EVID-FP-{n:04d}" for n in range(1, 13)}

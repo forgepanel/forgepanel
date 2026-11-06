@@ -16,15 +16,19 @@ from validate_app_center_recipe import (
 )
 
 CAPABILITY_KEYS = frozenset({
-    "schema_version", "fixture_status", "host_id", "site_ids",
+    "schema_version", "fixture_status", "host_id",
     "php_fpm_available", "native_db_engines",
     "available_container_drivers", "free_cpu_millicores",
     "free_memory_mib", "free_pids",
     "reserved_host_tcp_ports", "observed_bound_host_tcp_ports",
-    "container_scope_claimed",
+})
+AUTHORIZATION_KEYS = frozenset({
+    "schema_version", "fixture_status", "host_id", "tenant_id",
+    "actor_id", "authorized_site_ids", "container_permission_claimed",
 })
 REQUEST_KEYS = frozenset({
-    "schema_version", "request_status", "target_site_id",
+    "schema_version", "request_status", "host_id", "tenant_id",
+    "target_site_id",
     "host_tcp_ports", "hub_available",
 })
 IDENT = re.compile(r"[a-z][a-z0-9_-]{2,63}\Z")
@@ -57,27 +61,42 @@ def bounded_names(value: object, allowed: frozenset[str], label: str) -> list[st
     return value
 
 
-def validate_synthetic_inputs(facts: object, request: object) -> None:
+def validate_synthetic_inputs(facts: object, authorization: object, request: object) -> None:
     if not isinstance(facts, dict) or set(facts) != CAPABILITY_KEYS:
         raise RecipeContractError("REJECT_UNREVIEWED_FIELD: invalid synthetic facts shape")
+    if not isinstance(authorization, dict) or set(authorization) != AUTHORIZATION_KEYS:
+        raise RecipeContractError("REJECT_UNREVIEWED_FIELD: invalid synthetic authorization shape")
     if not isinstance(request, dict) or set(request) != REQUEST_KEYS:
         raise RecipeContractError("REJECT_UNREVIEWED_FIELD: invalid synthetic request shape")
     if (type(facts["schema_version"]) is not int or facts["schema_version"] != 1 or
+        type(authorization["schema_version"]) is not int or authorization["schema_version"] != 1 or
         type(request["schema_version"]) is not int or request["schema_version"] != 1 or
         facts["fixture_status"] != "SYNTHETIC_UNVERIFIED" or
+        authorization["fixture_status"] != "SYNTHETIC_UNVERIFIED" or
         request["request_status"] != "SYNTHETIC_UNVERIFIED"):
         raise RecipeContractError("REJECT_UNAPPROVED_EXECUTION: only synthetic unverified data")
     if not isinstance(facts["host_id"], str) or not IDENT.fullmatch(facts["host_id"]):
         raise RecipeContractError("REJECT_UNREVIEWED_FIELD: invalid host ID")
-    bounded_identifier_list(facts["site_ids"], "site IDs")
+    for label, value in (
+        ("authorization host", authorization["host_id"]),
+        ("authorization tenant", authorization["tenant_id"]),
+        ("authorization actor", authorization["actor_id"]),
+        ("request host", request["host_id"]),
+        ("request tenant", request["tenant_id"]),
+    ):
+        if not isinstance(value, str) or not IDENT.fullmatch(value):
+            raise RecipeContractError(f"REJECT_UNREVIEWED_FIELD: invalid {label}")
+    bounded_identifier_list(authorization["authorized_site_ids"], "authorized site IDs")
     if (not isinstance(request["target_site_id"], str) or
         not IDENT.fullmatch(request["target_site_id"])):
         raise RecipeContractError("REJECT_UNREVIEWED_FIELD: invalid target site ID")
     bounded_names(facts["native_db_engines"], DB_ENGINES, "database engines")
     bounded_names(facts["available_container_drivers"], DRIVERS, "container drivers")
-    for field in ("php_fpm_available", "container_scope_claimed"):
+    for field in ("php_fpm_available",):
         if type(facts[field]) is not bool:
             raise RecipeContractError(f"REJECT_UNREVIEWED_FIELD: invalid {field}")
+    if type(authorization["container_permission_claimed"]) is not bool:
+        raise RecipeContractError("REJECT_UNREVIEWED_FIELD: invalid authorization scope claim")
     if type(request["hub_available"]) is not bool:
         raise RecipeContractError("REJECT_UNREVIEWED_FIELD: invalid hub flag")
     for field in ("free_cpu_millicores", "free_memory_mib", "free_pids"):
@@ -89,17 +108,23 @@ def validate_synthetic_inputs(facts: object, request: object) -> None:
     bounded_port_list(request["host_tcp_ports"], "requested host ports")
 
 
-def preview_install(recipe: object, facts: object, request: object) -> dict:
+def preview_install(recipe: object, facts: object, authorization: object, request: object) -> dict:
     """Produce a synthetic compatibility preview; NEVER authorize an install."""
     kind = validate_recipe(recipe)
-    validate_synthetic_inputs(facts, request)
+    validate_synthetic_inputs(facts, authorization, request)
     blockers: list[str] = []
 
     def block(reason: str) -> None:
         if reason not in blockers:
             blockers.append(reason)
 
-    if request["target_site_id"] not in facts["site_ids"]:
+    # These synthetic channels are intentionally separate. Equality checks
+    # are only fictional consistency checks, never authentication proof.
+    if authorization["host_id"] != facts["host_id"] or request["host_id"] != facts["host_id"]:
+        block("HOST_SCOPE_MISMATCH")
+    if request["tenant_id"] != authorization["tenant_id"]:
+        block("TENANT_SCOPE_MISMATCH")
+    if request["target_site_id"] not in authorization["authorized_site_ids"]:
         block("SITE_OWNERSHIP_UNVERIFIED")
 
     if kind == "native_script":
@@ -124,7 +149,7 @@ def preview_install(recipe: object, facts: object, request: object) -> dict:
             "CONTAINER_PREVIEW_NETWORK_AND_VOLUMES",
             "CONTAINER_PREVIEW_BACKUP_RESTORE",
         ]
-        if not facts["container_scope_claimed"]:
+        if not authorization["container_permission_claimed"]:
             block("CONTAINER_SCOPE_UNVERIFIED")
         if container["driver"] not in facts["available_container_drivers"]:
             block("CONTAINER_DRIVER_NOT_AVAILABLE")
@@ -162,6 +187,11 @@ def preview_install(recipe: object, facts: object, request: object) -> dict:
         "runtime_capabilities_verified": False,
         "port_probe_executed": False,
         "resource_reservations_created": False,
+        "input_trust": {
+            "host_capabilities": "SYNTHETIC_UNVERIFIED",
+            "authorization_context": "SYNTHETIC_UNVERIFIED",
+            "client_request": "UNTRUSTED_CANDIDATE",
+        },
         "external_reachability_verified": False,
         "hub_entitlement_required": False,
         "next_action": "SPECIALIST_REVIEW_AND_REAL_INTEGRATION_REQUIRED",
@@ -177,8 +207,9 @@ def main() -> int:
     try:
         recipe = load_fixture(FIXTURES / recipe_name)
         facts = load_fixture(FIXTURES / "host-capabilities.synthetic.json")
+        authorization = load_fixture(FIXTURES / "authorization.synthetic.json")
         request = load_fixture(FIXTURES / "install-request.synthetic.json")
-        report = preview_install(recipe, facts, request)
+        report = preview_install(recipe, facts, authorization, request)
     except (RecipeContractError, KeyError, TypeError) as exc:
         print(f"FAIL: synthetic plan inputs rejected: {exc}")
         return 1

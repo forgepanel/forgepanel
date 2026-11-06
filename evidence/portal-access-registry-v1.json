@@ -1,27 +1,46 @@
 {
   "schema_version": 1,
+  "draft_revision": 2,
   "status": "SPECIFIED_NOT_IMPLEMENTED",
-  "scope": "ForgePanel Core portal access; not a deployed listener or runtime configuration",
-  "owner_reference": "Owner-reiterated FORGE/PANEL route and port convention; 2026-11-06",
+  "scope": "ForgePanel Core portal access candidate; no deployed listener, certificate or host detector",
+  "owner_reference": "2026-11-06 correction: fixed /forge:8447 and /panel:8446; discover machine IP and existing domain automatically, no customizable domain input",
   "surfaces": {
     "FORGE": {
       "route_prefix": "/forge",
       "direct_https_port": 8447,
-      "virtual_host_https_port": 443,
-      "hostname_policy": "CONFIGURABLE_PER_INSTALLATION",
-      "example_hostname": "forge.ip-server.com",
-      "example_only": true,
+      "address_source": "SYSTEM_DETECTED",
+      "domain_policy": "DISCOVER_EXISTING_FQDN_IF_VERIFIED",
       "purpose": "server-administration"
     },
     "PANEL": {
       "route_prefix": "/panel",
       "direct_https_port": 8446,
-      "virtual_host_https_port": 443,
-      "hostname_policy": "CONFIGURABLE_PER_INSTALLATION",
-      "example_hostname": "panel.up-server.com",
-      "example_only": true,
+      "address_source": "SYSTEM_DETECTED",
+      "domain_policy": "DISCOVER_EXISTING_FQDN_IF_VERIFIED",
       "purpose": "customer-hosting"
     }
+  },
+  "discovery": {
+    "address_enumeration": "OS_INTERFACES_AND_ROUTING",
+    "include_ipv4": true,
+    "include_ipv6": true,
+    "exclude_loopback": true,
+    "verify_address_is_host_assigned_or_explicitly_reachable": true,
+    "do_not_assume_public_ip_from_private_interface": true,
+    "fqdn_candidate_source": "OS_HOSTNAME_AND_RESOLVER",
+    "fqdn_optional": true,
+    "fqdn_requires_forward_dns_validation": true,
+    "require_dns_ip_consistency": true,
+    "ipv6_url_uses_square_brackets": true,
+    "no_manually_entered_custom_domain": true,
+    "no_automatic_subdomain_creation": true,
+    "no_automatic_port_443_virtual_host": true,
+    "url_advertisement_requires_valid_tls": true,
+    "discovery_result_states": [
+      "VERIFIED",
+      "UNVERIFIED",
+      "UNAVAILABLE"
+    ]
   },
   "required_security": {
     "tls_validation": true,
@@ -35,11 +54,11 @@
     "core_operates_without_hub": true
   },
   "deployment_decisions_not_set": [
-    "Concrete FQDNs and DNS zones for each installation",
-    "Certificate provider or verified IP-SAN certificate for direct IP HTTPS",
-    "Permanent session cookie names and trusted proxy CIDR values",
-    "Optional host root-path redirect policy",
-    "Listener implementation and dual-stack bind addresses",
+    "Rules for detecting a NAT/public edge IP not present on the host",
+    "Certificate provider or valid IP-SAN certificate for HTTPS access by IP",
+    "Permanent cookie names and exact trusted proxy CIDR values",
+    "Optional support for a pre-existing verified TLS gateway on port 443",
+    "Listener bind addresses and firewall exposure policy",
     "Any production exposure, OS qualification or release date"
   ],
   "requirements": [

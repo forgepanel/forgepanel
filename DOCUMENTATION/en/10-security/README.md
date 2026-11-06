@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-10 revision=22 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=23 status=documented -->
 # Security model and disclosure
 
 [Français](../../fr/10-security/README.md) · [Index](../README.md)
+
+## App Center — freshness, host identity and authorization evidence
+
+The [candidate preflight evidence contract](../08-api-contracts/app-center-admission-evidence.md) distinguishes agent-sourced host observation, authenticated Core RBAC, versioned Core policy and **untrusted** client intent. Its synthetic timestamps, revisions and host facts are deliberately **not trusted proofs** and never grant APPLY; actual peer identity, policy signature, anti-replay, TOCTOU protections and physical capacities require specialist review. [12 future security/VM tests](../13-tests-quality/app-center-evidence-gates.md) remain PLANNED.
 
 ## App Center preflight provenance — draft review
 

@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-14 revision=17 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=18 status=documented -->
 # Installation, Git promotion and releases
 
 [Français](../../fr/14-devops-releases/README.md) · [Index](../README.md)
+
+## Host address observation — standalone preflight
+
+A new [standalone, unprivileged Go observer](host-address-observation.md) reports **OS-assigned IPv4/IPv6 and a syntactically valid FQDN candidate** for eventual FORGE /forge:8447 and PANEL /panel:8446 setup. It makes **no DNS/TLS or listener check**, publishes no verified URL and **does not request custom portal domains**. It does not integrate the missing Foundation Core or qualify any OS. Runtime implementation still depends on issue #51 and the R1/R2 prerequisites.
 
 ## Git workflow
 

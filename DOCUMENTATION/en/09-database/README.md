@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-09 revision=9 status=documented -->
+<!-- forgepanel-doc id=FP-09 revision=10 status=documented -->
 # Database, transactions and migrations
 
 [Français](../../fr/09-database/README.md) · [Index](../README.md)
+
+## Candidate App Center resource and ownership model
+
+The [conceptual model](app-center-resource-ownership.md) distinguishes logical app identity, native/container recipe variants, engine-specific installations, quotas, reservations, backups and audit. No physical tables, DDL migrations, job integration or data-retention periods are authorized by this document. [Manifest contract](../08-api-contracts/app-center-recipe-contracts.md).
 
 ## Actual prototype schema
 

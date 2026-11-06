@@ -78,12 +78,16 @@ def valid_source(url: object) -> None:
     try:
         parsed = urlsplit(url)
         hostname = parsed.hostname
+        port = parsed.port
     except ValueError:
         reject("REJECT_UNTRUSTED_ARTIFACT", "malformed artifact origin")
+    path_parts = parsed.path.lower().split("/")
     if (parsed.scheme != "https" or not hostname or
         not HOST.fullmatch(hostname) or parsed.username is not None or
-        parsed.password is not None or parsed.port is not None or
+        parsed.password is not None or port is not None or
         parsed.query or parsed.fragment or not parsed.path.startswith("/") or
+        any(part in (".", "..") for part in path_parts) or
+        "%" in parsed.path or
         any(ord(char) < 32 for char in url) or "\\" in url):
         reject("REJECT_UNTRUSTED_ARTIFACT", "not a bounded HTTPS artifact URL")
     # This is only a *syntactic* check. Production must independently guard

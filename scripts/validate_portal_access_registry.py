@@ -78,7 +78,10 @@ def validate_registry(data: Any) -> None:
             raise ValueError(f"{role} domain must be discovered, not user-customized")
 
     discovery = data.get("discovery")
-    if not isinstance(discovery, dict) or discovery != REQUIRED_DISCOVERY:
+    if not isinstance(discovery, dict) or set(discovery) != set(REQUIRED_DISCOVERY):
+        raise ValueError("Discovery contract has missing/extra controls")
+    if any(type(discovery[name]) is not type(expected) or discovery[name] != expected
+           for name, expected in REQUIRED_DISCOVERY.items()):
         raise ValueError("Discovery contract altered: no custom domains, guessing, or automatic 443")
     security = data.get("required_security")
     if not isinstance(security, dict) or set(security) != set(REQUIRED_SECURITY):

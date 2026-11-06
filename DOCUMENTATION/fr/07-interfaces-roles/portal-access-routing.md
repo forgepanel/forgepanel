@@ -1,9 +1,11 @@
-<!-- forgepanel-doc id=FP-07-PORTALS revision=3 status=specified -->
+<!-- forgepanel-doc id=FP-07-PORTALS revision=4 status=specified -->
 # Accès FORGE / PANEL — ports fixes, IP et domaine détectés
 
 [English](../../en/07-interfaces-roles/portal-access-routing.md) · [Rôles](README.md) · [Tests](../13-tests-quality/portal-access-gates.md)
 
 > **SPECIFIED / non implémenté.** Correction explicitement donnée par le propriétaire le 6 novembre 2026 : **aucun champ « domaine personnalisé »**. ForgePanel détecte automatiquement l'adresse IP de la machine et, s'il existe, son nom de domaine utilisable. Les chemins et les ports décidés restent inchangés. Le prototype SRC-03 ne fournit pas encore ces deux portails.
+
+**Périmètre :** cette restriction concerne uniquement les adresses d'accès des deux interfaces système. Elle ne supprime ni les domaines des sites clients ni les éventuelles fonctions d'identité de marque prévues par Q5, qui restent soumises à leurs propres contrats.
 
 ## Accès attendus, sans domaine à saisir
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13-APP-CENTER revision=2 status=specified -->
+<!-- forgepanel-doc id=FP-13-APP-CENTER revision=3 status=specified -->
 # App Center — native versus container qualification matrix
 
 [Français](../../fr/13-tests-quality/app-center-engine-gates.md) · [QA](README.md) · [App Center contract](../06-apps-recipes/app-center-engines.md)
@@ -44,7 +44,7 @@
 | Test ID | Scenario | Expected |
 |---|---|---|
 | TEST-APP-X-0001 | Same app offered natively and in containers | Separate compatible recipes, identities, requirements and upgrades |
-| TEST-APP-X-0002 | Native request with \`container_stack\` recipe or vice versa | Type rejection before resource allocation |
+| TEST-APP-X-0002 | Native request with `container_stack` recipe or vice versa | Type rejection before resource allocation |
 | TEST-APP-X-0003 | Local install/removal while Hub unavailable | Free Core usable; no mandatory commerce rights |
 | TEST-APP-X-0004 | Unapproved partner catalog or unsigned artifact | Never executable, even if draft item is visible |
 | TEST-APP-X-0005 | Automatic conversion from native hosting to containers | Reject without dedicated migration workflow |
@@ -54,6 +54,6 @@
 
 ## Required evidence
 
-To mark \`VERIFIED\`, name exact commit, OS/version, WebStack/PHP or Docker/Podman version, manifest/digest, tenant/permissions, measured resources and recovery result. Exercise positive **and** negative multitenant cases on real VMs. Static checks do not certify runtime deployment.
+To mark `VERIFIED`, name exact commit, OS/version, WebStack/PHP or Docker/Podman version, manifest/digest, tenant/permissions, measured resources and recovery result. Exercise positive **and** negative multitenant cases on real VMs. Static checks do not certify runtime deployment.
 
 All Q1–Q170 decisions remain in force. The detailed technical mechanisms and sequencing require specialist reviews without invented PASS results.

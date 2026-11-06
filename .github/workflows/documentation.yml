@@ -55,6 +55,8 @@ jobs:
           python3 scripts/preview_app_center_install.py --fixture native > /tmp/native-preview.json
           python3 scripts/preview_app_center_install.py --fixture container > /tmp/container-preview.json
           python3 -c 'import json; a,b=[json.load(open(p)) for p in ("/tmp/native-preview.json","/tmp/container-preview.json")]; assert a["recipe_kind"]=="native_script" and b["recipe_kind"]=="container_stack"; assert all(p["execution_allowed"] is False and p["apply_available"] is False and p["resource_reservations_created"] is False for p in (a,b)); print("PASS: previews are metadata-only and cannot apply")'
+      - name: Validate owner-approved Q171-Q220 choices, FR/EN parity and PLANNED gates
+        run: python3 tests/documentation/test_q171_q220.py -v
       - name: Validate documentation
         run: python3 scripts/check_documentation.py
       - name: Package the documentation snapshot

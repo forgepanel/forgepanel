@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-08 revision=10 status=documented -->
+<!-- forgepanel-doc id=FP-08 revision=11 status=documented -->
 # APIs and contracts
 
 [Français](../../fr/08-api-contracts/README.md) · [Index](../README.md)
+
+## Candidate App Center manifest contracts
+
+The [native/container candidate recipe contract](app-center-recipe-contracts.md) and its [offline fail-closed validator](../../../scripts/validate_app_center_recipe.py) reject cross-engine recipes, unpinned artifacts and dangerous execution fields **without running installers**. These are provisional metadata checks, not operating Core API endpoints. [Data ownership model](../09-database/app-center-resource-ownership.md).
 
 ## Contracts observed in SRC-03
 

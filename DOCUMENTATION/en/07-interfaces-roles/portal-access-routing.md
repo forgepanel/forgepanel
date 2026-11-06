@@ -1,9 +1,11 @@
-<!-- forgepanel-doc id=FP-07-PORTALS revision=3 status=specified -->
+<!-- forgepanel-doc id=FP-07-PORTALS revision=4 status=specified -->
 # FORGE / PANEL access — fixed ports, autodetected IP and domain
 
 [Français](../../fr/07-interfaces-roles/portal-access-routing.md) · [Roles](README.md) · [Tests](../13-tests-quality/portal-access-gates.md)
 
 > **SPECIFIED / not implemented.** Owner correction on 6 November 2026: **no customizable domain input**. ForgePanel must discover the machine's IP address automatically and also detect a usable existing domain name, if any. Approved paths and ports remain unchanged. SRC-03 does not yet ship these two portals.
+
+**Scope:** this rule applies only to the two system portal access addresses. It does not cancel tenant website domains or Q5 organization branding features, which retain their own contracts and checks.
 
 ## Expected access without a domain-entry field
 

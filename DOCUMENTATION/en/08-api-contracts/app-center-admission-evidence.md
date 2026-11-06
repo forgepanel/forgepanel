@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08-APP-EVIDENCE revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-08-APP-EVIDENCE revision=2 status=specified -->
 # App Center — evidence binding, revision and freshness before installation
 
 [Français](../../fr/08-api-contracts/app-center-admission-evidence.md) · [API contracts](README.md) · [Q180/Q220 configuration rules](../02-architecture/app-center-config-inheritance.md) · [Security boundary](../10-security/app-center-admission-trust-boundary.md)
@@ -37,7 +37,7 @@ A metadata envelope can match host/tenant IDs and revision numbers, **but equali
 
 ## Standalone synthetic reference code
 
-The [offline reviewer](../../../scripts/check_app_center_candidate_evidence.py) reads two **bundled fictional** [native](../../../evidence/app-center-fixtures/admission-native.synthetic.json) and [container](../../../evidence/app-center-fixtures/admission-container.synthetic.json) JSON records. Each uses a fixed **fictional clock**, explicitly `SYNTHETIC_UNVERIFIED` host/AuthZ/config evidence and `UNTRUSTED_CLIENT_FIXTURE` intent. Their dates, revisions, CPU/RAM values and identity strings are **QA examples, not product defaults or real evidence**.
+The [strict synthetic-only JSON Schema](../../../evidence/app-center-admission.synthetic-v1.schema.json) describes the four source envelopes with explicit allowlists and no unknown fields. It is an illustrative *schema for fake test data*, **not an approved IPC wire schema or signature verifier**. The [offline reviewer](../../../scripts/check_app_center_candidate_evidence.py) reads two **bundled fictional** [native](../../../evidence/app-center-fixtures/admission-native.synthetic.json) and [container](../../../evidence/app-center-fixtures/admission-container.synthetic.json) JSON records. Each uses a fixed **fictional clock**, explicitly `SYNTHETIC_UNVERIFIED` host/AuthZ/config evidence and `UNTRUSTED_CLIENT_FIXTURE` intent. Their dates, revisions, CPU/RAM values and identity strings are **QA examples, not product defaults or real evidence**.
 
 ```sh
 python3 scripts/check_app_center_candidate_evidence.py --fixture native

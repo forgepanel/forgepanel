@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=18 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=19 status=documented -->
 # Security model and disclosure
 
 [Français](../../fr/10-security/README.md) · [Index](../README.md)
@@ -102,3 +102,7 @@ The [R3 tool](../14-devops-releases/kvm-image-admission.md) is **read-only, nonr
 ## R3 — Private staging security and immutability limit
 
 [QCOW2 staging](../14-devops-releases/kvm-image-staging.md) has **no arbitrary shell/root API, QEMU or network access**. It requires separated canonical paths, nonroot account, 0700 directories, private source, `openat`/`O_NOFOLLOW`, non-executable copied files, full SHA-256 and receipt without secrets/private paths. A positive state proves **neither publisher identity, actual immutable storage, nor sandbox/real quota enforcement**: the same UID can alter even a 0400 file. Partial directories stay private for review and never count as qualification. Future launch requires another hash check; Q132 vetoes remain.
+
+## R3 — Future IPC and installer trust boundary
+
+[Typed IPC contract](../08-api-contracts/symfony-go-ipc-r3.md) requires independent transport-peer **and** actor/tenant/resource authorization by Symfony and Go, a [closed operation register](../evidence/typed-agent-operations-v1.json) and redacted events. Both privileged activation/compensation actions remain **not authorized**, even if their payload passes JSON Schema. [Installer lifecycle](../14-devops-releases/installer-lifecycle-r3.md) requires signatures, anti-rollback, backup, emergency admin access and health evidence before success. **No generic shell API, running privileged daemon or browser-to-root endpoint; Q132 vetoes remain absolute.** Transport/privilege specifics require independent Security review.

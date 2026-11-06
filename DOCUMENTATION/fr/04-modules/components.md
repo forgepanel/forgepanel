@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-04-COMPONENTS revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-04-COMPONENTS revision=2 status=documented -->
 # Fiches composants
 
 [English](../../en/04-modules/components.md) · [Index modules](README.md)
@@ -114,3 +114,7 @@ Les chemins de prototypes ci-dessous appartiennent à SRC-03, pas aux sources ap
 État : `SPECIFIED`, non implémenté. Opérateurs et Symfony consommeront une API privée typée ; adaptateurs OS/services, jobs durables, verrous et audit sont les dépendances. Schéma du journal et contrat IPC ne sont pas finalisés. L'agent contrôle indépendamment le périmètre autorisé, isole un exécuteur privilégié minimal et reprend les opérations interrompues sans shell arbitraire. Installation/mise à jour/retrait exigent paquets signés, politiques systemd et tests par OS. L'acceptation nécessite authentification des pairs, refus, chemins sûrs, concurrence, reprise et santé des services. Aucun démon ou endpoint de supervision exécutable n'est fourni.
 
 Toute nouvelle fiche conserve ces champs, y compris migrations/contrats absents, consommateurs, échecs, cycle de vie et limites de tests. Un détail manquant est signalé plutôt que remplacé par une fonction inventée.
+
+## CMP-AGENT-TARGET — HANDOFF R3 des contrats candidats
+
+Le futur agent Go et l'installateur doivent consommer uniquement des actions explicitement autorisées par les [fiches IPC `IPC-FP-0001..0012`](../08-api-contracts/symfony-go-ipc-r3.md) et le [registre `ACT-FP-0001..0007`](../evidence/typed-agent-operations-v1.json), avec [cycle R3](../14-devops-releases/installer-lifecycle-r3.md). **Ce registre n'est pas un moteur activable** ; les deux actions système privilégiées restent bloquées et tout code exécutif dépend de R1/R2, des audits API/IPC/Security/DB, de tests de refus et de VM réelles. Aucun module ne peut s'attribuer un droit à root ou remplacer les contrats Core par ceux du Hub.

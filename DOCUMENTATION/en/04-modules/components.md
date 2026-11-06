@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-04-COMPONENTS revision=1 status=documented -->
+<!-- forgepanel-doc id=FP-04-COMPONENTS revision=2 status=documented -->
 # Component records
 
 [Français](../../fr/04-modules/components.md) · [Module index](README.md)
@@ -114,3 +114,7 @@ All prototype paths below are inside SRC-03, not tracked application paths in th
 State: `SPECIFIED`, not implemented. Operators and Symfony will consume a private typed API; OS/service adapters, durable jobs, resource locks and audit are dependencies. Job journal schema and IPC contract are not finalized. It must enforce authorized resource scope independently, isolate a minimal privileged executor and recover interrupted operations without arbitrary shell commands. Installation/update/removal need signed packages, systemd policies and per-OS tests. Acceptance requires peer authentication, denied operations, safe paths, concurrency, crash recovery and service-health evidence. No runnable daemon or monitoring endpoint is supplied.
 
 New component records must retain all fields above, including absent migrations/contracts, consumers, failure behavior, lifecycle and test limits. Missing detail is recorded explicitly rather than filled with invented functionality.
+
+## CMP-AGENT-TARGET — R3 candidate contract handoff
+
+The future Go agent and installer must consume only operations authorized through [`IPC-FP-0001..0012` contracts](../08-api-contracts/symfony-go-ipc-r3.md) and [closed `ACT-FP-0001..0007` registry](../evidence/typed-agent-operations-v1.json), under [R3 installer lifecycle](../14-devops-releases/installer-lifecycle-r3.md). **This registry is not an executable engine**; two privileged actions remain blocked and any actual system code needs R1/R2 completion, independent API/IPC/Security/DB reviews, negative tests and real VM qualification. Modules cannot self-grant root or replace free Core authority with Hub contracts.

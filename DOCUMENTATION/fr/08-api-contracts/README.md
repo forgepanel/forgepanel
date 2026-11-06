@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-08 revision=10 status=documented -->
+<!-- forgepanel-doc id=FP-08 revision=11 status=documented -->
 # API et contrats
 
 [English](../../en/08-api-contracts/README.md) · [Index](../README.md)
+
+## Contrats candidats de manifestes App Center
+
+Le [contrat des recettes natives/conteneurs](app-center-recipe-contracts.md) et son [validateur hors ligne](../../../scripts/validate_app_center_recipe.py) refusent le mélange des moteurs, les artefacts non épinglés et les champs dangereux **sans lancer d'installateur**. Ces contrôles de métadonnées restent provisoires ; aucune API Core active. [Modèle de propriété](../09-database/app-center-resource-ownership.md).
 
 ## Contrats observés dans SRC-03
 

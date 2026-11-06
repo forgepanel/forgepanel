@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-CONFIG revision=8 status=specified -->
+<!-- forgepanel-doc id=FP-02-CONFIG revision=9 status=specified -->
 # Configuration Engine — spécification des réglages administrables
 
 [English](../../en/02-architecture/configuration-engine.md) · [Architecture](README.md) · [Politique produit](../00-project-control/product-policy.md)
@@ -85,3 +85,7 @@ Tests : aucune escalade via scope enfant ; permission refusée sur CLI et API ; 
 ## Q47 → R3 : articulation avec les opérations du futur agent
 
 Le [contrat candidat Symfony ↔ Go](../08-api-contracts/symfony-go-ipc-r3.md) expose les enveloppes plan/révision/idempotence/audit, et le [contrat d'installateur](../14-devops-releases/installer-lifecycle-r3.md) applique les phases Q47 avec séparation des actions de lecture, staging et opérations privilégiées. Le [registre ACT-FP](../../evidence/typed-agent-operations-v1.json) est une **proposition documentaire** : aucune clé de configuration ne devient une commande système, aucun formulaire ne désactive les contrôles d'isolation et les deux opérations privilégiées restent bloquées. La persistance du job, les vérifications Linux, les TTL et les retries doivent être définis par les autorités avant code.
+
+## Q47 — Distinguer l'intention, l'effet et sa preuve dans le modèle physique proposé
+
+Le moteur de configuration doit persister une **intention** avec scope/acteurs/politique dans le [modèle PostgreSQL candidat](../09-database/physical-jobs-model-r3.md), puis soumettre l'action au [contrat typé](../08-api-contracts/typed-execution-recovery-r3.md) après validation de l'[identité Linux](../14-devops-releases/linux-service-identities-r3.md). Les phases `PLAN/PREFLIGHT/SNAPSHOT/STAGE` n'annoncent aucun effet ; l'ACK IPC ne devient pas `SUCCEEDED` ; les compteurs de fencing doivent être validés au point d'effet. Ces fichiers sont candidats, et tout changement de configuration en production reste interdit sans contrat/implémentation/VM réelle qualifiés. [Tests PLANNED](../13-tests-quality/r3-physical-execution-gates.md).

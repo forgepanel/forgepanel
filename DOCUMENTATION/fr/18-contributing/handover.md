@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-18-HANDOVER revision=8 status=documented -->
+<!-- forgepanel-doc id=FP-18-HANDOVER revision=9 status=documented -->
 # Passage de relais
 
 [English](../../en/18-contributing/handover.md) · [Guide de contribution](README.md)
@@ -48,3 +48,7 @@ Le module [Image Staging](../14-devops-releases/kvm-image-staging.md) réalise u
 ## Relais ciblé : modèle de jobs et authentification de pair
 
 Les [jobs durables R3](../09-database/durable-jobs-r3.md), la [frontière IPC](../08-api-contracts/local-peer-trust-r3.md) et [24 tests PLANNED](../13-tests-quality/r3-jobs-peer-gates.md) sont des **candidats à revue spécialisée**. Prochaines décisions techniques : structure SQL/unique keys, isolation/lock/fencing, TTL/retry/rétention, identité Unix/processus, bridge PHP-FPM, mandat vérifiable, rotation/permissions socket et transport distant éventuel. Ne pas transformer les JSON schemas en migrations ou autorisations runtime. Le code Foundation v0.7 reste absent ; pas de Hub comme dépendance.
+
+## Relais R3 : propositions physiques et séparation de privilèges
+
+Les fiches [PostgreSQL physique](../09-database/physical-jobs-model-r3.md), [identités de services Linux](../14-devops-releases/linux-service-identities-r3.md), [exécution/récupération typée](../08-api-contracts/typed-execution-recovery-r3.md), les [registres candidats](../../evidence/candidate-r3-physical-data-model-v1.json) et [36 tests PLANNED](../13-tests-quality/r3-physical-execution-gates.md) sont prêts à être **examinés**, non à être installés. HANDOFF **Database** pour clés/index/FK/RLS/migrations et tests PostgreSQL ; **Security** pour tenant/UID/LSM/fencing/autorisation ; **API/IPC** pour contrats et preuves au point d'effet ; **DevOps** pour systemd/paquets/récupération ; **QA** pour VMs et refus. Ne jamais générer du DDL, un compte Linux ou un handler root depuis un seul fichier candidat. Les sources Foundation R1 demeurent absentes, Hub sans privilèges Core.

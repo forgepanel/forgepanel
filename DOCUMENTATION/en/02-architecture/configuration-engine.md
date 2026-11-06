@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-02-CONFIG revision=8 status=specified -->
+<!-- forgepanel-doc id=FP-02-CONFIG revision=9 status=specified -->
 # Configuration Engine — administrable settings specification
 
 [Français](../../fr/02-architecture/configuration-engine.md) · [Architecture](README.md) · [Product policy](../00-project-control/product-policy.md)
@@ -85,3 +85,7 @@ Tests: prevent tenant scope escalation; deny unauthorized CLI/API; reject stale 
 ## Q47 → R3: future agent operation boundary
 
 [Candidate Symfony ↔ Go IPC](../08-api-contracts/symfony-go-ipc-r3.md) describes plan/revision/idempotency/audit envelopes, while the [installer lifecycle](../14-devops-releases/installer-lifecycle-r3.md) maps Q47 phases to separated observation, staging and privileged steps. The [ACT-FP registry](../../evidence/typed-agent-operations-v1.json) is **documentary**: no setting key becomes a system command, no UI expert mode bypasses isolation, and two privileged actions remain blocked. Database job records, actual Linux checks, timeouts and retries require owner reviews before implementation.
+
+## Q47 — Separate intent, system effect and proof in candidate physical design
+
+Configuration Engine must persist scoped/authorized **intent** according to the [candidate PostgreSQL model](../09-database/physical-jobs-model-r3.md), then submit a [typed operation](../08-api-contracts/typed-execution-recovery-r3.md) after [Linux peer identity](../14-devops-releases/linux-service-identities-r3.md) validation. `PLAN/PREFLIGHT/SNAPSHOT/STAGE` are not evidence of any system effect; an IPC ACK never means `SUCCEEDED`; fencing must be checked at the effect boundary. All files are candidates, and production apply remains forbidden without reviewed contracts, real implementation and VM evidence. [PLANNED tests](../13-tests-quality/r3-physical-execution-gates.md).

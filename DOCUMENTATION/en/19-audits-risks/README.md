@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19 revision=10 status=documented -->
+<!-- forgepanel-doc id=FP-19 revision=11 status=documented -->
 # Audit, contradictions and risks
 
 [Français](../../fr/19-audits-risks/README.md) · [Index](../README.md)
@@ -86,3 +86,11 @@ Both risks remain **OPEN**. The [24 R3 test cases](../13-tests-quality/r3-ipc-in
 - **RISK-029 — Socket peer vs actor authorization confusion:** a file permission or valid peer UID alone proves neither user mandate nor tenant scope. [Peer trust contract](../08-api-contracts/local-peer-trust-r3.md) requires independently checked authorization and replay resistance. **OPEN**, no authenticated service/transport is operational.
 
 Green static JSON/Markdown checks cannot close these risks or authorize a privileged operation. [Negative QA matrix](../13-tests-quality/r3-jobs-peer-gates.md).
+
+## R3 — Physical model, privilege and recovery open risks
+
+- **RISK-030 — Poorly scoped idempotency/data model:** uniqueness on a tenant-agnostic key, ambiguous FK or NULL scope may merge unrelated jobs. [Candidate DB model](../09-database/physical-jobs-model-r3.md) requires explicit scopes, constraints and actual fencing. **OPEN**, no verified SQL.
+- **RISK-031 — Tenant-shared IPC bridge:** broad Unix UID/group or unsafe socket modes could expose server-control operations. [Candidate Linux identities](../14-devops-releases/linux-service-identities-r3.md) separate bridge/panel/agent/sites and require real per-OS SELinux/AppArmor tests. **OPEN**, no accounts created.
+- **RISK-032 — False success/destructive recovery:** ACK/zero exit is not observed effect; binary rollback cannot reverse irreversible SQL. [Candidate execution rules](../08-api-contracts/typed-execution-recovery-r3.md) require independent effect verification, `VERIFYING`, safe compensation and no blind replay. **OPEN**, no actual handler.
+
+CI tests only FR/EN and JSON consistency. All [36 positive/negative cases](../13-tests-quality/r3-physical-execution-gates.md) are PLANNED and close no security finding. Q132 critical vetoes remain.

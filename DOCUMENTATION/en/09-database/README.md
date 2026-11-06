@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-09 revision=7 status=documented -->
+<!-- forgepanel-doc id=FP-09 revision=8 status=documented -->
 # Database, transactions and migrations
 
 [Français](../../fr/09-database/README.md) · [Index](../README.md)
@@ -50,3 +50,7 @@ Future [Symfony ↔ Go IPC](../08-api-contracts/symfony-go-ipc-r3.md) needs dura
 ## R3 — Candidate durable job and lease model
 
 [R3 PostgreSQL job contract](durable-jobs-r3.md) documents 12 requirements DB-FP-0001..0012 for durable intent, scoped idempotency, leases/fencing, state transitions, outbox/inbox, lost ACK, concurrency, redacted audit and recovery. [Candidate transition registry](../../evidence/candidate-job-transitions-v1.json) and [job record schema](../../evidence/candidate-job-record-v1.schema.json) are **not DDL or installed tables**. No lease duration, SQL isolation, migration or retry setting is approved absent Database/API/Security review. [QA plan](../13-tests-quality/r3-jobs-peer-gates.md).
+
+## R3 — Proposed physical PostgreSQL jobs, no DDL
+
+[Candidate physical PostgreSQL model](physical-jobs-model-r3.md) details `DBPH-FP-0001..0012`, **8 proposed table objects**, uniqueness, relationships, tenant scope, idempotency, outbox/inbox, fenced leases and recovery. [Candidate table register](../../evidence/candidate-r3-physical-data-model-v1.json) is **not a migration** and does not modify any of the three historical SRC-03 tables. Types/FKs/indexes, DB roles and limits require Database/Security review after genuine source import. [36 R3 planned tests](../13-tests-quality/r3-physical-execution-gates.md).

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-TRACEABILITY revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-00-TRACEABILITY revision=4 status=documented -->
 # Matrice de traçabilité exigences → contrats → tests
 
 [English](../../en/00-project-control/requirements-traceability.md) · [Pilotage](README.md) · [Statut](status.md)
@@ -56,3 +56,7 @@ La complétude **de structure** (64 paires Core, 27 paires Hub dans le snapshot 
 ## Traçabilité R3 : transactions ↔ IPC ↔ tests négatifs
 
 La ligne **FP-TRACE-004 / DOC-GAP-004** conserve son périmètre PostgreSQL complet, avec désormais la [fiche jobs/leases R3](../09-database/durable-jobs-r3.md) comme contrat additionnel. La ligne **FP-TRACE-006 / DOC-GAP-006** ajoute la [confiance du pair](../08-api-contracts/local-peer-trust-r3.md) et [24 tests PLANNED](../13-tests-quality/r3-jobs-peer-gates.md). Ces compléments ne remplacent **aucun** contrat d'identité R2, SQL/host modèles futurs, preuve KVM ou revue Security. La [machine de transitions candidate](../../evidence/candidate-job-transitions-v1.json) ne produit pas d'état de production. Les deux lignes conservent leur statut **OPEN**.
+
+## Détail des traces physiques R3
+
+`FP-TRACE-004` possède désormais comme supplément le [modèle DB physique candidat](../09-database/physical-jobs-model-r3.md) et ses tests `R3-PHYS-TEST`. `FP-TRACE-005` se relie à la [séparation Linux](../14-devops-releases/linux-service-identities-r3.md) et aux tests `R3-LINUX-TEST`, et `FP-TRACE-006` aux [garde-fous des opérations typées](../08-api-contracts/typed-execution-recovery-r3.md) et `R3-EXEC-TEST`. Voir [36 scénarios](../13-tests-quality/r3-physical-execution-gates.md). **Chaque trace reste OPEN** ; les propositions de DDL et UID ne sont pas des décisions techniques approuvées.

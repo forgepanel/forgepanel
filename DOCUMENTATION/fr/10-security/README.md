@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=20 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=21 status=documented -->
 # Modèle de sécurité et signalement
 
 [English](../../en/10-security/README.md) · [Index](../README.md)
@@ -110,3 +110,7 @@ Le [contrat IPC typé](../08-api-contracts/symfony-go-ipc-r3.md) exige vérifica
 ## R3 — Authentification de pair ≠ autorisation métier
 
 Le [contrat local Symfony ↔ Go](../08-api-contracts/local-peer-trust-r3.md) exige de distinguer identité réelle du pair (credentials noyau à examiner) et mandat de l'acteur issu d'une session Symfony déjà autorisée. Un UID Linux partagé, un socket mode groupe ou un payload actor_claim n'authentifient pas l'utilisateur. Vérifier aussi le tenant, le rôle, la ressource, le plan, sa révision et le [registre fermé](../../evidence/typed-agent-operations-v1.json). La présence d'un [reçu d'identité candidat](../../evidence/candidate-peer-binding-v1.schema.json) ne constitue pas une preuve de signature. Les opérations privilégiées restent bloquées. **RISK-028/029 non résolus**, aucune API générique root.
+
+## R3 — Gouvernance des identités Linux, des verrous et de la récupération
+
+Le [modèle physique PostgreSQL proposé](../09-database/physical-jobs-model-r3.md) exige contrôle des scopes et fencing, le [modèle d'identités Linux](../14-devops-releases/linux-service-identities-r3.md) sépare PHP tenant, pont, agent Go, migrateur et handler privilégié **désactivé**, et les [contrats d'effet](../08-api-contracts/typed-execution-recovery-r3.md) interdisent d'assimiler un ACK ou service actif à un résultat vérifié. **RISK-030..032 restent OPEN** : collisions scope/DB, socket partagé/perte d'isolation et faux rollback. Aucun groupe Unix, socket root, droit shell générique ou autorisation Hub n'est créé.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08 revision=8 status=documented -->
+<!-- forgepanel-doc id=FP-08 revision=9 status=documented -->
 # APIs and contracts
 
 [Français](../../fr/08-api-contracts/README.md) · [Index](../README.md)
@@ -56,3 +56,7 @@ Version compatibility and migration tests precede any new public API. Proposed e
 ## R3 — Local peer trust boundary
 
 [Candidate peer trust](local-peer-trust-r3.md) adds PEER-FP-0001..0012 for a **proposed** private Unix socket, kernel-observed peer identity, separated service users, Go-side reauthorization, anti-replay and fail-closed reconnection. The [candidate peer-binding schema](../../evidence/candidate-peer-binding-v1.schema.json) is **neither a signed attestation nor a running API**. JSON actor_claim, supplied UID/PID or socket file permissions alone cannot grant Linux operations. [Durable jobs](../09-database/durable-jobs-r3.md) and [R3 QA](../13-tests-quality/r3-jobs-peer-gates.md).
+
+## R3 — Typed Linux effect and compensation contracts
+
+[12 `EXEC-FP-0001..0012` requirements](typed-execution-recovery-r3.md) specify per-operation actor/plan/revision authority, effect-boundary fencing, observed health and safe recovery, without creating a privileged process. [Guard registry](../../evidence/candidate-typed-execution-guards-v1.json) matches the **7 ACT-FP operations**; `ACT-FP-0005/0007` remain **`BLOCKED_UNTIL_QUALIFIED`**. Arbitrary payload commands/shell.exec are prohibited, and schema-valid JSON authenticates no peer or actor. [12 R3 negative tests](../13-tests-quality/r3-physical-execution-gates.md).

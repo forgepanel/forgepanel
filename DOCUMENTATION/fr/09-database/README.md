@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-09 revision=7 status=documented -->
+<!-- forgepanel-doc id=FP-09 revision=8 status=documented -->
 # Base de données, transactions et migrations
 
 [English](../../en/09-database/README.md) · [Index](../README.md)
@@ -50,3 +50,7 @@ La future API [Symfony ↔ Go](../08-api-contracts/symfony-go-ipc-r3.md) exige i
 ## R3 — Modèle candidat des jobs durables et des verrous
 
 La [fiche R3 sur les jobs PostgreSQL](durable-jobs-r3.md) établit 12 exigences DB-FP-0001..0012 sur l'intention durable, l'idempotence par scope, les leases et fencing, les transitions d'états, l'outbox/inbox, les ACK perdus, la concurrence, l'audit expurgé et la récupération. Le [registre d'états candidat](../../evidence/candidate-job-transitions-v1.json) et le [schéma de job](../../evidence/candidate-job-record-v1.schema.json) ne sont **ni du DDL, ni des tables installées**. Aucune durée, isolation SQL, migration ou valeur de retry n'est approuvée sans revue Database/API/Security. [Tests QA](../13-tests-quality/r3-jobs-peer-gates.md).
+
+## R3 — Proposition physique des jobs PostgreSQL, sans DDL
+
+La [fiche de modèle PostgreSQL proposé](physical-jobs-model-r3.md) détaille `DBPH-FP-0001..0012`, **8 objets de tables candidats**, contraintes d'unicité, relations, isolation tenant, idempotence, outbox/inbox, verrous avec fencing et récupération. Le [registre de structure candidat](../../evidence/candidate-r3-physical-data-model-v1.json) **n'est pas une migration** et ne modifie aucune des 3 tables historiques observées de SRC-03. Tous les types/FK/index, rôles SQL et seuils doivent être ratifiés par Database/Security après récupération des sources. [36 tests R3 prévus](../13-tests-quality/r3-physical-execution-gates.md).

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=19 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=20 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
@@ -102,3 +102,7 @@ La [matrice R3](r3-ipc-installer-gates.md) ajoute `R3-IPC-TEST-001..012` et `R3-
 ## R3 — 24 cas jobs durables / pair IPC à réaliser
 
 La [matrice R3](r3-jobs-peer-gates.md) ajoute **R3-JOB-TEST-001..012** et **R3-PEER-TEST-001..012**, tous PLANNED. Scénarios : commit avant ACK, clé identique/digest différent, fencing périmé, worker crash/reprise et état Linux incertain ; usurpation d'UID/PID, socket remplacé, séparation du compte bridge, contrôle tenant/role indépendant, saturation et version incompatible. Les schémas JSON et tests Python vérifient uniquement la **cohérence documentaire** ; aucune DB de production, socket réel, VM ou autorisation système exécutée.
+
+## R3 — Nouvelle matrice physique/identités/exécution, uniquement planifiée
+
+La [matrice QA physique R3](r3-physical-execution-gates.md) décrit **36 cas PLANNED** `R3-PHYS-TEST-001..012`, `R3-LINUX-TEST-001..012` et `R3-EXEC-TEST-001..012`. Les tests Python de documentation contrôlent les 8 objets SQL candidats, 8 identités Linux, 7 opérations typées, veto des 2 handlers root et parité FR/EN. **Aucune base PostgreSQL réelle, séparation Linux ni effet systemd n'est exécuté** par ce lot ; les QA VM/HTTP/DB restent à prouver sur hôte autorisé.

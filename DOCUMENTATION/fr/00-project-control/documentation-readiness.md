@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DOC-READINESS revision=3 status=documented -->
+<!-- forgepanel-doc id=FP-00-DOC-READINESS revision=4 status=documented -->
 # Registre des lacunes et conditions de complétude — ForgePanel
 
 [English](../../en/00-project-control/documentation-readiness.md) · [Pilotage](README.md) · [Matrice](requirements-traceability.md) · [Couverture](coverage.md)
@@ -51,3 +51,7 @@
 ## Compléments candidats R3 pour DOC-GAP-004 et DOC-GAP-006
 
 Les [12 exigences de jobs durables](../09-database/durable-jobs-r3.md), les [12 exigences de confiance du pair](../08-api-contracts/local-peer-trust-r3.md), les [24 cas QA planifiés](../13-tests-quality/r3-jobs-peer-gates.md) et leurs [schémas candidats](../../evidence/candidate-job-record-v1.schema.json) précisent les lacunes. **Elles restent toutes deux OPEN**, puisque le modèle physique PostgreSQL, les migrations, le daemon/IPC authentifié et les essais de concurrence/OS ne sont pas validés. Les durées, retries, protocole, comptes et quotas restent des choix techniques ouverts. Q1–Q170 conservées, Q171+ sans décision.
+
+## Candidats supplémentaires pour DOC-GAP-004/005/006 — sans clôture
+
+Le [modèle physique DB](../09-database/physical-jobs-model-r3.md), les [identités de services](../14-devops-releases/linux-service-identities-r3.md) et l'[exécution typée](../08-api-contracts/typed-execution-recovery-r3.md) détaillent les pistes d'implémentation et relient [36 tests candidats](../13-tests-quality/r3-physical-execution-gates.md). Les preuves JSON sont **non approuvées** ; **DOC-GAP-004, DOC-GAP-005 et DOC-GAP-006 restent OPEN** tant que PostgreSQL, Linux et VM réels n'ont pas été qualifiés. Le total des 22 lacunes initiales n'est pas modifié.

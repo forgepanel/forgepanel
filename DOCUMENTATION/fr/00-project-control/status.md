@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=25 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=26 status=documented -->
 # État et roadmap ordonnée par dépendances
 
 [English](../../en/00-project-control/status.md) · [Pilotage](README.md)
@@ -98,3 +98,7 @@ Les [12 exigences IPC Symfony↔Go](../08-api-contracts/symfony-go-ipc-r3.md) et
 ## R3 — Fiches candidates des jobs et du canal IPC local
 
 Les contrats [jobs durables](../09-database/durable-jobs-r3.md) DB-FP-0001..0012 et [confiance du pair](../08-api-contracts/local-peer-trust-r3.md) PEER-FP-0001..0012 sont publiés en **documentation candidate**, ainsi que trois fichiers [schémas/états candidats](../../evidence/candidate-job-transitions-v1.json) et [24 tests PLANNED](../13-tests-quality/r3-jobs-peer-gates.md). Ils ne définissent aucun compte Linux final, socket actif, migration PostgreSQL, worker Go, retry/TTL ou système privilégié. **DOC-GAP-004 et DOC-GAP-006 restent OPEN**, R1 ZIP d'origine toujours indisponible et aucune qualification VM/production.
+
+## R3 — Proposition physique et identités Linux, non approuvées
+
+Le [modèle physique PostgreSQL](../09-database/physical-jobs-model-r3.md) (`DBPH-FP-0001..0012`), la [séparation des identités Linux](../14-devops-releases/linux-service-identities-r3.md) (`LINUX-FP-0001..0012`) et le [contrat d'effets/reprise](../08-api-contracts/typed-execution-recovery-r3.md) (`EXEC-FP-0001..0012`) sont des **propositions documentaires** avec **8 objets DB candidats, 8 identités logiques et 7 opérations, dont 2 privilégiées bloquées**. [36 tests sont PLANNED](../13-tests-quality/r3-physical-execution-gates.md). **Aucun DDL, UID Linux, socket, exécuteur privilégié ou test VM réel.** DOC-GAP-004/005/006 restent OPEN ; R1/R2 non finalisés, Hub privé séparé et Q1–Q170 inchangées.

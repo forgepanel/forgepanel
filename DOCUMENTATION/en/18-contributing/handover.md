@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-18-HANDOVER revision=8 status=documented -->
+<!-- forgepanel-doc id=FP-18-HANDOVER revision=9 status=documented -->
 # Handover to the next contributor
 
 [Français](../../fr/18-contributing/handover.md) · [Contribution guide](README.md)
@@ -48,3 +48,7 @@ New [QCOW2 admission](../14-devops-releases/kvm-image-admission.md) is **prepara
 ## Targeted handover: job model and peer authentication
 
 [R3 durable jobs](../09-database/durable-jobs-r3.md), [IPC trust boundary](../08-api-contracts/local-peer-trust-r3.md) and [24 PLANNED cases](../13-tests-quality/r3-jobs-peer-gates.md) are **specialized-review candidates**. Next technical decisions: SQL uniqueness/isolation/lease fencing, retry/TTL/retention, kernel/process identity, separate PHP-FPM bridge, authentic actor mandate, socket ownership/rotation and possible future remote transport. Do not turn JSON Schemas into migrations or runtime permission. Genuine Foundation v0.7 code absent; no Hub dependency.
+
+## R3 handoff: physical proposals and privilege boundaries
+
+[Proposed PostgreSQL physical model](../09-database/physical-jobs-model-r3.md), [Linux service identities](../14-devops-releases/linux-service-identities-r3.md), [typed effects/recovery](../08-api-contracts/typed-execution-recovery-r3.md), [candidate registers](../../evidence/candidate-r3-physical-data-model-v1.json) and [36 PLANNED cases](../13-tests-quality/r3-physical-execution-gates.md) are ready for **specialized review, not installation**. HANDOFF to **Database** for FK/index/RLS/migrations and SQL tests; **Security** for tenant/UID/LSM/fencing/trust; **API/IPC** for effect-boundary contracts and actor authority; **DevOps** for systemd/packages/recovery; **QA** for VM negative cases. Never generate DDL, Unix accounts or root handlers from candidate JSON alone. Historical R1 source remains unavailable and Hub has no Core privilege.

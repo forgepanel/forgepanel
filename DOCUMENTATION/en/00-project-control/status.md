@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=25 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=26 status=documented -->
 # Status and dependency-ordered roadmap
 
 [Français](../../fr/00-project-control/status.md) · [Project control](README.md)
@@ -98,3 +98,7 @@ Core now contains standalone `verify_source_archive.py` and `stage_source_archiv
 ## R3 — Candidate durable jobs and local IPC peer trust
 
 [Durable job contract](../09-database/durable-jobs-r3.md) DB-FP-0001..0012 and [peer trust contract](../08-api-contracts/local-peer-trust-r3.md) PEER-FP-0001..0012 are published as **candidate documentation**, with [three candidate schemas/state records](../../evidence/candidate-job-transitions-v1.json) and [24 PLANNED tests](../13-tests-quality/r3-jobs-peer-gates.md). These select no final Linux service accounts, running socket, PostgreSQL migration, Go worker, TTL/retry or privileged system action. **DOC-GAP-004 and DOC-GAP-006 remain OPEN**; original R1 ZIP still unavailable and no VM/production qualification.
+
+## R3 — Candidate physical model and Linux identities, not approved
+
+[Physical PostgreSQL design](../09-database/physical-jobs-model-r3.md) (`DBPH-FP-0001..0012`), [Linux identity separation](../14-devops-releases/linux-service-identities-r3.md) (`LINUX-FP-0001..0012`) and [typed effect/recovery contract](../08-api-contracts/typed-execution-recovery-r3.md) (`EXEC-FP-0001..0012`) are **documentary proposals** covering **8 DB table candidates, 8 logical identities and 7 operations, with 2 privileged actions blocked**. [36 cases remain PLANNED](../13-tests-quality/r3-physical-execution-gates.md). **No actual DDL, Linux UID, socket, privileged handler or VM test.** DOC-GAP-004/005/006 stay OPEN; R1/R2 incomplete, private Hub separate, Q1–Q170 unchanged.

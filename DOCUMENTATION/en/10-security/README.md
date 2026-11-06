@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-10 revision=20 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=21 status=documented -->
 # Security model and disclosure
 
 [Français](../../fr/10-security/README.md) · [Index](../README.md)
@@ -110,3 +110,7 @@ The [R3 tool](../14-devops-releases/kvm-image-admission.md) is **read-only, nonr
 ## R3 — Peer authentication is not business authorization
 
 [Local Symfony ↔ Go trust contract](../08-api-contracts/local-peer-trust-r3.md) separates kernel-observed peer process identity from an actor mandate derived from a verified authorized Symfony session. A shared Linux UID, group-mode socket or JSON actor_claim does not authenticate an end user. Recheck tenant, role, resource, plan/revision and the [closed operations registry](../../evidence/typed-agent-operations-v1.json). A [candidate peer-binding record](../../evidence/candidate-peer-binding-v1.schema.json) is not signed attestation. Privileged operations stay blocked. **RISK-028/029 unresolved**, no generic root API.
+
+## R3 — Linux identity, fencing and recovery governance
+
+[Candidate physical PostgreSQL model](../09-database/physical-jobs-model-r3.md) requires verified tenant scope and fencing; [Linux identities](../14-devops-releases/linux-service-identities-r3.md) separate tenant PHP, bridge, nonroot Go, migrator and **disabled** privileged handler; [typed effect rules](../08-api-contracts/typed-execution-recovery-r3.md) forbid treating an ACK or active service as verified success. **RISK-030..032 remain OPEN**: scope/DB collisions, shared IPC/tenant exposure and false rollback. No Unix group, privileged socket, generic shell grant or Hub authority is created.

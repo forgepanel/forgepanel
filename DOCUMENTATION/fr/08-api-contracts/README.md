@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08 revision=8 status=documented -->
+<!-- forgepanel-doc id=FP-08 revision=9 status=documented -->
 # API et contrats
 
 [English](../../en/08-api-contracts/README.md) · [Index](../README.md)
@@ -56,3 +56,7 @@ Le [contrat R3 IPC](symfony-go-ipc-r3.md) décrit `IPC-FP-0001..0012` : authenti
 ## R3 — Frontière de confiance du pair local
 
 La [fiche d'identité du pair](local-peer-trust-r3.md) ajoute PEER-FP-0001..0012 : canal Unix privé **candidat**, identité du pair issue du noyau à vérifier, comptes séparés, ressources/permissions revérifiées par Go, lutte anti-rejeu et mode dégradé après rupture. Le [modèle d'attestation candidat](../../evidence/candidate-peer-binding-v1.schema.json) **n'est ni une preuve signée ni une API disponible**. Il ne faut pas faire confiance à un actor_claim, UID/PID JSON ou simple permission de socket pour autoriser Linux. [Jobs durables](../09-database/durable-jobs-r3.md) et [tests R3](../13-tests-quality/r3-jobs-peer-gates.md).
+
+## R3 — Contrats d'effet système et compensation ciblée
+
+Les [12 règles `EXEC-FP-0001..0012`](typed-execution-recovery-r3.md) détaillent les vérifications par opération (mandat, plan signé/révision, fencing au point d'effet, effets observés, VERIFY et récupération), sans créer de processus privilégié. Le [registre de garde-fous](../../evidence/candidate-typed-execution-guards-v1.json) reprend les **7 actions ACT-FP** ; `ACT-FP-0005/0007` restent **`BLOCKED_UNTIL_QUALIFIED`**. Les payloads arbitraires et shell.exec sont interdits ; un schéma JSON valide n'authentifie ni acteur ni pair. [12 tests de refus R3](../13-tests-quality/r3-physical-execution-gates.md).

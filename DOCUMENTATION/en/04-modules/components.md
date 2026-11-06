@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-04-COMPONENTS revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-04-COMPONENTS revision=3 status=documented -->
 # Component records
 
 [Français](../../fr/04-modules/components.md) · [Module index](README.md)
@@ -118,3 +118,7 @@ New component records must retain all fields above, including absent migrations/
 ## CMP-AGENT-TARGET — R3 candidate contract handoff
 
 The future Go agent and installer must consume only operations authorized through [`IPC-FP-0001..0012` contracts](../08-api-contracts/symfony-go-ipc-r3.md) and [closed `ACT-FP-0001..0007` registry](../../evidence/typed-agent-operations-v1.json), under [R3 installer lifecycle](../14-devops-releases/installer-lifecycle-r3.md). **This registry is not an executable engine**; two privileged actions remain blocked and any actual system code needs R1/R2 completion, independent API/IPC/Security/DB reviews, negative tests and real VM qualification. Modules cannot self-grant root or replace free Core authority with Hub contracts.
+
+## CMP-AGENT-BOUNDARY-R3 — Candidate agent/handler component records
+
+Core architecture must follow [Linux service identity separation](../14-devops-releases/linux-service-identities-r3.md) and [typed agent effect guards](../08-api-contracts/typed-execution-recovery-r3.md). No plugin/module may bypass the [ACT-FP registry](../../evidence/typed-agent-operations-v1.json), create root accounts or register privileged handlers. A future job module depends on Database approval of the [physical model](../09-database/physical-jobs-model-r3.md), API/IPC contracts, Security and VM tests; candidate JSON does not form an executable module catalogue. **Both privileged handlers remain blocked.**

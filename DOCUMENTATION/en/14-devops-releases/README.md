@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=18 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=19 status=documented -->
 # Installation, Git promotion and releases
 
 [Français](../../fr/14-devops-releases/README.md) · [Index](../README.md)
@@ -11,7 +11,7 @@ Because the repository was empty, commit `26b7c773a0831c20e7f14bb86ef8c2697a19d5
 
 ## Installer portal access surfaces
 
-Confirmed target: **FORGE `https://<server-ip>:8447/forge`** (admin) and **PANEL `https://<server-ip>:8446/panel`** (customer); separate configurable HTTPS 443 hosts after DNS/TLS verification. Installer must avoid listener/host collision, validate TLS origin and preserve emergency admin access when changing firewall policy. This does not alter historical `/setup` routes or certify any running listeners. [FR/EN contract](../07-interfaces-roles/portal-access-routing.md) · [Tests](../13-tests-quality/portal-access-gates.md).
+Confirmed target: **FORGE `/forge`: 8447** and **PANEL `/panel`: 8446** over HTTPS. Installer reads OS network interfaces/routes for the machine IPs, then finds an optional existing FQDN and verifies A/AAAA, network reachability and certificates. **No customizable domain input**, automatic subdomains/DNS or 443 virtual hosts. An IP URL requires a certificate covering that IP before it can be claimed secure. Preserve admin fallback, prevent listener conflicts and avoid adopting third-party services silently. Historical `/setup` has not been migrated or certified. [Contract](../07-interfaces-roles/portal-access-routing.md) · [Tests](../13-tests-quality/portal-access-gates.md).
 
 ## Installation gates
 

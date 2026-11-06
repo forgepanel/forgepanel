@@ -87,7 +87,10 @@ class RecipeDiscriminatorTests(unittest.TestCase):
         for origin in ("http://example.invalid/x", "file:///etc/passwd",
                        "https://127.0.0.1/x", "https://root:pass@example.invalid/x",
                        "https://example.invalid/one?token=value",
-                       "https://example.invalid:12345/x"):
+                       "https://example.invalid:12345/x",
+                       "https://example.invalid:bad/x",
+                       "https://example.invalid/a/../b",
+                       "https://example.invalid/%2e%2e/secret"):
             with self.subTest(origin=origin):
                 item = self.native_copy()
                 item["artifact"]["source_url"] = origin

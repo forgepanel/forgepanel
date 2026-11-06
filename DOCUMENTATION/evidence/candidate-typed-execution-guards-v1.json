@@ -262,5 +262,15 @@
     "timeout_limits",
     "idempotency_retention",
     "real_VM_negative_tests"
-  ]
+  ],
+  "security_review_findings": [
+    "AUDIT-FP-0033",
+    "AUDIT-FP-0034",
+    "AUDIT-FP-0035",
+    "AUDIT-FP-0036"
+  ],
+  "effect_boundary_fence_epoch_reconciliation_approved": false,
+  "post_restore_privileged_apply_authorized": false,
+  "inbox_receipt_as_effect_proof_authorized": false,
+  "tenant_scope_from_unverified_actor_claim_authorized": false
 }

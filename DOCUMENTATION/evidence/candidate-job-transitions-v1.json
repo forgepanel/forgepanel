@@ -98,7 +98,12 @@
     "same_idempotency_key_different_digest": "IDEMPOTENCY_CONFLICT",
     "success_requires_observed_effect": true,
     "cancellation_may_undo_applied_linux_state": false,
-    "no_generic_shell": true
+    "no_generic_shell": true,
+    "inbox_received_is_proof_of_linux_effect": false,
+    "persisted_job_requires_committed_acceptance": true,
+    "restored_database_may_reauthorize_stale_fence": false,
+    "last_verified_effect_required_for_success": true,
+    "uncertain_outbox_delivery_can_be_replayed_blindly": false
   },
   "unratified_settings": [
     "lease_duration",
@@ -110,5 +115,10 @@
     "table_names",
     "outbox_delivery_policy",
     "sql_migration_ids"
+  ],
+  "required_security_review": [
+    "AUDIT-FP-0033",
+    "AUDIT-FP-0034",
+    "AUDIT-FP-0035"
   ]
 }

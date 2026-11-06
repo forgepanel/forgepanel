@@ -130,7 +130,10 @@
       "guards": [
         "tenant_scope_from_authenticated_server_context",
         "same_key_different_digest_conflict",
-        "commit_before_ack"
+        "commit_before_ack",
+        "scope_kind_scope_ref_resource_kind_resource_ref_all_nonnull",
+        "scope_derived_from_verified_server_authorization_not_payload_or_session_GUC_alone",
+        "cross_tenant_scope_cannot_infer_wildcard_from_null_or_missing_context"
       ]
     },
     {
@@ -251,6 +254,12 @@
           "column": "resource_revision",
           "candidate_type": "text",
           "approved": false
+        },
+        {
+          "column": "fencing_epoch_ref",
+          "candidate_type": "text",
+          "approved": false,
+          "review": "INDEPENDENT_RESTORE_EPOCH_NOT_SELECTED"
         }
       ],
       "unique_constraints": [
@@ -278,7 +287,10 @@
       "guards": [
         "monotonic_fencing_generation",
         "effect_boundary_revalidation_mandatory",
-        "lease_expiry_not_execution_authority"
+        "lease_expiry_not_execution_authority",
+        "monotonic_fencing_generation_cannot_reset_on_lease_row_recreation",
+        "backup_restore_requires_independent_epoch_reconciliation_before_apply",
+        "lease_expiry_alone_never_grants_reexecution"
       ]
     },
     {
@@ -452,6 +464,31 @@
           "column": "receipt_at",
           "candidate_type": "timestamptz",
           "approved": false
+        },
+        {
+          "column": "processing_state",
+          "candidate_type": "text",
+          "approved": false,
+          "candidate_values": [
+            "RECEIVED",
+            "IN_PROGRESS",
+            "EFFECT_UNCERTAIN",
+            "EFFECT_VERIFIED",
+            "PROVEN_NO_EFFECT"
+          ],
+          "nullability": "PROPOSED_NOT_NULL"
+        },
+        {
+          "column": "effect_verdict_ref",
+          "candidate_type": "text",
+          "approved": false,
+          "nullability": "CANDIDATE_NULL_UNTIL_INDEPENDENT_VERIFY"
+        },
+        {
+          "column": "fencing_generation",
+          "candidate_type": "bigint",
+          "approved": false,
+          "nullability": "CANDIDATE_NULL_FOR_READ_ONLY"
         }
       ],
       "unique_constraints": [
@@ -476,7 +513,11 @@
       ],
       "guards": [
         "consumer_dedup_by_message",
-        "ack_not_success"
+        "ack_not_success",
+        "inbox_receipt_is_transport_only_not_linux_effect",
+        "record_receipt_before_effect_then_reconcile_uncertain_on_crash",
+        "effect_verified_requires_separately_persisted_observation",
+        "duplicate_delivery_never_blindly_reapplies"
       ]
     },
     {
@@ -555,7 +596,8 @@
         {
           "column": "job_id",
           "candidate_type": "uuid",
-          "approved": false
+          "approved": false,
+          "nullability": "CANDIDATE_NULLABLE_FOR_DENIED_ADMISSION"
         },
         {
           "column": "actor_ref",
@@ -576,6 +618,28 @@
           "column": "created_at",
           "candidate_type": "timestamptz",
           "approved": false
+        },
+        {
+          "column": "request_ref",
+          "candidate_type": "text",
+          "approved": false,
+          "nullability": "PROPOSED_NOT_NULL"
+        },
+        {
+          "column": "subject_kind",
+          "candidate_type": "text",
+          "approved": false,
+          "candidate_values": [
+            "ADMISSION_DENIED",
+            "ADMISSION_REJECTED",
+            "ACCEPTED_JOB_EVENT"
+          ]
+        },
+        {
+          "column": "decision_code",
+          "candidate_type": "text",
+          "approved": false,
+          "nullability": "PROPOSED_NOT_NULL"
         }
       ],
       "unique_constraints": [],
@@ -596,7 +660,11 @@
       "guards": [
         "no_secrets_or_client_content",
         "append_only_logical",
-        "denied_admission_audit_separate_from_accepted_jobs"
+        "denied_admission_audit_separate_from_accepted_jobs",
+        "denied_admission_has_no_accepted_job_and_nullable_job_ref",
+        "all_audit_events_bind_server_generated_request_ref",
+        "accepted_job_audit_event_requires_valid_job_ref",
+        "never_store_raw_request_token_or_sensitive_payload"
       ]
     }
   ],
@@ -614,5 +682,28 @@
     "R3-PHYS-TEST-011",
     "R3-PHYS-TEST-012"
   ],
-  "physical_migration_owner": "Database / Data Model, only after SRC-03 review, architecture and security approval"
+  "physical_migration_owner": "Database / Data Model, only after SRC-03 review, architecture and security approval",
+  "security_review_open": true,
+  "review_findings": [
+    "AUDIT-FP-0033",
+    "AUDIT-FP-0034",
+    "AUDIT-FP-0035",
+    "AUDIT-FP-0036"
+  ],
+  "required_invariants_before_migration": {
+    "rejected_admission_produces_redacted_audit_without_creating_job": true,
+    "accepted_job_audit_has_real_job_reference": true,
+    "fencing_generation_must_not_reset_on_lease_row_delete": true,
+    "database_restore_invalidates_pre_restore_effect_authority": true,
+    "inbox_receipt_is_not_external_effect": true,
+    "uncertain_effect_forces_reconciliation_before_retry": true,
+    "verified_server_scope_required_even_with_RLS": true,
+    "no_generic_shell_or_privileged_apply_from_candidate": true
+  },
+  "open_architecture_decisions": [
+    "denied_admission_audit_subject_model",
+    "monotonic_fence_high_watermark_across_delete_and_restore",
+    "inbox_crash_window_and_effect_observation_protocol",
+    "server_verified_tenant_scope_and_RLS_authenticity"
+  ]
 }

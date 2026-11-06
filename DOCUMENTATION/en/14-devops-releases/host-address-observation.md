@@ -1,23 +1,25 @@
-<!-- forgepanel-doc id=FP-14-HOST-OBSERVE revision=1 status=specified -->
-# Standalone read-only machine address observation — preparatory R3 tool
+<!-- forgepanel-doc id=FP-14-HOST-OBSERVE revision=2 status=specified -->
+# Host IP and optional OS DNS observation — independent R3 preparation
 
-[Français](../../fr/14-devops-releases/host-address-observation.md) · [DevOps](README.md) · [Portal contract PR #50](https://github.com/yyogas/forgepanel/pull/50)
+[Français](../../fr/14-devops-releases/host-address-observation.md) · [DevOps](README.md) · [Tools](../../../tools/host-address-observation/README.md)
 
-## Provenance and state
+## State and boundaries
 
-The Go utility in [tools/host-address-observation](../../../tools/host-address-observation/README.md) is a standalone **IMPLEMENTED PROTOTYPE**, not an import of historical Foundation v0.7 source or a live Core subsystem. It runs without root privileges, network calls, DNS resolution, shell, socket listening, file writes, or changes to the host. **R1 Foundation source import and R2 Symfony/PostgreSQL integration remain blocked/open independently.**
+The standalone Go module under [tools/host-address-observation](../../../tools/host-address-observation/README.md) has two distinct CLI tools. **`forgepanel-host-observe`** reads the local OS interface/IP inventory and its FQDN candidate without networking. **`forgepanel-dns-observe --observe`** makes a single, optional, bounded OS-resolver A/AAAA lookup for that discovered candidate only. The DNS command will make a network query if the system resolver requires one, so it is never invoked implicitly. No arbitrary hostname arguments, root/shell execution, system mutation or external public-IP provider are included. Both commands are preparatory prototypes, not Core integration, HTTPS or OS certification.
 
-Owner-confirmed FORGE (/forge, HTTPS 8447) and PANEL (/panel, HTTPS 8446) paths and ports are reported as **static metadata**, not installed listeners. The operating system supplies IPv4/IPv6 addresses and an optional syntactically valid FQDN candidate; no customizable portal-domain setting, generated forge./panel. subdomain or automatically installed 443 host is introduced. Tenant website domains and Q5 branding remain separate features.
+The owner's fixed portal paths/ports remain **FORGE `/forge:8447`** and **PANEL `/panel:8446`**. There is no customizable domain input or implicit 443 virtual host. The same verified FQDN might eventually serve both ports, but that is **not** established by this prototype.
 
-## What the report means
+## Interpretation and safety
 
-- OS interface facts: usable assigned unicast addresses from up/non-loopback interfaces, sorted and deduplicated, with scope labels PRIVATE_UNVERIFIED or NON_PRIVATE_UNVERIFIED. The latter is **not proof of a public/routable IP**, especially with CGNAT and reserved ranges.
-- Hostname fact: a syntactically valid full OS hostname yields CANDIDATE_UNVERIFIED; a local/non-FQDN hostname yields NONE. No forward DNS proof is attempted, since /etc/hosts, local resolvers or split-horizon records can be misleading.
-- Verification: DNS, TLS, listener and public-reachability fields are always NOT_EXECUTED, verified_access_urls is always empty. An IP HTTPS URL needs a certificate covering that IP; a FQDN URL requires actual verified DNS, routing and TLS before the UI may advertise it as working.
-- Errors: unavailable data or bounded enumeration is surfaced through UNAVAILABLE or PARTIAL_UNVERIFIED and sanitized warning codes; no false success or fallback to guessed addresses.
+- The OS interface listing is partial-capable, filtered, sorted and deduplicated. Non-private/unicast **does not prove** that an address is public, or reachable through NAT/firewall.
+- A syntactically valid FQDN from the OS is only `CANDIDATE_UNVERIFIED`. No FQDN produces `NO_FQDN` and **no** DNS query.
+- The optional resolver can return `MATCHED_LOCAL_OS_RESOLVER_ONLY` when all accepted responses match assigned local interface IPs; a mismatch returns `NAT_OR_REMOTE_ROUTING_UNVERIFIED`. These are **unverified** in all cases. Local resolver sources may include `/etc/hosts`, search configuration and split-horizon DNS.
+- Resolver queries are time- and answer-limited, rejecting loopback/unusable answers, de-duplicating IPv4/IPv6 and redacting raw resolver errors to fixed warning codes.
+- The DNS report always has `dns_authority_verified=false`, `public_reachability=NOT_EXECUTED`, `tls_verification=NOT_EXECUTED`, `listener_verification=NOT_EXECUTED` and empty `verified_access_urls`.
+- These CLI tools do **not** verify a certificate with IP-SAN or FQDN SAN, prove A/AAAA from an independent external network, test HTTPS port 8447/8446 or generate a clickable working URL.
 
-## Acceptance and integration boundary
+## Tests and prerequisites
 
-The dedicated CI runs Go unit tests on synthetic interfaces, race detector, vet and a no-working-URL output check. These checks establish only properties of the **standalone source**. Integration under [runtime issue #51](https://github.com/yyogas/forgepanel/issues/51) still requires actual Foundation import, authenticated Symfony routes, tested Go agent boundary, trusted DNS/HTTPS probes, NAT-aware routing and VM/HTTP qualification. No privileged shell executor or publisher Hub dependency is added.
+The [dedicated workflow](../../../.github/workflows/host-address-observation.yml) runs offline Go tests, the race detector, `go vet`, an OS inventory no-URL invariant and a test that DNS CLI refuses a missing opt-in flag. Offline tests inject fake resolver responses; they do not query live DNS. The first real Core endpoint still depends on source import #2, Symfony/PostgreSQL #3, the installer and security review; [issue #51](https://github.com/yyogas/forgepanel/issues/51) remains open for integrated DNS/TLS/proxy/cookie/VM checks. This stand-alone source must not be published as installed Core.
 
-**Status:** code for an unprivileged observer may be tested; integration, DNS verification, TLS certification, public address detection and published access URLs remain NOT IMPLEMENTED.
+**Status: stand-alone source candidate only; no verified domain, HTTPS endpoint, Core deployment or external reachability evidence.**

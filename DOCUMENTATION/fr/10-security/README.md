@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-10 revision=22 status=documented -->
+<!-- forgepanel-doc id=FP-10 revision=23 status=documented -->
 # Modèle de sécurité et signalement
 
 [English](../../en/10-security/README.md) · [Index](../README.md)
+
+## App Center — fraîcheur des preuves, identité hôte et droits
+
+Le [contrat candidat de liaison des preuves](../08-api-contracts/app-center-admission-evidence.md) sépare observation hôte par agent, RBAC Core, politique versionnée et intention client **non fiable**. Les horodatages, révisions et capacités fictifs **ne sont pas authentifiés** et ne permettent jamais APPLY ; identité du pair, signatures, anti-rejeu, TOCTOU et quotas physiques attendent les revues spécialisées. [12 tests futurs sécurité/VM](../13-tests-quality/app-center-evidence-gates.md) restent PLANNED.
 
 ## Provenance du préflight App Center — revue candidate
 

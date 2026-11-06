@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00 revision=15 status=documented -->
+<!-- forgepanel-doc id=FP-00 revision=16 status=documented -->
 # Project control
 
 [Français](../../fr/00-project-control/README.md) · [Index](../README.md)
@@ -38,7 +38,7 @@ A task identifies scope and affected components, specifies acceptance criteria, 
 
 ## Documentation readiness and traceability
 
-[Gap and editorial priority register](documentation-readiness.md) · [Traceability for 22 closure records](requirements-traceability.md) · [Versioned JSON data](../../evidence/documentation-readiness-v1.json) · [Reconciled R1/R3 status](status.md). `OPEN`/`BLOCKED` describe **documentation and missing evidence**, not new Q171+ owner decisions. No R2/R3/R4 release gate is certified by these tables.
+[Gap and editorial priority register](documentation-readiness.md) · [Traceability for 22 closure records](requirements-traceability.md) · [Versioned JSON data](../../evidence/documentation-readiness-v1.json) · [Reconciled R1/R3 status](status.md). `OPEN`/`BLOCKED` describe **documentation and missing evidence**, not new Q221+ owner decisions. No R2/R3/R4 release gate is certified by these tables.
 
 ## R3 documentary IPC and installer contracts
 

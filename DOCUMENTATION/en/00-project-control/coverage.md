@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-COVERAGE revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-00-COVERAGE revision=3 status=documented -->
 # Documentation coverage matrix
 
 [Français](../../fr/00-project-control/coverage.md) · [Project control](README.md)
@@ -32,4 +32,8 @@ Update this matrix whenever a gap changes state. Every `VERIFIED` feature needs 
 
 ## Closure registry after the observed Git snapshot audit
 
-The reviewed structure contains **64 paired Core FR/EN files** and **27 paired Hub FR/EN files**, but **substantive specification completeness is still partial**. The [22 prioritized gaps](documentation-readiness.md) link to issues/dependencies in the [JSON register](../../evidence/documentation-readiness-v1.json) and [traceability](requirements-traceability.md). [Reconciled status](status.md) separates merged R1/R3 developer tools from absent operational Symfony/PG/VM/hosting features. No independent legal/security certification is implied.
+The initial audited snapshot contained **64 Core FR/EN pairs** and **27 Hub FR/EN pairs**; those are **historical counts, not the current repository inventory**, but **substantive specification completeness is still partial**. The [22 prioritized gaps](documentation-readiness.md) link to issues/dependencies in the [JSON register](../../evidence/documentation-readiness-v1.json) and [traceability](requirements-traceability.md). [Reconciled status](status.md) separates merged R1/R3 developer tools from absent operational Symfony/PG/VM/hosting features. No independent legal/security certification is implied.
+
+## Coverage growth after the original audit snapshot
+
+[Candidate PostgreSQL physical model](../09-database/physical-jobs-model-r3.md), [Linux identities](../14-devops-releases/linux-service-identities-r3.md), [typed execution](../08-api-contracts/typed-execution-recovery-r3.md) and [36 PLANNED QA cases](../13-tests-quality/r3-physical-execution-gates.md) add four paired documentary resources, **not working-feature completion**. Obtain live counts from `scripts/check_documentation.py` rather than copying stale snapshot totals. The 22-gap readiness register still tracks unclosed functionality.

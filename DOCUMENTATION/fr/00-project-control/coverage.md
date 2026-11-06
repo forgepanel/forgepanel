@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-COVERAGE revision=2 status=documented -->
+<!-- forgepanel-doc id=FP-00-COVERAGE revision=3 status=documented -->
 # Matrice de couverture documentaire
 
 [English](../../en/00-project-control/coverage.md) · [Pilotage](README.md)
@@ -32,4 +32,8 @@ Actualiser cette matrice lorsqu'une lacune change d'état. Toute fonction `VERIF
 
 ## Registre de clôture après audit du snapshot Git
 
-La structure présente **64 paires FR/EN Core** et **27 paires FR/EN Hub** sur les commits observés, mais elle reste **partielle sur le fond**. Les [22 lacunes prioritaires](documentation-readiness.md) sont reliées à leurs issues et dépendances dans le [registre JSON](../../evidence/documentation-readiness-v1.json) et la [traçabilité](requirements-traceability.md). Le [statut réconcilié](status.md) distingue les outils R1/R3 fusionnés des fonctionnalités Symfony/PG/VM/hébergement non réalisées. Aucune validation juridique/sécurité indépendante n'est inférée.
+L'audit initial a relevé **64 paires FR/EN Core** et **27 paires FR/EN Hub** sur son snapshot historique ; ces nombres **ne décrivent pas le dépôt courant**, qui continue d'évoluer, mais elle reste **partielle sur le fond**. Les [22 lacunes prioritaires](documentation-readiness.md) sont reliées à leurs issues et dépendances dans le [registre JSON](../../evidence/documentation-readiness-v1.json) et la [traçabilité](requirements-traceability.md). Le [statut réconcilié](status.md) distingue les outils R1/R3 fusionnés des fonctionnalités Symfony/PG/VM/hébergement non réalisées. Aucune validation juridique/sécurité indépendante n'est inférée.
+
+## Couverture additionnelle après l'audit initial
+
+Les [contrats physiques PostgreSQL](../09-database/physical-jobs-model-r3.md), [identités Linux](../14-devops-releases/linux-service-identities-r3.md), [effets typés](../08-api-contracts/typed-execution-recovery-r3.md) et [36 tests PLANNED](../13-tests-quality/r3-physical-execution-gates.md) ajoutent quatre paires documentaires **candidates**, pas une clôture fonctionnelle. Les comptes actuels doivent être obtenus depuis `scripts/check_documentation.py`, pas recopiés d'un snapshot historique. La matrice de lacunes 22 demeure la référence des écarts non clos.

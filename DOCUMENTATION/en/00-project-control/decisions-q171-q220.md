@@ -3,7 +3,7 @@
 
 [Français](../../fr/00-project-control/decisions-q171-q220.md) · [Q161–Q170](decisions-q161-q170.md) · [App Center](../06-apps-recipes/app-center-engines.md) · [Reconciliation](reconciliation-q171-q220.md)
 
-**OWNER-APPROVED 6 November 2026: all 50 recommendations explicitly adopted.** Q1–Q170 are retained; no unanswered question becomes an approval. Exactly **47 D and 3 C (Q174, Q194, Q200)**. These are product directions **SPECIFIED**, not implemented, merged, runtime-tested, released or deployed. The [machine registry](../../evidence/decisions-q171-q220-v1.json) mirrors every choice; real prices, technical providers, default limits and rollout dates remain OPEN.
+**OWNER-APPROVED 6 November 2026: all 50 recommendations explicitly adopted.** Q1–Q170 are retained; no unanswered question becomes an approval. Exactly **47 D and 3 C (Q174, Q194, Q200)**. These are product directions **SPECIFIED**, not implemented, merged, runtime-tested, released or deployed. The [machine registry](../../../evidence/decisions-q171-q220-v1.json) mirrors every choice; real prices, technical providers, default limits and rollout dates remain OPEN.
 
 | ID | Choice | Approved product direction | Domain |
 |---|---|---|---|

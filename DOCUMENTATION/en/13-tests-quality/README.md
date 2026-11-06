@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-13 revision=24 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=25 status=documented -->
 # Tests, quality and definition of done
 
 [Français](../../fr/13-tests-quality/README.md) · [Index](../README.md)
+
+## App Center: mock trust-origin separation tests
+
+The [preflight trust boundary](../10-security/app-center-admission-trust-boundary.md) now has **three distinct synthetic input fixtures** (host facts, Core authorization claims and client intent). [39 offline preview tests](../../../tests/documentation/test_app_center_preview.py) cover unauthorized fields, spoofed host/tenant references, fake VERIFIED claims, free native installs without Docker/Hub and reserved control-plane ports. No real RBAC, host attestation or app installation is tested.
 
 ## App Center: synthetic installation preview checks
 

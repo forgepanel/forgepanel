@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-06-APP-CENTER-ENGINES revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-06-APP-CENTER-ENGINES revision=2 status=specified -->
 # ForgePanel App Center — séparation des moteurs natif et conteneurs
 
 [English](../../en/06-apps-recipes/app-center-engines.md) · [Catalogue Apps/Recipes](README.md) · [Tests](../13-tests-quality/app-center-engine-gates.md)
@@ -62,7 +62,7 @@ Le Core ne doit pas interpréter une même recette polymorphe comme des **comman
 
 ### Manifeste conteneur : champs candidats
 
-\`recipe_kind=container_stack\`, ID/app/version, moteurs certifiés (\`docker\`/\`podman\`), versions/architecture, images épinglées et digests (signature/politique à spécifier), réseau/ingress/protocoles, ports et collisions, CPU/RAM/PIDs/I/O, stockage image + volumes persistants, mappings UID/GID, privilèges/capabilities, secrets, interdiction des mounts dangereux, dépendances et ordonnancement, probes de santé, upgrades/rollback et politique de rétention. Une recette \`docker-compose.yml\` de 1Panel est une **référence de recherche**, pas un manifest ForgePanel directement exécutable. Importer un Compose arbitraire avec bind-mount du disque hôte ou accès au socket Docker est interdit par défaut.
+\`recipe_kind=container_stack\`, ID/app/version, moteurs certifiés (\`docker\`/\`podman\`), versions/architecture, images épinglées et digests (signature/politique à spécifier), réseau/ingress/protocoles, ports et collisions, CPU/RAM/PIDs/I/O, stockage image + volumes persistants, mappings UID/GID, privilèges/capabilities, secrets, interdiction des mounts dangereux, dépendances et ordonnancement, probes de santé, upgrades/rollback et politique de rétention. Une recette \`docker-compose.yml\` de 1Panel est une **référence de recherche**, pas un manifest ForgePanel directement exécutable. Importer un Compose arbitraire avec bind-mount du disque hôte ou accès au socket Docker est interdit par défaut. **Traiter le YAML Compose comme du code non fiable** : `provider` peut exécuter un binaire côté hôte, `include`/`extends`, `env_file`, `secrets`/`configs` et les chemins relatifs peuvent accéder à d'autres fichiers. Interdire par défaut les fonctions non explicitement validées, résoudre/contrôler les chemins en sécurité et ne pas exécuter un Compose tiers brut. [Modèle de confiance Docker Compose](https://docs.docker.com/compose/trust-model/). **Podman Compose utilise un fournisseur externe de Compose** ; chaque pilote/provider exact demande une qualification séparée. [Documentation Podman](https://docs.podman.io/en/latest/markdown/podman-compose.1.html).
 
 ### Gestion des états et reprise
 

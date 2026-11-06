@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19 revision=11 status=documented -->
+<!-- forgepanel-doc id=FP-19 revision=12 status=documented -->
 # Audit, contradictions and risks
 
 [Français](../../fr/19-audits-risks/README.md) · [Index](../README.md)
@@ -94,3 +94,14 @@ Green static JSON/Markdown checks cannot close these risks or authorize a privil
 - **RISK-032 — False success/destructive recovery:** ACK/zero exit is not observed effect; binary rollback cannot reverse irreversible SQL. [Candidate execution rules](../08-api-contracts/typed-execution-recovery-r3.md) require independent effect verification, `VERIFYING`, safe compensation and no blind replay. **OPEN**, no actual handler.
 
 CI tests only FR/EN and JSON consistency. All [36 positive/negative cases](../13-tests-quality/r3-physical-execution-gates.md) are PLANNED and close no security finding. Q132 critical vetoes remain.
+
+## R3 — Targeted physical integrity review after PR #48
+
+[Job integrity review](r3-job-integrity-audit.md) records **four additional OPEN risks**:
+
+- **RISK-033** — Denied/rejected admissions lack an unambiguous audit subject independent of an accepted job; conditional FK and request correlation need review.
+- **RISK-034** — **CRITICAL if privileged effects are enabled**: fencing token may be reused after lease deletion or PostgreSQL restore; independent recovery epoch design remains unproven.
+- **RISK-035** — Inbox delivery dedup mistaken for actual Linux effect; crashes between receipt, effect and ACK are unresolved.
+- **RISK-036** — Spoofed/NULL tenant scope or SQL session context, with RLS improperly treated as actor authentication.
+
+All **RISK-033..036 remain OPEN**, with eight `R3-AUDIT-TEST-001..008` negative cases **PLANNED** and a [non-approved tracking register](../../evidence/r3-job-integrity-review-v1.json). Updates to **candidate JSON** are **not deployed mitigations or independent security review**. [DB design](../09-database/physical-jobs-model-r3.md) and [execution](../08-api-contracts/typed-execution-recovery-r3.md) remain gated by R1/R2, Database and Security.

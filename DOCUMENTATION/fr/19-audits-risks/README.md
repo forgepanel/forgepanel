@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19 revision=11 status=documented -->
+<!-- forgepanel-doc id=FP-19 revision=12 status=documented -->
 # Audit, contradictions et risques
 
 [English](../../en/19-audits-risks/README.md) · [Index](../README.md)
@@ -94,3 +94,14 @@ Une validation statique JSON/Markdown, même verte, ne permet ni clôture de ces
 - **RISK-032 — Succès fictif et compensation destructrice :** ACK ou code retour zéro ne prouvent pas l'effet réel ; rollback du binaire ne restaure pas SQL irréversible. [Contrats d'exécution candidats](../08-api-contracts/typed-execution-recovery-r3.md) exigent observation, `VERIFYING`, compensation sûre et refus de replay. **OPEN**, aucune opération réelle.
 
 La CI ne vérifie que la cohérence FR/EN et JSON. Les [36 tests positifs/négatifs](../13-tests-quality/r3-physical-execution-gates.md) restent PLANNED et ne ferment aucun risque. Q132 conserve ses veto critiques.
+
+## R3 — Revue ciblée des garanties physiques après PR #48
+
+La [revue d'intégrité des jobs](r3-job-integrity-audit.md) identifie **quatre nouveaux risques OPEN** :
+
+- **RISK-033** — Impossible de garantir un audit des admissions `DENIED/REJECTED` avec un schéma ambigu ne décrivant pas le sujet sans job ; corrélation/contraintes conditionnelles à approuver.
+- **RISK-034** — **CRITICAL pour toute activation privilégiée** : génération de fencing réutilisable après suppression de bail ou restauration SQL ; mécanisme d'époque indépendante non conçu ni prouvé.
+- **RISK-035** — Déduplication de la réception inbox confondue avec un effet Linux effectif ; crash entre réception/effet/ACK non résolu.
+- **RISK-036** — Scope tenant forgé, NULL/wildcard ou variable SQL sans identité prouvée ; RLS seul insuffisant.
+
+Les quatre constats **RISK-033..036** sont **OPEN**, avec 8 tests négatifs `R3-AUDIT-TEST-001..008` **PLANNED** et un [registre de suivi non approuvé](../../evidence/r3-job-integrity-review-v1.json). Les modifications apportées aux **registres candidats JSON** ne constituent **aucune** mitigation exécutée, ni une revue de sécurité indépendante. [DBPH](../09-database/physical-jobs-model-r3.md) et [execution](../08-api-contracts/typed-execution-recovery-r3.md) restent conditionnés par l'import R1, R2, Database et Security.

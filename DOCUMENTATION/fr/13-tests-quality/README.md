@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=20 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=21 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
@@ -106,3 +106,7 @@ La [matrice R3](r3-jobs-peer-gates.md) ajoute **R3-JOB-TEST-001..012** et **R3-P
 ## R3 — Nouvelle matrice physique/identités/exécution, uniquement planifiée
 
 La [matrice QA physique R3](r3-physical-execution-gates.md) décrit **36 cas PLANNED** `R3-PHYS-TEST-001..012`, `R3-LINUX-TEST-001..012` et `R3-EXEC-TEST-001..012`. Les tests Python de documentation contrôlent les 8 objets SQL candidats, 8 identités Linux, 7 opérations typées, veto des 2 handlers root et parité FR/EN. **Aucune base PostgreSQL réelle, séparation Linux ni effet systemd n'est exécuté** par ce lot ; les QA VM/HTTP/DB restent à prouver sur hôte autorisé.
+
+## R3 — Huit nouveaux tests négatifs après revue d'intégrité
+
+La [revue R3 des jobs](../19-audits-risks/r3-job-integrity-audit.md) ajoute `R3-AUDIT-TEST-001..008` **PLANNED** pour admissions refusées sans job, fencing après suppression/restauration, crash inbox avant/après effet et falsification tenant/RLS. `tests/documentation/test_r3_job_integrity_review.py` vérifie **uniquement les gardes documentaires** et leur non-régression par mutation d'objets JSON en mémoire. **Zéro test réel PostgreSQL/Linux** ; pas de résolution automatique des RISK-033..036.

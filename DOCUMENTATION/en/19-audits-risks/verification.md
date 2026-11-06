@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19-VERIFICATION revision=9 status=documented -->
+<!-- forgepanel-doc id=FP-19-VERIFICATION revision=10 status=documented -->
 # Verification record
 
 [Français](../../fr/19-audits-risks/verification.md) · [Audit index](README.md)
@@ -61,3 +61,7 @@ New Python tests in this branch check only: 24 PLANNED IDs `R3-JOB-TEST-001..012
 ## New static R3 campaign — physical DB / Linux / effects
 
 Python `tests/documentation/test_r3_physical_boundaries.py` checks IDs for 12 DB, 12 Linux and 12 execution requirements, **36 PLANNED cases**, eight candidate tables, eight proposed service identities and seven typed operations. It asserts both privileged operations stay blocked, no accounts/tables are activated, and fencing/replay refusal are specified. GitHub CI must be cited with an exact SHA. **No `CREATE TABLE`, sudo, socket, port, QEMU, PHP/HTTPS site or actual restore** is tested by this lot.
+
+## Post-PR48 R3 review — static verification only
+
+[R3 review](r3-job-integrity-audit.md) tracks **4 OPEN findings** and **8 PLANNED cases**. Python `tests/documentation/test_r3_job_integrity_review.py` checks FR/EN parity, IDs and JSON candidate guard invariants, including deliberately mutated **in-memory mock records**. Green CI can only mean “consistent candidate contract at exact SHA”, **not** fixed PostgreSQL/Go Linux, verified restore, MFA or security certification. [Machine-readable register](../../evidence/r3-job-integrity-review-v1.json).

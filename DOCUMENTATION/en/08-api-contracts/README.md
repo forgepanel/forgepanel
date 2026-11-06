@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08 revision=9 status=documented -->
+<!-- forgepanel-doc id=FP-08 revision=10 status=documented -->
 # APIs and contracts
 
 [Français](../../fr/08-api-contracts/README.md) · [Index](../README.md)
@@ -60,3 +60,7 @@ Version compatibility and migration tests precede any new public API. Proposed e
 ## R3 — Typed Linux effect and compensation contracts
 
 [12 `EXEC-FP-0001..0012` requirements](typed-execution-recovery-r3.md) specify per-operation actor/plan/revision authority, effect-boundary fencing, observed health and safe recovery, without creating a privileged process. [Guard registry](../../evidence/candidate-typed-execution-guards-v1.json) matches the **7 ACT-FP operations**; `ACT-FP-0005/0007` remain **`BLOCKED_UNTIL_QUALIFIED`**. Arbitrary payload commands/shell.exec are prohibited, and schema-valid JSON authenticates no peer or actor. [12 R3 negative tests](../13-tests-quality/r3-physical-execution-gates.md).
+
+## R3 — Critical review of admission, dedup and observed effects
+
+[Targeted review](../19-audits-risks/r3-job-integrity-audit.md) requires denied-admission audit without fake jobs, warns that inbox ACK is not Linux effect proof and that stale fencing capabilities must remain invalid **after PostgreSQL restore**. A caller-provided actor_claim or scope_ref does not prove tenant identity. **RISK-033..036 OPEN**, two privileged operations blocked, [eight tests PLANNED](../19-audits-risks/r3-job-integrity-audit.md).

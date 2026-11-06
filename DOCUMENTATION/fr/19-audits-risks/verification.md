@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19-VERIFICATION revision=9 status=documented -->
+<!-- forgepanel-doc id=FP-19-VERIFICATION revision=10 status=documented -->
 # Rapport de vérification
 
 [English](../../en/19-audits-risks/verification.md) · [Index d'audit](README.md)
@@ -61,3 +61,7 @@ Les nouveaux tests Python de cette branche contrôlent uniquement : 24 IDs `R3-J
 ## Nouvelle campagne documentaire R3 — contrat physique / Linux / effets
 
 Les tests Python `tests/documentation/test_r3_physical_boundaries.py` examinent les identifiants des 12 exigences DB, 12 Linux, 12 d'exécution, les **36 cas QA PLANNED**, 8 tables proposées, 8 identités proposées et 7 opérations du registre. Ils vérifient que les deux opérations privilégiées sont bloquées, que les comptes/tableaux ne sont pas activés et que le fencing/rejet des replays est inscrit. La CI GitHub doit être liée à un SHA exact. **Aucun `CREATE TABLE`, sudo, socket, port, QEMU, site PHP/HTTPS ni restore réel** n'est testé dans ce lot.
+
+## Revue R3 post-PR48 — vérification statique uniquement
+
+Le [rapport R3](r3-job-integrity-audit.md) trace **4 constats OPEN** et **8 scénarios PLANNED**. Le test Python `tests/documentation/test_r3_job_integrity_review.py` vérifie la parité FR/EN, les identifiants, les gardes du modèle JSON candidat et leur refus lors de mutations **simulées en mémoire**. Une CI verte signifie seulement « contrat cohérent sur le commit exact », **pas** correction en PostgreSQL, handler Linux, restore, MFA ou sécurité certifiée. [Registre machine lisible](../../evidence/r3-job-integrity-review-v1.json).

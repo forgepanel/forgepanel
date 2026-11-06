@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-09 revision=8 status=documented -->
+<!-- forgepanel-doc id=FP-09 revision=9 status=documented -->
 # Database, transactions and migrations
 
 [Français](../../fr/09-database/README.md) · [Index](../README.md)
@@ -54,3 +54,7 @@ Future [Symfony ↔ Go IPC](../08-api-contracts/symfony-go-ipc-r3.md) needs dura
 ## R3 — Proposed physical PostgreSQL jobs, no DDL
 
 [Candidate physical PostgreSQL model](physical-jobs-model-r3.md) details `DBPH-FP-0001..0012`, **8 proposed table objects**, uniqueness, relationships, tenant scope, idempotency, outbox/inbox, fenced leases and recovery. [Candidate table register](../../evidence/candidate-r3-physical-data-model-v1.json) is **not a migration** and does not modify any of the three historical SRC-03 tables. Types/FKs/indexes, DB roles and limits require Database/Security review after genuine source import. [36 R3 planned tests](../13-tests-quality/r3-physical-execution-gates.md).
+
+## R3 — Review of denied admission, inbox and restored fences
+
+[Targeted review](../19-audits-risks/r3-job-integrity-audit.md) raises **RISK-033/034/035/036** against the [candidate physical model](physical-jobs-model-r3.md): record denials without fake jobs, nonresettable fencing after lease deletion/restore, inbox receipt distinct from Linux effect, authenticated scope even with RLS. [Eight future tests](../19-audits-risks/r3-job-integrity-audit.md) remain `PLANNED`. **No real table/constraint/fencing mechanism is fixed or approved**; Database review and migrations remain OPEN.

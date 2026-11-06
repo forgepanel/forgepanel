@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-DOC-READINESS revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-00-DOC-READINESS revision=5 status=documented -->
 # Registre des lacunes et conditions de complétude — ForgePanel
 
 [English](../../en/00-project-control/documentation-readiness.md) · [Pilotage](README.md) · [Matrice](requirements-traceability.md) · [Couverture](coverage.md)
@@ -55,3 +55,7 @@ Les [12 exigences de jobs durables](../09-database/durable-jobs-r3.md), les [12 
 ## Candidats supplémentaires pour DOC-GAP-004/005/006 — sans clôture
 
 Le [modèle physique DB](../09-database/physical-jobs-model-r3.md), les [identités de services](../14-devops-releases/linux-service-identities-r3.md) et l'[exécution typée](../08-api-contracts/typed-execution-recovery-r3.md) détaillent les pistes d'implémentation et relient [36 tests candidats](../13-tests-quality/r3-physical-execution-gates.md). Les preuves JSON sont **non approuvées** ; **DOC-GAP-004, DOC-GAP-005 et DOC-GAP-006 restent OPEN** tant que PostgreSQL, Linux et VM réels n'ont pas été qualifiés. Le total des 22 lacunes initiales n'est pas modifié.
+
+## Quatre constats d'audit R3 supplémentaires — aucune clôture
+
+L'[audit ciblé de sécurité du modèle des jobs](../19-audits-risks/r3-job-integrity-audit.md) a révélé des lacunes de conception plus précises : audit des refus sans job, compteur fencing après suppression/restauration, reçu inbox distinct des effets et scope tenant non authentifié. Le [registre RISK-033..036](../../evidence/r3-job-integrity-review-v1.json) et 8 tests futurs sont **OPEN/PLANNED** ; ils ne créent pas quatre nouvelles décisions produit et ne changent **aucun** des 22 IDs de lacunes. **DOC-GAP-004/005/006 toujours OPEN**, archive SRC-03 non retrouvée.

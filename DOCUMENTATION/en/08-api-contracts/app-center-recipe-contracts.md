@@ -1,9 +1,9 @@
-<!-- forgepanel-doc id=FP-08-APP-RECIPE revision=2 status=specified -->
+<!-- forgepanel-doc id=FP-08-APP-RECIPE revision=3 status=specified -->
 # App Center — discriminated recipe contracts and admission boundaries
 
 [Français](../../fr/08-api-contracts/app-center-recipe-contracts.md) · [API index](README.md) · [Two-engine policy](../06-apps-recipes/app-center-engines.md)
 
-**Status: DRAFT SPECIFICATION / CANDIDATE-ONLY.** No production manifest parser, installer, Docker/Podman handler, Symfony endpoint or catalog executor has been implemented. The owner's confirmed product choices are the **free native One-Click engine**, the **separate Docker/Podman Container Apps engine**, and no runtime mixing. The exact schemas and resource policies below remain technical candidates requiring specialist review. Q171+ remain open.
+**Status: DRAFT SPECIFICATION / CANDIDATE-ONLY.** No production manifest parser, installer, Docker/Podman handler, Symfony endpoint or catalog executor has been implemented. The owner's confirmed product choices are the **free native One-Click engine**, the **separate Docker/Podman Container Apps engine**, and no runtime mixing. The exact schemas and resource policies below remain technical candidates requiring specialist review. Q171–Q220 are owner-approved product directions; implementation contracts and QA still need review. [Decision register](../00-project-control/decisions-q171-q220.md). Q221+ remain unanswered.
 
 ## Common envelope — candidate version 1
 

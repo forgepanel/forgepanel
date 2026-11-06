@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00-EXECUTION revision=14 status=specified -->
+<!-- forgepanel-doc id=FP-00-EXECUTION revision=15 status=specified -->
 # Technical implementation roadmap — Q120 D and Q119 B MVP
 
 [Français](../../fr/00-project-control/implementation-roadmap.md) · [Project status](status.md) · [Q111–Q120 decisions](decisions-q111-q120.md)
@@ -97,3 +97,7 @@ After the host probe, [QCOW2 admission](../14-devops-releases/kvm-image-admissio
 ## R3 documentation lot — IPC and installer prerequisites before implementation
 
 [Typed R3 IPC](../08-api-contracts/symfony-go-ipc-r3.md), [installer recovery lifecycle](../14-devops-releases/installer-lifecycle-r3.md) and [planned QA](../13-tests-quality/r3-ipc-installer-gates.md) clarify approval dependencies without skipping R1 → R2. After genuine SRC-03 import and tested Symfony/PostgreSQL: ratify typed IPC/permissions, durable job model/migrations, daemon and Linux trust boundaries, artifact provenance/signatures; only then implement an installer and run disposable OS VMs. Transport, limits, providers and pilot OS remain open. **`DOC-GAP-005` and `DOC-GAP-006` remain OPEN**.
+
+## R2/R3 documentary sequencing: durable state and peer identity
+
+Before any Linux effect, Database must ratify [job/idempotency/fencing](../09-database/durable-jobs-r3.md) and Security/API must ratify [peer trust protocol](../08-api-contracts/local-peer-trust-r3.md). Imported R1 source and actual R2 Symfony/PG remain hard prerequisites for operational R3. Implement jobs/bridge **without generic privileged shell commands**, then separately test scope authorization, lost ACK, stale workers, failover and SQL/Linux outcomes in authorized VMs. [24 cases planned](../13-tests-quality/r3-jobs-peer-gates.md), none executed.

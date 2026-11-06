@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19-VERIFICATION revision=7 status=documented -->
+<!-- forgepanel-doc id=FP-19-VERIFICATION revision=8 status=documented -->
 # Verification record
 
 [Français](../../fr/19-audits-risks/verification.md) · [Audit index](README.md)
@@ -53,3 +53,7 @@ This pass validates no QEMU runner, isolated VM, enforced quotas or imported Fou
 ## R3 evidence ledger — candidate contracts only
 
 [R3 matrix](../13-tests-quality/r3-ipc-installer-gates.md) and [candidate IPC schemas](../08-api-contracts/symfony-go-ipc-r3.md) get **static** Python checks for FR/EN parity, required IDs, absence of generic shell fields and blocked privileged actions. Real CI results must be linked to the exact executed SHA. **None** of `R3-IPC-TEST-001..012` or `R3-INSTALL-TEST-001..012` has run on a real agent, socket, installer or VM. Earlier R1/R3 preparatory-tool PRs do not certify this protocol. No independent security review is claimed.
+
+## R3 documentation consistency: durable jobs and local peer
+
+New Python tests in this branch check only: 24 PLANNED IDs `R3-JOB-TEST-001..012` and `R3-PEER-TEST-001..012`, 12 DB and 12 PEER requirements mirrored FR/EN, transitions without unverified success, idempotency/concurrency/fencing invariants and a candidate peer JSON record with privileges set `false`. **No actual PostgreSQL, kernel credentials, Unix connection, Go daemon or Linux effect** was executed. RISK-028/029 stay OPEN. Green CI proves static consistency only.

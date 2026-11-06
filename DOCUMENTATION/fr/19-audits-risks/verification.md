@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-19-VERIFICATION revision=7 status=documented -->
+<!-- forgepanel-doc id=FP-19-VERIFICATION revision=8 status=documented -->
 # Rapport de vérification
 
 [English](../../en/19-audits-risks/verification.md) · [Index d'audit](README.md)
@@ -53,3 +53,7 @@ Ce succès ne valide aucun pilote QEMU/KVM, aucune VM isolée, quotas effectifs 
 ## Registre de preuves R3 — contrats candidats uniquement
 
 La [matrice R3](../13-tests-quality/r3-ipc-installer-gates.md) et les [schémas IPC candidats](../08-api-contracts/symfony-go-ipc-r3.md) font l'objet de vérifications **statiques** Python (parité FR/EN, identifiants, aucune action shell libre, deux opérations privilégiées bloquées). Résultat réel de la CI : à associer au SHA précis après exécution. **Aucun** `R3-IPC-TEST-001..012` ou `R3-INSTALL-TEST-001..012` n'a été réalisé sur un agent, socket, installateur ou VM. Les preuves des anciennes PR R1/R3 ne certifient pas ce nouveau protocole. Aucune revue de sécurité indépendante n'est déclarée.
+
+## Audit de cohérence documentaire R3 : jobs et pair local
+
+Les nouveaux tests Python de cette branche contrôlent uniquement : 24 IDs `R3-JOB-TEST-001..012` et `R3-PEER-TEST-001..012` au statut PLANNED, 12 exigences DB/12 exigences PEER en FR/EN, machine d'états sans succès non vérifié, idempotence/concurrence/fencing et JSON candidat de pair avec privilèges `false`. **Aucun test PostgreSQL réel, credentials du noyau, connexion Unix, daemon Go ni effet Linux** n'a été exécuté. RISK-028/029 restent OPEN. Un SHA de CI verte prouve seulement la cohérence statique.

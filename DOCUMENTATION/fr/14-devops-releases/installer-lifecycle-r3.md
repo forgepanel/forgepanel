@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14-R3-INSTALLER revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-14-R3-INSTALLER revision=2 status=specified -->
 # R3 — Contrat candidat d'installation sécurisée, approbations et reprise
 
 [English](../../en/14-devops-releases/installer-lifecycle-r3.md) · [DevOps](README.md) · [IPC typé](../08-api-contracts/symfony-go-ipc-r3.md) · [QA R3](../13-tests-quality/r3-ipc-installer-gates.md)
@@ -65,3 +65,7 @@
 - **QA / DevOps :** exécuter [`R3-INSTALL-TEST-001..012`](../13-tests-quality/r3-ipc-installer-gates.md) dans une VM jetable et documenter OS/commit exacts, pannes et reprise.
 
 **`DOC-GAP-005` reste OPEN.** Ce contrat n'autorise aucune installation ; le vrai code Foundation, R2 Symfony/PostgreSQL et l'exécuteur Linux n'existent pas encore comme produit intégré.
+
+## Dépendance à la persistance et au canal privé
+
+La future étape APPLY exige d'abord la [persistance des intentions/locks/jobs](../09-database/durable-jobs-r3.md) et la [vérification indépendante du pair](../08-api-contracts/local-peer-trust-r3.md). La fin du bail d'un worker n'autorise pas un second apply ; un reçu IPC ou ACK perdu n'est pas preuve d'absence d'effet. En cas d'incertitude, conserver COMPENSATION_REQUIRED et l'accès administrateur. **Ces contrats restent candidats**, sans installateur, SQL effectif, mTLS distant ou socket opérationnel. [QA](../13-tests-quality/r3-jobs-peer-gates.md).

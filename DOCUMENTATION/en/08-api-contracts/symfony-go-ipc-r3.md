@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08-R3-IPC revision=2 status=specified -->
+<!-- forgepanel-doc id=FP-08-R3-IPC revision=3 status=specified -->
 # R3 — Candidate Symfony ↔ Go agent IPC, authorization and typed operations
 
 [Français](../../fr/08-api-contracts/symfony-go-ipc-r3.md) · [API](README.md) · [R3 installer](../14-devops-releases/installer-lifecycle-r3.md) · [R3 QA](../13-tests-quality/r3-ipc-installer-gates.md)
@@ -67,3 +67,7 @@ Registry entries describe *typed business actions*, **not** an implemented Go AP
 - **QA:** [`R3-IPC-TEST-001..012`](../13-tests-quality/r3-ipc-installer-gates.md) **PLANNED**: cross-tenant denial, replay, crashes, concurrent updates, lost replies, version mismatch and security.
 
 **DOC-GAP-006 remains OPEN.** Ratify real wire schemas and scopes, implement PHP/Go only after R1/R2 gates and verify denials on an authorized VM. This is a candidate specification, not an independent security review.
+
+## Documentary clarification: authenticated peer and durable job
+
+[Peer trust candidate](local-peer-trust-r3.md) separates Unix/Linux channel proof, process identity and a Symfony actor mandate: the actor_claim in a [candidate request](../../evidence/candidate-ipc-request-v1.schema.json) is **not a credential**. [Durable job contract](../09-database/durable-jobs-r3.md) adds commit-before-ACK, scoped idempotency/payload digests, monotonic fencing, outbox and crash uncertainty handling. [24 additional PLANNED cases](../13-tests-quality/r3-jobs-peer-gates.md) cover negative scenarios. **No endpoint is active; ACT-FP-0005/0007 remain blocked.**

@@ -3,7 +3,7 @@
 
 [English](../../en/00-project-control/decisions-q171-q220.md) · [Q161–Q170](decisions-q161-q170.md) · [App Center](../06-apps-recipes/app-center-engines.md) · [Réconciliation](reconciliation-q171-q220.md)
 
-**APPROUVÉ PAR LE PROPRIÉTAIRE le 6 novembre 2026 : les 50 recommandations sont explicitement adoptées.** Q1–Q170 restent actifs ; aucune question sans réponse n'est supposée validée. Répartition : **47 D et 3 C (Q174, Q194, Q200)**. Ces orientations produit sont **SPECIFIED** et ne sont ni du code implémenté, ni une fusion, ni des tests de runtime, ni une release/déploiement. Le [registre machine](../../evidence/decisions-q171-q220-v1.json) réplique les choix. Prix, fournisseurs, valeurs par défaut et calendrier restent OUVERTS.
+**APPROUVÉ PAR LE PROPRIÉTAIRE le 6 novembre 2026 : les 50 recommandations sont explicitement adoptées.** Q1–Q170 restent actifs ; aucune question sans réponse n'est supposée validée. Répartition : **47 D et 3 C (Q174, Q194, Q200)**. Ces orientations produit sont **SPECIFIED** et ne sont ni du code implémenté, ni une fusion, ni des tests de runtime, ni une release/déploiement. Le [registre machine](../../../evidence/decisions-q171-q220-v1.json) réplique les choix. Prix, fournisseurs, valeurs par défaut et calendrier restent OUVERTS.
 
 | ID | Choix | Orientation produit approuvée | Périmètre |
 |---|---|---|---|

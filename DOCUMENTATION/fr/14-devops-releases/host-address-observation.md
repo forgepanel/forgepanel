@@ -1,23 +1,25 @@
-<!-- forgepanel-doc id=FP-14-HOST-OBSERVE revision=1 status=specified -->
-# Observation autonome des adresses de la machine — outil préparatoire R3
+<!-- forgepanel-doc id=FP-14-HOST-OBSERVE revision=2 status=specified -->
+# Observation IP et DNS local facultatif — préparation R3 indépendante
 
-[English](../../en/14-devops-releases/host-address-observation.md) · [DevOps](README.md) · [PR #50 — Contrat des portails](https://github.com/yyogas/forgepanel/pull/50)
+[English](../../en/14-devops-releases/host-address-observation.md) · [DevOps](README.md) · [Outils](../../../tools/host-address-observation/README.md)
 
-## Provenance et état
+## État et limites
 
-L'outil Go dans [tools/host-address-observation](../../../tools/host-address-observation/README.md) constitue un **PROTOTYPE IMPLÉMENTÉ autonome**, pas l'import des sources historiques Foundation v0.7 ni un composant Core opérationnel. Il s'exécute sans privilège root, appel réseau, interrogation DNS, shell, socket en écoute, écriture fichier ou modification du système. **L'import R1 et l'intégration Symfony/PostgreSQL R2 restent des prérequis indépendants.**
+Le module Go autonome [tools/host-address-observation](../../../tools/host-address-observation/README.md) comporte deux commandes distinctes. **`forgepanel-host-observe`** recense les interfaces/adresses IP et le FQDN candidat de l'OS sans réseau. **`forgepanel-dns-observe --observe`** effectue une unique interrogation A/AAAA, facultative et limitée, par le résolveur système, uniquement pour le nom candidat détecté. Cette seconde commande peut générer du trafic DNS ; elle n'est jamais exécutée implicitement. Aucun nom de domaine libre en argument, shell root, modification du système ou service externe de recherche d'IP publique. Ces commandes restent des prototypes de préparation, sans intégration Core ni certification HTTPS/OS.
 
-Les chemins et ports confirmés FORGE (/forge, HTTPS 8447) et PANEL (/panel, HTTPS 8446) figurent dans le rapport comme **métadonnées fixes**, pas comme listeners installés. Le système d'exploitation fournit les IPv4/IPv6 et un éventuel nom complet candidat valide ; aucun domaine du portail personnalisable, sous-domaine forge./panel. ni hôte automatique 443. Les domaines des sites clients et le branding Q5 sont des fonctions distinctes.
+Les chemins/ports fixes choisis sont **FORGE `/forge:8447`** et **PANEL `/panel:8446`**. Aucun champ domaine personnalisable ni virtual host automatique sur 443. Un même FQDN vérifié pourrait ultérieurement desservir les deux ports, **sans que ce prototype le démontre**.
 
-## Interprétation du rapport
+## Interprétation et sécurité
 
-- Interfaces réseau : adresses unicast attribuées aux interfaces actives non-loopback, triées et dédupliquées ; états PRIVATE_UNVERIFIED ou NON_PRIVATE_UNVERIFIED. Ce dernier ne prouve **aucune IP publique ou routable**, notamment en présence de CGNAT ou de plages réservées.
-- Nom de machine : un hostname complet de syntaxe valide devient CANDIDATE_UNVERIFIED ; un nom local incomplet est NONE. Aucune preuve A/AAAA n'est faite : /etc/hosts, caches DNS ou split-horizon ne suffisent pas.
-- Vérification : DNS, TLS, listener et accessibilité publique restent NOT_EXECUTED ; verified_access_urls reste toujours vide. Une URL HTTPS par IP impose un certificat couvrant cette IP ; une URL domaine impose une validation DNS, routage et TLS préalable à tout affichage comme accès fonctionnel.
-- Erreurs : lecture indisponible ou inventaire limité signalés UNAVAILABLE ou PARTIAL_UNVERIFIED avec avertissements assainis ; aucune adresse supposée ou faux succès.
+- L'inventaire OS filtre, trie, déduplique et limite les adresses des interfaces actives. Une adresse non privée **n'est pas nécessairement publique ni joignable** derrière NAT/pare-feu.
+- Le FQDN syntaxiquement valide de l'OS n'est que `CANDIDATE_UNVERIFIED`. Aucun FQDN => `NO_FQDN` et **aucune** requête DNS.
+- La commande facultative rapporte `MATCHED_LOCAL_OS_RESOLVER_ONLY` lorsque toutes les réponses acceptées correspondent aux IP locales ; une différence devient `NAT_OR_REMOTE_ROUTING_UNVERIFIED`. Les deux statuts restent **non vérifiés**. Le résolveur peut lire `/etc/hosts`, du cache ou du DNS privé.
+- Interrogation limitée en durée et en nombre de réponses ; refus des IP loopback/non adaptées, normalisation IPv4/IPv6 et remplacement des erreurs brutes par des codes d'avertissement sans secrets.
+- Le rapport conserve toujours `dns_authority_verified=false`, `public_reachability=NOT_EXECUTED`, `tls_verification=NOT_EXECUTED`, `listener_verification=NOT_EXECUTED` et `verified_access_urls=[]`.
+- Aucun contrôle de certificat IP-SAN/FQDN SAN, de DNS indépendant externe, d'accès HTTPS réel sur 8447/8446 ni génération d'URL fonctionnelle n'est effectué.
 
-## Tests et frontière d'intégration
+## Tests et prérequis
 
-La CI dédiée contrôle les tests Go sur interfaces simulées, le détecteur de courses, vet et l'absence de liens prétendument vérifiés. Ces vérifications concernent uniquement le **code autonome**. L'intégration [issue #51](https://github.com/yyogas/forgepanel/issues/51) exige encore l'import Foundation, les routes Symfony authentifiées, un contrat d'agent Go audité, des sondes DNS/TLS fiables, la vérification NAT et les essais HTTP/VM. Aucune API shell privilégiée ni dépendance au Hub éditeur n'est introduite.
+La [CI dédiée](../../../.github/workflows/host-address-observation.yml) lance les tests Go hors ligne, le détecteur de concurrence, `go vet`, le refus de produire des URL vérifiées et l'obligation du paramètre explicite de requête DNS. Les faux résolveurs des tests ne font aucune requête réseau. L'intégration Core exige encore l'import source #2, Symfony/PostgreSQL #3, l'installateur et les revues de sécurité ; l'[issue #51](https://github.com/yyogas/forgepanel/issues/51) couvre la validation DNS/TLS/proxy/cookies/VM réelle. Ce prototype ne doit pas être décrit comme un Core installé.
 
-**État :** code d'observation non privilégié testé localement ; intégration, vérification DNS/TLS, détection d'IP publique et URLs fonctionnelles restent NON IMPLÉMENTÉES.
+**État : code source autonome candidat seulement ; aucun domaine, endpoint HTTPS ou accès public certifié, ni déploiement Core.**

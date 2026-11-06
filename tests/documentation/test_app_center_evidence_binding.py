@@ -340,7 +340,7 @@ class AppCenterCandidateEvidenceTests(unittest.TestCase):
             self.assertTrue(doc.startswith(
                 "<!-- forgepanel-doc id=FP-13-APP-EVIDENCE revision=1 status=specified -->"
             ))
-            ids = re.findall(r"^\\| (TEST-EVID-FP-\\d{4}) \\|", doc, re.M)
+            ids = re.findall(r"^\| (TEST-EVID-FP-\d{4}) \|", doc, re.M)
             self.assertEqual(set(ids), expected)
             self.assertEqual(len(ids), 12)
             self.assertIn("PLANNED", doc)

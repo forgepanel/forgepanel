@@ -57,6 +57,11 @@ jobs:
           python3 -c 'import json; a,b=[json.load(open(p)) for p in ("/tmp/native-preview.json","/tmp/container-preview.json")]; assert a["recipe_kind"]=="native_script" and b["recipe_kind"]=="container_stack"; assert all(p["execution_allowed"] is False and p["apply_available"] is False and p["resource_reservations_created"] is False for p in (a,b)); print("PASS: previews are metadata-only and cannot apply")'
       - name: Validate owner-approved Q171-Q220 choices, FR/EN parity and PLANNED gates
         run: python3 tests/documentation/test_q171_q220.py -v
+      - name: Validate Q180/Q220 synthetic inherited App Center policy
+        run: |
+          python3 tests/documentation/test_app_center_inheritance.py -v
+          python3 scripts/preview_app_center_inheritance.py --fixture app-center > /tmp/forgepanel-policy-preview.json
+          python3 -c 'import json; p=json.load(open("/tmp/forgepanel-policy-preview.json")); assert p["policy_status"]=="SYNTHETIC_CANDIDATE_ONLY"; assert p["execution_allowed"] is False and p["apply_available"] is False and p["authorization_verified"] is False; assert p["immutable_invariants"]["app.native.premium_required"] is False; assert p["immutable_invariants"]["app.core.hub_required"] is False; assert p["immutable_invariants"]["app.system.reserved_tcp_ports"]==[8446,8447]; print("PASS: synthetic inheritance candidate is never an authority")'
       - name: Validate documentation
         run: python3 scripts/check_documentation.py
       - name: Package the documentation snapshot

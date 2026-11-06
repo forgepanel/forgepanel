@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-08-APP-EVIDENCE revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-08-APP-EVIDENCE revision=2 status=specified -->
 # App Center — liaison des preuves, révisions et fraîcheur avant installation
 
 [English](../../en/08-api-contracts/app-center-admission-evidence.md) · [Contrats API](README.md) · [Configuration Q180/Q220](../02-architecture/app-center-config-inheritance.md) · [Frontière sécurité](../10-security/app-center-admission-trust-boundary.md)
@@ -37,7 +37,7 @@ Aucune API générique `shell.exec`, commande root libre ou action directe Hub�
 
 ## Référence synthétique autonome
 
-Le [contrôle hors ligne](../../../scripts/check_app_center_candidate_evidence.py) lit seulement deux exemples fictifs embarqués : [natif](../../../evidence/app-center-fixtures/admission-native.synthetic.json) et [conteneurs](../../../evidence/app-center-fixtures/admission-container.synthetic.json). Tous utilisent une **horloge fictive**, des sources `SYNTHETIC_UNVERIFIED` pour hôte/droits/politique et une intention `UNTRUSTED_CLIENT_FIXTURE`. Horodatages, révisions, CPU/RAM et identités sont **des valeurs QA fictives**, pas des paramètres de production.
+Le [schéma JSON strict réservé aux exemples](../../../evidence/app-center-admission.synthetic-v1.schema.json) décrit quatre enveloppes de sources et refuse les champs inconnus. Il s'agit d'un *schéma de données fictives*, **pas d'un contrat IPC final ni d'une vérification de signature**. Le [contrôle hors ligne](../../../scripts/check_app_center_candidate_evidence.py) lit seulement deux exemples fictifs embarqués : [natif](../../../evidence/app-center-fixtures/admission-native.synthetic.json) et [conteneurs](../../../evidence/app-center-fixtures/admission-container.synthetic.json). Tous utilisent une **horloge fictive**, des sources `SYNTHETIC_UNVERIFIED` pour hôte/droits/politique et une intention `UNTRUSTED_CLIENT_FIXTURE`. Horodatages, révisions, CPU/RAM et identités sont **des valeurs QA fictives**, pas des paramètres de production.
 
 ```sh
 python3 scripts/check_app_center_candidate_evidence.py --fixture native

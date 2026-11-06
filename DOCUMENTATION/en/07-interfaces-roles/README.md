@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-07 revision=6 status=documented -->
+<!-- forgepanel-doc id=FP-07 revision=7 status=documented -->
 # Portals, identities and authorization
 
 [Français](../../fr/07-interfaces-roles/README.md) · [Index](../README.md)
@@ -11,7 +11,7 @@ The target authorization decision combines permission, tenant/resource ownership
 
 ## Portals and sessions
 
-Target admin direct access is 8447, customer access 8446, with configurable distinct hosts on HTTPS 443 later. The prototype accepts distinct non-privileged ports; the customer portal remains disabled. Same IP with different ports must not be treated as cookie isolation. Distinct hosts, session contexts and server-side authorization are required before opening both portals.
+The confirmed portal convention is **FORGE** `/forge` on HTTPS **8447** for administrators and **PANEL** `/panel` on HTTPS **8446** for customers; dedicated HTTPS 443 hosts are configurable (examples `forge.ip-server.com` and `panel.up-server.com`). Full direct IP examples are `https://<server-ip>:8447/forge` and `https://<server-ip>:8446/panel`, only with valid TLS. See the [detailed routing and security contract](portal-access-routing.md) and [18 planned QA cases](../13-tests-quality/portal-access-gates.md). The prototype accepts distinct unprivileged ports; the customer portal remains disabled. The same IP on different ports **does not** isolate cookies. Hosts, cookies/session contexts and server-side authorization must remain separate before opening both portals.
 
 The setup cookie is configured as `__Host-FORGE_ADMIN`, Secure, HttpOnly, SameSite Strict, path `/`. Real HTTP tests remain pending. `PUBLIC_ACCESS` on setup routes does not remove SetupService's token/grant checks; it also does not create a permanent authenticated administrator session.
 

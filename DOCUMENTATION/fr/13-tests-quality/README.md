@@ -1,7 +1,11 @@
-<!-- forgepanel-doc id=FP-13 revision=22 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=23 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
+
+## App Center : manifestes candidats versus tests réels
+
+Les [tests hors ligne des recettes](../../../tests/documentation/test_app_center_recipe_contracts.py) vérifient seulement des JSON synthétiques et refusent certains champs dangereux, **sans installer de logiciel**. Les [32 tests applicatifs/VM](app-center-engine-gates.md) restent PLANNED ; aucun OS ou moteur Docker/Podman n'est certifié par la CI statique.
 
 ## App Center : tests natifs et conteneurs distincts
 

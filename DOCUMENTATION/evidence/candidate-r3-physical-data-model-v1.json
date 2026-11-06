@@ -1,0 +1,618 @@
+{
+  "schema_version": "candidate-1",
+  "artifact": "FP-R3-PHYSICAL-DATA-MODEL",
+  "status": "SPECIFIED_NOT_APPROVED",
+  "not_sql_migration": true,
+  "has_been_applied": false,
+  "authorized_to_create_tables": false,
+  "production_compatible": false,
+  "original_source_imported": false,
+  "owner_decisions": "Q1-Q170 preserved; Q171+ unanswered",
+  "reference": "DOCUMENTATION/en/09-database/physical-jobs-model-r3.md",
+  "existing_prototype_tables_observed_only": [
+    "fp_setup",
+    "fp_admins",
+    "fp_setup_audit"
+  ],
+  "existing_prototype_tables_claimed_installed": false,
+  "source_prerequisite": "SRC-03 genuine v0.7 archive not currently imported",
+  "migrator_identity_decided": false,
+  "transaction_isolation_decided": false,
+  "tenant_foreign_key_model_decided": false,
+  "open_settings": [
+    "migration_order",
+    "transaction_isolation_level",
+    "tenant_foreign_keys",
+    "retry_budget",
+    "lease_duration",
+    "fencing_storage",
+    "idempotency_retention",
+    "key_rotation",
+    "audit_retention",
+    "RLS_design"
+  ],
+  "constraints_cannot_be_bypassed": [
+    "deny_cross_tenant_scope",
+    "same_key_different_digest_conflict",
+    "commit_before_ack",
+    "stale_fence_denied_at_linux_effect",
+    "no_exactly_once_pg_linux_claim",
+    "no_success_without_observed_effect",
+    "deny_hub_linux_authority",
+    "no_generic_shell"
+  ],
+  "candidate_tables": [
+    {
+      "name": "fp_operation_intents",
+      "status": "CANDIDATE_NOT_APPROVED",
+      "owner": "Database / Core",
+      "primary_key": [
+        "intent_id"
+      ],
+      "columns": [
+        {
+          "column": "intent_id",
+          "candidate_type": "uuid",
+          "approved": false
+        },
+        {
+          "column": "scope_kind",
+          "candidate_type": "text",
+          "approved": false
+        },
+        {
+          "column": "scope_ref",
+          "candidate_type": "uuid",
+          "approved": false
+        },
+        {
+          "column": "resource_kind",
+          "candidate_type": "text",
+          "approved": false
+        },
+        {
+          "column": "resource_ref",
+          "candidate_type": "uuid",
+          "approved": false
+        },
+        {
+          "column": "operation_id",
+          "candidate_type": "text",
+          "approved": false
+        },
+        {
+          "column": "actor_ref",
+          "candidate_type": "uuid",
+          "approved": false
+        },
+        {
+          "column": "idempotency_fingerprint",
+          "candidate_type": "bytea",
+          "approved": false
+        },
+        {
+          "column": "payload_sha256",
+          "candidate_type": "bytea",
+          "approved": false
+        },
+        {
+          "column": "contract_version",
+          "candidate_type": "text",
+          "approved": false
+        },
+        {
+          "column": "policy_revision",
+          "candidate_type": "text",
+          "approved": false
+        },
+        {
+          "column": "expected_revision",
+          "candidate_type": "text",
+          "approved": false
+        },
+        {
+          "column": "created_at",
+          "candidate_type": "timestamptz",
+          "approved": false
+        }
+      ],
+      "unique_constraints": [
+        [
+          "scope_kind",
+          "scope_ref",
+          "resource_kind",
+          "resource_ref",
+          "operation_id",
+          "idempotency_fingerprint"
+        ]
+      ],
+      "foreign_keys_candidacy": [],
+      "guards": [
+        "tenant_scope_from_authenticated_server_context",
+        "same_key_different_digest_conflict",
+        "commit_before_ack"
+      ]
+    },
+    {
+      "name": "fp_job_executions",
+      "status": "CANDIDATE_NOT_APPROVED",
+      "owner": "Database / Core",
+      "primary_key": [
+        "job_id"
+      ],
+      "columns": [
+        {
+          "column": "job_id",
+          "candidate_type": "uuid",
+          "approved": false
+        },
+        {
+          "column": "intent_id",
+          "candidate_type": "uuid",
+          "approved": false
+        },
+        {
+          "column": "state",
+          "candidate_type": "text",
+          "approved": false
+        },
+        {
+          "column": "state_revision",
+          "candidate_type": "bigint",
+          "approved": false
+        },
+        {
+          "column": "attempt_count",
+          "candidate_type": "integer",
+          "approved": false
+        },
+        {
+          "column": "observed_effect",
+          "candidate_type": "text",
+          "approved": false
+        },
+        {
+          "column": "updated_at",
+          "candidate_type": "timestamptz",
+          "approved": false
+        }
+      ],
+      "unique_constraints": [
+        [
+          "intent_id"
+        ]
+      ],
+      "foreign_keys_candidacy": [
+        {
+          "columns": [
+            "intent_id"
+          ],
+          "references": {
+            "table": "fp_operation_intents",
+            "columns": [
+              "intent_id"
+            ]
+          },
+          "status": "CANDIDATE"
+        }
+      ],
+      "guards": [
+        "queued_has_no_lease",
+        "success_only_after_verified_effect"
+      ]
+    },
+    {
+      "name": "fp_resource_leases",
+      "status": "CANDIDATE_NOT_APPROVED",
+      "owner": "Database / Core",
+      "primary_key": [
+        "scope_kind",
+        "scope_ref",
+        "resource_kind",
+        "resource_ref"
+      ],
+      "columns": [
+        {
+          "column": "scope_kind",
+          "candidate_type": "text",
+          "approved": false
+        },
+        {
+          "column": "scope_ref",
+          "candidate_type": "uuid",
+          "approved": false
+        },
+        {
+          "column": "resource_kind",
+          "candidate_type": "text",
+          "approved": false
+        },
+        {
+          "column": "resource_ref",
+          "candidate_type": "uuid",
+          "approved": false
+        },
+        {
+          "column": "owner_job_id",
+          "candidate_type": "uuid",
+          "approved": false
+        },
+        {
+          "column": "fencing_generation",
+          "candidate_type": "bigint",
+          "approved": false
+        },
+        {
+          "column": "expires_at",
+          "candidate_type": "timestamptz",
+          "approved": false
+        },
+        {
+          "column": "resource_revision",
+          "candidate_type": "text",
+          "approved": false
+        }
+      ],
+      "unique_constraints": [
+        [
+          "scope_kind",
+          "scope_ref",
+          "resource_kind",
+          "resource_ref"
+        ]
+      ],
+      "foreign_keys_candidacy": [
+        {
+          "columns": [
+            "owner_job_id"
+          ],
+          "references": {
+            "table": "fp_job_executions",
+            "columns": [
+              "job_id"
+            ]
+          },
+          "status": "CANDIDATE"
+        }
+      ],
+      "guards": [
+        "monotonic_fencing_generation",
+        "effect_boundary_revalidation_mandatory",
+        "lease_expiry_not_execution_authority"
+      ]
+    },
+    {
+      "name": "fp_job_step_events",
+      "status": "CANDIDATE_NOT_APPROVED",
+      "owner": "Database / Core",
+      "primary_key": [
+        "event_id"
+      ],
+      "columns": [
+        {
+          "column": "event_id",
+          "candidate_type": "bigint",
+          "approved": false
+        },
+        {
+          "column": "job_id",
+          "candidate_type": "uuid",
+          "approved": false
+        },
+        {
+          "column": "step_seq",
+          "candidate_type": "bigint",
+          "approved": false
+        },
+        {
+          "column": "step_ref",
+          "candidate_type": "text",
+          "approved": false
+        },
+        {
+          "column": "transition",
+          "candidate_type": "text",
+          "approved": false
+        },
+        {
+          "column": "effect_verdict",
+          "candidate_type": "text",
+          "approved": false
+        },
+        {
+          "column": "plan_sha256",
+          "candidate_type": "bytea",
+          "approved": false
+        },
+        {
+          "column": "audit_ref",
+          "candidate_type": "text",
+          "approved": false
+        },
+        {
+          "column": "created_at",
+          "candidate_type": "timestamptz",
+          "approved": false
+        }
+      ],
+      "unique_constraints": [
+        [
+          "job_id",
+          "step_seq"
+        ]
+      ],
+      "foreign_keys_candidacy": [
+        {
+          "columns": [
+            "job_id"
+          ],
+          "references": {
+            "table": "fp_job_executions",
+            "columns": [
+              "job_id"
+            ]
+          },
+          "status": "CANDIDATE"
+        }
+      ],
+      "guards": [
+        "append_only_logical",
+        "redacted_event_data"
+      ]
+    },
+    {
+      "name": "fp_agent_outbox",
+      "status": "CANDIDATE_NOT_APPROVED",
+      "owner": "Database / Core",
+      "primary_key": [
+        "message_id"
+      ],
+      "columns": [
+        {
+          "column": "message_id",
+          "candidate_type": "uuid",
+          "approved": false
+        },
+        {
+          "column": "job_id",
+          "candidate_type": "uuid",
+          "approved": false
+        },
+        {
+          "column": "channel",
+          "candidate_type": "text",
+          "approved": false
+        },
+        {
+          "column": "payload_digest",
+          "candidate_type": "bytea",
+          "approved": false
+        },
+        {
+          "column": "delivery_status",
+          "candidate_type": "text",
+          "approved": false
+        },
+        {
+          "column": "attempts",
+          "candidate_type": "integer",
+          "approved": false
+        },
+        {
+          "column": "next_attempt_at",
+          "candidate_type": "timestamptz",
+          "approved": false
+        }
+      ],
+      "unique_constraints": [],
+      "foreign_keys_candidacy": [
+        {
+          "columns": [
+            "job_id"
+          ],
+          "references": {
+            "table": "fp_job_executions",
+            "columns": [
+              "job_id"
+            ]
+          },
+          "status": "CANDIDATE"
+        }
+      ],
+      "guards": [
+        "atomic_with_admission",
+        "at_least_once_delivery_not_exactly_once_effect"
+      ]
+    },
+    {
+      "name": "fp_agent_inbox",
+      "status": "CANDIDATE_NOT_APPROVED",
+      "owner": "Database / Core",
+      "primary_key": [
+        "consumer_ref",
+        "message_id"
+      ],
+      "columns": [
+        {
+          "column": "consumer_ref",
+          "candidate_type": "text",
+          "approved": false
+        },
+        {
+          "column": "message_id",
+          "candidate_type": "uuid",
+          "approved": false
+        },
+        {
+          "column": "observed_job_id",
+          "candidate_type": "uuid",
+          "approved": false
+        },
+        {
+          "column": "receipt_at",
+          "candidate_type": "timestamptz",
+          "approved": false
+        }
+      ],
+      "unique_constraints": [
+        [
+          "consumer_ref",
+          "message_id"
+        ]
+      ],
+      "foreign_keys_candidacy": [
+        {
+          "columns": [
+            "observed_job_id"
+          ],
+          "references": {
+            "table": "fp_job_executions",
+            "columns": [
+              "job_id"
+            ]
+          },
+          "status": "CANDIDATE"
+        }
+      ],
+      "guards": [
+        "consumer_dedup_by_message",
+        "ack_not_success"
+      ]
+    },
+    {
+      "name": "fp_recovery_checkpoints",
+      "status": "CANDIDATE_NOT_APPROVED",
+      "owner": "Database / Core",
+      "primary_key": [
+        "checkpoint_id"
+      ],
+      "columns": [
+        {
+          "column": "checkpoint_id",
+          "candidate_type": "uuid",
+          "approved": false
+        },
+        {
+          "column": "job_id",
+          "candidate_type": "uuid",
+          "approved": false
+        },
+        {
+          "column": "artifact_digest",
+          "candidate_type": "bytea",
+          "approved": false
+        },
+        {
+          "column": "recovery_class",
+          "candidate_type": "text",
+          "approved": false
+        },
+        {
+          "column": "storage_ref",
+          "candidate_type": "text",
+          "approved": false
+        },
+        {
+          "column": "verified_at",
+          "candidate_type": "timestamptz",
+          "approved": false
+        }
+      ],
+      "unique_constraints": [],
+      "foreign_keys_candidacy": [
+        {
+          "columns": [
+            "job_id"
+          ],
+          "references": {
+            "table": "fp_job_executions",
+            "columns": [
+              "job_id"
+            ]
+          },
+          "status": "CANDIDATE"
+        }
+      ],
+      "guards": [
+        "no_plaintext_recovery_secret",
+        "restore_key_access_independently_verified",
+        "irreversible_needs_manual_plan"
+      ]
+    },
+    {
+      "name": "fp_job_audit_events",
+      "status": "CANDIDATE_NOT_APPROVED",
+      "owner": "Database / Core",
+      "primary_key": [
+        "audit_id"
+      ],
+      "columns": [
+        {
+          "column": "audit_id",
+          "candidate_type": "bigint",
+          "approved": false
+        },
+        {
+          "column": "job_id",
+          "candidate_type": "uuid",
+          "approved": false
+        },
+        {
+          "column": "actor_ref",
+          "candidate_type": "uuid",
+          "approved": false
+        },
+        {
+          "column": "correlation_ref",
+          "candidate_type": "text",
+          "approved": false
+        },
+        {
+          "column": "outcome",
+          "candidate_type": "text",
+          "approved": false
+        },
+        {
+          "column": "created_at",
+          "candidate_type": "timestamptz",
+          "approved": false
+        }
+      ],
+      "unique_constraints": [],
+      "foreign_keys_candidacy": [
+        {
+          "columns": [
+            "job_id"
+          ],
+          "references": {
+            "table": "fp_job_executions",
+            "columns": [
+              "job_id"
+            ]
+          },
+          "status": "CANDIDATE"
+        }
+      ],
+      "guards": [
+        "no_secrets_or_client_content",
+        "append_only_logical",
+        "denied_admission_audit_separate_from_accepted_jobs"
+      ]
+    }
+  ],
+  "tests": [
+    "R3-PHYS-TEST-001",
+    "R3-PHYS-TEST-002",
+    "R3-PHYS-TEST-003",
+    "R3-PHYS-TEST-004",
+    "R3-PHYS-TEST-005",
+    "R3-PHYS-TEST-006",
+    "R3-PHYS-TEST-007",
+    "R3-PHYS-TEST-008",
+    "R3-PHYS-TEST-009",
+    "R3-PHYS-TEST-010",
+    "R3-PHYS-TEST-011",
+    "R3-PHYS-TEST-012"
+  ],
+  "physical_migration_owner": "Database / Data Model, only after SRC-03 review, architecture and security approval"
+}

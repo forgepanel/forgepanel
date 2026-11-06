@@ -1,0 +1,208 @@
+{
+  "schema_version": "candidate-1",
+  "artifact": "FP-R3-LINUX-SERVICE-BOUNDARIES",
+  "status": "SPECIFIED_NOT_APPROVED",
+  "source": "DOCUMENTATION/en/14-devops-releases/linux-service-identities-r3.md",
+  "user_accounts_created": false,
+  "service_units_created": false,
+  "socket_created": false,
+  "privileged_handlers_enabled": false,
+  "selected_uid_gid": false,
+  "selected_socket_path": false,
+  "candidate_socket_path_example_only": "/run/forgepanel/agent.sock",
+  "socket_trust_requires": [
+    "private_owned_parent",
+    "verified_kernel_peer_credentials",
+    "process_instance_identity",
+    "scoped_actor_mandate",
+    "closed_typed_operation",
+    "independent_Go_authorization",
+    "current_policy_and_fencing"
+  ],
+  "authn_does_not_imply_authz": true,
+  "least_privilege_systemd_options_to_vm_review": [
+    "NoNewPrivileges",
+    "PrivateTmp",
+    "ProtectSystem",
+    "ProtectHome",
+    "RestrictAddressFamilies",
+    "CapabilityBoundingSet",
+    "MemoryMax",
+    "TasksMax",
+    "AppArmor_or_SELinux_qualified"
+  ],
+  "dynamic_user_policy_selected": false,
+  "hub_can_authorize_privileged_core_action": false,
+  "identities": [
+    {
+      "logical_identity": "panel_http",
+      "purpose_en": "Symfony application HTTP",
+      "role_class": "NONROOT_WEB",
+      "unix_account_selected": false,
+      "created_in_linux": false,
+      "activated": false,
+      "allowed_candidate_responsibilities": [
+        "user_session_validation",
+        "tenant_scoped_app_logic"
+      ],
+      "explicit_denials": [
+        "linux_root",
+        "database_ddl",
+        "generic_root_shell",
+        "tenant_cross_scope"
+      ],
+      "security_review": "REQUIRED"
+    },
+    {
+      "logical_identity": "panel_ipc_bridge",
+      "purpose_en": "Dedicated private IPC channel",
+      "role_class": "NONROOT_PRIVATE_BRIDGE",
+      "unix_account_selected": false,
+      "created_in_linux": false,
+      "activated": false,
+      "allowed_candidate_responsibilities": [
+        "connect_reviewed_private_socket",
+        "bounded_typed_requests"
+      ],
+      "explicit_denials": [
+        "hosted_php_pool",
+        "linux_root",
+        "publisher_signing_private_key",
+        "package_manager"
+      ],
+      "security_review": "REQUIRED"
+    },
+    {
+      "logical_identity": "panel_agent",
+      "purpose_en": "Go typed validator and observer",
+      "role_class": "NONROOT_GO_AGENT",
+      "unix_account_selected": false,
+      "created_in_linux": false,
+      "activated": false,
+      "allowed_candidate_responsibilities": [
+        "verify_peer_identity",
+        "validate_operation_policy",
+        "bounded_host_observation"
+      ],
+      "explicit_denials": [
+        "arbitrary_shell",
+        "CAP_SYS_ADMIN",
+        "tenant_secrets",
+        "publisher_signing_private_key"
+      ],
+      "security_review": "REQUIRED"
+    },
+    {
+      "logical_identity": "panel_privileged_handler",
+      "purpose_en": "Future narrowly scoped effect boundary",
+      "role_class": "FUTURE_PRIVILEGED_DISABLED",
+      "unix_account_selected": false,
+      "created_in_linux": false,
+      "activated": false,
+      "allowed_candidate_responsibilities": [],
+      "explicit_denials": [
+        "enabled_automatically",
+        "unrestricted_root",
+        "generic_shell",
+        "hub_root_rights",
+        "unreviewed_operation"
+      ],
+      "security_review": "REQUIRED"
+    },
+    {
+      "logical_identity": "panel_migrator",
+      "purpose_en": "Dedicated PostgreSQL DDL under maintenance",
+      "role_class": "SEPARATE_DB_DDL",
+      "unix_account_selected": false,
+      "created_in_linux": false,
+      "activated": false,
+      "allowed_candidate_responsibilities": [
+        "reviewed_migrations_after_approval"
+      ],
+      "explicit_denials": [
+        "web_runtime_identity",
+        "permanent_web_session",
+        "tenant_unrestricted_read"
+      ],
+      "security_review": "REQUIRED"
+    },
+    {
+      "logical_identity": "panel_db_runtime",
+      "purpose_en": "Symfony PostgreSQL least-privilege connection",
+      "role_class": "DB_RUNTIME_NO_DDL",
+      "unix_account_selected": false,
+      "created_in_linux": false,
+      "activated": false,
+      "allowed_candidate_responsibilities": [
+        "approved_scope_bound_queries"
+      ],
+      "explicit_denials": [
+        "sql_superuser",
+        "CREATE_TABLE",
+        "ALTER_TABLE",
+        "role_creation",
+        "unscoped_tenant_writes"
+      ],
+      "security_review": "REQUIRED"
+    },
+    {
+      "logical_identity": "hosted_site_user",
+      "purpose_en": "Site-owned PHP/SFTP and filesystem",
+      "role_class": "ISOLATED_TENANT",
+      "unix_account_selected": false,
+      "created_in_linux": false,
+      "activated": false,
+      "allowed_candidate_responsibilities": [
+        "owned_site_files_only"
+      ],
+      "explicit_denials": [
+        "private_agent_socket",
+        "other_tenant_data",
+        "core_control_files",
+        "root"
+      ],
+      "security_review": "REQUIRED"
+    },
+    {
+      "logical_identity": "panel_observer",
+      "purpose_en": "Redacted health and metrics",
+      "role_class": "READ_ONLY",
+      "unix_account_selected": false,
+      "created_in_linux": false,
+      "activated": false,
+      "allowed_candidate_responsibilities": [
+        "approved_health_and_metrics"
+      ],
+      "explicit_denials": [
+        "mutation",
+        "secrets",
+        "installation_approval"
+      ],
+      "security_review": "REQUIRED"
+    }
+  ],
+  "tests": [
+    "R3-LINUX-TEST-001",
+    "R3-LINUX-TEST-002",
+    "R3-LINUX-TEST-003",
+    "R3-LINUX-TEST-004",
+    "R3-LINUX-TEST-005",
+    "R3-LINUX-TEST-006",
+    "R3-LINUX-TEST-007",
+    "R3-LINUX-TEST-008",
+    "R3-LINUX-TEST-009",
+    "R3-LINUX-TEST-010",
+    "R3-LINUX-TEST-011",
+    "R3-LINUX-TEST-012"
+  ],
+  "open_decisions": [
+    "uid_gid_mapping",
+    "socket_mode",
+    "systemd_hardening",
+    "LSM_policy",
+    "secret_storage",
+    "peer_process_verification",
+    "fencing_enforcement",
+    "OS_compatibility"
+  ]
+}

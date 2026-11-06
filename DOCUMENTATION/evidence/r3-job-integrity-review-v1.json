@@ -1,0 +1,132 @@
+{
+  "schema_version": "candidate-audit-1",
+  "artifact": "FP-R3-JOB-INTEGRITY-REVIEW",
+  "status": "REVIEW_REQUIRED_NOT_APPROVED",
+  "source_commit": "0af257ce362e01f5ef590d05b01a376d9e36cee8",
+  "audit_type": "INTERNAL_TARGETED_DOCUMENT_REVIEW_NOT_INDEPENDENT_SECURITY_AUDIT",
+  "owner_decisions": "Q1-Q170 preserved; Q171+ unanswered",
+  "source_code_imported": false,
+  "database_migration_approved": false,
+  "privileged_executor_authorized": false,
+  "real_sql_tests_performed": false,
+  "real_linux_tests_performed": false,
+  "findings": [
+    {
+      "id": "AUDIT-FP-0033",
+      "risk_id": "RISK-033",
+      "severity": "HIGH",
+      "title_en": "Denied admission has no durable audit subject independent of job",
+      "status": "OPEN",
+      "required_invariants": [
+        "denied_admission_produces_redacted_audit_without_creating_job",
+        "accepted_job_audit_has_real_job_reference"
+      ],
+      "required_test_ids": [
+        "R3-AUDIT-TEST-001",
+        "R3-AUDIT-TEST-002"
+      ],
+      "owners": [
+        "Database",
+        "API/IPC",
+        "Observability",
+        "Security"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "evidence_status": "STATIC_CANDIDATE_CONTRACT_ONLY",
+      "closure_condition": "APPROVED_DESIGN_PLUS_REAL_NEGATIVE_SQL_AND_LINUX_EVIDENCE_ON_IDENTIFIED_SHA",
+      "no_automatic_adoption": true
+    },
+    {
+      "id": "AUDIT-FP-0034",
+      "risk_id": "RISK-034",
+      "severity": "CRITICAL_IF_PRIVILEGED",
+      "title_en": "Lease fencing counter can reset or be reused after SQL restore",
+      "status": "OPEN",
+      "required_invariants": [
+        "fencing_generation_must_not_reset_on_lease_row_delete",
+        "database_restore_invalidates_pre_restore_effect_authority"
+      ],
+      "required_test_ids": [
+        "R3-AUDIT-TEST-003",
+        "R3-AUDIT-TEST-004"
+      ],
+      "owners": [
+        "Database",
+        "Security",
+        "DevOps",
+        "API/IPC"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "evidence_status": "STATIC_CANDIDATE_CONTRACT_ONLY",
+      "closure_condition": "APPROVED_DESIGN_PLUS_REAL_NEGATIVE_SQL_AND_LINUX_EVIDENCE_ON_IDENTIFIED_SHA",
+      "no_automatic_adoption": true
+    },
+    {
+      "id": "AUDIT-FP-0035",
+      "risk_id": "RISK-035",
+      "severity": "HIGH",
+      "title_en": "Inbox delivery dedup is not deduplication of external Linux effects",
+      "status": "OPEN",
+      "required_invariants": [
+        "inbox_receipt_is_not_external_effect",
+        "uncertain_effect_forces_reconciliation_before_retry"
+      ],
+      "required_test_ids": [
+        "R3-AUDIT-TEST-005",
+        "R3-AUDIT-TEST-006"
+      ],
+      "owners": [
+        "Database",
+        "API/IPC",
+        "SRE",
+        "Security"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "evidence_status": "STATIC_CANDIDATE_CONTRACT_ONLY",
+      "closure_condition": "APPROVED_DESIGN_PLUS_REAL_NEGATIVE_SQL_AND_LINUX_EVIDENCE_ON_IDENTIFIED_SHA",
+      "no_automatic_adoption": true
+    },
+    {
+      "id": "AUDIT-FP-0036",
+      "risk_id": "RISK-036",
+      "severity": "HIGH",
+      "title_en": "Untrusted tenant scope and SQL session context may spoof job ownership",
+      "status": "OPEN",
+      "required_invariants": [
+        "verified_server_scope_required_even_with_RLS",
+        "no_generic_shell_or_privileged_apply_from_candidate"
+      ],
+      "required_test_ids": [
+        "R3-AUDIT-TEST-007",
+        "R3-AUDIT-TEST-008"
+      ],
+      "owners": [
+        "Database",
+        "Security",
+        "Core"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "evidence_status": "STATIC_CANDIDATE_CONTRACT_ONLY",
+      "closure_condition": "APPROVED_DESIGN_PLUS_REAL_NEGATIVE_SQL_AND_LINUX_EVIDENCE_ON_IDENTIFIED_SHA",
+      "no_automatic_adoption": true
+    }
+  ],
+  "blocked_operations": [
+    "ACT-FP-0005",
+    "ACT-FP-0007"
+  ],
+  "required_domain_gates": [
+    "DOC-GAP-004",
+    "DOC-GAP-005",
+    "DOC-GAP-006"
+  ],
+  "all_review_tests_status": "PLANNED",
+  "scope_owners": [
+    "Database",
+    "Security",
+    "API/IPC",
+    "DevOps",
+    "QA",
+    "MASTER"
+  ]
+}

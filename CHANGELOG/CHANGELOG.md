@@ -4,6 +4,25 @@ One chronology, both languages. / Une chronologie, deux langues.
 
 ## Unreleased / Non publié
 
+### Verified subsets / Sous-ensembles vérifiés — R2 acceptance matrix (2026-11-07)
+
+- **Partial SQL/HTTP evidence / Preuves SQL/HTTP partielles** — Updated the paired 20-case R2 acceptance matrix to name exact PostgreSQL and Symfony commits/workflows while retaining all full cases as **PLANNED** until complete positive/negative qualification. Added matrix drift assertions and a stacked-PR CI step running R2 offline guards plus the bilingual documentation checker. **No full R2 readiness, permanent login, HTTP browser/HTTPS gateway, installation or VM certification.** / Matrice R2 FR/EN actualisée avec preuves CI sur commits nommés, 20 cas complets restant **PLANNED** ; tests anti-régression et vérification documentaire ajoutés à la CI. **Aucun statut R2 terminé, login permanent, navigateur/passerelle HTTPS, installateur ou VM qualifiés.**
+
+### Dependency reproducibility / Reproductibilité des dépendances — R2 (2026-11-07)
+
+- **Versioned Composer candidate lock / Verrou Composer candidat versionné** — Recovered actual `composer.lock` from CI artifact #13578779233 after successful real Symfony HTTP run #42384859008. Source SHA-256 `b1f9e5104c2749acc4fabaddb6a24e094f309c0a38d81f8af8cc7dda20204b68`, 47 third-party packages, zero Composer plugins; versions now pinned in the **draft branch**, CI switches to `composer install` + `composer audit --locked`, without third-party vendor files or live credentials. Independent legal/security review, PHP/OS matrix and actual installer/hosting qualification remain **OPEN**. / Verrou issu de la CI avec empreinte vérifiée, 47 dépendances, zéro plugin, CI `composer install` et audit ; aucun dossier vendor ni secret. Les revues licences/sécurité, tests multi-OS/PHP et qualification d'installation restent **OUVERTS**. **Not a release / Pas une release.**
+
+
+### Fix candidate / Correctif candidat — Symfony environment-only bootstrap (2026-11-07)
+
+- **Live CI diagnosis / Diagnostic CI réel** — First Symfony CI reached dependency installation but failed before kernel boot because the historical `Dotenv::bootEnv` required a missing local `.env`. Updated `apps/panel/config/bootstrap.php` to load `.env` only if present, preserve the protected `/etc/forgepanel/panel.env` override, and **fail closed on missing/short `APP_SECRET`**; added local static guard and paired R2 HTTP notes. **No completed Symfony boot or live HTTP security certification claimed until rerun on a new commit.** / La première CI Symfony a trouvé un défaut : `.env` local exigé malgré des variables d'environnement contrôlées. Chargement facultatif du fichier local, priorité du fichier système protégé et refus de démarrer sans `APP_SECRET` suffisant. **Aucune validation du noyau HTTP sans nouvelle CI réussie.**
+
+
+### Proposed / Proposé — Symfony HTTP kernel test candidate (2026-11-07)
+
+- **R2 HTTP smoke / Contrôle HTTP R2** — Added an actual Symfony HttpKernel candidate test for `/setup`: HTTPS exact Host/port, denied insecure/cross-origin/oversized/unsupported-method POST and absent CSRF, plus response security headers; added ephemeral Composer 7.4/Twig 3 resolution/route/container check workflow (no production lock), four offline static tests and paired FR/EN QA documentation. **No successful framework CI, locked Composer dependencies, real browser, permanent login, HTTPS gateway, customer-site provisioning or release is asserted by this draft**. / Test candidat du véritable noyau Symfony avec contrôle Host/Origin/CSRF/taille et en-têtes, résolution Composer éphémère, quatre tests statiques, documents QA FR/EN. **Aucune CI Symfony réussie, dépendance verrouillée, connexion permanente, navigateur, reverse proxy réel, site hébergé ni release revendiqués tant que les preuves n'existent pas.**
+
+
 ### Added / Ajouts — R2 isolated PostgreSQL integration candidate (2026-11-07)
 
 - **Test infrastructure / Infrastructure de tests** — Added an isolated PostgreSQL 16 CI service (ephemeral test-only `*_test` database), PHP PDO integration tests for the Foundation 001+002 migrations, two-session SQL lock timeout/rollback, single initial admin constraint, explicit optional-MFA secret removal, audit, replay, local resume and revision. Added four offline policy tests and paired FR/EN QA notes. **No production database, Symfony HTTP, Composer lock, permanent login, installed agent, tenant hosting or VM tests; R2 remains incomplete.** / Service PostgreSQL 16 de CI jetable, base `*_test` obligatoire, tests PDO pour migrations 001+002, verrouillage de deux sessions, rollback, unicité admin, MFA facultative, audit et reprise ; quatre contrôles statiques et documents QA FR/EN. **Aucune base réelle client, HTTP Symfony, verrou Composer, connexion permanente, agent, site hébergé ou VM ; R2 non terminé.**

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=22 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=23 status=documented -->
 # Tests, quality and definition of done
 
 [Français](../../fr/13-tests-quality/README.md) · [Index](../README.md)
@@ -115,3 +115,7 @@ New Go tests for [image staging](../14-devops-releases/kvm-image-staging.md) ver
 ## R2 disposable PostgreSQL test proposal
 
 [Real PostgreSQL subset and isolation gates](r2-postgres-execution.md) exercise the **historical R1 source + optional-MFA patch** against an ephemeral test-only database. Two-session lock timeout, real transaction rollback, skipped-MFA secret removal and unique administrator constraints are tested only after exact-commit CI success. This is **not** Symfony HTTP, a privileged installer or full R2 validation.
+
+## Proposed real Symfony HTTP smoke test
+
+The [R2 Symfony HttpKernel security smoke candidate](r2-symfony-http-smoke.md) is a separate draft stacked on the disposable PostgreSQL test. The kernel, router and service container must actually boot from Symfony packages; tests for allowed HTTPS setup origin and rejected HTTP, Host, port, method, Origin, payload size and absent CSRF are necessary. Dependency resolution without a committed Composer lock is **not a release build**. Permanent admin login and browser E2E remain unverified.

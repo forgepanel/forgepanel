@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=22 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=23 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
@@ -115,3 +115,7 @@ La [revue R3 des jobs](../19-audits-risks/r3-job-integrity-audit.md) ajoute `R3-
 ## Proposition de tests PostgreSQL jetables R2
 
 Les [contrôles SQL réels et garde-fous d'isolation](r2-postgres-execution.md) utilisent **Foundation R1 + le correctif MFA facultative** sur une base de test éphémère. Les verrous concurrents, rollbacks, suppression du secret après saut MFA et unicité de l'administrateur ne sont qualifiés qu'après succès CI sur le commit exact. **Ce n'est ni Symfony HTTP ni un installateur privilégié ni une validation R2 complète.**
+
+## Proposition de tests HTTP Symfony réels
+
+Le [candidat de contrôle HttpKernel Symfony R2](r2-symfony-http-smoke.md) fait l'objet d'une PR distincte sur les tests PostgreSQL jetables. Le noyau, les routes et le conteneur Symfony doivent réellement démarrer ; les tests couvrent l'origine HTTPS autorisée et les refus HTTP, Host, port, méthode, Origin, taille et CSRF absent. Sans verrou Composer versionné, ce n'est **pas un build de release**. La connexion permanente et les tests navigateur restent à réaliser.

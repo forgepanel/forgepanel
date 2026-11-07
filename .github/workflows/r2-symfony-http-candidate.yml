@@ -44,6 +44,11 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # pinned v7.0.1
         with:
           persist-credentials: false
+      - name: Validate documentation and R2 offline guards before vendor installation
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tests/r2 -p 'test_*.py' -v
+          python3 scripts/check_documentation.py
       - name: Prepare PHP runtime and Composer for pinned test lock
         run: |
           set -euo pipefail
@@ -72,11 +77,6 @@ jobs:
           set -euo pipefail
           php -l apps/panel/tests/http_r2.php
           php apps/panel/tests/http_r2.php
-      - name: Check offline R2 safety regressions and bilingual documentation
-        run: |
-          set -euo pipefail
-          python3 -m unittest discover -s tests/r2 -p 'test_*.py' -v
-          python3 scripts/check_documentation.py
       - name: Evidence limitation
         run: |
           echo 'CI HTTP kernel checks only. Composer dependencies are pinned in Git but not release-certified; no permanent login, browser, HTTPS gateway, installer or production qualification.'

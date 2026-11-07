@@ -1,9 +1,11 @@
-<!-- forgepanel-doc id=FP-13-R2-GATES revision=2 status=specified -->
+<!-- forgepanel-doc id=FP-13-R2-GATES revision=3 status=specified -->
 # R2 — Matrice d'intégration Symfony, identité et PostgreSQL
 
 [English](../../en/13-tests-quality/r2-integration-gates.md) · [Qualité](README.md) · [Identité](../03-core/bootstrap-identity-r2.md) · [Transactions](../09-database/setup-transaction-r2.md)
 
 **Statut : PREUVES R2 PARTIELLES — les 20 scénarios complets d'acceptation restent `PLANNED`.** Des tests PostgreSQL réels et un contrôle du noyau HTTP Symfony ont réussi sur des branches candidates ; ils ne couvrent pas toutes les branches positives et négatives de la matrice. L'archive authentique SRC-03 a été retrouvée, mais son import (#59) et le correctif MFA facultative (#60) ne sont pas fusionnés et restent à revoir. Aucun scénario incomplet n'est converti artificiellement en PASS. Les orientations Q1–Q220, la MFA administrateur facultative et l'autonomie vis-à-vis du Hub restent valables.
+
+**Sous-ensemble supplémentaire vérifié R2 identité (sans accepter les cas complets) :** [PR brouillon #63](https://github.com/yyogas/forgepanel/pull/63), commit `97cfbf73100b237b8781e9c34bb0038ce7ccc1e4`, [CI #42389514939](https://github.com/yyogas/forgepanel/actions/runs/42389514939) : **29 assertions PostgreSQL réelles**, **31 assertions HttpKernel Symfony/SQL réelles**, deux exécutions vertes. Mot de passe, MFA facultative, anti-rejeu, secours, CSRF, rotation/expiration de session, refus de mutations et déconnexion. **Ne valide ni login de production, ni système Symfony Security/RBAC complet, ni navigateur/cookies/TLS, ni les 20 cas R2 complets.** [Preuves FR/EN](r2-admin-readonly-qa.md).
 
 ## Preuves partielles vérifiées sur branches candidates — 07/11/2026
 

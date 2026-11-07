@@ -18,3 +18,11 @@ framework:
             policy: sliding_window
             limit: 10
             interval: '5 minutes'
+        admin_login_ip:
+            policy: sliding_window
+            limit: 10
+            interval: '5 minutes'
+        admin_login_identity:
+            policy: sliding_window
+            limit: 6
+            interval: '5 minutes'

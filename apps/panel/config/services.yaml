@@ -23,3 +23,6 @@ services:
     ForgePanel\Http\SetupBoundary:
         arguments:
             $panelOrigin: '%env(PANEL_ORIGIN)%'
+    ForgePanel\Identity\AdminAuthentication:
+        arguments:
+            $sessionSealKey: '%env(APP_SECRET)%'

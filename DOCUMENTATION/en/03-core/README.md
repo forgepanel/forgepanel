@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-03 revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-03 revision=5 status=documented -->
 # Core and bootstrap
 
 [Français](../../fr/03-core/README.md) · [Index](../README.md)
@@ -34,3 +34,7 @@ Future jobs require correlation and idempotency keys, resource locks, bounded re
 ## Core — Durable intent and isolated IPC bridge (candidate)
 
 Future Core mutations require a [PostgreSQL durable job ledger](../09-database/durable-jobs-r3.md) and an [authenticated Symfony ↔ Go peer channel](../08-api-contracts/local-peer-trust-r3.md). Symfony UI cannot grant root; the bridge must isolate tenant/plugin code while Go revalidates scope/permissions. HTTP/ACK success never proves Linux mutation and a stale worker must fail its fencing check. [PLANNED tests](../13-tests-quality/r3-jobs-peer-gates.md). No daemon, socket or final physical SQL model is shipped by these documents.
+
+## R2 read-only administrator session candidate
+
+[Proposed permanent identity in a non-operational read-only admin preview](admin-identity-r2.md) documents SQL-verified Argon2id, optional TOTP/recovery, credential-bound sessions and CSRF/rate limits. **`REVIEWED` is NOT installed; no root or hosting permissions.** The candidate is a stacked draft branch, not an approved Core/production login.

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-03 revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-03 revision=5 status=documented -->
 # Core et bootstrap
 
 [English](../../en/03-core/README.md) · [Index](../README.md)
@@ -34,3 +34,7 @@ La [fiche R2 identité/sessions/MFA facultative](bootstrap-identity-r2.md) disti
 ## Core — Intention durable et séparation du pont IPC (candidat)
 
 Les futures mutations Core nécessiteront un [journal durable PostgreSQL](../09-database/durable-jobs-r3.md) et un [canal Symfony ↔ Go au pair authentifié](../08-api-contracts/local-peer-trust-r3.md). L'interface Symfony n'accorde pas root ; le bridge doit isoler le code tenant/plugin et Go revalider scopes/permissions. Le succès HTTP/ACK ne prouve jamais une mutation Linux ; les anciens workers ne doivent pas passer un fencing expiré. [Tests PLANNED](../13-tests-quality/r3-jobs-peer-gates.md). Aucun agent, socket ou modèle physique SQL n'est livré par ces documents.
+
+## Candidat R2 de session administrateur en lecture seule
+
+La [prévisualisation d'identité administrateur non opérationnelle](admin-identity-r2.md) détaille Argon2id sur SQL, TOTP/code de secours facultatifs, session liée aux credentials, CSRF et limites. **`REVIEWED` n'est PAS installé ; aucun droit root ni hébergement.** Le lot reste une branche candidate empilée, pas une connexion Core/production approuvée.

@@ -1,9 +1,11 @@
-<!-- forgepanel-doc id=FP-13-R2-GATES revision=2 status=specified -->
+<!-- forgepanel-doc id=FP-13-R2-GATES revision=3 status=specified -->
 # R2 — Symfony, identity and PostgreSQL integration test matrix
 
 [Français](../../fr/13-tests-quality/r2-integration-gates.md) · [Quality](README.md) · [Identity](../03-core/bootstrap-identity-r2.md) · [Transactions](../09-database/setup-transaction-r2.md)
 
 **Status: PARTIAL R2 EVIDENCE — 20 full acceptance cases remain `PLANNED`.** Real disposable PostgreSQL tests and a Symfony HttpKernel smoke suite have now passed on draft feature branches; neither covers every positive/negative scenario in the 20-case matrix. The genuine SRC-03 archive was recovered, but its source import (#59) and the optional-admin-MFA patch (#60) remain unmerged and under review. This matrix retains its full acceptance requirements rather than silently upgrading incomplete cases to PASS. Q1–Q220 owner directions, optional admin MFA and Hub independence remain in force.
+
+**Additional verified partial R2 identity subset (not full case acceptance):** [draft PR #63](https://github.com/yyogas/forgepanel/pull/63), code commit `97cfbf73100b237b8781e9c34bb0038ce7ccc1e4`, [CI #42389514939](https://github.com/yyogas/forgepanel/actions/runs/42389514939): **29 real PostgreSQL assertions**, **31 real Symfony HttpKernel/SQL assertions**, two green runs. Covers password verification, optional MFA, replay/recovery, CSRF, session rotation/expiry, forbidden read-only mutations and logout. **Does not establish a permanent production login, full Symfony Security role system, browser cookies, HTTPS gateway or the entire R2 test matrix.** [Detailed FR/EN evidence](r2-admin-readonly-qa.md).
 
 ## Verified partial evidence from draft branches — 2026-11-07
 

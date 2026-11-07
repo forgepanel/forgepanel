@@ -42,7 +42,7 @@ class R2HttpCandidateTests(unittest.TestCase):
     def test_r2_master_matrix_records_partial_evidence_without_false_pass(self):
         en = (ROOT / 'DOCUMENTATION/en/13-tests-quality/r2-integration-gates.md').read_text()
         fr = (ROOT / 'DOCUMENTATION/fr/13-tests-quality/r2-integration-gates.md').read_text()
-        tag = '<!-- forgepanel-doc id=FP-13-R2-GATES revision=2 status=specified -->'
+        tag = '<!-- forgepanel-doc id=FP-13-R2-GATES revision=3 status=specified -->'
         self.assertTrue(en.startswith(tag) and fr.startswith(tag))
         for text in (en, fr):
             for required in ('#61', '#62', 'PLANNED', '42383929498', '42385350165'):

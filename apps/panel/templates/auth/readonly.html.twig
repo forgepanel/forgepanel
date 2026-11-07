@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<h2>Administrator identity — setup preview</h2>
+<p>Signed in as <strong>{{ admin_email }}</strong></p>
+<p role="status">The configuration plan has been reviewed, but is NOT installed.</p>
+<p>Hosting operations, root actions, deployment, module activation, API and the publisher Hub are unavailable in this pre-alpha preview.</p>
+<form method="post" action="{{ path('admin_logout') }}">
+<input type="hidden" name="_token" value="{{ csrf_token('admin-logout') }}">
+<button type="submit">Sign out</button>
+</form>
+{% endblock %}

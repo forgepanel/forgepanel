@@ -71,6 +71,13 @@ jobs:
           set -euo pipefail
           php -l apps/panel/tests/http_r2.php
           php apps/panel/tests/http_r2.php
+      - name: Preserve generated dependency lock for independent review (not a release)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # pinned v4
+        with:
+          name: forgepanel-r2-composer-lock-candidate
+          path: apps/panel/composer.lock
+          if-no-files-found: error
+          retention-days: 7
       - name: Evidence limitation
         run: |
-          echo 'CI HTTP kernel checks only. Composer dependency resolution was ephemeral and remains UNLOCKED in Git; no permanent login, migration, browser, HTTPS server, installer or release certification.'
+          echo 'CI HTTP kernel checks only. Composer dependency resolution was ephemeral; the lock must be reviewed and committed before a reproducible release. No permanent login, migration, browser, HTTPS server, installer or release certification.'

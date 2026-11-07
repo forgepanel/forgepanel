@@ -1,0 +1,76 @@
+name: R2 Symfony HttpKernel candidate smoke checks
+on:
+  push:
+    branches:
+      - features/r2-symfony-http-smoke
+  pull_request:
+    branches:
+      - features/r2-disposable-postgres
+    paths:
+      - 'apps/panel/**'
+      - '.github/workflows/r2-symfony-http-candidate.yml'
+      - 'tests/r2/**'
+permissions:
+  contents: read
+jobs:
+  symfony-http-candidate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    services:
+      pg:
+        image: postgres:16
+        env:
+          POSTGRES_DB: forgepanel_test
+          POSTGRES_USER: forgepanel_test
+          POSTGRES_PASSWORD: isolated_ci_only_not_real
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U forgepanel_test -d forgepanel_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      APP_ENV: test
+      APP_DEBUG: '0'
+      APP_SECRET: 'TEST_ONLY_symfony_kernel_secret_not_for_use_in_real_installations_2026'
+      FORGE_ENCRYPTION_KEY: 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA='
+      FORGE_DB_DSN: 'pgsql:host=127.0.0.1;port=5432;dbname=forgepanel_test;connect_timeout=5'
+      FORGE_DB_USER: forgepanel_test
+      FORGE_DB_PASSWORD: isolated_ci_only_not_real
+      PANEL_ORIGIN: 'https://forge.example.test:8447'
+    steps:
+      - name: Checkout exact review commit
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # pinned v7.0.1
+        with:
+          persist-credentials: false
+      - name: Prepare PHP runtime and Composer (ephemeral, not release locked)
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends php8.3-cli php8.3-pgsql php8.3-xml php8.3-mbstring
+          php -v
+          composer --version
+          php -m | grep -xi pdo_pgsql
+      - name: Resolve Symfony 7.4 test dependencies (not a release Composer lock)
+        working-directory: apps/panel
+        run: |
+          set -euo pipefail
+          composer validate --no-check-publish --no-interaction
+          composer update --prefer-dist --no-plugins --no-scripts --no-interaction --no-progress
+          composer audit --locked --no-interaction
+      - name: Boot and inspect real Symfony kernel
+        working-directory: apps/panel
+        run: |
+          set -euo pipefail
+          php bin/console about --no-interaction
+          php bin/console debug:router --no-interaction
+          php bin/console lint:container --no-interaction
+      - name: Run bounded HTTP kernel security smoke checks
+        run: |
+          set -euo pipefail
+          php -l apps/panel/tests/http_r2.php
+          php apps/panel/tests/http_r2.php
+      - name: Evidence limitation
+        run: |
+          echo 'CI HTTP kernel checks only. Composer dependency resolution was ephemeral and remains UNLOCKED in Git; no permanent login, migration, browser, HTTPS server, installer or release certification.'

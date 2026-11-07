@@ -4,6 +4,11 @@ One chronology, both languages. / Une chronologie, deux langues.
 
 ## Unreleased / Non publié
 
+### Proposed / Proposé — Symfony HTTP kernel test candidate (2026-11-07)
+
+- **R2 HTTP smoke / Contrôle HTTP R2** — Added an actual Symfony HttpKernel candidate test for `/setup`: HTTPS exact Host/port, denied insecure/cross-origin/oversized/unsupported-method POST and absent CSRF, plus response security headers; added ephemeral Composer 7.4/Twig 3 resolution/route/container check workflow (no production lock), four offline static tests and paired FR/EN QA documentation. **No successful framework CI, locked Composer dependencies, real browser, permanent login, HTTPS gateway, customer-site provisioning or release is asserted by this draft**. / Test candidat du véritable noyau Symfony avec contrôle Host/Origin/CSRF/taille et en-têtes, résolution Composer éphémère, quatre tests statiques, documents QA FR/EN. **Aucune CI Symfony réussie, dépendance verrouillée, connexion permanente, navigateur, reverse proxy réel, site hébergé ni release revendiqués tant que les preuves n'existent pas.**
+
+
 ### Added / Ajouts — R2 isolated PostgreSQL integration candidate (2026-11-07)
 
 - **Test infrastructure / Infrastructure de tests** — Added an isolated PostgreSQL 16 CI service (ephemeral test-only `*_test` database), PHP PDO integration tests for the Foundation 001+002 migrations, two-session SQL lock timeout/rollback, single initial admin constraint, explicit optional-MFA secret removal, audit, replay, local resume and revision. Added four offline policy tests and paired FR/EN QA notes. **No production database, Symfony HTTP, Composer lock, permanent login, installed agent, tenant hosting or VM tests; R2 remains incomplete.** / Service PostgreSQL 16 de CI jetable, base `*_test` obligatoire, tests PDO pour migrations 001+002, verrouillage de deux sessions, rollback, unicité admin, MFA facultative, audit et reprise ; quatre contrôles statiques et documents QA FR/EN. **Aucune base réelle client, HTTP Symfony, verrou Composer, connexion permanente, agent, site hébergé ou VM ; R2 non terminé.**

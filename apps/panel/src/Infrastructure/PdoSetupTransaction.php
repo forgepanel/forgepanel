@@ -19,6 +19,11 @@ final class PdoSetupTransaction extends SetupTransaction {
         $s->execute(['id'=>$id,'counter'=>$counter,'hashes'=>json_encode($recoveryHashes,JSON_THROW_ON_ERROR)]);
         if($s->rowCount()!==1){throw new \RuntimeException('Administrator MFA update failed.');}
     }
+    public function disableMfa(string $id): void {
+        $s=$this->pdo->prepare("UPDATE fp_admins SET mfa_enabled=false, mfa_secret=NULL, last_totp_counter=NULL, recovery_hashes='[]'::jsonb WHERE id=:id");
+        $s->execute(['id'=>$id]);
+        if ($s->rowCount()!==1) { throw new \RuntimeException('Administrator MFA skip failed.'); }
+    }
     public function audit(string $event,array $metadata=[]):void {
         $s=$this->pdo->prepare('INSERT INTO fp_setup_audit(event,metadata) VALUES (:event,CAST(:metadata AS jsonb))');
         $s->execute(['event'=>$event,'metadata'=>json_encode($metadata,JSON_THROW_ON_ERROR)]);

@@ -4,6 +4,11 @@ One chronology, both languages. / Une chronologie, deux langues.
 
 ## Unreleased / Non publié
 
+### Proposed / Proposé — optional initial admin MFA v0.7.1 (2026-11-07)
+
+- **Stacked source patch / Correctif source empilé** — Added the eleven exact reviewed-candidate v0.7→v0.7.1 source differences, including explicit CSRF/rate-limited administrator MFA opt-out, secret clearing, audit and SQL migration `002_optional_admin_mfa.sql`; separate v0.7.1 archive SHA-256 `83fe6e77713f68d69595e74864aa1c33f75d88b6ba4199e03d5ef30a7060402c`. Added a distinct 11-file before/after digest registry, checker extension and synthetic negative tests. **Real Symfony HTTP and PostgreSQL migrations NOT RUN; staged draft, not a release or safe installer.** / Onze changements sources exacts pour une MFA initiale facultative, migration SQL, registre de provenance, contrôles négatifs et documentation FR/EN. **Aucun test HTTP Symfony ni migration PostgreSQL réelle ; ni release ni installateur opérationnel.**
+
+
 ### Source code candidate / Candidat de sources — Foundation v0.7 R1 (2026-11-07)
 
 - **Draft public source import / Import source public en brouillon** — Added 66 selected Foundation SRC-03 v0.7 paths (64 exact historical bytes, hardened `.gitignore` and secret-free `.env.example`), SHA-256 provenance registry, read-only verifier with 15 offline regression tests, a proposed native Go/PHP CI job and paired FR/EN R1 implementation notes. Source archive SHA-256: `19479d5be9da9bb0ff9180f9b8819ea48baff785ccc3fef59deb2bb0894faf1a`. **Original `.env`, old historical changelog, vendor and old test results excluded.** No merger, license clearance, Symfony HTTP, PostgreSQL, VM, real installer, optional-MFA v0.7.1 integration or release is claimed. / 66 chemins sources, 64 octets identiques à SRC-03 et 2 fichiers adaptés ; manifeste et tests d'intégrité hors ligne, CI proposée et documentation FR/EN. **Aucun `.env` original, fusion, licence validée, test HTTP/SQL/VM réel, installateur, correctif MFA facultative v0.7.1 ni release.**

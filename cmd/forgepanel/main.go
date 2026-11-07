@@ -24,7 +24,7 @@ import (
 )
 
 const (
-	version        = "0.7.0-dev"
+	version        = "0.7.1-dev"
 	exitUsage      = 64
 	exitInternal   = 70
 	exitPermission = 77
@@ -228,7 +228,7 @@ func runRelease(args []string) int {
 }
 
 func usage() {
-	fmt.Print(`ForgePanel CLI 0.7.0-dev — development source, not a production installer
+	fmt.Print(`ForgePanel CLI 0.7.1-dev — development source, not a production installer
 
 Read-only commands:
   forgepanel version

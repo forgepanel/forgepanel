@@ -13,9 +13,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "DOCUMENTATION/evidence/foundation-v07-import-candidate.json"
+OPTIONAL_PATCH = ROOT / "DOCUMENTATION/evidence/foundation-v071-optional-mfa-patch.json"
 SOURCE_SHA = "19479d5be9da9bb0ff9180f9b8819ea48baff785ccc3fef59deb2bb0894faf1a"
 SHA256 = re.compile(r"[a-f0-9]{64}\Z")
 IMPORT_COUNT = 66
+PATCH_SHA = "83fe6e77713f68d69595e74864aa1c33f75d88b6ba4199e03d5ef30a7060402c"
+OPTIONAL_PATCH_FILE = "apps/panel/migrations/002_optional_admin_mfa.sql"
 
 class ImportRejected(Exception):
     """No untrusted source bytes are included in error messages."""
@@ -30,7 +33,8 @@ def safe_path(name: str) -> bool:
                and all(32 <= ord(c) != 127 for c in part) for part in parts)
 
 
-def validate(root: Path, manifest: dict, count: int = IMPORT_COUNT) -> dict:
+def validate(root: Path, manifest: dict, count: int = IMPORT_COUNT,
+             overlay: dict[str, dict] | None = None) -> dict:
     if (manifest.get("schema_version") != "forgepanel.foundation-import/v1"
             or manifest.get("source_id") != "SRC-03"
             or manifest.get("original_sha256") != SOURCE_SHA
@@ -57,6 +61,9 @@ def validate(root: Path, manifest: dict, count: int = IMPORT_COUNT) -> dict:
         paths.add(name)
         digest = entry["sha256"]
         size = entry["bytes"]
+        if overlay and name in overlay:
+            digest = overlay[name]["new_sha256"]
+            size = overlay[name]["new_bytes"]
         if (not isinstance(digest, str) or not SHA256.fullmatch(digest)
                 or not isinstance(size, int) or isinstance(size, bool) or size < 0
                 or entry["provenance"] not in ("exact_src03", "adapted_template")):
@@ -94,13 +101,72 @@ def validate(root: Path, manifest: dict, count: int = IMPORT_COUNT) -> dict:
             "source_license_cleared": False, "release_published": False}
 
 
+def validate_optional_patch(root: Path, base: dict, patch: dict) -> dict:
+    """Verify eleven pinned v0.7.1 deltas, with no privileged side effects."""
+    if (patch.get("schema_version") != "forgepanel.foundation-optional-mfa/v1"
+            or patch.get("source_id") != "SRC-03-OPTIONAL-MFA-071"
+            or patch.get("status") != "DRAFT_PATCH_NOT_QUALIFIED"
+            or patch.get("base_archive_sha256") != SOURCE_SHA
+            or patch.get("patch_archive_sha256") != PATCH_SHA
+            or patch.get("changed_file_count") != 11
+            or patch.get("admin_mfa_optional") is not True
+            or any(patch.get(k) is not False for k in (
+                "real_postgresql_migration_tested", "real_symfony_http_tested",
+                "runtime_release_certified", "production_apply_authorized",
+                "independent_security_review_complete"))):
+        raise ImportRejected("optional_patch_unqualified_or_wrong_provenance")
+    patches = patch.get("records")
+    if not isinstance(patches, list) or len(patches) != 11:
+        raise ImportRejected("optional_patch_count_mismatch")
+    base_records = {item["path"]: item for item in base["imported_files"]}
+    overrides = {}
+    addition = 0
+    for entry in patches:
+        if not isinstance(entry, dict) or set(entry) != {"path", "base_sha256", "new_sha256", "new_bytes"}:
+            raise ImportRejected("invalid_optional_patch_record")
+        name=entry["path"]
+        if not safe_path(name) or name in overrides or name == "apps/panel/.env":
+            raise ImportRejected("unsafe_optional_patch_path")
+        after, size = entry["new_sha256"], entry["new_bytes"]
+        if (not isinstance(after, str) or not SHA256.fullmatch(after)
+                or not isinstance(size, int) or isinstance(size, bool) or size < 0):
+            raise ImportRejected("invalid_optional_patch_digest_or_size")
+        prev = base_records.get(name)
+        if prev:
+            if entry["base_sha256"] != prev["sha256"]:
+                raise ImportRejected("optional_patch_base_identity_mismatch")
+        elif name == OPTIONAL_PATCH_FILE and entry["base_sha256"] is None:
+            addition += 1
+        else:
+            raise ImportRejected("unexpected_optional_patch_addition")
+        overrides[name]=entry
+    if addition != 1:
+        raise ImportRejected("optional_patch_missing_migration")
+    report = validate(root, base, overlay=overrides)
+    new = overrides[OPTIONAL_PATCH_FILE]
+    path = root / OPTIONAL_PATCH_FILE
+    if path.is_symlink() or not path.is_file() or path.stat().st_nlink != 1:
+        raise ImportRejected("optional_patch_migration_missing_or_unsafe")
+    content = path.read_bytes()
+    if len(content)!=new["new_bytes"] or hashlib.sha256(content).hexdigest()!=new["new_sha256"]:
+        raise ImportRejected("optional_patch_migration_changed")
+    report["status"]="VERIFIED_BASE_PLUS_OPTIONAL_MFA_PATCH_BYTES_ONLY"
+    report["optional_patch_files_checked"]=len(overrides)
+    return report
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=ROOT)
     parser.add_argument("--manifest", type=Path, default=MANIFEST)
+    parser.add_argument("--optional-patch", type=Path, default=OPTIONAL_PATCH)
     opt = parser.parse_args()
     try:
-        result = validate(opt.root, json.loads(opt.manifest.read_text(encoding="utf-8")))
+        base = json.loads(opt.manifest.read_text(encoding="utf-8"))
+        if opt.optional_patch.exists():
+            result = validate_optional_patch(opt.root, base, json.loads(opt.optional_patch.read_text(encoding="utf-8")))
+        else:
+            result = validate(opt.root, base)
         code = 0
     except (ImportRejected, ValueError, OSError, TypeError) as exc:
         result = {"status": "BLOCKED", "reason": str(exc) if isinstance(exc, ImportRejected)

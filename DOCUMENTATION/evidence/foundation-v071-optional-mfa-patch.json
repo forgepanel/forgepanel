@@ -1,0 +1,83 @@
+{
+  "schema_version": "forgepanel.foundation-optional-mfa/v1",
+  "source_id": "SRC-03-OPTIONAL-MFA-071",
+  "status": "DRAFT_PATCH_NOT_QUALIFIED",
+  "base_archive_sha256": "19479d5be9da9bb0ff9180f9b8819ea48baff785ccc3fef59deb2bb0894faf1a",
+  "patch_archive_sha256": "83fe6e77713f68d69595e74864aa1c33f75d88b6ba4199e03d5ef30a7060402c",
+  "patch_version": "0.7.1-dev",
+  "changed_file_count": 11,
+  "records": [
+    {
+      "path": "apps/panel/migrations/002_optional_admin_mfa.sql",
+      "new_sha256": "d7a8efebdc2443acfadfd9175034d821be77344d13dc1dc38526e4bd0b2f6d03",
+      "new_bytes": 265,
+      "base_sha256": null
+    },
+    {
+      "path": "apps/panel/src/Controller/SetupController.php",
+      "new_sha256": "8d346fda17542ecc841104e0dd5d00180bceeeafa67de4df2f44d76b8307c533",
+      "new_bytes": 8561,
+      "base_sha256": "80488d31bc3afb889032491e1b927ce484c0a886eaa2233a14609d4127832f06"
+    },
+    {
+      "path": "apps/panel/src/Infrastructure/PdoSetupTransaction.php",
+      "new_sha256": "b871c472e06c93e6fc8eb2f6373652fbbc7e525bf92622789df0412383b6a418",
+      "new_bytes": 2227,
+      "base_sha256": "575e15a84539a128506d1f9e7496a3e97ebb630f1cffab8ebd0c51e1034f7d7a"
+    },
+    {
+      "path": "apps/panel/src/Setup/SetupService.php",
+      "new_sha256": "b9d8328c16bf6de995eb98dfa2648f3421b4322f4fb212f50ab251e901ca7167",
+      "new_bytes": 8839,
+      "base_sha256": "50a17d25222dff6b468f93a18340e2f3b5ccba832409f9d2b99ac87f12a66a3b"
+    },
+    {
+      "path": "apps/panel/src/Setup/SetupTransaction.php",
+      "new_sha256": "b9b4f577729bd13dccacb6358fee64d6b95b08d54eb65d65211157a0cf23ebfa",
+      "new_bytes": 971,
+      "base_sha256": "02926e66db1cae0b50f61ee57613fc3c06d6d7d8e0295487ea82b2f8e4935612"
+    },
+    {
+      "path": "apps/panel/templates/setup/mfa.html.twig",
+      "new_sha256": "98f7089a44aee0fbfcc6f20723924f2bd4baf67b8d3e400e23712c8a16928c88",
+      "new_bytes": 960,
+      "base_sha256": "9c4607ad39844afca018495292d91cbe5434f5995de3b8a11b8d2f2f27f2a24b"
+    },
+    {
+      "path": "apps/panel/templates/setup/register.html.twig",
+      "new_sha256": "f8154ce12980ac66667d7718fa044800560932e4762f4185f5b6a617d89f9fa6",
+      "new_bytes": 905,
+      "base_sha256": "cf847ac51d1945ac046eb27127feee8997894820e31d9e03fb2afc0b308b083c"
+    },
+    {
+      "path": "apps/panel/tests/MemoryRepository.php",
+      "new_sha256": "ad5620cedf0271557db9eead3f7acaa70e81d1413b6d5addead25d103a9a1423",
+      "new_bytes": 1980,
+      "base_sha256": "4e4a38905ecb8fb99276534a52ce76e0dd5a4da789a4e5185bfdb2149cd84c78"
+    },
+    {
+      "path": "apps/panel/tests/postgres.php",
+      "new_sha256": "fb76825789f710cdcfacba3043ac697e1cb5600e1dfe7c6e110e76a8de79307e",
+      "new_bytes": 3607,
+      "base_sha256": "4547ad392008dd9f76cd7cef34c2d5b2278e9f4e019259d74fd8bc2b84effcfc"
+    },
+    {
+      "path": "apps/panel/tests/run.php",
+      "new_sha256": "8774c21247d303e745d8a4fc2c9571140820e7cfe211d5d57658f4780357b572",
+      "new_bytes": 10891,
+      "base_sha256": "61c134c0f45748530a173d6af36af691628489243568bd4961925476a01cff80"
+    },
+    {
+      "path": "cmd/forgepanel/main.go",
+      "new_sha256": "f42780908e97bc3da50491e9133f2d44ad96a8a659175c2d0d7c9030f60b75cc",
+      "new_bytes": 7391,
+      "base_sha256": "3fd8f14b91c7ed88f84a87a4d176b632397f56c5345ea0ea564ed58203b880f9"
+    }
+  ],
+  "admin_mfa_optional": true,
+  "real_postgresql_migration_tested": false,
+  "real_symfony_http_tested": false,
+  "runtime_release_certified": false,
+  "production_apply_authorized": false,
+  "independent_security_review_complete": false
+}

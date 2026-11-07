@@ -28,3 +28,7 @@ Un plan de contrôle Symfony/PHP modulaire avec Twig/Symfony UX, un agent systè
 Vérifier la documentation avec `python3 scripts/check_documentation.py`. Sur la branche d'import, lancer aussi `python3 scripts/check_foundation_import.py`, puis `bash scripts/check.sh` pour les contrôles Go/PHP isolés. Ils ne valident ni Symfony/PostgreSQL réels ni installateur Linux.
 
 Workflow : `features/*` → `develop` → `stable` → `main` → `production`. Un nom de branche ne prouve aucun déploiement. Le choix de licence appartient au propriétaire ; ce lot n'accorde aucune nouvelle licence logicielle.
+
+### Correctif de sources MFA facultative empilé (brouillon)
+
+Le [patch Foundation v0.7.1 de MFA administrateur facultative](DOCUMENTATION/fr/12-development/foundation-v071-optional-mfa.md) est soumis à une revue distincte. Il ajoute un choix explicite de saut, une migration PostgreSQL et des tests hors ligne, mais n'est **ni fusionné ni validé en Symfony/PostgreSQL réels**. L'installation effective reste interdite.

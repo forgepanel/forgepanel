@@ -17,6 +17,12 @@ final class MemoryTransaction extends SetupTransaction {
     public function enableMfa(string $id,int $counter,array $hashes):void {
         $this->admins[$id]['mfa_enabled']=true;$this->admins[$id]['counter']=$counter;$this->admins[$id]['recovery_hashes']=$hashes;
     }
+    public function disableMfa(string $id):void {
+        $this->admins[$id]['mfa_enabled']=false;
+        $this->admins[$id]['mfa_secret']=null;
+        $this->admins[$id]['counter']=null;
+        $this->admins[$id]['recovery_hashes']=[];
+    }
     public function audit(string $event,array $metadata=[]):void { $this->events[]=[$event,$metadata]; }
 }
 final class MemoryRepository implements SetupRepository {

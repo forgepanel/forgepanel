@@ -32,7 +32,31 @@ test('expiry boundary rejects the token',function(){[$s,$r,$c]=fixture();$t=$s->
 test('database failure does not consume token or partially create an account',function(){[$s,$r]=fixture();$t=$s->issue();$r->data->failAfterInsert=true;throws(fn()=>$s->register($t,'a@example.com','Long enough password!'));check($r->data->state['phase']==='TOKEN_ISSUED');check(count($r->data->admins)===0);$r->data->failAfterInsert=false;check($s->register($t,'a@example.com','Long enough password!')['ok']);});
 test('validation does not consume a good token',function(){[$s,$r]=fixture();$t=$s->issue();throws(fn()=>$s->register($t,'bad','short'),InvalidArgumentException::class);check($r->data->state['phase']==='TOKEN_ISSUED');throws(fn()=>$s->register($t,'a@example.com','short'),InvalidArgumentException::class);});
 test('setup capability is required on every protected operation',function(){[$s,$r,$c,$totp,$box,$g]=registered();throws(fn()=>$s->progress('wrong'),DomainException::class);throws(fn()=>$s->enrollment('wrong'),DomainException::class);throws(fn()=>$s->confirmMfa('wrong','123456'),DomainException::class);throws(fn()=>$s->saveConfiguration('wrong',config(),0),DomainException::class);});
-test('MFA blocks configuration',function(){[$s,$r,$c,$totp,$box,$g]=registered();throws(fn()=>$s->saveConfiguration($g,config(),0),DomainException::class);});
+test('security choice blocks configuration until explicitly completed',function(){[$s,$r,$c,$totp,$box,$g]=registered();throws(fn()=>$s->saveConfiguration($g,config(),0),DomainException::class);});
+test('explicit MFA skip allows configuration and deletes pending secret',function(){
+    [$s,$r,$c,$totp,$box,$g]=registered();
+    throws(fn()=>$s->saveConfiguration($g,config(),0),DomainException::class);
+    $s->skipMfa($g);
+    $a=array_values($r->data->admins)[0];
+    check($a['mfa_enabled']===false);
+    check($a['mfa_secret']===null);
+    check($a['recovery_hashes']===[]);
+    check($s->progress($g)['phase']==='CONFIGURING');
+    check($s->saveConfiguration($g,config(),0)['revision']===1);
+    check(in_array('setup.mfa_skipped',array_column($r->data->events,0),true));
+    throws(fn()=>$s->skipMfa($g),DomainException::class);
+    throws(fn()=>$s->enrollment($g),DomainException::class);
+});
+test('MFA skip needs the current setup grant and survives local resume',function(){
+    [$s,$r,$c,$totp,$box,$g]=registered();
+    throws(fn()=>$s->skipMfa('invalid'),DomainException::class);
+    $s->skipMfa($g);
+    $code=$s->resume();
+    throws(fn()=>$s->progress($g),DomainException::class);
+    $res=$s->redeemResume($code);
+    check($res['ok'] && $res['phase']==='CONFIGURING');
+    check($s->saveConfiguration($res['grant'],config(),0)['revision']===1);
+});
 test('MFA validates, encrypts secret and generates hashed recovery codes',function(){[$s,$r,$c,$totp,$box,$g]=registered();$e=$s->enrollment($g);$a=array_values($r->data->admins)[0];check(!str_contains($a['mfa_secret'],$e['secret']));$res=$s->confirmMfa($g,$totp->code($e['secret'],$c->now()));check($res['ok']);check(count($res['recovery_codes'])===10);check(count(array_unique($res['recovery_codes']))===10);foreach($res['recovery_codes'] as $code){check(!str_contains(json_encode($r->data),$code));}check($s->progress($g)['phase']==='CONFIGURING');check(!$s->confirmMfa($g,$totp->code($e['secret'],$c->now()))['ok']);throws(fn()=>$s->enrollment($g),DomainException::class);});
 test('MFA locks after five invalid attempts',function(){[$s,$r,$c,$totp,$box,$g]=registered();for($i=0;$i<5;$i++){check(!$s->confirmMfa($g,'not-a-code')['ok']);}$e=$s->enrollment($g);check(!$s->confirmMfa($g,$totp->code($e['secret'],$c->now()))['ok']);});
 test('expired grant is rejected and local resume rotates it',function(){[$s,$r,$c,$totp,$box,$g]=registered();$c->time+=1800;throws(fn()=>$s->progress($g),DomainException::class);$code=$s->resume();$res=$s->redeemResume($code);check($res['ok']);$g2=$res['grant'];check($g2!==$g);check($s->progress($g2)['phase']==='MFA_PENDING');check(!$s->redeemResume($code)['ok']);throws(fn()=>$s->progress($g),DomainException::class);check(count($r->data->admins)===1);});

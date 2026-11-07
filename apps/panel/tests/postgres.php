@@ -16,7 +16,7 @@ function expect(bool $ok,string $message):void {if(!$ok){throw new RuntimeExcept
 try {
     $pdo->exec('CREATE SCHEMA "'.$schema.'"');
     $pdo->exec('SET search_path TO "'.$schema.'"');
-    $pdo->beginTransaction();$pdo->exec(file_get_contents(dirname(__DIR__).'/migrations/001_setup.sql'));$pdo->commit();
+    $pdo->beginTransaction();$pdo->exec(file_get_contents(dirname(__DIR__).'/migrations/001_setup.sql'));$pdo->exec(file_get_contents(dirname(__DIR__).'/migrations/002_optional_admin_mfa.sql'));$pdo->commit();
     $service=new SetupService(new PdoSetupRepository($pdo),new SecretBox(base64_encode(random_bytes(32))),new Totp(),new SystemClock());
     $token=$service->issue();
     // Force an audit insert failure AFTER the administrator insert.

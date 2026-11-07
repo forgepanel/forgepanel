@@ -68,6 +68,15 @@ final class SetupController extends AbstractController {
         } catch (\DomainException $e) { return $this->redirectToRoute('setup_resume'); }
         return $this->render('setup/mfa.html.twig',['error'=>$error,'enrollment'=>$enrollment],new Response('',$error?422:200));
     }
+    #[Route('/setup/mfa/skip',name:'setup_mfa_skip',methods:['POST'])]
+    public function skipMfa(Request $r): Response {
+        $this->csrf($r,'setup-mfa-skip'); $this->limit($r);
+        try {
+            $this->setup->skipMfa($this->grant($r));
+            return $this->redirectToRoute('setup_configuration',[],303);
+        } catch (\DomainException $e) { return $this->redirectToRoute('setup_resume'); }
+        catch (\Throwable $e) { throw new \Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException(null,'Setup unavailable. Use the local CLI.'); }
+    }
     #[Route('/setup/recovery',name:'setup_recovery',methods:['GET','POST'])]
     public function recovery(Request $r):Response {
         try { $progress=$this->setup->progress($this->grant($r)); } catch (\DomainException) { return $this->redirectToRoute('setup_resume'); }

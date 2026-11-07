@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=23 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=24 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
@@ -119,3 +119,7 @@ Les [contrôles SQL réels et garde-fous d'isolation](r2-postgres-execution.md) 
 ## Proposition de tests HTTP Symfony réels
 
 Le [candidat de contrôle HttpKernel Symfony R2](r2-symfony-http-smoke.md) fait l'objet d'une PR distincte sur les tests PostgreSQL jetables. Le noyau, les routes et le conteneur Symfony doivent réellement démarrer ; les tests couvrent l'origine HTTPS autorisée et les refus HTTP, Host, port, méthode, Origin, taille et CSRF absent. Sans verrou Composer versionné, ce n'est **pas un build de release**. La connexion permanente et les tests navigateur restent à réaliser.
+
+## Candidat R2 de connexion administrateur en lecture seule
+
+La [suite proposée PostgreSQL et HttpKernel Symfony](r2-admin-readonly-qa.md) porte sur le mot de passe, TOTP facultative et codes de secours uniques, revalidation SQL, rotation/expiration de session, CSRF et vue sans actions. Tests **NON VÉRIFIÉS jusqu'à la CI sur commit exact** ; un sous-ensemble vert ne clôt pas R2 ni la sécurité de production.

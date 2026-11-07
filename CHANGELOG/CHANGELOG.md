@@ -4,6 +4,10 @@ One chronology, both languages. / Une chronologie, deux langues.
 
 ## Unreleased / Non publié
 
+### Proposed / Proposé — R2 administrator identity and read-only session candidate (2026-11-07)
+
+- **Candidate SQL/HTTP identity / Identité SQL/HTTP candidate** — Added draft `AdminAuthentication` and Symfony `AdminSessionController`, read-only `/admin`, password verification with anti-enumeration dummy Argon2id hash, optional TOTP replay protection and single-use recovery, credential-bound HMAC sessions, explicit login/logout CSRF, rate limiting and session ID rotation. New test-only PostgreSQL/Symfony QA suites and paired FR/EN security contracts; no database migration, Linux privilege, public API, Core-Hub dependency or executable installer. **Test execution and security approval are NOT ASSUMED until exact-commit CI. This is NOT a production login or release.** / Candidat d'identité SQL/HTTP, `/admin` sans action système, contrôle Argon2id, TOTP facultative anti-rejeu et codes uniques, sessions HMAC, CSRF, limites, renouvellement d'ID ; tests sur PostgreSQL jetable, docs FR/EN. **Aucune migration, permission root, dépendance Hub ni installateur ; tests et approbation non présumés.**
+
 ### Verified subsets / Sous-ensembles vérifiés — R2 acceptance matrix (2026-11-07)
 
 - **Partial SQL/HTTP evidence / Preuves SQL/HTTP partielles** — Updated the paired 20-case R2 acceptance matrix to name exact PostgreSQL and Symfony commits/workflows while retaining all full cases as **PLANNED** until complete positive/negative qualification. Added matrix drift assertions and a stacked-PR CI step running R2 offline guards plus the bilingual documentation checker. **No full R2 readiness, permanent login, HTTP browser/HTTPS gateway, installation or VM certification.** / Matrice R2 FR/EN actualisée avec preuves CI sur commits nommés, 20 cas complets restant **PLANNED** ; tests anti-régression et vérification documentaire ajoutés à la CI. **Aucun statut R2 terminé, login permanent, navigateur/passerelle HTTPS, installateur ou VM qualifiés.**

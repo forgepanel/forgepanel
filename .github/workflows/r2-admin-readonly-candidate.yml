@@ -1,0 +1,93 @@
+name: R2 read-only administrator identity and session checks
+on:
+  push:
+    branches:
+      - features/r2-admin-session-readonly
+  pull_request:
+    branches:
+      - features/r2-symfony-http-smoke
+    paths:
+      - 'apps/panel/**'
+      - 'DOCUMENTATION/en/03-core/**'
+      - 'DOCUMENTATION/fr/03-core/**'
+      - 'DOCUMENTATION/en/13-tests-quality/**'
+      - 'DOCUMENTATION/fr/13-tests-quality/**'
+      - '.github/workflows/r2-admin-readonly-candidate.yml'
+      - 'tests/r2/**'
+permissions:
+  contents: read
+jobs:
+  r2-admin-readonly:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    services:
+      pg:
+        image: postgres:16
+        env:
+          POSTGRES_DB: forgepanel_test
+          POSTGRES_USER: forgepanel_test
+          POSTGRES_PASSWORD: isolated_ci_only_not_real
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U forgepanel_test -d forgepanel_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      APP_ENV: test
+      APP_DEBUG: '0'
+      APP_SECRET: 'TEST_ONLY_r2_admin_preview_secret_never_for_real_installations_2026'
+      FORGE_ENCRYPTION_KEY: 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA='
+      FORGE_DB_DSN: 'pgsql:host=127.0.0.1;port=5432;dbname=forgepanel_test;connect_timeout=5'
+      FORGE_DB_USER: forgepanel_test
+      FORGE_DB_PASSWORD: isolated_ci_only_not_real
+      FORGE_TEST_PG_DSN: 'pgsql:host=127.0.0.1;port=5432;dbname=forgepanel_test;connect_timeout=5'
+      FORGE_TEST_DB_USER: forgepanel_test
+      FORGE_TEST_DB_PASSWORD: isolated_ci_only_not_real
+      FORGE_TEST_ALLOW_SCHEMA_CREATE: '1'
+      PANEL_ORIGIN: 'https://forge.example.test:8447'
+    steps:
+      - name: Checkout reviewed feature commit
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # pinned
+        with:
+          persist-credentials: false
+      - name: Validate docs and policy before vendor installation
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tests/r2 -p 'test_*.py' -v
+          python3 scripts/check_documentation.py
+      - name: Install test-only PHP PostgreSQL runtime
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends php8.3-cli php8.3-pgsql php8.3-xml php8.3-mbstring
+          php -v
+          php -m | grep -xi pdo_pgsql
+          php -m | grep -xi sodium
+      - name: Install pinned Symfony dependencies without plugins or scripts
+        working-directory: apps/panel
+        run: |
+          set -euo pipefail
+          composer validate --no-check-publish --no-interaction
+          composer install --prefer-dist --no-plugins --no-scripts --no-interaction --no-progress
+          composer audit --locked --no-interaction
+      - name: Verify PHP source and Symfony container
+        run: |
+          set -euo pipefail
+          php -l apps/panel/src/Identity/AdminAuthentication.php
+          php -l apps/panel/src/Controller/AdminSessionController.php
+          php -l apps/panel/tests/admin_identity_r2.php
+          php -l apps/panel/tests/admin_http_r2.php
+          (cd apps/panel && php bin/console lint:container --no-interaction && php bin/console debug:router --no-interaction)
+      - name: Exercise actual PostgreSQL login, MFA replay, recovery and session revocation
+        run: |
+          set -euo pipefail
+          php apps/panel/tests/admin_identity_r2.php
+      - name: Exercise actual Symfony HttpKernel login/session/logout with test-only PostgreSQL
+        run: |
+          set -euo pipefail
+          php apps/panel/tests/admin_http_r2.php
+      - name: Scope evidence
+        run: |
+          echo 'Verified limited read-only administrator setup preview only. No browser TLS gateway, full Symfony security authenticator, operational Linux actions, Hub or production deployment.'

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=23 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=24 status=documented -->
 # Tests, quality and definition of done
 
 [Français](../../fr/13-tests-quality/README.md) · [Index](../README.md)
@@ -119,3 +119,7 @@ New Go tests for [image staging](../14-devops-releases/kvm-image-staging.md) ver
 ## Proposed real Symfony HTTP smoke test
 
 The [R2 Symfony HttpKernel security smoke candidate](r2-symfony-http-smoke.md) is a separate draft stacked on the disposable PostgreSQL test. The kernel, router and service container must actually boot from Symfony packages; tests for allowed HTTPS setup origin and rejected HTTP, Host, port, method, Origin, payload size and absent CSRF are necessary. Dependency resolution without a committed Composer lock is **not a release build**. Permanent admin login and browser E2E remain unverified.
+
+## R2 read-only administrator authentication candidate
+
+[Proposed SQL + Symfony HttpKernel security suite](r2-admin-readonly-qa.md) covers password authentication, optional TOTP and one-use recovery, SQL revalidation, session rotation/expiry, login/logout CSRF and read-only preview. These tests remain **NOT VERIFIED until exact-commit CI**; a green subset is not R2 complete or production-ready.

@@ -1,7 +1,12 @@
-<!-- forgepanel-doc id=FP-18-HANDOVER revision=10 status=documented -->
+<!-- forgepanel-doc id=FP-18-HANDOVER revision=11 status=documented -->
 # Handover to the next contributor
 
 [Français](../../fr/18-contributing/handover.md) · [Contribution guide](README.md)
+
+
+## Updated R1 handoff — genuine archives recovered 2026-11-07
+
+**Source availability is no longer the blocker.** Historical v0.7/v0.7.1 ZIPs were recovered outside Git and passed checksum/ZIP and nonroot offline standalone Go/PHP checks; see [recovery evidence](../12-development/foundation-source-recovery.md). Import remains **NOT DONE**. Public Core publication first needs explicit source/secret and AGPL-commercial/legal approval (original archives contain `apps/panel/.env`), a per-file sanitized import report, exact-commit CI, independent review and strict refusal of production `install apply`. Earlier stages below are retained as their historical handoff, not current source-unavailability claims. R2 Symfony/PostgreSQL follows only after real R1 source integration. Do not upload the archives to private Hub.
 
 ## Current lot
 

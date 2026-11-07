@@ -1,7 +1,12 @@
-<!-- forgepanel-doc id=FP-18-HANDOVER revision=10 status=documented -->
+<!-- forgepanel-doc id=FP-18-HANDOVER revision=11 status=documented -->
 # Passage de relais
 
 [English](../../en/18-contributing/handover.md) · [Guide de contribution](README.md)
+
+
+## Relais R1 actualisé — archives retrouvées le 07/11/2026
+
+**L'indisponibilité des sources n'est plus le blocage.** Les ZIP d'origine v0.7/v0.7.1 ont été retrouvés hors Git et ont passé SHA/CRC et tests natifs Go/PHP hors ligne sous compte non-root ; voir les [preuves de récupération](../12-development/foundation-source-recovery.md). L'import Git reste **NON FAIT**. La publication dans le Core public exige d'abord une revue des sources/secrets et des droits AGPL/commerciaux (les ZIP contiennent `apps/panel/.env`), un manifeste d'import assaini vérifié fichier par fichier, les tests CI sur commit, une revue indépendante et le refus continu de `install apply`. Les anciens relais ci-dessous sont préservés comme historique, pas comme preuve d'indisponibilité actuelle. R2 Symfony/PostgreSQL suit l'import R1 réel. Ne jamais transférer les ZIP au Hub privé.
 
 ## Lot actuel
 

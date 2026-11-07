@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-12 revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-12 revision=5 status=documented -->
 # Environnement et conventions de développement
 
 [English](../../en/12-development/README.md) · [Index](../README.md)
@@ -32,3 +32,8 @@ L'utilitaire `scripts/verify_source_archive.py` vérifie en **lecture seule** l'
 ## Vérifier la quarantaine après copie — R1
 
 [Contrôle indépendant des sources mises en quarantaine](source-staging-audit.md) : `scripts/audit_staged_archive.py` compare l'archive d'origine, son reçu et chaque fichier sur disque **en lecture seule**. Il bloque les modifications, liens, fichiers ajoutés/manquants, permissions d'exécution et inventaires falsifiés. L'audit ne remplace ni les licences, ni les tests PHP/Go, ni la validation de provenance éditeur, et n'importe pas automatiquement le code Core.
+
+
+## Récupération vérifiée des archives Foundation (07/11/2026)
+
+Les ZIP originaux SRC-03 v0.7 et v0.7.1 MFA facultative ont été **retrouvés dans la bibliothèque privée du propriétaire**, contrôlés par SHA-256 et retestés avec les scripts natifs Go/PHP sous un compte non-root. [Preuves et garde-fous de publication](foundation-source-recovery.md). Ni ces archives ni les sources applicatives n'ont été commitées dans ce dépôt **public**. L'import Core, Symfony/PostgreSQL réels et la certification VM restent à faire.

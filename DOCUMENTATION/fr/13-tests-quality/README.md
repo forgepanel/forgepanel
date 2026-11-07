@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13 revision=21 status=documented -->
+<!-- forgepanel-doc id=FP-13 revision=22 status=documented -->
 # Tests, qualité et définition de terminé
 
 [English](../../en/13-tests-quality/README.md) · [Index](../README.md)
@@ -110,3 +110,8 @@ La [matrice QA physique R3](r3-physical-execution-gates.md) décrit **36 cas PLA
 ## R3 — Huit nouveaux tests négatifs après revue d'intégrité
 
 La [revue R3 des jobs](../19-audits-risks/r3-job-integrity-audit.md) ajoute `R3-AUDIT-TEST-001..008` **PLANNED** pour admissions refusées sans job, fencing après suppression/restauration, crash inbox avant/après effet et falsification tenant/RLS. `tests/documentation/test_r3_job_integrity_review.py` vérifie **uniquement les gardes documentaires** et leur non-régression par mutation d'objets JSON en mémoire. **Zéro test réel PostgreSQL/Linux** ; pas de résolution automatique des RISK-033..036.
+
+
+## Proposition de tests PostgreSQL jetables R2
+
+Les [contrôles SQL réels et garde-fous d'isolation](r2-postgres-execution.md) utilisent **Foundation R1 + le correctif MFA facultative** sur une base de test éphémère. Les verrous concurrents, rollbacks, suppression du secret après saut MFA et unicité de l'administrateur ne sont qualifiés qu'après succès CI sur le commit exact. **Ce n'est ni Symfony HTTP ni un installateur privilégié ni une validation R2 complète.**

@@ -4,6 +4,11 @@ One chronology, both languages. / Une chronologie, deux langues.
 
 ## Unreleased / Non publié
 
+### Added / Ajouts — R2 isolated PostgreSQL integration candidate (2026-11-07)
+
+- **Test infrastructure / Infrastructure de tests** — Added an isolated PostgreSQL 16 CI service (ephemeral test-only `*_test` database), PHP PDO integration tests for the Foundation 001+002 migrations, two-session SQL lock timeout/rollback, single initial admin constraint, explicit optional-MFA secret removal, audit, replay, local resume and revision. Added four offline policy tests and paired FR/EN QA notes. **No production database, Symfony HTTP, Composer lock, permanent login, installed agent, tenant hosting or VM tests; R2 remains incomplete.** / Service PostgreSQL 16 de CI jetable, base `*_test` obligatoire, tests PDO pour migrations 001+002, verrouillage de deux sessions, rollback, unicité admin, MFA facultative, audit et reprise ; quatre contrôles statiques et documents QA FR/EN. **Aucune base réelle client, HTTP Symfony, verrou Composer, connexion permanente, agent, site hébergé ou VM ; R2 non terminé.**
+
+
 ### Proposed / Proposé — optional initial admin MFA v0.7.1 (2026-11-07)
 
 - **Stacked source patch / Correctif source empilé** — Added the eleven exact reviewed-candidate v0.7→v0.7.1 source differences, including explicit CSRF/rate-limited administrator MFA opt-out, secret clearing, audit and SQL migration `002_optional_admin_mfa.sql`; separate v0.7.1 archive SHA-256 `83fe6e77713f68d69595e74864aa1c33f75d88b6ba4199e03d5ef30a7060402c`. Added a distinct 11-file before/after digest registry, checker extension and synthetic negative tests. **Real Symfony HTTP and PostgreSQL migrations NOT RUN; staged draft, not a release or safe installer.** / Onze changements sources exacts pour une MFA initiale facultative, migration SQL, registre de provenance, contrôles négatifs et documentation FR/EN. **Aucun test HTTP Symfony ni migration PostgreSQL réelle ; ni release ni installateur opérationnel.**

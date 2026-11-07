@@ -1,0 +1,65 @@
+name: R2 disposable PostgreSQL integration
+on:
+  push:
+    branches:
+      - features/r2-disposable-postgres
+  pull_request:
+    branches:
+      - develop
+      - features/r1-optional-admin-mfa-v071
+    paths:
+      - 'apps/panel/**'
+      - '.github/workflows/r2-postgres-disposable.yml'
+      - 'tests/r2/**'
+permissions:
+  contents: read
+jobs:
+  real-postgresql-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    services:
+      postgresql:
+        image: postgres:16
+        env:
+          POSTGRES_DB: forgepanel_test
+          POSTGRES_USER: forgepanel_test
+          POSTGRES_PASSWORD: isolated_ci_only_not_real
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U forgepanel_test -d forgepanel_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - name: Checkout exact candidate commit
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # pinned v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install PostgreSQL PDO driver on ephemeral runner
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends php8.3-cli php8.3-pgsql
+          php -v
+          php -m | grep -xi PDO
+          php -m | grep -xi pdo_pgsql
+      - name: Confirm original source is unchanged and tests are syntactically sound
+        run: |
+          set -euo pipefail
+          php -l apps/panel/tests/postgres.php
+          php -l apps/panel/tests/postgres_r2.php
+          python3 -m unittest discover -s tests/r2 -p 'test_*.py' -v
+      - name: Execute actual PostgreSQL tests with explicit private test database gate
+        env:
+          FORGE_TEST_PG_DSN: 'pgsql:host=127.0.0.1;port=5432;dbname=forgepanel_test;connect_timeout=5'
+          FORGE_TEST_DB_USER: forgepanel_test
+          FORGE_TEST_DB_PASSWORD: isolated_ci_only_not_real
+          FORGE_TEST_ALLOW_SCHEMA_CREATE: '1'
+        run: |
+          set -euo pipefail
+          php apps/panel/tests/postgres.php
+          php apps/panel/tests/postgres_r2.php
+      - name: Evidence boundary
+        run: |
+          echo 'PostgreSQL integration only: no Composer installation, Symfony HTTP, permanent login, systemd, Linux privileges or release qualification.'

@@ -75,12 +75,27 @@ try {
     $assert($authorized->getStatusCode() === 200, 'authenticated admin preview inaccessible');
     $assert(str_contains((string)$authorized->getContent(), 'NOT installed'), 'read-only not-installed warning missing');
     $assert(!str_contains((string)$authorized->getContent(), $password), 'password rendered in admin view');
+    $assert($dispatch('POST', '/admin')->getStatusCode() === 405, 'read-only admin accepted mutation');
+    $assert($dispatch('GET', '/logout')->getStatusCode() === 405, 'logout accepted GET');
+    $assert($dispatch('POST', '/login', ['_token'=>$csrf,'email'=>'owner@example.test','password'=>$password], ['HTTP_ORIGIN'=>'https://attacker.example.test'])->getStatusCode() === 403, 'cross-origin login POST accepted');
     $assert($dispatch('POST', '/logout')->getStatusCode() === 403, 'logout missing CSRF accepted');
     $assert(preg_match('/name="_token" value="([^"]+)"/', (string)$authorized->getContent(), $logoutMatches) === 1, 'logout CSRF token missing');
     $assert($dispatch('POST', '/logout', ['_token'=>$logoutMatches[1]])->getStatusCode() === 303, 'logout failed');
     $assert($dispatch('GET', '/admin')->getStatusCode() === 401, 'logout did not revoke session');
     $assert((int)$pdo->query("SELECT count(*) FROM fp_setup_audit WHERE event='auth.login_succeeded'")->fetchColumn() === 1, 'login audit missing');
     $assert((int)$pdo->query("SELECT count(*) FROM fp_setup_audit WHERE event='auth.logout'")->fetchColumn() === 1, 'logout audit missing');
+    $loginAgain = $dispatch('GET', '/login');
+    $assert(preg_match('/name="_token" value="([^"]+)"/', (string)$loginAgain->getContent(), $nextLogin) === 1, 'second login missing CSRF');
+    $assert($dispatch('POST', '/login', ['_token'=>$nextLogin[1],'email'=>'owner@example.test','password'=>$password])->getStatusCode() === 303, 'new login after logout denied');
+    $session->set('forge_admin_at', time()-1900);
+    $assert($dispatch('GET', '/admin')->getStatusCode() === 401, 'expired admin session accepted');
+    $assert(!$session->has('forge_admin_id'), 'expired session principal remained');
+    $thirdForm = $dispatch('GET', '/login');
+    $assert(preg_match('/name="_token" value="([^"]+)"/', (string)$thirdForm->getContent(), $thirdToken) === 1, 'third login missing CSRF');
+    $assert($dispatch('POST', '/login', ['_token'=>$thirdToken[1],'email'=>'owner@example.test','password'=>$password])->getStatusCode() === 303, 'login after expiry denied');
+    $session->set('forge_admin_seal', str_repeat('0', 64));
+    $assert($dispatch('GET', '/admin')->getStatusCode() === 401, 'forged session seal accepted');
+    $assert(!$session->has('forge_admin_id'), 'forged session principal remained');
     echo "PASS R2 Symfony admin HTTP with real PostgreSQL: {$assertions} assertions (CSRF, password, session rotation, read-only authorization, logout).\n";
     echo "LIMIT: MockArraySessionStorage, not an actual browser/cookie/TLS gateway, no panel host privileges or finished production authentication.\n";
 } finally {

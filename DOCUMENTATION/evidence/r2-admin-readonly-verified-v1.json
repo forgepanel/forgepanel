@@ -1,0 +1,55 @@
+{
+  "schema_version": "forgepanel.r2-admin-readonly-evidence/v1",
+  "record_date": "2026-11-07",
+  "status": "VERIFIED_PARTIAL_CI",
+  "owner_decisions": "Q1-Q220 preserved; admin MFA optional; Core/Hub detached",
+  "source_repo": "yyogas/forgepanel",
+  "source_pr": 63,
+  "verified_commit": "97cfbf73100b237b8781e9c34bb0038ce7ccc1e4",
+  "git_state": "DRAFT_UNMERGED",
+  "runs": [
+    {
+      "id": 42389509528,
+      "event": "push",
+      "conclusion": "success"
+    },
+    {
+      "id": 42389514939,
+      "event": "pull_request",
+      "conclusion": "success"
+    }
+  ],
+  "environment": {
+    "runner": "ubuntu-24.04",
+    "php": "8.3",
+    "postgres": "16",
+    "symfony": "7.4 via committed composer.lock",
+    "test_database": "forgepanel_test",
+    "session_adapter": "MockArraySessionStorage"
+  },
+  "verification": {
+    "postgres_assertions": 29,
+    "http_kernel_assertions": 31,
+    "initial_static_unit_tests": 7,
+    "additional_security_http_checks": "PASS (read-only denial, wrong origin, expiry, forged seal)",
+    "composer_audit": "no advisories reported at execution time"
+  },
+  "unsupported": {
+    "full_r2_acceptance": "NOT VERIFIED",
+    "browser_cookie_tls": "NOT RUN",
+    "full_symfony_security_authenticator": "NOT IMPLEMENTED",
+    "rbac_tenant_isolation": "NOT IMPLEMENTED",
+    "real_host_installer": "NOT RUN",
+    "privileged_server_operations": "NOT AUTHORIZED",
+    "core_merge": "NOT MERGED",
+    "release": "NOT RELEASED"
+  },
+  "dependency_chain": [
+    "PR #59 Foundation source",
+    "PR #60 optional MFA",
+    "PR #61 real SQL integration",
+    "PR #62 Symfony HttpKernel",
+    "PR #63 read-only identity"
+  ],
+  "notes": "No external Hub service is needed for Core. The REVIEWED setup phase is an uninstalled plan, and `/admin` is informational only."
+}

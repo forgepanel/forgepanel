@@ -1,9 +1,11 @@
-<!-- forgepanel-doc id=FP-03-ADMIN-IDENTITY-R2 revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-03-ADMIN-IDENTITY-R2 revision=2 status=specified -->
 # R2 — read-only administrator identity candidate
 
 [Français](../../fr/03-core/admin-identity-r2.md) · [QA](../13-tests-quality/r2-admin-readonly-qa.md) · [R2 existing contracts](bootstrap-identity-r2.md)
 
 **PROPOSED CODE / NOT APPROVED FOR A PRODUCTION ADMIN PANEL.** Reuse the original Foundation v0.7.1 PostgreSQL tables for an initial administrator, password hash, optional encrypted TOTP secret, replay counter, hashed one-time recovery codes and audit. No extra tables, DDL, privileged Linux operation, new module, Hub integration, network listener or production installer is added.
+
+**VERIFIED PARTIAL EVIDENCE — 2026-11-07:** [PR #63](https://github.com/yyogas/forgepanel/pull/63), commit `97cfbf73100b237b8781e9c34bb0038ce7ccc1e4`, [push CI #42389509528](https://github.com/yyogas/forgepanel/actions/runs/42389509528) and [PR CI #42389514939](https://github.com/yyogas/forgepanel/actions/runs/42389514939): **29 real PostgreSQL assertions** and **31 real Symfony HttpKernel + PostgreSQL session assertions** PASS. Seven initial static policy cases also PASS. These prove only read-only login/session behavior; they do **not** complete R2, Symfony Security authenticator/tenant RBAC, full browser/TLS cookie tests or any hosted-server operation.
 
 ## Limited authentication
 

@@ -58,7 +58,14 @@ class AdminReadonlyPolicy(unittest.TestCase):
             for lang in ('en', 'fr'):
                 p = ROOT / 'DOCUMENTATION' / lang / basename
                 self.assertTrue(p.is_file(), p)
-                self.assertTrue(p.read_text().startswith(f'<!-- forgepanel-doc id={tag} revision=1 status=specified -->'))
+                self.assertTrue(p.read_text().startswith(f'<!-- forgepanel-doc id={tag} revision=2 status=specified -->'))
+
+    def test_exact_ci_evidence_is_paired(self):
+        for lang in ('en', 'fr'):
+            for basename in ('03-core/admin-identity-r2.md', '13-tests-quality/r2-admin-readonly-qa.md'):
+                body = (ROOT / 'DOCUMENTATION' / lang / basename).read_text()
+                for expected in ('97cfbf73100b237b8781e9c34bb0038ce7ccc1e4', '42389509528', '42389514939', '29', '31'):
+                    self.assertIn(expected, body)
 
 
 if __name__ == '__main__':

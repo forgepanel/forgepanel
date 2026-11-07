@@ -4,6 +4,11 @@ One chronology, both languages. / Une chronologie, deux langues.
 
 ## Unreleased / Non publié
 
+### Verified limited CI / CI partielle vérifiée — R2 read-only administrator identity (2026-11-07)
+
+- **Named evidence / Preuves identifiées** — [Draft PR #63](https://github.com/yyogas/forgepanel/pull/63), commit `97cfbf73100b237b8781e9c34bb0038ce7ccc1e4`, [CI #42389509528](https://github.com/yyogas/forgepanel/actions/runs/42389509528) and [CI #42389514939](https://github.com/yyogas/forgepanel/actions/runs/42389514939) SUCCESS. **29 real PostgreSQL** and **31 Symfony HttpKernel/SQL** assertions PASS; password, optional MFA, TOTP replay, recovery codes, SQL-backed session check, CSRF, rotation, expiry, forbidden read-only mutation and logout. Added machine-readable evidence and paired FR/EN QA/core docs; **all 20 full R2 cases remain incomplete**. **Not a complete production login, tenant RBAC, browser/TLS, signed installer, release or deployment.** / Deux CI réussies sur commit exact, **29 assertions SQL réelles + 31 HTTP/SQL**, documentation et manifeste des preuves actualisés ; **20 scénarios R2 complets non terminés**, aucun authenticator complet de production, droits système, release ni déploiement.
+
+
 ### Proposed / Proposé — R2 administrator identity and read-only session candidate (2026-11-07)
 
 - **Candidate SQL/HTTP identity / Identité SQL/HTTP candidate** — Added draft `AdminAuthentication` and Symfony `AdminSessionController`, read-only `/admin`, password verification with anti-enumeration dummy Argon2id hash, optional TOTP replay protection and single-use recovery, credential-bound HMAC sessions, explicit login/logout CSRF, rate limiting and session ID rotation. New test-only PostgreSQL/Symfony QA suites and paired FR/EN security contracts; no database migration, Linux privilege, public API, Core-Hub dependency or executable installer. **Test execution and security approval are NOT ASSUMED until exact-commit CI. This is NOT a production login or release.** / Candidat d'identité SQL/HTTP, `/admin` sans action système, contrôle Argon2id, TOTP facultative anti-rejeu et codes uniques, sessions HMAC, CSRF, limites, renouvellement d'ID ; tests sur PostgreSQL jetable, docs FR/EN. **Aucune migration, permission root, dépendance Hub ni installateur ; tests et approbation non présumés.**

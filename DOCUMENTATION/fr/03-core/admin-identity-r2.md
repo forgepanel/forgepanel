@@ -1,9 +1,11 @@
-<!-- forgepanel-doc id=FP-03-ADMIN-IDENTITY-R2 revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-03-ADMIN-IDENTITY-R2 revision=2 status=specified -->
 # R2 — identité administrateur en lecture seule, candidat
 
 [English](../../en/03-core/admin-identity-r2.md) · [QA](../13-tests-quality/r2-admin-readonly-qa.md) · [Contrats R2 existants](bootstrap-identity-r2.md)
 
 **CODE PROPOSÉ / NON VALIDÉ POUR UN PANNEAU DE PRODUCTION.** Réutilisation des tables PostgreSQL Foundation v0.7.1 du compte initial, de son mot de passe Argon2id, des secrets TOTP chiffrés facultatifs, du compteur anti-rejeu, des codes de secours hachés et de l'audit. Aucune nouvelle table/DDL, opération Linux privilégiée, extension Hub, écoute réseau ou installation système n'est créée.
+
+**PREUVES PARTIELLES VÉRIFIÉES — 07/11/2026 :** [PR #63](https://github.com/yyogas/forgepanel/pull/63), commit `97cfbf73100b237b8781e9c34bb0038ce7ccc1e4`, [CI push #42389509528](https://github.com/yyogas/forgepanel/actions/runs/42389509528) et [CI PR #42389514939](https://github.com/yyogas/forgepanel/actions/runs/42389514939) : **29 assertions PostgreSQL réelles** et **31 assertions de session HttpKernel Symfony + SQL** réussies. Sept contrôles statiques initiaux réussis. Seule la connexion en consultation est vérifiée ; ni R2 complet, ni authenticator Symfony Security/RBAC tenant, ni navigateur/TLS cookies, ni opérations serveur ne le sont.
 
 ## Connexion limitée
 

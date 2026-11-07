@@ -1,9 +1,9 @@
-<!-- forgepanel-doc id=FP-13-R2-ADMIN-QA revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-13-R2-ADMIN-QA revision=2 status=specified -->
 # R2 — candidat de tests SQL réels pour connexion administrateur et session Symfony
 
 [English](../../en/13-tests-quality/r2-admin-readonly-qa.md) · [Contrat d'identité](../03-core/admin-identity-r2.md) · [Matrice R2 complète](r2-integration-gates.md)
 
-**Statut : PLANIFIÉ jusqu'à observation des journaux GitHub Actions sur le commit exact.** La CI utilise PostgreSQL 16 jetable (`forgepanel_test`, consentement explicite, schémas temporaires et nettoyage), PHP 8.3, Composer verrouillé, le véritable HttpKernel Symfony et MockArraySessionStorage. Identifiants et secrets uniquement fictifs, jamais réutilisables. Aucune opération Linux, systemd ou privilégiée.
+**PREUVES PARTIELLES VÉRIFIÉES — 07/11/2026 :** [PR #63](https://github.com/yyogas/forgepanel/pull/63), commit `97cfbf73100b237b8781e9c34bb0038ce7ccc1e4`, [CI push #42389509528](https://github.com/yyogas/forgepanel/actions/runs/42389509528) et [CI PR #42389514939](https://github.com/yyogas/forgepanel/actions/runs/42389514939) : **29 assertions PostgreSQL réelles** et **31 assertions de session HttpKernel Symfony + SQL** réussies. Sept contrôles statiques initiaux réussis. Seule la connexion en consultation est vérifiée ; ni R2 complet, ni authenticator Symfony Security/RBAC tenant, ni navigateur/TLS cookies, ni opérations serveur ne le sont. La CI utilise PostgreSQL 16 jetable (`forgepanel_test`, consentement explicite, schémas temporaires et nettoyage), PHP 8.3, Composer verrouillé, le véritable HttpKernel Symfony et MockArraySessionStorage. Identifiants et secrets uniquement fictifs, jamais réutilisables. Aucune opération Linux, systemd ou privilégiée.
 
 Scripts prévus :
 - `apps/panel/tests/admin_identity_r2.php` : login sur SQL après `REVIEWED`, mot de passe correct/incorrect, identité inconnue, MFA facultative, protection de session après changement de mot de passe, refus de rejeu TOTP, code de secours unique, audit sans secrets ; base dédiée.

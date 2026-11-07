@@ -20,7 +20,8 @@ class R2HttpCandidateTests(unittest.TestCase):
 
     def test_workflow_no_release_or_prod(self):
         s = (ROOT / '.github/workflows/r2-symfony-http-candidate.yml').read_text()
-        self.assertIn('composer update', s)
+        self.assertIn('composer install', s)
+        self.assertNotIn('composer update', s)
         self.assertIn('composer audit', s)
         self.assertIn('forgepanel_test', s)
         self.assertNotIn('install apply', s)
@@ -35,7 +36,7 @@ class R2HttpCandidateTests(unittest.TestCase):
     def test_pair_metadata(self):
         en = (ROOT / 'DOCUMENTATION/en/13-tests-quality/r2-symfony-http-smoke.md').read_text()
         fr = (ROOT / 'DOCUMENTATION/fr/13-tests-quality/r2-symfony-http-smoke.md').read_text()
-        prefix = '<!-- forgepanel-doc id=FP-13-R2-HTTP-SMOKE revision=2 status=specified -->'
+        prefix = '<!-- forgepanel-doc id=FP-13-R2-HTTP-SMOKE revision=3 status=specified -->'
         self.assertTrue(en.startswith(prefix) and fr.startswith(prefix))
 
 

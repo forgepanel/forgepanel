@@ -4,6 +4,11 @@ One chronology, both languages. / Une chronologie, deux langues.
 
 ## Unreleased / Non publié
 
+### Dependency reproducibility / Reproductibilité des dépendances — R2 (2026-11-07)
+
+- **Versioned Composer candidate lock / Verrou Composer candidat versionné** — Recovered actual `composer.lock` from CI artifact #13578779233 after successful real Symfony HTTP run #42384859008. Source SHA-256 `b1f9e5104c2749acc4fabaddb6a24e094f309c0a38d81f8af8cc7dda20204b68`, 47 third-party packages, zero Composer plugins; versions now pinned in the **draft branch**, CI switches to `composer install` + `composer audit --locked`, without third-party vendor files or live credentials. Independent legal/security review, PHP/OS matrix and actual installer/hosting qualification remain **OPEN**. / Verrou issu de la CI avec empreinte vérifiée, 47 dépendances, zéro plugin, CI `composer install` et audit ; aucun dossier vendor ni secret. Les revues licences/sécurité, tests multi-OS/PHP et qualification d'installation restent **OUVERTS**. **Not a release / Pas une release.**
+
+
 ### Fix candidate / Correctif candidat — Symfony environment-only bootstrap (2026-11-07)
 
 - **Live CI diagnosis / Diagnostic CI réel** — First Symfony CI reached dependency installation but failed before kernel boot because the historical `Dotenv::bootEnv` required a missing local `.env`. Updated `apps/panel/config/bootstrap.php` to load `.env` only if present, preserve the protected `/etc/forgepanel/panel.env` override, and **fail closed on missing/short `APP_SECRET`**; added local static guard and paired R2 HTTP notes. **No completed Symfony boot or live HTTP security certification claimed until rerun on a new commit.** / La première CI Symfony a trouvé un défaut : `.env` local exigé malgré des variables d'environnement contrôlées. Chargement facultatif du fichier local, priorité du fichier système protégé et refus de démarrer sans `APP_SECRET` suffisant. **Aucune validation du noyau HTTP sans nouvelle CI réussie.**

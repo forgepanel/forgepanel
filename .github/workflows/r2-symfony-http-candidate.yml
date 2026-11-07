@@ -44,7 +44,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # pinned v7.0.1
         with:
           persist-credentials: false
-      - name: Prepare PHP runtime and Composer (ephemeral, not release locked)
+      - name: Prepare PHP runtime and Composer for pinned test lock
         run: |
           set -euo pipefail
           sudo apt-get update -qq
@@ -52,12 +52,13 @@ jobs:
           php -v
           composer --version
           php -m | grep -xi pdo_pgsql
-      - name: Resolve Symfony 7.4 test dependencies (not a release Composer lock)
+      - name: Install version-pinned Symfony dependencies (candidate lock, not GA)
         working-directory: apps/panel
         run: |
           set -euo pipefail
           composer validate --no-check-publish --no-interaction
-          composer update --prefer-dist --no-plugins --no-scripts --no-interaction --no-progress
+          test -s composer.lock
+          composer install --prefer-dist --no-plugins --no-scripts --no-interaction --no-progress
           composer audit --locked --no-interaction
       - name: Boot and inspect real Symfony kernel
         working-directory: apps/panel
@@ -71,13 +72,6 @@ jobs:
           set -euo pipefail
           php -l apps/panel/tests/http_r2.php
           php apps/panel/tests/http_r2.php
-      - name: Preserve generated dependency lock for independent review (not a release)
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # pinned v4
-        with:
-          name: forgepanel-r2-composer-lock-candidate
-          path: apps/panel/composer.lock
-          if-no-files-found: error
-          retention-days: 7
       - name: Evidence limitation
         run: |
-          echo 'CI HTTP kernel checks only. Composer dependency resolution was ephemeral; the lock must be reviewed and committed before a reproducible release. No permanent login, migration, browser, HTTPS server, installer or release certification.'
+          echo 'CI HTTP kernel checks only. Composer dependencies are pinned in Git but not release-certified; no permanent login, browser, HTTPS gateway, installer or production qualification.'

@@ -7,7 +7,7 @@ Modern • Secure • Modular • Scalable
 
 ## Contenu du dépôt
 
-La fondation documentaire et de gouvernance de ForgePanel. Le dépôt était vide lors de l'examen du 2026-11-05. Les archives sources Foundation v0.6/v0.7 fournies dans la conversation ont été examinées séparément ; elles **ne sont pas importées comme code applicatif** par ce lot documentaire. Leurs noms ne désignent pas des releases GitHub.
+ForgePanel a commencé par une fondation documentaire et de gouvernance (dépôt initialement vide le 05/11/2026). **Sur la branche distincte de PR R1**, un candidat de 66 fichiers sources Foundation v0.7 est présent avec empreintes SHA-256 et tests Go/PHP hors ligne ; il n'est **pas encore fusionné, juridiquement validé, qualifié, publié ni déployé**. Les ZIP historiques ne sont pas des releases GitHub. [Import R1 et preuves](DOCUMENTATION/fr/12-development/foundation-v07-source-import.md).
 
 **Ce dépôt ne contient pas encore d'installateur de production ni de panneau d'hébergement déployable.** Ne pas exécuter une URL d'installation inventée ni confondre un contrôle documentaire réussi avec une certification du produit.
 
@@ -25,6 +25,6 @@ Un plan de contrôle Symfony/PHP modulaire avec Twig/Symfony UX, un agent systè
 | Relecteur sécurité | [Politique de sécurité](SECURITY.md) |
 | Prochaine implémentation | [Relais et blocages](DOCUMENTATION/fr/18-contributing/handover.md) |
 
-Vérifier la documentation avec `python3 scripts/check_documentation.py`. Les tests applicatifs décrits pour les archives nécessitent leurs sources ; ils ne s'exécutent pas depuis ce dépôt documentaire seul.
+Vérifier la documentation avec `python3 scripts/check_documentation.py`. Sur la branche d'import, lancer aussi `python3 scripts/check_foundation_import.py`, puis `bash scripts/check.sh` pour les contrôles Go/PHP isolés. Ils ne valident ni Symfony/PostgreSQL réels ni installateur Linux.
 
 Workflow : `features/*` → `develop` → `stable` → `main` → `production`. Un nom de branche ne prouve aucun déploiement. Le choix de licence appartient au propriétaire ; ce lot n'accorde aucune nouvelle licence logicielle.

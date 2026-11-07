@@ -1,0 +1,14 @@
+/build/
+/apps/panel/vendor/
+/apps/panel/var/
+/apps/panel/.env.local
+/apps/panel/.env.*.local
+*.log
+*.pem
+*.key
+.DS_Store
+
+# Never commit local installation credentials.
+/apps/panel/.env
+/apps/panel/.env.*
+!/apps/panel/.env.example

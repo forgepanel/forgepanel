@@ -1,0 +1,5 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{% block title %}ForgePanel · Setup{% endblock %}</title><link rel="stylesheet" href="/assets/setup.css"></head>
+<body><main><header><p class="eyebrow">FORGEPANEL / FOUNDATION 0.7</p><h1>Server setup</h1><p>Modern · Secure · Modular · Scalable</p></header><aside class="notice">Development build. Saving configuration does not install or change server services.</aside>
+{% if error|default(null) %}<div class="error" role="alert">{{ error }}</div>{% endif %}
+{% block body %}{% endblock %}<footer>Administrator portal only · No Linux password is requested.</footer></main></body></html>

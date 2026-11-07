@@ -1,7 +1,12 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=26 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=27 status=documented -->
 # Status and dependency-ordered roadmap
 
 [Français](../../fr/00-project-control/status.md) · [Project control](README.md)
+
+
+## Current recovery update — 2026-11-07 (supersedes missing-archive statements)
+
+The exact Foundation v0.7 and optional-MFA v0.7.1 archives were recovered **outside Git** in the owner's private ChatGPT Library and independently checked against SHA-256 and native offline Go/PHP tests; see the [new bilingual R1 evidence](../12-development/foundation-source-recovery.md). **R1 APPLICATION SOURCE IMPORT REMAINS NOT COMPLETED**, because the public Core repository must not receive unreviewed original `.env`, and publication/license/security review and exact-commit tests remain open. Older paragraphs below stating the original ZIP is unavailable are retained as historical context and superseded **only as to availability**, not as to implementation or qualification. R2–R6 still require actual integration and tests.
 
 ## Evidence levels
 

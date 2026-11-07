@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-12 revision=4 status=documented -->
+<!-- forgepanel-doc id=FP-12 revision=5 status=documented -->
 # Development environment and conventions
 
 [Français](../../fr/12-development/README.md) · [Index](../README.md)
@@ -32,3 +32,8 @@ A new agent must inspect the current working tree and remote heads, reuse releva
 ## Verify the quarantine after copying — R1
 
 [Independent post-stage integrity audit](source-staging-audit.md): `scripts/audit_staged_archive.py` compares original ZIP, provenance receipt and every staged file **read-only**. It denies changes, links, extra/missing files, executable modes and forged inventories. This audit is not a license, PHP/Go test or publisher-trust approval, and never imports Core code automatically.
+
+
+## Verified recovery of historical Foundation archives (2026-11-07)
+
+The original SRC-03 v0.7 ZIP and separate optional-MFA v0.7.1 ZIP were **recovered in a private owner library**, verified against their recorded SHA-256 and retested with nonroot native Go/PHP check scripts. [Recovery evidence and publication blockers](foundation-source-recovery.md). Neither archive nor any application source was committed to this **public** repository. Code import, live Symfony/PostgreSQL and VM certification remain pending.

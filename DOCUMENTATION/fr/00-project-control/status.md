@@ -1,7 +1,12 @@
-<!-- forgepanel-doc id=FP-00-STATUS revision=26 status=documented -->
+<!-- forgepanel-doc id=FP-00-STATUS revision=27 status=documented -->
 # État et roadmap ordonnée par dépendances
 
 [English](../../en/00-project-control/status.md) · [Pilotage](README.md)
+
+
+## Actualisation R1 — 07/11/2026 (remplace les constats antérieurs « archive absente »)
+
+Les ZIP originaux Foundation v0.7 et v0.7.1 (MFA facultative) ont été récupérés **hors Git** dans la bibliothèque ChatGPT privée du propriétaire, avec empreintes SHA-256 et tests natifs Go/PHP exécutés hors ligne ; voir les [preuves R1 bilingues](../12-development/foundation-source-recovery.md). **L'IMPORT DES SOURCES APPLICATIVES R1 N'EST PAS EFFECTUÉ**, car le dépôt Core public ne doit pas recevoir un `.env` original non audité et les validations publication/licence/sécurité/tests sur commit restent ouvertes. Les anciennes mentions d'indisponibilité du ZIP figurant plus bas sont conservées comme historique et remplacées **uniquement sur le fait de la disponibilité** ; elles ne valent aucune validation de l'implémentation. R2–R6 restent à intégrer et tester.
 
 ## Niveaux de preuve
 

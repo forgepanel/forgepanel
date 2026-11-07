@@ -1,0 +1,59 @@
+{
+  "schema_version": "forgepanel.source-recovery/v1",
+  "date": "2026-11-07",
+  "status": "SOURCE_RECOVERED_NOT_IMPORTED",
+  "repository": "yyogas/forgepanel",
+  "repository_visibility_observed": "public",
+  "preserved_originals_location": "private_owner_chatgpt_library",
+  "original_archives_not_committed": true,
+  "source_archives": [
+    {
+      "id": "SRC-03",
+      "name": "ForgePanel_Foundation_v0.7_source.zip",
+      "sha256": "19479d5be9da9bb0ff9180f9b8819ea48baff785ccc3fef59deb2bb0894faf1a",
+      "regular_files": 92,
+      "crc": "PASS",
+      "source_path_dotenv_present": true,
+      "git_import_status": "NOT_IMPORTED"
+    },
+    {
+      "id": "SRC-06-OPTIONAL-MFA",
+      "name": "ForgePanel_Foundation_v0.7.1_optional_MFA_source.zip",
+      "sha256": "83fe6e77713f68d69595e74864aa1c33f75d88b6ba4199e03d5ef30a7060402c",
+      "regular_files": 93,
+      "crc": "PASS",
+      "source_path_dotenv_present": true,
+      "git_import_status": "NOT_IMPORTED"
+    },
+    {
+      "id": "SRC-04",
+      "name": "ForgePanel_Core_Foundation_v0.6_source.zip",
+      "sha256": "8f800471ab4c2823ae6151ac478fe821cf26f5718e1449ad8f02ab0d430983b0",
+      "regular_files": 14,
+      "crc": "PASS",
+      "git_import_status": "NOT_IMPORTED"
+    }
+  ],
+  "local_reexecution": {
+    "environment": "unprivileged Linux; Go 1.23.2; PHP 8.4.24; offline Go dependencies",
+    "commands": [
+      "bash scripts/check.sh"
+    ],
+    "v0_7_exit_code": 0,
+    "v0_7_1_exit_code": 0,
+    "tests_scope": "standalone Go/PHP/CLI only",
+    "installer_plan_executable": false
+  },
+  "not_verified": [
+    "Symfony HTTP",
+    "live PostgreSQL SQL/concurrency",
+    "actual OS/VM installation",
+    "tenant isolation",
+    "recovery/restore",
+    "independent security review",
+    "licensing and distribution review"
+  ],
+  "release_authorized": false,
+  "source_git_imported": false,
+  "public_secret_publication_allowed": false
+}

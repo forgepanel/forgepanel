@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ForgePanel install configuration v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "admin_port",
+    "user_port",
+    "admin_host",
+    "user_host",
+    "webstack",
+    "modules"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "admin_port": {
+      "type": "integer",
+      "minimum": 1024,
+      "maximum": 65535
+    },
+    "user_port": {
+      "type": "integer",
+      "minimum": 1024,
+      "maximum": 65535
+    },
+    "admin_host": {
+      "type": "string",
+      "maxLength": 253
+    },
+    "user_host": {
+      "type": "string",
+      "maxLength": 253
+    },
+    "webstack": {
+      "enum": [
+        "nginx_apache_fpm",
+        "nginx_fpm",
+        "apache_fpm",
+        "caddy_fpm",
+        "caddy_frankenphp"
+      ]
+    },
+    "modules": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "dns",
+          "mail",
+          "database",
+          "sftp",
+          "backup"
+        ]
+      }
+    }
+  },
+  "$comment": "Cross-field checks are enforced by Go and PHP: different ports; if user_host is nonempty, admin_host must be nonempty and different. Hostnames are ASCII and validated by service code. A valid configuration does not establish runtime availability."
+}

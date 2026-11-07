@@ -1,0 +1,416 @@
+{
+  "schema_version": "forgepanel.foundation-import/v1",
+  "source_id": "SRC-03",
+  "review_status": "DRAFT_IMPORT_CANDIDATE",
+  "original_archive": "ForgePanel_Foundation_v0.7_source.zip",
+  "original_sha256": "19479d5be9da9bb0ff9180f9b8819ea48baff785ccc3fef59deb2bb0894faf1a",
+  "original_regular_files": 92,
+  "selection_note": "66 source candidates: 64 exact SRC-03 byte copies plus adapted .gitignore and blank-secret .env.example. Original .env, historical changelog, historical docs and old test results excluded.",
+  "imported_files": [
+    {
+      "path": ".gitignore",
+      "bytes": 231,
+      "sha256": "1d9bd640890470446381906dfc18826f70968e4b7c7d89c3cc3415ac09e06a40",
+      "provenance": "adapted_template"
+    },
+    {
+      "path": "Makefile",
+      "bytes": 213,
+      "sha256": "4b6bb5acacd69a110e4547d539b032627991dcac2669b969451b0580334de069",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/.env.example",
+      "bytes": 210,
+      "sha256": "2debbbf54ac098005b72429cf077e56d525422b3dbbde0fd6f18933f9174b441",
+      "provenance": "adapted_template"
+    },
+    {
+      "path": "apps/panel/bin/console",
+      "bytes": 280,
+      "sha256": "0c88a54d398bc65cece00649f195280da13782650d38d62a35c4fa2f387c70b6",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/composer.json",
+      "bytes": 983,
+      "sha256": "845e2d8ab9fed737c34e9e8a67e5dd3fe24112641ae3516b27dc43b271de91bd",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/config/bootstrap.php",
+      "bytes": 472,
+      "sha256": "cde3c4a8f27973a5090400efdbe76b2a74a9c861dd5495674c7cb38b3bd9ff93",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/config/bundles.php",
+      "bytes": 228,
+      "sha256": "ab53ce5fc83cf8bbfb1a56cb7d4257f2e6634a93cc407d616822d84d1e423622",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/config/packages/framework.yaml",
+      "bytes": 504,
+      "sha256": "a74ce8eff999ca3e132f47ba2c0de5fc18603170889dfb7d916eac12afefc09c",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/config/packages/security.yaml",
+      "bytes": 318,
+      "sha256": "bd72708668b5bd54a01a2fd5e120eb25674fcd8796eb08543959bec71f30eba9",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/config/packages/twig.yaml",
+      "bytes": 84,
+      "sha256": "644fbfbbaf32150224637045fde1b8be59a36f19d16ee8d3c9f40272f7f52267",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/config/routes.yaml",
+      "bytes": 66,
+      "sha256": "7e224fa41b7903179b19701ae1ebad0c5c55e4c059abc0aca611c39bae23c236",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/config/services.yaml",
+      "bytes": 847,
+      "sha256": "d5bd6664ed5d8e64d05b945164448b691078770e57a15df349dff26a17201320",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/migrations/001_setup.sql",
+      "bytes": 1458,
+      "sha256": "cb6466642d797b73746f3d9b457acb4686c07b588fb8168c992744ddc6bfbb48",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/public/assets/setup.css",
+      "bytes": 1539,
+      "sha256": "9c3d23fdfc521c8722fa01ab9305c0d717c7efe62f02225c6ef84016b8153684",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/public/index.php",
+      "bytes": 368,
+      "sha256": "92b2f7b1486d33191d24d316743405cb1890437501d991ff6a1b21932f9200c9",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/src/Command/IssueTokenCommand.php",
+      "bytes": 799,
+      "sha256": "81faa7a527bf2618bf050bf2a150c33371d24d3b1ebdf826fc0ea029324e6ff4",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/src/Command/LocalConsoleGuard.php",
+      "bytes": 840,
+      "sha256": "20085ef3adaf4100cab4b32762f53b439ba68f15cccb4a6e2017405e465b3ea5",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/src/Command/ResumeCommand.php",
+      "bytes": 797,
+      "sha256": "0913b465a4889065e0553b48af014ad93856a5c7736ef5f9a2985f8d8c4079b1",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/src/Command/StatusCommand.php",
+      "bytes": 809,
+      "sha256": "9cd6921b6e66afc4895c9733441780f068476d3d14a9e516110e96afe2966cd5",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/src/Controller/SetupController.php",
+      "bytes": 7980,
+      "sha256": "80488d31bc3afb889032491e1b927ce484c0a886eaa2233a14609d4127832f06",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/src/Http/SetupBoundary.php",
+      "bytes": 2701,
+      "sha256": "4c69e25631be76892a8b96dded82b4188e39225aeb2b3876210a8b3bb6bccb72",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/src/Infrastructure/PdoFactory.php",
+      "bytes": 419,
+      "sha256": "b47f0858ef66191b38bad1af64eaf5679ed86d58ec2fe7bb4734a27269c9346c",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/src/Infrastructure/PdoSetupRepository.php",
+      "bytes": 1460,
+      "sha256": "36649e4a92b1646702319b4c4bce0c97df295943cee526fdc0de154f112a1331",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/src/Infrastructure/PdoSetupTransaction.php",
+      "bytes": 1880,
+      "sha256": "575e15a84539a128506d1f9e7496a3e97ebb630f1cffab8ebd0c51e1034f7d7a",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/src/Kernel.php",
+      "bytes": 309,
+      "sha256": "3270913e2d34c8e85ebdd089ffd392e5d77758055f79e740b0b761ba2cfd833c",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/src/Setup/Clock.php",
+      "bytes": 107,
+      "sha256": "c16b508202aa547f68dbdb16f55d00350415ce906230cc520872721262e39774",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/src/Setup/Configuration.php",
+      "bytes": 2414,
+      "sha256": "7439bd03f88cfdb0b653011128616121b3d2f5ebae99b8d7977006f5a16d2d85",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/src/Setup/SecretBox.php",
+      "bytes": 1306,
+      "sha256": "a7261d8cff31b56861683c67604d9a7fec51a564efe6cb4dda8cc0584fe8c8bb",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/src/Setup/SetupRepository.php",
+      "bytes": 314,
+      "sha256": "12a28af96758afbd80abc19c037280ac8f9e96245a6859a1f38c97c98296eef3",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/src/Setup/SetupService.php",
+      "bytes": 8272,
+      "sha256": "50a17d25222dff6b468f93a18340e2f3b5ccba832409f9d2b99ac87f12a66a3b",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/src/Setup/SetupTransaction.php",
+      "bytes": 912,
+      "sha256": "02926e66db1cae0b50f61ee57613fc3c06d6d7d8e0295487ea82b2f8e4935612",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/src/Setup/SystemClock.php",
+      "bytes": 150,
+      "sha256": "e50d675e069452854489934ed4fe45f2642b3ff8529885d47b65258d7470f599",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/src/Setup/Totp.php",
+      "bytes": 2459,
+      "sha256": "e358ddc7d12cdc2c9d32b3ade0a1f8ab844e19b35f754abd8ab1e6868bed9063",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/templates/base.html.twig",
+      "bytes": 727,
+      "sha256": "9f273170939c8daf38f11d6daeb1c8c3b69595b82b519bce92471223f2276629",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/templates/setup/configuration.html.twig",
+      "bytes": 1513,
+      "sha256": "24dec961243e12f7b5958bef02e0816df0bdc1b548e332fef737d975ed15e8c6",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/templates/setup/mfa.html.twig",
+      "bytes": 647,
+      "sha256": "9c4607ad39844afca018495292d91cbe5434f5995de3b8a11b8d2f2f27f2a24b",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/templates/setup/recovery.html.twig",
+      "bytes": 509,
+      "sha256": "21e136c2e2364e294e189278abcd1ce5607cbe5602130a0f4814e07d122161d8",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/templates/setup/register.html.twig",
+      "bytes": 905,
+      "sha256": "cf847ac51d1945ac046eb27127feee8997894820e31d9e03fb2afc0b308b083c",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/templates/setup/resume.html.twig",
+      "bytes": 513,
+      "sha256": "630d16790be3a3abfc0de892da2aae596210056724cac9f074087088bc97e177",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/templates/setup/review.html.twig",
+      "bytes": 494,
+      "sha256": "e5dc7ccb2efd01c44f8668513b3b61e16eaf8acec644b0b77ac0813d06366a49",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/tests/MemoryRepository.php",
+      "bytes": 1734,
+      "sha256": "4e4a38905ecb8fb99276534a52ce76e0dd5a4da789a4e5185bfdb2149cd84c78",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/tests/bootstrap.php",
+      "bytes": 321,
+      "sha256": "345ca2da62e8ccb244375a70af0ee6cfa6e4d01b810cf51f4b8e31ed1cd33dbf",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/tests/postgres.php",
+      "bytes": 3518,
+      "sha256": "4547ad392008dd9f76cd7cef34c2d5b2278e9f4e019259d74fd8bc2b84effcfc",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "apps/panel/tests/run.php",
+      "bytes": 9681,
+      "sha256": "61c134c0f45748530a173d6af36af691628489243568bd4961925476a01cff80",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "cmd/forgepanel/main.go",
+      "bytes": 7391,
+      "sha256": "3fd8f14b91c7ed88f84a87a4d176b632397f56c5345ea0ea564ed58203b880f9",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "cmd/forgepanel/main_test.go",
+      "bytes": 646,
+      "sha256": "ff61c9d218cdde91b967f6c56b87641f4ea8ec0276dd26e5aeca46fdee2e1a2e",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "contracts/install-config.schema.json",
+      "bytes": 1375,
+      "sha256": "78537d5ef6e8fbc62477532d527bb5b8781270d05d5f011a1e0eeaf63568d801",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "examples/install.json",
+      "bytes": 221,
+      "sha256": "dbccdae6f2920398932421d2b1478c76e7b75bbb290854169721402f1f35f689",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "go.mod",
+      "bytes": 38,
+      "sha256": "39688b48d244cd857a3ea647f2d000c18df00758c17a617e326fee3db02f63b5",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "internal/bootstrap/store.go",
+      "bytes": 8256,
+      "sha256": "4849f3fdaa9561ae110bbab2bca873da6e368fd075675ebc9952a5f8cebac793",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "internal/bootstrap/store_test.go",
+      "bytes": 4499,
+      "sha256": "8a037e715ef1f15e144c844f98cd87eb3694725c591b486078eb290541f0c7e3",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "internal/doctor/doctor.go",
+      "bytes": 3818,
+      "sha256": "a9e9ed491238ea2220ea8a541ea5c84d9ed870d3bc0852f94f976ec2134ca808",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "internal/doctor/doctor_test.go",
+      "bytes": 811,
+      "sha256": "bf17b221bc82ac99d11a6095f8eaf1b89cd7b8b32045437bdc184fab98ada0a1",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "internal/installer/plan.go",
+      "bytes": 7587,
+      "sha256": "40fab5c2a4b863b8eb9c784588218e1651a0624e53dadc86e968621385f8bf02",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "internal/installer/plan_test.go",
+      "bytes": 2921,
+      "sha256": "02d65ae9f4eaa60bd4efa07c888f30b5ab007efaf08e3c717f01b0055be9741a",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "internal/panelbridge/bridge.go",
+      "bytes": 2983,
+      "sha256": "41f94f5640d515a2370d68764d5044178d9243473a65c50c4142c5ffeac05fa7",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "internal/panelbridge/bridge_test.go",
+      "bytes": 775,
+      "sha256": "48282a9a010140613d2f275f9e5fb9d4cdedc43a1ea4cc7a4df19c7237e464d8",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "internal/releases/verify.go",
+      "bytes": 2183,
+      "sha256": "a4bea2ebcedea1f932117e0441ee3878d836914178c2b36e041a5cd754f0197f",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "internal/releases/verify_test.go",
+      "bytes": 1713,
+      "sha256": "6862b80bd803829e79e5d05755a9e2ec973f92b639f364bc2a8b11110095bdd4",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "scripts/check.sh",
+      "bytes": 493,
+      "sha256": "ea0783f76ed3e52f023dfd188845eb6e2baec80777274549194397473055c64f",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "tests/fixtures/os-release/alma10",
+      "bytes": 31,
+      "sha256": "7511218f85a64226fb9dcb96e9d2c3ea149da6f57d6637c47b5de19fc2e37539",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "tests/fixtures/os-release/alma9",
+      "bytes": 30,
+      "sha256": "d27c73281459bb7ed45b418b80bee51093a1f15be29d0fbec93e3fc34112ac0e",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "tests/fixtures/os-release/debian12",
+      "bytes": 26,
+      "sha256": "9b448eceae8dce8a671055278d10daf29118420837e06a3854e389c02df0caae",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "tests/fixtures/os-release/debian13",
+      "bytes": 26,
+      "sha256": "5603c6d8139c7f4ed75fb3fc91a83a72936922de37d1b189b4b901453bd9be26",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "tests/fixtures/os-release/ubuntu2404",
+      "bytes": 29,
+      "sha256": "1c2b79b5ce788da36f752cb418c8424ac4a7a7d5ead94e684d46562e4ee998fc",
+      "provenance": "exact_src03"
+    },
+    {
+      "path": "tests/fixtures/os-release/ubuntu2604",
+      "bytes": 29,
+      "sha256": "9ec9486ef515679e3134351f8b4e70d78f55864e65d65574d1420cdea9af855f",
+      "provenance": "exact_src03"
+    }
+  ],
+  "optional_mfa_v071_patch_applied": false,
+  "runtime_certified": false,
+  "installer_apply_allowed": false,
+  "public_release_approved": false,
+  "independent_security_review_complete": false,
+  "legal_license_review_required": true,
+  "real_symfony_http_tests": "NOT_RUN",
+  "real_postgresql_tests": "NOT_RUN",
+  "os_vm_qualification": "NOT_RUN"
+}

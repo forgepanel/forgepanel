@@ -1,0 +1,9 @@
+security:
+    # This release implements setup capabilities, not the permanent admin login.
+    # PUBLIC_ACCESS does NOT bypass the capability checks in SetupService.
+    firewalls:
+        setup:
+            pattern: ^/setup
+            lazy: true
+    access_control:
+        - { path: ^/setup, roles: PUBLIC_ACCESS }

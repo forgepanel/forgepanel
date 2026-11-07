@@ -1,0 +1,2 @@
+{% extends 'base.html.twig' %}{% block body %}<h2>Resume setup</h2><p>From a privileged terminal, run <code>sudo forgepanel setup resume --regenerate</code>. This replaces the previous setup authorization without creating another administrator.</p>
+<form method="post"><input type="hidden" name="_token" value="{{ csrf_token('setup-resume') }}"><label>Recovery authorization<input type="password" name="resume_token" maxlength="43" required autocomplete="off"></label><button>Resume</button></form>{% endblock %}

@@ -1,0 +1,41 @@
+name: Foundation R1 native verification
+on:
+  pull_request:
+    branches: [develop, stable, main, production]
+    paths:
+      - 'cmd/**'
+      - 'internal/**'
+      - 'apps/panel/**'
+      - 'contracts/**'
+      - 'examples/**'
+      - 'go.mod'
+      - 'Makefile'
+      - 'scripts/check.sh'
+      - 'scripts/check_foundation_import.py'
+      - 'tests/source_intake/test_foundation_import_manifest.py'
+      - 'DOCUMENTATION/evidence/foundation-v07-import-candidate.json'
+      - '.github/workflows/foundation-r1-native.yml'
+permissions:
+  contents: read
+jobs:
+  source-native:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout reviewed source revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # pinned v7.0.1
+        with:
+          persist-credentials: false
+      - name: Check source provenance and no-apply boundaries
+        run: |
+          python3 scripts/check_foundation_import.py
+          python3 -m unittest discover -s tests/source_intake -p 'test_*.py' -v
+      - name: Standalone Go/PHP checks (not real HTTP/SQL/VM certification)
+        env:
+          GOTOOLCHAIN: local
+          GOPROXY: 'off'
+          GOSUMDB: 'off'
+        run: |
+          go version
+          php -v
+          bash scripts/check.sh

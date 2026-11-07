@@ -1,0 +1,24 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+    ForgePanel\:
+        resource: '../src/'
+        exclude:
+            - '../src/Kernel.php'
+            - '../src/Setup/SetupTransaction.php'
+            - '../src/Infrastructure/PdoSetupTransaction.php'
+    PDO:
+        factory: ['ForgePanel\Infrastructure\PdoFactory', 'create']
+        arguments:
+            - '%env(FORGE_DB_DSN)%'
+            - '%env(FORGE_DB_USER)%'
+            - '%env(FORGE_DB_PASSWORD)%'
+    ForgePanel\Setup\SetupRepository: '@ForgePanel\Infrastructure\PdoSetupRepository'
+    ForgePanel\Setup\Clock: '@ForgePanel\Setup\SystemClock'
+    ForgePanel\Setup\SecretBox:
+        arguments:
+            $keyBase64: '%env(FORGE_ENCRYPTION_KEY)%'
+    ForgePanel\Http\SetupBoundary:
+        arguments:
+            $panelOrigin: '%env(PANEL_ORIGIN)%'

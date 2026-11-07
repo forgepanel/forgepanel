@@ -1,0 +1,8 @@
+#!/usr/bin/env php
+<?php
+declare(strict_types=1);
+use ForgePanel\Kernel;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+require dirname(__DIR__).'/vendor/autoload.php';
+require dirname(__DIR__).'/config/bootstrap.php';
+(new Application(new Kernel('prod',false)))->run();

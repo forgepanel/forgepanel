@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}{% block body %}<h2>3. Plan server configuration</h2><p>These values become a reviewed draft. No services will be installed.</p>
+<form method="post"><input type="hidden" name="_token" value="{{ csrf_token('setup-configuration') }}"><input type="hidden" name="revision" value="{{ revision }}">
+<label>Administrator hostname<input name="admin_host" value="{{ config.admin_host }}" placeholder="forge.example.com"></label>
+<label>User hostname<input name="user_host" value="{{ config.user_host }}" placeholder="panel.example.com"></label><p>Distinct hostnames are required before opening a user portal.</p>
+<label>Administrator direct port<input type="number" name="admin_port" value="{{ config.admin_port }}" min="1024" max="65535" required></label>
+<label>User direct port<input type="number" name="user_port" value="{{ config.user_port }}" min="1024" max="65535" required></label>
+<label>Requested webstack<select name="webstack">{% for profile in profiles %}<option value="{{ profile }}" {% if profile==config.webstack %}selected{% endif %}>{{ profile }}</option>{% endfor %}</select></label>
+<fieldset><legend>Native optional services</legend>{% for module in modules %}<label class="checkbox"><input type="checkbox" name="modules[]" value="{{ module }}" {% if module in config.modules %}checked{% endif %}>{{ module }}</label>{% endfor %}</fieldset><p>Third-party plugin execution is not available in this release.</p><button>Validate and save draft</button></form>{% endblock %}

@@ -9,6 +9,7 @@ services:
             - '../src/Setup/SetupTransaction.php'
             - '../src/Infrastructure/PdoSetupTransaction.php'
     PDO:
+        class: PDO
         factory: ['ForgePanel\Infrastructure\PdoFactory', 'create']
         arguments:
             - '%env(FORGE_DB_DSN)%'

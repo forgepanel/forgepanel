@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=17 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=18 status=documented -->
 # Installation, Git promotion and releases
 
 [Français](../../fr/14-devops-releases/README.md) · [Index](../README.md)
@@ -88,3 +88,8 @@ After [KVM host observation](kvm-host-probe.md) and [SHA-256 admission](kvm-imag
 ## R3 — Candidate Linux service identity and privilege matrix
 
 [Linux identity specification](linux-service-identities-r3.md) defines `LINUX-FP-0001..0012` for **8 logical roles**: Symfony HTTP, private bridge, nonroot Go, disabled privileged handler, DB migrator/runtime, hosted site and observer. [Candidate register](../../evidence/candidate-r3-linux-service-boundaries-v1.json) creates **no Unix UID, group, socket or systemd unit**. `DynamicUser`, socket path, service accounts, LSM profiles and DB grants need real VM qualification. [12 Linux tests planned](../13-tests-quality/r3-physical-execution-gates.md).
+
+
+## Proposed v1–v3 release lifecycle
+
+[SemVer-ordered Dev→Pre-Alpha→Alpha→Preview→Beta→RC→GA gates](release-lifecycle-plan.md) and the [version matrix](../../../RELEASES/VERSION_MATRIX.md) are **planning proposals, not published tags**. Scope freezes and independent module qualifications cannot replace genuine R1–R4 hosting/backup and security gates.

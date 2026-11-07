@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-14 revision=17 status=documented -->
+<!-- forgepanel-doc id=FP-14 revision=18 status=documented -->
 # Installation, promotion Git et releases
 
 [English](../../en/14-devops-releases/README.md) · [Index](../README.md)
@@ -88,3 +88,8 @@ Le [cycle d'installation R3](installer-lifecycle-r3.md) détaille `INST-FP-0001.
 ## R3 — Matrice des identités Linux et privilèges candidats
 
 La [fiche des identités de services](linux-service-identities-r3.md) définit `LINUX-FP-0001..0012` pour **8 responsabilités logiques** : Symfony HTTP, pont IPC, Go non-root, handler privilégié bloqué, migrateur, runtime SQL, site hébergé et observateur. Le [registre candidat](../../evidence/candidate-r3-linux-service-boundaries-v1.json) n'installe **aucun UID, groupe, socket ou unité systemd**. `DynamicUser`, chemin socket, comptes, profils AppArmor/SELinux et droits DB restent à qualifier en VM. [12 tests Linux prévus](../13-tests-quality/r3-physical-execution-gates.md).
+
+
+## Cycle de release proposé V1 à V3
+
+Les [étapes Dev→Pre-Alpha→Alpha→Preview→Beta→RC→GA](release-lifecycle-plan.md) et la [matrice des versions](../../../RELEASES/VERSION_MATRIX.md) restent **des propositions, pas des tags publiés**. Les versions modulaires ne remplacent pas les validations réelles R1–R4 ni les exigences sécurité/sauvegarde.

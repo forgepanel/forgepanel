@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00 revision=14 status=documented -->
+<!-- forgepanel-doc id=FP-00 revision=15 status=documented -->
 # Project control
 
 [Français](../../fr/00-project-control/README.md) · [Index](../README.md)
@@ -30,7 +30,7 @@ A task identifies scope and affected components, specifies acceptance criteria, 
 
 ## New Q161–Q170 decisions
 
-[Q161–Q170 decisions](decisions-q161-q170.md) · [Qualification and recovery contracts](../02-architecture/evidence-and-recovery-q161-q170.md) · [Planned MVP tests](../13-tests-quality/mvp-gates-q161-q170.md). **Q1–Q160 remain effective; Q171+ are open**, no application code or certified OS is implied.
+[Q161–Q170 decisions](decisions-q161-q170.md) · [Qualification and recovery contracts](../02-architecture/evidence-and-recovery-q161-q170.md) · [Planned MVP tests](../13-tests-quality/mvp-gates-q161-q170.md). **Q1–Q160 remain effective; Q171–Q220 owner-approved on draft PR #53 (not merged); Q221+ remain open**, no application code or certified OS is implied.
 
 ## Documentation readiness and traceability
 
@@ -39,3 +39,8 @@ A task identifies scope and affected components, specifies acceptance criteria, 
 ## R3 documentary IPC and installer contracts
 
 [Typed IPC](../08-api-contracts/symfony-go-ipc-r3.md), [secure installer lifecycle](../14-devops-releases/installer-lifecycle-r3.md) and [24 planned tests](../13-tests-quality/r3-ipc-installer-gates.md) further detail `DOC-GAP-005/006` without closing their upstream prerequisites. The [seven candidate typed operations](../../evidence/typed-agent-operations-v1.json) prohibit generic root commands and keep **two privileged actions blocked**. JSON schemas describe candidates, not endpoints.
+
+
+## Proposed progressive modular delivery (v1.x–v3.x)
+
+[ForgePanel-specific modular strategy](modular-development-strategy.md) scopes a **usable v1.0 Core** and defers nonessential modules to independent release trains. It preserves R1→R6, Q1–Q220 product directions and a read-only Coming Soon catalog. **Proposed feature PR only**; no implementation, release or VM certification is claimed.

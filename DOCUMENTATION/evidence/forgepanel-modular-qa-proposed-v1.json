@@ -1,0 +1,290 @@
+{
+  "schema_version": "forgepanel.module-qa/proposal-v1",
+  "status": "PLANNED_NOT_EXECUTED",
+  "source_documents": [
+    "MODULAR_DEVELOPMENT_STRATEGY.md",
+    "STRATEGIE_DEVELOPPEMENT_MODULAIRE.md"
+  ],
+  "tests": [
+    {
+      "id": "MOD-QA-001",
+      "description": "No optional packages: Core bootstrap/login, existing PHP/HTTPS sites and local recovery continue",
+      "gate": "R4",
+      "type": "VM_EOL",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-002",
+      "description": "Hub offline or deleted: Core login, sites, backups and updates remain locally manageable",
+      "gate": "R4/R5",
+      "type": "VM_EOL",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-003",
+      "description": "ONE-CLICK INSTALL absent: existing PHP site functions normally",
+      "gate": "R4",
+      "type": "VM_EOL",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-004",
+      "description": "Docker/Podman absent: native free one-click path does not load container runtime",
+      "gate": "R5",
+      "type": "VM_EOL",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-005",
+      "description": "Optional module fails to boot: no request or scheduler crash in Core",
+      "gate": "R4",
+      "type": "VM_EOL",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-006",
+      "description": "No unverified module gets activated from a catalog card",
+      "gate": "R4",
+      "type": "E2E_AUTHZ",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-007",
+      "description": "Planned/developing modules never expose executable routes, workers, jobs, migrations or root handlers",
+      "gate": "R4",
+      "type": "E2E_AUTHZ",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-008",
+      "description": "Capability resolver detects cycles, conflicts, missing dependencies, major API mismatches",
+      "gate": "R5",
+      "type": "INTEGRATION",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-009",
+      "description": "Feature flags checked at server-side action boundary, not only UI",
+      "gate": "R5",
+      "type": "E2E_AUTHZ",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-010",
+      "description": "No activation without host plan quota, role, compatibility and signed artifact",
+      "gate": "R5",
+      "type": "INTEGRATION",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-011",
+      "description": "Tenant A cannot inspect/configure/activate tenant B modules",
+      "gate": "R4",
+      "type": "E2E_AUTHZ",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-012",
+      "description": "Optional module disable retains customer data and does not undo Core migrations",
+      "gate": "R5",
+      "type": "INTEGRATION",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-013",
+      "description": "Module-specific upgrade failure restores service or declares controlled recovery",
+      "gate": "R5",
+      "type": "VM_EOL",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-014",
+      "description": "Core update with older/incompatible plugin fails closed without deadlocking startup",
+      "gate": "R5",
+      "type": "INTEGRATION",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-015",
+      "description": "Catalog source outage does not block website serving, local auth or backup restore",
+      "gate": "R4",
+      "type": "VM_EOL",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-016",
+      "description": "Unqualified recipe is not installable even if its card is shown",
+      "gate": "R5",
+      "type": "E2E_AUTHZ",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-017",
+      "description": "Signed and approved native recipe cannot invoke container engine by fallback",
+      "gate": "R5",
+      "type": "INTEGRATION",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-018",
+      "description": "Container app cannot silently convert to native or mount root/engine socket",
+      "gate": "R5",
+      "type": "VM_EOL",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-019",
+      "description": "Module UI status shows truthful SPECIFIED/DEVELOPING/VERIFIED evidence labels",
+      "gate": "R4",
+      "type": "UI_A11Y",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-020",
+      "description": "Admin preview visibility does not grant install or RBAC permissions",
+      "gate": "R4",
+      "type": "E2E_AUTHZ",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-021",
+      "description": "FR/EN module descriptions and fallback rendered without XSS or broken empty routes",
+      "gate": "R4",
+      "type": "UI_A11Y",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-022",
+      "description": "Unsupported OS/WebStack is not offered as certified regardless of roadmap target",
+      "gate": "R3/R4",
+      "type": "VM_EOL",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-023",
+      "description": "Effective user actions remain audited, secrets redacted, MFA optional",
+      "gate": "R4",
+      "type": "E2E_AUTHZ",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-024",
+      "description": "Backup and actual isolated restore succeed for all shipped essential data",
+      "gate": "R4",
+      "type": "VM_EOL",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-025",
+      "description": "One critical P0/P1 issue blocks GA even if optional work is postponed",
+      "gate": "RC/GA",
+      "type": "RELEASE",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-026",
+      "description": "RC freeze excludes unfinished optional features from signed artifact",
+      "gate": "RC",
+      "type": "RELEASE",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-027",
+      "description": "Signed package provenance, digest and exact commit match release manifest",
+      "gate": "RC/GA",
+      "type": "RELEASE",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-028",
+      "description": "Incremental patch releases backport security on all declared maintained branches",
+      "gate": "GA+",
+      "type": "RELEASE",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-029",
+      "description": "Hub premium failure never denies AGPL free Core or deletes existing sites",
+      "gate": "R6",
+      "type": "E2E_AUTHZ",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-030",
+      "description": "Private Hub release and keys never bundled into public Core artifact",
+      "gate": "R6",
+      "type": "SUPPLY_CHAIN",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-031",
+      "description": "No simulated timestamp, scripted output or documentation CI claims operating system certification",
+      "gate": "ALL",
+      "type": "GOVERNANCE",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-032",
+      "description": "Core tested live via Symfony HTTP + PG concurrent transactions before R3 install authority",
+      "gate": "R2",
+      "type": "INTEGRATION",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-033",
+      "description": "First OS/WebStack chosen only after comparative VM, security, recovery evidence",
+      "gate": "R3",
+      "type": "VM_EOL",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-034",
+      "description": "Public beta remains blocked until licensing/CLA/security channels and privacy readiness complete",
+      "gate": "BETA_PUBLIC",
+      "type": "GOVERNANCE",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    },
+    {
+      "id": "MOD-QA-035",
+      "description": "PR required for features→develop and signed tag on main, production branch does not confer deploy status",
+      "gate": "ALL",
+      "type": "GOVERNANCE",
+      "execution_status": "NOT_RUN",
+      "evidence": null
+    }
+  ]
+}

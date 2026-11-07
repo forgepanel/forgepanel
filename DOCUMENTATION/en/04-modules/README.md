@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-04 revision=6 status=documented -->
+<!-- forgepanel-doc id=FP-04 revision=7 status=documented -->
 # Native module catalog
 
 [Français](../../fr/04-modules/README.md) · [Index](../README.md)
@@ -44,3 +44,8 @@ A module declares ID, version, supported core contract, dependencies, capability
 Failure must identify the owning resource and pending compensation; other modules cannot assume success from a queued request. Configuration should be generated and validated through the core, not by arbitrary shell hooks. Tests include denied cross-tenant operations, missing dependencies, upgrade failure and recovery.
 
 The detailed [component records](components.md) cover existing prototype units and the required record format. No runtime module manifest/parser or registry is implemented in the inspected archive. A future module is accepted only with its contracts, migrations, tests, monitoring and uninstall behavior documented in both languages.
+
+
+## Proposed progressive release policy
+
+[Module status, safe activation and independent release trains](progressive-release-policy.md) describe the candidate 40-entry registry (15 essential Core capabilities and 25 optional components). Planned/developing modules are **information only**, with no executable route or host privilege. See the [Core strategy](../00-project-control/modular-development-strategy.md).

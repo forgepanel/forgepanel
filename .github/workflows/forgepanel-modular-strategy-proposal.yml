@@ -1,0 +1,22 @@
+# Candidate documentation-only CI: add after owner-authorized feature PR.
+name: ForgePanel modular strategy static checks
+on:
+  pull_request:
+    branches: [develop, stable, main, production]
+  push:
+    branches: [develop]
+permissions:
+  contents: read
+jobs:
+  metadata-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Checkout reviewed commit
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Check strategy consistency (NOT VM or release certification)
+        run: python3 scripts/check_forgepanel_modular_strategy.py
+      - name: Exercise negative checks
+        run: python3 -m unittest discover -s tests/documentation -p 'test_forgepanel_modular_strategy.py' -v

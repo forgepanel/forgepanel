@@ -28,3 +28,7 @@ A modular Symfony/PHP control plane with Twig/Symfony UX, a Go system agent, Pos
 Run documentation checks with `python3 scripts/check_documentation.py`. On the source-import branch, additionally run `python3 scripts/check_foundation_import.py`, then `bash scripts/check.sh` for isolated Go/PHP checks. They do not test real Symfony/PostgreSQL or a Linux installer.
 
 Workflow: `features/*` → `develop` → `stable` → `main` → `production`. A branch name is not evidence of deployment. License selection remains an owner decision; this change grants no new software license.
+
+### Stacked optional-MFA source patch (draft)
+
+The [Foundation v0.7.1 optional-administrator-MFA patch](DOCUMENTATION/en/12-development/foundation-v071-optional-mfa.md) is separately reviewable. It introduces an explicit skip, a PostgreSQL migration and further offline tests, but is **not yet merged or qualified in real Symfony/PostgreSQL**. Production apply remains blocked.

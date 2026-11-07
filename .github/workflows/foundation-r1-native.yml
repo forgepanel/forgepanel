@@ -15,6 +15,8 @@ on:
       - 'tests/source_intake/test_foundation_import_manifest.py'
       - 'DOCUMENTATION/evidence/foundation-v07-import-candidate.json'
       - '.github/workflows/foundation-r1-native.yml'
+  push:
+    branches: [features/r1-optional-admin-mfa-v071]
 permissions:
   contents: read
 jobs:

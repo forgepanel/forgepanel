@@ -52,6 +52,17 @@ final class SetupService {
             return ['email'=>$a['email'],'secret'=>$this->box->decrypt($a['mfa_secret'])];
         });
     }
+    /** Explicit opt-out from the initial MFA offer; requires current setup capability. */
+    public function skipMfa(string $grant): void {
+        $this->repo->transaction(function(SetupTransaction $tx)use($grant):void {
+            $this->authorize($tx,$grant);
+            $s=&$tx->state;
+            if ($s['phase']!=='MFA_PENDING') { throw new \DomainException('Initial MFA choice is already completed.'); }
+            $tx->disableMfa($s['admin_id']);
+            $s['phase']='CONFIGURING'; $s['mfa_attempts']=0;
+            $tx->audit('setup.mfa_skipped',['admin_id'=>$s['admin_id']]);
+        });
+    }
     public function confirmMfa(string $grant,string $code): array {
         return $this->repo->transaction(function(SetupTransaction $tx)use($grant,$code):array {
             $this->authorize($tx,$grant); $s=&$tx->state;
@@ -98,7 +109,7 @@ final class SetupService {
         $data=Configuration::validate($data);
         return $this->repo->transaction(function(SetupTransaction $tx)use($grant,$data,$expectedRevision):array {
             $this->authorize($tx,$grant); $s=&$tx->state;
-            if (!in_array($s['phase'],['CONFIGURING','REVIEWED'],true) || !$tx->admin($s['admin_id'])['mfa_enabled']) { throw new \DomainException('MFA must be enrolled before configuring the server.'); }
+            if (!in_array($s['phase'],['CONFIGURING','REVIEWED'],true)) { throw new \DomainException('Choose an MFA option before configuring the server.'); }
             if ($s['config_revision']!==$expectedRevision) { throw new \DomainException('Configuration revision conflict; reload the form.'); }
             $s['config']=$data; $s['config_revision']++; $s['phase']='REVIEWED';
             $tx->audit('setup.configuration_saved',['revision'=>$s['config_revision']]);

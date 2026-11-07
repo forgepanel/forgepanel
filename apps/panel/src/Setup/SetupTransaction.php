@@ -13,5 +13,6 @@ abstract class SetupTransaction {
     abstract public function createAdmin(string $id, string $email, string $hash, string $encryptedSecret): void;
     abstract public function admin(string $id): array;
     abstract public function enableMfa(string $id, int $counter, array $recoveryHashes): void;
+    abstract public function disableMfa(string $id): void;
     abstract public function audit(string $event, array $metadata=[]): void;
 }

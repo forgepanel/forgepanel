@@ -72,6 +72,11 @@ jobs:
           set -euo pipefail
           php -l apps/panel/tests/http_r2.php
           php apps/panel/tests/http_r2.php
+      - name: Check offline R2 safety regressions and bilingual documentation
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tests/r2 -p 'test_*.py' -v
+          python3 scripts/check_documentation.py
       - name: Evidence limitation
         run: |
           echo 'CI HTTP kernel checks only. Composer dependencies are pinned in Git but not release-certified; no permanent login, browser, HTTPS gateway, installer or production qualification.'

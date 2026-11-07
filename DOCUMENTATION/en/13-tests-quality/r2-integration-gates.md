@@ -1,9 +1,20 @@
-<!-- forgepanel-doc id=FP-13-R2-GATES revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-13-R2-GATES revision=2 status=specified -->
 # R2 — Symfony, identity and PostgreSQL integration test matrix
 
 [Français](../../fr/13-tests-quality/r2-integration-gates.md) · [Quality](README.md) · [Identity](../03-core/bootstrap-identity-r2.md) · [Transactions](../09-database/setup-transaction-r2.md)
 
-**Status: all 20 cases `PLANNED`; 0 real HTTP/SQL integration tests verified in this lot.** The historical in-memory prototype tests and green documentation CI cannot demonstrate a booted Symfony stack, connected PostgreSQL or real recovery. Original SRC-03 Foundation archive remains unavailable. This is a **candidate test plan**, not an implementation verdict. Q1–Q170 preserved and admin MFA optional.
+**Status: PARTIAL R2 EVIDENCE — 20 full acceptance cases remain `PLANNED`.** Real disposable PostgreSQL tests and a Symfony HttpKernel smoke suite have now passed on draft feature branches; neither covers every positive/negative scenario in the 20-case matrix. The genuine SRC-03 archive was recovered, but its source import (#59) and the optional-admin-MFA patch (#60) remain unmerged and under review. This matrix retains its full acceptance requirements rather than silently upgrading incomplete cases to PASS. Q1–Q220 owner directions, optional admin MFA and Hub independence remain in force.
+
+## Verified partial evidence from draft branches — 2026-11-07
+
+| Subset | Named Git commit and successful CI | What passed | What is *not* established |
+|---|---|---|---|
+| PostgreSQL / PDO | [`66447a0ef88e`](https://github.com/yyogas/forgepanel/commit/66447a0ef88e323411ad14edfa9b80cd550c955f), [CI #42383929498](https://github.com/yyogas/forgepanel/actions/runs/42383929498), [draft PR #61](https://github.com/yyogas/forgepanel/pull/61) | PostgreSQL **16.15**, PHP **8.3.6**, migrations `001_setup.sql` + `002_optional_admin_mfa.sql` in an ephemeral `*_test` database; **23 live assertions**, row-lock timeout, single-admin constraint, rollback, MFA skip and state/replay checks | Full concurrent competing HTTP registrations, separate DB roles, crash/restart and restore tests |
+| Symfony HttpKernel | [`d34dba52405c`](https://github.com/yyogas/forgepanel/commit/d34dba52405c7cb7b450da989c3e8977ae8e0332), [CI #42385350165](https://github.com/yyogas/forgepanel/actions/runs/42385350165), [draft PR #62](https://github.com/yyogas/forgepanel/pull/62) | Symfony **7.4** kernel/container/routes, locked **47-package** Composer dependency install, `composer audit --locked` (no advisories reported), **12 HTTP-kernel assertions** checking HTTPS origin, Host/port, methods, Origin, request size, absent CSRF, security headers | Real HTTPS gateway, full browser sessions, positive authenticated CSRF workflow, permanent login, recovery or deployable installation |
+
+**Evidence boundaries:** these successful subsets are **VERIFIED on the named draft commits**, not `R2 COMPLETE`, not release/production or a certification of supported OS/WebStack combinations. The absent-CSRF check observed a denial (HTTP 401 or 403) pending permanent-authentication semantics. A passing static check, CI upload or Composer audit is not an independent security review. Both PRs are stacked behind source PR #59 and optional-MFA PR #60. [R2 PostgreSQL details](r2-postgres-execution.md) · [Symfony HTTP details](r2-symfony-http-smoke.md).
+
+
 
 ## Campaign A — Authentication and HTTP security
 
@@ -45,7 +56,7 @@ An actual test report must include **commit SHA, OS/PHP/Symfony/PostgreSQL versi
 
 ## Review and dependency gates
 
-1. **R1 blocked:** recover genuine SRC-03 archive (issue #2), provenance and optional-MFA fix of historical mandatory path.
+1. **R1 source import remains unmerged:** the genuine SRC-03 archive has been recovered and source is in [draft PR #59](https://github.com/yyogas/forgepanel/pull/59), with the optional-admin-MFA patch in [draft PR #60](https://github.com/yyogas/forgepanel/pull/60). Independent security/licensing review is still required.
 2. **R2 candidates:** ratify schemas/contracts, then boot Symfony + PostgreSQL with local identity and optional MFA.
 3. **Execute all 20 cases**, including rollback, concurrency and uncertain commit, and attach exact commit/OS evidence.
 4. Database, Security and API/IPC own schema/recovery/endpoint changes.

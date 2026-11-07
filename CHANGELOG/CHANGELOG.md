@@ -4,6 +4,10 @@ One chronology, both languages. / Une chronologie, deux langues.
 
 ## Unreleased / Non publié
 
+### Verified subsets / Sous-ensembles vérifiés — R2 acceptance matrix (2026-11-07)
+
+- **Partial SQL/HTTP evidence / Preuves SQL/HTTP partielles** — Updated the paired 20-case R2 acceptance matrix to name exact PostgreSQL and Symfony commits/workflows while retaining all full cases as **PLANNED** until complete positive/negative qualification. Added matrix drift assertions and a stacked-PR CI step running R2 offline guards plus the bilingual documentation checker. **No full R2 readiness, permanent login, HTTP browser/HTTPS gateway, installation or VM certification.** / Matrice R2 FR/EN actualisée avec preuves CI sur commits nommés, 20 cas complets restant **PLANNED** ; tests anti-régression et vérification documentaire ajoutés à la CI. **Aucun statut R2 terminé, login permanent, navigateur/passerelle HTTPS, installateur ou VM qualifiés.**
+
 ### Dependency reproducibility / Reproductibilité des dépendances — R2 (2026-11-07)
 
 - **Versioned Composer candidate lock / Verrou Composer candidat versionné** — Recovered actual `composer.lock` from CI artifact #13578779233 after successful real Symfony HTTP run #42384859008. Source SHA-256 `b1f9e5104c2749acc4fabaddb6a24e094f309c0a38d81f8af8cc7dda20204b68`, 47 third-party packages, zero Composer plugins; versions now pinned in the **draft branch**, CI switches to `composer install` + `composer audit --locked`, without third-party vendor files or live credentials. Independent legal/security review, PHP/OS matrix and actual installer/hosting qualification remain **OPEN**. / Verrou issu de la CI avec empreinte vérifiée, 47 dépendances, zéro plugin, CI `composer install` et audit ; aucun dossier vendor ni secret. Les revues licences/sécurité, tests multi-OS/PHP et qualification d'installation restent **OUVERTS**. **Not a release / Pas une release.**

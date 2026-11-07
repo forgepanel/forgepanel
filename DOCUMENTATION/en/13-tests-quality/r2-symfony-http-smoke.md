@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-13-R2-HTTP-SMOKE revision=1 status=specified -->
+<!-- forgepanel-doc id=FP-13-R2-HTTP-SMOKE revision=2 status=specified -->
 # R2 — Symfony HttpKernel smoke and origin/CSRF boundary tests
 
 [Français](../../fr/13-tests-quality/r2-symfony-http-smoke.md) · [R2 test matrix](r2-integration-gates.md) · [R2 PostgreSQL subset](r2-postgres-execution.md)
@@ -16,3 +16,7 @@ A passing workflow constitutes a **partial R2 Symfony HTTP boundary smoke test o
 The test does not demonstrate: a browser-driven positive CSRF POST, valid bootstrap token exchange through HTTP, signed TLS / reverse-proxy integration, permanent administrator login, session persistence across browser requests, complete RBAC, site creation, a privileged daemon, production updates or real VM backup/recovery. These remain **NOT RUN**, along with the remaining R2 master matrix.
 
 The source `SetupBoundary` keeps strict exact HTTPS origin checks and no trusted client-provided forwarding headers. Any actual reverse proxy must undergo separate Security/DevOps qualification. Never weaken Host/Origin checks merely to make a test pass. Keep the Core usable without Hub.
+
+## Bootstrap environment defect found in first CI run
+
+The initial real Symfony runner failed at `config/bootstrap.php`: historical `Dotenv::bootEnv()` attempted to read a non-existent local `.env` even though the workflow supplied explicit environment variables. This is a real R2 configuration defect, not a database problem. The revised bootstrap loads `.env` **only when present**, preserves the protected `/etc/forgepanel/panel.env` override, and still refuses to boot if `APP_SECRET` is absent or too short. This does not permit using `.env.example` as a credential source. Re-run actual Symfony CI before claiming that the fix is verified.

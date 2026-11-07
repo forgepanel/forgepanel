@@ -4,6 +4,11 @@ One chronology, both languages. / Une chronologie, deux langues.
 
 ## Unreleased / Non publié
 
+### Fix candidate / Correctif candidat — Symfony environment-only bootstrap (2026-11-07)
+
+- **Live CI diagnosis / Diagnostic CI réel** — First Symfony CI reached dependency installation but failed before kernel boot because the historical `Dotenv::bootEnv` required a missing local `.env`. Updated `apps/panel/config/bootstrap.php` to load `.env` only if present, preserve the protected `/etc/forgepanel/panel.env` override, and **fail closed on missing/short `APP_SECRET`**; added local static guard and paired R2 HTTP notes. **No completed Symfony boot or live HTTP security certification claimed until rerun on a new commit.** / La première CI Symfony a trouvé un défaut : `.env` local exigé malgré des variables d'environnement contrôlées. Chargement facultatif du fichier local, priorité du fichier système protégé et refus de démarrer sans `APP_SECRET` suffisant. **Aucune validation du noyau HTTP sans nouvelle CI réussie.**
+
+
 ### Proposed / Proposé — Symfony HTTP kernel test candidate (2026-11-07)
 
 - **R2 HTTP smoke / Contrôle HTTP R2** — Added an actual Symfony HttpKernel candidate test for `/setup`: HTTPS exact Host/port, denied insecure/cross-origin/oversized/unsupported-method POST and absent CSRF, plus response security headers; added ephemeral Composer 7.4/Twig 3 resolution/route/container check workflow (no production lock), four offline static tests and paired FR/EN QA documentation. **No successful framework CI, locked Composer dependencies, real browser, permanent login, HTTPS gateway, customer-site provisioning or release is asserted by this draft**. / Test candidat du véritable noyau Symfony avec contrôle Host/Origin/CSRF/taille et en-têtes, résolution Composer éphémère, quatre tests statiques, documents QA FR/EN. **Aucune CI Symfony réussie, dépendance verrouillée, connexion permanente, navigateur, reverse proxy réel, site hébergé ni release revendiqués tant que les preuves n'existent pas.**

@@ -25,10 +25,17 @@ class R2HttpCandidateTests(unittest.TestCase):
         self.assertIn('forgepanel_test', s)
         self.assertNotIn('install apply', s)
 
+    def test_bootstrap_requires_real_secret_without_env_file(self):
+        src = (ROOT / 'apps/panel/config/bootstrap.php').read_text()
+        self.assertIn('is_file($localEnv)', src)
+        self.assertIn("is_file('/etc/forgepanel/panel.env')", src)
+        self.assertIn('strlen($secret) < 32', src)
+        self.assertNotIn('.env.example', src.split('if (is_file($localEnv))')[1])
+
     def test_pair_metadata(self):
         en = (ROOT / 'DOCUMENTATION/en/13-tests-quality/r2-symfony-http-smoke.md').read_text()
         fr = (ROOT / 'DOCUMENTATION/fr/13-tests-quality/r2-symfony-http-smoke.md').read_text()
-        prefix = '<!-- forgepanel-doc id=FP-13-R2-HTTP-SMOKE revision=1 status=specified -->'
+        prefix = '<!-- forgepanel-doc id=FP-13-R2-HTTP-SMOKE revision=2 status=specified -->'
         self.assertTrue(en.startswith(prefix) and fr.startswith(prefix))
 
 

@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-00 revision=14 status=documented -->
+<!-- forgepanel-doc id=FP-00 revision=15 status=documented -->
 # Pilotage du projet
 
 [English](../../en/00-project-control/README.md) · [Index](../README.md)
@@ -30,7 +30,7 @@ Chaque tâche identifie son périmètre et ses composants, fixe les critères d'
 
 ## Nouveaux arbitrages Q161–Q170
 
-[Décisions Q161–Q170](decisions-q161-q170.md) · [Contrats de qualification et reprise](../02-architecture/evidence-and-recovery-q161-q170.md) · [Tests MVP planifiés](../13-tests-quality/mvp-gates-q161-q170.md). **Q1–Q160 restent en vigueur ; Q171+ sont ouverts**, aucun code ou OS certifié par ces documents.
+[Décisions Q161–Q170](decisions-q161-q170.md) · [Contrats de qualification et reprise](../02-architecture/evidence-and-recovery-q161-q170.md) · [Tests MVP planifiés](../13-tests-quality/mvp-gates-q161-q170.md). **Q1–Q160 restent en vigueur ; Q171–Q220 approuvées par le propriétaire en PR #53 non fusionnée ; Q221+ ouvertes**, aucun code ou OS certifié par ces documents.
 
 ## Audit de complétude et traçabilité
 
@@ -39,3 +39,8 @@ Chaque tâche identifie son périmètre et ses composants, fixe les critères d'
 ## Contrats documentaires R3 — IPC, installateur et refus privilégiés
 
 Les [contrats IPC typés](../08-api-contracts/symfony-go-ipc-r3.md), le [cycle d'installation sécurisé](../14-devops-releases/installer-lifecycle-r3.md) et les [24 tests planifiés](../13-tests-quality/r3-ipc-installer-gates.md) précisent `DOC-GAP-005/006` sans fermer leurs dépendances. Le [registre des 7 opérations candidates](../../evidence/typed-agent-operations-v1.json) interdit toute action root arbitraire et maintient **2 opérations privilégiées bloquées**. Les schémas JSON sont des contrats candidats, pas des endpoints.
+
+
+## Proposition de livraison modulaire progressive (v1.x–v3.x)
+
+La [stratégie modulaire ForgePanel](modular-development-strategy.md) définit un **Core v1.0 réellement utilisable** et repousse les modules secondaires vers des releases indépendantes. Elle conserve R1→R6, les orientations Q1–Q220 et un catalogue « À venir » informatif. **Proposition en PR**, aucune implémentation, release ou certification VM revendiquée.

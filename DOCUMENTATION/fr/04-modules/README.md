@@ -1,4 +1,4 @@
-<!-- forgepanel-doc id=FP-04 revision=6 status=documented -->
+<!-- forgepanel-doc id=FP-04 revision=7 status=documented -->
 # Catalogue des modules natifs
 
 [English](../../en/04-modules/README.md) · [Index](../README.md)
@@ -44,3 +44,8 @@ Un module déclare ID, version, contrat Core supporté, dépendances, capacités
 Un échec identifie ressource et compensation restante ; les autres modules ne déduisent pas la réussite d'une simple mise en file. La configuration passe par génération et validation Core, pas par des hooks shell arbitraires. Les tests couvrent refus inter-clients, dépendances absentes, échec de mise à jour et récupération.
 
 Les [fiches composants](components.md) décrivent les unités du prototype et le format requis. Aucun manifeste/parser ou registre de modules à l'exécution n'est implémenté dans l'archive inspectée. Un futur module est accepté seulement avec contrats, migrations, tests, supervision et désinstallation documentés dans les deux langues.
+
+
+## Politique proposée de releases progressives
+
+Les [statuts de modules, activation sûre et trains de release](progressive-release-policy.md) décrivent les 40 éléments candidats (15 capacités Core indispensables, 25 facultatives). Un module planifié ou en développement n'est **pas exécutable**, ni une permission système. Voir la [stratégie Core](../00-project-control/modular-development-strategy.md).

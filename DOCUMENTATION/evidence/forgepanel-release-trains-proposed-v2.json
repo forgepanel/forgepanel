@@ -1,0 +1,160 @@
+{
+  "schema_version": "forgepanel.release-trains/proposal-v2",
+  "document_id": "FP-14-RELEASE-LIFECYCLE",
+  "policy_status": "PROPOSED_NOT_APPROVED",
+  "source_documents": [
+    "MODULAR_DEVELOPMENT_STRATEGY.md",
+    "STRATEGIE_DEVELOPPEMENT_MODULAIRE.md"
+  ],
+  "major_semver_only_when_breaking_changes": true,
+  "one_tag_per_immutable_artifact": true,
+  "no_release_published": true,
+  "old_examples_not_historical_tags": [
+    "v0.1.0-dev.1",
+    "v0.1.0-prealpha.1",
+    "v0.2.0-alpha.1",
+    "v0.3.0-alpha.1",
+    "v0.4.0-preview.1",
+    "v0.5.0-beta.1",
+    "v0.8.0-beta.1"
+  ],
+  "experimental_0_x_allowed_until_1_0_scope_frozen": true,
+  "stages": [
+    {
+      "id": "FP-REL-01",
+      "stage": "DEV",
+      "example_tag": "v1.0.0-0.dev.1",
+      "distribution_channel": "Dev",
+      "audience": "internal",
+      "dependency_gate": "R1",
+      "minimum_criteria": "source import/provenance/test on exact Git commit",
+      "actual_gate_state": "NOT_RUN",
+      "published": false,
+      "deployed": false
+    },
+    {
+      "id": "FP-REL-02",
+      "stage": "PREALPHA",
+      "example_tag": "v1.0.0-1.prealpha.1",
+      "distribution_channel": "Dev",
+      "audience": "internal",
+      "dependency_gate": "R2",
+      "minimum_criteria": "Symfony+PostgreSQL real auth/setup end-to-end; non-executable installation planning only",
+      "actual_gate_state": "NOT_RUN",
+      "published": false,
+      "deployed": false
+    },
+    {
+      "id": "FP-REL-03",
+      "stage": "ALPHA_INTERNAL",
+      "example_tag": "v1.0.0-2.alpha.1",
+      "distribution_channel": "Dev",
+      "audience": "engineering",
+      "dependency_gate": "R3",
+      "minimum_criteria": "typed Go / local IPC + signed install in disposable VM",
+      "actual_gate_state": "NOT_RUN",
+      "published": false,
+      "deployed": false
+    },
+    {
+      "id": "FP-REL-04",
+      "stage": "ALPHA_CLOSED",
+      "example_tag": "v1.0.0-2.alpha.2",
+      "distribution_channel": "Dev",
+      "audience": "closed-testers",
+      "dependency_gate": "R4",
+      "minimum_criteria": "isolated site PHP+HTTPS+SFTP+backup restore tested",
+      "actual_gate_state": "NOT_RUN",
+      "published": false,
+      "deployed": false
+    },
+    {
+      "id": "FP-REL-05",
+      "stage": "PREVIEW",
+      "example_tag": "v1.0.0-3.preview.1",
+      "distribution_channel": "Beta",
+      "audience": "limited",
+      "dependency_gate": "R4",
+      "minimum_criteria": "honest FORGE/PANEL UI/accessibility; real install as qualified",
+      "actual_gate_state": "NOT_RUN",
+      "published": false,
+      "deployed": false
+    },
+    {
+      "id": "FP-REL-06",
+      "stage": "BETA_PRIVATE",
+      "example_tag": "v1.0.0-4.beta.1",
+      "distribution_channel": "Beta",
+      "audience": "invited",
+      "dependency_gate": "R4",
+      "minimum_criteria": "verified legal/security channel; cohorts; real recovery",
+      "actual_gate_state": "NOT_RUN",
+      "published": false,
+      "deployed": false
+    },
+    {
+      "id": "FP-REL-07",
+      "stage": "BETA_PUBLIC",
+      "example_tag": "v1.0.0-4.beta.2",
+      "distribution_channel": "Beta",
+      "audience": "warned-public",
+      "dependency_gate": "R4",
+      "minimum_criteria": "signed artifacts, supported matrix, upgrades and report channels",
+      "actual_gate_state": "NOT_RUN",
+      "published": false,
+      "deployed": false
+    },
+    {
+      "id": "FP-REL-08",
+      "stage": "RC",
+      "example_tag": "v1.0.0-5.rc.1",
+      "distribution_channel": "Beta",
+      "audience": "controlled",
+      "dependency_gate": "R4",
+      "minimum_criteria": "scope freeze; complete E2E/security/upgrade/recovery evidence",
+      "actual_gate_state": "NOT_RUN",
+      "published": false,
+      "deployed": false
+    },
+    {
+      "id": "FP-REL-09",
+      "stage": "GA",
+      "example_tag": "v1.0.0",
+      "distribution_channel": "Stable",
+      "audience": "public",
+      "dependency_gate": "R4",
+      "minimum_criteria": "certified declared scope, immutable signed release, official support",
+      "actual_gate_state": "NOT_RUN",
+      "published": false,
+      "deployed": false
+    }
+  ],
+  "reference_targets": {
+    "v1.0.0": "R4 critical Core; independent of app catalog, containers, native DNS/mail or Hub",
+    "v1.1.0": "candidate native free one-click installer; neutral extension ABI only when independently qualified",
+    "v1.2.0": "candidate Docker-based Container Apps; Hub only after neutral ABI; scoped optional hosting capabilities",
+    "v1.3.0": "candidate Podman independent; native DNS/mail; qualified WAF/malware",
+    "v1.4.0": "candidate reseller, visual editor, advanced config, webmail, billing connectors",
+    "v2.0.0": "aspirational ecosystem/multi-server milestone, not a mandatory semantic-major",
+    "v3.0.0": "aspirational measured scale and HA/compat governance, not a mandatory semantic-major"
+  },
+  "q120_order": [
+    "R1",
+    "R2",
+    "R3",
+    "R4",
+    "R5",
+    "R6"
+  ],
+  "git_flow": [
+    "features/*",
+    "develop",
+    "stable",
+    "main",
+    "production"
+  ],
+  "git_flow_note": "Keep permanent production branch as owner explicitly requested; it is not proof of deployment",
+  "hub_never_required_for_core": true,
+  "minor_and_hotfix_stages_can_be_shorter_based_on_evidence": true,
+  "security_gates_non_waivable": true
+}
